@@ -1526,6 +1526,105 @@
     }
 </style>
 
+<<style>
+    /* ===== TOOLTIP UNTUK GURU ===== */
+    .teacher-tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: help;
+        border-bottom: 1px dashed #d4af37;
+        color: #fff;
+        font-weight: bold;
+    }
+    .teacher-tooltip .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        width: 340px;
+        background: #1a2533;
+        color: #eaeaea;
+        text-align: left;
+        border-radius: 10px;
+        padding: 18px 20px;
+        position: absolute;
+        z-index: 9999;
+        bottom: 150%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+        border: 1px solid #d4af37;
+        font-weight: normal;
+        font-size: 0.85rem;
+        line-height: 1.7;
+        pointer-events: none;
+        white-space: normal;
+    }
+    .teacher-tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    .teacher-tooltip .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -8px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: #d4af37 transparent transparent transparent;
+    }
+    .tooltip-text h4 {
+        margin: 0 0 10px 0;
+        color: #d4af37;
+        border-bottom: 1px solid #2c3e50;
+        padding-bottom: 6px;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+    .tooltip-text .section-label {
+        color: #d4af37;
+        font-weight: 600;
+        display: block;
+        margin-top: 6px;
+        margin-bottom: 2px;
+        font-size: 0.9rem;
+    }
+    .tooltip-text .edu-item {
+        background: rgba(212, 175, 55, 0.08);
+        padding: 6px 10px;
+        border-radius: 6px;
+        margin-top: 2px;
+        border-left: 3px solid #d4af37;
+    }
+    .tooltip-text ul {
+        margin: 4px 0 0 0;
+        padding-left: 0;
+        list-style-type: none;
+    }
+    .tooltip-text ul li {
+        padding: 4px 0;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dotted #2c3e50;
+        font-size: 0.85rem;
+    }
+    .tooltip-text ul li:last-child {
+        border-bottom: none;
+    }
+    .tooltip-text ul li .year {
+        color: #d4af37;
+        font-weight: bold;
+        background: rgba(212, 175, 55, 0.15);
+        padding: 0 8px;
+        border-radius: 12px;
+    }
+    .tooltip-text .highlight-gold {
+        color: #d4af37;
+    }
+</style>
+
 <section id="section1" class="section active">
     <!-- ===== HEADER LOGO : PROVINSI, DINAS, SEKOLAH ===== -->
     <div style="display:flex; justify-content:center; align-items:center; gap:20px 40px; flex-wrap:wrap; padding:12px 10px 6px 10px; border-bottom:1px solid rgba(212,175,55,0.2); margin-bottom:4px;">
@@ -1560,7 +1659,7 @@
         </div>
     </div>
 
-    <!-- ===== KONTEN UTAMA COVER (Teks, Tombol, dll) ===== -->
+    <!-- ===== KONTEN UTAMA COVER ===== -->
     <div style="text-align:center; padding:10px 0 8px 0;">
         <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
         <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
@@ -1572,8 +1671,9 @@
         </p>
 
         <div style="margin-top:16px;">
+            <!-- ===== IKON SEKOLAH DIHAPUS ===== -->
             <div class="school-info">
-                <i class="fas fa-school"></i> SMAN 3 KASONGAN
+                SMAN 3 KASONGAN
             </div>
             <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
                 <i class="fas fa-chalkboard-teacher" style="color:#d4af37;"></i> Guru Pengampu: 
@@ -1582,16 +1682,17 @@
                 <span class="teacher-tooltip">
                     <strong style="color:#fff;">SYAHRANI, S.Pd</strong>
                     <span class="tooltip-text">
-                        <h4>📜 RIWAYAT PENDIDIKAN & MENGAJAR</h4>
+                        <!-- SEMUA IKON EMOJI DIHAPUS -->
+                        <h4>RIWAYAT PENDIDIKAN & MENGAJAR</h4>
 
-                        <span class="section-label">🎓 Pendidikan:</span>
+                        <span class="section-label">Pendidikan:</span>
                         <div class="edu-item">
                             <strong>Universitas Lambung Mangkurat (ULM)</strong><br/>
                             Jurusan IPS, Program Studi Sejarah<br/>
                             <span class="highlight-gold">✅ Lulus Tahun 2001</span>
                         </div>
 
-                        <span class="section-label" style="margin-top:10px;">📚 Pengalaman Mengajar:</span>
+                        <span class="section-label" style="margin-top:10px;">Pengalaman Mengajar:</span>
                         <ul>
                             <li><span>SMP PGRI 1 SAMPIT</span> <span class="year">2001</span></li>
                             <li><span>SMPN 4 SAMPIT</span> <span class="year">2003</span></li>
