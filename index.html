@@ -2135,7 +2135,37 @@
         </section>
 
         <!-- ========== SECTION 8 : GUNA SEJARAH ========== -->
+
         <section id="section8" class="section">
+            <!-- STYLE KHUSUS UNTUK HALAMAN 8: Latar kartu saat diklik menjadi gelap lembut -->
+            <style>
+                #section8 .interactive-card.dark-card.open {
+                    background: #1e1e2e;
+                    /* biru tua kehitaman, lembut di mata */
+                    border-color: #d4af37;
+                    color: #e8e8e8;
+                }
+                #section8 .interactive-card.dark-card.open h3 {
+                    color: #f0f0f0;
+                }
+                #section8 .interactive-card.dark-card.open p,
+                #section8 .interactive-card.dark-card.open ul li,
+                #section8 .interactive-card.dark-card.open .back,
+                #section8 .interactive-card.dark-card.open strong,
+                #section8 .interactive-card.dark-card.open em {
+                    color: #d0d0d0;
+                }
+                #section8 .interactive-card.dark-card.open .toggle-hint {
+                    color: #aaa;
+                }
+                #section8 .interactive-card.dark-card.open .guna-icon {
+                    color: #d4af37;
+                }
+                #section8 .interactive-card.dark-card.open .back {
+                    border-top-color: rgba(212, 175, 55, 0.3);
+                }
+            </style>
+
             <div class="section-header">
                 <div class="num">08</div>
                 <h2>Guna Sejarah <small>Rekreatif · Edukatif · Inspiratif · Instruktif</small></h2>
@@ -2145,7 +2175,22 @@
                 Apa gunanya sejarah bagi kita sehari-hari? Sejarah bukan hanya kumpulan cerita masa lalu, melainkan memiliki <strong style="color:#fff;">nilai praktis</strong> yang dapat dirasakan dalam berbagai aspek kehidupan. 
                 <strong>Klik pada setiap kartu</strong> untuk melihat penjelasan dan contoh lengkapnya.
             </p>
+
+            <!-- GAMBAR 8: Guna Sejarah (Silakan ganti URL gambar) -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_guna_sejarah.png', 'Ilustrasi Guna Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi guna sejarah
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_guna_sejarah.png" alt="Guna Sejarah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Guna Sejarah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Empat guna sejarah: Rekreatif, Edukatif, Inspiratif, Instruktif.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
             <div class="grid-4">
+                <!-- Rekreatif -->
                 <div class="card guna-card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="guna-icon">🎭</span>
                     <h3>Rekreatif</h3>
@@ -2163,6 +2208,7 @@
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
 
+                <!-- Edukatif -->
                 <div class="card guna-card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="guna-icon">📚</span>
                     <h3>Edukatif</h3>
@@ -2180,6 +2226,7 @@
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
 
+                <!-- Inspiratif -->
                 <div class="card guna-card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="guna-icon">💡</span>
                     <h3>Inspiratif</h3>
@@ -2197,6 +2244,7 @@
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
 
+                <!-- Instruktif -->
                 <div class="card guna-card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="guna-icon">📢</span>
                     <h3>Instruktif</h3>
@@ -2215,6 +2263,7 @@
                 </div>
             </div>
 
+            <!-- Footer ringkasan -->
             <div style="background: #24211a; border-radius:14px; padding:14px 18px; margin-top:14px; border-left:6px solid #d4af37;">
                 <p style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; justify-content:center; color:#ccc;">
                     <span><i class="fas fa-theater-masks" style="color:#d4af37; font-size:1.2rem;"></i> <strong style="color:#fff;">Rekreatif</strong></span>
@@ -2227,6 +2276,8 @@
                     <em>“Histories make men wise”</em> — Sejarah membuat manusia bijaksana.
                 </p>
             </div>
+            <!-- TOMBOL NAVIGASI SUDAH ADA DI GLOBAL -->
+        </section>
         </section>
 
         <!-- ========== SECTION 9 : AKTIVITAS ========== -->
