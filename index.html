@@ -2036,7 +2036,37 @@
             <!-- TOMBOL NAVIGASI SUDAH ADA DI GLOBAL, TIDAK PERLU DITAMBAHKAN DI SINI -->
         </section>
         <!-- ========== SECTION 7 : HAKIKAT SEJARAH ========== -->
+
         <section id="section7" class="section">
+            <!-- STYLE KHUSUS UNTUK HALAMAN 7: Latar kartu saat diklik menjadi gelap lembut, bukan putih (sama seperti halaman 6) -->
+            <style>
+                #section7 .interactive-card.dark-card.open {
+                    background: #1e1e2e;
+                    /* biru tua kehitaman, lembut di mata */
+                    border-color: #d4af37;
+                    color: #e8e8e8;
+                }
+                #section7 .interactive-card.dark-card.open h3 {
+                    color: #f0f0f0;
+                }
+                #section7 .interactive-card.dark-card.open p,
+                #section7 .interactive-card.dark-card.open ul li,
+                #section7 .interactive-card.dark-card.open .keterangan,
+                #section7 .interactive-card.dark-card.open strong,
+                #section7 .interactive-card.dark-card.open em {
+                    color: #d0d0d0;
+                }
+                #section7 .interactive-card.dark-card.open .toggle-hint {
+                    color: #aaa;
+                }
+                #section7 .interactive-card.dark-card.open .pillar-icon {
+                    color: #d4af37;
+                }
+                #section7 .interactive-card.dark-card.open .back {
+                    border-top-color: rgba(212, 175, 55, 0.3);
+                }
+            </style>
+
             <div class="section-header">
                 <div class="num">07</div>
                 <h2>HAKIKAT SEJARAH <small>Dimensi Peristiwa, Kisah, Seni, dan Ilmu</small></h2>
@@ -2045,6 +2075,18 @@
                 <i class="fas fa-info-circle" style="color:#d4af37;"></i> 
                 Sejarah memiliki empat dimensi hakikat yang saling melengkapi. <strong>Klik pada setiap kartu</strong> untuk mempelajari penjelasan dan contohnya secara mendalam.
             </p>
+            <!-- GAMBAR 7: Hakikat (SILAKAN GANTI URL GAMBARNYA) -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_hakikat.png', 'Ilustrasi Hakikat Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi hakikat sejarah
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_hakikat.png" alt="Hakikat Sejarah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Hakikat Sejarah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Empat dimensi hakikat sejarah: Peristiwa, Kisah, Seni, dan Ilmu.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
             <div class="grid-4">
                 <div class="card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="pillar-icon">A</span>
