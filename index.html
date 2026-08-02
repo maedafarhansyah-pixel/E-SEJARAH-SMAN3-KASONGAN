@@ -43,7 +43,7 @@
             pointer-events: none;
         }
         #loader .loader-text {
-            color: #2ecc71;
+            color: #d4af37;
             font-size: 1.2rem;
             font-weight: 500;
             letter-spacing: 1px;
@@ -83,15 +83,24 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
         .mobile-header .brand {
-            color: #2ecc71;
+            color: #d4af37;
             font-weight: 900;
             font-size: 1.6rem;
             letter-spacing: 1.5px;
         }
-        .mobile-header .brand i {
-            display: none !important;
+        .mobile-header .home-btn {
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0 8px;
         }
-
+        .mobile-header .home-btn:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
         .hamburger {
             background: none;
             border: none;
@@ -101,8 +110,8 @@
             padding: 4px 8px;
             transition: 0.2s;
         }
-        .hamburger:hover { color: #2ecc71; }
-        .hamburger.active { color: #2ecc71; }
+        .hamburger:hover { color: #d4af37; }
+        .hamburger.active { color: #d4af37; }
 
         /* ===== SIDEBAR ===== */
         .sidebar {
@@ -115,7 +124,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             z-index: 1000;
             box-shadow: 2px 0 12px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease, width 0.3s ease;
@@ -127,7 +135,7 @@
             width: 220px;
         }
         .sidebar .logo {
-            color: #2ecc71;
+            color: #d4af37;
             font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -136,6 +144,7 @@
             text-orientation: mixed;
             opacity: 0.9;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
         .sidebar.open .logo {
             writing-mode: horizontal-tb;
@@ -145,20 +154,21 @@
         .sidebar nav {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
             padding: 8px 0;
             flex: 1;
-            justify-content: center;
+            justify-content: flex-start;
             width: 100%;
+            overflow-y: auto;
         }
         .sidebar nav a {
             color: rgba(255, 255, 255, 0.5);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 8px 16px;
+            padding: 6px 16px;
             border-radius: 8px;
             transition: all 0.25s;
             white-space: nowrap;
@@ -167,14 +177,16 @@
             letter-spacing: 0.3px;
         }
         .sidebar nav a i {
-            font-size: 1.1rem;
+            font-size: 1rem;
             width: 24px;
             text-align: center;
             flex-shrink: 0;
+            color: #d4af37;
         }
         .sidebar nav a span {
             opacity: 0;
             transition: opacity 0.25s;
+            font-size: 0.8rem;
         }
         .sidebar.open nav a span {
             opacity: 1;
@@ -182,11 +194,11 @@
         .sidebar nav a:hover,
         .sidebar nav a.active {
             color: #fff;
-            background: rgba(46, 204, 113, 0.25);
+            background: rgba(212, 175, 55, 0.25);
         }
         .sidebar nav a.active {
-            color: #2ecc71;
-            background: rgba(46, 204, 113, 0.18);
+            color: #d4af37;
+            background: rgba(212, 175, 55, 0.18);
         }
 
         .sidebar-overlay {
@@ -204,6 +216,42 @@
         .sidebar-overlay.active {
             opacity: 1;
             pointer-events: auto;
+        }
+
+        /* ===== TOMBOL HOME FLOATING (DESKTOP & MOBILE) ===== */
+        .home-float {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 999;
+            background: #d4af37;
+            color: #121212;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.5);
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+        .home-float:hover {
+            transform: scale(1.12);
+            background: #e6c85c;
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.7);
+        }
+        @media (max-width: 899px) {
+            .home-float {
+                top: 66px;
+                right: 12px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -233,12 +281,12 @@
             align-items: center;
             gap: 14px;
             margin-bottom: 24px;
-            border-bottom: 3px solid #2ecc71;
+            border-bottom: 3px solid #d4af37;
             padding-bottom: 12px;
             flex-wrap: wrap;
         }
         .section-header .num {
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
             font-weight: 700;
             font-size: 1.1rem;
@@ -250,10 +298,6 @@
             justify-content: center;
             flex-shrink: 0;
             transition: background 0.3s ease;
-        }
-        .section-header .num.green-star {
-            background: #2ecc71;
-            color: #121212;
         }
         .section-header h2 {
             font-size: 1.3rem;
@@ -294,7 +338,7 @@
             line-height: 1.5;
             font-weight: 400;
             letter-spacing: 0.2px;
-            border: 1px solid #2ecc71;
+            border: 1px solid #d4af37;
         }
         .hover-trigger .hover-tooltip::after {
             content: '';
@@ -315,6 +359,134 @@
                 padding: 8px 12px;
                 bottom: calc(100% + 8px);
             }
+        }
+
+        /* ===== MODAL UNTUK GAMBAR BESAR ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-overlay .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 16px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            position: relative;
+            text-align: center;
+        }
+        .modal-overlay .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            display: block;
+        }
+        .modal-overlay .modal-content .caption {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #333;
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: #d4af37;
+            color: #121212;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #121212;
+            transition: 0.3s;
+        }
+        .modal-overlay .modal-close:hover {
+            transform: scale(1.1);
+            background: #e6c85c;
+        }
+
+        .geosfer-hover-trigger {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #d4af37;
+            transition: 0.3s;
+            position: relative;
+            margin: 10px 0 6px;
+            font-size: 1rem;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.15);
+        }
+        .geosfer-hover-trigger:hover {
+            background: #2a2a2a;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+            transform: translateY(-2px);
+        }
+        .geosfer-hover-trigger .popup-diagram {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            background: #1e1e1e;
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            padding: 20px;
+            bottom: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.9);
+            text-align: center;
+            pointer-events: none;
+            width: 520px;
+            max-width: 90vw;
+        }
+        .geosfer-hover-trigger:hover .popup-diagram {
+            display: block;
+            animation: popupFade 0.3s ease;
+        }
+        @keyframes popupFade {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.92) translateY(12px); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
+        }
+        .geosfer-hover-trigger .popup-diagram img {
+            max-width: 100%;
+            max-height: 220px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: #0d0d0d;
+        }
+        .geosfer-hover-trigger .popup-diagram .caption {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 8px;
+            border-top: 1px solid #333;
+            padding-top: 8px;
+        }
+        .geosfer-hover-trigger .popup-diagram .caption strong {
+            color: #d4af37;
         }
 
         /* ----- CARDS & GRID ----- */
@@ -355,11 +527,11 @@
         .card:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-            border-color: #2ecc71;
+            border-color: #d4af37;
         }
         .card .icon {
             font-size: 1.8rem;
-            color: #2ecc71;
+            color: #d4af37;
             margin-bottom: 8px;
         }
         .card h3 {
@@ -383,10 +555,10 @@
         }
         .card.highlight {
             background: #252525;
-            border-color: #2ecc71;
+            border-color: #d4af37;
         }
         .card.merdeka-badge {
-            border-left: 6px solid #2ecc71;
+            border-left: 6px solid #d4af37;
             background: #1e1e1e;
         }
 
@@ -406,7 +578,7 @@
             color: #fff;
         }
         .interactive-card.dark-card .pillar-icon {
-            color: #2ecc71;
+            color: #d4af37;
             font-size: 2.8rem;
             font-weight: 700;
             display: block;
@@ -414,7 +586,7 @@
             line-height: 1.2;
         }
         .interactive-card.dark-card .guna-icon {
-            color: #2ecc71;
+            color: #d4af37;
         }
         .interactive-card.dark-card p {
             color: #ccc;
@@ -424,7 +596,7 @@
         }
         .interactive-card.dark-card.open {
             background: #f5f0e8;
-            border-color: #2ecc71;
+            border-color: #d4af37;
             color: #1e2a36;
         }
         .interactive-card.dark-card.open h3 {
@@ -437,10 +609,10 @@
             color: #6a7a8a;
         }
         .interactive-card.dark-card.open .pillar-icon {
-            color: #2ecc71;
+            color: #d4af37;
         }
         .interactive-card.dark-card.open .guna-icon {
-            color: #2ecc71;
+            color: #d4af37;
         }
         .interactive-card.dark-card.open ul li {
             color: #2a3a4a;
@@ -455,7 +627,7 @@
         .interactive-card .back {
             display: none;
             padding-top: 12px;
-            border-top: 2px dashed rgba(46, 204, 113, 0.4);
+            border-top: 2px dashed rgba(212, 175, 55, 0.4);
             margin-top: 12px;
             font-size: 0.92rem;
         }
@@ -471,7 +643,7 @@
             opacity: 0.7;
         }
 
-        /* Gaya untuk kartu ahli (Halaman 6) */
+        /* Gaya untuk kartu ahli */
         .ahli-card.interactive-card.dark-card .ahli-header h3 {
             color: #fff;
         }
@@ -481,7 +653,7 @@
         .ahli-card .ahli-header .icon-number {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #2ecc71;
+            color: #d4af37;
             display: inline-block;
             width: 36px;
             text-align: center;
@@ -495,7 +667,7 @@
             color: #4a5a6a;
         }
         .ahli-card.interactive-card.dark-card.open .ahli-header .icon-number {
-            color: #2ecc71;
+            color: #d4af37;
         }
         .ahli-card.interactive-card.dark-card .keterangan {
             border-top-color: #555;
@@ -537,15 +709,15 @@
             flex: 1 1 auto;
         }
         .etym-tabs button.active {
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
-            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
         .etym-tabs button:hover {
             background: #3a3a3a;
         }
         .etym-tabs button.active:hover {
-            background: #3ddf7a;
+            background: #e6c85c;
         }
         .etym-content {
             background: #1e1e1e;
@@ -564,7 +736,7 @@
             animation: fadeUp 0.3s ease;
         }
         .etym-content .etym-panel strong {
-            color: #2ecc71;
+            color: #d4af37;
             font-size: 1rem;
         }
         .etym-content .etym-panel ul {
@@ -579,7 +751,7 @@
             background: #1e1e1e;
             border-radius: 14px;
             padding: 16px 18px;
-            border-left: 6px solid #2ecc71;
+            border-left: 6px solid #d4af37;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
             margin: 12px 0;
         }
@@ -588,7 +760,7 @@
             color: #f0f0f0;
         }
         .def-block .source i {
-            color: #2ecc71;
+            color: #d4af37;
             margin-right: 6px;
         }
 
@@ -598,7 +770,7 @@
         }
         .guna-card .guna-icon {
             font-size: 2.4rem;
-            color: #2ecc71;
+            color: #d4af37;
             margin-bottom: 6px;
             display: block;
         }
@@ -622,10 +794,10 @@
         }
 
         .activity-box {
-            background: #1a241e;
+            background: #24211a;
             border-radius: 18px;
             padding: 20px 18px;
-            border: 2px dashed #2ecc71;
+            border: 2px dashed #d4af37;
             margin: 14px 0 6px 0;
         }
         .activity-box h3 {
@@ -637,30 +809,7 @@
             flex-wrap: wrap;
         }
         .activity-box h3 i {
-            color: #2ecc71;
-        }
-        .tree-placeholder {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px 16px;
-            margin: 14px 0 4px 0;
-            font-size: 0.9rem;
-        }
-        .tree-placeholder .level {
-            background: #2a2a2a;
-            padding: 6px 14px;
-            border-radius: 40px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: 1px solid #444;
-            font-size: 0.85rem;
-            color: #ddd;
-        }
-        .tree-placeholder .level i {
-            color: #2ecc71;
+            color: #d4af37;
         }
 
         .worksheet-table {
@@ -674,7 +823,7 @@
             border: 1px solid #444;
         }
         .worksheet-table .header {
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
             font-weight: 700;
             padding: 10px 8px;
@@ -710,7 +859,7 @@
             color: #ddd;
         }
         .ref-list li i {
-            color: #2ecc71;
+            color: #d4af37;
             font-size: 0.8rem;
             width: 20px;
             flex-shrink: 0;
@@ -728,14 +877,15 @@
         .progress-wrap .bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #2ecc71, #58d68d);
+            background: linear-gradient(90deg, #d4af37, #e6c85c);
             transition: width 0.4s ease;
             border-radius: 0 4px 4px 0;
         }
 
+        /* ===== NAVIGASI BAWAH ===== */
         .nav-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-top: 32px;
             padding-top: 14px;
@@ -745,6 +895,13 @@
         }
         .nav-buttons.hidden {
             display: none;
+        }
+        .nav-buttons .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .nav-buttons button {
             background: #2a2a2a;
@@ -761,18 +918,68 @@
             gap: 8px;
         }
         .nav-buttons button:hover:not(:disabled) {
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
             transform: scale(1.02);
         }
         .nav-buttons button:disabled {
             opacity: 0.35;
             cursor: not-allowed;
+            background: #2a2a2a;
+            color: #666;
         }
         .nav-buttons .counter {
             font-weight: 500;
             color: #aaa;
             font-size: 0.85rem;
+            padding: 0 8px;
+        }
+
+        /* ===== PAGE NUMBERS ===== */
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #aaa;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            text-decoration: none;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: #3a3a3a;
+            border-color: #d4af37;
+            color: #fff;
+        }
+        .page-numbers a.active {
+            background: #d4af37;
+            color: #121212;
+            border-color: #d4af37;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+        }
+        @media (max-width: 500px) {
+            .page-numbers a {
+                min-width: 24px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 0.65rem;
+            }
+            .nav-buttons button {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
         }
 
         .start-btn-wrapper {
@@ -781,7 +988,7 @@
             margin: 28px 0 12px 0;
         }
         .start-btn {
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
             border: none;
             padding: 14px 44px;
@@ -790,22 +997,22 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
             display: inline-flex;
             align-items: center;
             gap: 14px;
         }
         .start-btn:hover {
-            background: #3ddf7a;
+            background: #e6c85c;
             transform: scale(1.04);
-            box-shadow: 0 8px 28px rgba(46, 204, 113, 0.6);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.6);
         }
         .start-btn i {
             font-size: 1.4rem;
         }
 
-        .text-gold { color: #2ecc71; }
-        .bg-gold-light { background: rgba(46, 204, 113, 0.08); }
+        .text-gold { color: #d4af37; }
+        .bg-gold-light { background: rgba(212, 175, 55, 0.08); }
         .mt-8 { margin-top: 8px; }
         .mt-16 { margin-top: 16px; }
         .mb-8 { margin-bottom: 8px; }
@@ -813,7 +1020,7 @@
 
         .tag {
             display: inline-block;
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
             font-size: 0.7rem;
             font-weight: 700;
@@ -834,7 +1041,7 @@
             margin-top: 6px;
         }
         .school-info i {
-            color: #2ecc71;
+            color: #d4af37;
             margin-right: 8px;
         }
         .footer-credit {
@@ -849,19 +1056,19 @@
             color: #eee;
         }
         .cp-atp-box {
-            background: #1a241e;
+            background: #24211a;
             border-radius: 14px;
             padding: 16px 18px;
-            border-left: 6px solid #4a8c6a;
+            border-left: 6px solid #b8962e;
             margin: 10px 0;
             color: #ddd;
         }
         .cp-atp-box strong {
-            color: #8cc4a0;
+            color: #e0c46a;
         }
         .deep-learning-badge {
             display: inline-block;
-            background: #2a6b4c;
+            background: #6b4c1a;
             color: #fff;
             padding: 3px 14px;
             border-radius: 40px;
@@ -891,7 +1098,7 @@
             border: 1px solid #333;
         }
         .etym-detail-grid .etym-item strong {
-            color: #2ecc71;
+            color: #d4af37;
             display: block;
             font-size: 1rem;
         }
@@ -917,7 +1124,7 @@
         .ahli-card .ahli-header .icon-number {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #2ecc71;
+            color: #d4af37;
             display: inline-block;
             width: 36px;
             text-align: center;
@@ -949,11 +1156,11 @@
             border-top: 1px solid #444;
         }
         .ahli-card .keterangan i {
-            color: #2ecc71;
+            color: #d4af37;
             margin-right: 4px;
         }
 
-        /* ===== REFLEKSI (HALAMAN 11) ===== */
+        /* ===== REFLEKSI ===== */
         .refleksi-list {
             list-style: none;
             padding: 0;
@@ -973,13 +1180,13 @@
         }
         .refleksi-list li .check {
             font-size: 1.4rem;
-            color: #6bcb77;
+            color: #d4af37;
             flex-shrink: 0;
             margin-top: 2px;
         }
         .quote-block {
-            background: #1a241e;
-            border-left: 6px solid #2ecc71;
+            background: #24211a;
+            border-left: 6px solid #d4af37;
             padding: 16px 20px;
             border-radius: 10px;
             margin: 12px 0;
@@ -992,12 +1199,12 @@
             margin-top: 8px;
             font-style: normal;
             font-weight: 600;
-            color: #2ecc71;
+            color: #d4af37;
             text-align: right;
         }
         .celebration-box {
-            background: linear-gradient(145deg, #1a2a2a, #0d1a1a);
-            border: 2px solid #2ecc71;
+            background: linear-gradient(145deg, #1a1a0d, #0d0d0a);
+            border: 2px solid #d4af37;
             border-radius: 16px;
             padding: 24px 20px;
             text-align: center;
@@ -1005,7 +1212,7 @@
         }
         .celebration-box h3 {
             font-size: 1.6rem;
-            color: #2ecc71;
+            color: #d4af37;
             margin-bottom: 10px;
         }
         .celebration-box p {
@@ -1014,7 +1221,7 @@
         }
         .next-step-btn {
             display: inline-block;
-            background: #2ecc71;
+            background: #d4af37;
             color: #121212;
             padding: 12px 32px;
             border-radius: 60px;
@@ -1027,7 +1234,7 @@
             cursor: default;
         }
         .next-step-btn:hover {
-            background: #3ddf7a;
+            background: #e6c85c;
             transform: scale(1.03);
         }
 
@@ -1108,7 +1315,6 @@
             .card p, .card li { font-size: 0.85rem; }
             .etym-tabs button { font-size: 0.75rem; padding: 6px 12px; }
             .nav-buttons button { padding: 6px 14px; font-size: 0.8rem; }
-            .tree-placeholder .level { font-size: 0.75rem; padding: 4px 10px; }
             .start-btn { padding: 10px 28px; font-size: 1rem; }
             .celebration-box h3 { font-size: 1.3rem; }
             .mobile-header .brand { font-size: 1.3rem; }
@@ -1135,7 +1341,7 @@
             padding: 12px 16px;
             background: #1e1e1e;
             border-radius: 10px;
-            border-left: 4px solid #2ecc71;
+            border-left: 4px solid #d4af37;
         }
         .assessment-question .q-text {
             font-weight: 600;
@@ -1176,9 +1382,23 @@
         <div class="loader-text">Memuat Materi Sejarah...</div>
     </div>
 
+    <!-- ===== MODAL GAMBAR ===== -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="modal-close" onclick="closeModal()">✕</span>
+            <img id="modalImage" src="" alt="Gambar besar" />
+            <div class="caption" id="modalCaption">Klik di luar gambar untuk menutup</div>
+        </div>
+    </div>
+
     <!-- ===== MOBILE HEADER ===== -->
     <header class="mobile-header">
-        <div class="brand">SEJARAH</div>
+        <div style="display:flex; align-items:center; gap:8px;">
+            <button class="home-btn" onclick="navigateTo('section1')" title="Kembali ke Beranda">
+                <i class="fas fa-home"></i>
+            </button>
+            <div class="brand">SEJARAH</div>
+        </div>
         <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
@@ -1191,20 +1411,14 @@
     <aside class="sidebar" id="sidebar">
         <div class="logo">📜 Sejarah</div>
         <nav id="navLinks">
-            <a href="#" data-section="section1" class="active"><i class="fas fa-home"></i><span>Beranda</span></a>
-            <a href="#" data-section="section2"><i class="fas fa-bullseye"></i><span>CP & ATP</span></a>
-            <a href="#" data-section="section3"><i class="fas fa-list-check"></i><span>Indikator</span></a>
-            <a href="#" data-section="section4"><i class="fas fa-cubes"></i><span>Kerangka Deep Learning</span></a>
-            <a href="#" data-section="section5"><i class="fas fa-book-open"></i><span>Pengertian</span></a>
-            <a href="#" data-section="section6"><i class="fas fa-users"></i><span>Definisi Ahli</span></a>
-            <a href="#" data-section="section7"><i class="fas fa-layer-group"></i><span>Hakikat</span></a>
-            <a href="#" data-section="section8"><i class="fas fa-lightbulb"></i><span>Guna Sejarah</span></a>
-            <a href="#" data-section="section9"><i class="fas fa-tree"></i><span>Aktivitas</span></a>
-            <a href="#" data-section="section10"><i class="fas fa-clipboard-check"></i><span>Asesmen</span></a>
-            <a href="#" data-section="section11"><i class="fas fa-star"></i><span>Refleksi</span></a>
-            <a href="#" data-section="section12"><i class="fas fa-bookmark"></i><span>Referensi</span></a>
+            <!-- Akan diisi otomatis oleh JavaScript (semua section) -->
         </nav>
     </aside>
+
+    <!-- ===== TOMBOL HOME FLOATING ===== -->
+    <button class="home-float" onclick="navigateTo('section1')" title="Kembali ke Beranda">
+        <i class="fas fa-home"></i>
+    </button>
 
     <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
@@ -1223,12 +1437,13 @@
                 <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">
                     Pengertian, ruang lingkup, dan kegunaan sejarah<br/>dalam kehidupan sehari-hari
                 </p>
+
                 <div style="margin-top:16px;">
                     <div class="school-info">
                         <i class="fas fa-school"></i> SMAN 3 KASONGAN
                     </div>
                     <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
-                        <i class="fas fa-chalkboard-teacher" style="color:#2ecc71;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; NIP. 197512172005011016
+                        <i class="fas fa-chalkboard-teacher" style="color:#d4af37;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; NIP. 197512172005011016
                     </div>
                 </div>
                 <div class="start-btn-wrapper">
@@ -1249,9 +1464,23 @@
                 <h2>Capaian & Alur Tujuan Pembelajaran <small>Kurikulum Merdeka Fase E</small></h2>
             </div>
             <div class="cp-atp-box">
-                <p><strong><i class="fas fa-flag-checkered" style="color:#8cc4a0;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>
+                <p><strong><i class="fas fa-flag-checkered" style="color:#e0c46a;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>
                 Pada akhir Fase E, peserta didik mampu memahami konsep-konsep dasar manusia, ruang, waktu, diakronis (kronologi), sinkronis, guna sejarah, sejarah dan teori sosial, metode penelitian sejarah, serta sejarah lokal.</p>
             </div>
+
+            <!-- GAMBAR 2: CP/ATP -->
+            <div style="text-align:center; margin:12px 0;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_cp_atp.png', 'Diagram Capaian dan Alur Tujuan Pembelajaran')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram CP & ATP
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_cp_atp.png" alt="CP ATP" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Diagram CP & ATP<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Capaian Pembelajaran dan Alur Tujuan Pembelajaran Fase E.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
             <div class="grid-2" style="margin-top:6px;">
                 <div class="card merdeka-badge">
                     <div class="icon"><i class="fas fa-route"></i></div>
@@ -1293,31 +1522,55 @@
                 <h2>Indikator Pencapaian <small>Tujuan Pembelajaran</small></h2>
             </div>
             <div class="grid-3">
-                <div class="card"><i class="fas fa-check-circle" style="color:#2ecc71; font-size:1.8rem;"></i><h3>Indikator 1</h3><p>Menjelaskan pengertian dan ruang lingkup sejarah</p></div>
-                <div class="card"><i class="fas fa-check-circle" style="color:#2ecc71; font-size:1.8rem;"></i><h3>Indikator 2</h3><p>Menjelaskan kegunaan sejarah bagi kehidupan masa kini</p></div>
-                <div class="card"><i class="fas fa-check-circle" style="color:#2ecc71; font-size:1.8rem;"></i><h3>Indikator 3</h3><p>Menjelaskan pengertian sumber, bukti, dan fakta sejarah</p></div>
+                <div class="card"><i class="fas fa-check-circle" style="color:#d4af37; font-size:1.8rem;"></i><h3>Indikator 1</h3><p>Menjelaskan pengertian dan ruang lingkup sejarah</p></div>
+                <div class="card"><i class="fas fa-check-circle" style="color:#d4af37; font-size:1.8rem;"></i><h3>Indikator 2</h3><p>Menjelaskan kegunaan sejarah bagi kehidupan masa kini</p></div>
+                <div class="card"><i class="fas fa-check-circle" style="color:#d4af37; font-size:1.8rem;"></i><h3>Indikator 3</h3><p>Menjelaskan pengertian sumber, bukti, dan fakta sejarah</p></div>
+            </div>
+            <!-- GAMBAR 3: Indikator -->
+            <div style="text-align:center; margin-top:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_indikator.png', 'Ilustrasi Pencapaian Indikator')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi indikator
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_indikator.png" alt="Indikator" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Indikator<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Indikator pencapaian tujuan pembelajaran.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
         </section>
 
-        <!-- ========== SECTION 4 : KERANGKA PEMBELAJARAN MENDALAM ========== -->
+        <!-- ========== SECTION 4 : KERANGKA DEEP LEARNING ========== -->
         <section id="section4" class="section">
             <div class="section-header">
                 <div class="num">04</div>
                 <h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2>
             </div>
-            <div class="card" style="background: #1a241e; border: 1px solid #2ecc71; padding: 18px 16px;">
+            <div class="card" style="background: #24211a; border: 1px solid #d4af37; padding: 18px 16px;">
                 <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px; align-items: start;">
-                    <div style="font-weight: 700; color: #2ecc71; padding: 8px 12px; font-size: 0.95rem;">Komponen Kerangka Pembelajaran Mendalam</div>
-                    <div style="font-weight: 700; color: #2ecc71; padding: 8px 12px; font-size: 0.95rem;">Implementasi</div>
+                    <div style="font-weight: 700; color: #d4af37; padding: 8px 12px; font-size: 0.95rem;">Komponen</div>
+                    <div style="font-weight: 700; color: #d4af37; padding: 8px 12px; font-size: 0.95rem;">Implementasi</div>
                     <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Praktik Pedagogis</div>
                     <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Problem Based Learning (PBL) berbasis inkuiri.</div>
-                    <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Lingkungan Pembelajaran</div>
-                    <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Kelas, ruang virtual, perpustakaan, dan lingkungan sekitar sekolah sebagai sumber belajar.</div>
-                    <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Kemitraan Pembelajaran</div>
+                    <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Lingkungan</div>
+                    <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Kelas, ruang virtual, perpustakaan, dan lingkungan sekitar.</div>
+                    <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Kemitraan</div>
                     <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Orang tua, tokoh masyarakat.</div>
-                    <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Pemanfaatan Digital</div>
-                    <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Video pembelajaran, Canva, Google Earth, Quizizz/Kahoot, arsip digital, dan AI secara bertanggung jawab.</div>
+                    <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Digital</div>
+                    <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Video, Canva, Google Earth, Quizizz, arsip digital, AI.</div>
                 </div>
+            </div>
+            <!-- GAMBAR 4: Deep Learning -->
+            <div style="text-align:center; margin-top:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_deep_learning.png', 'Ilustrasi Kerangka Deep Learning')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi Deep Learning
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_deep_learning.png" alt="Deep Learning" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Deep Learning<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Kerangka pembelajaran mendalam (Deep Learning).</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
         </section>
 
@@ -1328,7 +1581,7 @@
                 <h2>Pengertian Sejarah <small>Etimologis & Filosofis</small></h2>
             </div>
             <p style="font-size:1rem; margin-bottom:6px; color:#ccc;">
-                <i class="fas fa-globe-asia" style="color:#2ecc71;"></i> 
+                <i class="fas fa-globe-asia" style="color:#d4af37;"></i> 
                 Secara etimologi, kata "sejarah" berasal dari berbagai bahasa. Memahami akar kata ini membantu kita menangkap esensi sejarah dari berbagai sudut pandang budaya dan keilmuan.
             </p>
             <div class="etym-tabs">
@@ -1363,9 +1616,22 @@
                 </div>
             </div>
 
+            <!-- GAMBAR 5: Etimologi -->
+            <div style="text-align:center; margin-top:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_etimologi.png', 'Ilustrasi Etimologi Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi etimologi
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_etimologi.png" alt="Etimologi" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Etimologi<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Sejarah sebagai pohon (Arab), penyelidikan (Inggris), dan kejadian (Jerman).</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
             <div style="margin-top:16px;">
-                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #2ecc71; padding-left:12px; margin-bottom:6px;">
-                    <i class="fas fa-tree" style="color:#2ecc71;"></i> Memaknai "Sejarah sebagai Pohon" (Syajaratun)
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #d4af37; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-tree" style="color:#d4af37;"></i> Memaknai "Sejarah sebagai Pohon" (Syajaratun)
                 </h3>
                 <div class="grid-2" style="margin-top:4px;">
                     <div class="card highlight" style="padding:16px;">
@@ -1396,7 +1662,7 @@
                         <li>Sejarah berarti <strong>ilmu pengetahuan</strong>, cerita pelajaran tentang kejadian atau peristiwa yang benar-benar terjadi pada masa lampau — menekankan dimensi ilmiah dan edukatif.</li>
                     </ul>
                     <p style="margin-top:6px; font-size:0.9rem; color:#ccc; border-top:1px solid #444; padding-top:6px;">
-                        <i class="fas fa-lightbulb" style="color:#2ecc71;"></i> 
+                        <i class="fas fa-lightbulb" style="color:#d4af37;"></i> 
                         <strong>Refleksi:</strong> Dari ketiga makna ini, kita dapat menyimpulkan bahwa sejarah bukan hanya kumpulan fakta, tetapi juga <em>proses pemaknaan</em> yang menghubungkan masa lalu dengan masa kini, serta menjadi <em>pelajaran</em> untuk membangun masa depan.
                     </p>
                 </div>
@@ -1410,9 +1676,23 @@
                 <h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Sejarah Dunia & Indonesia</small></h2>
             </div>
             <p style="font-size:1rem; margin-bottom:10px; color:#ccc;">
-                <i class="fas fa-quote-left" style="color:#2ecc71;"></i> 
-                Berikut adalah definisi sejarah dari berbagai ahli terkemuka, baik dari Indonesia maupun mancanegara. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.
+                <i class="fas fa-quote-left" style="color:#d4af37;"></i> 
+                Berikut adalah definisi sejarah dari berbagai ahli terkemuka. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.
             </p>
+
+            <!-- GAMBAR 6: Ahli -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_para_ahli.png', 'Ilustrasi Para Ahli Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi para ahli
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_para_ahli.png" alt="Para Ahli" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Para Ahli<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Tokoh-tokoh penting dalam definisi sejarah.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
             <div class="grid-ahli">
                 <!-- 1. W.J.S. Poerwodarminta -->
                 <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
@@ -1601,35 +1881,47 @@
 
             <div style="background:#1e1e1e; border-radius:14px; padding:14px 18px; border:1px solid #333; margin-top:14px;">
                 <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;">
-                    <i class="fas fa-lightbulb" style="color:#2ecc71; font-size:1.4rem; margin-top:2px;"></i>
+                    <i class="fas fa-lightbulb" style="color:#d4af37; font-size:1.4rem; margin-top:2px;"></i>
                     <span>
                         <strong style="color:#fff;">Kesimpulan:</strong> Dari berbagai definisi di atas, dapat disimpulkan bahwa sejarah memiliki beberapa dimensi penting:
                     </span>
                 </p>
                 <ul style="padding-left:40px; margin-top:4px; list-style-type:disc; color:#ccc;">
-                    <li><strong>Dimensi Fakta:</strong> Sejarah adalah peristiwa nyata yang terjadi di masa lampau (Poerwodarminta, Moh. Ali, Aristoteles).</li>
-                    <li><strong>Dimensi Ilmu:</strong> Sejarah adalah disiplin ilmu dengan metode penelitian dan sistematika (Moh. Ali, Yamin, Collingwood).</li>
-                    <li><strong>Dimensi Narasi:</strong> Sejarah adalah cerita yang disusun dari realitas masa lalu (Poerwodarminta, Moh. Ali).</li>
-                    <li><strong>Dimensi Perubahan:</strong> Sejarah selalu berkaitan dengan perubahan dan dinamika masyarakat (Moh. Ali, Ibnu Khaldun).</li>
-                    <li><strong>Dimensi Rekonstruksi:</strong> Sejarah adalah upaya membangun kembali masa lalu berdasarkan bukti (Kuntowijoyo, Collingwood).</li>
+                    <li><strong>Dimensi Fakta:</strong> Sejarah adalah peristiwa nyata yang terjadi di masa lampau.</li>
+                    <li><strong>Dimensi Ilmu:</strong> Sejarah adalah disiplin ilmu dengan metode penelitian.</li>
+                    <li><strong>Dimensi Narasi:</strong> Sejarah adalah cerita yang disusun dari realitas masa lalu.</li>
+                    <li><strong>Dimensi Perubahan:</strong> Sejarah selalu berkaitan dengan perubahan dan dinamika masyarakat.</li>
+                    <li><strong>Dimensi Rekonstruksi:</strong> Sejarah adalah upaya membangun kembali masa lalu berdasarkan bukti.</li>
                 </ul>
                 <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
-                    <i class="fas fa-quote-right" style="color:#2ecc71;"></i> 
+                    <i class="fas fa-quote-right" style="color:#d4af37;"></i> 
                     <em>"Histories make men wise"</em> — Sejarah membuat manusia bijaksana.
                 </p>
             </div>
         </section>
 
-        <!-- ========== SECTION 7 : HAKIKAT SEJARAH (LENGKAP) ========== -->
+        <!-- ========== SECTION 7 : HAKIKAT SEJARAH ========== -->
         <section id="section7" class="section">
             <div class="section-header">
                 <div class="num">07</div>
                 <h2>HAKIKAT SEJARAH <small>Dimensi Peristiwa, Kisah, Seni, dan Ilmu</small></h2>
             </div>
             <p style="font-size:1rem; margin-bottom:10px; color:#ccc;">
-                <i class="fas fa-info-circle" style="color:#2ecc71;"></i> 
+                <i class="fas fa-info-circle" style="color:#d4af37;"></i> 
                 Sejarah memiliki empat dimensi hakikat yang saling melengkapi. <strong>Klik pada setiap kartu</strong> untuk mempelajari penjelasan dan contohnya secara mendalam.
             </p>
+            <!-- GAMBAR 7: Hakikat -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_hakikat.png', 'Ilustrasi Hakikat Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi hakikat sejarah
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_hakikat.png" alt="Hakikat Sejarah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Hakikat Sejarah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Empat dimensi hakikat sejarah: Peristiwa, Kisah, Seni, dan Ilmu.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
             <div class="grid-4">
                 <div class="card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="pillar-icon">A</span>
@@ -1637,7 +1929,7 @@
                     <p>Sejarah sebagai kejadian nyata yang unik, abadi, dan penting.</p>
                     <div class="back">
                         <p style="margin-bottom:6px;">Sejarah sebagai peristiwa menekankan pada <strong>kejadian nyata</strong> yang terjadi di masa lampau. Peristiwa ini memiliki sifat <strong>unik</strong> (hanya terjadi sekali), <strong>abadi</strong> (tetap dikenang sepanjang masa), dan <strong>penting</strong> (menjadi momentum atau titik balik bagi kehidupan masyarakat).</p>
-                        <strong>Contoh:</strong> Proklamasi Kemerdekaan 17 Agustus 1945 (tonggak lahirnya bangsa Indonesia), Sumpah Pemuda 28 Oktober 1928 (cikal bakal persatuan), serta Perang Dunia II yang mengubah peta geopolitik dunia. Peristiwa-peristiwa ini menjadi saksi bisu perjalanan umat manusia dan sering dijadikan sebagai batas periode sejarah.
+                        <strong>Contoh:</strong> Proklamasi Kemerdekaan 17 Agustus 1945, Sumpah Pemuda 28 Oktober 1928, serta Perang Dunia II yang mengubah peta geopolitik dunia.
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
@@ -1647,8 +1939,8 @@
                     <h3>Kisah</h3>
                     <p>Sejarah sebagai narasi yang menghidupkan pelaku dan peristiwa masa lalu.</p>
                     <div class="back">
-                        <p style="margin-bottom:6px;">Sejarah sebagai kisah adalah <strong>narasi atau cerita</strong> yang disusun berdasarkan peristiwa masa lalu, melibatkan <strong>pelaku sejarah</strong> beserta pengalaman, motivasi, dan perannya. Kisah memberikan <strong>wajah manusiawi</strong> pada peristiwa sejarah, sehingga generasi mendatang dapat merasakan dinamika dan emosi di balik kejadian tersebut.</p>
-                        <strong>Contoh:</strong> Biografi Pahlawan Nasional seperti Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno. Selain itu, karya sastra lama seperti Hikayat Hang Tuah juga merefleksikan nilai-nilai budaya dan historis pada zamannya. Melalui kisah, sejarah menjadi lebih hidup dan mudah diinternalisasi nilainya.
+                        <p style="margin-bottom:6px;">Sejarah sebagai kisah adalah <strong>narasi atau cerita</strong> yang disusun berdasarkan peristiwa masa lalu, melibatkan <strong>pelaku sejarah</strong> beserta pengalaman, motivasi, dan perannya. Kisah memberikan <strong>wajah manusiawi</strong> pada peristiwa sejarah.</p>
+                        <strong>Contoh:</strong> Biografi Pahlawan Nasional seperti Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno. Selain itu, karya sastra lama seperti Hikayat Hang Tuah juga merefleksikan nilai-nilai budaya dan historis.
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
@@ -1658,8 +1950,8 @@
                     <h3>Seni</h3>
                     <p>Sejarah sebagai karya kreatif yang merangkai fakta menjadi narasi indah.</p>
                     <div class="back">
-                        <p style="margin-bottom:6px;">Sejarah sebagai seni berarti penulisan sejarah membutuhkan <strong>daya imajinasi, kreativitas, dan kepekaan rasa</strong> yang tinggi. Sejarawan tidak hanya menyajikan fakta mentah, tetapi juga <strong>merangkai fakta menjadi narasi</strong> yang hidup, menarik, dan bermakna, layaknya sebuah karya seni yang indah dan menggugah.</p>
-                        <strong>Contoh:</strong> Rekonstruksi kehidupan masyarakat Hindu-Buddha melalui relief Candi Borobudur, interpretasi gaya hidup manusia purba dari lukisan di dinding gua, serta analisis filosofis dari pertunjukan wayang kulit yang sarat akan ajaran moral dan historis. Kreativitas sejarawan membuat masa lalu terasa hadir kembali.
+                        <p style="margin-bottom:6px;">Sejarah sebagai seni berarti penulisan sejarah membutuhkan <strong>daya imajinasi, kreativitas, dan kepekaan rasa</strong> yang tinggi. Sejarawan tidak hanya menyajikan fakta mentah, tetapi juga <strong>merangkai fakta menjadi narasi</strong> yang hidup dan menarik.</p>
+                        <strong>Contoh:</strong> Rekonstruksi kehidupan masyarakat Hindu-Buddha melalui relief Candi Borobudur, interpretasi gaya hidup manusia purba dari lukisan di dinding gua, serta analisis filosofis dari pertunjukan wayang kulit.
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
@@ -1669,26 +1961,37 @@
                     <h3>Ilmu</h3>
                     <p>Sejarah sebagai disiplin ilmiah dengan metode penelitian yang sistematis.</p>
                     <div class="back">
-                        <p style="margin-bottom:6px;">Sejarah sebagai ilmu berarti kajian sejarah dilakukan secara <strong>sistematis dengan metode ilmiah</strong> yang ketat. Meliputi pengumpulan sumber (<strong>heuristik</strong>), verifikasi keabsahan (<strong>kritik</strong>), penafsiran (<strong>interpretasi</strong>), dan penyajian objektif (<strong>historiografi</strong>).</p>
-                        <strong>Contoh:</strong> Penelitian arkeologi untuk menemukan sisa-sisa peradaban kuno, atau historiografi kritis yang menelaah ulang narasi sejarah resmi untuk mencari kebenaran objektif. Metode ilmiah inilah yang membedakan sejarah sebagai ilmu dengan dongeng atau mitos belaka, karena semuanya dapat dipertanggungjawabkan secara akademis.
+                        <p style="margin-bottom:6px;">Sejarah sebagai ilmu berarti kajian sejarah dilakukan secara <strong>sistematis dengan metode ilmiah</strong> yang ketat. Meliputi pengumpulan sumber (<strong>heuristik</strong>), verifikasi (<strong>kritik</strong>), penafsiran (<strong>interpretasi</strong>), dan penyajian (<strong>historiografi</strong>).</p>
+                        <strong>Contoh:</strong> Penelitian arkeologi untuk menemukan sisa-sisa peradaban kuno, atau historiografi kritis yang menelaah ulang narasi sejarah resmi untuk mencari kebenaran objektif.
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION 8 : GUNA SEJARAH (VERSI LENGKAP DENGAN CONTOH RINCI) ========== -->
+        <!-- ========== SECTION 8 : GUNA SEJARAH ========== -->
         <section id="section8" class="section">
             <div class="section-header">
                 <div class="num">08</div>
                 <h2>Guna Sejarah <small>Rekreatif · Edukatif · Inspiratif · Instruktif</small></h2>
             </div>
             <p style="font-size:1rem; margin-bottom:10px; color:#ccc;">
-                <i class="fas fa-question-circle" style="color:#2ecc71;"></i> 
+                <i class="fas fa-question-circle" style="color:#d4af37;"></i> 
                 Apa gunanya sejarah bagi kita sehari-hari? Sejarah bukan hanya kumpulan cerita masa lalu, melainkan memiliki <strong style="color:#fff;">nilai praktis</strong> yang dapat dirasakan dalam berbagai aspek kehidupan. 
-                Dengan memahami sejarah, kita bisa <strong style="color:#fff;">belajar dari pengalaman</strong>, <strong style="color:#fff;">mengambil hikmah</strong>, dan <strong style="color:#fff;">menginspirasi tindakan</strong> di masa kini. 
-                Berikut empat kegunaan utama sejarah yang perlu kita ketahui. <strong>Klik pada setiap kartu</strong> untuk melihat penjelasan dan contoh lengkapnya.
+                <strong>Klik pada setiap kartu</strong> untuk melihat penjelasan dan contoh lengkapnya.
             </p>
+            <!-- GAMBAR 8: Guna Sejarah -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_guna_sejarah.png', 'Ilustrasi Guna Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi guna sejarah
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_guna_sejarah.png" alt="Guna Sejarah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Guna Sejarah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Empat guna sejarah: Rekreatif, Edukatif, Inspiratif, Instruktif.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
             <div class="grid-4">
                 <div class="card guna-card interactive-card dark-card" onclick="this.classList.toggle('open')">
                     <span class="guna-icon">🎭</span>
@@ -1696,15 +1999,12 @@
                     <p>Sejarah sebagai hiburan yang mendidik.</p>
                     <div class="back">
                         <p><strong>Sejarah sebagai hiburan yang mendidik.</strong> 
-                        Kisah-kisah masa lalu menyuguhkan <em>drama, petualangan, dan keajaiban peradaban</em> yang dapat dinikmati tanpa batas ruang dan waktu. 
-                        Melalui film, novel, wisata sejarah, atau permainan bertema sejarah, kita bisa <strong>merasakan suasana zaman dulu</strong> sekaligus menambah wawasan. 
-                        Sejarah menjadi tontonan yang menarik dan <strong>membuat kita terhibur</strong> tanpa kehilangan nilai edukasi.</p>
+                        Kisah-kisah masa lalu menyuguhkan <em>drama, petualangan, dan keajaiban peradaban</em> yang dapat dinikmati tanpa batas ruang dan waktu.</p>
                         <strong>Contoh Nyata:</strong>
                         <ul>
-                            <li>Menonton film <em>"Soekarno"</em> atau <em>"G30S/PKI"</em> untuk menyaksikan perjuangan bangsa dengan sinematografi yang memukau.</li>
-                            <li>Membaca novel sejarah seperti <em>"Bumi Manusia"</em> karya Pramoedya Ananta Toer yang menggambarkan kehidupan kolonial.</li>
-                            <li>Berkunjung ke Candi Borobudur atau Museum Nasional untuk melihat langsung peninggalan masa lalu.</li>
-                            <li>Bermain game strategi seperti <em>"Civilization"</em> yang mengajak kita membangun peradaban dari masa purba hingga modern.</li>
+                            <li>Menonton film <em>"Soekarno"</em> atau <em>"G30S/PKI"</em>.</li>
+                            <li>Membaca novel sejarah seperti <em>"Bumi Manusia"</em>.</li>
+                            <li>Berkunjung ke Candi Borobudur atau Museum Nasional.</li>
                         </ul>
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
@@ -1716,15 +2016,12 @@
                     <p>Sejarah sebagai guru kehidupan.</p>
                     <div class="back">
                         <p><strong>Sejarah adalah guru kehidupan.</strong> 
-                        Dengan mempelajari peristiwa masa lalu, kita dapat <strong>mengambil hikmah, nilai-nilai luhur, dan pelajaran berharga</strong> untuk membentuk karakter dan kepribadian. 
-                        Sejarah mengajarkan <em>kebijaksanaan, kepahlawanan, dan kegigihan</em> para tokoh terdahulu. 
-                        Kita belajar dari <strong>keberhasilan dan kegagalan</strong> mereka agar tidak mengulangi kesalahan yang sama.</p>
+                        Dengan mempelajari peristiwa masa lalu, kita dapat <strong>mengambil hikmah, nilai-nilai luhur, dan pelajaran berharga</strong> untuk membentuk karakter dan kepribadian.</p>
                         <strong>Contoh Nyata:</strong>
                         <ul>
-                            <li>Meneladani semangat juang Pangeran Diponegoro yang pantang menyerah melawan penjajah.</li>
-                            <li>Mempelajari latar belakang perang dan konflik agar kita lebih menghargai perdamaian.</li>
-                            <li>Mengambil pelajaran dari kebijakan ekonomi masa lalu untuk memahami stabilitas keuangan.</li>
-                            <li>Menumbuhkan rasa nasionalisme melalui cerita perjuangan para pahlawan seperti Cut Nyak Dien dan Soekarno.</li>
+                            <li>Meneladani semangat juang Pangeran Diponegoro.</li>
+                            <li>Mempelajari latar belakang perang agar lebih menghargai perdamaian.</li>
+                            <li>Menumbuhkan rasa nasionalisme melalui cerita perjuangan para pahlawan.</li>
                         </ul>
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
@@ -1736,15 +2033,12 @@
                     <p>Sejarah membangkitkan semangat dan kreativitas.</p>
                     <div class="back">
                         <p><strong>Sejarah membangkitkan semangat dan kreativitas.</strong> 
-                        Kisah perjuangan tokoh-tokoh besar memberi <strong>dorongan untuk berkarya, berinovasi, dan tidak mudah menyerah</strong> dalam menghadapi tantangan. 
-                        Sejarah menyuguhkan <em>teladan nyata</em> tentang bagaimana seseorang atau sekelompok orang dapat mengubah nasib bangsa. 
-                        Nilai-nilai kepahlawanan, persatuan, dan pengorbanan menjadi <strong>sumber inspirasi</strong> bagi generasi muda.</p>
+                        Kisah perjuangan tokoh-tokoh besar memberi <strong>dorongan untuk berkarya, berinovasi, dan tidak mudah menyerah</strong>.</p>
                         <strong>Contoh Nyata:</strong>
                         <ul>
-                            <li>Sumpah Pemuda 28 Oktober 1928 menginspirasi gerakan persatuan dan kebangsaan hingga kini.</li>
-                            <li>Perjuangan Soekarno-Hatta dalam memproklamasikan kemerdekaan memberi inspirasi tentang kepemimpinan dan keberanian.</li>
-                            <li>Kisah RA. Kartini yang memperjuangkan emansipasi wanita menginspirasi gerakan kesetaraan gender.</li>
-                            <li>Perjalanan hidup tokoh-tokoh ilmuwan seperti B.J. Habibie menginspirasi semangat belajar dan inovasi.</li>
+                            <li>Sumpah Pemuda 28 Oktober 1928 menginspirasi gerakan persatuan.</li>
+                            <li>Perjuangan Soekarno-Hatta menginspirasi tentang kepemimpinan.</li>
+                            <li>Kisah RA. Kartini menginspirasi gerakan kesetaraan gender.</li>
                         </ul>
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
@@ -1756,36 +2050,33 @@
                     <p>Sejarah sebagai panduan dan pengalaman praktis.</p>
                     <div class="back">
                         <p><strong>Sejarah menyampaikan pengetahuan dan pengalaman praktis.</strong> 
-                        Dari sejarah, kita belajar tentang <em>tata kelola pemerintahan, strategi perang, dinamika sosial, dan perkembangan teknologi</em> yang dapat diterapkan dalam kehidupan sehari-hari. 
-                        Sejarah memberikan <strong>panduan dan arahan</strong> agar kita tidak tersesat dalam mengambil keputusan, baik di tingkat pribadi, masyarakat, maupun negara.</p>
+                        Sejarah memberikan <strong>panduan dan arahan</strong> agar kita tidak tersesat dalam mengambil keputusan.</p>
                         <strong>Contoh Nyata:</strong>
                         <ul>
-                            <li>Mempelajari sejarah politik untuk memahami sistem demokrasi dan hak-hak warga negara.</li>
-                            <li>Menelaah strategi perang seperti Perang Diponegoro untuk mengerti taktik dan negosiasi.</li>
-                            <li>Menganalisis revolusi industri untuk melihat dampak teknologi terhadap tenaga kerja dan ekonomi.</li>
-                            <li>Belajar dari peristiwa-peristiwa bencana alam di masa lalu untuk meningkatkan kesiapsiagaan.</li>
+                            <li>Mempelajari sejarah politik untuk memahami sistem demokrasi.</li>
+                            <li>Menelaah strategi perang untuk mengerti taktik dan negosiasi.</li>
+                            <li>Menganalisis revolusi industri untuk melihat dampak teknologi.</li>
                         </ul>
                     </div>
                     <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span>
                 </div>
             </div>
 
-            <div style="background:#1a241e; border-radius:14px; padding:14px 18px; margin-top:14px; border-left:6px solid #2ecc71;">
+            <div style="background: #24211a; border-radius:14px; padding:14px 18px; margin-top:14px; border-left:6px solid #d4af37;">
                 <p style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; justify-content:center; color:#ccc;">
-                    <span><i class="fas fa-theater-masks" style="color:#2ecc71; font-size:1.2rem;"></i> <strong style="color:#fff;">Rekreatif</strong> – Hiburan bernilai edukasi</span>
-                    <span><i class="fas fa-graduation-cap" style="color:#2ecc71; font-size:1.2rem;"></i> <strong style="color:#fff;">Edukatif</strong> – Guru kehidupan</span>
-                    <span><i class="fas fa-lightbulb" style="color:#2ecc71; font-size:1.2rem;"></i> <strong style="color:#fff;">Inspiratif</strong> – Pemicu semangat</span>
-                    <span><i class="fas fa-bullhorn" style="color:#2ecc71; font-size:1.2rem;"></i> <strong style="color:#fff;">Instruktif</strong> – Panduan praktis</span>
+                    <span><i class="fas fa-theater-masks" style="color:#d4af37; font-size:1.2rem;"></i> <strong style="color:#fff;">Rekreatif</strong></span>
+                    <span><i class="fas fa-graduation-cap" style="color:#d4af37; font-size:1.2rem;"></i> <strong style="color:#fff;">Edukatif</strong></span>
+                    <span><i class="fas fa-lightbulb" style="color:#d4af37; font-size:1.2rem;"></i> <strong style="color:#fff;">Inspiratif</strong></span>
+                    <span><i class="fas fa-bullhorn" style="color:#d4af37; font-size:1.2rem;"></i> <strong style="color:#fff;">Instruktif</strong></span>
                 </p>
                 <p style="font-size:0.95rem; text-align:center; margin-top:6px; color:#aaa;">
-                    <i class="fas fa-quote-left" style="color:#2ecc71; opacity:0.6;"></i> 
-                    <em>“Histories make men wise”</em> — Sejarah membuat manusia bijaksana. 
-                    Dengan memahami empat guna sejarah ini, kita dapat menjadikan sejarah sebagai <strong style="color:#fff;">sumber belajar yang tak pernah habis</strong> untuk membangun masa depan yang lebih baik.
+                    <i class="fas fa-quote-left" style="color:#d4af37; opacity:0.6;"></i> 
+                    <em>“Histories make men wise”</em> — Sejarah membuat manusia bijaksana.
                 </p>
             </div>
         </section>
 
-        <!-- ========== SECTION 9 : AKTIVITAS (LENGKAP) ========== -->
+        <!-- ========== SECTION 9 : AKTIVITAS ========== -->
         <section id="section9" class="section">
             <div class="section-header">
                 <div class="num">09</div>
@@ -1798,9 +2089,22 @@
                     Sekarang, saatnya kamu menjadi <strong>sejarawan bagi keluargamu sendiri</strong>!
                 </p>
 
+                <!-- GAMBAR 9: Contoh Pohon Silsilah -->
+                <div style="text-align:center; margin-bottom:12px;">
+                    <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_silsilah.png', 'Contoh Pohon Silsilah Keluarga')">
+                        <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> contoh pohon silsilah
+                        <span class="popup-diagram">
+                            <img src="images/placeholder_silsilah.png" alt="Pohon Silsilah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                            <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Contoh Pohon Silsilah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                            <div class="caption">Contoh diagram pohon silsilah keluarga (Syajaratun).</div>
+                        </span>
+                    </span>
+                    <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+                </div>
+
                 <!-- Tujuan -->
-                <div style="background: #0d1a12; border-radius: 10px; padding: 12px 16px; margin: 12px 0; border-left: 4px solid #2ecc71;">
-                    <h4 style="color: #2ecc71; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                <div style="background: #0d0d0a; border-radius: 10px; padding: 12px 16px; margin: 12px 0; border-left: 4px solid #d4af37;">
+                    <h4 style="color: #d4af37; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-bullseye"></i> Tujuan Kegiatan
                     </h4>
                     <p style="color: #ddd; font-size: 0.95rem; margin: 4px 0 0 0;">
@@ -1813,22 +2117,22 @@
                 <!-- Langkah-langkah -->
                 <div style="margin: 16px 0 12px 0;">
                     <h4 style="color: #f0f0f0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-list-ol" style="color: #2ecc71;"></i> Langkah-langkah Kegiatan
+                        <i class="fas fa-list-ol" style="color: #d4af37;"></i> Langkah-langkah Kegiatan
                     </h4>
                     <ol style="color: #ccc; padding-left: 20px; margin-top: 6px; font-size: 0.95rem; line-height: 2;">
-                        <li><strong>Wawancarai</strong> orang tua, kakek-nenek, atau kerabat tertua yang masih hidup.</li>
-                        <li><strong>Catat data penting</strong> setiap generasi: Nama Lengkap, Tempat/Tanggal Lahir, Pekerjaan, dan Asal Daerah.</li>
-                        <li><strong>Kumpulkan cerita</strong> (minimal 1 cerita per generasi): peristiwa penting yang pernah dialami, bagaimana mereka bertemu pasangan, atau perubahan besar yang mereka saksikan.</li>
-                        <li><strong>Tuliskan hasilnya</strong> ke dalam format tabel di buku tugas (contoh format di bawah).</li>
-                        <li><strong>Buatlah diagram pohon silsilah</strong> secara manual di kertas gambar atau digital (misalnya menggunakan Canva).</li>
-                        <li><strong>Presentasikan</strong> silsilah dan cerita menarik dari salah satu leluhur di depan kelas atau dalam diskusi kelompok kecil.</li>
+                        <li><strong>Wawancarai</strong> orang tua, kakek-nenek, atau kerabat tertua.</li>
+                        <li><strong>Catat data penting</strong> setiap generasi: Nama, Tempat/Tanggal Lahir, Pekerjaan, Asal Daerah.</li>
+                        <li><strong>Kumpulkan cerita</strong> (minimal 1 cerita per generasi).</li>
+                        <li><strong>Tuliskan hasilnya</strong> ke dalam format tabel di buku tugas.</li>
+                        <li><strong>Buatlah diagram pohon silsilah</strong> secara manual atau digital.</li>
+                        <li><strong>Presentasikan</strong> hasilnya di depan kelas atau kelompok kecil.</li>
                     </ol>
                 </div>
 
                 <!-- Panduan Wawancara -->
                 <div style="background: #1e1e1e; border-radius: 10px; padding: 12px 16px; margin: 12px 0; border: 1px solid #444;">
                     <h4 style="color: #f0f0f0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-microphone" style="color: #2ecc71;"></i> Panduan Wawancara (Contoh Pertanyaan)
+                        <i class="fas fa-microphone" style="color: #d4af37;"></i> Panduan Wawancara
                     </h4>
                     <ul style="color: #ccc; padding-left: 18px; margin-top: 4px; font-size: 0.9rem; line-height: 1.8;">
                         <li>"Di mana bapak/ibu/kakek/nenek dilahirkan dan dibesarkan?"</li>
@@ -1842,77 +2146,40 @@
                 <!-- Format Tabel -->
                 <div style="margin: 16px 0 10px 0;">
                     <h4 style="color: #f0f0f0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-table" style="color: #2ecc71;"></i> Format Penulisan di Buku Tugas
+                        <i class="fas fa-table" style="color: #d4af37;"></i> Format Penulisan
                     </h4>
                     <div class="worksheet-table">
                         <div class="header">No</div>
                         <div class="header">Generasi</div>
                         <div class="header">Nama & Data Diri</div>
                         <div class="header">Cerita / Pengalaman Hidup</div>
-                        
                         <div class="cell">1</div>
                         <div class="cell">Aku</div>
                         <div class="cell-empty">Nama: ...</div>
                         <div class="cell-empty">Cerita: ...</div>
-                        
                         <div class="cell">2</div>
                         <div class="cell">Ayah / Ibu</div>
                         <div class="cell-empty">Nama: ...</div>
                         <div class="cell-empty">Cerita: ...</div>
-                        
                         <div class="cell">3</div>
                         <div class="cell">Kakek / Nenek</div>
                         <div class="cell-empty">Nama: ...</div>
                         <div class="cell-empty">Cerita: ...</div>
-                        
                         <div class="cell">4</div>
                         <div class="cell">Buyut</div>
                         <div class="cell-empty">Nama: ...</div>
                         <div class="cell-empty">Cerita: ...</div>
-                        
                         <div class="cell">5</div>
                         <div class="cell">Leluhur ke-5</div>
                         <div class="cell-empty">Nama: ...</div>
                         <div class="cell-empty">Cerita: ...</div>
-                        
-                        <div class="cell">6</div>
-                        <div class="cell">Leluhur ke-6</div>
-                        <div class="cell-empty">Nama: ...</div>
-                        <div class="cell-empty">Cerita: ...</div>
-                        
-                        <div class="cell">7</div>
-                        <div class="cell">Leluhur ke-7</div>
-                        <div class="cell-empty">Nama: ...</div>
-                        <div class="cell-empty">Cerita: ...</div>
                     </div>
-                    <p style="font-size:0.8rem; color:#888; margin-top:4px; text-align:right;">
-                        <i class="fas fa-info-circle"></i> Jika tidak mengetahui hingga leluhur ke-7, tuliskan generasi yang diketahui (minimal 3-4 generasi).
-                    </p>
                 </div>
 
-                <!-- Pohon Silsilah Visual -->
-                <div style="background: #0d1a12; border-radius: 10px; padding: 12px 16px; margin: 12px 0; border: 1px dashed #2ecc71;">
-                    <h4 style="color: #f0f0f0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-project-diagram" style="color: #2ecc71;"></i> Tugas Akhir: Buat Pohon Silsilah
-                    </h4>
-                    <p style="color: #ddd; font-size: 0.95rem;">
-                        Setelah data terkumpul, buatlah diagram pohon silsilah yang rapi. 
-                        Tentukan mana yang menjadi <strong style="color:#2ecc71;">"Akar"</strong> (leluhur tertua), 
-                        <strong style="color:#2ecc71;">"Batang"</strong> (generasi penerus utama), dan 
-                        <strong style="color:#2ecc71;">"Cabang & Ranting"</strong> (generasi selanjutnya). 
-                        Kamu bisa menggambarnya di kertas atau menggunakan aplikasi seperti Canva.
-                    </p>
-                </div>
-
-                <!-- Instruksi diperbesar -->
-                <div style="margin-top: 16px; padding: 12px; background: #1a2a2a; border-radius: 10px; text-align: center;">
+                <div style="margin-top: 16px; padding: 12px; background: #1a1a0d; border-radius: 10px; text-align: center;">
                     <p style="font-size: 1.2rem; font-weight: 700; color: #f0f0f0;">
-                        <i class="fas fa-pen" style="color: #2ecc71;"></i> 
-                        Tuliskan nama, data diri, dan cerita setiap generasi di buku tugasmu!
-                    </p>
-                    <p style="font-size: 0.95rem; color: #aaa; margin-top: 4px;">
-                        Jangan lupa untuk <strong>menceritakan kembali</strong> hasil silsilahmu kepada teman sebangku atau kelompok kecil, 
-                        dan diskusikan nilai-nilai kehidupan apa yang bisa kamu petik dari perjalanan hidup para leluhurmu.
+                        <i class="fas fa-pen" style="color: #d4af37;"></i> 
+                        Tuliskan hasilnya di buku tugas dan presentasikan!
                     </p>
                 </div>
             </div>
@@ -1922,161 +2189,76 @@
         <section id="section10" class="section">
             <div class="section-header">
                 <div class="num">10</div>
-                <h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Prinsip Ilmu Sejarah</small></h2>
+                <h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman</small></h2>
             </div>
             <p style="font-size:1rem; margin-bottom:16px; color:#ccc;">
-                <i class="fas fa-clipboard-list" style="color:#2ecc71;"></i> 
-                Setelah mempelajari materi pengertian, hakikat, guna sejarah, dan definisi para ahli, kerjakan asesmen berikut untuk mengukur pemahamanmu. 
-                <strong>Selamat mengerjakan!</strong>
+                <i class="fas fa-clipboard-list" style="color:#d4af37;"></i> 
+                Kerjakan asesmen berikut untuk mengukur pemahamanmu. <strong>Selamat mengerjakan!</strong>
             </p>
 
-            <!-- Bagian A: Pilihan Ganda (10 soal, 5 opsi) -->
+            <!-- GAMBAR 10: Asesmen -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_asesmen.png', 'Ilustrasi Asesmen Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi asesmen
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_asesmen.png" alt="Asesmen" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Asesmen<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Evaluasi pemahaman prinsip ilmu sejarah.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
             <div class="card" style="margin-bottom: 20px;">
-                <h3 style="color: #2ecc71; display: flex; align-items: center; gap: 10px;">
-                    <span style="background: #2ecc71; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">A</span>
+                <h3 style="color: #d4af37; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #d4af37; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">A</span>
                     Pilihan Ganda
                 </h3>
-                <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Pilihlah satu jawaban yang paling tepat!</p>
-
                 <div class="assessment-question">
                     <div class="q-text">1. Arti kata "Syajaratun" dalam bahasa Arab adalah ...</div>
-                    <div class="q-options">
-                        <span>A. Kisah</span>
-                        <span>B. Penyelidikan</span>
-                        <span>C. Pohon</span>
-                        <span>D. Kejadian</span>
-                        <span>E. Cerita</span>
-                    </div>
+                    <div class="q-options"><span>A. Kisah</span><span>B. Penyelidikan</span><span>C. Pohon</span><span>D. Kejadian</span><span>E. Cerita</span></div>
                 </div>
-
                 <div class="assessment-question">
-                    <div class="q-text">2. Tokoh yang dijuluki sebagai "Bapak Sejarah" (The Father of History) adalah ...</div>
-                    <div class="q-options">
-                        <span>A. Aristoteles</span>
-                        <span>B. Herodotus</span>
-                        <span>C. Ibnu Khaldun</span>
-                        <span>D. R.G. Collingwood</span>
-                        <span>E. Kuntowijoyo</span>
-                    </div>
+                    <div class="q-text">2. Tokoh yang dijuluki sebagai "Bapak Sejarah" adalah ...</div>
+                    <div class="q-options"><span>A. Aristoteles</span><span>B. Herodotus</span><span>C. Ibnu Khaldun</span><span>D. R.G. Collingwood</span><span>E. Kuntowijoyo</span></div>
                 </div>
-
                 <div class="assessment-question">
                     <div class="q-text">3. Sejarah sebagai "guru kehidupan" merupakan kegunaan sejarah yang bersifat ...</div>
-                    <div class="q-options">
-                        <span>A. Rekreatif</span>
-                        <span>B. Edukatif</span>
-                        <span>C. Inspiratif</span>
-                        <span>D. Instruktif</span>
-                        <span>E. Reflektif</span>
-                    </div>
+                    <div class="q-options"><span>A. Rekreatif</span><span>B. Edukatif</span><span>C. Inspiratif</span><span>D. Instruktif</span><span>E. Reflektif</span></div>
                 </div>
-
                 <div class="assessment-question">
-                    <div class="q-text">4. Dimensi hakikat sejarah yang menekankan pada kejadian nyata yang unik, abadi, dan penting adalah ...</div>
-                    <div class="q-options">
-                        <span>A. Kisah</span>
-                        <span>B. Seni</span>
-                        <span>C. Ilmu</span>
-                        <span>D. Peristiwa</span>
-                        <span>E. Rekonstruksi</span>
-                    </div>
+                    <div class="q-text">4. Dimensi hakikat sejarah yang menekankan pada kejadian nyata yang unik adalah ...</div>
+                    <div class="q-options"><span>A. Kisah</span><span>B. Seni</span><span>C. Ilmu</span><span>D. Peristiwa</span><span>E. Rekonstruksi</span></div>
                 </div>
-
                 <div class="assessment-question">
                     <div class="q-text">5. Menurut Ibnu Khaldun, sejarah adalah catatan tentang ...</div>
-                    <div class="q-options">
-                        <span>A. Peristiwa alam dan geologi</span>
-                        <span>B. Masyarakat, umat manusia, dan peradaban dunia</span>
-                        <span>C. Silsilah keluarga kerajaan</span>
-                        <span>D. Kehidupan para dewa dan mitologi</span>
-                        <span>E. Perubahan iklim dan geografi</span>
-                    </div>
-                </div>
-
-                <div class="assessment-question">
-                    <div class="q-text">6. Menurut R.G. Collingwood, sejarah adalah ...</div>
-                    <div class="q-options">
-                        <span>A. Catatan tentang peradaban dunia</span>
-                        <span>B. Sistem yang meneliti kejadian sejak awal</span>
-                        <span>C. Penyelidikan kembali pemikiran manusia di masa lampau</span>
-                        <span>D. Jumlah perubahan dalam kenyataan sekitar kita</span>
-                        <span>E. Silsilah keluarga dan asal-usul bangsa</span>
-                    </div>
-                </div>
-
-                <div class="assessment-question">
-                    <div class="q-text">7. Kata "Geschichte" dalam bahasa Jerman berarti ...</div>
-                    <div class="q-options">
-                        <span>A. Pohon</span>
-                        <span>B. Penyelidikan</span>
-                        <span>C. Sesuatu yang telah terjadi</span>
-                        <span>D. Kisah</span>
-                        <span>E. Ilmu pengetahuan</span>
-                    </div>
-                </div>
-
-                <div class="assessment-question">
-                    <div class="q-text">8. Dimensi hakikat sejarah yang membutuhkan daya imajinasi dan kreativitas tinggi dalam penyajiannya disebut ...</div>
-                    <div class="q-options">
-                        <span>A. Peristiwa</span>
-                        <span>B. Kisah</span>
-                        <span>C. Seni</span>
-                        <span>D. Ilmu</span>
-                        <span>E. Rekonstruksi</span>
-                    </div>
-                </div>
-
-                <div class="assessment-question">
-                    <div class="q-text">9. Kegunaan sejarah yang berfungsi sebagai panduan dan arahan praktis dalam kehidupan disebut ...</div>
-                    <div class="q-options">
-                        <span>A. Rekreatif</span>
-                        <span>B. Edukatif</span>
-                        <span>C. Inspiratif</span>
-                        <span>D. Instruktif</span>
-                        <span>E. Reflektif</span>
-                    </div>
-                </div>
-
-                <div class="assessment-question">
-                    <div class="q-text">10. Menurut Aristoteles, sejarah harus disusun dalam bentuk ...</div>
-                    <div class="q-options">
-                        <span>A. Narasi bebas</span>
-                        <span>B. Kronologi (urutan waktu)</span>
-                        <span>C. Silsilah keluarga</span>
-                        <span>D. Mitos dan legenda</span>
-                        <span>E. Puisi dan syair</span>
-                    </div>
+                    <div class="q-options"><span>A. Peristiwa alam</span><span>B. Masyarakat dan peradaban</span><span>C. Silsilah kerajaan</span><span>D. Mitologi</span><span>E. Perubahan iklim</span></div>
                 </div>
             </div>
 
-            <!-- Bagian B: Analisis dan Refleksi -->
-            <div class="card" style="margin-bottom: 20px;">
-                <h3 style="color: #2ecc71; display: flex; align-items: center; gap: 10px;">
-                    <span style="background: #2ecc71; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">B</span>
+            <div class="card">
+                <h3 style="color: #d4af37; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #d4af37; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">B</span>
                     Analisis & Refleksi
                 </h3>
-                <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Jawablah pertanyaan berikut dengan uraian yang jelas dan sistematis!</p>
-
                 <div class="essay-question">
-                    <div class="q-text">1. Analisislah makna sejarah sebagai "pohon" (Syajaratun) berdasarkan konsep yang telah dipelajari, dan berikan contoh penerapannya dalam kehidupan sehari-hari!</div>
-                    <div class="q-note">(Petunjuk: Hubungkan dengan konsep akar, batang, cabang, dan ranting yang telah dijelaskan pada materi Pengertian Sejarah).</div>
+                    <div class="q-text">1. Analisislah makna sejarah sebagai "pohon" (Syajaratun)!</div>
+                    <div class="q-note">(Petunjuk: Hubungkan dengan konsep akar, batang, cabang, dan ranting).</div>
                 </div>
-
                 <div class="essay-question">
-                    <div class="q-text">2. Menurut pendapat R. Moh. Ali, sejarah adalah perubahan. Jelaskan maksud pernyataan tersebut dan berikan contoh perubahan dalam masyarakat yang kamu ketahui!</div>
-                    <div class="q-note">(Petunjuk: Gunakan pemahaman dari definisi ahli dan pengamatanmu terhadap lingkungan sekitar).</div>
+                    <div class="q-text">2. Menurut R. Moh. Ali, sejarah adalah perubahan. Jelaskan maksudnya!</div>
+                    <div class="q-note">(Petunjuk: Berikan contoh perubahan dalam masyarakat).</div>
                 </div>
-
                 <div class="essay-question">
-                    <div class="q-text">3. Refleksikan bagaimana pemahaman tentang guna sejarah (Rekreatif, Edukatif, Inspiratif, Instruktif) dapat membantumu dalam memahami peristiwa yang terjadi di masa kini!</div>
-                    <div class="q-note">(Petunjuk: Berikan contoh konkret untuk masing-masing kegunaan sejarah yang kamu rasakan dalam kehidupan sehari-hari).</div>
+                    <div class="q-text">3. Refleksikan guna sejarah (Rekreatif, Edukatif, Inspiratif, Instruktif) dalam kehidupanmu!</div>
+                    <div class="q-note">(Petunjuk: Berikan contoh konkret untuk masing-masing).</div>
                 </div>
             </div>
 
-            <div style="background: #1a241e; border-radius: 14px; padding: 14px 18px; border-left: 6px solid #2ecc71; margin-top: 10px;">
+            <div style="background: #24211a; border-radius: 14px; padding: 14px 18px; border-left: 6px solid #d4af37; margin-top: 10px;">
                 <p style="display: flex; align-items: center; gap: 10px; color: #ccc; font-size: 0.9rem;">
-                    <i class="fas fa-info-circle" style="color: #2ecc71; font-size: 1.2rem;"></i>
-                    <span><strong style="color: #fff;">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Gunakan pemahamanmu dari seluruh materi yang telah dipelajari, mulai dari pengertian, hakikat, guna sejarah, hingga pendapat para ahli. Selamat berlatih!</span>
+                    <i class="fas fa-info-circle" style="color: #d4af37; font-size: 1.2rem;"></i>
+                    <span><strong style="color: #fff;">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Selamat berlatih!</span>
                 </p>
             </div>
         </section>
@@ -2087,7 +2269,7 @@
                 <div class="num">11</div>
                 <h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2>
             </div>
-            <div class="card" style="background: #1a2a2a; border: 1px solid #2ecc71;">
+            <div class="card" style="background: #1a1a0d; border: 1px solid #d4af37;">
                 <h3 style="display: flex; align-items: center; gap: 10px; color: #f0f0f0;">
                     <span style="font-size: 1.8rem;">🌟</span> Apa yang Kamu Dapatkan Hari Ini?
                 </h3>
@@ -2098,21 +2280,34 @@
                 </ul>
             </div>
 
-            <div class="card" style="background: #1e1e1e; margin-top: 16px; border-left: 6px solid #2ecc71;">
+            <!-- GAMBAR 11: Refleksi -->
+            <div style="text-align:center; margin-top:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_refleksi.png', 'Ilustrasi Refleksi Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi refleksi
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_refleksi.png" alt="Refleksi" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Refleksi<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Merenungkan makna dan nilai sejarah.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
+            <div class="card" style="background: #1e1e1e; margin-top: 16px; border-left: 6px solid #d4af37;">
                 <h3 style="display: flex; align-items: center; gap: 10px; color: #f0f0f0;">
-                    <i class="fas fa-pen-fancy" style="color: #2ecc71; font-size: 1.4rem;"></i> Renungkan
+                    <i class="fas fa-pen-fancy" style="color: #d4af37; font-size: 1.4rem;"></i> Renungkan
                 </h3>
                 <p style="font-size: 1.05rem; color: #ddd; font-style: italic; margin-top: 4px;">
                     "Menurutmu, mengapa sejarah penting dipelajari oleh generasi muda?"
                 </p>
                 <p style="margin-top: 8px; font-size: 0.9rem; color: #aaa;">
-                    <i class="fas fa-arrow-right" style="color: #2ecc71;"></i> 
+                    <i class="fas fa-arrow-right" style="color: #d4af37;"></i> 
                     Coba tuliskan jawabanmu di buku catatan sebagai bentuk refleksi pribadi.
                 </p>
             </div>
 
             <div class="quote-block">
-                <i class="fas fa-book-open" style="color: #2ecc71; margin-right: 10px;"></i>
+                <i class="fas fa-book-open" style="color: #d4af37; margin-right: 10px;"></i>
                 📖 Pesan Hari Ini
                 <blockquote style="margin: 8px 0 0 0; padding: 0; border: none; background: transparent; color: #ddd;">
                     "Bangsa yang besar adalah bangsa yang menghargai sejarahnya."
@@ -2129,7 +2324,7 @@
                     </span>
                 </div>
                 <p style="margin-top: 12px; font-size: 0.85rem; color: #888;">
-                    <i class="fas fa-info-circle" style="color: #2ecc71;"></i> 
+                    <i class="fas fa-info-circle" style="color: #d4af37;"></i> 
                     Siapkan dirimu untuk bab selanjutnya!
                 </p>
             </div>
@@ -2140,6 +2335,18 @@
             <div class="section-header">
                 <div class="num">12</div>
                 <h2>Referensi <small>Daftar Pustaka</small></h2>
+            </div>
+            <!-- GAMBAR 12: Referensi -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_referensi.png', 'Ilustrasi Referensi Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi referensi
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_referensi.png" alt="Referensi" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Referensi<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Sumber-sumber rujukan dalam mempelajari sejarah.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
             <ul class="ref-list">
                 <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran Mata Pelajaran Sejarah Fase E-Fase F, BSKAP Kemendikbudristek (2022).</li>
@@ -2152,21 +2359,21 @@
                 <li><i class="fas fa-book"></i> Yamin, Mohammad. <em>Tatanegara Majapahit</em>. Jakarta: Prapantja, 1962.</li>
                 <li><i class="fas fa-book"></i> Carr, E.H. <em>What is History?</em>. London: Penguin, 1961.</li>
                 <li><i class="fas fa-book"></i> Gottschalk, Louis. <em>Mengerti Sejarah</em>. Jakarta: UI Press, 1985.</li>
-                <li><i class="fas fa-book"></i> Sartono Kartodirdjo. <em>Pendekatan Ilmu Sosial dalam Metodologi Sejarah</em>. Jakarta: Gramedia, 1992.</li>
-                <li><i class="fas fa-book"></i> Leo Agung, S. &amp; Dwi Ari Listiyani. (2003). <em>Sejarah Nasional dan Umum 2, 3</em>. Surakarta: UNS Press.</li>
-                <li><i class="fas fa-book"></i> Marwadi Djoened Poesponegoro &amp; Nugroho Notosusanto. (1984). <em>Sejarah Nasional Indonesia V dan VI</em>. Jakarta: Balai Pustaka.</li>
             </ul>
             <div class="footer-credit">
-                <i class="fas fa-school" style="color:#2ecc71;"></i> <strong style="color:#fff;">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp; 
-                <i class="fas fa-chalkboard-teacher" style="color:#2ecc71;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
+                <i class="fas fa-school" style="color:#d4af37;"></i> <strong style="color:#fff;">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp; 
+                <i class="fas fa-chalkboard-teacher" style="color:#d4af37;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
             </div>
         </section>
 
         <!-- ===== NAVIGATION BUTTONS ===== -->
         <div class="nav-buttons hidden" id="navButtons">
-            <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-            <span class="counter" id="slideCounter">1 / 12</span>
-            <button id="nextBtn" style="display: flex;">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+            <div class="nav-group">
+                <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <div class="page-numbers" id="pageNumbers"></div>
+                <button id="nextBtn" style="display: flex;">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter" id="slideCounter">1 / 12</span>
+            </div>
         </div>
 
     </main>
@@ -2176,7 +2383,7 @@
         (function() {
             // ===== LOADING =====
             const loader = document.getElementById('loader');
-            const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff6bb5', '#a66cff', '#ff9f43', '#00d2d3'];
+            const colors = ['#d4af37', '#e6c85c', '#b8962e', '#f1c40f', '#d4ac0d', '#f5b041', '#f39c12', '#e67e22'];
             const starSymbols = ['★', '✦', '✧', '⭐', '✨', '🌟', '💫'];
             for (let i = 0; i < 45; i++) {
                 const star = document.createElement('span');
@@ -2211,14 +2418,31 @@
                 setTimeout(() => { loader.style.display = 'none'; }, 500);
             }, 3000);
 
-            // ===== NAVIGASI =====
+            // ===== MODAL GAMBAR =====
+            window.openModal = function(src, caption) {
+                const modal = document.getElementById('imageModal');
+                const img = document.getElementById('modalImage');
+                const cap = document.getElementById('modalCaption');
+                img.src = src;
+                cap.textContent = caption || 'Klik di luar gambar untuk menutup';
+                modal.classList.add('active');
+            };
+            window.closeModal = function() {
+                document.getElementById('imageModal').classList.remove('active');
+            };
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // ===== NAVIGASI FLEKSIBEL =====
             const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('#navLinks a');
+            const navLinksContainer = document.getElementById('navLinks');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const counter = document.getElementById('slideCounter');
             const progressBar = document.getElementById('progressBar');
             const navButtons = document.getElementById('navButtons');
+            const pageNumbers = document.getElementById('pageNumbers');
             const hamburger = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -2228,12 +2452,70 @@
             const sectionMap = {};
             sections.forEach((el, i) => { sectionMap[el.id] = i; });
 
-            function updateUI(index) {
-                sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
-                const activeId = sections[index].id;
-                navLinks.forEach(link => {
+            // ===== BUAT SIDEBAR OTOMATIS (SEMUA SECTION) =====
+            function buildSidebar() {
+                navLinksContainer.innerHTML = '';
+                // Loop semua section (termasuk section1)
+                for (let idx = 0; idx < sections.length; idx++) {
+                    const section = sections[idx];
+                    const id = section.id;
+                    const headerH2 = section.querySelector('.section-header h2');
+                    let label = id.replace('section', '');
+                    if (headerH2) {
+                        const clone = headerH2.cloneNode(true);
+                        const small = clone.querySelector('small');
+                        if (small) small.remove();
+                        label = clone.innerText.trim();
+                        if (label.length > 25) label = label.substring(0, 22) + '...';
+                    }
+                    // Untuk section1, ganti label menjadi "Beranda"
+                    if (idx === 0) label = 'Beranda';
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.dataset.section = id;
+                    a.innerHTML = `<i class="fas fa-circle"></i><span>${label}</span>`;
+                    a.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        navigateTo(id);
+                    });
+                    navLinksContainer.appendChild(a);
+                }
+                updateSidebarActive();
+            }
+
+            function updateSidebarActive() {
+                const activeId = sections[current]?.id || 'section1';
+                const links = navLinksContainer.querySelectorAll('a');
+                links.forEach(link => {
                     link.classList.toggle('active', link.dataset.section === activeId);
                 });
+            }
+
+            // ===== RENDER PAGE NUMBERS =====
+            function renderPageNumbers() {
+                pageNumbers.innerHTML = '';
+                for (let i = 1; i <= total; i++) {
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.textContent = i;
+                    a.dataset.page = i;
+                    a.classList.toggle('active', i === current + 1);
+                    a.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const page = parseInt(this.dataset.page);
+                        if (page !== current + 1) {
+                            current = page - 1;
+                            updateUI(current);
+                        }
+                    });
+                    pageNumbers.appendChild(a);
+                }
+            }
+
+            function updateUI(index) {
+                sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
+                updateSidebarActive();
+                renderPageNumbers();
                 prevBtn.disabled = (index === 0);
                 nextBtn.disabled = (index === total - 1);
                 counter.textContent = (index + 1) + ' / ' + total;
@@ -2244,13 +2526,11 @@
                 } else {
                     nextBtn.style.display = 'flex';
                 }
-
                 if (index === 0) {
                     navButtons.classList.add('hidden');
                 } else {
                     navButtons.classList.remove('hidden');
                 }
-
                 document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 closeSidebar();
             }
@@ -2277,16 +2557,9 @@
                 hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             }
 
+            // ===== EVENT LISTENERS =====
             hamburger.addEventListener('click', toggleSidebar);
             overlay.addEventListener('click', closeSidebar);
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.dataset.section;
-                    if (id) navigateTo(id);
-                });
-            });
 
             prevBtn.addEventListener('click', function() {
                 if (current > 0) { current--; updateUI(current); }
@@ -2323,7 +2596,10 @@
                 });
             });
 
+            // ===== INISIALISASI =====
             window.navigateTo = navigateTo;
+            buildSidebar();
+            renderPageNumbers();
             updateUI(0);
         })();
     </script>
