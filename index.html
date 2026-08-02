@@ -1644,20 +1644,51 @@
                 <i class="fas fa-globe-asia" style="color:#d4af37;"></i> 
                 Secara etimologi, kata "sejarah" berasal dari berbagai bahasa. Memahami akar kata ini membantu kita menangkap esensi sejarah dari berbagai sudut pandang budaya dan keilmuan.
             </p>
+
+            <!-- ===== GAMBAR 1: ILUSTRASI POHON (META FORA SEJARAH) ===== -->
+            <div style="text-align:center; margin:16px 0 12px 0;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/sejarah_ilustrasi_pohon.png', 'Ilustrasi metafora sejarah sebagai pohon (Syajaratun)')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi metafora pohon sejarah
+                    <span class="popup-diagram">
+                        <img src="images/sejarah_ilustrasi_pohon.png" alt="Ilustrasi Pohon Sejarah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Pohon Sejarah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption"><strong>Sejarah sebagai Pohon (Syajaratun):</strong> Akar, Batang, Cabang, dan Ranting yang saling terhubung.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
+            <!-- ===== TAB ETIMOLOGI ===== -->
             <div class="etym-tabs">
                 <button class="active" data-tab="tabArab"><i class="fas fa-language"></i> Arab</button>
                 <button data-tab="tabInggris"><i class="fas fa-language"></i> Inggris</button>
                 <button data-tab="tabJerman"><i class="fas fa-language"></i> Jerman</button>
             </div>
             <div class="etym-content">
+                <!-- TAB ARAB -->
                 <div id="tabArab" class="etym-panel active">
                     <strong>Syajaratun (شجرة)</strong> — artinya <em>pohon</em>.<br/>
                     <p style="margin-top:4px; color:#ddd;">Kata ini mengandung makna mendalam: seperti pohon yang memiliki akar (asal-usul), batang (intisari), cabang (peristiwa-peristiwa besar), dan ranting (kejadian kecil yang saling terkait). Sejarah dipandang sebagai sebuah <strong>silsilah</strong> atau pohon keluarga yang terus tumbuh dan bercabang dari generasi ke generasi.</p>
+                    
+                    <!-- GAMBAR 2: KALIGRAFI ARAB (di dalam tab Arab) -->
+                    <div style="text-align:center; margin:12px 0 8px 0;">
+                        <span class="geosfer-hover-trigger" onclick="openModal('images/sejarah_kaligrafi_arab.png', 'Kaligrafi Syajaratun (شجرة) dalam bahasa Arab')" style="padding: 6px 14px; font-size:0.9rem;">
+                            <i class="fas fa-image" style="margin-right:6px;"></i> Klik untuk melihat kaligrafi Syajaratun
+                            <span class="popup-diagram" style="width:300px; padding:12px;">
+                                <img src="images/sejarah_kaligrafi_arab.png" alt="Kaligrafi Syajaratun" style="max-width:100%; max-height:150px; border-radius:8px; border:1px solid #444;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                                <div class="fallback-text" style="display:none; padding:10px; color:#d4af37; font-size:0.8rem;"><i class="fas fa-image" style="font-size:1.2rem; display:block;"></i>Kaligrafi Syajaratun</div>
+                                <div class="caption" style="font-size:0.7rem;">Kata "Syajaratun" (شجرة) berarti pohon.</div>
+                            </span>
+                        </span>
+                    </div>
+
                     <ul>
                         <li><strong>Contoh:</strong> Silsilah raja-raja Mataram Islam, pohon keluarga nenek moyang kita, atau evolusi sebuah dinasti.</li>
                         <li><strong>Implikasi:</strong> Sejarah tidak pernah berdiri sendiri, tetapi selalu terhubung antara masa lalu, kini, dan masa depan.</li>
                     </ul>
                 </div>
+
+                <!-- TAB INGGRIS -->
                 <div id="tabInggris" class="etym-panel">
                     <strong>History</strong> — berasal dari bahasa Yunani <em>historia</em> yang berarti <em>pengetahuan yang diperoleh melalui penyelidikan</em> atau <em>kisah</em>.<br/>
                     <p style="margin-top:4px; color:#ddd;">Dalam tradisi Yunani kuno, <em>historia</em> merujuk pada kegiatan bertanya, mengumpulkan informasi, dan menyusunnya menjadi narasi yang bermakna. Ini menekankan bahwa sejarah adalah hasil dari <strong>proses penelitian dan interpretasi</strong>, bukan sekadar kumpulan fakta mentah.</p>
@@ -1666,6 +1697,8 @@
                         <li><strong>Implikasi:</strong> Sejarah sebagai ilmu menuntut metode kritis dan verifikasi data (heuristik, kritik, interpretasi).</li>
                     </ul>
                 </div>
+
+                <!-- TAB JERMAN -->
                 <div id="tabJerman" class="etym-panel">
                     <strong>Geschichte</strong> — berarti <em>sesuatu yang telah terjadi</em> atau <em>kejadian</em>.<br/>
                     <p style="margin-top:4px; color:#ddd;">Kata ini lebih menekankan pada <strong>realitas peristiwa masa lampau</strong> yang pernah dialami oleh manusia. Geschichte adalah apa yang sungguh-sungguh berlangsung, berbeda dengan narasi atau tafsir atasnya (yang disebut <em>Historie</em> dalam tradisi Jerman).</p>
@@ -1676,6 +1709,20 @@
                 </div>
             </div>
 
+            <!-- ===== GAMBAR 3: DIAGRAM POHON DENGAN LABEL (SEBELUM KARTU AKAR/BATANG) ===== -->
+            <div style="text-align:center; margin:20px 0 12px 0;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/sejarah_diagram_pohon_label.png', 'Diagram Pohon Sejarah dengan label Akar, Batang, Cabang, dan Ranting')" style="background:#1a1a1a; border-color:#d4af37;">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram pohon sejarah
+                    <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px;">
+                        <img src="images/sejarah_diagram_pohon_label.png" alt="Diagram Pohon Sejarah" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Diagram Pohon Sejarah<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption"><strong>Struktur Pohon Sejarah:</strong> Akar (Asal-usul), Batang (Inti Peradaban), Cabang (Peristiwa Besar), Ranting (Kejadian Lokal).</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
+
+            <!-- ===== MEMAKNAI SEJARAH SEBAGAI POHON ===== -->
             <div style="margin-top:16px;">
                 <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #d4af37; padding-left:12px; margin-bottom:6px;">
                     <i class="fas fa-tree" style="color:#d4af37;"></i> Memaknai "Sejarah sebagai Pohon" (Syajaratun)
@@ -1700,6 +1747,7 @@
                 </div>
             </div>
 
+            <!-- ===== DEFINISI KAMUS ===== -->
             <div style="margin-top:14px;">
                 <div class="def-block">
                     <div class="source"><i class="fas fa-book"></i> Kamus Umum Bahasa Indonesia – W.J.S. Poerwodarminto</div>
@@ -1714,6 +1762,8 @@
                     </p>
                 </div>
             </div>
+
+            <!-- CATATAN: TOMBOL NAVIGASI SUDAH ADA DI GLOBAL, TIDAK PERLU DITAMBAHKAN DI SINI -->
         </section>
 
         <!-- ========== SECTION 6 : DEFINISI AHLI ========== -->
