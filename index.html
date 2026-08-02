@@ -1426,36 +1426,70 @@
     <!-- ===== MAIN ===== -->
     <main class="main-content">
 
-        <!-- ========== SECTION 1 : COVER ========== -->
-        <section id="section1" class="section active">
-            <div style="text-align:center; padding: 10px 0 8px 0;">
-                <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
-                <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
-                <h1 class="cover-title">
-                    MEMAHAMI PRINSIP<br/>ILMU SEJARAH
-                </h1>
-                <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">
-                    Pengertian, ruang lingkup, dan kegunaan sejarah<br/>dalam kehidupan sehari-hari
-                </p>
+      <!-- ========== SECTION 1 : COVER (LENGKAP DENGAN 3 LOGO) ========== -->
+<section id="section1" class="section active">
+    <!-- ===== HEADER LOGO : PROVINSI, DINAS, SEKOLAH ===== -->
+    <div style="display:flex; justify-content:center; align-items:center; gap:20px 40px; flex-wrap:wrap; padding:12px 10px 6px 10px; border-bottom:1px solid rgba(212,175,55,0.2); margin-bottom:4px;">
+        <!-- Logo Provinsi -->
+        <div style="display:flex; flex-direction:column; align-items:center;">
+            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/Logo-Provinsi-Kalimantan-Tengah.png"
+            alt="Logo Provinsi"
+            style="height:50px; width:auto; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3));"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span style="display:none; align-items:center; justify-content:center; height:50px; width:50px; border-radius:50%; background:linear-gradient(135deg,#1a2a3a,#2c3e50); border:2px solid #d4af37; font-size:10px; color:#d4af37; text-align:center; padding:4px; font-weight:600;">PROV</span>
+            <span style="font-size:0.55rem; color:#888; margin-top:2px; letter-spacing:0.5px;">PROVINSI</span>
+        </div>
 
-                <div style="margin-top:16px;">
-                    <div class="school-info">
-                        <i class="fas fa-school"></i> SMAN 3 KASONGAN
-                    </div>
-                    <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
-                        <i class="fas fa-chalkboard-teacher" style="color:#d4af37;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; NIP. 197512172005011016
-                    </div>
-                </div>
-                <div class="start-btn-wrapper">
-                    <button class="start-btn" onclick="navigateTo('section2')">
-                        <i class="fas fa-play-circle"></i> Mulai Belajar
-                    </button>
-                </div>
-                <div style="margin-top:8px; font-size:0.85rem; color:#666;">
-                    <i class="fas fa-chevron-down"></i> Gunakan navigasi di samping atau tombol di atas
-                </div>
+        <!-- Logo Dinas Pendidikan -->
+        <div style="display:flex; flex-direction:column; align-items:center;">
+            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/imagesdisdiklogo.png"
+            alt="Logo Dinas Pendidikan"
+            style="height:50px; width:auto; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3));"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span style="display:none; align-items:center; justify-content:center; height:50px; width:50px; border-radius:50%; background:linear-gradient(135deg,#1a2a3a,#2c3e50); border:2px solid #d4af37; font-size:10px; color:#d4af37; text-align:center; padding:4px; font-weight:600;">DINAS</span>
+            <span style="font-size:0.55rem; color:#888; margin-top:2px; letter-spacing:0.5px;">DINAS PENDIDIKAN</span>
+        </div>
+
+        <!-- Logo Sekolah -->
+        <div style="display:flex; flex-direction:column; align-items:center;">
+            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/LOGOSMAN3KAS.png"
+            alt="Logo SMAN 3 Kasongan"
+            style="height:50px; width:auto; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3));"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span style="display:none; align-items:center; justify-content:center; height:50px; width:50px; border-radius:50%; background:linear-gradient(135deg,#1a2a3a,#2c3e50); border:2px solid #d4af37; font-size:10px; color:#d4af37; text-align:center; padding:4px; font-weight:600;">SMAN</span>
+            <span style="font-size:0.55rem; color:#888; margin-top:2px; letter-spacing:0.5px;">SMAN 3 KASONGAN</span>
+        </div>
+    </div>
+
+    <!-- ===== KONTEN UTAMA COVER (Teks, Tombol, dll) ===== -->
+    <div style="text-align:center; padding:10px 0 8px 0;">
+        <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
+        <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
+        <h1 class="cover-title">
+            MEMAHAMI PRINSIP<br/>ILMU SEJARAH
+        </h1>
+        <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">
+            Pengertian, ruang lingkup, dan kegunaan sejarah<br/>dalam kehidupan sehari-hari
+        </p>
+
+        <div style="margin-top:16px;">
+            <div class="school-info">
+                <i class="fas fa-school"></i> SMAN 3 KASONGAN
             </div>
-        </section>
+            <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
+                <i class="fas fa-chalkboard-teacher" style="color:#d4af37;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; NIP. 197512172005011016
+            </div>
+        </div>
+        <div class="start-btn-wrapper">
+            <button class="start-btn" onclick="navigateTo('section2')">
+                <i class="fas fa-play-circle"></i> Mulai Belajar
+            </button>
+        </div>
+        <div style="margin-top:8px; font-size:0.85rem; color:#666;">
+            <i class="fas fa-chevron-down"></i> Gunakan navigasi di samping atau tombol di atas
+        </div>
+    </div>
+</section>
 
         <!-- ========== SECTION 2 : CP & ATP ========== -->
         <section id="section2" class="section">
