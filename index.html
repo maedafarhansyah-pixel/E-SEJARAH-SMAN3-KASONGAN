@@ -1832,6 +1832,153 @@
     }
 </style>
 
+<style>
+    /* ===== TOOLTIP DENGAN WARNA LEBIH MENARIK ===== */
+    .teacher-tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: help;
+        border-bottom: 2px solid transparent;
+        background-image: linear-gradient(to right, #d4af37, #f7e05e);
+        background-clip: padding-box;
+        border-image: linear-gradient(to right, #d4af37, #f7e05e) 1;
+        border-bottom: 2px solid;
+        border-image-slice: 1;
+        color: #fff;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .teacher-tooltip:hover {
+        border-bottom-color: #ffd700;
+        text-shadow: 0 0 8px rgba(212,175,55,0.6);
+    }
+    .teacher-tooltip .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        width: 360px;
+        /* LATAR GRADASI TRANSPARAN + BLUR */
+        background: linear-gradient(145deg, rgba(10, 20, 40, 0.9), rgba(30, 10, 50, 0.9));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #f0f0f0;
+        text-align: left;
+        border-radius: 16px;
+        padding: 20px 24px;
+        position: absolute;
+        z-index: 9999;
+        top: 50%;
+        left: calc(100% + 18px);
+        bottom: auto;
+        transform: translateY(-50%) translateX(5px);
+        transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212,175,55,0.2);
+        border: 1px solid rgba(255, 215, 0, 0.6);
+        font-weight: normal;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        pointer-events: none;
+        white-space: normal;
+    }
+    .teacher-tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+    /* PANAH BERWARNA EMAS */
+    .teacher-tooltip .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -10px;
+        margin-top: -10px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent rgba(255, 215, 0, 0.7) transparent transparent;
+        filter: drop-shadow(0 0 6px rgba(255,215,0,0.5));
+    }
+    /* JUDUL DENGAN GRADASI EMAS */
+    .tooltip-text h4 {
+        margin: 0 0 12px 0;
+        background: linear-gradient(to right, #f7e05e, #d4af37, #f7e05e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+        text-align: center;
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    /* LABEL DENGAN WARNA EMAS TERANG */
+    .tooltip-text .section-label {
+        color: #ffd866;
+        font-weight: 700;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 4px;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+    }
+    /* BLOK PENDIDIKAN – dengan latar gradasi */
+    .tooltip-text .edu-item {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(212, 175, 55, 0.05));
+        padding: 8px 14px;
+        border-radius: 10px;
+        margin-top: 2px;
+        border-left: 4px solid #ffd700;
+        box-shadow: 0 0 15px rgba(212,175,55,0.05);
+        transition: 0.3s;
+    }
+    .tooltip-text .edu-item strong {
+        color: #fff;
+        font-weight: 600;
+        text-shadow: 0 0 4px rgba(255,255,255,0.1);
+    }
+    .tooltip-text .edu-item .highlight-gold {
+        color: #ffd700;
+        font-weight: 600;
+    }
+    /* DAFTAR MENGAJAR – bergaris dan warna tahun lebih cerah */
+    .tooltip-text ul {
+        margin: 6px 0 0 0;
+        padding-left: 0;
+        list-style-type: none;
+    }
+    .tooltip-text ul li {
+        padding: 6px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+        font-size: 0.9rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+        background: rgba(255, 255, 255, 0.02);
+    }
+    .tooltip-text ul li:hover {
+        background: rgba(255, 215, 0, 0.08);
+    }
+    .tooltip-text ul li .year {
+        color: #fff;
+        font-weight: 700;
+        background: linear-gradient(135deg, #d4af37, #f7e05e);
+        padding: 0 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        box-shadow: 0 0 10px rgba(212,175,55,0.3);
+        color: #1a1a2e;
+    }
+    .tooltip-text ul li:last-child {
+        border-bottom: none;
+    }
+    /* Efek glow pada seluruh tooltip saat hover */
+    .teacher-tooltip:hover .tooltip-text {
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 40px rgba(212,175,55,0.15);
+    }
+</style>
+
 <section id="section1" class="section active">
     <!-- ===== HEADER LOGO : PROVINSI, DINAS, SEKOLAH ===== -->
     <div style="display:flex; justify-content:center; align-items:center; gap:20px 40px; flex-wrap:wrap; padding:12px 10px 6px 10px; border-bottom:1px solid rgba(212,175,55,0.2); margin-bottom:4px;">
@@ -1885,7 +2032,7 @@
             <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
                 <i class="fas fa-chalkboard-teacher" style="color:#d4af37;"></i> Guru Pengampu: 
 
-                <!-- ===== NAMA GURU DENGAN TOOLTIP DI SAMPING ===== -->
+                <!-- ===== NAMA GURU DENGAN TOOLTIP (WARNA BARU) ===== -->
                 <span class="teacher-tooltip">
                     <strong style="color:#fff;">SYAHRANI, S.Pd</strong>
                     <span class="tooltip-text">
