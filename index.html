@@ -1771,7 +1771,40 @@
         </section>
 
         <!-- ========== SECTION 6 : DEFINISI AHLI ========== -->
+
         <section id="section6" class="section">
+            <!-- STYLE KHUSUS UNTUK HALAMAN 6: Latar kartu saat diklik menjadi gelap lembut, bukan putih -->
+            <style>
+                #section6 .interactive-card.dark-card.open {
+                    background: #1e1e2e;
+                    /* biru tua kehitaman, lembut di mata */
+                    border-color: #d4af37;
+                    color: #e8e8e8;
+                }
+                #section6 .interactive-card.dark-card.open h3 {
+                    color: #f0f0f0;
+                }
+                #section6 .interactive-card.dark-card.open p,
+                #section6 .interactive-card.dark-card.open ul li,
+                #section6 .interactive-card.dark-card.open .keterangan,
+                #section6 .interactive-card.dark-card.open strong,
+                #section6 .interactive-card.dark-card.open em {
+                    color: #d0d0d0;
+                }
+                #section6 .interactive-card.dark-card.open .toggle-hint {
+                    color: #aaa;
+                }
+                #section6 .interactive-card.dark-card.open .icon-number {
+                    color: #d4af37;
+                }
+                #section6 .interactive-card.dark-card.open .ahli-header .sub {
+                    color: #b0b0b0;
+                }
+                #section6 .interactive-card.dark-card.open .back {
+                    border-top-color: rgba(212, 175, 55, 0.3);
+                }
+            </style>
+
             <div class="section-header">
                 <div class="num">06</div>
                 <h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Sejarah Dunia & Indonesia</small></h2>
@@ -1780,6 +1813,19 @@
                 <i class="fas fa-quote-left" style="color:#d4af37;"></i> 
                 Berikut adalah definisi sejarah dari berbagai ahli terkemuka. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.
             </p>
+
+            <!-- GAMBAR 6: Ahli (SILAKAN GANTI URL GAMBARNYA) -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <span class="geosfer-hover-trigger" onclick="openModal('images/placeholder_para_ahli.png', 'Ilustrasi Para Ahli Sejarah')">
+                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi para ahli
+                    <span class="popup-diagram">
+                        <img src="images/placeholder_para_ahli.png" alt="Para Ahli" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
+                        <div class="fallback-text" style="display:none; padding:20px; color:#d4af37; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Para Ahli<br><span style="font-size:0.8rem; color:#666;">(Ganti dengan gambar nyata)</span></div>
+                        <div class="caption">Tokoh-tokoh penting dalam definisi sejarah.</div>
+                    </span>
+                </span>
+                <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            </div>
 
             <div class="grid-ahli">
                 <!-- 1. W.J.S. Poerwodarminta -->
@@ -1967,6 +2013,7 @@
                 </div>
             </div>
 
+            <!-- ===== KESIMPULAN ===== -->
             <div style="background:#1e1e1e; border-radius:14px; padding:14px 18px; border:1px solid #333; margin-top:14px;">
                 <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;">
                     <i class="fas fa-lightbulb" style="color:#d4af37; font-size:1.4rem; margin-top:2px;"></i>
@@ -1986,8 +2033,8 @@
                     <em>"Histories make men wise"</em> — Sejarah membuat manusia bijaksana.
                 </p>
             </div>
+            <!-- TOMBOL NAVIGASI SUDAH ADA DI GLOBAL, TIDAK PERLU DITAMBAHKAN DI SINI -->
         </section>
-
         <!-- ========== SECTION 7 : HAKIKAT SEJARAH ========== -->
         <section id="section7" class="section">
             <div class="section-header">
