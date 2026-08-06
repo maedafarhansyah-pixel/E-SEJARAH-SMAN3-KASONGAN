@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
     <title>Memahami Prinsip Ilmu Sejarah – Kelas X (Kurikulum Merdeka)</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ===== RESET & VARIABEL ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ============================================================
+           RESET & VARIABEL
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         :root {
             --bg-primary: #0f0f1a;
             --bg-secondary: #1a1a2e;
@@ -18,11 +24,13 @@
             --gold: #d4af37;
             --gold-light: #e6c85c;
             --gold-dark: #b8962e;
-            --shadow: 0 8px 32px rgba(0,0,0,0.6);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --radius: 16px;
-            --sidebar-width: 64px;
-            --sidebar-expanded: 220px;
+            --sidebar-width: 68px;
+            --sidebar-expanded: 260px;
+            --sidebar-bg: rgba(26, 26, 46, 0.88);
+            --sidebar-border: rgba(212, 175, 55, 0.12);
         }
         .light-mode {
             --bg-primary: #f5f0eb;
@@ -31,7 +39,9 @@
             --bg-card-hover: #f0ece4;
             --text-primary: #1a1a2e;
             --text-secondary: #3a3a4a;
-            --shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --sidebar-bg: rgba(232, 224, 216, 0.92);
+            --sidebar-border: rgba(212, 175, 55, 0.2);
         }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -41,26 +51,57 @@
             transition: background var(--transition), color var(--transition);
             padding-top: 56px;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* ===== LOADER ===== */
+        /* ============================================================
+           LOADER
+           ============================================================ */
         #loader {
-            position: fixed; inset: 0; background: var(--bg-primary);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 99999; transition: opacity 0.8s ease;
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease;
         }
-        #loader.hidden { opacity: 0; pointer-events: none; }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
         .loader-ring {
-            width: 60px; height: 60px; border: 4px solid transparent;
-            border-top: 4px solid var(--gold); border-radius: 50%;
-            animation: spin 1s linear infinite; margin-bottom: 20px;
+            width: 60px;
+            height: 60px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loader-text { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; font-weight: 500; }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .loader-text {
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
 
-        /* ===== PARTIKEL BINTANG BERWARNA (DIPERKECIL) ===== */
+        /* ============================================================
+           PARTIKEL BINTANG
+           ============================================================ */
         .particle-container {
-            position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
         .star-particle {
             position: absolute;
@@ -95,569 +136,1637 @@
             }
         }
 
-        /* ===== HEADER ===== */
+        /* ============================================================
+           MOBILE HEADER
+           ============================================================ */
         .mobile-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 56px;
-            background: var(--bg-secondary); display: flex; align-items: center;
-            justify-content: space-between; padding: 0 16px; z-index: 1001;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.4); backdrop-filter: blur(8px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1001;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
             transition: background var(--transition);
         }
         .mobile-header .brand {
-            color: var(--gold); font-weight: 900; font-size: 1.4rem; letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1.5px;
         }
-        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
         .header-actions button {
-            background: none; border: none; color: var(--text-secondary);
-            font-size: 1.2rem; cursor: pointer; transition: var(--transition);
-            padding: 4px 8px; border-radius: 8px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 4px 8px;
+            border-radius: 8px;
         }
-        .header-actions button:hover { color: var(--gold); background: rgba(212,175,55,0.1); }
-        .hamburger { font-size: 1.6rem; }
+        .header-actions button:hover {
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        .hamburger {
+            font-size: 1.6rem;
+        }
 
-        /* ===== SIDEBAR ===== */
+        /* ============================================================
+           SIDEBAR — SUPERIOR MODERN
+           ============================================================ */
         .sidebar {
-            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
-            background: var(--bg-secondary); display: flex; flex-direction: column;
-            align-items: center; z-index: 1000; box-shadow: 2px 0 20px rgba(0,0,0,0.5);
-            transition: width var(--transition), transform var(--transition);
-            overflow: hidden; transform: translateX(-100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            border-right: 1px solid var(--sidebar-border);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: width var(--transition), transform var(--transition), background var(--transition);
+            overflow: hidden;
+            transform: translateX(-100%);
+            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.5);
         }
-        .sidebar.open { transform: translateX(0); width: var(--sidebar-expanded); }
-        .sidebar .logo {
-            color: var(--gold); font-weight: 700; padding: 14px 0 8px;
-            font-size: 1rem; opacity: 0.9; white-space: nowrap;
-            transition: var(--transition);
-        }
-        .sidebar nav { width: 100%; flex: 1; overflow-y: auto; padding: 8px 0;
-            display: flex; flex-direction: column; gap: 2px; }
-        .sidebar nav a {
-            display: flex; align-items: center; gap: 12px; padding: 6px 14px;
-            color: var(--text-secondary); text-decoration: none; font-size: 0.75rem;
-            font-weight: 500; white-space: nowrap; border-radius: 10px;
-            transition: var(--transition); position: relative;
-        }
-        .sidebar nav a .nav-icon {
-            width: 28px; height: 28px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; color: #fff; flex-shrink: 0; transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        .sidebar nav a span { opacity: 0; transition: opacity 0.25s; }
-        .sidebar.open nav a span { opacity: 1; }
-        .sidebar nav a:hover, .sidebar nav a.active {
-            background: rgba(212,175,55,0.15); color: var(--gold);
-        }
-        .sidebar nav a.active .nav-icon {
-            transform: scale(1.1);
-            box-shadow: 0 0 0 2px var(--gold), 0 4px 14px rgba(212,175,55,0.4);
-        }
-        .sidebar-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-            z-index: 999; opacity: 0; pointer-events: none; transition: opacity var(--transition);
-        }
-        .sidebar-overlay.active { opacity: 1; pointer-events: auto; }
-
-        /* ===== HOME FLOAT ===== */
-        .home-float {
-            position: fixed; bottom: 80px; right: 20px; z-index: 999;
-            width: 50px; height: 50px; border-radius: 50%; background: var(--gold);
-            color: #121212; display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; box-shadow: 0 4px 20px rgba(212,175,55,0.5);
-            border: none; cursor: pointer; transition: var(--transition);
-        }
-        .home-float:hover { transform: scale(1.12); background: var(--gold-light); }
-
-        /* ===== MAIN CONTENT ===== */
-        .main-content {
-            padding: 16px 16px 80px 16px; max-width: 1100px; margin: 0 auto;
-            transition: margin-left var(--transition); position: relative; z-index: 1;
+        .sidebar.open {
+            transform: translateX(0);
+            width: var(--sidebar-expanded);
         }
 
-        /* ===== SECTIONS ===== */
-        .section { display: none; animation: fadeSlide 0.5s ease; padding: 20px 0 12px; }
-        .section.active { display: block; }
-        @keyframes fadeSlide { 0% { opacity:0; transform:translateY(30px); } 100% { opacity:1; transform:translateY(0); } }
-
-        .section-header {
-            display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
-            border-bottom: 3px solid var(--gold); padding-bottom: 12px; flex-wrap: wrap;
+        /* --- Sidebar scroll --- */
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 8px 0 12px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
         }
-        .section-header .num {
-            background: var(--gold); color: #121212; font-weight: 700; font-size: 1.1rem;
-            width: 40px; height: 40px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; flex-shrink: 0;
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 3px;
         }
-        .section-header h2 {
-            font-size: 1.3rem; font-weight: 700; color: var(--text-primary); flex: 1;
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
         }
-        .section-header h2 small {
-            font-weight: 400; font-size: 0.85rem; color: var(--text-secondary);
-            display: block; margin-top: 2px;
-        }
-        .meeting-badge {
-            display: inline-block; background: var(--bg-card); color: var(--gold);
-            padding: 2px 14px; border-radius: 30px; font-size: 0.7rem; font-weight: 700;
-            border: 1px solid var(--gold); margin-left: 10px; white-space: nowrap;
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
         }
 
-        /* ===== COVER ===== */
-        .cover-wrapper {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 40px; min-height: 70vh; padding: 20px 0;
-        }
-        .cover-left { flex: 1 1 50%; padding: 10px 15px; max-width: 600px; }
-        .cover-right { flex: 1 1 50%; padding: 10px 15px; display: flex; justify-content: center; align-items: center; max-width: 500px; }
-        .cover-right .image-placeholder {
-            width: 100%; aspect-ratio: 4/3; background: var(--bg-secondary);
-            border: 3px dashed var(--gold); border-radius: 24px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 20px; text-align: center; box-shadow: var(--shadow);
-            position: relative; overflow: hidden;
-        }
-        .cover-right .image-placeholder img {
-            position: absolute; inset: 0; width: 100%; height: 100%;
-            object-fit: cover; border-radius: 22px;
-        }
-        .cover-right .image-placeholder .fallback-content {
-            display: none; z-index: 2; flex-direction: column; align-items: center;
-        }
-        .cover-logo-group {
-            display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 18px;
-        }
-        .cover-logo-group img { height: 55px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
-        .cover-title {
-            font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 800;
-            line-height: 1.15; color: var(--text-primary);
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5); margin: 8px 0 10px; letter-spacing: 1px;
-        }
-        .cover-sub {
-            font-size: clamp(1rem, 1.2vw, 1.2rem); color: var(--text-secondary);
-            max-width: 500px; line-height: 1.6; margin-bottom: 16px;
-        }
-        .cover-school {
-            font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 700;
-            letter-spacing: 4px; color: var(--text-primary);
-            text-shadow: 0 2px 10px rgba(0,0,0,0.4); margin-bottom: 18px;
-        }
-        .cover-teacher {
-            font-size: 1rem; color: var(--text-primary);
-            background: rgba(255,255,255,0.06); padding: 10px 22px;
-            border-radius: 12px; display: inline-block; backdrop-filter: blur(2px);
-            margin-bottom: 6px; border: 1px solid rgba(212,175,55,0.15); line-height: 1.6;
-        }
-        .cover-teacher .teacher-name { font-weight: 600; color: var(--gold); }
-        .cover-teacher .teacher-nip {
-            font-size: 0.85rem; color: var(--text-secondary);
-            display: block; margin-top: 2px; letter-spacing: 0.5px;
-        }
-        .cover-teacher .teacher-label { color: var(--text-secondary); font-weight: 400; }
-        .cover-nav-hint { font-size: 0.85rem; color: #666; margin-top: 12px; }
-        .start-btn {
-            background: var(--gold); color: #121212; border: none;
-            padding: 14px 44px; border-radius: 60px; font-weight: 700; font-size: 1.2rem;
-            cursor: pointer; transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
-            display: inline-flex; align-items: center; gap: 14px;
-        }
-        .start-btn:hover { background: var(--gold-light); transform: scale(1.04); box-shadow: 0 8px 28px rgba(212,175,55,0.6); }
-        .start-btn-wrapper { margin: 16px 0 12px; }
-
-        @media (max-width: 899px) {
-            .cover-wrapper { flex-direction: column; min-height: auto; gap: 20px; }
-            .cover-left { flex: 1 1 100%; max-width: 100%; text-align: center; padding: 10px 5px; }
-            .cover-left .cover-logo-group { justify-content: center; }
-            .cover-left .cover-sub { margin-left: auto; margin-right: auto; }
-            .cover-right { flex: 1 1 100%; max-width: 100%; padding: 10px 5px; }
-            .cover-right .image-placeholder { max-width: 100%; aspect-ratio: 16/10; }
-            .cover-title { font-size: clamp(2rem, 6vw, 2.8rem); }
-            .cover-school { font-size: clamp(1.4rem, 4vw, 2rem); }
-            .cover-teacher { font-size: 0.9rem; padding: 8px 16px; text-align: center; }
-            .start-btn { padding: 12px 32px; font-size: 1rem; }
-        }
-        @media (min-width: 900px) {
-            .cover-wrapper { min-height: 70vh; gap: 50px; }
-            .cover-left { padding: 10px 20px 10px 0; }
-            .cover-right { padding: 10px 0 10px 20px; }
-        }
-        @media (min-width: 1200px) {
-            .cover-wrapper { gap: 70px; }
-            .cover-left { padding-right: 30px; }
-            .cover-right { padding-left: 30px; }
-        }
-
-        /* ===== ACCORDION ===== */
-        .accordion-wrap { display: flex; flex-direction: column; gap: 12px; margin: 8px 0; }
-        .accordion-item {
-            background: var(--bg-card); border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.06); overflow: hidden;
-            transition: var(--transition);
-        }
-        .accordion-item:hover { border-color: var(--gold); }
-        .accordion-header {
-            background: var(--bg-secondary); padding: 16px 20px; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-            transition: background 0.2s; user-select: none;
-        }
-        .accordion-header:hover { background: var(--bg-card-hover); }
-        .accordion-header h3 {
-            font-size: 1.05rem; font-weight: 700; color: var(--text-primary);
-            display: flex; align-items: center; gap: 12px; margin: 0;
-        }
-        .accordion-header h3 i { color: var(--gold); }
-        .accordion-header .toggle-icon {
-            font-size: 1.2rem; color: var(--gold); transition: transform 0.3s;
-        }
-        .accordion-item.open .accordion-header .toggle-icon { transform: rotate(180deg); }
-        .accordion-body {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease;
-            padding: 0 20px; background: var(--bg-primary);
-        }
-        .accordion-item.open .accordion-body {
-            max-height: 3000px; padding: 18px 20px 20px;
-        }
-
-        /* ===== CARDS & GRID ===== */
-        .grid-2, .grid-3, .grid-4, .grid-ahli {
-            display: grid; gap: 16px; margin: 14px 0 8px;
-        }
-        .grid-2 { grid-template-columns: 1fr; }
-        .grid-3 { grid-template-columns: 1fr; }
-        .grid-4 { grid-template-columns: 1fr; }
-        .grid-ahli { grid-template-columns: 1fr; }
-
-        .card {
-            background: var(--bg-card); border-radius: var(--radius);
-            padding: 18px 16px; box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+        /* --- Profile section --- */
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 14px 14px 14px;
+            border-bottom: 1px solid var(--sidebar-border);
+            flex-shrink: 0;
+            transition: padding var(--transition);
             cursor: default;
         }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); border-color: var(--gold); }
-        .card .icon { font-size: 1.8rem; color: var(--gold); margin-bottom: 8px; }
-        .card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-        .card p, .card li { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; }
-        .card ul { padding-left: 18px; margin: 6px 0; }
-        .card ul li { list-style-type: disc; }
-        .card.highlight { background: var(--bg-card-hover); border-color: var(--gold); }
-        .card.merdeka-badge { border-left: 6px solid var(--gold); }
+        .sidebar-profile .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #121212;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 2px var(--bg-primary), 0 4px 16px rgba(212, 175, 55, 0.3);
+            transition: transform var(--transition);
+        }
+        .sidebar:hover .avatar,
+        .sidebar.open .avatar {
+            transform: scale(1.05);
+        }
+        .sidebar-profile .info {
+            opacity: 0;
+            transition: opacity 0.25s;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .sidebar.open .sidebar-profile .info,
+        .sidebar:hover .sidebar-profile .info {
+            opacity: 1;
+        }
+        .sidebar-profile .info .name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+        }
+        .sidebar-profile .info .role {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1px;
+        }
+        .sidebar-profile .info .role .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #2ecc71;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+        }
 
-        /* ===== INTERACTIVE CARDS ===== */
-        .interactive-card {
-            cursor: pointer; transition: background 0.3s, border-color 0.3s, transform 0.2s;
+        /* --- Search --- */
+        .sidebar-search {
+            padding: 10px 14px 8px 14px;
+            flex-shrink: 0;
+            border-bottom: 1px solid var(--sidebar-border);
+            transition: padding var(--transition);
         }
-        .interactive-card .back {
-            display: none; padding-top: 12px;
-            border-top: 2px dashed rgba(212,175,55,0.3); margin-top: 12px;
+        .sidebar-search .search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            border: 1px solid transparent;
+            transition: border-color var(--transition), background var(--transition);
+            overflow: hidden;
         }
-        .interactive-card.open .back { display: block; }
-        .interactive-card.open { background: var(--bg-card-hover); border-color: var(--gold); }
-        .toggle-hint {
-            font-size: 0.7rem; margin-top: 6px; display: block; font-weight: 500;
-            opacity: 0.6; color: var(--text-secondary);
+        .sidebar-search .search-wrap:focus-within {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.08);
         }
-        .pillar-icon, .guna-icon {
-            font-size: 2.4rem; color: var(--gold); display: block; margin-bottom: 4px;
+        .sidebar-search .search-wrap i {
+            position: absolute;
+            left: 12px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            opacity: 0.6;
+            transition: opacity var(--transition);
+        }
+        .sidebar-search .search-wrap input {
+            background: transparent;
+            border: none;
+            padding: 7px 12px 7px 36px;
+            width: 100%;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .sidebar-search .search-wrap input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.5;
+            font-size: 0.75rem;
+        }
+        .sidebar-search .search-wrap .clear-btn {
+            position: absolute;
+            right: 8px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity var(--transition);
+            padding: 4px;
+        }
+        .sidebar-search .search-wrap .clear-btn.visible {
+            opacity: 0.6;
+        }
+        .sidebar-search .search-wrap .clear-btn.visible:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+        /* collapsed state search */
+        .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap input {
+            padding: 7px 12px 7px 36px;
+            font-size: 0;
+        }
+        .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap i {
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+        .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap input::placeholder {
+            font-size: 0;
         }
 
-        /* ===== TABS ===== */
-        .etym-tabs {
-            display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 6px;
+        /* --- Navigation --- */
+        .sidebar-nav {
+            list-style: none;
+            padding: 8px 10px 4px 10px;
+            margin: 0;
         }
-        .etym-tabs button {
-            background: var(--bg-card); border: none; padding: 8px 18px;
-            border-radius: 40px; font-weight: 600; font-size: 0.85rem;
-            color: var(--text-secondary); cursor: pointer; transition: var(--transition);
-            display: flex; align-items: center; gap: 6px; flex: 1 1 auto;
+        .sidebar-nav .nav-section-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-secondary);
+            opacity: 0.4;
+            padding: 8px 8px 4px 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: opacity var(--transition);
+            font-weight: 700;
         }
-        .etym-tabs button.active {
-            background: var(--gold); color: #121212;
-            box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+        .sidebar:not(.open):not(:hover) .nav-section-label {
+            opacity: 0;
+            height: 0;
+            padding: 0 8px;
+            margin: 0;
         }
-        .etym-tabs button:hover { background: var(--bg-card-hover); }
-        .etym-content {
-            background: var(--bg-card); border-radius: var(--radius);
-            padding: 16px 18px; border: 1px solid rgba(255,255,255,0.05);
-            min-height: 60px; margin-top: 4px;
-        }
-        .etym-panel { display: none; }
-        .etym-panel.active { display: block; animation: fadeSlide 0.3s; }
 
-        /* ===== GEOSFER HOVER TRIGGER ===== */
-        .geosfer-hover-trigger {
-            display: inline-block; background: var(--bg-card); color: var(--gold);
-            padding: 10px 22px; border-radius: 30px; font-weight: 600; cursor: pointer;
-            border: 2px solid var(--gold); transition: var(--transition);
-            position: relative; margin: 10px 0 6px; font-size: 1rem;
-            box-shadow: 0 2px 12px rgba(212,175,55,0.15);
+        .sidebar-nav li {
+            margin: 1px 0;
         }
-        .geosfer-hover-trigger:hover {
-            background: var(--bg-card-hover); color: var(--text-primary);
-            box-shadow: 0 4px 20px rgba(212,175,55,0.35); transform: translateY(-2px);
+        .sidebar-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 7px 10px 7px 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border-radius: 12px;
+            transition: all var(--transition);
+            position: relative;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
         }
-        .geosfer-hover-trigger .popup-diagram {
-            display: none; position: absolute; z-index: 1000;
-            background: var(--bg-card); border: 2px solid var(--gold);
-            border-radius: var(--radius); padding: 20px;
-            bottom: calc(100% + 18px); left: 50%; transform: translateX(-50%);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.9); text-align: center;
-            pointer-events: none; width: 520px; max-width: 90vw;
+        .sidebar-nav li a .nav-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+            transition: all var(--transition);
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            position: relative;
         }
-        .geosfer-hover-trigger:hover .popup-diagram {
-            display: block; animation: popupFade 0.3s ease;
+        .sidebar-nav li a .nav-label {
+            opacity: 0;
+            transition: opacity 0.25s;
+            flex: 1;
+            font-size: 0.82rem;
+            letter-spacing: 0.2px;
         }
-        @keyframes popupFade {
-            0% { opacity:0; transform:translateX(-50%) scale(0.92) translateY(12px); }
-            100% { opacity:1; transform:translateX(-50%) scale(1) translateY(0); }
+        .sidebar.open .sidebar-nav li a .nav-label,
+        .sidebar:hover .sidebar-nav li a .nav-label {
+            opacity: 1;
         }
-        .geosfer-hover-trigger .popup-diagram img {
-            max-width: 100%; max-height: 220px; border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1); background: var(--bg-primary);
-        }
-        .geosfer-hover-trigger .popup-diagram .caption {
-            font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;
-            border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px;
-        }
-        .geosfer-hover-trigger .popup-diagram .caption strong { color: var(--gold); }
 
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-            z-index: 9999; justify-content: center; align-items: center; cursor: pointer;
+        /* --- Badge & progress ring --- */
+        .sidebar-nav li a .nav-badge {
+            font-size: 0.55rem;
+            background: var(--gold);
+            color: #121212;
+            padding: 1px 8px;
+            border-radius: 30px;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.25s;
+            flex-shrink: 0;
         }
-        .modal-overlay.active { display: flex; }
-        .modal-overlay .modal-content {
-            max-width: 90vw; max-height: 90vh; background: var(--bg-card);
-            border-radius: var(--radius); padding: 16px; border: 2px solid var(--gold);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9); position: relative; text-align: center;
+        .sidebar.open .sidebar-nav li a .nav-badge,
+        .sidebar:hover .sidebar-nav li a .nav-badge {
+            opacity: 1;
         }
-        .modal-overlay .modal-content img { max-width: 100%; max-height: 80vh; border-radius: 10px; display: block; }
-        .modal-overlay .modal-content .caption {
-            color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;
-            padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05);
+
+        .sidebar-nav li a .progress-ring {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.25s;
         }
-        .modal-overlay .modal-close {
-            position: absolute; top: -14px; right: -14px;
-            background: var(--gold); color: #121212; width: 36px; height: 36px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; font-weight: 700; cursor: pointer; border: 2px solid #121212;
+        .sidebar.open .sidebar-nav li a .progress-ring,
+        .sidebar:hover .sidebar-nav li a .progress-ring {
+            opacity: 1;
+        }
+        .sidebar-nav li a .progress-ring .fill {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transition: clip-path 0.6s ease;
+        }
+
+        /* --- Hover & active --- */
+        .sidebar-nav li a:hover {
+            background: rgba(212, 175, 55, 0.08);
+            color: var(--text-primary);
+            transform: translateX(2px);
+        }
+        .sidebar-nav li a:hover .nav-icon {
+            transform: scale(1.06) translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        .sidebar-nav li a.active {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold);
+            box-shadow: inset 3px 0 0 var(--gold);
+        }
+        .sidebar-nav li a.active .nav-icon {
+            transform: scale(1.08);
+            box-shadow: 0 0 0 2px var(--gold), 0 4px 18px rgba(212, 175, 55, 0.35);
+        }
+        .sidebar-nav li a.active .nav-label {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* --- Tooltip (collapsed) --- */
+        .sidebar-nav li a .tooltip {
+            display: none;
+            position: absolute;
+            left: calc(100% + 14px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 4px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--sidebar-border);
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .sidebar-nav li a .tooltip::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-right-color: var(--bg-secondary);
+        }
+        .sidebar:not(.open):not(:hover) .sidebar-nav li a:hover .tooltip {
+            display: block;
+            opacity: 1;
+        }
+
+        /* --- Sidebar footer --- */
+        .sidebar-footer {
+            flex-shrink: 0;
+            padding: 10px 14px 14px 14px;
+            border-top: 1px solid var(--sidebar-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .sidebar-footer .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: opacity var(--transition);
+        }
+        .sidebar-footer .footer-left .version {
+            font-weight: 600;
+            color: var(--gold);
+            opacity: 0.7;
+        }
+        .sidebar-footer .footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .sidebar-footer .footer-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 8px;
+            transition: all var(--transition);
+            opacity: 0.5;
+        }
+        .sidebar-footer .footer-actions button:hover {
+            color: var(--gold);
+            opacity: 1;
+            background: rgba(212, 175, 55, 0.08);
+        }
+        .sidebar:not(.open):not(:hover) .sidebar-footer .footer-left {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* --- Sidebar overlay (mobile) --- */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            backdrop-filter: blur(4px);
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ============================================================
+           HOME FLOAT
+           ============================================================ */
+        .home-float {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+            border: none;
+            cursor: pointer;
             transition: var(--transition);
         }
-        .modal-overlay .modal-close:hover { transform: scale(1.1); background: var(--gold-light); }
-
-        /* ===== MISC ===== */
-        .def-block {
-            background: var(--bg-card); border-radius: var(--radius);
-            padding: 16px 18px; border-left: 6px solid var(--gold); margin: 12px 0;
-        }
-        .def-block .source { font-weight: 600; color: var(--text-primary); }
-        .def-block .source i { color: var(--gold); margin-right: 6px; }
-
-        .activity-box {
-            background: var(--bg-secondary); border-radius: var(--radius);
-            padding: 20px 18px; border: 2px dashed var(--gold); margin: 14px 0 6px;
-        }
-        .activity-box h3 {
-            color: var(--text-primary); font-size: 1.2rem;
-            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-        }
-        .activity-box h3 i { color: var(--gold); }
-
-        .worksheet-table {
-            display: grid; grid-template-columns: 60px 1fr 1.2fr 2fr;
-            gap: 4px; margin-top: 12px; font-size: 0.9rem;
-            border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);
-        }
-        .worksheet-table .header {
-            background: var(--gold); color: #121212; font-weight: 700;
-            padding: 10px 8px; text-align: center;
-        }
-        .worksheet-table .cell {
-            background: var(--bg-card); padding: 10px 8px; color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255,255,255,0.05); min-height: 44px;
-        }
-        .worksheet-table .cell-empty {
-            background: var(--bg-primary); color: #666; font-style: italic;
-            padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.05);
-            min-height: 44px;
+        .home-float:hover {
+            transform: scale(1.12);
+            background: var(--gold-light);
         }
 
-        .compare-table {
-            width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem;
-        }
-        .compare-table th {
-            background: var(--gold); color: #121212; padding: 10px; text-align: left;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .compare-table td {
-            padding: 10px; border: 1px solid rgba(255,255,255,0.1);
-            background: var(--bg-card); color: var(--text-secondary);
-        }
-
-        .method-step {
-            background: var(--bg-card); padding: 14px 16px; border-radius: 12px;
-            border-left: 6px solid var(--gold); margin-bottom: 12px;
-        }
-        .method-step h4 {
-            color: var(--gold); font-size: 1.1rem; display: flex; align-items: center; gap: 10px;
-        }
-        .method-step p { color: var(--text-secondary); margin-top: 4px; }
-
-        .refleksi-list {
-            list-style: none; padding: 0; margin: 8px 0;
-        }
-        .refleksi-list li {
-            display: flex; align-items: flex-start; gap: 12px; padding: 8px 0;
-            font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .refleksi-list li:last-child { border-bottom: none; }
-        .refleksi-list li .check {
-            font-size: 1.4rem; color: var(--gold); flex-shrink: 0;
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+        .main-content {
+            padding: 16px 16px 80px 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+            transition: margin-left var(--transition);
+            position: relative;
+            z-index: 1;
         }
 
-        .quote-block {
-            background: var(--bg-secondary); border-left: 6px solid var(--gold);
-            padding: 16px 20px; border-radius: 10px; margin: 12px 0;
-            font-style: italic; font-size: 1.1rem; color: var(--text-secondary);
+        /* ============================================================
+           SECTIONS (konten sama seperti sebelumnya)
+           ============================================================ */
+        .section {
+            display: none;
+            animation: fadeSlide 0.5s ease;
+            padding: 20px 0 12px;
         }
-        .quote-block .author {
-            display: block; margin-top: 8px; font-style: normal;
-            font-weight: 600; color: var(--gold); text-align: right;
+        .section.active {
+            display: block;
         }
-
-        .celebration-box {
-            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
-            border: 2px solid var(--gold); border-radius: var(--radius);
-            padding: 24px 20px; text-align: center; margin-top: 12px;
-        }
-        .celebration-box h3 {
-            font-size: 1.6rem; color: var(--gold); margin-bottom: 10px;
-        }
-
-        .assessment-question {
-            margin-bottom: 16px; padding: 12px 16px; background: var(--bg-card);
-            border-radius: 10px; border-left: 4px solid var(--gold);
-        }
-        .assessment-question .q-text {
-            font-weight: 600; color: var(--text-primary); margin-bottom: 4px;
-        }
-        .assessment-question .q-options {
-            padding-left: 20px; color: var(--text-secondary); line-height: 1.8;
-        }
-        .essay-question {
-            background: var(--bg-primary); padding: 16px; border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px;
-        }
-        .essay-question .q-text {
-            font-weight: 600; color: var(--text-primary); margin-bottom: 4px;
-        }
-        .essay-question .q-note {
-            font-size: 0.85rem; color: var(--text-secondary); font-style: italic;
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .ref-list {
-            list-style: none; padding: 0;
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 12px;
+            flex-wrap: wrap;
         }
-        .ref-list li {
-            padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.88rem; display: flex; align-items: baseline; gap: 10px;
+        .section-header .num {
+            background: var(--gold);
+            color: #121212;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .section-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        .section-header h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
             color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
         }
-        .ref-list li i { color: var(--gold); width: 20px; flex-shrink: 0; }
-
-        /* ===== NAVIGATION ===== */
-        .nav-buttons {
-            display: flex; justify-content: center; align-items: center;
-            margin-top: 32px; padding-top: 14px;
-            border-top: 2px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 10px;
-        }
-        .nav-buttons.hidden { display: none; }
-        .nav-buttons .nav-group {
-            display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
-        }
-        .nav-buttons button {
-            background: var(--bg-card); color: var(--text-primary); border: none;
-            padding: 8px 20px; border-radius: 40px; font-weight: 600; font-size: 0.85rem;
-            cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 8px;
-        }
-        .nav-buttons button:hover:not(:disabled) {
-            background: var(--gold); color: #121212; transform: scale(1.02);
-        }
-        .nav-buttons button:disabled { opacity: 0.35; cursor: not-allowed; }
-        .nav-buttons .counter {
-            font-weight: 500; color: var(--text-secondary); font-size: 0.85rem; padding: 0 8px;
-        }
-        .page-numbers {
-            display: flex; gap: 4px; flex-wrap: wrap; justify-content: center;
-        }
-        .page-numbers a {
-            display: inline-block; min-width: 30px; height: 30px; line-height: 30px;
-            text-align: center; border-radius: 50%; font-size: 0.75rem; font-weight: 600;
-            color: var(--text-secondary); background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.06); text-decoration: none;
-            transition: var(--transition); cursor: pointer;
-        }
-        .page-numbers a:hover {
-            background: var(--bg-card-hover); border-color: var(--gold); color: var(--text-primary);
-        }
-        .page-numbers a.active {
-            background: var(--gold); color: #121212; border-color: var(--gold);
-            box-shadow: 0 2px 12px rgba(212,175,55,0.4);
+        .meeting-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            color: var(--gold);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid var(--gold);
+            margin-left: 10px;
+            white-space: nowrap;
         }
 
-        /* ===== PROGRESS BAR ===== */
-        .progress-wrap {
-            position: fixed; bottom: 0; left: 0; right: 0; height: 5px;
-            background: var(--bg-secondary); z-index: 999;
+        /* --- (konten lain dipertahankan) --- */
+        .cover-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 70vh;
+            padding: 20px 0;
         }
-        .progress-wrap .bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            transition: width 0.4s ease; border-radius: 0 4px 4px 0;
+        .cover-left {
+            flex: 1 1 50%;
+            padding: 10px 15px;
+            max-width: 600px;
+        }
+        .cover-right {
+            flex: 1 1 50%;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+        }
+        .cover-right .image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--bg-secondary);
+            border: 3px dashed var(--gold);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .cover-right .image-placeholder img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+        .cover-right .image-placeholder .fallback-content {
+            display: none;
+            z-index: 2;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cover-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .cover-logo-group img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+        }
+        .cover-title {
+            font-size: clamp(2.2rem, 4vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-primary);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin: 8px 0 10px;
+            letter-spacing: 1px;
+        }
+        .cover-sub {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .cover-school {
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--text-primary);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            margin-bottom: 18px;
+        }
+        .cover-teacher {
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 10px 22px;
+            border-radius: 12px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+            margin-bottom: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            line-height: 1.6;
+        }
+        .cover-teacher .teacher-name {
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .cover-teacher .teacher-nip {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        .cover-nav-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 12px;
+        }
+        .start-btn {
+            background: var(--gold);
+            color: #121212;
+            border: none;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .start-btn:hover {
+            background: var(--gold-light);
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.6);
+        }
+        .start-btn-wrapper {
+            margin: 16px 0 12px;
         }
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-primary); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
-        /* ===== RESPONSIVE ===== */
-        @media (min-width: 600px) {
-            .grid-2 { grid-template-columns: repeat(2, 1fr); }
-            .grid-3 { grid-template-columns: repeat(2, 1fr); }
-            .grid-4 { grid-template-columns: repeat(2, 1fr); }
-            .grid-ahli { grid-template-columns: repeat(2, 1fr); }
-            .section-header h2 { font-size: 1.5rem; }
-            .main-content { padding: 20px 24px 80px; }
-            .worksheet-table { grid-template-columns: 60px 1fr 1.2fr 2fr; }
+        @media (max-width: 899px) {
+            .cover-wrapper {
+                flex-direction: column;
+                min-height: auto;
+                gap: 20px;
+            }
+            .cover-left {
+                flex: 1 1 100%;
+                max-width: 100%;
+                text-align: center;
+                padding: 10px 5px;
+            }
+            .cover-left .cover-logo-group {
+                justify-content: center;
+            }
+            .cover-left .cover-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cover-right {
+                flex: 1 1 100%;
+                max-width: 100%;
+                padding: 10px 5px;
+            }
+            .cover-right .image-placeholder {
+                max-width: 100%;
+                aspect-ratio: 16/10;
+            }
+            .cover-title {
+                font-size: clamp(2rem, 6vw, 2.8rem);
+            }
+            .cover-school {
+                font-size: clamp(1.4rem, 4vw, 2rem);
+            }
+            .cover-teacher {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+                text-align: center;
+            }
+            .start-btn {
+                padding: 12px 32px;
+                font-size: 1rem;
+            }
         }
         @media (min-width: 900px) {
-            body { padding-top: 0; }
-            .mobile-header { display: none; }
-            .sidebar { transform: translateX(0); width: var(--sidebar-width); }
-            .sidebar:hover { width: var(--sidebar-expanded); }
-            .sidebar .logo { font-size: 1rem; padding: 14px 0 8px; }
-            .sidebar:hover .logo { font-size: 1rem; }
-            .sidebar nav a span { opacity: 0; }
-            .sidebar:hover nav a span { opacity: 1; }
-            .sidebar-overlay { display: none; }
-            .main-content { margin-left: var(--sidebar-width); padding: 24px 32px 80px; max-width: 1100px; }
-            .grid-3 { grid-template-columns: repeat(3, 1fr); }
-            .grid-4 { grid-template-columns: repeat(4, 1fr); }
-            .grid-ahli { grid-template-columns: repeat(2, 1fr); }
-            .progress-wrap { left: var(--sidebar-width); }
-            .home-float { display: none; }
+            body {
+                padding-top: 0;
+            }
+            .mobile-header {
+                display: none;
+            }
+            .sidebar {
+                transform: translateX(0);
+                width: var(--sidebar-width);
+            }
+            .sidebar:hover {
+                width: var(--sidebar-expanded);
+            }
+            .sidebar .sidebar-profile .info {
+                opacity: 0;
+            }
+            .sidebar:hover .sidebar-profile .info {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .nav-label {
+                opacity: 0;
+            }
+            .sidebar:hover .sidebar-nav li a .nav-label {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .nav-badge {
+                opacity: 0;
+            }
+            .sidebar:hover .sidebar-nav li a .nav-badge {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .progress-ring {
+                opacity: 0;
+            }
+            .sidebar:hover .sidebar-nav li a .progress-ring {
+                opacity: 1;
+            }
+            .sidebar .sidebar-footer .footer-left {
+                opacity: 0;
+            }
+            .sidebar:hover .sidebar-footer .footer-left {
+                opacity: 0.5;
+            }
+            .sidebar .nav-section-label {
+                opacity: 0;
+                height: 0;
+                padding: 0 8px;
+                margin: 0;
+            }
+            .sidebar:hover .nav-section-label {
+                opacity: 0.4;
+                height: auto;
+                padding: 8px 8px 4px 8px;
+                margin: 0;
+            }
+            .sidebar-overlay {
+                display: none;
+            }
+            .main-content {
+                margin-left: var(--sidebar-width);
+                padding: 24px 32px 80px;
+                max-width: 1100px;
+            }
+            .home-float {
+                display: none;
+            }
+            .progress-wrap {
+                left: var(--sidebar-width);
+            }
+        }
+
+        /* ============================================================
+           PROGRESS BAR
+           ============================================================ */
+        .progress-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--bg-secondary);
+            z-index: 999;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: width 0.4s ease;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* ============================================================
+           NAVIGATION BUTTONS
+           ============================================================ */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons.hidden {
+            display: none;
+        }
+        .nav-buttons .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-buttons button {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--gold);
+            color: #121212;
+            transform: scale(1.02);
+        }
+        .nav-buttons button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .nav-buttons .counter {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 0 8px;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            color: var(--text-primary);
+        }
+        .page-numbers a.active {
+            background: var(--gold);
+            color: #121212;
+            border-color: var(--gold);
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           RESPONSIVE SIDEBAR
+           ============================================================ */
+        @media (max-width: 899px) {
+            .sidebar {
+                width: 280px;
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+                width: 280px;
+            }
+            .sidebar .sidebar-profile .info {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .nav-label {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .nav-badge {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .progress-ring {
+                opacity: 1;
+            }
+            .sidebar .sidebar-footer .footer-left {
+                opacity: 0.5;
+            }
+            .sidebar .nav-section-label {
+                opacity: 0.4;
+                height: auto;
+                padding: 8px 8px 4px 8px;
+                margin: 0;
+            }
+            .sidebar .sidebar-search .search-wrap input {
+                font-size: 0.8rem;
+            }
+            .sidebar .sidebar-search .search-wrap input::placeholder {
+                font-size: 0.75rem;
+            }
+            .sidebar .sidebar-search .search-wrap i {
+                left: 12px;
+                transform: none;
+                opacity: 0.6;
+            }
+            .home-float {
+                bottom: 80px;
+                right: 12px;
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+            .sidebar-nav li a .tooltip {
+                display: none !important;
+            }
+        }
+
+        /* ============================================================
+           KONTEN LAIN (accordion, cards, dll) — Dipertahankan
+           ============================================================ */
+        .accordion-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 8px 0;
+        }
+        .accordion-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .accordion-item:hover {
+            border-color: var(--gold);
+        }
+        .accordion-header {
+            background: var(--bg-secondary);
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .accordion-header:hover {
+            background: var(--bg-card-hover);
+        }
+        .accordion-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+        .accordion-header h3 i {
+            color: var(--gold);
+        }
+        .accordion-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+        .accordion-item.open .accordion-header .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 20px;
+            background: var(--bg-primary);
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 3000px;
+            padding: 18px 20px 20px;
+        }
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .grid-ahli {
+            display: grid;
+            gap: 16px;
+            margin: 14px 0 8px;
+        }
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+        .grid-4 {
+            grid-template-columns: 1fr;
+        }
+        .grid-ahli {
+            grid-template-columns: 1fr;
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            cursor: default;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--gold);
+        }
+        .card .icon {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .card p,
+        .card li {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .card ul {
+            padding-left: 18px;
+            margin: 6px 0;
+        }
+        .card ul li {
+            list-style-type: disc;
+        }
+        .card.highlight {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+        }
+        .card.merdeka-badge {
+            border-left: 6px solid var(--gold);
+        }
+        .interactive-card {
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s, transform 0.2s;
+        }
+        .interactive-card .back {
+            display: none;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(212, 175, 55, 0.3);
+            margin-top: 12px;
+        }
+        .interactive-card.open .back {
+            display: block;
+        }
+        .interactive-card.open {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+        }
+        .toggle-hint {
+            font-size: 0.7rem;
+            margin-top: 6px;
+            display: block;
+            font-weight: 500;
+            opacity: 0.6;
+            color: var(--text-secondary);
+        }
+        .pillar-icon,
+        .guna-icon {
+            font-size: 2.4rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .etym-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 6px;
+        }
+        .etym-tabs button {
+            background: var(--bg-card);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1 1 auto;
+        }
+        .etym-tabs button.active {
+            background: var(--gold);
+            color: #121212;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+        }
+        .etym-tabs button:hover {
+            background: var(--bg-card-hover);
+        }
+        .etym-content {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 60px;
+            margin-top: 4px;
+        }
+        .etym-panel {
+            display: none;
+        }
+        .etym-panel.active {
+            display: block;
+            animation: fadeSlide 0.3s;
+        }
+        .geosfer-hover-trigger {
+            display: inline-block;
+            background: var(--bg-card);
+            color: var(--gold);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid var(--gold);
+            transition: var(--transition);
+            position: relative;
+            margin: 10px 0 6px;
+            font-size: 1rem;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.15);
+        }
+        .geosfer-hover-trigger:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+            transform: translateY(-2px);
+        }
+        .geosfer-hover-trigger .popup-diagram {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 20px;
+            bottom: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9);
+            text-align: center;
+            pointer-events: none;
+            width: 520px;
+            max-width: 90vw;
+        }
+        .geosfer-hover-trigger:hover .popup-diagram {
+            display: block;
+            animation: popupFade 0.3s ease;
+        }
+        @keyframes popupFade {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.92) translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1) translateY(0);
+            }
+        }
+        .geosfer-hover-trigger .popup-diagram img {
+            max-width: 100%;
+            max-height: 220px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-primary);
+        }
+        .geosfer-hover-trigger .popup-diagram .caption {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 8px;
+        }
+        .geosfer-hover-trigger .popup-diagram .caption strong {
+            color: var(--gold);
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-overlay .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+            position: relative;
+            text-align: center;
+        }
+        .modal-overlay .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            display: block;
+        }
+        .modal-overlay .modal-content .caption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: var(--gold);
+            color: #121212;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #121212;
+            transition: var(--transition);
+        }
+        .modal-overlay .modal-close:hover {
+            transform: scale(1.1);
+            background: var(--gold-light);
+        }
+        .def-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--gold);
+            margin: 12px 0;
+        }
+        .def-block .source {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .def-block .source i {
+            color: var(--gold);
+            margin-right: 6px;
+        }
+        .activity-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            border: 2px dashed var(--gold);
+            margin: 14px 0 6px;
+        }
+        .activity-box h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .activity-box h3 i {
+            color: var(--gold);
+        }
+        .worksheet-table {
+            display: grid;
+            grid-template-columns: 60px 1fr 1.2fr 2fr;
+            gap: 4px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .worksheet-table .header {
+            background: var(--gold);
+            color: #121212;
+            font-weight: 700;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .worksheet-table .cell {
+            background: var(--bg-card);
+            padding: 10px 8px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 44px;
+        }
+        .worksheet-table .cell-empty {
+            background: var(--bg-primary);
+            color: #666;
+            font-style: italic;
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 44px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+        .compare-table th {
+            background: var(--gold);
+            color: #121212;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .compare-table td {
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .method-step {
+            background: var(--bg-card);
+            padding: 14px 16px;
+            border-radius: 12px;
+            border-left: 6px solid var(--gold);
+            margin-bottom: 12px;
+        }
+        .method-step h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .method-step p {
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .refleksi-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .refleksi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .refleksi-list li:last-child {
+            border-bottom: none;
+        }
+        .refleksi-list li .check {
+            font-size: 1.4rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .quote-block {
+            background: var(--bg-secondary);
+            border-left: 6px solid var(--gold);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        .quote-block .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--gold);
+            text-align: right;
+        }
+        .celebration-box {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .celebration-box h3 {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .assessment-question {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+        }
+        .assessment-question .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .assessment-question .q-options {
+            padding-left: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .essay-question {
+            background: var(--bg-primary);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 16px;
+        }
+        .essay-question .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .essay-question .q-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--text-secondary);
+        }
+        .ref-list li i {
+            color: var(--gold);
+            width: 20px;
+            flex-shrink: 0;
+        }
+        @media (min-width: 600px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-ahli {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            .main-content {
+                padding: 20px 24px 80px;
+            }
+            .worksheet-table {
+                grid-template-columns: 60px 1fr 1.2fr 2fr;
+            }
+        }
+        @media (min-width: 900px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .grid-ahli {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .progress-wrap {
+                left: var(--sidebar-width);
+            }
         }
         @media (min-width: 1200px) {
-            .grid-ahli { grid-template-columns: repeat(3, 1fr); }
-            .main-content { padding: 28px 40px 80px; }
+            .grid-ahli {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .main-content {
+                padding: 28px 40px 80px;
+            }
         }
         @media (max-width: 400px) {
-            .section-header h2 { font-size: 1.1rem; }
-            .worksheet-table { grid-template-columns: 1fr; }
-            .worksheet-table .header { text-align: left; }
-        }
-        @media (max-width: 899px) {
-            .home-float { bottom: 80px; right: 12px; width: 44px; height: 44px; font-size: 1.2rem; }
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+            .worksheet-table {
+                grid-template-columns: 1fr;
+            }
+            .worksheet-table .header {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -669,7 +1778,7 @@
         <div class="loader-text">Memuat Materi Sejarah...</div>
     </div>
 
-    <!-- ===== PARTIKEL BINTANG BERWARNA (DIPERKECIL) ===== -->
+    <!-- ===== PARTIKEL BINTANG ===== -->
     <div class="particle-container" id="particleContainer"></div>
 
     <!-- ===== MODAL ===== -->
@@ -702,10 +1811,54 @@
     <!-- ===== SIDEBAR OVERLAY ===== -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-    <!-- ===== SIDEBAR ===== -->
+    <!-- ============================================================
+    SIDEBAR — SUPERIOR MODERN
+    ============================================================ -->
     <aside class="sidebar" id="sidebar">
-        <div class="logo">📜 Sejarah</div>
-        <nav id="navLinks"></nav>
+        <!-- Profile -->
+        <div class="sidebar-profile">
+            <div class="avatar">S</div>
+            <div class="info">
+                <div class="name">SYAHRANI, S.Pd</div>
+                <div class="role">
+                    <span class="dot"></span>
+                    Guru Sejarah
+                </div>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="sidebar-search">
+            <div class="search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="sidebarSearch" placeholder="Cari materi..." autocomplete="off" />
+                <button class="clear-btn" id="searchClear"><i class="fas fa-times-circle"></i></button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="sidebar-scroll">
+            <ul class="sidebar-nav" id="navLinks">
+                <!-- will be injected by JS -->
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="sidebar-footer">
+            <div class="footer-left">
+                <span class="version">v2.0</span>
+                <span>•</span>
+                <span>Kelas X</span>
+            </div>
+            <div class="footer-actions">
+                <button onclick="toggleTheme()" title="Ganti tema" id="sidebarThemeBtn">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button onclick="navigateTo(0)" title="Beranda">
+                    <i class="fas fa-home"></i>
+                </button>
+            </div>
+        </div>
     </aside>
 
     <!-- ===== HOME FLOAT ===== -->
@@ -716,10 +1869,10 @@
     <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
 
-    <!-- ===== MAIN ===== -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content" id="mainContent">
 
-        <!-- ========== SECTION 1 : COVER ========== -->
+        <!-- ========== SECTION 0 : COVER ========== -->
         <section id="section0" class="section active">
             <div class="cover-wrapper">
                 <div class="cover-left">
@@ -768,7 +1921,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 2 : CP ATP ========== -->
+        <!-- ========== SECTION 1 : CP ATP ========== -->
         <section id="section1" class="section">
             <div class="section-header"><div class="num">02</div><h2>Komponen Pembelajaran <small>CP · ATP · Indikator · Deep Learning</small></h2></div>
             <div class="accordion-wrap">
@@ -863,12 +2016,10 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 3 : PENGERTIAN SEJARAH ========== -->
+        <!-- ========== SECTION 2 : PENGERTIAN SEJARAH ========== -->
         <section id="section2" class="section">
             <div class="section-header"><div class="num">03</div><h2>Pengertian Sejarah <small>Etimologis & Filosofis <span class="meeting-badge">Pertemuan 1</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-globe-asia" style="color:var(--gold);"></i> Secara etimologi, kata "sejarah" berasal dari berbagai bahasa. Memahami akar kata ini membantu kita menangkap esensi sejarah dari berbagai sudut pandang budaya dan keilmuan.</p>
-
-            <!-- GAMBAR META POHON -->
             <div style="text-align:center;margin:16px 0 12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/metaporasejarah2.png', 'Ilustrasi metafora sejarah sebagai pohon (Syajaratun)')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi metafora pohon sejarah
@@ -880,7 +2031,6 @@
                 </span>
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
-
             <div class="etym-tabs">
                 <button class="active" data-tab="tabArab"><i class="fas fa-language"></i> Arab</button>
                 <button data-tab="tabInggris"><i class="fas fa-language"></i> Inggris</button>
@@ -890,7 +2040,6 @@
                 <div id="tabArab" class="etym-panel active">
                     <strong>Syajaratun (شجرة)</strong> — artinya <em>pohon</em>.<br/>
                     <p style="margin-top:4px;color:var(--text-secondary);">Kata ini mengandung makna mendalam: seperti pohon yang memiliki akar (asal-usul), batang (intisari), cabang (peristiwa-peristiwa besar), dan ranting (kejadian kecil yang saling terkait). Sejarah dipandang sebagai sebuah <strong>silsilah</strong> atau pohon keluarga yang terus tumbuh dan bercabang dari generasi ke generasi.</p>
-                    <!-- GAMBAR KALIGRAFI -->
                     <div style="text-align:center;margin:12px 0 8px;">
                         <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/syajaratun2.png', 'Kaligrafi Syajaratun (شجرة) dalam bahasa Arab')" style="padding:6px 14px;font-size:0.9rem;">
                             <i class="fas fa-image" style="margin-right:6px;"></i> Klik untuk melihat kaligrafi Syajaratun
@@ -923,8 +2072,6 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- GAMBAR DIAGRAM POHON -->
             <div style="text-align:center;margin:20px 0 12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/pohon%20sejarah.png', 'Diagram Pohon Sejarah dengan label Akar, Batang, Cabang, dan Ranting')" style="background:var(--bg-card);border-color:var(--gold);">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram pohon sejarah
@@ -936,7 +2083,6 @@
                 </span>
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
-
             <div style="margin-top:16px;">
                 <h3 style="font-size:1.1rem;color:var(--text-primary);border-left:4px solid var(--gold);padding-left:12px;"><i class="fas fa-tree" style="color:var(--gold);"></i> Memaknai "Sejarah sebagai Pohon" (Syajaratun)</h3>
                 <div class="grid-2">
@@ -954,7 +2100,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 4 : KONSEP MANUSIA, RUANG, WAKTU ========== -->
+        <!-- ========== SECTION 3 : KONSEP MANUSIA, RUANG, WAKTU ========== -->
         <section id="section3" class="section">
             <div class="section-header"><div class="num">04</div><h2>Konsep Manusia, Ruang, dan Waktu <small>Tiga Pilar Utama dalam Sejarah <span class="meeting-badge">Pertemuan 2</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-cubes" style="color:var(--gold);"></i> Sejarah tidak dapat dipisahkan dari tiga elemen fundamental: <strong>Manusia</strong> (pelaku), <strong>Ruang</strong> (tempat), dan <strong>Waktu</strong> (kapan). Ketiganya saling terkait dan membentuk kerangka untuk memahami setiap peristiwa sejarah.</p>
@@ -981,7 +2127,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 5 : DIAKRONIK & SINKRONIK ========== -->
+        <!-- ========== SECTION 4 : DIAKRONIK & SINKRONIK ========== -->
         <section id="section4" class="section">
             <div class="section-header"><div class="num">05</div><h2>Cara Berpikir Diakronik & Sinkronik <small>Kronologi dan Struktur dalam Sejarah <span class="meeting-badge">Pertemuan 3</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-brain" style="color:var(--gold);"></i> Sejarawan menggunakan dua cara berpikir utama untuk menganalisis peristiwa: <strong>Diakronik</strong> (memanjang waktu) dan <strong>Sinkronik</strong> (meluas dalam waktu).</p>
@@ -1007,12 +2153,10 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 6 : DEFINISI AHLI ========== -->
+        <!-- ========== SECTION 5 : DEFINISI AHLI ========== -->
         <section id="section5" class="section">
             <div class="section-header"><div class="num">06</div><h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Sejarah Dunia & Indonesia <span class="meeting-badge">Pertemuan 4</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:10px;"><i class="fas fa-quote-left" style="color:var(--gold);"></i> Berikut adalah definisi sejarah dari berbagai ahli terkemuka. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.</p>
-
-            <!-- GAMBAR ILUSTRASI AHLI -->
             <div style="text-align:center;margin-bottom:12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/tokohsejarah.png', 'Ilustrasi Para Ahli Sejarah')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi para ahli
@@ -1024,44 +2168,35 @@
                 </span>
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
-
             <div class="grid-ahli">
-                <!-- 1 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">1</span><div><h3 style="font-size:1.05rem;margin:0;">W.J.S. Poerwodarminta</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Tokoh Sastra &amp; Leksikografer Indonesia</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam <em>Kamus Umum Bahasa Indonesia</em> (1953):</p><ul><li><strong>Kesusasteraan lama, silsilah, dan asal-usul</strong> — sejarah sebagai catatan genealogis dan tradisi lisan.</li><li><strong>Kejadian yang benar-benar terjadi di masa lampau</strong> — sejarah sebagai realitas objektif peristiwa masa lalu.</li><li><strong>Ilmu pengetahuan, cerita pengalaman tentang</strong> — sejarah sebagai disiplin ilmu yang menyajikan narasi bermakna.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Poerwodarminta adalah penyusun kamus bahasa Indonesia pertama yang menjadi rujukan utama. Definisi ini menekankan tiga dimensi: <strong>genealogis</strong> (silsilah), <strong>faktual</strong> (kejadian nyata), dan <strong>ilmiah</strong> (ilmu pengetahuan).</div></div>
                 </div>
-                <!-- 2 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">2</span><div><h3 style="font-size:1.05rem;margin:0;">R. Moh. Ali</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Akademisi Indonesia</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam <em>Pengantar Ilmu Sejarah</em>:</p><ul><li><strong>Jumlah perubahan-perubahan, kejadian, dan peristiwa dalam kenyataan sekitar kita</strong> — sejarah sebagai realitas objektif yang dapat diamati.</li><li><strong>Cerita tentang perubahan-perubahan, kejadian, peristiwa yang merupakan realitas tersebut</strong> — sejarah sebagai narasi yang disusun dari realitas.</li><li><strong>Ilmu yang bertugas menyelidiki perubahan-perubahan, kejadian, dan peristiwa yang merupakan realitas tersebut</strong> — sejarah sebagai disiplin ilmu dengan metode penelitian.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Menurut Moh. Ali, makna terpenting dari sejarah adalah <strong>konsep perubahan</strong>. Sejarah selalu bergerak dan dinamis, bukan statis. Beliau juga menegaskan bahwa sejarah adalah cerita yang tersusun secara <strong>sistematis</strong>.</div></div>
                 </div>
-                <!-- 3 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">3</span><div><h3 style="font-size:1.05rem;margin:0;">Herodotus</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Yunani Kuno (484–425 SM)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Dijuluki <em>"The Father of History"</em> (Bapak Sejarah):</p><ul><li>Sejarah tidak berkembang ke arah depan dengan tujuan pasti, melainkan bergerak seperti <strong>garis lingkaran</strong> yang tinggi rendahnya diakibatkan oleh keadaan manusia.</li><li>Sejarah adalah <strong>penyelidikan</strong> (<em>historia</em>) terhadap peristiwa-peristiwa masa lalu melalui pengumpulan data dan kesaksian.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Herodotus adalah tokoh pertama yang menulis sejarah secara sistematis dalam karyanya <em>Historia</em>, yang mengisahkan Perang Yunani-Persia. Pendekatannya menekankan pentingnya <strong>bukti dan kesaksian</strong> dalam penulisan sejarah.</div></div>
                 </div>
-                <!-- 4 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">4</span><div><h3 style="font-size:1.05rem;margin:0;">Ibnu Khaldun</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Muslim Tunisia (1332–1406 M)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam kitab <em>Mukadimah</em>:</p><ul><li>Sejarah adalah <strong>catatan tentang masyarakat, umat manusia, atau peradaban dunia</strong>, dan mengenai perubahan-perubahan yang terjadi pada watak masyarakat.</li><li>Sejarah mencakup seluruh proses perubahan secara nyata dengan segala <strong>sebab dan akibatnya</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Ibnu Khaldun dijuluki sebagai <strong>Bapak Pendiri Historiografi, Sosiologi, dan Ekonomi</strong>. Ia menekankan bahwa sejarah bukan sekadar catatan peristiwa, tetapi juga analisis <strong>peradaban dan perubahan sosial</strong>.</div></div>
                 </div>
-                <!-- 5 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">5</span><div><h3 style="font-size:1.05rem;margin:0;">Aristoteles</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf Yunani (384–322 SM)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan tentang sejarah:</p><ul><li>Sejarah adalah <strong>sistem yang meneliti kejadian sejak awal</strong> dan tersusun dalam bentuk <strong>kronologi</strong> (urutan waktu).</li><li>Sejarah adalah peristiwa masa lalu yang memiliki <strong>catatan, record, dan bukti-bukti yang konkrit</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Aristoteles menekankan aspek <strong>kronologis</strong> dan <strong>bukti empiris</strong> dalam sejarah. Baginya, sejarah harus disusun secara teratur dan dapat dipertanggungjawabkan secara ilmiah.</div></div>
                 </div>
-                <!-- 6 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">6</span><div><h3 style="font-size:1.05rem;margin:0;">Mohammad Yamin</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Pahlawan Nasional &amp; Sejarawan Indonesia</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi sejarah:</p><ul><li>Sejarah adalah <strong>ilmu pengetahuan yang disusun atas hasil penyelidikan</strong> dari beberapa peristiwa yang mampu dibuktikan dengan kenyataan (<strong>fakta</strong>).</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Yamin menekankan bahwa sejarah harus berdasarkan <strong>penyelidikan dan fakta</strong> yang dapat dibuktikan. Sejarah bukan sekadar cerita, tetapi ilmu yang memiliki <strong>metode dan bukti</strong>.</div></div>
                 </div>
-                <!-- 7 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">7</span><div><h3 style="font-size:1.05rem;margin:0;">R.G. Collingwood</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf &amp; Sejarawan Inggris (1889–1943)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan dalam <em>The Idea of History</em> (1946):</p><ul><li>Sejarah adalah sesuatu yang <strong>bersifat ilmiah</strong>, dan tugas sejarawan adalah <strong>menyelidiki kembali pemikiran manusia di masa lampau</strong>.</li><li>Sejarah berguna untuk <strong>mempelajari tindakan manusia</strong> dan kemudian mempelajari <strong>hakikat manusia</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Collingwood menekankan pendekatan <strong>filosofis</strong> dalam sejarah. Baginya, sejarah bukan hanya tentang peristiwa, tetapi tentang <strong>pemikiran di balik tindakan manusia</strong> — sejarah adalah "penyelidikan kembali pemikiran masa lalu".</div></div>
                 </div>
-                <!-- 8 -->
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">8</span><div><h3 style="font-size:1.05rem;margin:0;">Kuntowijoyo</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Pakar Sejarah Indonesia (1943–2005)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Dijuluki <em>"Bapak Sejarah Indonesia"</em>:</p><ul><li>Sejarah adalah suatu hal peristiwa yang sudah terjadi di masa lalu yang <strong>direkonstruksi</strong> atau membangun kembali kejadian masa lampau.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Kuntowijoyo menekankan aspek <strong>rekonstruksi</strong> dalam sejarah. Sejarah bukan sekadar mencatat, tetapi <strong>membangun kembali</strong> peristiwa masa lalu berdasarkan bukti-bukti yang tersisa.</div></div>
@@ -1080,11 +2215,10 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 7 : HAKIKAT SEJARAH ========== -->
+        <!-- ========== SECTION 6 : HAKIKAT SEJARAH ========== -->
         <section id="section6" class="section">
             <div class="section-header"><div class="num">07</div><h2>HAKIKAT SEJARAH <small>Dimensi Peristiwa, Kisah, Seni, dan Ilmu <span class="meeting-badge">Pertemuan 5</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:10px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Sejarah memiliki empat dimensi hakikat yang saling melengkapi. <strong>Klik pada setiap kartu</strong> untuk mempelajari penjelasan dan contohnya secara mendalam.</p>
-            <!-- GAMBAR ILUSTRASI HAKIKAT -->
             <div style="text-align:center;margin-bottom:12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/hakikatsejarah.png', 'Ilustrasi Hakikat Sejarah')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi hakikat sejarah
@@ -1104,7 +2238,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 8 : RUANG LINGKUP ========== -->
+        <!-- ========== SECTION 7 : RUANG LINGKUP ========== -->
         <section id="section7" class="section">
             <div class="section-header"><div class="num">08</div><h2>Ruang Lingkup Sejarah <small>Cakupan dan Batasan Ilmu Sejarah <span class="meeting-badge">Pertemuan 6</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-expand" style="color:var(--gold);"></i> Ruang lingkup sejarah mencakup batasan wilayah kajiannya, baik dari segi <strong>waktu, tema, maupun wilayah geografis</strong>. Memahami ruang lingkup membantu kita menentukan fokus dan kedalaman analisis sejarah.</p>
@@ -1118,11 +2252,10 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 9 : GUNA SEJARAH ========== -->
+        <!-- ========== SECTION 8 : GUNA SEJARAH ========== -->
         <section id="section8" class="section">
             <div class="section-header"><div class="num">09</div><h2>Guna Sejarah <small>Rekreatif · Edukatif · Inspiratif · Instruktif <span class="meeting-badge">Pertemuan 7</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:10px;"><i class="fas fa-question-circle" style="color:var(--gold);"></i> Apa gunanya sejarah bagi kita sehari-hari? Sejarah bukan hanya kumpulan cerita masa lalu, melainkan memiliki <strong style="color:var(--text-primary);">nilai praktis</strong> yang dapat dirasakan dalam berbagai aspek kehidupan. <strong>Klik pada setiap kartu</strong> untuk melihat penjelasan dan contoh lengkapnya.</p>
-            <!-- GAMBAR ILUSTRASI GUNA SEJARAH -->
             <div style="text-align:center;margin-bottom:12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/gunasejarah.png', 'Ilustrasi Guna Sejarah')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi guna sejarah
@@ -1151,7 +2284,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 10 : METODE SEJARAH ========== -->
+        <!-- ========== SECTION 9 : METODE SEJARAH ========== -->
         <section id="section9" class="section">
             <div class="section-header"><div class="num">10</div><h2>Proses Penelitian & Penulisan Sejarah <small>Metode Sejarah dan Historiografi <span class="meeting-badge">Pertemuan 8</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-microscope" style="color:var(--gold);"></i> Sejarah sebagai ilmu memerlukan <strong>metode penelitian yang sistematis</strong>. Proses ini disebut <strong>Metode Sejarah</strong>, yang terdiri dari empat tahap utama: Heuristik, Kritik, Interpretasi, dan Historiografi.</p>
@@ -1167,7 +2300,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 11 : AKTIVITAS ========== -->
+        <!-- ========== SECTION 10 : AKTIVITAS ========== -->
         <section id="section10" class="section">
             <div class="section-header"><div class="num">11</div><h2>Aktivitas <small>Silsilah Keluarga <span class="meeting-badge">Pertemuan 9</span></small></h2></div>
             <div class="activity-box">
@@ -1215,11 +2348,10 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 12 : ASESMEN ========== -->
+        <!-- ========== SECTION 11 : ASESMEN ========== -->
         <section id="section11" class="section">
             <div class="section-header"><div class="num">12</div><h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Prinsip Ilmu Sejarah <span class="meeting-badge">Pertemuan 10</span></small></h2></div>
             <p style="font-size:1rem;margin-bottom:16px;color:var(--text-secondary);"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Kerjakan asesmen berikut untuk mengukur pemahamanmu tentang materi "Memahami Prinsip Ilmu Sejarah". <strong>Selamat mengerjakan!</strong></p>
-            <!-- Pilihan Ganda (15 soal) -->
             <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
                 <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
                     <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">A</span> Pilihan Ganda
@@ -1241,7 +2373,6 @@
                 <div class="assessment-question"><div class="q-text">14. Menurut R. Moh. Ali, makna terpenting dari sejarah adalah ...</div><div class="q-options"><span>A. Silsilah</span><span>B. Kronologi</span><span>C. Perubahan</span><span>D. Rekonstruksi</span><span>E. Seni</span></div></div>
                 <div class="assessment-question"><div class="q-text">15. Contoh kegunaan sejarah yang bersifat inspiratif adalah ...</div><div class="q-options"><span>A. Menonton film sejarah</span><span>B. Mempelajari latar belakang perang agar lebih menghargai perdamaian</span><span>C. Sumpah Pemuda menginspirasi gerakan persatuan</span><span>D. Mempelajari sejarah politik untuk memahami demokrasi</span><span>E. Berkunjung ke museum</span></div></div>
             </div>
-            <!-- Benar-Salah (10 soal) -->
             <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
                 <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
                     <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">B</span> Benar-Salah
@@ -1258,7 +2389,6 @@
                 <div class="assessment-question"><div class="q-text">9. Menurut Aristoteles, sejarah harus disusun secara kronologis (urutan waktu).</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
                 <div class="assessment-question"><div class="q-text">10. Kuntowijoyo menekankan bahwa sejarah adalah upaya rekonstruksi atau membangun kembali masa lalu.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
             </div>
-            <!-- Essay (5 soal) -->
             <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
                 <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
                     <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">C</span> Essay
@@ -1270,7 +2400,6 @@
                 <div class="essay-question"><div class="q-text">4. Menurut R. Moh. Ali, sejarah adalah "perubahan". Jelaskan maksud pernyataan tersebut dan berikan contoh perubahan dalam masyarakat yang kamu ketahui!</div><div class="q-note">Petunjuk: Gunakan pemahaman dari kartu R. Moh. Ali di Halaman 6.</div></div>
                 <div class="essay-question"><div class="q-text">5. Mengapa kita perlu mempelajari sejarah? Berikan minimal 3 alasan yang kamu yakini!</div><div class="q-note">Petunjuk: Hubungkan dengan manfaat sejarah dan pesan "Bangsa yang besar adalah bangsa yang menghargai sejarahnya".</div></div>
             </div>
-            <!-- Kunci Jawaban -->
             <div style="background:var(--bg-primary);border-radius:16px;padding:20px 18px;border:2px solid var(--gold);text-align:center;">
                 <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-lock" style="color:var(--gold);margin-right:8px;"></i> <strong style="color:var(--text-primary);">Kunci Jawaban</strong> dilindungi password.</p>
                 <div style="display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;">
@@ -1307,7 +2436,7 @@
             </script>
         </section>
 
-        <!-- ========== SECTION 13 : REFLEKSI ========== -->
+        <!-- ========== SECTION 12 : REFLEKSI ========== -->
         <section id="section12" class="section">
             <div class="section-header"><div class="num">13</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Materi <span class="meeting-badge">Pertemuan 11</span></small></h2></div>
             <div class="card" style="background:var(--bg-secondary);border:1px solid var(--gold);">
@@ -1329,7 +2458,7 @@
             <div class="celebration-box"><h3>🎉 Selamat!</h3><p>Kamu telah menyelesaikan materi <strong>Memahami Prinsip Ilmu Sejarah</strong>.</p><div style="margin-top:16px;"><span class="next-step-btn" style="display:inline-block;background:var(--gold);color:#121212;padding:12px 32px;border-radius:60px;font-weight:700;font-size:1rem;border:none;cursor:default;">➡️ Lanjutkan ke materi berikutnya: Ruang dan Waktu dalam Sejarah</span></div><p style="margin-top:12px;font-size:0.85rem;color:#888;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Siapkan dirimu untuk bab selanjutnya!</p></div>
         </section>
 
-        <!-- ========== SECTION 14 : REFERENSI ========== -->
+        <!-- ========== SECTION 13 : REFERENSI ========== -->
         <section id="section13" class="section">
             <div class="section-header"><div class="num">14</div><h2>Referensi <small>Daftar Pustaka</small></h2></div>
             <ul class="ref-list">
@@ -1371,26 +2500,20 @@
                 setTimeout(() => loader.style.display = 'none', 800);
             }, 2500);
 
-            // ===== PARTIKEL BINTANG BERWARNA (DIPERKECIL) =====
+            // ===== PARTIKEL BINTANG =====
             const container = document.getElementById('particleContainer');
-            const colors = [
-                '#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF',
-                '#FF6BD6', '#845EC2', '#FF9671', '#00C9A7',
-                '#F9ED69', '#FF5E5B', '#3B9C9C', '#B83B5E',
-                '#2C73D2', '#FFC75F', '#00B4D8', '#F28482'
+            const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BD6', '#845EC2', '#FF9671', '#00C9A7', '#F9ED69',
+                '#FF5E5B', '#3B9C9C', '#B83B5E', '#2C73D2', '#FFC75F', '#00B4D8', '#F28482'
             ];
             const starSymbols = ['★', '✦', '✧', '⭐', '✨', '💫', '🌟'];
-
             for (let i = 0; i < 30; i++) {
                 const star = document.createElement('span');
                 star.className = 'star-particle';
                 star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
                 star.style.color = colors[Math.floor(Math.random() * colors.length)];
-                // Ukuran diperkecil: 0.5rem sampai 1.7rem
                 star.style.fontSize = (0.5 + Math.random() * 1.2) + 'rem';
                 star.style.left = (Math.random() * 100) + '%';
                 star.style.top = (Math.random() * 100) + '%';
-
                 const tx1 = (Math.random() - 0.5) * 600;
                 const ty1 = (Math.random() - 0.5) * 400;
                 const tx2 = (Math.random() - 0.5) * 700;
@@ -1399,7 +2522,6 @@
                 const ty3 = (Math.random() - 0.5) * 600;
                 const tx4 = (Math.random() - 0.5) * 800;
                 const ty4 = (Math.random() - 0.5) * 500;
-
                 star.style.setProperty('--tx1', tx1 + 'px');
                 star.style.setProperty('--ty1', ty1 + 'px');
                 star.style.setProperty('--tx2', tx2 + 'px');
@@ -1408,10 +2530,8 @@
                 star.style.setProperty('--ty3', ty3 + 'px');
                 star.style.setProperty('--tx4', tx4 + 'px');
                 star.style.setProperty('--ty4', ty4 + 'px');
-
                 star.style.animationDuration = (18 + Math.random() * 20) + 's';
                 star.style.animationDelay = (Math.random() * 8) + 's';
-
                 container.appendChild(star);
             }
 
@@ -1435,8 +2555,13 @@
             window.toggleTheme = function() {
                 document.body.classList.toggle('light-mode');
                 const icon = document.getElementById('themeIcon');
-                icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+                const icon2 = document.querySelector('#sidebarThemeBtn i');
+                const cls = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+                if (icon) icon.className = cls;
+                if (icon2) icon2.className = cls;
             };
+            // Sync sidebar theme button with header
+            document.getElementById('sidebarThemeBtn')?.addEventListener('click', toggleTheme);
 
             // ===== SIDEBAR =====
             const sidebar = document.getElementById('sidebar');
@@ -1445,7 +2570,8 @@
             window.toggleSidebar = function() {
                 sidebar.classList.toggle('open');
                 overlay.classList.toggle('active');
-                hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' :
+                    '<i class="fas fa-bars"></i>';
             };
             window.closeSidebar = function() {
                 sidebar.classList.remove('open');
@@ -1454,11 +2580,11 @@
             };
             overlay.addEventListener('click', closeSidebar);
 
-            // ===== NAVIGATION =====
+            // ===== NAVIGATION DATA =====
             const sections = document.querySelectorAll('.section');
             const total = sections.length;
             let current = 0;
-            const navLinks = document.getElementById('navLinks');
+            const navList = document.getElementById('navLinks');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const counter = document.getElementById('slideCounter');
@@ -1466,28 +2592,111 @@
             const navButtons = document.getElementById('navButtons');
             const pageNumbers = document.getElementById('pageNumbers');
 
-            const labels = ['Beranda', 'Komponen Pembelajaran', 'Pengertian Sejarah', 'Konsep Manusia, Ruang, Waktu', 'Diakronik & Sinkronik', 'Definisi Para Ahli', 'Hakikat Sejarah', 'Ruang Lingkup', 'Guna Sejarah', 'Metode Sejarah', 'Aktivitas', 'Asesmen', 'Refleksi', 'Referensi'];
-            const gradients = ['#f7971e', '#00b09b', '#2193b0', '#cc2b5e', '#f12711', '#11998e', '#396afc', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea', '#ff9a9e'];
-            labels.forEach((label, i) => {
-                const a = document.createElement('a');
-                a.href = '#';
-                a.dataset.index = i;
-                a.innerHTML = `<span class="nav-icon" style="background:${gradients[i]};">${i+1}</span><span>${label}</span>`;
-                a.addEventListener('click', (e) => { e.preventDefault(); navigateTo(i); });
-                navLinks.appendChild(a);
+            const navData = [
+                { label: 'Beranda', icon: 'fa-home', color: '#f7971e' },
+                { label: 'Komponen Pembelajaran', icon: 'fa-layer-group', color: '#00b09b' },
+                { label: 'Pengertian Sejarah', icon: 'fa-book-open', color: '#2193b0' },
+                { label: 'Manusia, Ruang, Waktu', icon: 'fa-cubes', color: '#cc2b5e' },
+                { label: 'Diakronik & Sinkronik', icon: 'fa-arrows-left-right', color: '#f12711' },
+                { label: 'Definisi Para Ahli', icon: 'fa-user-graduate', color: '#11998e' },
+                { label: 'Hakikat Sejarah', icon: 'fa-brain', color: '#396afc' },
+                { label: 'Ruang Lingkup', icon: 'fa-globe-asia', color: '#f093fb' },
+                { label: 'Guna Sejarah', icon: 'fa-question-circle', color: '#4facfe' },
+                { label: 'Metode Sejarah', icon: 'fa-microscope', color: '#43e97b' },
+                { label: 'Aktivitas', icon: 'fa-tree', color: '#fa709a' },
+                { label: 'Asesmen', icon: 'fa-clipboard-list', color: '#30cfd0' },
+                { label: 'Refleksi', icon: 'fa-comment-dots', color: '#a8edea' },
+                { label: 'Referensi', icon: 'fa-book', color: '#ff9a9e' }
+            ];
+
+            // Build sidebar navigation
+            function buildSidebar() {
+                navList.innerHTML = '';
+                // Section label
+                const labelLi = document.createElement('li');
+                labelLi.className = 'nav-section-label';
+                labelLi.textContent = 'Daftar Isi';
+                navList.appendChild(labelLi);
+
+                navData.forEach((item, i) => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.dataset.index = i;
+                    a.innerHTML = `
+                        <span class="nav-icon" style="background:${item.color};">${i+1}</span>
+                        <span class="nav-label">${item.label}</span>
+                        <span class="nav-badge">${i+1}</span>
+                        <span class="progress-ring"><span class="fill" style="clip-path:polygon(0 0, ${(i+1)/total*100}% 0, ${(i+1)/total*100}% 100%, 0 100%);"></span></span>
+                        <span class="tooltip">${item.label}</span>
+                    `;
+                    a.addEventListener('click', (e) => { e.preventDefault();
+                        navigateTo(i); });
+                    li.appendChild(a);
+                    navList.appendChild(li);
+                });
+            }
+            buildSidebar();
+
+            // Update active state
+            function updateSidebarActive(index) {
+                document.querySelectorAll('#navLinks a').forEach((a, i) => {
+                    a.classList.toggle('active', i === index);
+                    // Update progress ring fill
+                    const fill = a.querySelector('.progress-ring .fill');
+                    if (fill) {
+                        const pct = ((i + 1) / total * 100);
+                        fill.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+                    }
+                });
+            }
+
+            // ===== SEARCH =====
+            const searchInput = document.getElementById('sidebarSearch');
+            const clearBtn = document.getElementById('searchClear');
+
+            searchInput.addEventListener('input', function() {
+                const q = this.value.toLowerCase().trim();
+                clearBtn.classList.toggle('visible', q.length > 0);
+                document.querySelectorAll('#navLinks li a').forEach(a => {
+                    const label = a.querySelector('.nav-label')?.textContent?.toLowerCase() || '';
+                    a.style.display = label.includes(q) ? '' : 'none';
+                });
+                // Show section label if any results
+                const label = document.querySelector('.nav-section-label');
+                const visible = document.querySelectorAll('#navLinks li a[style*="display: none"]').length < document
+                    .querySelectorAll('#navLinks li a').length;
+                if (label) label.style.display = visible ? '' : 'none';
             });
 
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
+            });
+
+            // Keyboard shortcut: Ctrl+/ to focus search
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            // ===== NAVIGATION FUNCTIONS =====
             function updateUI(index) {
                 sections.forEach((el, i) => el.classList.toggle('active', i === index));
                 current = index;
-                document.querySelectorAll('#navLinks a').forEach((a, i) => a.classList.toggle('active', i === index));
+                updateSidebarActive(index);
+                // Page numbers
                 pageNumbers.innerHTML = '';
                 for (let i = 0; i < total; i++) {
                     const a = document.createElement('a');
                     a.href = '#';
                     a.textContent = i + 1;
                     a.classList.toggle('active', i === index);
-                    a.addEventListener('click', (e) => { e.preventDefault(); navigateTo(i); });
+                    a.addEventListener('click', (e) => { e.preventDefault();
+                        navigateTo(i); });
                     pageNumbers.appendChild(a);
                 }
                 prevBtn.disabled = index === 0;
@@ -1500,6 +2709,14 @@
                 else nextBtn.style.display = 'flex';
                 document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 closeSidebar();
+                // Update progress rings in sidebar
+                document.querySelectorAll('#navLinks a').forEach((a, i) => {
+                    const fill = a.querySelector('.progress-ring .fill');
+                    if (fill) {
+                        const pct = ((i + 1) / total * 100);
+                        fill.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+                    }
+                });
             }
 
             window.navigateTo = function(index) {
@@ -1510,8 +2727,24 @@
             nextBtn.addEventListener('click', () => { if (current < total - 1) updateUI(current + 1); });
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); if (current < total - 1) updateUI(current + 1); }
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); if (current > 0) updateUI(current - 1); }
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (current < total - 1) updateUI(current + 1);
+                }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (current > 0) updateUI(current - 1);
+                }
+                // Home key
+                if (e.key === 'Home' && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    navigateTo(0);
+                }
+                // End key
+                if (e.key === 'End' && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    navigateTo(total - 1);
+                }
             });
 
             // ===== ACCORDION =====
@@ -1531,6 +2764,25 @@
                 });
             });
 
+            // ===== KUNCI JAWABAN =====
+            window.toggleKunci = function() {
+                const password = document.getElementById('passwordInput').value;
+                const container = document.getElementById('kunciContainer');
+                const error = document.getElementById('passwordError');
+                if (password === '1234567890') {
+                    container.style.display = 'block';
+                    error.style.display = 'none';
+                    document.getElementById('passwordInput').value = '';
+                } else {
+                    error.style.display = 'block';
+                    container.style.display = 'none';
+                }
+            };
+            document.getElementById('passwordInput')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') toggleKunci();
+            });
+
+            // ===== INIT =====
             updateUI(0);
         })();
     </script>
