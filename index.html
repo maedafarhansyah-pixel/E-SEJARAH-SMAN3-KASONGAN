@@ -457,23 +457,7 @@
             opacity: 1;
         }
 
-        /* --- Badge & progress ring --- */
-        .sidebar-nav li a .nav-badge {
-            font-size: 0.55rem;
-            background: var(--gold);
-            color: #121212;
-            padding: 1px 8px;
-            border-radius: 30px;
-            font-weight: 700;
-            opacity: 0;
-            transition: opacity 0.25s;
-            flex-shrink: 0;
-        }
-        .sidebar.open .sidebar-nav li a .nav-badge,
-        .sidebar:hover .sidebar-nav li a .nav-badge {
-            opacity: 1;
-        }
-
+        /* --- Progress ring (tanpa badge) --- */
         .sidebar-nav li a .progress-ring {
             width: 14px;
             height: 14px;
@@ -952,12 +936,6 @@
             .sidebar:hover .sidebar-nav li a .nav-label {
                 opacity: 1;
             }
-            .sidebar .sidebar-nav li a .nav-badge {
-                opacity: 0;
-            }
-            .sidebar:hover .sidebar-nav li a .nav-badge {
-                opacity: 1;
-            }
             .sidebar .sidebar-nav li a .progress-ring {
                 opacity: 0;
             }
@@ -1134,9 +1112,6 @@
                 opacity: 1;
             }
             .sidebar .sidebar-nav li a .nav-label {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .nav-badge {
                 opacity: 1;
             }
             .sidebar .sidebar-nav li a .progress-ring {
@@ -1839,7 +1814,7 @@
         <!-- Navigation -->
         <div class="sidebar-scroll">
             <ul class="sidebar-nav" id="navLinks">
-                <!-- will be injected by JS -->
+                <!-- akan diisi oleh JS -->
             </ul>
         </div>
 
@@ -2560,7 +2535,6 @@
                 if (icon) icon.className = cls;
                 if (icon2) icon2.className = cls;
             };
-            // Sync sidebar theme button with header
             document.getElementById('sidebarThemeBtn')?.addEventListener('click', toggleTheme);
 
             // ===== SIDEBAR =====
@@ -2609,10 +2583,9 @@
                 { label: 'Referensi', icon: 'fa-book', color: '#ff9a9e' }
             ];
 
-            // Build sidebar navigation
+            // Build sidebar navigation — tanpa badge nomor
             function buildSidebar() {
                 navList.innerHTML = '';
-                // Section label
                 const labelLi = document.createElement('li');
                 labelLi.className = 'nav-section-label';
                 labelLi.textContent = 'Daftar Isi';
@@ -2626,7 +2599,6 @@
                     a.innerHTML = `
                         <span class="nav-icon" style="background:${item.color};">${i+1}</span>
                         <span class="nav-label">${item.label}</span>
-                        <span class="nav-badge">${i+1}</span>
                         <span class="progress-ring"><span class="fill" style="clip-path:polygon(0 0, ${(i+1)/total*100}% 0, ${(i+1)/total*100}% 100%, 0 100%);"></span></span>
                         <span class="tooltip">${item.label}</span>
                     `;
@@ -2642,7 +2614,6 @@
             function updateSidebarActive(index) {
                 document.querySelectorAll('#navLinks a').forEach((a, i) => {
                     a.classList.toggle('active', i === index);
-                    // Update progress ring fill
                     const fill = a.querySelector('.progress-ring .fill');
                     if (fill) {
                         const pct = ((i + 1) / total * 100);
@@ -2662,7 +2633,6 @@
                     const label = a.querySelector('.nav-label')?.textContent?.toLowerCase() || '';
                     a.style.display = label.includes(q) ? '' : 'none';
                 });
-                // Show section label if any results
                 const label = document.querySelector('.nav-section-label');
                 const visible = document.querySelectorAll('#navLinks li a[style*="display: none"]').length < document
                     .querySelectorAll('#navLinks li a').length;
@@ -2675,7 +2645,6 @@
                 searchInput.focus();
             });
 
-            // Keyboard shortcut: Ctrl+/ to focus search
             document.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey || e.metaKey) && e.key === '/') {
                     e.preventDefault();
@@ -2688,7 +2657,6 @@
                 sections.forEach((el, i) => el.classList.toggle('active', i === index));
                 current = index;
                 updateSidebarActive(index);
-                // Page numbers
                 pageNumbers.innerHTML = '';
                 for (let i = 0; i < total; i++) {
                     const a = document.createElement('a');
@@ -2709,7 +2677,6 @@
                 else nextBtn.style.display = 'flex';
                 document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 closeSidebar();
-                // Update progress rings in sidebar
                 document.querySelectorAll('#navLinks a').forEach((a, i) => {
                     const fill = a.querySelector('.progress-ring .fill');
                     if (fill) {
@@ -2735,12 +2702,10 @@
                     e.preventDefault();
                     if (current > 0) updateUI(current - 1);
                 }
-                // Home key
                 if (e.key === 'Home' && !e.ctrlKey && !e.metaKey) {
                     e.preventDefault();
                     navigateTo(0);
                 }
-                // End key
                 if (e.key === 'End' && !e.ctrlKey && !e.metaKey) {
                     e.preventDefault();
                     navigateTo(total - 1);
