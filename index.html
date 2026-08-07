@@ -55,46 +55,179 @@
         }
 
         /* ============================================================
-           LOADER
+           LOADER — SUPER KEREN 3D + NEON + PARTIKEL
            ============================================================ */
         #loader {
             position: fixed;
             inset: 0;
-            background: var(--bg-primary);
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a12 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 99999;
-            transition: opacity 0.8s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow: hidden;
         }
         #loader.hidden {
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
-        .loader-ring {
-            width: 60px;
-            height: 60px;
-            border: 4px solid transparent;
-            border-top: 4px solid var(--gold);
+
+        /* — 3D Cube Container — */
+        .loader-cube-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            perspective: 600px;
+            margin-bottom: 30px;
+            z-index: 2;
+        }
+        .loader-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 4s infinite linear;
+        }
+        .loader-cube .face {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            margin: -40px 0 0 -40px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 30px rgba(212, 175, 55, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+            backface-visibility: visible;
+        }
+        .loader-cube .face-front { transform: rotateY(0deg) translateZ(40px); }
+        .loader-cube .face-back { transform: rotateY(180deg) translateZ(40px); }
+        .loader-cube .face-right { transform: rotateY(90deg) translateZ(40px); }
+        .loader-cube .face-left { transform: rotateY(-90deg) translateZ(40px); }
+        .loader-cube .face-top { transform: rotateX(90deg) translateZ(40px); }
+        .loader-cube .face-bottom { transform: rotateX(-90deg) translateZ(40px); }
+
+        @keyframes spinCube {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+
+        /* — Glow ring around cube — */
+        .loader-ring-glow {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            left: 50%;
+            margin: -80px 0 0 -80px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--gold-light), transparent);
+            animation: rotateGlow 3s linear infinite;
+            filter: blur(8px);
+            opacity: 0.4;
+            z-index: 1;
         }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        @keyframes rotateGlow {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
+
+        /* — Teks loading dengan neon — */
         .loader-text {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            z-index: 2;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2);
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.8; text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.4); }
+        }
+        .loader-sub {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-top: 8px;
+            z-index: 2;
             letter-spacing: 2px;
-            font-weight: 500;
+            font-weight: 300;
+        }
+        .loader-percent {
+            color: var(--gold-light);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 4px;
+            z-index: 2;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* — Partikel berkilau (sparkle) — */
+        .loader-sparkles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .loader-sparkles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold), 0 0 30px var(--gold);
+            animation: sparkleFloat 3s infinite alternate ease-in-out;
+            opacity: 0;
+        }
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(var(--tx), var(--ty)) scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx2), var(--ty2)) scale(0.3);
+            }
+        }
+
+        /* — Bintang background — */
+        .loader-stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .loader-stars i {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 1rem;
+            animation: starTwinkle 4s infinite alternate;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0.05; transform: scale(0.8); }
+            100% { opacity: 0.25; transform: scale(1.2); }
         }
 
         /* ============================================================
-           PARTIKEL BINTANG
+           PARTIKEL BINTANG (tetap)
            ============================================================ */
         .particle-container {
             position: fixed;
@@ -185,7 +318,7 @@
         }
 
         /* ============================================================
-           SIDEBAR — SUPERIOR MODERN
+           SIDEBAR — (dipertahankan)
            ============================================================ */
         .sidebar {
             position: fixed;
@@ -209,8 +342,6 @@
             transform: translateX(0);
             width: var(--sidebar-expanded);
         }
-
-        /* --- Sidebar scroll --- */
         .sidebar-scroll {
             flex: 1;
             overflow-y: auto;
@@ -229,8 +360,6 @@
             background: var(--gold);
             border-radius: 10px;
         }
-
-        /* --- Profile section --- */
         .sidebar-profile {
             display: flex;
             align-items: center;
@@ -255,10 +384,6 @@
             flex-shrink: 0;
             box-shadow: 0 0 0 2px var(--bg-primary), 0 4px 16px rgba(212, 175, 55, 0.3);
             transition: transform var(--transition);
-        }
-        .sidebar:hover .avatar,
-        .sidebar.open .avatar {
-            transform: scale(1.05);
         }
         .sidebar-profile .info {
             opacity: 0;
@@ -293,18 +418,9 @@
             animation: pulse-dot 2s infinite;
         }
         @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.4;
-                transform: scale(0.8);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
         }
-
-        /* --- Search --- */
         .sidebar-search {
             padding: 10px 14px 8px 14px;
             flex-shrink: 0;
@@ -368,7 +484,6 @@
             opacity: 1;
             color: var(--gold);
         }
-        /* collapsed state search */
         .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap input {
             padding: 7px 12px 7px 36px;
             font-size: 0;
@@ -381,8 +496,6 @@
         .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap input::placeholder {
             font-size: 0;
         }
-
-        /* --- Navigation --- */
         .sidebar-nav {
             list-style: none;
             padding: 8px 10px 4px 10px;
@@ -406,7 +519,6 @@
             padding: 0 8px;
             margin: 0;
         }
-
         .sidebar-nav li {
             margin: 1px 0;
         }
@@ -456,8 +568,6 @@
         .sidebar:hover .sidebar-nav li a .nav-label {
             opacity: 1;
         }
-
-        /* --- Progress ring (tanpa badge) --- */
         .sidebar-nav li a .progress-ring {
             width: 14px;
             height: 14px;
@@ -480,8 +590,6 @@
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             transition: clip-path 0.6s ease;
         }
-
-        /* --- Hover & active --- */
         .sidebar-nav li a:hover {
             background: rgba(212, 175, 55, 0.08);
             color: var(--text-primary);
@@ -504,8 +612,6 @@
             color: var(--gold);
             font-weight: 600;
         }
-
-        /* --- Tooltip (collapsed) --- */
         .sidebar-nav li a .tooltip {
             display: none;
             position: absolute;
@@ -539,8 +645,6 @@
             display: block;
             opacity: 1;
         }
-
-        /* --- Sidebar footer --- */
         .sidebar-footer {
             flex-shrink: 0;
             padding: 10px 14px 14px 14px;
@@ -595,8 +699,6 @@
             padding: 0;
             margin: 0;
         }
-
-        /* --- Sidebar overlay (mobile) --- */
         .sidebar-overlay {
             position: fixed;
             inset: 0;
@@ -652,7 +754,7 @@
         }
 
         /* ============================================================
-           SECTIONS (konten sama seperti sebelumnya)
+           SECTIONS (konten sama)
            ============================================================ */
         .section {
             display: none;
@@ -672,7 +774,6 @@
                 transform: translateY(0);
             }
         }
-
         .section-header {
             display: flex;
             align-items: center;
@@ -720,8 +821,6 @@
             margin-left: 10px;
             white-space: nowrap;
         }
-
-        /* --- (konten lain dipertahankan) --- */
         .cover-wrapper {
             display: flex;
             align-items: center;
@@ -865,7 +964,6 @@
         .start-btn-wrapper {
             margin: 16px 0 12px;
         }
-
         @media (max-width: 899px) {
             .cover-wrapper {
                 flex-direction: column;
@@ -1747,10 +1845,33 @@
 </head>
 <body>
 
-    <!-- ===== LOADER ===== -->
+    <!-- ============================================================
+    LOADER — SUPER KEREN 3D + NEON + SPARKLE
+    ============================================================ -->
     <div id="loader">
-        <div class="loader-ring"></div>
-        <div class="loader-text">Memuat Materi Sejarah...</div>
+        <!-- Background stars -->
+        <div class="loader-stars" id="loaderStars"></div>
+
+        <!-- Sparkle particles -->
+        <div class="loader-sparkles" id="loaderSparkles"></div>
+
+        <!-- 3D Cube -->
+        <div class="loader-cube-wrapper">
+            <div class="loader-ring-glow"></div>
+            <div class="loader-cube" id="loaderCube">
+                <div class="face face-front">📜</div>
+                <div class="face face-back">🏛️</div>
+                <div class="face face-right">⚔️</div>
+                <div class="face face-left">🌍</div>
+                <div class="face face-top">📖</div>
+                <div class="face face-bottom">⭐</div>
+            </div>
+        </div>
+
+        <!-- Teks -->
+        <div class="loader-text" id="loaderText">MEMUAT SEJARAH</div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+        <div class="loader-sub" id="loaderSub">Menyiapkan petualangan sejarahmu...</div>
     </div>
 
     <!-- ===== PARTIKEL BINTANG ===== -->
@@ -2468,15 +2589,97 @@
 
     <script>
         (function() {
-            // ===== LOADER =====
+            // ============================================================
+            // LOADER — SUPER KEREN 3D + SPARKLE + NEON
+            // ============================================================
             const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                setTimeout(() => loader.style.display = 'none', 800);
-            }, 2500);
+            const percentText = document.getElementById('loaderPercent');
+            const subText = document.getElementById('loaderSub');
+            const mainText = document.getElementById('loaderText');
 
-            // ===== PARTIKEL BINTANG =====
-            const container = document.getElementById('particleContainer');
+            // Buat bintang background
+            const starsContainer = document.getElementById('loaderStars');
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('i');
+                star.className = 'fas fa-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.fontSize = (0.4 + Math.random() * 0.8) + 'rem';
+                star.style.animationDelay = (Math.random() * 4) + 's';
+                star.style.animationDuration = (3 + Math.random() * 4) + 's';
+                starsContainer.appendChild(star);
+            }
+
+            // Buat sparkle particles
+            const sparklesContainer = document.getElementById('loaderSparkles');
+            for (let i = 0; i < 20; i++) {
+                const sp = document.createElement('span');
+                const size = 2 + Math.random() * 5;
+                sp.style.width = size + 'px';
+                sp.style.height = size + 'px';
+                sp.style.left = Math.random() * 100 + '%';
+                sp.style.top = Math.random() * 100 + '%';
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                sp.style.setProperty('--tx', tx + 'px');
+                sp.style.setProperty('--ty', ty + 'px');
+                sp.style.setProperty('--tx2', (tx * 1.5) + 'px');
+                sp.style.setProperty('--ty2', (ty * 1.5) + 'px');
+                sp.style.animationDelay = (Math.random() * 2) + 's';
+                sp.style.animationDuration = (2 + Math.random() * 3) + 's';
+                sparklesContainer.appendChild(sp);
+            }
+
+            // Progress
+            let progress = 0;
+            const totalDuration = 3200;
+            const interval = 30;
+            const step = 100 / (totalDuration / interval);
+
+            const messages = [
+                'Menyiapkan petualangan sejarahmu...',
+                'Membuka lembaran masa lalu...',
+                'Menelusuri jejak peradaban...',
+                'Menggali kisah para pahlawan...',
+                'Menghubungkan masa lalu & masa kini...',
+                'Hampir siap, sejarawan muda!'
+            ];
+
+            function updateLoader() {
+                progress += step;
+                if (progress > 100) progress = 100;
+                const pct = Math.round(progress);
+                percentText.textContent = pct + '%';
+
+                // Update sub text
+                const idx = Math.min(Math.floor(progress / 18), messages.length - 1);
+                subText.textContent = messages[idx] || messages[0];
+
+                // Update main text glow
+                if (progress > 80) {
+                    mainText.textContent = '✨ SIAP! ✨';
+                    mainText.style.animation = 'none';
+                    mainText.style.textShadow = '0 0 40px rgba(212,175,55,0.9), 0 0 80px rgba(212,175,55,0.5)';
+                }
+
+                if (progress < 100) {
+                    requestAnimationFrame(updateLoader);
+                } else {
+                    percentText.textContent = '100%';
+                    subText.textContent = '✨ Selamat belajar!';
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                        setTimeout(() => loader.style.display = 'none', 800);
+                    }, 400);
+                }
+            }
+
+            setTimeout(updateLoader, 300);
+
+            // ============================================================
+            // PARTIKEL BINTANG (tetap)
+            // ============================================================
+            const starContainer = document.getElementById('particleContainer');
             const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BD6', '#845EC2', '#FF9671', '#00C9A7', '#F9ED69',
                 '#FF5E5B', '#3B9C9C', '#B83B5E', '#2C73D2', '#FFC75F', '#00B4D8', '#F28482'
             ];
@@ -2507,10 +2710,12 @@
                 star.style.setProperty('--ty4', ty4 + 'px');
                 star.style.animationDuration = (18 + Math.random() * 20) + 's';
                 star.style.animationDelay = (Math.random() * 8) + 's';
-                container.appendChild(star);
+                starContainer.appendChild(star);
             }
 
-            // ===== MODAL =====
+            // ============================================================
+            // MODAL
+            // ============================================================
             window.openModal = function(src, caption) {
                 const modal = document.getElementById('imageModal');
                 const img = document.getElementById('modalImage');
@@ -2526,7 +2731,9 @@
                 if (e.key === 'Escape') closeModal();
             });
 
-            // ===== THEME =====
+            // ============================================================
+            // THEME
+            // ============================================================
             window.toggleTheme = function() {
                 document.body.classList.toggle('light-mode');
                 const icon = document.getElementById('themeIcon');
@@ -2537,7 +2744,9 @@
             };
             document.getElementById('sidebarThemeBtn')?.addEventListener('click', toggleTheme);
 
-            // ===== SIDEBAR =====
+            // ============================================================
+            // SIDEBAR
+            // ============================================================
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
             const hamburger = document.getElementById('hamburgerBtn');
@@ -2554,7 +2763,9 @@
             };
             overlay.addEventListener('click', closeSidebar);
 
-            // ===== NAVIGATION DATA =====
+            // ============================================================
+            // NAVIGATION DATA (urutan halaman sudah sesuai: 1=CP, 2=Pengertian, 3=ManusiaRuangWaktu, 4=DiakronikSinkronik, 5=DefinisiAhli, 6=HakikatSejarah, dst)
+            // ============================================================
             const sections = document.querySelectorAll('.section');
             const total = sections.length;
             let current = 0;
@@ -2583,14 +2794,12 @@
                 { label: 'Referensi', icon: 'fa-book', color: '#ff9a9e' }
             ];
 
-            // Build sidebar navigation — tanpa badge nomor
             function buildSidebar() {
                 navList.innerHTML = '';
                 const labelLi = document.createElement('li');
                 labelLi.className = 'nav-section-label';
                 labelLi.textContent = 'Daftar Isi';
                 navList.appendChild(labelLi);
-
                 navData.forEach((item, i) => {
                     const li = document.createElement('li');
                     const a = document.createElement('a');
@@ -2610,7 +2819,6 @@
             }
             buildSidebar();
 
-            // Update active state
             function updateSidebarActive(index) {
                 document.querySelectorAll('#navLinks a').forEach((a, i) => {
                     a.classList.toggle('active', i === index);
@@ -2622,10 +2830,11 @@
                 });
             }
 
-            // ===== SEARCH =====
+            // ============================================================
+            // SEARCH
+            // ============================================================
             const searchInput = document.getElementById('sidebarSearch');
             const clearBtn = document.getElementById('searchClear');
-
             searchInput.addEventListener('input', function() {
                 const q = this.value.toLowerCase().trim();
                 clearBtn.classList.toggle('visible', q.length > 0);
@@ -2638,13 +2847,11 @@
                     .querySelectorAll('#navLinks li a').length;
                 if (label) label.style.display = visible ? '' : 'none';
             });
-
             clearBtn.addEventListener('click', function() {
                 searchInput.value = '';
                 searchInput.dispatchEvent(new Event('input'));
                 searchInput.focus();
             });
-
             document.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey || e.metaKey) && e.key === '/') {
                     e.preventDefault();
@@ -2652,7 +2859,9 @@
                 }
             });
 
-            // ===== NAVIGATION FUNCTIONS =====
+            // ============================================================
+            // NAVIGATION FUNCTIONS
+            // ============================================================
             function updateUI(index) {
                 sections.forEach((el, i) => el.classList.toggle('active', i === index));
                 current = index;
@@ -2712,13 +2921,17 @@
                 }
             });
 
-            // ===== ACCORDION =====
+            // ============================================================
+            // ACCORDION
+            // ============================================================
             window.toggleAccordion = function(header) {
                 const item = header.closest('.accordion-item');
                 if (item) item.classList.toggle('open');
             };
 
-            // ===== TABS =====
+            // ============================================================
+            // TABS
+            // ============================================================
             document.querySelectorAll('.etym-tabs button').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.etym-tabs button').forEach(b => b.classList.remove('active'));
@@ -2729,7 +2942,9 @@
                 });
             });
 
-            // ===== KUNCI JAWABAN =====
+            // ============================================================
+            // KUNCI JAWABAN
+            // ============================================================
             window.toggleKunci = function() {
                 const password = document.getElementById('passwordInput').value;
                 const container = document.getElementById('kunciContainer');
@@ -2747,7 +2962,9 @@
                 if (e.key === 'Enter') toggleKunci();
             });
 
-            // ===== INIT =====
+            // ============================================================
+            // INIT
+            // ============================================================
             updateUI(0);
         })();
     </script>
