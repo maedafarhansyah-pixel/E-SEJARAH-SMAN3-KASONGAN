@@ -31,6 +31,7 @@
             --sidebar-expanded: 260px;
             --sidebar-bg: rgba(26, 26, 46, 0.88);
             --sidebar-border: rgba(212, 175, 55, 0.12);
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.15);
         }
         .light-mode {
             --bg-primary: #f5f0eb;
@@ -42,6 +43,7 @@
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             --sidebar-bg: rgba(232, 224, 216, 0.92);
             --sidebar-border: rgba(212, 175, 55, 0.2);
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.08);
         }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -754,24 +756,29 @@
         }
 
         /* ============================================================
-           SECTIONS (konten sama)
+           SECTIONS (konten sama) — DITINGKATKAN DENGAN ANIMASI MODERN
            ============================================================ */
         .section {
             display: none;
-            animation: fadeSlide 0.5s ease;
+            animation: fadeSlide 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             padding: 20px 0 12px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .section.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
         @keyframes fadeSlide {
             0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px) scale(0.96);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
         .section-header {
@@ -782,6 +789,21 @@
             border-bottom: 3px solid var(--gold);
             padding-bottom: 12px;
             flex-wrap: wrap;
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-light);
+            animation: headerGlow 2s ease-in-out infinite;
+        }
+        @keyframes headerGlow {
+            0%, 100% { opacity: 0.5; width: 60px; }
+            50% { opacity: 1; width: 120px; }
         }
         .section-header .num {
             background: var(--gold);
@@ -795,6 +817,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
         }
         .section-header h2 {
             font-size: 1.3rem;
@@ -820,7 +843,16 @@
             border: 1px solid var(--gold);
             margin-left: 10px;
             white-space: nowrap;
+            animation: badgePulse 3s ease-in-out infinite;
         }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+        }
+
+        /* ============================================================
+           COVER — DITINGKATKAN
+           ============================================================ */
         .cover-wrapper {
             display: flex;
             align-items: center;
@@ -857,6 +889,11 @@
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .cover-right .image-placeholder:hover {
+            border-color: var(--gold-light);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), var(--shadow);
         }
         .cover-right .image-placeholder img {
             position: absolute;
@@ -884,6 +921,10 @@
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+            transition: transform var(--transition);
+        }
+        .cover-logo-group img:hover {
+            transform: scale(1.05);
         }
         .cover-title {
             font-size: clamp(2.2rem, 4vw, 3.6rem);
@@ -893,6 +934,10 @@
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             margin: 8px 0 10px;
             letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .cover-sub {
             font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -920,6 +965,12 @@
             margin-bottom: 6px;
             border: 1px solid rgba(212, 175, 55, 0.15);
             line-height: 1.6;
+            transition: all var(--transition);
+        }
+        .cover-teacher:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+            box-shadow: var(--glow-gold);
         }
         .cover-teacher .teacher-name {
             font-weight: 600;
@@ -955,6 +1006,19 @@
             display: inline-flex;
             align-items: center;
             gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .start-btn:hover::before {
+            transform: translateX(100%);
         }
         .start-btn:hover {
             background: var(--gold-light);
@@ -964,6 +1028,831 @@
         .start-btn-wrapper {
             margin: 16px 0 12px;
         }
+
+        /* ============================================================
+           KARTU INTERAKTIF — DITINGKATKAN
+           ============================================================ */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--gold);
+        }
+        .card .icon {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .card p,
+        .card li {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .card ul {
+            padding-left: 18px;
+            margin: 6px 0;
+        }
+        .card ul li {
+            list-style-type: disc;
+        }
+        .card.highlight {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+        }
+        .card.merdeka-badge {
+            border-left: 6px solid var(--gold);
+        }
+        .interactive-card {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .interactive-card .back {
+            display: none;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(212, 175, 55, 0.3);
+            margin-top: 12px;
+            animation: fadeSlide 0.4s ease;
+        }
+        .interactive-card.open .back {
+            display: block;
+        }
+        .interactive-card.open {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .interactive-card.open::before {
+            opacity: 1;
+        }
+        .toggle-hint {
+            font-size: 0.7rem;
+            margin-top: 6px;
+            display: block;
+            font-weight: 500;
+            opacity: 0.6;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           GRID — DITINGKATKAN
+           ============================================================ */
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .grid-ahli {
+            display: grid;
+            gap: 16px;
+            margin: 14px 0 8px;
+        }
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+        .grid-4 {
+            grid-template-columns: 1fr;
+        }
+        .grid-ahli {
+            grid-template-columns: 1fr;
+        }
+
+        /* ============================================================
+           ACCORDION — DITINGKATKAN
+           ============================================================ */
+        .accordion-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 8px 0;
+        }
+        .accordion-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .accordion-item:hover {
+            border-color: var(--gold);
+            box-shadow: var(--glow-gold);
+        }
+        .accordion-item.open {
+            border-color: var(--gold);
+            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.08);
+        }
+        .accordion-header {
+            background: var(--bg-secondary);
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .accordion-header:hover {
+            background: var(--bg-card-hover);
+        }
+        .accordion-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+        .accordion-header h3 i {
+            color: var(--gold);
+        }
+        .accordion-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--gold);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .accordion-item.open .accordion-header .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s ease;
+            padding: 0 20px;
+            background: var(--bg-primary);
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 3000px;
+            padding: 18px 20px 20px;
+        }
+
+        /* ============================================================
+           TABS — DITINGKATKAN
+           ============================================================ */
+        .etym-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 6px;
+        }
+        .etym-tabs button {
+            background: var(--bg-card);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1 1 auto;
+            border: 1px solid transparent;
+        }
+        .etym-tabs button.active {
+            background: var(--gold);
+            color: #121212;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+        .etym-tabs button:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .etym-content {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 60px;
+            margin-top: 4px;
+            transition: all var(--transition);
+        }
+        .etym-panel {
+            display: none;
+        }
+        .etym-panel.active {
+            display: block;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        /* ============================================================
+           HOVER TRIGGER — DITINGKATKAN
+           ============================================================ */
+        .geosfer-hover-trigger {
+            display: inline-block;
+            background: var(--bg-card);
+            color: var(--gold);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid var(--gold);
+            transition: all var(--transition);
+            position: relative;
+            margin: 10px 0 6px;
+            font-size: 1rem;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.15);
+        }
+        .geosfer-hover-trigger:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.35);
+            transform: translateY(-2px) scale(1.01);
+            border-color: var(--gold-light);
+        }
+        .geosfer-hover-trigger .popup-diagram {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 20px;
+            bottom: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9);
+            text-align: center;
+            pointer-events: none;
+            width: 520px;
+            max-width: 90vw;
+            backdrop-filter: blur(10px);
+        }
+        .geosfer-hover-trigger:hover .popup-diagram {
+            display: block;
+            animation: popupFade 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        @keyframes popupFade {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.92) translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1) translateY(0);
+            }
+        }
+        .geosfer-hover-trigger .popup-diagram img {
+            max-width: 100%;
+            max-height: 220px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-primary);
+        }
+        .geosfer-hover-trigger .popup-diagram .caption {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 8px;
+        }
+        .geosfer-hover-trigger .popup-diagram .caption strong {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           MODAL — DITINGKATKAN
+           ============================================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .modal-overlay .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+            position: relative;
+            text-align: center;
+            animation: modalZoom 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        @keyframes modalZoom {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .modal-overlay .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            display: block;
+        }
+        .modal-overlay .modal-content .caption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: var(--gold);
+            color: #121212;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #121212;
+            transition: all var(--transition);
+        }
+        .modal-overlay .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--gold-light);
+        }
+
+        /* ============================================================
+           DEF BLOCK — DITINGKATKAN
+           ============================================================ */
+        .def-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--gold);
+            margin: 12px 0;
+            transition: all var(--transition);
+        }
+        .def-block:hover {
+            box-shadow: var(--glow-gold);
+            border-left-width: 8px;
+        }
+        .def-block .source {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .def-block .source i {
+            color: var(--gold);
+            margin-right: 6px;
+        }
+
+        /* ============================================================
+           ACTIVITY BOX — DITINGKATKAN
+           ============================================================ */
+        .activity-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            border: 2px dashed var(--gold);
+            margin: 14px 0 6px;
+            transition: all var(--transition);
+        }
+        .activity-box:hover {
+            border-color: var(--gold-light);
+            box-shadow: var(--glow-gold);
+        }
+        .activity-box h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .activity-box h3 i {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           TABEL — DITINGKATKAN
+           ============================================================ */
+        .worksheet-table {
+            display: grid;
+            grid-template-columns: 60px 1fr 1.2fr 2fr;
+            gap: 4px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .worksheet-table .header {
+            background: var(--gold);
+            color: #121212;
+            font-weight: 700;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .worksheet-table .cell {
+            background: var(--bg-card);
+            padding: 10px 8px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 44px;
+        }
+        .worksheet-table .cell-empty {
+            background: var(--bg-primary);
+            color: #666;
+            font-style: italic;
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 44px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+        .compare-table th {
+            background: var(--gold);
+            color: #121212;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .compare-table td {
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           METHOD STEP — DITINGKATKAN
+           ============================================================ */
+        .method-step {
+            background: var(--bg-card);
+            padding: 14px 16px;
+            border-radius: 12px;
+            border-left: 6px solid var(--gold);
+            margin-bottom: 12px;
+            transition: all var(--transition);
+        }
+        .method-step:hover {
+            transform: translateX(6px);
+            box-shadow: var(--glow-gold);
+        }
+        .method-step h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .method-step p {
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           REFLEKSI — DITINGKATKAN
+           ============================================================ */
+        .refleksi-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .refleksi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition);
+        }
+        .refleksi-list li:hover {
+            padding-left: 8px;
+        }
+        .refleksi-list li:last-child {
+            border-bottom: none;
+        }
+        .refleksi-list li .check {
+            font-size: 1.4rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .quote-block {
+            background: var(--bg-secondary);
+            border-left: 6px solid var(--gold);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+        .quote-block:hover {
+            box-shadow: var(--glow-gold);
+            border-left-width: 8px;
+        }
+        .quote-block .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--gold);
+            text-align: right;
+        }
+        .celebration-box {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .celebration-box::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(212, 175, 55, 0.05), transparent, rgba(212, 175, 55, 0.05), transparent);
+            animation: rotateGlow 10s linear infinite;
+        }
+        .celebration-box * {
+            position: relative;
+            z-index: 1;
+        }
+        .celebration-box h3 {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        /* ============================================================
+           ASSESSMENT — DITINGKATKAN
+           ============================================================ */
+        .assessment-question {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            transition: all var(--transition);
+        }
+        .assessment-question:hover {
+            transform: translateX(4px);
+            box-shadow: var(--glow-gold);
+        }
+        .assessment-question .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .assessment-question .q-options {
+            padding-left: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .assessment-question .q-options span {
+            display: inline-block;
+            margin-right: 16px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .assessment-question .q-options span:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+        }
+        .essay-question {
+            background: var(--bg-primary);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 16px;
+            transition: all var(--transition);
+        }
+        .essay-question:hover {
+            border-color: var(--gold);
+            box-shadow: var(--glow-gold);
+        }
+        .essay-question .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .essay-question .q-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* ============================================================
+           REFERENSI — DITINGKATKAN
+           ============================================================ */
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+        .ref-list li:hover {
+            padding-left: 8px;
+            color: var(--text-primary);
+        }
+        .ref-list li i {
+            color: var(--gold);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           NAVIGATION BUTTONS — DITINGKATKAN
+           ============================================================ */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons.hidden {
+            display: none;
+        }
+        .nav-buttons .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-buttons button {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--gold);
+            color: #121212;
+            transform: scale(1.04);
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+        .nav-buttons button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .nav-buttons .counter {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 0 8px;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+        .page-numbers a.active {
+            background: var(--gold);
+            color: #121212;
+            border-color: var(--gold);
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ============================================================
+           PROGRESS BAR — DITINGKATKAN
+           ============================================================ */
+        .progress-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--bg-secondary);
+            z-index: 999;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+        .progress-wrap .bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 10px;
+            height: 9px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            filter: blur(4px);
+            animation: progressDot 1.5s ease-in-out infinite;
+        }
+        @keyframes progressDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ============================================================
+           RESPONSIVE — DITINGKATKAN
+           ============================================================ */
         @media (max-width: 899px) {
             .cover-wrapper {
                 flex-direction: column;
@@ -1006,6 +1895,53 @@
             .start-btn {
                 padding: 12px 32px;
                 font-size: 1rem;
+            }
+            .sidebar {
+                width: 280px;
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+                width: 280px;
+            }
+            .sidebar .sidebar-profile .info {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .nav-label {
+                opacity: 1;
+            }
+            .sidebar .sidebar-nav li a .progress-ring {
+                opacity: 1;
+            }
+            .sidebar .sidebar-footer .footer-left {
+                opacity: 0.5;
+            }
+            .sidebar .nav-section-label {
+                opacity: 0.4;
+                height: auto;
+                padding: 8px 8px 4px 8px;
+                margin: 0;
+            }
+            .sidebar .sidebar-search .search-wrap input {
+                font-size: 0.8rem;
+            }
+            .sidebar .sidebar-search .search-wrap input::placeholder {
+                font-size: 0.75rem;
+            }
+            .sidebar .sidebar-search .search-wrap i {
+                left: 12px;
+                transform: none;
+                opacity: 0.6;
+            }
+            .home-float {
+                bottom: 80px;
+                right: 12px;
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+            .sidebar-nav li a .tooltip {
+                display: none !important;
             }
         }
         @media (min-width: 900px) {
@@ -1073,718 +2009,6 @@
                 left: var(--sidebar-width);
             }
         }
-
-        /* ============================================================
-           PROGRESS BAR
-           ============================================================ */
-        .progress-wrap {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--bg-secondary);
-            z-index: 999;
-        }
-        .progress-wrap .bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            transition: width 0.4s ease;
-            border-radius: 0 4px 4px 0;
-        }
-
-        /* ============================================================
-           NAVIGATION BUTTONS
-           ============================================================ */
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 32px;
-            padding-top: 14px;
-            border-top: 2px solid rgba(255, 255, 255, 0.06);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .nav-buttons.hidden {
-            display: none;
-        }
-        .nav-buttons .nav-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .nav-buttons button {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .nav-buttons button:hover:not(:disabled) {
-            background: var(--gold);
-            color: #121212;
-            transform: scale(1.02);
-        }
-        .nav-buttons button:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-        .nav-buttons .counter {
-            font-weight: 500;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            padding: 0 8px;
-        }
-        .page-numbers {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .page-numbers a {
-            display: inline-block;
-            min-width: 30px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .page-numbers a:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--gold);
-            color: var(--text-primary);
-        }
-        .page-numbers a.active {
-            background: var(--gold);
-            color: #121212;
-            border-color: var(--gold);
-            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
-        }
-
-        /* ============================================================
-           SCROLLBAR
-           ============================================================ */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 10px;
-        }
-
-        /* ============================================================
-           RESPONSIVE SIDEBAR
-           ============================================================ */
-        @media (max-width: 899px) {
-            .sidebar {
-                width: 280px;
-                transform: translateX(-100%);
-            }
-            .sidebar.open {
-                transform: translateX(0);
-                width: 280px;
-            }
-            .sidebar .sidebar-profile .info {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .nav-label {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .progress-ring {
-                opacity: 1;
-            }
-            .sidebar .sidebar-footer .footer-left {
-                opacity: 0.5;
-            }
-            .sidebar .nav-section-label {
-                opacity: 0.4;
-                height: auto;
-                padding: 8px 8px 4px 8px;
-                margin: 0;
-            }
-            .sidebar .sidebar-search .search-wrap input {
-                font-size: 0.8rem;
-            }
-            .sidebar .sidebar-search .search-wrap input::placeholder {
-                font-size: 0.75rem;
-            }
-            .sidebar .sidebar-search .search-wrap i {
-                left: 12px;
-                transform: none;
-                opacity: 0.6;
-            }
-            .home-float {
-                bottom: 80px;
-                right: 12px;
-                width: 44px;
-                height: 44px;
-                font-size: 1.2rem;
-            }
-            .sidebar-nav li a .tooltip {
-                display: none !important;
-            }
-        }
-
-        /* ============================================================
-           KONTEN LAIN (accordion, cards, dll) — Dipertahankan
-           ============================================================ */
-        .accordion-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 8px 0;
-        }
-        .accordion-item {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        .accordion-item:hover {
-            border-color: var(--gold);
-        }
-        .accordion-header {
-            background: var(--bg-secondary);
-            padding: 16px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
-            user-select: none;
-        }
-        .accordion-header:hover {
-            background: var(--bg-card-hover);
-        }
-        .accordion-header h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 0;
-        }
-        .accordion-header h3 i {
-            color: var(--gold);
-        }
-        .accordion-header .toggle-icon {
-            font-size: 1.2rem;
-            color: var(--gold);
-            transition: transform 0.3s;
-        }
-        .accordion-item.open .accordion-header .toggle-icon {
-            transform: rotate(180deg);
-        }
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            padding: 0 20px;
-            background: var(--bg-primary);
-        }
-        .accordion-item.open .accordion-body {
-            max-height: 3000px;
-            padding: 18px 20px 20px;
-        }
-        .grid-2,
-        .grid-3,
-        .grid-4,
-        .grid-ahli {
-            display: grid;
-            gap: 16px;
-            margin: 14px 0 8px;
-        }
-        .grid-2 {
-            grid-template-columns: 1fr;
-        }
-        .grid-3 {
-            grid-template-columns: 1fr;
-        }
-        .grid-4 {
-            grid-template-columns: 1fr;
-        }
-        .grid-ahli {
-            grid-template-columns: 1fr;
-        }
-        .card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 18px 16px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-            cursor: default;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            border-color: var(--gold);
-        }
-        .card .icon {
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-        .card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-        .card p,
-        .card li {
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        .card ul {
-            padding-left: 18px;
-            margin: 6px 0;
-        }
-        .card ul li {
-            list-style-type: disc;
-        }
-        .card.highlight {
-            background: var(--bg-card-hover);
-            border-color: var(--gold);
-        }
-        .card.merdeka-badge {
-            border-left: 6px solid var(--gold);
-        }
-        .interactive-card {
-            cursor: pointer;
-            transition: background 0.3s, border-color 0.3s, transform 0.2s;
-        }
-        .interactive-card .back {
-            display: none;
-            padding-top: 12px;
-            border-top: 2px dashed rgba(212, 175, 55, 0.3);
-            margin-top: 12px;
-        }
-        .interactive-card.open .back {
-            display: block;
-        }
-        .interactive-card.open {
-            background: var(--bg-card-hover);
-            border-color: var(--gold);
-        }
-        .toggle-hint {
-            font-size: 0.7rem;
-            margin-top: 6px;
-            display: block;
-            font-weight: 500;
-            opacity: 0.6;
-            color: var(--text-secondary);
-        }
-        .pillar-icon,
-        .guna-icon {
-            font-size: 2.4rem;
-            color: var(--gold);
-            display: block;
-            margin-bottom: 4px;
-        }
-        .etym-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin: 12px 0 6px;
-        }
-        .etym-tabs button {
-            background: var(--bg-card);
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex: 1 1 auto;
-        }
-        .etym-tabs button.active {
-            background: var(--gold);
-            color: #121212;
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
-        }
-        .etym-tabs button:hover {
-            background: var(--bg-card-hover);
-        }
-        .etym-content {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 16px 18px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            min-height: 60px;
-            margin-top: 4px;
-        }
-        .etym-panel {
-            display: none;
-        }
-        .etym-panel.active {
-            display: block;
-            animation: fadeSlide 0.3s;
-        }
-        .geosfer-hover-trigger {
-            display: inline-block;
-            background: var(--bg-card);
-            color: var(--gold);
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 2px solid var(--gold);
-            transition: var(--transition);
-            position: relative;
-            margin: 10px 0 6px;
-            font-size: 1rem;
-            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.15);
-        }
-        .geosfer-hover-trigger:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
-            transform: translateY(-2px);
-        }
-        .geosfer-hover-trigger .popup-diagram {
-            display: none;
-            position: absolute;
-            z-index: 1000;
-            background: var(--bg-card);
-            border: 2px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 20px;
-            bottom: calc(100% + 18px);
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9);
-            text-align: center;
-            pointer-events: none;
-            width: 520px;
-            max-width: 90vw;
-        }
-        .geosfer-hover-trigger:hover .popup-diagram {
-            display: block;
-            animation: popupFade 0.3s ease;
-        }
-        @keyframes popupFade {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) scale(0.92) translateY(12px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(-50%) scale(1) translateY(0);
-            }
-        }
-        .geosfer-hover-trigger .popup-diagram img {
-            max-width: 100%;
-            max-height: 220px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: var(--bg-primary);
-        }
-        .geosfer-hover-trigger .popup-diagram .caption {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 8px;
-        }
-        .geosfer-hover-trigger .popup-diagram .caption strong {
-            color: var(--gold);
-        }
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-overlay .modal-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 16px;
-            border: 2px solid var(--gold);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-            position: relative;
-            text-align: center;
-        }
-        .modal-overlay .modal-content img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 10px;
-            display: block;
-        }
-        .modal-overlay .modal-content .caption {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .modal-overlay .modal-close {
-            position: absolute;
-            top: -14px;
-            right: -14px;
-            background: var(--gold);
-            color: #121212;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            font-weight: 700;
-            cursor: pointer;
-            border: 2px solid #121212;
-            transition: var(--transition);
-        }
-        .modal-overlay .modal-close:hover {
-            transform: scale(1.1);
-            background: var(--gold-light);
-        }
-        .def-block {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 16px 18px;
-            border-left: 6px solid var(--gold);
-            margin: 12px 0;
-        }
-        .def-block .source {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .def-block .source i {
-            color: var(--gold);
-            margin-right: 6px;
-        }
-        .activity-box {
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            padding: 20px 18px;
-            border: 2px dashed var(--gold);
-            margin: 14px 0 6px;
-        }
-        .activity-box h3 {
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .activity-box h3 i {
-            color: var(--gold);
-        }
-        .worksheet-table {
-            display: grid;
-            grid-template-columns: 60px 1fr 1.2fr 2fr;
-            gap: 4px;
-            margin-top: 12px;
-            font-size: 0.9rem;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .worksheet-table .header {
-            background: var(--gold);
-            color: #121212;
-            font-weight: 700;
-            padding: 10px 8px;
-            text-align: center;
-        }
-        .worksheet-table .cell {
-            background: var(--bg-card);
-            padding: 10px 8px;
-            color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            min-height: 44px;
-        }
-        .worksheet-table .cell-empty {
-            background: var(--bg-primary);
-            color: #666;
-            font-style: italic;
-            padding: 10px 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            min-height: 44px;
-        }
-        .compare-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 12px 0;
-            font-size: 0.9rem;
-        }
-        .compare-table th {
-            background: var(--gold);
-            color: #121212;
-            padding: 10px;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .compare-table td {
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: var(--bg-card);
-            color: var(--text-secondary);
-        }
-        .method-step {
-            background: var(--bg-card);
-            padding: 14px 16px;
-            border-radius: 12px;
-            border-left: 6px solid var(--gold);
-            margin-bottom: 12px;
-        }
-        .method-step h4 {
-            color: var(--gold);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .method-step p {
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-        .refleksi-list {
-            list-style: none;
-            padding: 0;
-            margin: 8px 0;
-        }
-        .refleksi-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 8px 0;
-            font-size: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .refleksi-list li:last-child {
-            border-bottom: none;
-        }
-        .refleksi-list li .check {
-            font-size: 1.4rem;
-            color: var(--gold);
-            flex-shrink: 0;
-        }
-        .quote-block {
-            background: var(--bg-secondary);
-            border-left: 6px solid var(--gold);
-            padding: 16px 20px;
-            border-radius: 10px;
-            margin: 12px 0;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-        .quote-block .author {
-            display: block;
-            margin-top: 8px;
-            font-style: normal;
-            font-weight: 600;
-            color: var(--gold);
-            text-align: right;
-        }
-        .celebration-box {
-            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
-            border: 2px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 24px 20px;
-            text-align: center;
-            margin-top: 12px;
-        }
-        .celebration-box h3 {
-            font-size: 1.6rem;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-        .assessment-question {
-            margin-bottom: 16px;
-            padding: 12px 16px;
-            background: var(--bg-card);
-            border-radius: 10px;
-            border-left: 4px solid var(--gold);
-        }
-        .assessment-question .q-text {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-        .assessment-question .q-options {
-            padding-left: 20px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-        .essay-question {
-            background: var(--bg-primary);
-            padding: 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin-bottom: 16px;
-        }
-        .essay-question .q-text {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-        .essay-question .q-note {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-        .ref-list {
-            list-style: none;
-            padding: 0;
-        }
-        .ref-list li {
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.88rem;
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            color: var(--text-secondary);
-        }
-        .ref-list li i {
-            color: var(--gold);
-            width: 20px;
-            flex-shrink: 0;
-        }
         @media (min-width: 600px) {
             .grid-2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -1840,6 +2064,67 @@
             .worksheet-table .header {
                 text-align: left;
             }
+        }
+
+        /* ============================================================
+           SCROLLBAR — DITINGKATKAN
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+            transition: all var(--transition);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+
+        /* ============================================================
+           TAMBAHAN: GLOW EFFECT UNTUK INTERAKSI
+           ============================================================ */
+        .glow-on-hover:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Pulse animation untuk elemen penting */
+        .pulse-gold {
+            animation: pulseGold 2s ease-in-out infinite;
+        }
+        @keyframes pulseGold {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Badge modern */
+        .badge-modern {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #121212;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Glassmorphism efek */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light-mode .glass {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -1978,7 +2263,7 @@
                         <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/LOGOSMAN3KAS.png" alt="Logo SMAN" onerror="this.style.display='none'">
                     </div>
                     <div style="margin-bottom:12px;">
-                        <span class="tag" style="background:var(--gold);color:#121212;font-size:0.85rem;padding:5px 24px;border-radius:40px;display:inline-block;font-weight:700;">KELAS X / FASE E</span>
+                        <span class="badge-modern">KELAS X / FASE E</span>
                         <span style="background:#6b4c1a;color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
                     </div>
                     <h1 class="cover-title">MEMAHAMI PRINSIP<br/>ILMU SEJARAH</h1>
@@ -2202,15 +2487,15 @@
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-cubes" style="color:var(--gold);"></i> Sejarah tidak dapat dipisahkan dari tiga elemen fundamental: <strong>Manusia</strong> (pelaku), <strong>Ruang</strong> (tempat), dan <strong>Waktu</strong> (kapan). Ketiganya saling terkait dan membentuk kerangka untuk memahami setiap peristiwa sejarah.</p>
             <div class="grid-3">
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon">🧑</span><h3>Manusia</h3><p>Subjek dan objek utama dalam sejarah.</p>
+                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🧑</span><h3>Manusia</h3><p>Subjek dan objek utama dalam sejarah.</p>
                     <div class="back"><p><strong>Manusia adalah pelaku dan pencipta sejarah.</strong> Tanpa manusia, tidak ada peristiwa sejarah. Manusia berperan sebagai:</p><ul><li><strong>Aktor:</strong> Individu atau kelompok yang bertindak dan mengambil keputusan (misal: Soekarno, pahlawan, rakyat).</li><li><strong>Pengamat:</strong> Manusia juga menjadi saksi dan pencatat peristiwa.</li><li><strong>Penerima dampak:</strong> Peristiwa sejarah selalu berdampak pada kehidupan manusia.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Perjuangan kemerdekaan Indonesia tidak lepas dari peran para pemuda, tokoh nasional, dan rakyat biasa.</p></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon">🌍</span><h3>Ruang</h3><p>Dimensi spasial atau tempat terjadinya peristiwa.</p>
+                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🌍</span><h3>Ruang</h3><p>Dimensi spasial atau tempat terjadinya peristiwa.</p>
                     <div class="back"><p><strong>Ruang adalah lokasi geografis di mana peristiwa terjadi.</strong> Ruang mempengaruhi jalannya sejarah dan sebaliknya, sejarah membentuk ruang.</p><ul><li><strong>Aspek Geografis:</strong> Letak, iklim, topografi, dan sumber daya alam.</li><li><strong>Aspek Sosial-Budaya:</strong> Ruang interaksi antarmanusia dan kebudayaan.</li><li><strong>Aspek Politik:</strong> Batas wilayah kekuasaan dan pengaruh.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Letak Indonesia di jalur perdagangan internasional menjadi salah satu faktor berkembangnya kerajaan-kerajaan maritim seperti Sriwijaya dan Majapahit.</p></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon">⏳</span><h3>Waktu</h3><p>Dimensi temporal atau kapan peristiwa terjadi.</p>
+                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">⏳</span><h3>Waktu</h3><p>Dimensi temporal atau kapan peristiwa terjadi.</p>
                     <div class="back"><p><strong>Waktu adalah kerangka kronologis yang menjadi urutan peristiwa.</strong> Waktu memberikan makna pada perubahan dan kesinambungan.</p><ul><li><strong>Kronologis:</strong> Urutan waktu membantu kita melihat proses dan perkembangan.</li><li><strong>Periodisasi:</strong> Pembagian waktu menjadi periode-periode (praaksara, Hindu-Buddha, Islam, kolonial, kemerdekaan).</li><li><strong>Perubahan & Kesinambungan:</strong> Waktu menunjukkan apa yang berubah dan apa yang bertahan.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Peristiwa Sumpah Pemuda (1928) terjadi di masa pergerakan nasional, menjadi tonggak kesadaran berbangsa.</p></div>
                 </div>
             </div>
@@ -2229,11 +2514,11 @@
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-brain" style="color:var(--gold);"></i> Sejarawan menggunakan dua cara berpikir utama untuk menganalisis peristiwa: <strong>Diakronik</strong> (memanjang waktu) dan <strong>Sinkronik</strong> (meluas dalam waktu).</p>
             <div class="grid-2">
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon">📜</span><h3>Diakronik (Kronologi)</h3><p>Menganalisis peristiwa secara vertikal dan berurutan.</p>
+                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📜</span><h3>Diakronik (Kronologi)</h3><p>Menganalisis peristiwa secara vertikal dan berurutan.</p>
                     <div class="back"><p><strong>Pendekatan diakronik</strong> adalah cara berpikir yang memandang sejarah sebagai <strong>proses perubahan</strong> dari waktu ke waktu. Ia menekankan urutan kejadian, sebab-akibat, dan perkembangan.</p><ul><li><strong>Ciri:</strong> Memanjang dalam waktu, melihat evolusi/transformasi.</li><li><strong>Pertanyaan:</strong> "Bagaimana peristiwa ini berkembang?"</li><li><strong>Contoh:</strong> Sejarah Kerajaan Majapahit (1293–1527) dilihat dari masa berdiri, puncak kejayaan, hingga keruntuhannya.</li></ul></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon">🔍</span><h3>Sinkronik</h3><p>Menganalisis peristiwa secara horizontal dan mendalam.</p>
+                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🔍</span><h3>Sinkronik</h3><p>Menganalisis peristiwa secara horizontal dan mendalam.</p>
                     <div class="back"><p><strong>Pendekatan sinkronik</strong> adalah cara berpikir yang memandang sejarah sebagai <strong>struktur</strong> pada suatu masa tertentu. Ia menekankan keterkaitan antar aspek (sosial, ekonomi, politik, budaya) dalam satu kurun waktu.</p><ul><li><strong>Ciri:</strong> Meluas dalam waktu, melihat struktur dan fungsi.</li><li><strong>Pertanyaan:</strong> "Bagaimana kondisi masyarakat pada saat itu?"</li><li><strong>Contoh:</strong> Menganalisis kondisi sosial-ekonomi-politik Indonesia pada tahun 1945 (menjelang Proklamasi) secara menyeluruh.</li></ul></div>
                 </div>
             </div>
@@ -2270,32 +2555,32 @@
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam <em>Kamus Umum Bahasa Indonesia</em> (1953):</p><ul><li><strong>Kesusasteraan lama, silsilah, dan asal-usul</strong> — sejarah sebagai catatan genealogis dan tradisi lisan.</li><li><strong>Kejadian yang benar-benar terjadi di masa lampau</strong> — sejarah sebagai realitas objektif peristiwa masa lalu.</li><li><strong>Ilmu pengetahuan, cerita pengalaman tentang</strong> — sejarah sebagai disiplin ilmu yang menyajikan narasi bermakna.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Poerwodarminta adalah penyusun kamus bahasa Indonesia pertama yang menjadi rujukan utama. Definisi ini menekankan tiga dimensi: <strong>genealogis</strong> (silsilah), <strong>faktual</strong> (kejadian nyata), dan <strong>ilmiah</strong> (ilmu pengetahuan).</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">2</span><div><h3 style="font-size:1.05rem;margin:0;">R. Moh. Ali</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Akademisi Indonesia</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam <em>Pengantar Ilmu Sejarah</em>:</p><ul><li><strong>Jumlah perubahan-perubahan, kejadian, dan peristiwa dalam kenyataan sekitar kita</strong> — sejarah sebagai realitas objektif yang dapat diamati.</li><li><strong>Cerita tentang perubahan-perubahan, kejadian, peristiwa yang merupakan realitas tersebut</strong> — sejarah sebagai narasi yang disusun dari realitas.</li><li><strong>Ilmu yang bertugas menyelidiki perubahan-perubahan, kejadian, dan peristiwa yang merupakan realitas tersebut</strong> — sejarah sebagai disiplin ilmu dengan metode penelitian.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Menurut Moh. Ali, makna terpenting dari sejarah adalah <strong>konsep perubahan</strong>. Sejarah selalu bergerak dan dinamis, bukan statis. Beliau juga menegaskan bahwa sejarah adalah cerita yang tersusun secara <strong>sistematis</strong>.</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">2</span><div><h3 style="font-size:1.05rem;margin:0;">R. Moh. Ali</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Akademisi Indonesia</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam <em>Pengantar Ilmu Sejarah</em>:</p><ul><li><strong>Jumlah perubahan-perubahan, kejadian, dan peristiwa dalam kenyataan sekitar kita</strong> — sejarah sebagai realitas objektif yang dapat diamati.</li><li><strong>Cerita tentang perubahan-perubahan, kejadian, peristiwa yang merupakan realitas tersebut</strong> — sejarah sebagai narasi yang disusun dari realitas.</li><li><strong>Ilmu yang bertugas menyelidiki perubahan-perubahan, kejadian, dan peristiwa yang merupakan realitas tersebut</strong> — sejarah sebagai disiplin ilmu dengan metode penelitian.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Menurut Moh. Ali, makna terpenting dari sejarah adalah <strong>konsep perubahan</strong>. Sejarah selalu bergerak dan dinamis, bukan statis. Beliau juga menegaskan bahwa sejarah adalah cerita yang tersusun secara <strong>sistematis</strong>.</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">3</span><div><h3 style="font-size:1.05rem;margin:0;">Herodotus</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Yunani Kuno (484–425 SM)</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Dijuluki <em>"The Father of History"</em> (Bapak Sejarah):</p><ul><li>Sejarah tidak berkembang ke arah depan dengan tujuan pasti, melainkan bergerak seperti <strong>garis lingkaran</strong> yang tinggi rendahnya diakibatkan oleh keadaan manusia.</li><li>Sejarah adalah <strong>penyelidikan</strong> (<em>historia</em>) terhadap peristiwa-peristiwa masa lalu melalui pengumpulan data dan kesaksian.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Herodotus adalah tokoh pertama yang menulis sejarah secara sistematis dalam karyanya <em>Historia</em>, yang mengisahkan Perang Yunani-Persia. Pendekatannya menekankan pentingnya <strong>bukti dan kesaksian</strong> dalam penulisan sejarah.</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">3</span><div><h3 style="font-size:1.05rem;margin:0;">Herodotus</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Yunani Kuno (484–425 SM)</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Dijuluki <em>"The Father of History"</em> (Bapak Sejarah):</p><ul><li>Sejarah tidak berkembang ke arah depan dengan tujuan pasti, melainkan bergerak seperti <strong>garis lingkaran</strong> yang tinggi rendahnya diakibatkan oleh keadaan manusia.</li><li>Sejarah adalah <strong>penyelidikan</strong> (<em>historia</em>) terhadap peristiwa-peristiwa masa lalu melalui pengumpulan data dan kesaksian.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Herodotus adalah tokoh pertama yang menulis sejarah secara sistematis dalam karyanya <em>Historia</em>, yang mengisahkan Perang Yunani-Persia. Pendekatannya menekankan pentingnya <strong>bukti dan kesaksian</strong> dalam penulisan sejarah.</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">4</span><div><h3 style="font-size:1.05rem;margin:0;">Ibnu Khaldun</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Muslim Tunisia (1332–1406 M)</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam kitab <em>Mukadimah</em>:</p><ul><li>Sejarah adalah <strong>catatan tentang masyarakat, umat manusia, atau peradaban dunia</strong>, dan mengenai perubahan-perubahan yang terjadi pada watak masyarakat.</li><li>Sejarah mencakup seluruh proses perubahan secara nyata dengan segala <strong>sebab dan akibatnya</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Ibnu Khaldun dijuluki sebagai <strong>Bapak Pendiri Historiografi, Sosiologi, dan Ekonomi</strong>. Ia menekankan bahwa sejarah bukan sekadar catatan peristiwa, tetapi juga analisis <strong>peradaban dan perubahan sosial</strong>.</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">4</span><div><h3 style="font-size:1.05rem;margin:0;">Ibnu Khaldun</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Muslim Tunisia (1332–1406 M)</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam kitab <em>Mukadimah</em>:</p><ul><li>Sejarah adalah <strong>catatan tentang masyarakat, umat manusia, atau peradaban dunia</strong>, dan mengenai perubahan-perubahan yang terjadi pada watak masyarakat.</li><li>Sejarah mencakup seluruh proses perubahan secara nyata dengan segala <strong>sebab dan akibatnya</strong>.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Ibnu Khaldun dijuluki sebagai <strong>Bapak Pendiri Historiografi, Sosiologi, dan Ekonomi</strong>. Ia menekankan bahwa sejarah bukan sekadar catatan peristiwa, tetapi juga analisis <strong>peradaban dan perubahan sosial</strong>.</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">5</span><div><h3 style="font-size:1.05rem;margin:0;">Aristoteles</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf Yunani (384–322 SM)</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan tentang sejarah:</p><ul><li>Sejarah adalah <strong>sistem yang meneliti kejadian sejak awal</strong> dan tersusun dalam bentuk <strong>kronologi</strong> (urutan waktu).</li><li>Sejarah adalah peristiwa masa lalu yang memiliki <strong>catatan, record, dan bukti-bukti yang konkrit</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Aristoteles menekankan aspek <strong>kronologis</strong> dan <strong>bukti empiris</strong> dalam sejarah. Baginya, sejarah harus disusun secara teratur dan dapat dipertanggungjawabkan secara ilmiah.</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">5</span><div><h3 style="font-size:1.05rem;margin:0;">Aristoteles</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf Yunani (384–322 SM)</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan tentang sejarah:</p><ul><li>Sejarah adalah <strong>sistem yang meneliti kejadian sejak awal</strong> dan tersusun dalam bentuk <strong>kronologi</strong> (urutan waktu).</li><li>Sejarah adalah peristiwa masa lalu yang memiliki <strong>catatan, record, dan bukti-bukti yang konkrit</strong>.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Aristoteles menekankan aspek <strong>kronologis</strong> dan <strong>bukti empiris</strong> dalam sejarah. Baginya, sejarah harus disusun secara teratur dan dapat dipertanggungjawabkan secara ilmiah.</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">6</span><div><h3 style="font-size:1.05rem;margin:0;">Mohammad Yamin</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Pahlawan Nasional &amp; Sejarawan Indonesia</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi sejarah:</p><ul><li>Sejarah adalah <strong>ilmu pengetahuan yang disusun atas hasil penyelidikan</strong> dari beberapa peristiwa yang mampu dibuktikan dengan kenyataan (<strong>fakta</strong>).</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Yamin menekankan bahwa sejarah harus berdasarkan <strong>penyelidikan dan fakta</strong> yang dapat dibuktikan. Sejarah bukan sekadar cerita, tetapi ilmu yang memiliki <strong>metode dan bukti</strong>.</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">6</span><div><h3 style="font-size:1.05rem;margin:0;">Mohammad Yamin</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Pahlawan Nasional &amp; Sejarawan Indonesia</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi sejarah:</p><ul><li>Sejarah adalah <strong>ilmu pengetahuan yang disusun atas hasil penyelidikan</strong> dari beberapa peristiwa yang mampu dibuktikan dengan kenyataan (<strong>fakta</strong>).</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Yamin menekankan bahwa sejarah harus berdasarkan <strong>penyelidikan dan fakta</strong> yang dapat dibuktikan. Sejarah bukan sekadar cerita, tetapi ilmu yang memiliki <strong>metode dan bukti</strong>.</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">7</span><div><h3 style="font-size:1.05rem;margin:0;">R.G. Collingwood</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf &amp; Sejarawan Inggris (1889–1943)</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan dalam <em>The Idea of History</em> (1946):</p><ul><li>Sejarah adalah sesuatu yang <strong>bersifat ilmiah</strong>, dan tugas sejarawan adalah <strong>menyelidiki kembali pemikiran manusia di masa lampau</strong>.</li><li>Sejarah berguna untuk <strong>mempelajari tindakan manusia</strong> dan kemudian mempelajari <strong>hakikat manusia</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Collingwood menekankan pendekatan <strong>filosofis</strong> dalam sejarah. Baginya, sejarah bukan hanya tentang peristiwa, tetapi tentang <strong>pemikiran di balik tindakan manusia</strong> — sejarah adalah "penyelidikan kembali pemikiran masa lalu".</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">7</span><div><h3 style="font-size:1.05rem;margin:0;">R.G. Collingwood</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf &amp; Sejarawan Inggris (1889–1943)</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan dalam <em>The Idea of History</em> (1946):</p><ul><li>Sejarah adalah sesuatu yang <strong>bersifat ilmiah</strong>, dan tugas sejarawan adalah <strong>menyelidiki kembali pemikiran manusia di masa lampau</strong>.</li><li>Sejarah berguna untuk <strong>mempelajari tindakan manusia</strong> dan kemudian mempelajari <strong>hakikat manusia</strong>.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Collingwood menekankan pendekatan <strong>filosofis</strong> dalam sejarah. Baginya, sejarah bukan hanya tentang peristiwa, tetapi tentang <strong>pemikiran di balik tindakan manusia</strong> — sejarah adalah "penyelidikan kembali pemikiran masa lalu".</div></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
-                    <div class="ahli-header"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">8</span><div><h3 style="font-size:1.05rem;margin:0;">Kuntowijoyo</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Pakar Sejarah Indonesia (1943–2005)</span></div></div>
-                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Dijuluki <em>"Bapak Sejarah Indonesia"</em>:</p><ul><li>Sejarah adalah suatu hal peristiwa yang sudah terjadi di masa lalu yang <strong>direkonstruksi</strong> atau membangun kembali kejadian masa lampau.</li></ul><div class="keterangan"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Kuntowijoyo menekankan aspek <strong>rekonstruksi</strong> dalam sejarah. Sejarah bukan sekadar mencatat, tetapi <strong>membangun kembali</strong> peristiwa masa lalu berdasarkan bukti-bukti yang tersisa.</div></div>
+                    <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">8</span><div><h3 style="font-size:1.05rem;margin:0;">Kuntowijoyo</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Pakar Sejarah Indonesia (1943–2005)</span></div></div>
+                    <div class="back"><p style="font-weight:500;font-size:0.9rem;">Dijuluki <em>"Bapak Sejarah Indonesia"</em>:</p><ul><li>Sejarah adalah suatu hal peristiwa yang sudah terjadi di masa lalu yang <strong>direkonstruksi</strong> atau membangun kembali kejadian masa lampau.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Kuntowijoyo menekankan aspek <strong>rekonstruksi</strong> dalam sejarah. Sejarah bukan sekadar mencatat, tetapi <strong>membangun kembali</strong> peristiwa masa lalu berdasarkan bukti-bukti yang tersisa.</div></div>
                 </div>
             </div>
             <div style="background:var(--bg-card);border-radius:14px;padding:14px 18px;border:1px solid rgba(255,255,255,0.05);margin-top:14px;">
@@ -2327,10 +2612,10 @@
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
             <div class="grid-4">
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">A</span><h3>Peristiwa</h3><p>Sejarah sebagai kejadian nyata yang unik, abadi, dan penting.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai peristiwa menekankan pada <strong>kejadian nyata</strong> yang terjadi di masa lampau. Peristiwa ini memiliki sifat <strong>unik</strong> (hanya terjadi sekali), <strong>abadi</strong> (tetap dikenang sepanjang masa), dan <strong>penting</strong> (menjadi momentum atau titik balik bagi kehidupan masyarakat).</p><strong>Contoh:</strong> Proklamasi Kemerdekaan 17 Agustus 1945, Sumpah Pemuda 28 Oktober 1928, serta Perang Dunia II yang mengubah peta geopolitik dunia.</div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">B</span><h3>Kisah</h3><p>Sejarah sebagai narasi yang menghidupkan pelaku dan peristiwa masa lalu.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai kisah adalah <strong>narasi atau cerita</strong> yang disusun berdasarkan peristiwa masa lalu, melibatkan <strong>pelaku sejarah</strong> beserta pengalaman, motivasi, dan perannya. Kisah memberikan <strong>wajah manusiawi</strong> pada peristiwa sejarah.</p><strong>Contoh:</strong> Biografi Pahlawan Nasional seperti Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno. Selain itu, karya sastra lama seperti Hikayat Hang Tuah juga merefleksikan nilai-nilai budaya dan historis.</div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">C</span><h3>Seni</h3><p>Sejarah sebagai karya kreatif yang merangkai fakta menjadi narasi indah.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai seni berarti penulisan sejarah membutuhkan <strong>daya imajinasi, kreativitas, dan kepekaan rasa</strong> yang tinggi. Sejarawan tidak hanya menyajikan fakta mentah, tetapi juga <strong>merangkai fakta menjadi narasi</strong> yang hidup dan menarik.</p><strong>Contoh:</strong> Rekonstruksi kehidupan masyarakat Hindu-Buddha melalui relief Candi Borobudur, interpretasi gaya hidup manusia purba dari lukisan di dinding gua, serta analisis filosofis dari pertunjukan wayang kulit.</div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">D</span><h3>Ilmu</h3><p>Sejarah sebagai disiplin ilmiah dengan metode penelitian yang sistematis.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai ilmu berarti kajian sejarah dilakukan secara <strong>sistematis dengan metode ilmiah</strong> yang ketat. Meliputi pengumpulan sumber (<strong>heuristik</strong>), verifikasi (<strong>kritik</strong>), penafsiran (<strong>interpretasi</strong>), dan penyajian (<strong>historiografi</strong>).</p><strong>Contoh:</strong> Penelitian arkeologi untuk menemukan sisa-sisa peradaban kuno, atau historiografi kritis yang menelaah ulang narasi sejarah resmi untuk mencari kebenaran objektif.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📜</span><h3>Peristiwa</h3><p>Sejarah sebagai kejadian nyata yang unik, abadi, dan penting.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai peristiwa menekankan pada <strong>kejadian nyata</strong> yang terjadi di masa lampau. Peristiwa ini memiliki sifat <strong>unik</strong> (hanya terjadi sekali), <strong>abadi</strong> (tetap dikenang sepanjang masa), dan <strong>penting</strong> (menjadi momentum atau titik balik bagi kehidupan masyarakat).</p><strong>Contoh:</strong> Proklamasi Kemerdekaan 17 Agustus 1945, Sumpah Pemuda 28 Oktober 1928, serta Perang Dunia II yang mengubah peta geopolitik dunia.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📖</span><h3>Kisah</h3><p>Sejarah sebagai narasi yang menghidupkan pelaku dan peristiwa masa lalu.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai kisah adalah <strong>narasi atau cerita</strong> yang disusun berdasarkan peristiwa masa lalu, melibatkan <strong>pelaku sejarah</strong> beserta pengalaman, motivasi, dan perannya. Kisah memberikan <strong>wajah manusiawi</strong> pada peristiwa sejarah.</p><strong>Contoh:</strong> Biografi Pahlawan Nasional seperti Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno. Selain itu, karya sastra lama seperti Hikayat Hang Tuah juga merefleksikan nilai-nilai budaya dan historis.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🎨</span><h3>Seni</h3><p>Sejarah sebagai karya kreatif yang merangkai fakta menjadi narasi indah.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai seni berarti penulisan sejarah membutuhkan <strong>daya imajinasi, kreativitas, dan kepekaan rasa</strong> yang tinggi. Sejarawan tidak hanya menyajikan fakta mentah, tetapi juga <strong>merangkai fakta menjadi narasi</strong> yang hidup dan menarik.</p><strong>Contoh:</strong> Rekonstruksi kehidupan masyarakat Hindu-Buddha melalui relief Candi Borobudur, interpretasi gaya hidup manusia purba dari lukisan di dinding gua, serta analisis filosofis dari pertunjukan wayang kulit.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🔬</span><h3>Ilmu</h3><p>Sejarah sebagai disiplin ilmiah dengan metode penelitian yang sistematis.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai ilmu berarti kajian sejarah dilakukan secara <strong>sistematis dengan metode ilmiah</strong> yang ketat. Meliputi pengumpulan sumber (<strong>heuristik</strong>), verifikasi (<strong>kritik</strong>), penafsiran (<strong>interpretasi</strong>), dan penyajian (<strong>historiografi</strong>).</p><strong>Contoh:</strong> Penelitian arkeologi untuk menemukan sisa-sisa peradaban kuno, atau historiografi kritis yang menelaah ulang narasi sejarah resmi untuk mencari kebenaran objektif.</div></div>
             </div>
         </section>
 
@@ -2339,9 +2624,9 @@
             <div class="section-header"><div class="num">08</div><h2>Ruang Lingkup Sejarah <small>Cakupan dan Batasan Ilmu Sejarah <span class="meeting-badge">Pertemuan 6</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-expand" style="color:var(--gold);"></i> Ruang lingkup sejarah mencakup batasan wilayah kajiannya, baik dari segi <strong>waktu, tema, maupun wilayah geografis</strong>. Memahami ruang lingkup membantu kita menentukan fokus dan kedalaman analisis sejarah.</p>
             <div class="grid-3">
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">⏳</span><h3>Berdasarkan Waktu</h3><p>Masa lalu, masa kini, dan masa depan.</p><div class="back"><ul><li><strong>Sejarah Masa Lalu:</strong> Kajian tentang peristiwa yang sudah terjadi (misal: Kerajaan Majapahit, Perang Dunia).</li><li><strong>Sejarah Masa Kini:</strong> Kajian tentang peristiwa kontemporer yang masih dalam ingatan pelaku (misal: Reformasi 1998).</li><li><strong>Sejarah Masa Depan:</strong> Meski belum terjadi, proyeksi sejarah dapat membantu merencanakan masa depan.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Periodisasi sejarah Indonesia: Praaksara, Hindu-Buddha, Islam, Kolonial, Pergerakan Nasional, Kemerdekaan, Orde Baru, Reformasi.</p></div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">📂</span><h3>Berdasarkan Tema</h3><p>Politik, Ekonomi, Sosial, Budaya.</p><div class="back"><ul><li><strong>Sejarah Politik:</strong> Kekuasaan, pemerintahan, diplomasi, perang (misal: Sejarah Diplomasi Indonesia).</li><li><strong>Sejarah Ekonomi:</strong> Perdagangan, industri, mata pencaharian (misal: Sejarah Perdagangan Rempah).</li><li><strong>Sejarah Sosial:</strong> Struktur masyarakat, mobilitas, kehidupan sehari-hari (misal: Sejarah Perkotaan).</li><li><strong>Sejarah Budaya:</strong> Seni, agama, adat istiadat, bahasa (misal: Sejarah Wayang Kulit).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Sejarah Peradaban Islam di Nusantara yang mencakup aspek politik (kerajaan), ekonomi (perdagangan), sosial (masyarakat), dan budaya (seni kaligrafi).</p></div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">🌏</span><h3>Berdasarkan Wilayah</h3><p>Lokal, Nasional, Regional, Global.</p><div class="back"><ul><li><strong>Sejarah Lokal:</strong> Kajian tentang peristiwa di tingkat desa/kota/daerah (misal: Sejarah Kota Kasongan).</li><li><strong>Sejarah Nasional:</strong> Kajian tentang peristiwa yang membentuk bangsa (misal: Sejarah Kemerdekaan Indonesia).</li><li><strong>Sejarah Regional:</strong> Kajian tentang peristiwa di kawasan tertentu (misal: Sejarah Asia Tenggara).</li><li><strong>Sejarah Global:</strong> Kajian tentang peristiwa yang berdampak dunia (misal: Sejarah Perang Dingin).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Peristiwa G30S/PKI dapat dikaji sebagai sejarah nasional Indonesia, tetapi juga bagian dari sejarah Perang Dingin (global) karena melibatkan ideologi komunis vs kapitalis.</p></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">⏳</span><h3>Berdasarkan Waktu</h3><p>Masa lalu, masa kini, dan masa depan.</p><div class="back"><ul><li><strong>Sejarah Masa Lalu:</strong> Kajian tentang peristiwa yang sudah terjadi (misal: Kerajaan Majapahit, Perang Dunia).</li><li><strong>Sejarah Masa Kini:</strong> Kajian tentang peristiwa kontemporer yang masih dalam ingatan pelaku (misal: Reformasi 1998).</li><li><strong>Sejarah Masa Depan:</strong> Meski belum terjadi, proyeksi sejarah dapat membantu merencanakan masa depan.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Periodisasi sejarah Indonesia: Praaksara, Hindu-Buddha, Islam, Kolonial, Pergerakan Nasional, Kemerdekaan, Orde Baru, Reformasi.</p></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📂</span><h3>Berdasarkan Tema</h3><p>Politik, Ekonomi, Sosial, Budaya.</p><div class="back"><ul><li><strong>Sejarah Politik:</strong> Kekuasaan, pemerintahan, diplomasi, perang (misal: Sejarah Diplomasi Indonesia).</li><li><strong>Sejarah Ekonomi:</strong> Perdagangan, industri, mata pencaharian (misal: Sejarah Perdagangan Rempah).</li><li><strong>Sejarah Sosial:</strong> Struktur masyarakat, mobilitas, kehidupan sehari-hari (misal: Sejarah Perkotaan).</li><li><strong>Sejarah Budaya:</strong> Seni, agama, adat istiadat, bahasa (misal: Sejarah Wayang Kulit).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Sejarah Peradaban Islam di Nusantara yang mencakup aspek politik (kerajaan), ekonomi (perdagangan), sosial (masyarakat), dan budaya (seni kaligrafi).</p></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🌏</span><h3>Berdasarkan Wilayah</h3><p>Lokal, Nasional, Regional, Global.</p><div class="back"><ul><li><strong>Sejarah Lokal:</strong> Kajian tentang peristiwa di tingkat desa/kota/daerah (misal: Sejarah Kota Kasongan).</li><li><strong>Sejarah Nasional:</strong> Kajian tentang peristiwa yang membentuk bangsa (misal: Sejarah Kemerdekaan Indonesia).</li><li><strong>Sejarah Regional:</strong> Kajian tentang peristiwa di kawasan tertentu (misal: Sejarah Asia Tenggara).</li><li><strong>Sejarah Global:</strong> Kajian tentang peristiwa yang berdampak dunia (misal: Sejarah Perang Dingin).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Peristiwa G30S/PKI dapat dikaji sebagai sejarah nasional Indonesia, tetapi juga bagian dari sejarah Perang Dingin (global) karena melibatkan ideologi komunis vs kapitalis.</p></div></div>
             </div>
             <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border-left:6px solid var(--gold);margin-top:6px;">
                 <p style="color:var(--text-secondary);text-align:center;"><i class="fas fa-sync-alt" style="color:var(--gold);"></i> Ruang lingkup sejarah bersifat <strong>luas dan saling terkait</strong>. Seorang sejarawan sering menggabungkan berbagai pendekatan (tema, waktu, wilayah) untuk mendapatkan gambaran yang utuh.</p>
@@ -2364,10 +2649,10 @@
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
             <div class="grid-4">
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon">🎭</span><h3>Rekreatif</h3><p>Sejarah sebagai hiburan yang mendidik.</p><div class="back"><p><strong>Sejarah sebagai hiburan yang mendidik.</strong> Kisah-kisah masa lalu menyuguhkan <em>drama, petualangan, dan keajaiban peradaban</em> yang dapat dinikmati tanpa batas ruang dan waktu.</p><strong>Contoh Nyata:</strong><ul><li>Menonton film <em>"Soekarno"</em> atau <em>"G30S/PKI"</em>.</li><li>Membaca novel sejarah seperti <em>"Bumi Manusia"</em>.</li><li>Berkunjung ke Candi Borobudur atau Museum Nasional.</li></ul></div></div>
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon">📚</span><h3>Edukatif</h3><p>Sejarah sebagai guru kehidupan.</p><div class="back"><p><strong>Sejarah adalah guru kehidupan.</strong> Dengan mempelajari peristiwa masa lalu, kita dapat <strong>mengambil hikmah, nilai-nilai luhur, dan pelajaran berharga</strong> untuk membentuk karakter dan kepribadian.</p><strong>Contoh Nyata:</strong><ul><li>Meneladani semangat juang Pangeran Diponegoro.</li><li>Mempelajari latar belakang perang agar lebih menghargai perdamaian.</li><li>Menumbuhkan rasa nasionalisme melalui cerita perjuangan para pahlawan.</li></ul></div></div>
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon">💡</span><h3>Inspiratif</h3><p>Sejarah membangkitkan semangat dan kreativitas.</p><div class="back"><p><strong>Sejarah membangkitkan semangat dan kreativitas.</strong> Kisah perjuangan tokoh-tokoh besar memberi <strong>dorongan untuk berkarya, berinovasi, dan tidak mudah menyerah</strong>.</p><strong>Contoh Nyata:</strong><ul><li>Sumpah Pemuda 28 Oktober 1928 menginspirasi gerakan persatuan.</li><li>Perjuangan Soekarno-Hatta menginspirasi tentang kepemimpinan.</li><li>Kisah RA. Kartini menginspirasi gerakan kesetaraan gender.</li></ul></div></div>
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon">📢</span><h3>Instruktif</h3><p>Sejarah sebagai panduan dan pengalaman praktis.</p><div class="back"><p><strong>Sejarah menyampaikan pengetahuan dan pengalaman praktis.</strong> Sejarah memberikan <strong>panduan dan arahan</strong> agar kita tidak tersesat dalam mengambil keputusan.</p><strong>Contoh Nyata:</strong><ul><li>Mempelajari sejarah politik untuk memahami sistem demokrasi.</li><li>Menelaah strategi perang untuk mengerti taktik dan negosiasi.</li><li>Menganalisis revolusi industri untuk melihat dampak teknologi.</li></ul></div></div>
+                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🎭</span><h3>Rekreatif</h3><p>Sejarah sebagai hiburan yang mendidik.</p><div class="back"><p><strong>Sejarah sebagai hiburan yang mendidik.</strong> Kisah-kisah masa lalu menyuguhkan <em>drama, petualangan, dan keajaiban peradaban</em> yang dapat dinikmati tanpa batas ruang dan waktu.</p><strong>Contoh Nyata:</strong><ul><li>Menonton film <em>"Soekarno"</em> atau <em>"G30S/PKI"</em>.</li><li>Membaca novel sejarah seperti <em>"Bumi Manusia"</em>.</li><li>Berkunjung ke Candi Borobudur atau Museum Nasional.</li></ul></div></div>
+                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📚</span><h3>Edukatif</h3><p>Sejarah sebagai guru kehidupan.</p><div class="back"><p><strong>Sejarah adalah guru kehidupan.</strong> Dengan mempelajari peristiwa masa lalu, kita dapat <strong>mengambil hikmah, nilai-nilai luhur, dan pelajaran berharga</strong> untuk membentuk karakter dan kepribadian.</p><strong>Contoh Nyata:</strong><ul><li>Meneladani semangat juang Pangeran Diponegoro.</li><li>Mempelajari latar belakang perang agar lebih menghargai perdamaian.</li><li>Menumbuhkan rasa nasionalisme melalui cerita perjuangan para pahlawan.</li></ul></div></div>
+                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">💡</span><h3>Inspiratif</h3><p>Sejarah membangkitkan semangat dan kreativitas.</p><div class="back"><p><strong>Sejarah membangkitkan semangat dan kreativitas.</strong> Kisah perjuangan tokoh-tokoh besar memberi <strong>dorongan untuk berkarya, berinovasi, dan tidak mudah menyerah</strong>.</p><strong>Contoh Nyata:</strong><ul><li>Sumpah Pemuda 28 Oktober 1928 menginspirasi gerakan persatuan.</li><li>Perjuangan Soekarno-Hatta menginspirasi tentang kepemimpinan.</li><li>Kisah RA. Kartini menginspirasi gerakan kesetaraan gender.</li></ul></div></div>
+                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📢</span><h3>Instruktif</h3><p>Sejarah sebagai panduan dan pengalaman praktis.</p><div class="back"><p><strong>Sejarah menyampaikan pengetahuan dan pengalaman praktis.</strong> Sejarah memberikan <strong>panduan dan arahan</strong> agar kita tidak tersesat dalam mengambil keputusan.</p><strong>Contoh Nyata:</strong><ul><li>Mempelajari sejarah politik untuk memahami sistem demokrasi.</li><li>Menelaah strategi perang untuk mengerti taktik dan negosiasi.</li><li>Menganalisis revolusi industri untuk melihat dampak teknologi.</li></ul></div></div>
             </div>
             <div style="background:var(--bg-secondary);border-radius:14px;padding:14px 18px;margin-top:14px;border-left:6px solid var(--gold);">
                 <p style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;justify-content:center;color:var(--text-secondary);">
