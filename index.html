@@ -57,7 +57,7 @@
         }
 
         /* ============================================================
-           LOADER — SUPER KEREN 3D + NEON + PARTIKEL
+           LOADER
            ============================================================ */
         #loader {
             position: fixed;
@@ -76,8 +76,6 @@
             visibility: hidden;
             pointer-events: none;
         }
-
-        /* — 3D Cube Container — */
         .loader-cube-wrapper {
             position: relative;
             width: 120px;
@@ -111,19 +109,32 @@
             color: var(--gold);
             backface-visibility: visible;
         }
-        .loader-cube .face-front { transform: rotateY(0deg) translateZ(40px); }
-        .loader-cube .face-back { transform: rotateY(180deg) translateZ(40px); }
-        .loader-cube .face-right { transform: rotateY(90deg) translateZ(40px); }
-        .loader-cube .face-left { transform: rotateY(-90deg) translateZ(40px); }
-        .loader-cube .face-top { transform: rotateX(90deg) translateZ(40px); }
-        .loader-cube .face-bottom { transform: rotateX(-90deg) translateZ(40px); }
-
-        @keyframes spinCube {
-            0% { transform: rotateX(-20deg) rotateY(0deg); }
-            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        .loader-cube .face-front {
+            transform: rotateY(0deg) translateZ(40px);
         }
-
-        /* — Glow ring around cube — */
+        .loader-cube .face-back {
+            transform: rotateY(180deg) translateZ(40px);
+        }
+        .loader-cube .face-right {
+            transform: rotateY(90deg) translateZ(40px);
+        }
+        .loader-cube .face-left {
+            transform: rotateY(-90deg) translateZ(40px);
+        }
+        .loader-cube .face-top {
+            transform: rotateX(90deg) translateZ(40px);
+        }
+        .loader-cube .face-bottom {
+            transform: rotateX(-90deg) translateZ(40px);
+        }
+        @keyframes spinCube {
+            0% {
+                transform: rotateX(-20deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(-20deg) rotateY(360deg);
+            }
+        }
         .loader-ring-glow {
             position: absolute;
             width: 160px;
@@ -140,11 +151,13 @@
             z-index: 1;
         }
         @keyframes rotateGlow {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
-
-        /* — Teks loading dengan neon — */
         .loader-text {
             color: var(--gold);
             font-size: 1.3rem;
@@ -155,8 +168,15 @@
             animation: textPulse 1.5s ease-in-out infinite;
         }
         @keyframes textPulse {
-            0%, 100% { opacity: 0.8; text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.4); }
+            0%,
+            100% {
+                opacity: 0.8;
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.4);
+            }
         }
         .loader-sub {
             color: var(--text-secondary);
@@ -176,8 +196,6 @@
             letter-spacing: 1px;
             opacity: 0.8;
         }
-
-        /* — Partikel berkilau (sparkle) — */
         .loader-sparkles {
             position: absolute;
             inset: 0;
@@ -209,8 +227,6 @@
                 transform: translate(var(--tx2), var(--ty2)) scale(0.3);
             }
         }
-
-        /* — Bintang background — */
         .loader-stars {
             position: absolute;
             inset: 0;
@@ -224,12 +240,18 @@
             animation: starTwinkle 4s infinite alternate;
         }
         @keyframes starTwinkle {
-            0% { opacity: 0.05; transform: scale(0.8); }
-            100% { opacity: 0.25; transform: scale(1.2); }
+            0% {
+                opacity: 0.05;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0.25;
+                transform: scale(1.2);
+            }
         }
 
         /* ============================================================
-           PARTIKEL BINTANG (tetap)
+           PARTIKEL BINTANG
            ============================================================ */
         .particle-container {
             position: fixed;
@@ -320,7 +342,7 @@
         }
 
         /* ============================================================
-           SIDEBAR — (dipertahankan)
+           SIDEBAR
            ============================================================ */
         .sidebar {
             position: fixed;
@@ -420,8 +442,15 @@
             animation: pulse-dot 2s infinite;
         }
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
         }
         .sidebar-search {
             padding: 10px 14px 8px 14px;
@@ -756,7 +785,7 @@
         }
 
         /* ============================================================
-           SECTIONS (konten sama) — DITINGKATKAN DENGAN ANIMASI MODERN
+           SECTIONS
            ============================================================ */
         .section {
             display: none;
@@ -802,8 +831,15 @@
             animation: headerGlow 2s ease-in-out infinite;
         }
         @keyframes headerGlow {
-            0%, 100% { opacity: 0.5; width: 60px; }
-            50% { opacity: 1; width: 120px; }
+            0%,
+            100% {
+                opacity: 0.5;
+                width: 60px;
+            }
+            50% {
+                opacity: 1;
+                width: 120px;
+            }
         }
         .section-header .num {
             background: var(--gold);
@@ -820,7 +856,7 @@
             box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
         }
         .section-header h2 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             font-weight: 700;
             color: var(--text-primary);
             flex: 1;
@@ -846,33 +882,41 @@
             animation: badgePulse 3s ease-in-out infinite;
         }
         @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            }
         }
 
         /* ============================================================
-           COVER — DITINGKATKAN
+           COVER — RATA & RESPONSIF
            ============================================================ */
         .cover-wrapper {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 40px;
+            justify-content: center;
+            gap: clamp(20px, 4vw, 60px);
             min-height: 70vh;
             padding: 20px 0;
+            flex-wrap: wrap;
         }
         .cover-left {
-            flex: 1 1 50%;
-            padding: 10px 15px;
+            flex: 1 1 45%;
+            min-width: 280px;
             max-width: 600px;
+            padding: 10px 0;
         }
         .cover-right {
-            flex: 1 1 50%;
-            padding: 10px 15px;
+            flex: 1 1 40%;
+            min-width: 260px;
+            max-width: 480px;
+            padding: 10px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 500px;
         }
         .cover-right .image-placeholder {
             width: 100%;
@@ -912,12 +956,13 @@
         .cover-logo-group {
             display: flex;
             align-items: center;
-            gap: 20px;
+            justify-content: flex-start;
+            gap: clamp(12px, 2vw, 24px);
             flex-wrap: wrap;
             margin-bottom: 18px;
         }
         .cover-logo-group img {
-            height: 55px;
+            height: clamp(40px, 5vw, 60px);
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
@@ -927,7 +972,7 @@
             transform: scale(1.05);
         }
         .cover-title {
-            font-size: clamp(2.2rem, 4vw, 3.6rem);
+            font-size: clamp(2rem, 5vw, 3.6rem);
             font-weight: 800;
             line-height: 1.15;
             color: var(--text-primary);
@@ -947,7 +992,7 @@
             margin-bottom: 16px;
         }
         .cover-school {
-            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-size: clamp(1.4rem, 3vw, 2.4rem);
             font-weight: 700;
             letter-spacing: 4px;
             color: var(--text-primary);
@@ -966,6 +1011,7 @@
             border: 1px solid rgba(212, 175, 55, 0.15);
             line-height: 1.6;
             transition: all var(--transition);
+            text-align: left;
         }
         .cover-teacher:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -1030,7 +1076,7 @@
         }
 
         /* ============================================================
-           KARTU INTERAKTIF — DITINGKATKAN
+           KARTU INTERAKTIF
            ============================================================ */
         .card {
             background: var(--bg-card);
@@ -1116,17 +1162,9 @@
         .interactive-card.open::before {
             opacity: 1;
         }
-        .toggle-hint {
-            font-size: 0.7rem;
-            margin-top: 6px;
-            display: block;
-            font-weight: 500;
-            opacity: 0.6;
-            color: var(--text-secondary);
-        }
 
         /* ============================================================
-           GRID — DITINGKATKAN
+           GRID RESPONSIF
            ============================================================ */
         .grid-2,
         .grid-3,
@@ -1150,7 +1188,7 @@
         }
 
         /* ============================================================
-           ACCORDION — DITINGKATKAN
+           ACCORDION
            ============================================================ */
         .accordion-wrap {
             display: flex;
@@ -1219,7 +1257,7 @@
         }
 
         /* ============================================================
-           TABS — DITINGKATKAN
+           TABS
            ============================================================ */
         .etym-tabs {
             display: flex;
@@ -1272,7 +1310,7 @@
         }
 
         /* ============================================================
-           HOVER TRIGGER — DITINGKATKAN
+           HOVER TRIGGER
            ============================================================ */
         .geosfer-hover-trigger {
             display: inline-block;
@@ -1347,7 +1385,7 @@
         }
 
         /* ============================================================
-           MODAL — DITINGKATKAN
+           MODAL
            ============================================================ */
         .modal-overlay {
             display: none;
@@ -1365,8 +1403,12 @@
             animation: fadeIn 0.3s ease;
         }
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         .modal-overlay .modal-content {
             max-width: 90vw;
@@ -1427,7 +1469,7 @@
         }
 
         /* ============================================================
-           DEF BLOCK — DITINGKATKAN
+           DEF BLOCK
            ============================================================ */
         .def-block {
             background: var(--bg-card);
@@ -1451,7 +1493,7 @@
         }
 
         /* ============================================================
-           ACTIVITY BOX — DITINGKATKAN
+           ACTIVITY BOX
            ============================================================ */
         .activity-box {
             background: var(--bg-secondary);
@@ -1478,7 +1520,7 @@
         }
 
         /* ============================================================
-           TABEL — DITINGKATKAN
+           TABEL
            ============================================================ */
         .worksheet-table {
             display: grid;
@@ -1533,7 +1575,7 @@
         }
 
         /* ============================================================
-           METHOD STEP — DITINGKATKAN
+           METHOD STEP
            ============================================================ */
         .method-step {
             background: var(--bg-card);
@@ -1560,7 +1602,7 @@
         }
 
         /* ============================================================
-           REFLEKSI — DITINGKATKAN
+           REFLEKSI
            ============================================================ */
         .refleksi-list {
             list-style: none;
@@ -1638,7 +1680,7 @@
         }
 
         /* ============================================================
-           ASSESSMENT — DITINGKATKAN
+           ASSESSMENT
            ============================================================ */
         .assessment-question {
             margin-bottom: 16px;
@@ -1697,7 +1739,7 @@
         }
 
         /* ============================================================
-           REFERENSI — DITINGKATKAN
+           REFERENSI
            ============================================================ */
         .ref-list {
             list-style: none;
@@ -1724,7 +1766,7 @@
         }
 
         /* ============================================================
-           NAVIGATION BUTTONS — DITINGKATKAN
+           NAVIGATION BUTTONS
            ============================================================ */
         .nav-buttons {
             display: flex;
@@ -1814,7 +1856,7 @@
         }
 
         /* ============================================================
-           PROGRESS BAR — DITINGKATKAN
+           PROGRESS BAR
            ============================================================ */
         .progress-wrap {
             position: fixed;
@@ -1846,18 +1888,65 @@
             animation: progressDot 1.5s ease-in-out infinite;
         }
         @keyframes progressDot {
-            0%, 100% { opacity: 0.4; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         /* ============================================================
-           RESPONSIVE — DITINGKATKAN
+           BADGE & GLASS
+           ============================================================ */
+        .badge-modern {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #121212;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light-mode .glass {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .pillar-icon {
+            font-size: 2.4rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .guna-icon {
+            font-size: 2.4rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ============================================================
+           RESPONSIVE — UTAMA
            ============================================================ */
         @media (max-width: 899px) {
             .cover-wrapper {
                 flex-direction: column;
                 min-height: auto;
                 gap: 20px;
+                padding: 10px 0;
             }
             .cover-left {
                 flex: 1 1 100%;
@@ -1882,10 +1971,10 @@
                 aspect-ratio: 16/10;
             }
             .cover-title {
-                font-size: clamp(2rem, 6vw, 2.8rem);
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
             }
             .cover-school {
-                font-size: clamp(1.4rem, 4vw, 2rem);
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
             }
             .cover-teacher {
                 font-size: 0.9rem;
@@ -1944,6 +2033,7 @@
                 display: none !important;
             }
         }
+
         @media (min-width: 900px) {
             body {
                 padding-top: 0;
@@ -2009,6 +2099,10 @@
                 left: var(--sidebar-width);
             }
         }
+
+        /* ============================================================
+           GRID RESPONSIF LANJUTAN
+           ============================================================ */
         @media (min-width: 600px) {
             .grid-2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -2023,7 +2117,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .section-header h2 {
-                font-size: 1.5rem;
+                font-size: clamp(1.2rem, 2.2vw, 1.5rem);
             }
             .main-content {
                 padding: 20px 24px 80px;
@@ -2032,6 +2126,7 @@
                 grid-template-columns: 60px 1fr 1.2fr 2fr;
             }
         }
+
         @media (min-width: 900px) {
             .grid-3 {
                 grid-template-columns: repeat(3, 1fr);
@@ -2046,6 +2141,7 @@
                 left: var(--sidebar-width);
             }
         }
+
         @media (min-width: 1200px) {
             .grid-ahli {
                 grid-template-columns: repeat(3, 1fr);
@@ -2054,6 +2150,7 @@
                 padding: 28px 40px 80px;
             }
         }
+
         @media (max-width: 400px) {
             .section-header h2 {
                 font-size: 1.1rem;
@@ -2064,10 +2161,25 @@
             .worksheet-table .header {
                 text-align: left;
             }
+            .cover-teacher {
+                text-align: center;
+                padding: 8px 12px;
+            }
+            .cover-logo-group {
+                justify-content: center;
+            }
+            .start-btn {
+                padding: 10px 28px;
+                font-size: 0.95rem;
+            }
+            .geosfer-hover-trigger {
+                font-size: 0.85rem;
+                padding: 8px 14px;
+            }
         }
 
         /* ============================================================
-           SCROLLBAR — DITINGKATKAN
+           SCROLLBAR
            ============================================================ */
         ::-webkit-scrollbar {
             width: 6px;
@@ -2083,64 +2195,28 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--gold-light);
         }
-
-        /* ============================================================
-           TAMBAHAN: GLOW EFFECT UNTUK INTERAKSI
-           ============================================================ */
         .glow-on-hover:hover {
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
         }
-
-        /* Pulse animation untuk elemen penting */
         .pulse-gold {
             animation: pulseGold 2s ease-in-out infinite;
         }
         @keyframes pulseGold {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* Badge modern */
-        .badge-modern {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: #121212;
-            padding: 4px 16px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* Glassmorphism efek */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .light-mode .glass {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- ============================================================
-    LOADER — SUPER KEREN 3D + NEON + SPARKLE
-    ============================================================ -->
+    <!-- ===== LOADER ===== -->
     <div id="loader">
-        <!-- Background stars -->
         <div class="loader-stars" id="loaderStars"></div>
-
-        <!-- Sparkle particles -->
         <div class="loader-sparkles" id="loaderSparkles"></div>
-
-        <!-- 3D Cube -->
         <div class="loader-cube-wrapper">
             <div class="loader-ring-glow"></div>
             <div class="loader-cube" id="loaderCube">
@@ -2152,8 +2228,6 @@
                 <div class="face face-bottom">⭐</div>
             </div>
         </div>
-
-        <!-- Teks -->
         <div class="loader-text" id="loaderText">MEMUAT SEJARAH</div>
         <div class="loader-percent" id="loaderPercent">0%</div>
         <div class="loader-sub" id="loaderSub">Menyiapkan petualangan sejarahmu...</div>
@@ -2192,23 +2266,15 @@
     <!-- ===== SIDEBAR OVERLAY ===== -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-    <!-- ============================================================
-    SIDEBAR — SUPERIOR MODERN
-    ============================================================ -->
+    <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar" id="sidebar">
-        <!-- Profile -->
         <div class="sidebar-profile">
             <div class="avatar">S</div>
             <div class="info">
                 <div class="name">SYAHRANI, S.Pd</div>
-                <div class="role">
-                    <span class="dot"></span>
-                    Guru Sejarah
-                </div>
+                <div class="role"><span class="dot"></span>Guru Sejarah</div>
             </div>
         </div>
-
-        <!-- Search -->
         <div class="sidebar-search">
             <div class="search-wrap">
                 <i class="fas fa-search"></i>
@@ -2216,18 +2282,12 @@
                 <button class="clear-btn" id="searchClear"><i class="fas fa-times-circle"></i></button>
             </div>
         </div>
-
-        <!-- Navigation -->
         <div class="sidebar-scroll">
-            <ul class="sidebar-nav" id="navLinks">
-                <!-- akan diisi oleh JS -->
-            </ul>
+            <ul class="sidebar-nav" id="navLinks"></ul>
         </div>
-
-        <!-- Footer -->
         <div class="sidebar-footer">
             <div class="footer-left">
-                <span class="version">v2.0</span>
+                <span class="version">v3.0</span>
                 <span>•</span>
                 <span>Kelas X</span>
             </div>
@@ -2252,8 +2312,7 @@
 
     <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content" id="mainContent">
-
-        <!-- ========== SECTION 0 : COVER ========== -->
+        <!-- ========== SECTION 0 : COVER (Halaman 1) ========== -->
         <section id="section0" class="section active">
             <div class="cover-wrapper">
                 <div class="cover-left">
@@ -2302,7 +2361,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 1 : CP ATP ========== -->
+        <!-- ========== SECTION 1 : CP ATP (Halaman 2) ========== -->
         <section id="section1" class="section">
             <div class="section-header"><div class="num">02</div><h2>Komponen Pembelajaran <small>CP · ATP · Indikator · Deep Learning</small></h2></div>
             <div class="accordion-wrap">
@@ -2397,11 +2456,14 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 2 : PENGERTIAN SEJARAH ========== -->
+        <!-- ========== SECTION 2 : PERTEMUAN 1 ========== -->
         <section id="section2" class="section">
-            <div class="section-header"><div class="num">03</div><h2>Pengertian Sejarah <small>Etimologis & Filosofis <span class="meeting-badge">Pertemuan 1</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-globe-asia" style="color:var(--gold);"></i> Secara etimologi, kata "sejarah" berasal dari berbagai bahasa. Memahami akar kata ini membantu kita menangkap esensi sejarah dari berbagai sudut pandang budaya dan keilmuan.</p>
-            <div style="text-align:center;margin:16px 0 12px;">
+            <div class="section-header"><div class="num">03</div><h2>Pertemuan 1: Pengertian Sejarah &amp; Konsep Dasar <small>Etimologi dan Tiga Pilar Utama <span class="meeting-badge">Pertemuan 1</span></small></h2></div>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-book-open"></i> A. Pengertian Sejarah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-globe-asia" style="color:var(--gold);"></i> Secara etimologi, kata "sejarah" berasal dari berbagai bahasa. Memahami akar kata ini membantu kita menangkap esensi sejarah dari berbagai sudut pandang budaya dan keilmuan.</p>
+            </div>
+            <div style="text-align:center;margin:8px 0 12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/metaporasejarah2.png', 'Ilustrasi metafora sejarah sebagai pohon (Syajaratun)')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi metafora pohon sejarah
                     <span class="popup-diagram">
@@ -2453,49 +2515,30 @@
                     </ul>
                 </div>
             </div>
-            <div style="text-align:center;margin:20px 0 12px;">
-                <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/pohon%20sejarah.png', 'Diagram Pohon Sejarah dengan label Akar, Batang, Cabang, dan Ranting')" style="background:var(--bg-card);border-color:var(--gold);">
-                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram pohon sejarah
-                    <span class="popup-diagram" style="width:520px;max-width:90vw;padding:16px;">
-                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/pohon%20sejarah.png" alt="Diagram Pohon Sejarah" style="max-width:100%;max-height:300px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:var(--bg-primary);" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-text').style.display='block';">
-                        <div class="fallback-text" style="display:none;padding:20px;color:var(--gold);font-size:1rem;"><i class="fas fa-image" style="font-size:2rem;display:block;margin-bottom:8px;"></i>Diagram Pohon Sejarah<br><span style="font-size:0.8rem;color:#666;">(Ganti dengan gambar nyata)</span></div>
-                        <div class="caption"><strong>Struktur Pohon Sejarah:</strong> Akar (Asal-usul), Batang (Inti Peradaban), Cabang (Peristiwa Besar), Ranting (Kejadian Lokal).</div>
-                    </span>
-                </span>
-                <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
-            </div>
-            <div style="margin-top:16px;">
-                <h3 style="font-size:1.1rem;color:var(--text-primary);border-left:4px solid var(--gold);padding-left:12px;"><i class="fas fa-tree" style="color:var(--gold);"></i> Memaknai "Sejarah sebagai Pohon" (Syajaratun)</h3>
-                <div class="grid-2">
-                    <div class="card highlight"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.6rem;">🌳</span><h4 style="margin:0;">Akar &amp; Batang</h4></div><p>Akar melambangkan asal-usul, peradaban awal, dan fondasi kebudayaan. Batang adalah inti perjalanan sejarah yang kokoh, misalnya kerajaan-kerajaan besar atau ideologi yang mempengaruhi peradaban.</p><p style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px;"><strong>Contoh:</strong> Kerajaan Majapahit sebagai akar budaya Nusantara, atau Pancasila sebagai batang ideologi bangsa.</p></div>
-                    <div class="card highlight"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.6rem;">🌿</span><h4 style="margin:0;">Cabang &amp; Ranting</h4></div><p>Cabang adalah peristiwa-peristiwa besar yang membentuk periode sejarah, sedangkan ranting adalah kejadian-kejadian kecil yang tetap memiliki makna dan saling terkait.</p><p style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px;"><strong>Contoh:</strong> Perang Diponegoro (cabang) dan peristiwa-peristiwa lokal di berbagai daerah (ranting) yang mendukung narasi besar.</p></div>
-                </div>
-            </div>
-            <div class="def-block"><div class="source"><i class="fas fa-book"></i> Kamus Besar Bahasa Indonesia (KBBI) VI Daring</div>
+            <div class="def-block">
+                <div class="source"><i class="fas fa-book"></i> Kamus Besar Bahasa Indonesia (KBBI) VI Daring</div>
                 <ul style="margin-top:4px;padding-left:18px;color:var(--text-secondary);">
                     <li><strong>Arti ke-1:</strong> asal-usul (keturunan) silsilah — menekankan dimensi <strong>genealogis</strong> atau garis keturunan, sejarah sebagai catatan silsilah keluarga/bangsa.</li>
                     <li><strong>Arti ke-2:</strong> kejadian dan peristiwa yang benar-benar terjadi pada masa lampau; riwayat; tambo — menekankan <strong>objektivitas dan realitas historis</strong>, sejarah sebagai fakta nyata.</li>
                     <li><strong>Arti ke-3:</strong> pengetahuan atau uraian tentang peristiwa dan kejadian yang benar-benar terjadi pada masa lampau — menekankan dimensi <strong>ilmiah dan naratif</strong>, sejarah sebagai disiplin ilmu yang disusun secara sistematis.</li>
                 </ul>
-                <p style="margin-top:6px;font-size:0.9rem;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-lightbulb" style="color:var(--gold);"></i> <strong>Refleksi:</strong> KBBI merangkum tiga dimensi utama sejarah: <em>silsilah</em> (asal-usul dan keterkaitan antar generasi), <em>peristiwa nyata</em> (realitas objektif masa lampau), dan <em>pengetahuan/uraian</em> (narasi ilmiah yang sistematis). Ketiga makna ini saling melengkapi dalam memahami hakikat sejarah sebagai ilmu sekaligus sebagai cerita.</p>
+                <p style="margin-top:6px;font-size:0.9rem;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-lightbulb" style="color:var(--gold);"></i> <strong>Refleksi:</strong> KBBI merangkum tiga dimensi utama sejarah: <em>silsilah</em> (asal-usul dan keterkaitan antar generasi), <em>peristiwa nyata</em> (realitas objektif masa lampau), dan <em>pengetahuan/uraian</em> (narasi ilmiah yang sistematis).</p>
             </div>
-        </section>
-
-        <!-- ========== SECTION 3 : KONSEP MANUSIA, RUANG, WAKTU ========== -->
-        <section id="section3" class="section">
-            <div class="section-header"><div class="num">04</div><h2>Konsep Manusia, Ruang, dan Waktu <small>Tiga Pilar Utama dalam Sejarah <span class="meeting-badge">Pertemuan 2</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-cubes" style="color:var(--gold);"></i> Sejarah tidak dapat dipisahkan dari tiga elemen fundamental: <strong>Manusia</strong> (pelaku), <strong>Ruang</strong> (tempat), dan <strong>Waktu</strong> (kapan). Ketiganya saling terkait dan membentuk kerangka untuk memahami setiap peristiwa sejarah.</p>
+            <div style="margin-top:24px;background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-cubes"></i> B. Konsep Manusia, Ruang, dan Waktu</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-cubes" style="color:var(--gold);"></i> Sejarah tidak dapat dipisahkan dari tiga elemen fundamental: <strong>Manusia</strong> (pelaku), <strong>Ruang</strong> (tempat), dan <strong>Waktu</strong> (kapan). Ketiganya saling terkait dan membentuk kerangka untuk memahami setiap peristiwa sejarah.</p>
+            </div>
             <div class="grid-3">
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🧑</span><h3>Manusia</h3><p>Subjek dan objek utama dalam sejarah.</p>
+                    <span class="pillar-icon">🧑</span><h3>Manusia</h3><p>Subjek dan objek utama dalam sejarah.</p>
                     <div class="back"><p><strong>Manusia adalah pelaku dan pencipta sejarah.</strong> Tanpa manusia, tidak ada peristiwa sejarah. Manusia berperan sebagai:</p><ul><li><strong>Aktor:</strong> Individu atau kelompok yang bertindak dan mengambil keputusan (misal: Soekarno, pahlawan, rakyat).</li><li><strong>Pengamat:</strong> Manusia juga menjadi saksi dan pencatat peristiwa.</li><li><strong>Penerima dampak:</strong> Peristiwa sejarah selalu berdampak pada kehidupan manusia.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Perjuangan kemerdekaan Indonesia tidak lepas dari peran para pemuda, tokoh nasional, dan rakyat biasa.</p></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🌍</span><h3>Ruang</h3><p>Dimensi spasial atau tempat terjadinya peristiwa.</p>
+                    <span class="pillar-icon">🌍</span><h3>Ruang</h3><p>Dimensi spasial atau tempat terjadinya peristiwa.</p>
                     <div class="back"><p><strong>Ruang adalah lokasi geografis di mana peristiwa terjadi.</strong> Ruang mempengaruhi jalannya sejarah dan sebaliknya, sejarah membentuk ruang.</p><ul><li><strong>Aspek Geografis:</strong> Letak, iklim, topografi, dan sumber daya alam.</li><li><strong>Aspek Sosial-Budaya:</strong> Ruang interaksi antarmanusia dan kebudayaan.</li><li><strong>Aspek Politik:</strong> Batas wilayah kekuasaan dan pengaruh.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Letak Indonesia di jalur perdagangan internasional menjadi salah satu faktor berkembangnya kerajaan-kerajaan maritim seperti Sriwijaya dan Majapahit.</p></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">⏳</span><h3>Waktu</h3><p>Dimensi temporal atau kapan peristiwa terjadi.</p>
+                    <span class="pillar-icon">⏳</span><h3>Waktu</h3><p>Dimensi temporal atau kapan peristiwa terjadi.</p>
                     <div class="back"><p><strong>Waktu adalah kerangka kronologis yang menjadi urutan peristiwa.</strong> Waktu memberikan makna pada perubahan dan kesinambungan.</p><ul><li><strong>Kronologis:</strong> Urutan waktu membantu kita melihat proses dan perkembangan.</li><li><strong>Periodisasi:</strong> Pembagian waktu menjadi periode-periode (praaksara, Hindu-Buddha, Islam, kolonial, kemerdekaan).</li><li><strong>Perubahan & Kesinambungan:</strong> Waktu menunjukkan apa yang berubah dan apa yang bertahan.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Peristiwa Sumpah Pemuda (1928) terjadi di masa pergerakan nasional, menjadi tonggak kesadaran berbangsa.</p></div>
                 </div>
             </div>
@@ -2508,17 +2551,20 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 4 : DIAKRONIK & SINKRONIK ========== -->
-        <section id="section4" class="section">
-            <div class="section-header"><div class="num">05</div><h2>Cara Berpikir Diakronik & Sinkronik <small>Kronologi dan Struktur dalam Sejarah <span class="meeting-badge">Pertemuan 3</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-brain" style="color:var(--gold);"></i> Sejarawan menggunakan dua cara berpikir utama untuk menganalisis peristiwa: <strong>Diakronik</strong> (memanjang waktu) dan <strong>Sinkronik</strong> (meluas dalam waktu).</p>
+        <!-- ========== SECTION 3 : PERTEMUAN 2 ========== -->
+        <section id="section3" class="section">
+            <div class="section-header"><div class="num">04</div><h2>Pertemuan 2: Berpikir Sejarah &amp; Definisi Ahli (1) <small>Diakronik, Sinkronik &amp; 4 Tokoh <span class="meeting-badge">Pertemuan 2</span></small></h2></div>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-brain"></i> A. Cara Berpikir Diakronik &amp; Sinkronik</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-brain" style="color:var(--gold);"></i> Sejarawan menggunakan dua cara berpikir utama untuk menganalisis peristiwa: <strong>Diakronik</strong> (memanjang waktu) dan <strong>Sinkronik</strong> (meluas dalam waktu).</p>
+            </div>
             <div class="grid-2">
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📜</span><h3>Diakronik (Kronologi)</h3><p>Menganalisis peristiwa secara vertikal dan berurutan.</p>
+                    <span class="pillar-icon">📜</span><h3>Diakronik (Kronologi)</h3><p>Menganalisis peristiwa secara vertikal dan berurutan.</p>
                     <div class="back"><p><strong>Pendekatan diakronik</strong> adalah cara berpikir yang memandang sejarah sebagai <strong>proses perubahan</strong> dari waktu ke waktu. Ia menekankan urutan kejadian, sebab-akibat, dan perkembangan.</p><ul><li><strong>Ciri:</strong> Memanjang dalam waktu, melihat evolusi/transformasi.</li><li><strong>Pertanyaan:</strong> "Bagaimana peristiwa ini berkembang?"</li><li><strong>Contoh:</strong> Sejarah Kerajaan Majapahit (1293–1527) dilihat dari masa berdiri, puncak kejayaan, hingga keruntuhannya.</li></ul></div>
                 </div>
                 <div class="card interactive-card" onclick="this.classList.toggle('open')">
-                    <span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🔍</span><h3>Sinkronik</h3><p>Menganalisis peristiwa secara horizontal dan mendalam.</p>
+                    <span class="pillar-icon">🔍</span><h3>Sinkronik</h3><p>Menganalisis peristiwa secara horizontal dan mendalam.</p>
                     <div class="back"><p><strong>Pendekatan sinkronik</strong> adalah cara berpikir yang memandang sejarah sebagai <strong>struktur</strong> pada suatu masa tertentu. Ia menekankan keterkaitan antar aspek (sosial, ekonomi, politik, budaya) dalam satu kurun waktu.</p><ul><li><strong>Ciri:</strong> Meluas dalam waktu, melihat struktur dan fungsi.</li><li><strong>Pertanyaan:</strong> "Bagaimana kondisi masyarakat pada saat itu?"</li><li><strong>Contoh:</strong> Menganalisis kondisi sosial-ekonomi-politik Indonesia pada tahun 1945 (menjelang Proklamasi) secara menyeluruh.</li></ul></div>
                 </div>
             </div>
@@ -2532,22 +2578,9 @@
                 </tbody></table>
                 <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:6px;"><i class="fas fa-lightbulb" style="color:var(--gold);"></i> Keduanya saling melengkapi untuk memahami sejarah secara utuh.</p>
             </div>
-        </section>
-
-        <!-- ========== SECTION 5 : DEFINISI AHLI ========== -->
-        <section id="section5" class="section">
-            <div class="section-header"><div class="num">06</div><h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Sejarah Dunia & Indonesia <span class="meeting-badge">Pertemuan 4</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:10px;"><i class="fas fa-quote-left" style="color:var(--gold);"></i> Berikut adalah definisi sejarah dari berbagai ahli terkemuka. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.</p>
-            <div style="text-align:center;margin-bottom:12px;">
-                <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/tokohsejarah.png', 'Ilustrasi Para Ahli Sejarah')">
-                    <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi para ahli
-                    <span class="popup-diagram">
-                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/tokohsejarah.png" alt="Para Ahli" style="max-width:100%;max-height:300px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:var(--bg-primary);" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-text').style.display='block';">
-                        <div class="fallback-text" style="display:none;padding:20px;color:var(--gold);font-size:1rem;"><i class="fas fa-image" style="font-size:2rem;display:block;margin-bottom:8px;"></i>Ilustrasi Para Ahli<br><span style="font-size:0.8rem;color:#666;">(Ganti dengan gambar nyata)</span></div>
-                        <div class="caption">Tokoh-tokoh penting dalam definisi sejarah.</div>
-                    </span>
-                </span>
-                <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin:24px 0 16px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-user-graduate"></i> B. Definisi Sejarah Menurut Para Ahli (Bagian 1)</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-quote-left" style="color:var(--gold);"></i> Empat tokoh pertama: Poerwodarminta, R. Moh. Ali, Herodotus, dan Ibnu Khaldun.</p>
             </div>
             <div class="grid-ahli">
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
@@ -2566,6 +2599,17 @@
                     <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">4</span><div><h3 style="font-size:1.05rem;margin:0;">Ibnu Khaldun</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Sejarawan Muslim Tunisia (1332–1406 M)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Definisi dalam kitab <em>Mukadimah</em>:</p><ul><li>Sejarah adalah <strong>catatan tentang masyarakat, umat manusia, atau peradaban dunia</strong>, dan mengenai perubahan-perubahan yang terjadi pada watak masyarakat.</li><li>Sejarah mencakup seluruh proses perubahan secara nyata dengan segala <strong>sebab dan akibatnya</strong>.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Ibnu Khaldun dijuluki sebagai <strong>Bapak Pendiri Historiografi, Sosiologi, dan Ekonomi</strong>. Ia menekankan bahwa sejarah bukan sekadar catatan peristiwa, tetapi juga analisis <strong>peradaban dan perubahan sosial</strong>.</div></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4 : PERTEMUAN 3 ========== -->
+        <section id="section4" class="section">
+            <div class="section-header"><div class="num">05</div><h2>Pertemuan 3: Definisi Ahli (2) &amp; Hakikat Sejarah <small>4 Tokoh &amp; 4 Dimensi <span class="meeting-badge">Pertemuan 3</span></small></h2></div>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-user-graduate"></i> A. Definisi Sejarah Menurut Para Ahli (Bagian 2)</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-quote-left" style="color:var(--gold);"></i> Empat tokoh berikutnya: Aristoteles, Mohammad Yamin, R.G. Collingwood, dan Kuntowijoyo.</p>
+            </div>
+            <div class="grid-ahli">
                 <div class="card interactive-card" onclick="this.classList.toggle('open')" style="background:var(--bg-card);border-radius:14px;padding:18px 16px;border:1px solid rgba(255,255,255,0.05);">
                     <div class="ahli-header" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span class="icon-number" style="font-size:1.8rem;font-weight:700;color:var(--gold);width:36px;text-align:center;">5</span><div><h3 style="font-size:1.05rem;margin:0;">Aristoteles</h3><span class="sub" style="font-size:0.8rem;color:var(--text-secondary);">Filsuf Yunani (384–322 SM)</span></div></div>
                     <div class="back"><p style="font-weight:500;font-size:0.9rem;">Pandangan tentang sejarah:</p><ul><li>Sejarah adalah <strong>sistem yang meneliti kejadian sejak awal</strong> dan tersusun dalam bentuk <strong>kronologi</strong> (urutan waktu).</li><li>Sejarah adalah peristiwa masa lalu yang memiliki <strong>catatan, record, dan bukti-bukti yang konkrit</strong>.</li></ul><div class="keterangan" style="font-size:0.85rem;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.05);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Aristoteles menekankan aspek <strong>kronologis</strong> dan <strong>bukti empiris</strong> dalam sejarah. Baginya, sejarah harus disusun secara teratur dan dapat dipertanggungjawabkan secara ilmiah.</div></div>
@@ -2594,12 +2638,10 @@
                 </ul>
                 <p style="margin-top:6px;font-size:0.9rem;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-quote-right" style="color:var(--gold);"></i> <em>"Histories make men wise"</em> — Sejarah membuat manusia bijaksana.</p>
             </div>
-        </section>
-
-        <!-- ========== SECTION 6 : HAKIKAT SEJARAH ========== -->
-        <section id="section6" class="section">
-            <div class="section-header"><div class="num">07</div><h2>HAKIKAT SEJARAH <small>Dimensi Peristiwa, Kisah, Seni, dan Ilmu <span class="meeting-badge">Pertemuan 5</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:10px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Sejarah memiliki empat dimensi hakikat yang saling melengkapi. <strong>Klik pada setiap kartu</strong> untuk mempelajari penjelasan dan contohnya secara mendalam.</p>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin:24px 0 16px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-info-circle"></i> B. Hakikat Sejarah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Sejarah memiliki empat dimensi hakikat yang saling melengkapi. <strong>Klik pada setiap kartu</strong> untuk mempelajari penjelasan dan contohnya secara mendalam.</p>
+            </div>
             <div style="text-align:center;margin-bottom:12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/hakikatsejarah.png', 'Ilustrasi Hakikat Sejarah')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi hakikat sejarah
@@ -2612,31 +2654,32 @@
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
             <div class="grid-4">
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📜</span><h3>Peristiwa</h3><p>Sejarah sebagai kejadian nyata yang unik, abadi, dan penting.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai peristiwa menekankan pada <strong>kejadian nyata</strong> yang terjadi di masa lampau. Peristiwa ini memiliki sifat <strong>unik</strong> (hanya terjadi sekali), <strong>abadi</strong> (tetap dikenang sepanjang masa), dan <strong>penting</strong> (menjadi momentum atau titik balik bagi kehidupan masyarakat).</p><strong>Contoh:</strong> Proklamasi Kemerdekaan 17 Agustus 1945, Sumpah Pemuda 28 Oktober 1928, serta Perang Dunia II yang mengubah peta geopolitik dunia.</div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📖</span><h3>Kisah</h3><p>Sejarah sebagai narasi yang menghidupkan pelaku dan peristiwa masa lalu.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai kisah adalah <strong>narasi atau cerita</strong> yang disusun berdasarkan peristiwa masa lalu, melibatkan <strong>pelaku sejarah</strong> beserta pengalaman, motivasi, dan perannya. Kisah memberikan <strong>wajah manusiawi</strong> pada peristiwa sejarah.</p><strong>Contoh:</strong> Biografi Pahlawan Nasional seperti Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno. Selain itu, karya sastra lama seperti Hikayat Hang Tuah juga merefleksikan nilai-nilai budaya dan historis.</div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🎨</span><h3>Seni</h3><p>Sejarah sebagai karya kreatif yang merangkai fakta menjadi narasi indah.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai seni berarti penulisan sejarah membutuhkan <strong>daya imajinasi, kreativitas, dan kepekaan rasa</strong> yang tinggi. Sejarawan tidak hanya menyajikan fakta mentah, tetapi juga <strong>merangkai fakta menjadi narasi</strong> yang hidup dan menarik.</p><strong>Contoh:</strong> Rekonstruksi kehidupan masyarakat Hindu-Buddha melalui relief Candi Borobudur, interpretasi gaya hidup manusia purba dari lukisan di dinding gua, serta analisis filosofis dari pertunjukan wayang kulit.</div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🔬</span><h3>Ilmu</h3><p>Sejarah sebagai disiplin ilmiah dengan metode penelitian yang sistematis.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai ilmu berarti kajian sejarah dilakukan secara <strong>sistematis dengan metode ilmiah</strong> yang ketat. Meliputi pengumpulan sumber (<strong>heuristik</strong>), verifikasi (<strong>kritik</strong>), penafsiran (<strong>interpretasi</strong>), dan penyajian (<strong>historiografi</strong>).</p><strong>Contoh:</strong> Penelitian arkeologi untuk menemukan sisa-sisa peradaban kuno, atau historiografi kritis yang menelaah ulang narasi sejarah resmi untuk mencari kebenaran objektif.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">📜</span><h3>Peristiwa</h3><p>Sejarah sebagai kejadian nyata yang unik, abadi, dan penting.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai peristiwa menekankan pada <strong>kejadian nyata</strong> yang terjadi di masa lampau. Peristiwa ini memiliki sifat <strong>unik</strong> (hanya terjadi sekali), <strong>abadi</strong> (tetap dikenang sepanjang masa), dan <strong>penting</strong> (menjadi momentum atau titik balik bagi kehidupan masyarakat).</p><strong>Contoh:</strong> Proklamasi Kemerdekaan 17 Agustus 1945, Sumpah Pemuda 28 Oktober 1928, serta Perang Dunia II yang mengubah peta geopolitik dunia.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">📖</span><h3>Kisah</h3><p>Sejarah sebagai narasi yang menghidupkan pelaku dan peristiwa masa lalu.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai kisah adalah <strong>narasi atau cerita</strong> yang disusun berdasarkan peristiwa masa lalu, melibatkan <strong>pelaku sejarah</strong> beserta pengalaman, motivasi, dan perannya. Kisah memberikan <strong>wajah manusiawi</strong> pada peristiwa sejarah.</p><strong>Contoh:</strong> Biografi Pahlawan Nasional seperti Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno. Selain itu, karya sastra lama seperti Hikayat Hang Tuah juga merefleksikan nilai-nilai budaya dan historis.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">🎨</span><h3>Seni</h3><p>Sejarah sebagai karya kreatif yang merangkai fakta menjadi narasi indah.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai seni berarti penulisan sejarah membutuhkan <strong>daya imajinasi, kreativitas, dan kepekaan rasa</strong> yang tinggi. Sejarawan tidak hanya menyajikan fakta mentah, tetapi juga <strong>merangkai fakta menjadi narasi</strong> yang hidup dan menarik.</p><strong>Contoh:</strong> Rekonstruksi kehidupan masyarakat Hindu-Buddha melalui relief Candi Borobudur, interpretasi gaya hidup manusia purba dari lukisan di dinding gua, serta analisis filosofis dari pertunjukan wayang kulit.</div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">🔬</span><h3>Ilmu</h3><p>Sejarah sebagai disiplin ilmiah dengan metode penelitian yang sistematis.</p><div class="back"><p style="margin-bottom:6px;">Sejarah sebagai ilmu berarti kajian sejarah dilakukan secara <strong>sistematis dengan metode ilmiah</strong> yang ketat. Meliputi pengumpulan sumber (<strong>heuristik</strong>), verifikasi (<strong>kritik</strong>), penafsiran (<strong>interpretasi</strong>), dan penyajian (<strong>historiografi</strong>).</p><strong>Contoh:</strong> Penelitian arkeologi untuk menemukan sisa-sisa peradaban kuno, atau historiografi kritis yang menelaah ulang narasi sejarah resmi untuk mencari kebenaran objektif.</div></div>
             </div>
         </section>
 
-        <!-- ========== SECTION 7 : RUANG LINGKUP ========== -->
-        <section id="section7" class="section">
-            <div class="section-header"><div class="num">08</div><h2>Ruang Lingkup Sejarah <small>Cakupan dan Batasan Ilmu Sejarah <span class="meeting-badge">Pertemuan 6</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-expand" style="color:var(--gold);"></i> Ruang lingkup sejarah mencakup batasan wilayah kajiannya, baik dari segi <strong>waktu, tema, maupun wilayah geografis</strong>. Memahami ruang lingkup membantu kita menentukan fokus dan kedalaman analisis sejarah.</p>
+        <!-- ========== SECTION 5 : PERTEMUAN 4 ========== -->
+        <section id="section5" class="section">
+            <div class="section-header"><div class="num">06</div><h2>Pertemuan 4: Ruang Lingkup &amp; Guna Sejarah <small>Cakupan dan Manfaat Sejarah <span class="meeting-badge">Pertemuan 4</span></small></h2></div>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-expand"></i> A. Ruang Lingkup Sejarah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-expand" style="color:var(--gold);"></i> Ruang lingkup sejarah mencakup batasan wilayah kajiannya, baik dari segi <strong>waktu, tema, maupun wilayah geografis</strong>. Memahami ruang lingkup membantu kita menentukan fokus dan kedalaman analisis sejarah.</p>
+            </div>
             <div class="grid-3">
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">⏳</span><h3>Berdasarkan Waktu</h3><p>Masa lalu, masa kini, dan masa depan.</p><div class="back"><ul><li><strong>Sejarah Masa Lalu:</strong> Kajian tentang peristiwa yang sudah terjadi (misal: Kerajaan Majapahit, Perang Dunia).</li><li><strong>Sejarah Masa Kini:</strong> Kajian tentang peristiwa kontemporer yang masih dalam ingatan pelaku (misal: Reformasi 1998).</li><li><strong>Sejarah Masa Depan:</strong> Meski belum terjadi, proyeksi sejarah dapat membantu merencanakan masa depan.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Periodisasi sejarah Indonesia: Praaksara, Hindu-Buddha, Islam, Kolonial, Pergerakan Nasional, Kemerdekaan, Orde Baru, Reformasi.</p></div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📂</span><h3>Berdasarkan Tema</h3><p>Politik, Ekonomi, Sosial, Budaya.</p><div class="back"><ul><li><strong>Sejarah Politik:</strong> Kekuasaan, pemerintahan, diplomasi, perang (misal: Sejarah Diplomasi Indonesia).</li><li><strong>Sejarah Ekonomi:</strong> Perdagangan, industri, mata pencaharian (misal: Sejarah Perdagangan Rempah).</li><li><strong>Sejarah Sosial:</strong> Struktur masyarakat, mobilitas, kehidupan sehari-hari (misal: Sejarah Perkotaan).</li><li><strong>Sejarah Budaya:</strong> Seni, agama, adat istiadat, bahasa (misal: Sejarah Wayang Kulit).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Sejarah Peradaban Islam di Nusantara yang mencakup aspek politik (kerajaan), ekonomi (perdagangan), sosial (masyarakat), dan budaya (seni kaligrafi).</p></div></div>
-                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🌏</span><h3>Berdasarkan Wilayah</h3><p>Lokal, Nasional, Regional, Global.</p><div class="back"><ul><li><strong>Sejarah Lokal:</strong> Kajian tentang peristiwa di tingkat desa/kota/daerah (misal: Sejarah Kota Kasongan).</li><li><strong>Sejarah Nasional:</strong> Kajian tentang peristiwa yang membentuk bangsa (misal: Sejarah Kemerdekaan Indonesia).</li><li><strong>Sejarah Regional:</strong> Kajian tentang peristiwa di kawasan tertentu (misal: Sejarah Asia Tenggara).</li><li><strong>Sejarah Global:</strong> Kajian tentang peristiwa yang berdampak dunia (misal: Sejarah Perang Dingin).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Peristiwa G30S/PKI dapat dikaji sebagai sejarah nasional Indonesia, tetapi juga bagian dari sejarah Perang Dingin (global) karena melibatkan ideologi komunis vs kapitalis.</p></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">⏳</span><h3>Berdasarkan Waktu</h3><p>Masa lalu, masa kini, dan masa depan.</p><div class="back"><ul><li><strong>Sejarah Masa Lalu:</strong> Kajian tentang peristiwa yang sudah terjadi (misal: Kerajaan Majapahit, Perang Dunia).</li><li><strong>Sejarah Masa Kini:</strong> Kajian tentang peristiwa kontemporer yang masih dalam ingatan pelaku (misal: Reformasi 1998).</li><li><strong>Sejarah Masa Depan:</strong> Meski belum terjadi, proyeksi sejarah dapat membantu merencanakan masa depan.</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Periodisasi sejarah Indonesia: Praaksara, Hindu-Buddha, Islam, Kolonial, Pergerakan Nasional, Kemerdekaan, Orde Baru, Reformasi.</p></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">📂</span><h3>Berdasarkan Tema</h3><p>Politik, Ekonomi, Sosial, Budaya.</p><div class="back"><ul><li><strong>Sejarah Politik:</strong> Kekuasaan, pemerintahan, diplomasi, perang (misal: Sejarah Diplomasi Indonesia).</li><li><strong>Sejarah Ekonomi:</strong> Perdagangan, industri, mata pencaharian (misal: Sejarah Perdagangan Rempah).</li><li><strong>Sejarah Sosial:</strong> Struktur masyarakat, mobilitas, kehidupan sehari-hari (misal: Sejarah Perkotaan).</li><li><strong>Sejarah Budaya:</strong> Seni, agama, adat istiadat, bahasa (misal: Sejarah Wayang Kulit).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Sejarah Peradaban Islam di Nusantara yang mencakup aspek politik (kerajaan), ekonomi (perdagangan), sosial (masyarakat), dan budaya (seni kaligrafi).</p></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="pillar-icon">🌏</span><h3>Berdasarkan Wilayah</h3><p>Lokal, Nasional, Regional, Global.</p><div class="back"><ul><li><strong>Sejarah Lokal:</strong> Kajian tentang peristiwa di tingkat desa/kota/daerah (misal: Sejarah Kota Kasongan).</li><li><strong>Sejarah Nasional:</strong> Kajian tentang peristiwa yang membentuk bangsa (misal: Sejarah Kemerdekaan Indonesia).</li><li><strong>Sejarah Regional:</strong> Kajian tentang peristiwa di kawasan tertentu (misal: Sejarah Asia Tenggara).</li><li><strong>Sejarah Global:</strong> Kajian tentang peristiwa yang berdampak dunia (misal: Sejarah Perang Dingin).</li></ul><p style="margin-top:4px;"><strong>Contoh:</strong> Peristiwa G30S/PKI dapat dikaji sebagai sejarah nasional Indonesia, tetapi juga bagian dari sejarah Perang Dingin (global) karena melibatkan ideologi komunis vs kapitalis.</p></div></div>
             </div>
             <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border-left:6px solid var(--gold);margin-top:6px;">
                 <p style="color:var(--text-secondary);text-align:center;"><i class="fas fa-sync-alt" style="color:var(--gold);"></i> Ruang lingkup sejarah bersifat <strong>luas dan saling terkait</strong>. Seorang sejarawan sering menggabungkan berbagai pendekatan (tema, waktu, wilayah) untuk mendapatkan gambaran yang utuh.</p>
             </div>
-        </section>
-
-        <!-- ========== SECTION 8 : GUNA SEJARAH ========== -->
-        <section id="section8" class="section">
-            <div class="section-header"><div class="num">09</div><h2>Guna Sejarah <small>Rekreatif · Edukatif · Inspiratif · Instruktif <span class="meeting-badge">Pertemuan 7</span></small></h2></div>
-            <p style="color:var(--text-secondary);margin-bottom:10px;"><i class="fas fa-question-circle" style="color:var(--gold);"></i> Apa gunanya sejarah bagi kita sehari-hari? Sejarah bukan hanya kumpulan cerita masa lalu, melainkan memiliki <strong style="color:var(--text-primary);">nilai praktis</strong> yang dapat dirasakan dalam berbagai aspek kehidupan. <strong>Klik pada setiap kartu</strong> untuk melihat penjelasan dan contoh lengkapnya.</p>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin:24px 0 16px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-question-circle"></i> B. Guna Sejarah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><i class="fas fa-question-circle" style="color:var(--gold);"></i> Apa gunanya sejarah bagi kita sehari-hari? Sejarah bukan hanya kumpulan cerita masa lalu, melainkan memiliki <strong style="color:var(--text-primary);">nilai praktis</strong> yang dapat dirasakan dalam berbagai aspek kehidupan.</p>
+            </div>
             <div style="text-align:center;margin-bottom:12px;">
                 <span class="geosfer-hover-trigger" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/gunasejarah.png', 'Ilustrasi Guna Sejarah')">
                     <i class="fas fa-image" style="margin-right:8px;"></i> Arahkan kursor untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi guna sejarah
@@ -2649,10 +2692,10 @@
                 <p style="font-size:0.8rem;color:#666;margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
             </div>
             <div class="grid-4">
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">🎭</span><h3>Rekreatif</h3><p>Sejarah sebagai hiburan yang mendidik.</p><div class="back"><p><strong>Sejarah sebagai hiburan yang mendidik.</strong> Kisah-kisah masa lalu menyuguhkan <em>drama, petualangan, dan keajaiban peradaban</em> yang dapat dinikmati tanpa batas ruang dan waktu.</p><strong>Contoh Nyata:</strong><ul><li>Menonton film <em>"Soekarno"</em> atau <em>"G30S/PKI"</em>.</li><li>Membaca novel sejarah seperti <em>"Bumi Manusia"</em>.</li><li>Berkunjung ke Candi Borobudur atau Museum Nasional.</li></ul></div></div>
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📚</span><h3>Edukatif</h3><p>Sejarah sebagai guru kehidupan.</p><div class="back"><p><strong>Sejarah adalah guru kehidupan.</strong> Dengan mempelajari peristiwa masa lalu, kita dapat <strong>mengambil hikmah, nilai-nilai luhur, dan pelajaran berharga</strong> untuk membentuk karakter dan kepribadian.</p><strong>Contoh Nyata:</strong><ul><li>Meneladani semangat juang Pangeran Diponegoro.</li><li>Mempelajari latar belakang perang agar lebih menghargai perdamaian.</li><li>Menumbuhkan rasa nasionalisme melalui cerita perjuangan para pahlawan.</li></ul></div></div>
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">💡</span><h3>Inspiratif</h3><p>Sejarah membangkitkan semangat dan kreativitas.</p><div class="back"><p><strong>Sejarah membangkitkan semangat dan kreativitas.</strong> Kisah perjuangan tokoh-tokoh besar memberi <strong>dorongan untuk berkarya, berinovasi, dan tidak mudah menyerah</strong>.</p><strong>Contoh Nyata:</strong><ul><li>Sumpah Pemuda 28 Oktober 1928 menginspirasi gerakan persatuan.</li><li>Perjuangan Soekarno-Hatta menginspirasi tentang kepemimpinan.</li><li>Kisah RA. Kartini menginspirasi gerakan kesetaraan gender.</li></ul></div></div>
-                <div class="card interactive-card guna-card" onclick="this.classList.toggle('open')"><span class="guna-icon" style="font-size:2.4rem;color:var(--gold);display:block;margin-bottom:4px;">📢</span><h3>Instruktif</h3><p>Sejarah sebagai panduan dan pengalaman praktis.</p><div class="back"><p><strong>Sejarah menyampaikan pengetahuan dan pengalaman praktis.</strong> Sejarah memberikan <strong>panduan dan arahan</strong> agar kita tidak tersesat dalam mengambil keputusan.</p><strong>Contoh Nyata:</strong><ul><li>Mempelajari sejarah politik untuk memahami sistem demokrasi.</li><li>Menelaah strategi perang untuk mengerti taktik dan negosiasi.</li><li>Menganalisis revolusi industri untuk melihat dampak teknologi.</li></ul></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="guna-icon">🎭</span><h3>Rekreatif</h3><p>Sejarah sebagai hiburan yang mendidik.</p><div class="back"><p><strong>Sejarah sebagai hiburan yang mendidik.</strong> Kisah-kisah masa lalu menyuguhkan <em>drama, petualangan, dan keajaiban peradaban</em> yang dapat dinikmati tanpa batas ruang dan waktu.</p><strong>Contoh Nyata:</strong><ul><li>Menonton film <em>"Soekarno"</em> atau <em>"G30S/PKI"</em>.</li><li>Membaca novel sejarah seperti <em>"Bumi Manusia"</em>.</li><li>Berkunjung ke Candi Borobudur atau Museum Nasional.</li></ul></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="guna-icon">📚</span><h3>Edukatif</h3><p>Sejarah sebagai guru kehidupan.</p><div class="back"><p><strong>Sejarah adalah guru kehidupan.</strong> Dengan mempelajari peristiwa masa lalu, kita dapat <strong>mengambil hikmah, nilai-nilai luhur, dan pelajaran berharga</strong> untuk membentuk karakter dan kepribadian.</p><strong>Contoh Nyata:</strong><ul><li>Meneladani semangat juang Pangeran Diponegoro.</li><li>Mempelajari latar belakang perang agar lebih menghargai perdamaian.</li><li>Menumbuhkan rasa nasionalisme melalui cerita perjuangan para pahlawan.</li></ul></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="guna-icon">💡</span><h3>Inspiratif</h3><p>Sejarah membangkitkan semangat dan kreativitas.</p><div class="back"><p><strong>Sejarah membangkitkan semangat dan kreativitas.</strong> Kisah perjuangan tokoh-tokoh besar memberi <strong>dorongan untuk berkarya, berinovasi, dan tidak mudah menyerah</strong>.</p><strong>Contoh Nyata:</strong><ul><li>Sumpah Pemuda 28 Oktober 1928 menginspirasi gerakan persatuan.</li><li>Perjuangan Soekarno-Hatta menginspirasi tentang kepemimpinan.</li><li>Kisah RA. Kartini menginspirasi gerakan kesetaraan gender.</li></ul></div></div>
+                <div class="card interactive-card" onclick="this.classList.toggle('open')"><span class="guna-icon">📢</span><h3>Instruktif</h3><p>Sejarah sebagai panduan dan pengalaman praktis.</p><div class="back"><p><strong>Sejarah menyampaikan pengetahuan dan pengalaman praktis.</strong> Sejarah memberikan <strong>panduan dan arahan</strong> agar kita tidak tersesat dalam mengambil keputusan.</p><strong>Contoh Nyata:</strong><ul><li>Mempelajari sejarah politik untuk memahami sistem demokrasi.</li><li>Menelaah strategi perang untuk mengerti taktik dan negosiasi.</li><li>Menganalisis revolusi industri untuk melihat dampak teknologi.</li></ul></div></div>
             </div>
             <div style="background:var(--bg-secondary);border-radius:14px;padding:14px 18px;margin-top:14px;border-left:6px solid var(--gold);">
                 <p style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;justify-content:center;color:var(--text-secondary);">
@@ -2665,9 +2708,9 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 9 : METODE SEJARAH ========== -->
-        <section id="section9" class="section">
-            <div class="section-header"><div class="num">10</div><h2>Proses Penelitian & Penulisan Sejarah <small>Metode Sejarah dan Historiografi <span class="meeting-badge">Pertemuan 8</span></small></h2></div>
+        <!-- ========== SECTION 6 : PERTEMUAN 5 ========== -->
+        <section id="section6" class="section">
+            <div class="section-header"><div class="num">07</div><h2>Pertemuan 5: Metode &amp; Penulisan Sejarah <small>Heuristik, Kritik, Interpretasi, Historiografi <span class="meeting-badge">Pertemuan 5</span></small></h2></div>
             <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-microscope" style="color:var(--gold);"></i> Sejarah sebagai ilmu memerlukan <strong>metode penelitian yang sistematis</strong>. Proses ini disebut <strong>Metode Sejarah</strong>, yang terdiri dari empat tahap utama: Heuristik, Kritik, Interpretasi, dan Historiografi.</p>
             <div style="display:grid;gap:16px;">
                 <div class="method-step"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.9rem;">1</span> Heuristik (Pengumpulan Sumber)</h4><p>Tahap mencari dan mengumpulkan <strong>sumber-sumber sejarah</strong> yang relevan dengan topik penelitian. Sumber dapat berupa:</p><ul style="color:var(--text-secondary);padding-left:20px;margin-top:4px;"><li><strong>Sumber Primer:</strong> Dokumen asli, arsip, artefak, saksi mata (misal: naskah Proklamasi).</li><li><strong>Sumber Sekunder:</strong> Buku, artikel, atau tulisan yang membahas sumber primer (misal: buku sejarah tentang Proklamasi).</li></ul><p style="color:var(--text-secondary);font-size:0.9rem;margin-top:4px;"><i class="fas fa-search" style="color:var(--gold);"></i> Contoh: Sejarawan mencari arsip VOC di Arsip Nasional untuk meneliti perdagangan rempah.</p></div>
@@ -2677,13 +2720,13 @@
             </div>
             <div style="background:var(--bg-card);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.05);margin-top:10px;">
                 <h4 style="color:var(--gold);display:flex;align-items:center;gap:6px;"><i class="fas fa-link"></i> Hubungan Sumber, Fakta, dan Bukti</h4>
-                <p style="color:var(--text-secondary);font-size:0.95rem;"><strong>Sumber</strong> adalah bahan mentah (primer/sekondunder). <strong>Fakta</strong> adalah bagian dari sumber yang telah teruji kebenarannya melalui kritik. <strong>Bukti</strong> adalah fakta yang dipilih dan digunakan untuk mendukung argumen sejarah. Ketiganya adalah ruh dari penelitian sejarah.</p>
+                <p style="color:var(--text-secondary);font-size:0.95rem;"><strong>Sumber</strong> adalah bahan mentah (primer/sekunder). <strong>Fakta</strong> adalah bagian dari sumber yang telah teruji kebenarannya melalui kritik. <strong>Bukti</strong> adalah fakta yang dipilih dan digunakan untuk mendukung argumen sejarah. Ketiganya adalah ruh dari penelitian sejarah.</p>
             </div>
         </section>
 
-        <!-- ========== SECTION 10 : AKTIVITAS ========== -->
-        <section id="section10" class="section">
-            <div class="section-header"><div class="num">11</div><h2>Aktivitas <small>Silsilah Keluarga <span class="meeting-badge">Pertemuan 9</span></small></h2></div>
+        <!-- ========== SECTION 7 : AKTIVITAS (Halaman 11) ========== -->
+        <section id="section7" class="section">
+            <div class="section-header"><div class="num">08</div><h2>Aktivitas <small>Silsilah Keluarga <span class="meeting-badge">Pertemuan 6</span></small></h2></div>
             <div class="activity-box">
                 <h3><i class="fas fa-tree"></i> Telusuri Silsilah Keluargamu!</h3>
                 <p style="margin:6px 0 10px 0;font-size:0.95rem;color:var(--text-secondary);">Kata sejarah dalam bahasa Arab (Syajaratun) berarti pohon. Konsep ini diambil dari silsilah keluarga yang jika digambarkan menyerupai pohon dengan akar, batang, cabang, dan ranting. Sekarang, saatnya kamu menjadi <strong>sejarawan bagi keluargamu sendiri</strong>!</p>
@@ -2729,9 +2772,9 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 11 : ASESMEN ========== -->
-        <section id="section11" class="section">
-            <div class="section-header"><div class="num">12</div><h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Prinsip Ilmu Sejarah <span class="meeting-badge">Pertemuan 10</span></small></h2></div>
+        <!-- ========== SECTION 8 : ASESMEN (Halaman 12) ========== -->
+        <section id="section8" class="section">
+            <div class="section-header"><div class="num">09</div><h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Prinsip Ilmu Sejarah <span class="meeting-badge">Pertemuan 7</span></small></h2></div>
             <p style="font-size:1rem;margin-bottom:16px;color:var(--text-secondary);"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Kerjakan asesmen berikut untuk mengukur pemahamanmu tentang materi "Memahami Prinsip Ilmu Sejarah". <strong>Selamat mengerjakan!</strong></p>
             <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
                 <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
@@ -2775,10 +2818,10 @@
                     <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">C</span> Essay
                 </h3>
                 <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:14px;">Jawablah pertanyaan berikut dengan uraian yang jelas dan sistematis! <span style="color:#666;font-size:0.8rem;">(5 Soal)</span></p>
-                <div class="essay-question"><div class="q-text">1. Jelaskan makna "sejarah sebagai pohon" (Syajaratun)! Berikan contoh sederhana dari lingkungan sekitarmu!</div><div class="q-note">Petunjuk: Hubungkan dengan konsep akar, batang, cabang, dan ranting yang telah dipelajari di Halaman 3.</div></div>
-                <div class="essay-question"><div class="q-text">2. Sebutkan dan jelaskan 4 dimensi hakikat sejarah! Berikan masing-masing 1 contoh!</div><div class="q-note">Petunjuk: Gunakan pemahaman dari Halaman 7 tentang Peristiwa, Kisah, Seni, dan Ilmu.</div></div>
-                <div class="essay-question"><div class="q-text">3. Apa yang dimaksud dengan kegunaan sejarah yang bersifat edukatif? Berikan 2 contohnya dalam kehidupan sehari-hari!</div><div class="q-note">Petunjuk: Hubungkan dengan Halaman 9 tentang Guna Sejarah.</div></div>
-                <div class="essay-question"><div class="q-text">4. Menurut R. Moh. Ali, sejarah adalah "perubahan". Jelaskan maksud pernyataan tersebut dan berikan contoh perubahan dalam masyarakat yang kamu ketahui!</div><div class="q-note">Petunjuk: Gunakan pemahaman dari kartu R. Moh. Ali di Halaman 6.</div></div>
+                <div class="essay-question"><div class="q-text">1. Jelaskan makna "sejarah sebagai pohon" (Syajaratun)! Berikan contoh sederhana dari lingkungan sekitarmu!</div><div class="q-note">Petunjuk: Hubungkan dengan konsep akar, batang, cabang, dan ranting yang telah dipelajari.</div></div>
+                <div class="essay-question"><div class="q-text">2. Sebutkan dan jelaskan 4 dimensi hakikat sejarah! Berikan masing-masing 1 contoh!</div><div class="q-note">Petunjuk: Gunakan pemahaman tentang Peristiwa, Kisah, Seni, dan Ilmu.</div></div>
+                <div class="essay-question"><div class="q-text">3. Apa yang dimaksud dengan kegunaan sejarah yang bersifat edukatif? Berikan 2 contohnya dalam kehidupan sehari-hari!</div><div class="q-note">Petunjuk: Hubungkan dengan Guna Sejarah.</div></div>
+                <div class="essay-question"><div class="q-text">4. Menurut R. Moh. Ali, sejarah adalah "perubahan". Jelaskan maksud pernyataan tersebut dan berikan contoh perubahan dalam masyarakat yang kamu ketahui!</div><div class="q-note">Petunjuk: Gunakan pemahaman dari kartu R. Moh. Ali.</div></div>
                 <div class="essay-question"><div class="q-text">5. Mengapa kita perlu mempelajari sejarah? Berikan minimal 3 alasan yang kamu yakini!</div><div class="q-note">Petunjuk: Hubungkan dengan manfaat sejarah dan pesan "Bangsa yang besar adalah bangsa yang menghargai sejarahnya".</div></div>
             </div>
             <div style="background:var(--bg-primary);border-radius:16px;padding:20px 18px;border:2px solid var(--gold);text-align:center;">
@@ -2792,7 +2835,7 @@
                         <p style="color:var(--gold);font-weight:700;margin-bottom:8px;"><i class="fas fa-key"></i> KUNCI JAWABAN</p>
                         <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:6px;"><strong style="color:var(--gold);">Pilihan Ganda:</strong> 1.B, 2.B, 3.C, 4.D, 5.B, 6.B, 7.C, 8.C, 9.A, 10.B, 11.C, 12.B, 13.B, 14.C, 15.C</p>
                         <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:6px;"><strong style="color:var(--gold);">Benar-Salah:</strong> 1.S, 2.B, 3.B, 4.S, 5.B, 6.S, 7.B, 8.S, 9.B, 10.B</p>
-                        <p style="color:var(--text-secondary);font-size:0.9rem;"><strong style="color:var(--gold);">Essay:</strong> Jawaban bebas namun harus sesuai dengan konsep yang telah dipelajari pada halaman 3-9.</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;"><strong style="color:var(--gold);">Essay:</strong> Jawaban bebas namun harus sesuai dengan konsep yang telah dipelajari.</p>
                     </div>
                 </div>
                 <p id="passwordError" style="color:#e74c3c;font-size:0.85rem;margin-top:8px;display:none;">Password salah! Silakan coba lagi.</p>
@@ -2817,9 +2860,9 @@
             </script>
         </section>
 
-        <!-- ========== SECTION 12 : REFLEKSI ========== -->
-        <section id="section12" class="section">
-            <div class="section-header"><div class="num">13</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Materi <span class="meeting-badge">Pertemuan 11</span></small></h2></div>
+        <!-- ========== SECTION 9 : REFLEKSI (Halaman 13) ========== -->
+        <section id="section9" class="section">
+            <div class="section-header"><div class="num">10</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Materi <span class="meeting-badge">Pertemuan 8</span></small></h2></div>
             <div class="card" style="background:var(--bg-secondary);border:1px solid var(--gold);">
                 <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan Hari Ini?</h3>
                 <ul class="refleksi-list">
@@ -2839,9 +2882,9 @@
             <div class="celebration-box"><h3>🎉 Selamat!</h3><p>Kamu telah menyelesaikan materi <strong>Memahami Prinsip Ilmu Sejarah</strong>.</p><div style="margin-top:16px;"><span class="next-step-btn" style="display:inline-block;background:var(--gold);color:#121212;padding:12px 32px;border-radius:60px;font-weight:700;font-size:1rem;border:none;cursor:default;">➡️ Lanjutkan ke materi berikutnya: Ruang dan Waktu dalam Sejarah</span></div><p style="margin-top:12px;font-size:0.85rem;color:#888;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Siapkan dirimu untuk bab selanjutnya!</p></div>
         </section>
 
-        <!-- ========== SECTION 13 : REFERENSI ========== -->
-        <section id="section13" class="section">
-            <div class="section-header"><div class="num">14</div><h2>Referensi <small>Daftar Pustaka</small></h2></div>
+        <!-- ========== SECTION 10 : REFERENSI (Halaman 14) ========== -->
+        <section id="section10" class="section">
+            <div class="section-header"><div class="num">11</div><h2>Referensi <small>Daftar Pustaka</small></h2></div>
             <ul class="ref-list">
                 <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran Mata Pelajaran Sejarah Fase E-Fase F, BSKAP Kemendikbudristek (2022).</li>
                 <li><i class="fas fa-book"></i> Poerwodarminta, W.J.S. <em>Kamus Umum Bahasa Indonesia</em>. Jakarta: Balai Pustaka.</li>
@@ -2866,23 +2909,19 @@
                 <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
                 <div class="page-numbers" id="pageNumbers"></div>
                 <button id="nextBtn">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-                <span class="counter" id="slideCounter">1 / 14</span>
+                <span class="counter" id="slideCounter">1 / 11</span>
             </div>
         </div>
-
     </main>
 
     <script>
         (function() {
-            // ============================================================
-            // LOADER — SUPER KEREN 3D + SPARKLE + NEON
-            // ============================================================
+            // ===== LOADER =====
             const loader = document.getElementById('loader');
             const percentText = document.getElementById('loaderPercent');
             const subText = document.getElementById('loaderSub');
             const mainText = document.getElementById('loaderText');
 
-            // Buat bintang background
             const starsContainer = document.getElementById('loaderStars');
             for (let i = 0; i < 40; i++) {
                 const star = document.createElement('i');
@@ -2895,7 +2934,6 @@
                 starsContainer.appendChild(star);
             }
 
-            // Buat sparkle particles
             const sparklesContainer = document.getElementById('loaderSparkles');
             for (let i = 0; i < 20; i++) {
                 const sp = document.createElement('span');
@@ -2915,12 +2953,10 @@
                 sparklesContainer.appendChild(sp);
             }
 
-            // Progress
             let progress = 0;
             const totalDuration = 3200;
             const interval = 30;
             const step = 100 / (totalDuration / interval);
-
             const messages = [
                 'Menyiapkan petualangan sejarahmu...',
                 'Membuka lembaran masa lalu...',
@@ -2935,18 +2971,13 @@
                 if (progress > 100) progress = 100;
                 const pct = Math.round(progress);
                 percentText.textContent = pct + '%';
-
-                // Update sub text
                 const idx = Math.min(Math.floor(progress / 18), messages.length - 1);
                 subText.textContent = messages[idx] || messages[0];
-
-                // Update main text glow
                 if (progress > 80) {
                     mainText.textContent = '✨ SIAP! ✨';
                     mainText.style.animation = 'none';
                     mainText.style.textShadow = '0 0 40px rgba(212,175,55,0.9), 0 0 80px rgba(212,175,55,0.5)';
                 }
-
                 if (progress < 100) {
                     requestAnimationFrame(updateLoader);
                 } else {
@@ -2958,12 +2989,9 @@
                     }, 400);
                 }
             }
-
             setTimeout(updateLoader, 300);
 
-            // ============================================================
-            // PARTIKEL BINTANG (tetap)
-            // ============================================================
+            // ===== PARTIKEL BINTANG =====
             const starContainer = document.getElementById('particleContainer');
             const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BD6', '#845EC2', '#FF9671', '#00C9A7', '#F9ED69',
                 '#FF5E5B', '#3B9C9C', '#B83B5E', '#2C73D2', '#FFC75F', '#00B4D8', '#F28482'
@@ -2977,14 +3005,14 @@
                 star.style.fontSize = (0.5 + Math.random() * 1.2) + 'rem';
                 star.style.left = (Math.random() * 100) + '%';
                 star.style.top = (Math.random() * 100) + '%';
-                const tx1 = (Math.random() - 0.5) * 600;
-                const ty1 = (Math.random() - 0.5) * 400;
-                const tx2 = (Math.random() - 0.5) * 700;
-                const ty2 = (Math.random() - 0.5) * 500;
-                const tx3 = (Math.random() - 0.5) * 500;
-                const ty3 = (Math.random() - 0.5) * 600;
-                const tx4 = (Math.random() - 0.5) * 800;
-                const ty4 = (Math.random() - 0.5) * 500;
+                const tx1 = (Math.random() - 0.5) * 600,
+                    ty1 = (Math.random() - 0.5) * 400;
+                const tx2 = (Math.random() - 0.5) * 700,
+                    ty2 = (Math.random() - 0.5) * 500;
+                const tx3 = (Math.random() - 0.5) * 500,
+                    ty3 = (Math.random() - 0.5) * 600;
+                const tx4 = (Math.random() - 0.5) * 800,
+                    ty4 = (Math.random() - 0.5) * 500;
                 star.style.setProperty('--tx1', tx1 + 'px');
                 star.style.setProperty('--ty1', ty1 + 'px');
                 star.style.setProperty('--tx2', tx2 + 'px');
@@ -2998,9 +3026,7 @@
                 starContainer.appendChild(star);
             }
 
-            // ============================================================
-            // MODAL
-            // ============================================================
+            // ===== MODAL =====
             window.openModal = function(src, caption) {
                 const modal = document.getElementById('imageModal');
                 const img = document.getElementById('modalImage');
@@ -3016,9 +3042,7 @@
                 if (e.key === 'Escape') closeModal();
             });
 
-            // ============================================================
-            // THEME
-            // ============================================================
+            // ===== THEME =====
             window.toggleTheme = function() {
                 document.body.classList.toggle('light-mode');
                 const icon = document.getElementById('themeIcon');
@@ -3029,9 +3053,7 @@
             };
             document.getElementById('sidebarThemeBtn')?.addEventListener('click', toggleTheme);
 
-            // ============================================================
-            // SIDEBAR
-            // ============================================================
+            // ===== SIDEBAR =====
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
             const hamburger = document.getElementById('hamburgerBtn');
@@ -3048,12 +3070,23 @@
             };
             overlay.addEventListener('click', closeSidebar);
 
-            // ============================================================
-            // NAVIGATION DATA (urutan halaman sudah sesuai: 1=CP, 2=Pengertian, 3=ManusiaRuangWaktu, 4=DiakronikSinkronik, 5=DefinisiAhli, 6=HakikatSejarah, dst)
-            // ============================================================
-            const sections = document.querySelectorAll('.section');
-            const total = sections.length;
+            // ===== NAVIGATION DATA =====
+            const total = 11;
             let current = 0;
+            const navData = [
+                { label: 'Beranda', icon: 'fa-home', color: '#f7971e' },
+                { label: 'Komponen Pembelajaran', icon: 'fa-layer-group', color: '#00b09b' },
+                { label: 'Pertemuan 1: Pengertian & Konsep Dasar', icon: 'fa-book-open', color: '#2193b0' },
+                { label: 'Pertemuan 2: Berpikir Sejarah & Ahli (1)', icon: 'fa-user-graduate', color: '#cc2b5e' },
+                { label: 'Pertemuan 3: Ahli (2) & Hakikat Sejarah', icon: 'fa-brain', color: '#396afc' },
+                { label: 'Pertemuan 4: Ruang Lingkup & Guna Sejarah', icon: 'fa-globe-asia', color: '#4facfe' },
+                { label: 'Pertemuan 5: Metode Sejarah', icon: 'fa-microscope', color: '#43e97b' },
+                { label: 'Aktivitas', icon: 'fa-tree', color: '#fa709a' },
+                { label: 'Asesmen', icon: 'fa-clipboard-list', color: '#30cfd0' },
+                { label: 'Refleksi', icon: 'fa-comment-dots', color: '#a8edea' },
+                { label: 'Referensi', icon: 'fa-book', color: '#ff9a9e' }
+            ];
+
             const navList = document.getElementById('navLinks');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
@@ -3061,23 +3094,6 @@
             const progressBar = document.getElementById('progressBar');
             const navButtons = document.getElementById('navButtons');
             const pageNumbers = document.getElementById('pageNumbers');
-
-            const navData = [
-                { label: 'Beranda', icon: 'fa-home', color: '#f7971e' },
-                { label: 'Komponen Pembelajaran', icon: 'fa-layer-group', color: '#00b09b' },
-                { label: 'Pengertian Sejarah', icon: 'fa-book-open', color: '#2193b0' },
-                { label: 'Manusia, Ruang, Waktu', icon: 'fa-cubes', color: '#cc2b5e' },
-                { label: 'Diakronik & Sinkronik', icon: 'fa-arrows-left-right', color: '#f12711' },
-                { label: 'Definisi Para Ahli', icon: 'fa-user-graduate', color: '#11998e' },
-                { label: 'Hakikat Sejarah', icon: 'fa-brain', color: '#396afc' },
-                { label: 'Ruang Lingkup', icon: 'fa-globe-asia', color: '#f093fb' },
-                { label: 'Guna Sejarah', icon: 'fa-question-circle', color: '#4facfe' },
-                { label: 'Metode Sejarah', icon: 'fa-microscope', color: '#43e97b' },
-                { label: 'Aktivitas', icon: 'fa-tree', color: '#fa709a' },
-                { label: 'Asesmen', icon: 'fa-clipboard-list', color: '#30cfd0' },
-                { label: 'Refleksi', icon: 'fa-comment-dots', color: '#a8edea' },
-                { label: 'Referensi', icon: 'fa-book', color: '#ff9a9e' }
-            ];
 
             function buildSidebar() {
                 navList.innerHTML = '';
@@ -3115,9 +3131,7 @@
                 });
             }
 
-            // ============================================================
-            // SEARCH
-            // ============================================================
+            // ===== SEARCH =====
             const searchInput = document.getElementById('sidebarSearch');
             const clearBtn = document.getElementById('searchClear');
             searchInput.addEventListener('input', function() {
@@ -3144,9 +3158,9 @@
                 }
             });
 
-            // ============================================================
-            // NAVIGATION FUNCTIONS
-            // ============================================================
+            // ===== NAVIGATION =====
+            const sections = document.querySelectorAll('.section');
+
             function updateUI(index) {
                 sections.forEach((el, i) => el.classList.toggle('active', i === index));
                 current = index;
@@ -3188,35 +3202,23 @@
             nextBtn.addEventListener('click', () => { if (current < total - 1) updateUI(current + 1); });
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    if (current < total - 1) updateUI(current + 1);
-                }
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    if (current > 0) updateUI(current - 1);
-                }
-                if (e.key === 'Home' && !e.ctrlKey && !e.metaKey) {
-                    e.preventDefault();
-                    navigateTo(0);
-                }
-                if (e.key === 'End' && !e.ctrlKey && !e.metaKey) {
-                    e.preventDefault();
-                    navigateTo(total - 1);
-                }
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); if (current < total -
+                        1) updateUI(current + 1); }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); if (current > 0) updateUI(
+                        current - 1); }
+                if (e.key === 'Home' && !e.ctrlKey && !e.metaKey) { e.preventDefault();
+                    navigateTo(0); }
+                if (e.key === 'End' && !e.ctrlKey && !e.metaKey) { e.preventDefault();
+                    navigateTo(total - 1); }
             });
 
-            // ============================================================
-            // ACCORDION
-            // ============================================================
+            // ===== ACCORDION =====
             window.toggleAccordion = function(header) {
                 const item = header.closest('.accordion-item');
                 if (item) item.classList.toggle('open');
             };
 
-            // ============================================================
-            // TABS
-            // ============================================================
+            // ===== TABS =====
             document.querySelectorAll('.etym-tabs button').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.etym-tabs button').forEach(b => b.classList.remove('active'));
@@ -3227,32 +3229,9 @@
                 });
             });
 
-            // ============================================================
-            // KUNCI JAWABAN
-            // ============================================================
-            window.toggleKunci = function() {
-                const password = document.getElementById('passwordInput').value;
-                const container = document.getElementById('kunciContainer');
-                const error = document.getElementById('passwordError');
-                if (password === '1234567890') {
-                    container.style.display = 'block';
-                    error.style.display = 'none';
-                    document.getElementById('passwordInput').value = '';
-                } else {
-                    error.style.display = 'block';
-                    container.style.display = 'none';
-                }
-            };
-            document.getElementById('passwordInput')?.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') toggleKunci();
-            });
-
-            // ============================================================
-            // INIT
-            // ============================================================
+            // ===== INIT =====
             updateUI(0);
         })();
     </script>
-
 </body>
 </html>
