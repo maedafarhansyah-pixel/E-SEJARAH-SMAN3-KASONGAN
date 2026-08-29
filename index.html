@@ -1601,7 +1601,7 @@
         }
 
         /* ============================================================
-           RESPONSIVE
+           RESPONSIVE — PERBAIKAN HP
            ============================================================ */
         @media (max-width: 899px) {
             .cover-wrapper {
@@ -1649,12 +1649,33 @@
             .main-content {
                 padding: 16px 12px 80px;
             }
+
+            /* PERBAIKAN NAVIGASI CEPAT UNTUK HP — lebih kecil dan proporsional */
             .quick-nav {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 16px;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 14px;
+                margin: 24px 0 16px;
+                padding: 6px 0;
+            }
+            .quick-nav-card {
+                padding: 14px 10px 12px;
+                border-radius: 12px;
             }
             .quick-nav-card .card-number {
-                font-size: 2.4rem;
+                font-size: 2rem;
+                margin-bottom: 2px;
+            }
+            .quick-nav-card .card-title {
+                font-size: 0.8rem;
+            }
+            .quick-nav-card .card-desc {
+                font-size: 0.65rem;
+            }
+            .quick-nav-card .card-badge {
+                font-size: 0.45rem;
+                padding: 1px 6px;
+                top: 6px;
+                right: 6px;
             }
         }
 
@@ -1683,12 +1704,30 @@
                 font-size: 0.85rem;
                 padding: 8px 14px;
             }
+            /* NAVIGASI CEPAT HP KECIL */
             .quick-nav {
                 grid-template-columns: 1fr 1fr;
-                gap: 12px;
+                gap: 10px;
+                margin: 18px 0 12px;
+            }
+            .quick-nav-card {
+                padding: 10px 8px 10px;
+                border-radius: 10px;
             }
             .quick-nav-card .card-number {
-                font-size: 2rem;
+                font-size: 1.6rem;
+            }
+            .quick-nav-card .card-title {
+                font-size: 0.7rem;
+            }
+            .quick-nav-card .card-desc {
+                font-size: 0.55rem;
+            }
+            .quick-nav-card .card-badge {
+                font-size: 0.4rem;
+                padding: 1px 4px;
+                top: 4px;
+                right: 4px;
             }
         }
 
