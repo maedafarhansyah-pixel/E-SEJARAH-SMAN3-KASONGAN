@@ -27,10 +27,6 @@
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --radius: 16px;
-            --sidebar-width: 68px;
-            --sidebar-expanded: 260px;
-            --sidebar-bg: rgba(26, 26, 46, 0.88);
-            --sidebar-border: rgba(212, 175, 55, 0.12);
             --glow-gold: 0 0 30px rgba(212, 175, 55, 0.15);
         }
         .light-mode {
@@ -41,8 +37,6 @@
             --text-primary: #1a1a2e;
             --text-secondary: #3a3a4a;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --sidebar-bg: rgba(232, 224, 216, 0.92);
-            --sidebar-border: rgba(212, 175, 55, 0.2);
             --glow-gold: 0 0 30px rgba(212, 175, 55, 0.08);
         }
         body {
@@ -57,7 +51,7 @@
         }
 
         /* ============================================================
-           LOADER
+           LOADER (tetap sama)
            ============================================================ */
         #loader {
             position: fixed;
@@ -251,7 +245,7 @@
         }
 
         /* ============================================================
-           PARTIKEL BINTANG
+           PARTIKEL BINTANG (tetap)
            ============================================================ */
         .particle-container {
             position: fixed;
@@ -294,7 +288,7 @@
         }
 
         /* ============================================================
-           MOBILE HEADER
+           MOBILE HEADER (tanpa hamburger)
            ============================================================ */
         .mobile-header {
             position: fixed;
@@ -337,439 +331,18 @@
             color: var(--gold);
             background: rgba(212, 175, 55, 0.1);
         }
-        .hamburger {
+        .home-btn-mobile {
+            background: none;
+            border: none;
+            color: var(--gold);
             font-size: 1.6rem;
-        }
-
-        /* ============================================================
-           SIDEBAR
-           ============================================================ */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: var(--sidebar-bg);
-            backdrop-filter: blur(20px) saturate(1.4);
-            -webkit-backdrop-filter: blur(20px) saturate(1.4);
-            border-right: 1px solid var(--sidebar-border);
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
-            transition: width var(--transition), transform var(--transition), background var(--transition);
-            overflow: hidden;
-            transform: translateX(-100%);
-            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.5);
-        }
-        .sidebar.open {
-            transform: translateX(0);
-            width: var(--sidebar-expanded);
-        }
-        .sidebar-scroll {
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 8px 0 12px 0;
-            scrollbar-width: thin;
-            scrollbar-color: var(--gold) transparent;
-        }
-        .sidebar-scroll::-webkit-scrollbar {
-            width: 3px;
-        }
-        .sidebar-scroll::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .sidebar-scroll::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 10px;
-        }
-        .sidebar-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 14px 14px 14px;
-            border-bottom: 1px solid var(--sidebar-border);
-            flex-shrink: 0;
-            transition: padding var(--transition);
-            cursor: default;
-        }
-        .sidebar-profile .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #121212;
-            flex-shrink: 0;
-            box-shadow: 0 0 0 2px var(--bg-primary), 0 4px 16px rgba(212, 175, 55, 0.3);
-            transition: transform var(--transition);
-        }
-        .sidebar-profile .info {
-            opacity: 0;
-            transition: opacity 0.25s;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        .sidebar.open .sidebar-profile .info,
-        .sidebar:hover .sidebar-profile .info {
-            opacity: 1;
-        }
-        .sidebar-profile .info .name {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            letter-spacing: 0.3px;
-        }
-        .sidebar-profile .info .role {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 1px;
-        }
-        .sidebar-profile .info .role .dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #2ecc71;
-            animation: pulse-dot 2s infinite;
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.4;
-                transform: scale(0.8);
-            }
-        }
-        .sidebar-search {
-            padding: 10px 14px 8px 14px;
-            flex-shrink: 0;
-            border-bottom: 1px solid var(--sidebar-border);
-            transition: padding var(--transition);
-        }
-        .sidebar-search .search-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            border: 1px solid transparent;
-            transition: border-color var(--transition), background var(--transition);
-            overflow: hidden;
-        }
-        .sidebar-search .search-wrap:focus-within {
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.08);
-        }
-        .sidebar-search .search-wrap i {
-            position: absolute;
-            left: 12px;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            opacity: 0.6;
-            transition: opacity var(--transition);
-        }
-        .sidebar-search .search-wrap input {
-            background: transparent;
-            border: none;
-            padding: 7px 12px 7px 36px;
-            width: 100%;
-            color: var(--text-primary);
-            font-size: 0.8rem;
-            outline: none;
-            font-family: inherit;
-        }
-        .sidebar-search .search-wrap input::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.5;
-            font-size: 0.75rem;
-        }
-        .sidebar-search .search-wrap .clear-btn {
-            position: absolute;
-            right: 8px;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 0.7rem;
             cursor: pointer;
-            opacity: 0;
-            transition: opacity var(--transition);
-            padding: 4px;
-        }
-        .sidebar-search .search-wrap .clear-btn.visible {
-            opacity: 0.6;
-        }
-        .sidebar-search .search-wrap .clear-btn.visible:hover {
-            opacity: 1;
-            color: var(--gold);
-        }
-        .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap input {
-            padding: 7px 12px 7px 36px;
-            font-size: 0;
-        }
-        .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap i {
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0.8;
-        }
-        .sidebar:not(.open):not(:hover) .sidebar-search .search-wrap input::placeholder {
-            font-size: 0;
-        }
-        .sidebar-nav {
-            list-style: none;
-            padding: 8px 10px 4px 10px;
-            margin: 0;
-        }
-        .sidebar-nav .nav-section-label {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--text-secondary);
-            opacity: 0.4;
-            padding: 8px 8px 4px 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            transition: opacity var(--transition);
-            font-weight: 700;
-        }
-        .sidebar:not(.open):not(:hover) .nav-section-label {
-            opacity: 0;
-            height: 0;
-            padding: 0 8px;
-            margin: 0;
-        }
-        .sidebar-nav li {
-            margin: 1px 0;
-        }
-        .sidebar-nav li a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 7px 10px 7px 10px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            white-space: nowrap;
-            border-radius: 12px;
-            transition: all var(--transition);
-            position: relative;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            width: 100%;
-            text-align: left;
-            font-family: inherit;
-        }
-        .sidebar-nav li a .nav-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #fff;
-            flex-shrink: 0;
-            transition: all var(--transition);
-            font-size: 0.85rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-            position: relative;
-        }
-        .sidebar-nav li a .nav-label {
-            opacity: 0;
-            transition: opacity 0.25s;
-            flex: 1;
-            font-size: 0.82rem;
-            letter-spacing: 0.2px;
-        }
-        .sidebar.open .sidebar-nav li a .nav-label,
-        .sidebar:hover .sidebar-nav li a .nav-label {
-            opacity: 1;
-        }
-        .sidebar-nav li a .progress-ring {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            flex-shrink: 0;
-            opacity: 0;
-            transition: opacity 0.25s;
-        }
-        .sidebar.open .sidebar-nav li a .progress-ring,
-        .sidebar:hover .sidebar-nav li a .progress-ring {
-            opacity: 1;
-        }
-        .sidebar-nav li a .progress-ring .fill {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            transition: clip-path 0.6s ease;
-        }
-        .sidebar-nav li a:hover {
-            background: rgba(212, 175, 55, 0.08);
-            color: var(--text-primary);
-            transform: translateX(2px);
-        }
-        .sidebar-nav li a:hover .nav-icon {
-            transform: scale(1.06) translateY(-1px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-        .sidebar-nav li a.active {
-            background: rgba(212, 175, 55, 0.12);
-            color: var(--gold);
-            box-shadow: inset 3px 0 0 var(--gold);
-        }
-        .sidebar-nav li a.active .nav-icon {
-            transform: scale(1.08);
-            box-shadow: 0 0 0 2px var(--gold), 0 4px 18px rgba(212, 175, 55, 0.35);
-        }
-        .sidebar-nav li a.active .nav-label {
-            color: var(--gold);
-            font-weight: 600;
-        }
-        .sidebar-nav li a .tooltip {
-            display: none;
-            position: absolute;
-            left: calc(100% + 14px);
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            padding: 4px 14px;
+            padding: 4px 8px;
             border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--sidebar-border);
-            pointer-events: none;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .sidebar-nav li a .tooltip::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 6px solid transparent;
-            border-right-color: var(--bg-secondary);
-        }
-        .sidebar:not(.open):not(:hover) .sidebar-nav li a:hover .tooltip {
-            display: block;
-            opacity: 1;
-        }
-        .sidebar-footer {
-            flex-shrink: 0;
-            padding: 10px 14px 14px 14px;
-            border-top: 1px solid var(--sidebar-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .sidebar-footer .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.6rem;
-            color: var(--text-secondary);
-            opacity: 0.5;
-            white-space: nowrap;
-            overflow: hidden;
-            transition: opacity var(--transition);
-        }
-        .sidebar-footer .footer-left .version {
-            font-weight: 600;
-            color: var(--gold);
-            opacity: 0.7;
-        }
-        .sidebar-footer .footer-actions {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .sidebar-footer .footer-actions button {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 4px 6px;
-            border-radius: 8px;
-            transition: all var(--transition);
-            opacity: 0.5;
-        }
-        .sidebar-footer .footer-actions button:hover {
-            color: var(--gold);
-            opacity: 1;
-            background: rgba(212, 175, 55, 0.08);
-        }
-        .sidebar:not(.open):not(:hover) .sidebar-footer .footer-left {
-            opacity: 0;
-            width: 0;
-            overflow: hidden;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity var(--transition);
-            backdrop-filter: blur(4px);
-        }
-        .sidebar-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* ============================================================
-           HOME FLOAT
-           ============================================================ */
-        .home-float {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            z-index: 999;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gold);
-            color: #121212;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
-            border: none;
-            cursor: pointer;
             transition: var(--transition);
         }
-        .home-float:hover {
-            transform: scale(1.12);
-            background: var(--gold-light);
+        .home-btn-mobile:hover {
+            background: rgba(212, 175, 55, 0.1);
         }
 
         /* ============================================================
@@ -779,9 +352,118 @@
             padding: 16px 16px 80px 16px;
             max-width: 1100px;
             margin: 0 auto;
-            transition: margin-left var(--transition);
             position: relative;
             z-index: 1;
+        }
+
+        /* ============================================================
+           NAVIGASI CEPAT DI BERANDA (GLASSMORPHISM + ANIMASI ANGKA)
+           ============================================================ */
+        .quick-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 18px;
+            margin: 30px 0 20px;
+            padding: 10px 0;
+        }
+        .quick-nav-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 20px 12px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            animation: cardReveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            animation-delay: calc(0.04s * var(--i, 0));
+        }
+        .quick-nav-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            padding: 2px;
+            background: conic-gradient(from var(--angle, 0deg), transparent 0%, var(--gold) 30%, var(--gold-light) 60%, transparent 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: --angle 0.6s ease;
+        }
+        .quick-nav-card:hover::before {
+            --angle: 360deg;
+        }
+        .quick-nav-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.2), var(--shadow);
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .quick-nav-card .card-number {
+            display: block;
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .quick-nav-card:hover .card-number {
+            transform: scale(1.12) rotate(-2deg);
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+        }
+        .quick-nav-card .card-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .quick-nav-card .card-desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1.3;
+        }
+        .quick-nav-card .card-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--gold);
+            color: #121212;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
+        }
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @keyframes cardReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         /* ============================================================
@@ -1939,7 +1621,7 @@
         }
 
         /* ============================================================
-           RESPONSIVE — UTAMA
+           RESPONSIVE
            ============================================================ */
         @media (max-width: 899px) {
             .cover-wrapper {
@@ -1985,124 +1667,52 @@
                 padding: 12px 32px;
                 font-size: 1rem;
             }
-            .sidebar {
-                width: 280px;
-                transform: translateX(-100%);
-            }
-            .sidebar.open {
-                transform: translateX(0);
-                width: 280px;
-            }
-            .sidebar .sidebar-profile .info {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .nav-label {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .progress-ring {
-                opacity: 1;
-            }
-            .sidebar .sidebar-footer .footer-left {
-                opacity: 0.5;
-            }
-            .sidebar .nav-section-label {
-                opacity: 0.4;
-                height: auto;
-                padding: 8px 8px 4px 8px;
-                margin: 0;
-            }
-            .sidebar .sidebar-search .search-wrap input {
-                font-size: 0.8rem;
-            }
-            .sidebar .sidebar-search .search-wrap input::placeholder {
-                font-size: 0.75rem;
-            }
-            .sidebar .sidebar-search .search-wrap i {
-                left: 12px;
-                transform: none;
-                opacity: 0.6;
-            }
-            .home-float {
-                bottom: 80px;
-                right: 12px;
-                width: 44px;
-                height: 44px;
-                font-size: 1.2rem;
-            }
-            .sidebar-nav li a .tooltip {
-                display: none !important;
-            }
-        }
-
-        @media (min-width: 900px) {
-            body {
-                padding-top: 0;
-            }
-            .mobile-header {
-                display: none;
-            }
-            .sidebar {
-                transform: translateX(0);
-                width: var(--sidebar-width);
-            }
-            .sidebar:hover {
-                width: var(--sidebar-expanded);
-            }
-            .sidebar .sidebar-profile .info {
-                opacity: 0;
-            }
-            .sidebar:hover .sidebar-profile .info {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .nav-label {
-                opacity: 0;
-            }
-            .sidebar:hover .sidebar-nav li a .nav-label {
-                opacity: 1;
-            }
-            .sidebar .sidebar-nav li a .progress-ring {
-                opacity: 0;
-            }
-            .sidebar:hover .sidebar-nav li a .progress-ring {
-                opacity: 1;
-            }
-            .sidebar .sidebar-footer .footer-left {
-                opacity: 0;
-            }
-            .sidebar:hover .sidebar-footer .footer-left {
-                opacity: 0.5;
-            }
-            .sidebar .nav-section-label {
-                opacity: 0;
-                height: 0;
-                padding: 0 8px;
-                margin: 0;
-            }
-            .sidebar:hover .nav-section-label {
-                opacity: 0.4;
-                height: auto;
-                padding: 8px 8px 4px 8px;
-                margin: 0;
-            }
-            .sidebar-overlay {
-                display: none;
-            }
             .main-content {
-                margin-left: var(--sidebar-width);
-                padding: 24px 32px 80px;
-                max-width: 1100px;
+                padding: 16px 12px 80px;
             }
-            .home-float {
-                display: none;
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 12px;
             }
-            .progress-wrap {
-                left: var(--sidebar-width);
+            .quick-nav-card .card-number {
+                font-size: 2rem;
             }
         }
 
-        /* ============================================================
-           GRID RESPONSIF LANJUTAN
-           ============================================================ */
+        @media (max-width: 400px) {
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+            .worksheet-table {
+                grid-template-columns: 1fr;
+            }
+            .worksheet-table .header {
+                text-align: left;
+            }
+            .cover-teacher {
+                text-align: center;
+                padding: 8px 12px;
+            }
+            .cover-logo-group {
+                justify-content: center;
+            }
+            .start-btn {
+                padding: 10px 28px;
+                font-size: 0.95rem;
+            }
+            .geosfer-hover-trigger {
+                font-size: 0.85rem;
+                padding: 8px 14px;
+            }
+            .quick-nav {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .quick-nav-card .card-number {
+                font-size: 1.8rem;
+            }
+        }
+
         @media (min-width: 600px) {
             .grid-2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -2137,8 +1747,15 @@
             .grid-ahli {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .progress-wrap {
-                left: var(--sidebar-width);
+            body {
+                padding-top: 0;
+            }
+            .mobile-header {
+                display: none;
+            }
+            .main-content {
+                padding: 28px 40px 80px;
+                max-width: 1100px;
             }
         }
 
@@ -2147,34 +1764,7 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             .main-content {
-                padding: 28px 40px 80px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .section-header h2 {
-                font-size: 1.1rem;
-            }
-            .worksheet-table {
-                grid-template-columns: 1fr;
-            }
-            .worksheet-table .header {
-                text-align: left;
-            }
-            .cover-teacher {
-                text-align: center;
-                padding: 8px 12px;
-            }
-            .cover-logo-group {
-                justify-content: center;
-            }
-            .start-btn {
-                padding: 10px 28px;
-                font-size: 0.95rem;
-            }
-            .geosfer-hover-trigger {
-                font-size: 0.85rem;
-                padding: 8px 14px;
+                padding: 32px 48px 80px;
             }
         }
 
@@ -2245,10 +1835,10 @@
         </div>
     </div>
 
-    <!-- ===== MOBILE HEADER ===== -->
+    <!-- ===== MOBILE HEADER (tanpa hamburger) ===== -->
     <header class="mobile-header">
         <div style="display:flex;align-items:center;gap:8px;">
-            <button class="home-btn" onclick="navigateTo(0)" style="background:none;border:none;color:var(--gold);font-size:1.6rem;cursor:pointer;">
+            <button class="home-btn-mobile" onclick="navigateTo(0)" title="Beranda">
                 <i class="fas fa-home"></i>
             </button>
             <div class="brand">SEJARAH</div>
@@ -2257,53 +1847,11 @@
             <button onclick="toggleTheme()" title="Ganti tema">
                 <i class="fas fa-moon" id="themeIcon"></i>
             </button>
-            <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
-    <!-- ===== SIDEBAR OVERLAY ===== -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
-    <!-- ===== SIDEBAR ===== -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-profile">
-            <div class="avatar">S</div>
-            <div class="info">
-                <div class="name">SYAHRANI, S.Pd</div>
-                <div class="role"><span class="dot"></span>Guru Sejarah</div>
-            </div>
-        </div>
-        <div class="sidebar-search">
-            <div class="search-wrap">
-                <i class="fas fa-search"></i>
-                <input type="text" id="sidebarSearch" placeholder="Cari materi..." autocomplete="off" />
-                <button class="clear-btn" id="searchClear"><i class="fas fa-times-circle"></i></button>
-            </div>
-        </div>
-        <div class="sidebar-scroll">
-            <ul class="sidebar-nav" id="navLinks"></ul>
-        </div>
-        <div class="sidebar-footer">
-            <div class="footer-left">
-                <span class="version">v3.0</span>
-                <span>•</span>
-                <span>Kelas X</span>
-            </div>
-            <div class="footer-actions">
-                <button onclick="toggleTheme()" title="Ganti tema" id="sidebarThemeBtn">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button onclick="navigateTo(0)" title="Beranda">
-                    <i class="fas fa-home"></i>
-                </button>
-            </div>
-        </div>
-    </aside>
-
     <!-- ===== HOME FLOAT ===== -->
-    <button class="home-float" onclick="navigateTo(0)" title="Kembali ke Beranda">
+    <button class="home-float" onclick="navigateTo(0)" title="Kembali ke Beranda" style="position:fixed;bottom:80px;right:20px;z-index:999;width:50px;height:50px;border-radius:50%;background:var(--gold);color:#121212;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(212,175,55,0.5);border:none;cursor:pointer;transition:var(--transition);">
         <i class="fas fa-home"></i>
     </button>
 
@@ -2346,7 +1894,12 @@
                     </div>
                     <div class="cover-nav-hint">
                         <i class="fas fa-chevron-down" style="color:#555;margin-right:4px;"></i>
-                        Gunakan navigasi di samping atau tombol di atas
+                        Pilih materi di bawah atau gunakan tombol navigasi
+                    </div>
+
+                    <!-- ===== NAVIGASI CEPAT (TANPA IKON, ANGKA MENONJOL) ===== -->
+                    <div class="quick-nav" id="quickNav">
+                        <!-- akan diisi JS -->
                     </div>
                 </div>
                 <div class="cover-right">
@@ -3046,48 +2599,45 @@
             window.toggleTheme = function() {
                 document.body.classList.toggle('light-mode');
                 const icon = document.getElementById('themeIcon');
-                const icon2 = document.querySelector('#sidebarThemeBtn i');
                 const cls = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
                 if (icon) icon.className = cls;
-                if (icon2) icon2.className = cls;
             };
-            document.getElementById('sidebarThemeBtn')?.addEventListener('click', toggleTheme);
-
-            // ===== SIDEBAR =====
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const hamburger = document.getElementById('hamburgerBtn');
-            window.toggleSidebar = function() {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' :
-                    '<i class="fas fa-bars"></i>';
-            };
-            window.closeSidebar = function() {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            };
-            overlay.addEventListener('click', closeSidebar);
 
             // ===== NAVIGATION DATA =====
             const total = 11;
             let current = 0;
             const navData = [
-                { label: 'Beranda', icon: 'fa-home', color: '#f7971e' },
-                { label: 'Komponen Pembelajaran', icon: 'fa-layer-group', color: '#00b09b' },
-                { label: 'Pertemuan 1: Pengertian & Konsep Dasar', icon: 'fa-book-open', color: '#2193b0' },
-                { label: 'Pertemuan 2: Berpikir Sejarah & Ahli (1)', icon: 'fa-user-graduate', color: '#cc2b5e' },
-                { label: 'Pertemuan 3: Ahli (2) & Hakikat Sejarah', icon: 'fa-brain', color: '#396afc' },
-                { label: 'Pertemuan 4: Ruang Lingkup & Guna Sejarah', icon: 'fa-globe-asia', color: '#4facfe' },
-                { label: 'Pertemuan 5: Metode Sejarah', icon: 'fa-microscope', color: '#43e97b' },
-                { label: 'Aktivitas', icon: 'fa-tree', color: '#fa709a' },
-                { label: 'Asesmen', icon: 'fa-clipboard-list', color: '#30cfd0' },
-                { label: 'Refleksi', icon: 'fa-comment-dots', color: '#a8edea' },
-                { label: 'Referensi', icon: 'fa-book', color: '#ff9a9e' }
+                { label: 'Beranda', desc: 'Halaman utama' },
+                { label: 'Komponen Pembelajaran', desc: 'CP, ATP, Indikator' },
+                { label: 'Pertemuan 1', desc: 'Pengertian & Konsep Dasar' },
+                { label: 'Pertemuan 2', desc: 'Berpikir Sejarah & Ahli (1)' },
+                { label: 'Pertemuan 3', desc: 'Ahli (2) & Hakikat Sejarah' },
+                { label: 'Pertemuan 4', desc: 'Ruang Lingkup & Guna Sejarah' },
+                { label: 'Pertemuan 5', desc: 'Metode Sejarah' },
+                { label: 'Aktivitas', desc: 'Silsilah Keluarga' },
+                { label: 'Asesmen', desc: 'Evaluasi Pembelajaran' },
+                { label: 'Refleksi', desc: 'Menyimpulkan Materi' },
+                { label: 'Referensi', desc: 'Daftar Pustaka' }
             ];
 
-            const navList = document.getElementById('navLinks');
+            // ===== QUICK NAV (di beranda) =====
+            const quickNav = document.getElementById('quickNav');
+            navData.forEach((item, i) => {
+                const card = document.createElement('div');
+                card.className = 'quick-nav-card';
+                card.style.setProperty('--i', i);
+                card.innerHTML = `
+                    <span class="card-badge">${i+1}</span>
+                    <span class="card-number">${i+1}</span>
+                    <div class="card-title">${item.label}</div>
+                    <div class="card-desc">${item.desc}</div>
+                `;
+                card.addEventListener('click', () => navigateTo(i));
+                quickNav.appendChild(card);
+            });
+
+            // ===== NAVIGATION =====
+            const sections = document.querySelectorAll('.section');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const counter = document.getElementById('slideCounter');
@@ -3095,76 +2645,9 @@
             const navButtons = document.getElementById('navButtons');
             const pageNumbers = document.getElementById('pageNumbers');
 
-            function buildSidebar() {
-                navList.innerHTML = '';
-                const labelLi = document.createElement('li');
-                labelLi.className = 'nav-section-label';
-                labelLi.textContent = 'Daftar Isi';
-                navList.appendChild(labelLi);
-                navData.forEach((item, i) => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = '#';
-                    a.dataset.index = i;
-                    a.innerHTML = `
-                        <span class="nav-icon" style="background:${item.color};">${i+1}</span>
-                        <span class="nav-label">${item.label}</span>
-                        <span class="progress-ring"><span class="fill" style="clip-path:polygon(0 0, ${(i+1)/total*100}% 0, ${(i+1)/total*100}% 100%, 0 100%);"></span></span>
-                        <span class="tooltip">${item.label}</span>
-                    `;
-                    a.addEventListener('click', (e) => { e.preventDefault();
-                        navigateTo(i); });
-                    li.appendChild(a);
-                    navList.appendChild(li);
-                });
-            }
-            buildSidebar();
-
-            function updateSidebarActive(index) {
-                document.querySelectorAll('#navLinks a').forEach((a, i) => {
-                    a.classList.toggle('active', i === index);
-                    const fill = a.querySelector('.progress-ring .fill');
-                    if (fill) {
-                        const pct = ((i + 1) / total * 100);
-                        fill.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
-                    }
-                });
-            }
-
-            // ===== SEARCH =====
-            const searchInput = document.getElementById('sidebarSearch');
-            const clearBtn = document.getElementById('searchClear');
-            searchInput.addEventListener('input', function() {
-                const q = this.value.toLowerCase().trim();
-                clearBtn.classList.toggle('visible', q.length > 0);
-                document.querySelectorAll('#navLinks li a').forEach(a => {
-                    const label = a.querySelector('.nav-label')?.textContent?.toLowerCase() || '';
-                    a.style.display = label.includes(q) ? '' : 'none';
-                });
-                const label = document.querySelector('.nav-section-label');
-                const visible = document.querySelectorAll('#navLinks li a[style*="display: none"]').length < document
-                    .querySelectorAll('#navLinks li a').length;
-                if (label) label.style.display = visible ? '' : 'none';
-            });
-            clearBtn.addEventListener('click', function() {
-                searchInput.value = '';
-                searchInput.dispatchEvent(new Event('input'));
-                searchInput.focus();
-            });
-            document.addEventListener('keydown', function(e) {
-                if ((e.ctrlKey || e.metaKey) && e.key === '/') {
-                    e.preventDefault();
-                    searchInput.focus();
-                }
-            });
-
-            // ===== NAVIGATION =====
-            const sections = document.querySelectorAll('.section');
-
             function updateUI(index) {
                 sections.forEach((el, i) => el.classList.toggle('active', i === index));
                 current = index;
-                updateSidebarActive(index);
                 pageNumbers.innerHTML = '';
                 for (let i = 0; i < total; i++) {
                     const a = document.createElement('a');
@@ -3184,14 +2667,6 @@
                 if (index === total - 1) nextBtn.style.display = 'none';
                 else nextBtn.style.display = 'flex';
                 document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                closeSidebar();
-                document.querySelectorAll('#navLinks a').forEach((a, i) => {
-                    const fill = a.querySelector('.progress-ring .fill');
-                    if (fill) {
-                        const pct = ((i + 1) / total * 100);
-                        fill.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
-                    }
-                });
             }
 
             window.navigateTo = function(index) {
