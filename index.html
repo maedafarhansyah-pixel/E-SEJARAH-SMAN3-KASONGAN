@@ -51,7 +51,7 @@
         }
 
         /* ============================================================
-           LOADER (tetap sama)
+           LOADER (tetap)
            ============================================================ */
         #loader {
             position: fixed;
@@ -357,7 +357,7 @@
         }
 
         /* ============================================================
-           NAVIGASI CEPAT DI BERANDA (GLASSMORPHISM + ANIMASI ANGKA)
+           NAVIGASI CEPAT DI BERANDA
            ============================================================ */
         .quick-nav {
             display: grid;
@@ -574,7 +574,7 @@
         }
 
         /* ============================================================
-           COVER — RATA & RESPONSIF
+           COVER — PERBAIKAN JUDUL, SCHOOL, TEACHER
            ============================================================ */
         .cover-wrapper {
             display: flex;
@@ -653,68 +653,83 @@
         .cover-logo-group img:hover {
             transform: scale(1.05);
         }
+
+        /* JUDUL DENGAN EFEK WARNA BERUBAH-UBAH (GRADASI ANIMASI) */
         .cover-title {
             font-size: clamp(2rem, 5vw, 3.6rem);
             font-weight: 800;
             line-height: 1.15;
-            color: var(--text-primary);
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             margin: 8px 0 10px;
             letter-spacing: 1px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold) 100%);
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff9ff3, #feca57, #ff6b6b);
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradientMove 5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
         }
-        .cover-sub {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            color: var(--text-secondary);
-            max-width: 500px;
-            line-height: 1.6;
-            margin-bottom: 16px;
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
+
+        /* SCHOOL DENGAN WARNA GRADASI EMAS YANG MENCOLOK */
         .cover-school {
             font-size: clamp(1.4rem, 3vw, 2.4rem);
             font-weight: 700;
             letter-spacing: 4px;
-            color: var(--text-primary);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #f9d423, #f7971e, #f9d423);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(247, 151, 30, 0.3);
             margin-bottom: 18px;
+            display: inline-block;
         }
+
+        /* TEACHER DAN NIP TANPA KOTAK, HANYA TEKS POLOS DENGAN WARNA YANG TEPAT */
         .cover-teacher {
             font-size: 1rem;
             color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.06);
-            padding: 10px 22px;
-            border-radius: 12px;
-            display: inline-block;
-            backdrop-filter: blur(2px);
-            margin-bottom: 6px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            line-height: 1.6;
-            transition: all var(--transition);
+            padding: 4px 0;
+            margin-bottom: 8px;
             text-align: left;
-        }
-        .cover-teacher:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold);
-            box-shadow: var(--glow-gold);
-        }
-        .cover-teacher .teacher-name {
-            font-weight: 600;
-            color: var(--gold);
-        }
-        .cover-teacher .teacher-nip {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: block;
-            margin-top: 2px;
-            letter-spacing: 0.5px;
+            width: 100%;
+            max-width: 480px;
         }
         .cover-teacher .teacher-label {
             color: var(--text-secondary);
             font-weight: 400;
+            opacity: 0.8;
         }
+        .cover-teacher .teacher-name {
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip {
+            color: #b8d4e3;
+            font-weight: 500;
+            font-size: 1rem;
+            display: block;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip i {
+            color: var(--gold-light);
+            opacity: 0.7;
+            margin-right: 6px;
+        }
+
         .cover-nav-hint {
             font-size: 0.85rem;
             color: #666;
@@ -758,7 +773,7 @@
         }
 
         /* ============================================================
-           KARTU INTERAKTIF
+           SEMUA KONTEN LAIN TETAP UTUH (tidak diubah)
            ============================================================ */
         .card {
             background: var(--bg-card);
@@ -845,9 +860,6 @@
             opacity: 1;
         }
 
-        /* ============================================================
-           GRID RESPONSIF
-           ============================================================ */
         .grid-2,
         .grid-3,
         .grid-4,
@@ -869,9 +881,6 @@
             grid-template-columns: 1fr;
         }
 
-        /* ============================================================
-           ACCORDION
-           ============================================================ */
         .accordion-wrap {
             display: flex;
             flex-direction: column;
@@ -938,9 +947,6 @@
             padding: 18px 20px 20px;
         }
 
-        /* ============================================================
-           TABS
-           ============================================================ */
         .etym-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -991,9 +997,6 @@
             animation: fadeSlide 0.4s ease;
         }
 
-        /* ============================================================
-           HOVER TRIGGER
-           ============================================================ */
         .geosfer-hover-trigger {
             display: inline-block;
             background: var(--bg-card);
@@ -1066,9 +1069,6 @@
             color: var(--gold);
         }
 
-        /* ============================================================
-           MODAL
-           ============================================================ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1150,9 +1150,6 @@
             background: var(--gold-light);
         }
 
-        /* ============================================================
-           DEF BLOCK
-           ============================================================ */
         .def-block {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -1174,9 +1171,6 @@
             margin-right: 6px;
         }
 
-        /* ============================================================
-           ACTIVITY BOX
-           ============================================================ */
         .activity-box {
             background: var(--bg-secondary);
             border-radius: var(--radius);
@@ -1201,9 +1195,6 @@
             color: var(--gold);
         }
 
-        /* ============================================================
-           TABEL
-           ============================================================ */
         .worksheet-table {
             display: grid;
             grid-template-columns: 60px 1fr 1.2fr 2fr;
@@ -1256,9 +1247,6 @@
             color: var(--text-secondary);
         }
 
-        /* ============================================================
-           METHOD STEP
-           ============================================================ */
         .method-step {
             background: var(--bg-card);
             padding: 14px 16px;
@@ -1283,9 +1271,6 @@
             margin-top: 4px;
         }
 
-        /* ============================================================
-           REFLEKSI
-           ============================================================ */
         .refleksi-list {
             list-style: none;
             padding: 0;
@@ -1361,9 +1346,6 @@
             margin-bottom: 10px;
         }
 
-        /* ============================================================
-           ASSESSMENT
-           ============================================================ */
         .assessment-question {
             margin-bottom: 16px;
             padding: 12px 16px;
@@ -1420,9 +1402,6 @@
             font-style: italic;
         }
 
-        /* ============================================================
-           REFERENSI
-           ============================================================ */
         .ref-list {
             list-style: none;
             padding: 0;
@@ -1448,7 +1427,7 @@
         }
 
         /* ============================================================
-           NAVIGATION BUTTONS
+           NAVIGATION BUTTONS (tetap)
            ============================================================ */
         .nav-buttons {
             display: flex;
@@ -1537,9 +1516,6 @@
             box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
         }
 
-        /* ============================================================
-           PROGRESS BAR
-           ============================================================ */
         .progress-wrap {
             position: fixed;
             bottom: 0;
@@ -1581,9 +1557,6 @@
             }
         }
 
-        /* ============================================================
-           BADGE & GLASS
-           ============================================================ */
         .badge-modern {
             display: inline-block;
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
@@ -1659,9 +1632,8 @@
                 font-size: clamp(1.2rem, 4vw, 1.8rem);
             }
             .cover-teacher {
-                font-size: 0.9rem;
-                padding: 8px 16px;
                 text-align: center;
+                max-width: 100%;
             }
             .start-btn {
                 padding: 12px 32px;
@@ -1691,7 +1663,7 @@
             }
             .cover-teacher {
                 text-align: center;
-                padding: 8px 12px;
+                padding: 0;
             }
             .cover-logo-group {
                 justify-content: center;
@@ -1835,7 +1807,7 @@
         </div>
     </div>
 
-    <!-- ===== MOBILE HEADER (tanpa hamburger) ===== -->
+    <!-- ===== MOBILE HEADER ===== -->
     <header class="mobile-header">
         <div style="display:flex;align-items:center;gap:8px;">
             <button class="home-btn-mobile" onclick="navigateTo(0)" title="Beranda">
@@ -1873,22 +1845,25 @@
                         <span class="badge-modern">KELAS X / FASE E</span>
                         <span style="background:#6b4c1a;color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
                     </div>
+                    <!-- JUDUL DENGAN EFEK WARNA BERUBAH -->
                     <h1 class="cover-title">MEMAHAMI PRINSIP<br/>ILMU SEJARAH</h1>
                     <p class="cover-sub">Pengertian, ruang lingkup, dan kegunaan sejarah dalam kehidupan sehari-hari</p>
+                    <!-- SCHOOL DENGAN WARNA GRADASI EMAS -->
                     <div class="cover-school">SMAN 3 KASONGAN</div>
                     <div class="start-btn-wrapper">
                         <button class="start-btn" onclick="navigateTo(1)">
                             <i class="fas fa-play-circle"></i> Mulai Belajar
                         </button>
                     </div>
+                    <!-- TEACHER & NIP TANPA KOTAK -->
                     <div class="cover-teacher">
                         <div>
-                            <i class="fas fa-chalkboard-teacher" style="color:var(--gold);margin-right:6px;"></i>
+                            <i class="fas fa-chalkboard-teacher" style="color:var(--gold-light);margin-right:8px;"></i>
                             <span class="teacher-label">Guru Pengampu :</span>
                             <span class="teacher-name">SYAHRANI, S.Pd</span>
                         </div>
                         <div class="teacher-nip">
-                            <i class="fas fa-id-card" style="color:var(--gold);margin-right:6px;font-size:0.75rem;"></i>
+                            <i class="fas fa-id-card"></i>
                             NIP. 197512172005011016
                         </div>
                     </div>
@@ -1896,11 +1871,8 @@
                         <i class="fas fa-chevron-down" style="color:#555;margin-right:4px;"></i>
                         Pilih materi di bawah atau gunakan tombol navigasi
                     </div>
-
-                    <!-- ===== NAVIGASI CEPAT (TANPA IKON, ANGKA MENONJOL) ===== -->
-                    <div class="quick-nav" id="quickNav">
-                        <!-- akan diisi JS -->
-                    </div>
+                    <!-- ===== NAVIGASI CEPAT ===== -->
+                    <div class="quick-nav" id="quickNav"></div>
                 </div>
                 <div class="cover-right">
                     <div class="image-placeholder">
