@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         /* ============================================================
-           RESET & VARIABEL
+           RESET & VARIABEL (tetap)
            ============================================================ */
         * {
             margin: 0;
@@ -245,7 +245,7 @@
         }
 
         /* ============================================================
-           PARTIKEL BINTANG (tetap)
+           PARTIKEL BINTANG
            ============================================================ */
         .particle-container {
             position: fixed;
@@ -288,7 +288,7 @@
         }
 
         /* ============================================================
-           MOBILE HEADER (tanpa hamburger)
+           MOBILE HEADER
            ============================================================ */
         .mobile-header {
             position: fixed;
@@ -350,20 +350,226 @@
            ============================================================ */
         .main-content {
             padding: 16px 16px 80px 16px;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
         /* ============================================================
-           NAVIGASI CEPAT DI BERANDA
+           COVER — PERBAIKAN TAMPILAN LAPTOP
+           ============================================================ */
+        .cover-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(30px, 5vw, 80px);
+            min-height: 70vh;
+            padding: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+        .cover-left {
+            flex: 1 1 50%;
+            min-width: 320px;
+            max-width: 600px;
+            padding: 10px 0;
+        }
+        .cover-right {
+            flex: 1 1 40%;
+            min-width: 280px;
+            max-width: 500px;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cover-right .image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--bg-secondary);
+            border: 3px dashed var(--gold);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .cover-right .image-placeholder:hover {
+            border-color: var(--gold-light);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), var(--shadow);
+        }
+        .cover-right .image-placeholder img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+        .cover-right .image-placeholder .fallback-content {
+            display: none;
+            z-index: 2;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cover-logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: clamp(16px, 2.5vw, 30px);
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .cover-logo-group img {
+            height: clamp(45px, 5vw, 65px);
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+            transition: transform var(--transition);
+        }
+        .cover-logo-group img:hover {
+            transform: scale(1.05);
+        }
+
+        /* JUDUL DENGAN EFEK WARNA BERUBAH-UBAH (LEBIH BESAR) */
+        .cover-title {
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 10px 0 12px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff9ff3, #feca57, #ff6b6b);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* SCHOOL DENGAN WARNA GRADASI EMAS YANG MENCOLOK */
+        .cover-school {
+            font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #f9d423, #f7971e, #f9d423);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(247, 151, 30, 0.3);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* TEACHER & NIP TANPA KOTAK, TEKS POLOS DENGAN WARNA JELAS */
+        .cover-teacher {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            padding: 4px 0;
+            margin-bottom: 10px;
+            text-align: left;
+            width: 100%;
+            max-width: 500px;
+        }
+        .cover-teacher .teacher-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .cover-teacher .teacher-name {
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip {
+            color: #b8d4e3;
+            font-weight: 500;
+            font-size: 1rem;
+            display: block;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip i {
+            color: var(--gold-light);
+            opacity: 0.7;
+            margin-right: 6px;
+        }
+
+        .cover-sub {
+            font-size: clamp(1rem, 1.3vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .cover-nav-hint {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 14px;
+        }
+        .start-btn {
+            background: var(--gold);
+            color: #121212;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .start-btn:hover::before {
+            transform: translateX(100%);
+        }
+        .start-btn:hover {
+            background: var(--gold-light);
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.6);
+        }
+        .start-btn-wrapper {
+            margin: 20px 0 14px;
+        }
+
+        /* ============================================================
+           NAVIGASI CEPAT — PERBAIKAN UNTUK LAPTOP
            ============================================================ */
         .quick-nav {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 18px;
-            margin: 30px 0 20px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+            margin: 40px 0 20px;
             padding: 10px 0;
         }
         .quick-nav-card {
@@ -372,17 +578,17 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius);
-            padding: 20px 12px 16px;
+            padding: 24px 16px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
             position: relative;
             overflow: hidden;
             opacity: 0;
             transform: translateY(40px) scale(0.96);
             animation: cardReveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            animation-delay: calc(0.04s * var(--i, 0));
+            animation-delay: calc(0.05s * var(--i, 0));
         }
         .quick-nav-card::before {
             content: '';
@@ -401,20 +607,20 @@
             --angle: 360deg;
         }
         .quick-nav-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.2), var(--shadow);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 16px 56px rgba(212, 175, 55, 0.25), var(--shadow);
             border-color: var(--gold);
             background: rgba(255, 255, 255, 0.07);
         }
         .quick-nav-card .card-number {
             display: block;
-            font-size: 2.6rem;
+            font-size: 3rem;
             font-weight: 800;
             line-height: 1.1;
             color: var(--gold);
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             transition: all 0.4s ease;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             letter-spacing: -1px;
             background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
             -webkit-background-clip: text;
@@ -422,30 +628,30 @@
             background-clip: text;
         }
         .quick-nav-card:hover .card-number {
-            transform: scale(1.12) rotate(-2deg);
+            transform: scale(1.15) rotate(-3deg);
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
         }
         .quick-nav-card .card-title {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-primary);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
         .quick-nav-card .card-desc {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             opacity: 0.7;
-            line-height: 1.3;
+            line-height: 1.4;
         }
         .quick-nav-card .card-badge {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 10px;
+            right: 10px;
             background: var(--gold);
             color: #121212;
-            font-size: 0.5rem;
+            font-size: 0.55rem;
             font-weight: 700;
-            padding: 1px 8px;
+            padding: 2px 10px;
             border-radius: 30px;
             letter-spacing: 0.5px;
             opacity: 0.6;
@@ -467,7 +673,7 @@
         }
 
         /* ============================================================
-           SECTIONS
+           SECTIONS (tetap)
            ============================================================ */
         .section {
             display: none;
@@ -574,206 +780,7 @@
         }
 
         /* ============================================================
-           COVER — PERBAIKAN JUDUL, SCHOOL, TEACHER
-           ============================================================ */
-        .cover-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(20px, 4vw, 60px);
-            min-height: 70vh;
-            padding: 20px 0;
-            flex-wrap: wrap;
-        }
-        .cover-left {
-            flex: 1 1 45%;
-            min-width: 280px;
-            max-width: 600px;
-            padding: 10px 0;
-        }
-        .cover-right {
-            flex: 1 1 40%;
-            min-width: 260px;
-            max-width: 480px;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .cover-right .image-placeholder {
-            width: 100%;
-            aspect-ratio: 4/3;
-            background: var(--bg-secondary);
-            border: 3px dashed var(--gold);
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            transition: border-color var(--transition), box-shadow var(--transition);
-        }
-        .cover-right .image-placeholder:hover {
-            border-color: var(--gold-light);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), var(--shadow);
-        }
-        .cover-right .image-placeholder img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 22px;
-        }
-        .cover-right .image-placeholder .fallback-content {
-            display: none;
-            z-index: 2;
-            flex-direction: column;
-            align-items: center;
-        }
-        .cover-logo-group {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: clamp(12px, 2vw, 24px);
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-        }
-        .cover-logo-group img {
-            height: clamp(40px, 5vw, 60px);
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
-            transition: transform var(--transition);
-        }
-        .cover-logo-group img:hover {
-            transform: scale(1.05);
-        }
-
-        /* JUDUL DENGAN EFEK WARNA BERUBAH-UBAH (GRADASI ANIMASI) */
-        .cover-title {
-            font-size: clamp(2rem, 5vw, 3.6rem);
-            font-weight: 800;
-            line-height: 1.15;
-            margin: 8px 0 10px;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff9ff3, #feca57, #ff6b6b);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientMove 5s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-        }
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* SCHOOL DENGAN WARNA GRADASI EMAS YANG MENCOLOK */
-        .cover-school {
-            font-size: clamp(1.4rem, 3vw, 2.4rem);
-            font-weight: 700;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, #f9d423, #f7971e, #f9d423);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(247, 151, 30, 0.3);
-            margin-bottom: 18px;
-            display: inline-block;
-        }
-
-        /* TEACHER DAN NIP TANPA KOTAK, HANYA TEKS POLOS DENGAN WARNA YANG TEPAT */
-        .cover-teacher {
-            font-size: 1rem;
-            color: var(--text-primary);
-            padding: 4px 0;
-            margin-bottom: 8px;
-            text-align: left;
-            width: 100%;
-            max-width: 480px;
-        }
-        .cover-teacher .teacher-label {
-            color: var(--text-secondary);
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .cover-teacher .teacher-name {
-            color: var(--gold-light);
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
-        .cover-teacher .teacher-nip {
-            color: #b8d4e3;
-            font-weight: 500;
-            font-size: 1rem;
-            display: block;
-            margin-top: 2px;
-            letter-spacing: 0.5px;
-        }
-        .cover-teacher .teacher-nip i {
-            color: var(--gold-light);
-            opacity: 0.7;
-            margin-right: 6px;
-        }
-
-        .cover-nav-hint {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 12px;
-        }
-        .start-btn {
-            background: var(--gold);
-            color: #121212;
-            border: none;
-            padding: 14px 44px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-            position: relative;
-            overflow: hidden;
-        }
-        .start-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-        .start-btn:hover::before {
-            transform: translateX(100%);
-        }
-        .start-btn:hover {
-            background: var(--gold-light);
-            transform: scale(1.04);
-            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.6);
-        }
-        .start-btn-wrapper {
-            margin: 16px 0 12px;
-        }
-
-        /* ============================================================
-           SEMUA KONTEN LAIN TETAP UTUH (tidak diubah)
+           KARTU, GRID, ACCORDION, DLL (tetap)
            ============================================================ */
         .card {
             background: var(--bg-card);
@@ -1427,7 +1434,7 @@
         }
 
         /* ============================================================
-           NAVIGATION BUTTONS (tetap)
+           NAVIGATION BUTTONS
            ============================================================ */
         .nav-buttons {
             display: flex;
@@ -1643,11 +1650,11 @@
                 padding: 16px 12px 80px;
             }
             .quick-nav {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 12px;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 16px;
             }
             .quick-nav-card .card-number {
-                font-size: 2rem;
+                font-size: 2.4rem;
             }
         }
 
@@ -1678,10 +1685,10 @@
             }
             .quick-nav {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 12px;
             }
             .quick-nav-card .card-number {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
         }
 
@@ -1726,8 +1733,15 @@
                 display: none;
             }
             .main-content {
-                padding: 28px 40px 80px;
-                max-width: 1100px;
+                padding: 32px 48px 80px;
+                max-width: 1200px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 28px;
+            }
+            .quick-nav-card .card-number {
+                font-size: 3.2rem;
             }
         }
 
@@ -1736,7 +1750,7 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             .main-content {
-                padding: 32px 48px 80px;
+                padding: 40px 60px 80px;
             }
         }
 
@@ -1845,17 +1859,14 @@
                         <span class="badge-modern">KELAS X / FASE E</span>
                         <span style="background:#6b4c1a;color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
                     </div>
-                    <!-- JUDUL DENGAN EFEK WARNA BERUBAH -->
                     <h1 class="cover-title">MEMAHAMI PRINSIP<br/>ILMU SEJARAH</h1>
                     <p class="cover-sub">Pengertian, ruang lingkup, dan kegunaan sejarah dalam kehidupan sehari-hari</p>
-                    <!-- SCHOOL DENGAN WARNA GRADASI EMAS -->
                     <div class="cover-school">SMAN 3 KASONGAN</div>
                     <div class="start-btn-wrapper">
                         <button class="start-btn" onclick="navigateTo(1)">
                             <i class="fas fa-play-circle"></i> Mulai Belajar
                         </button>
                     </div>
-                    <!-- TEACHER & NIP TANPA KOTAK -->
                     <div class="cover-teacher">
                         <div>
                             <i class="fas fa-chalkboard-teacher" style="color:var(--gold-light);margin-right:8px;"></i>
