@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         /* ============================================================
-           RESET & VARIABEL (tetap)
+           RESET & VARIABEL
            ============================================================ */
         * {
             margin: 0;
@@ -357,27 +357,27 @@
         }
 
         /* ============================================================
-           COVER — PERBAIKAN TAMPILAN LAPTOP
+           COVER — DIPERBAIKI UNTUK KESEIMBANGAN LAPTOP
            ============================================================ */
         .cover-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: clamp(30px, 5vw, 80px);
+            gap: clamp(40px, 6vw, 80px);
             min-height: 70vh;
-            padding: 30px 0 20px;
+            padding: 20px 0 10px;
             flex-wrap: wrap;
         }
         .cover-left {
-            flex: 1 1 50%;
+            flex: 1 1 48%;
             min-width: 320px;
-            max-width: 600px;
+            max-width: 560px;
             padding: 10px 0;
         }
         .cover-right {
-            flex: 1 1 40%;
+            flex: 1 1 42%;
             min-width: 280px;
-            max-width: 500px;
+            max-width: 480px;
             padding: 10px 0;
             display: flex;
             justify-content: center;
@@ -424,7 +424,7 @@
             justify-content: flex-start;
             gap: clamp(16px, 2.5vw, 30px);
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .cover-logo-group img {
             height: clamp(45px, 5vw, 65px);
@@ -437,12 +437,12 @@
             transform: scale(1.05);
         }
 
-        /* JUDUL DENGAN EFEK WARNA BERUBAH-UBAH (LEBIH BESAR) */
+        /* JUDUL DENGAN EFEK WARNA BERUBAH-UBAH */
         .cover-title {
-            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            font-size: clamp(2.2rem, 4.8vw, 3.8rem);
             font-weight: 800;
             line-height: 1.15;
-            margin: 10px 0 12px;
+            margin: 8px 0 12px;
             letter-spacing: 1px;
             background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff9ff3, #feca57, #ff6b6b);
             background-size: 300% 100%;
@@ -464,9 +464,9 @@
             }
         }
 
-        /* SCHOOL DENGAN WARNA GRADASI EMAS YANG MENCOLOK */
+        /* SCHOOL DENGAN WARNA GRADASI EMAS */
         .cover-school {
-            font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+            font-size: clamp(1.5rem, 2.8vw, 2.6rem);
             font-weight: 700;
             letter-spacing: 4px;
             background: linear-gradient(135deg, #f9d423, #f7971e, #f9d423);
@@ -474,19 +474,19 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 20px rgba(247, 151, 30, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: inline-block;
         }
 
-        /* TEACHER & NIP TANPA KOTAK, TEKS POLOS DENGAN WARNA JELAS */
+        /* TEACHER & NIP TANPA KOTAK */
         .cover-teacher {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--text-primary);
             padding: 4px 0;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: left;
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
         }
         .cover-teacher .teacher-label {
             color: var(--text-secondary);
@@ -496,15 +496,15 @@
         .cover-teacher .teacher-name {
             color: var(--gold-light);
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             letter-spacing: 0.5px;
         }
         .cover-teacher .teacher-nip {
             color: #b8d4e3;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             display: block;
-            margin-top: 4px;
+            margin-top: 3px;
             letter-spacing: 0.5px;
         }
         .cover-teacher .teacher-nip i {
@@ -514,25 +514,25 @@
         }
 
         .cover-sub {
-            font-size: clamp(1rem, 1.3vw, 1.25rem);
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
             color: var(--text-secondary);
             max-width: 500px;
             line-height: 1.7;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
         .cover-nav-hint {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #666;
-            margin-top: 14px;
+            margin-top: 12px;
         }
         .start-btn {
             background: var(--gold);
             color: #121212;
             border: none;
-            padding: 16px 48px;
+            padding: 14px 44px;
             border-radius: 60px;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             cursor: pointer;
             transition: var(--transition);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
@@ -559,18 +559,18 @@
             box-shadow: 0 8px 28px rgba(212, 175, 55, 0.6);
         }
         .start-btn-wrapper {
-            margin: 20px 0 14px;
+            margin: 16px 0 12px;
         }
 
         /* ============================================================
-           NAVIGASI CEPAT — PERBAIKAN UNTUK LAPTOP
+           NAVIGASI CEPAT — DIPERBAIKI UNTUK LAPTOP
            ============================================================ */
         .quick-nav {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 24px;
-            margin: 40px 0 20px;
-            padding: 10px 0;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 22px;
+            margin: 36px 0 20px;
+            padding: 8px 0;
         }
         .quick-nav-card {
             background: rgba(255, 255, 255, 0.04);
@@ -578,7 +578,7 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius);
-            padding: 24px 16px 20px;
+            padding: 20px 14px 18px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -607,20 +607,20 @@
             --angle: 360deg;
         }
         .quick-nav-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 16px 56px rgba(212, 175, 55, 0.25), var(--shadow);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.2), var(--shadow);
             border-color: var(--gold);
             background: rgba(255, 255, 255, 0.07);
         }
         .quick-nav-card .card-number {
             display: block;
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             line-height: 1.1;
             color: var(--gold);
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             transition: all 0.4s ease;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: -1px;
             background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
             -webkit-background-clip: text;
@@ -628,30 +628,30 @@
             background-clip: text;
         }
         .quick-nav-card:hover .card-number {
-            transform: scale(1.15) rotate(-3deg);
+            transform: scale(1.1) rotate(-2deg);
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
         }
         .quick-nav-card .card-title {
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .quick-nav-card .card-desc {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
             opacity: 0.7;
-            line-height: 1.4;
+            line-height: 1.3;
         }
         .quick-nav-card .card-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 8px;
+            right: 8px;
             background: var(--gold);
             color: #121212;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 700;
-            padding: 2px 10px;
+            padding: 1px 8px;
             border-radius: 30px;
             letter-spacing: 0.5px;
             opacity: 0.6;
@@ -1601,7 +1601,7 @@
         }
 
         /* ============================================================
-           RESPONSIVE — PERBAIKAN HP
+           RESPONSIVE — LAPTOP DIPERBAIKI
            ============================================================ */
         @media (max-width: 899px) {
             .cover-wrapper {
@@ -1649,8 +1649,6 @@
             .main-content {
                 padding: 16px 12px 80px;
             }
-
-            /* PERBAIKAN NAVIGASI CEPAT UNTUK HP — lebih kecil dan proporsional */
             .quick-nav {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                 gap: 14px;
@@ -1704,7 +1702,6 @@
                 font-size: 0.85rem;
                 padding: 8px 14px;
             }
-            /* NAVIGASI CEPAT HP KECIL */
             .quick-nav {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
@@ -1772,15 +1769,22 @@
                 display: none;
             }
             .main-content {
-                padding: 32px 48px 80px;
+                padding: 28px 48px 80px;
                 max-width: 1200px;
             }
             .quick-nav {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 28px;
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+                gap: 24px;
+                margin: 32px 0 16px;
             }
             .quick-nav-card .card-number {
-                font-size: 3.2rem;
+                font-size: 2.8rem;
+            }
+            .cover-left {
+                padding: 10px 20px 10px 0;
+            }
+            .cover-right {
+                padding: 10px 0 10px 20px;
             }
         }
 
@@ -1789,7 +1793,13 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             .main-content {
-                padding: 40px 60px 80px;
+                padding: 36px 60px 80px;
+            }
+            .cover-left {
+                padding: 10px 30px 10px 0;
+            }
+            .cover-right {
+                padding: 10px 0 10px 30px;
             }
         }
 
