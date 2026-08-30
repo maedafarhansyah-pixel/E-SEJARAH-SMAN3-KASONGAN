@@ -51,7 +51,7 @@
         }
 
         /* ============================================================
-           LOADER (tetap)
+           LOADER — DIPERBAIKI DENGAN HISTOEXPLORER & TAGLINE
            ============================================================ */
         #loader {
             position: fixed;
@@ -75,7 +75,7 @@
             width: 120px;
             height: 120px;
             perspective: 600px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             z-index: 2;
         }
         .loader-cube {
@@ -152,44 +152,138 @@
                 transform: translate(-50%, -50%) rotate(360deg);
             }
         }
-        .loader-text {
+
+        /* --- TITLE: HISTOEXPLORER --- */
+        .loader-title {
             color: var(--gold);
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 4px;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 900;
+            letter-spacing: 6px;
             z-index: 2;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2);
-            animation: textPulse 1.5s ease-in-out infinite;
+            text-shadow:
+                0 0 30px rgba(212, 175, 55, 0.6),
+                0 0 60px rgba(212, 175, 55, 0.3),
+                0 0 100px rgba(212, 175, 55, 0.15);
+            animation: titlePulse 2.5s ease-in-out infinite;
+            background: linear-gradient(135deg, #f9d423 0%, #f7971e 40%, #f9d423 70%, #f7971e 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.4));
+            position: relative;
+            display: inline-block;
         }
-        @keyframes textPulse {
+        .loader-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            border-radius: 4px;
+            animation: titleUnderline 2s ease-in-out infinite;
+        }
+        @keyframes titlePulse {
             0%,
             100% {
-                opacity: 0.8;
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.3);
+                transform: scale(1);
             }
             50% {
-                opacity: 1;
-                text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.4);
+                text-shadow: 0 0 50px rgba(212, 175, 55, 0.9), 0 0 100px rgba(212, 175, 55, 0.5), 0 0 150px rgba(212, 175, 55, 0.2);
+                transform: scale(1.02);
             }
         }
-        .loader-sub {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            opacity: 0.6;
+        @keyframes titleUnderline {
+            0%,
+            100% {
+                width: 20%;
+                left: 40%;
+                opacity: 0.4;
+            }
+            50% {
+                width: 80%;
+                left: 10%;
+                opacity: 1;
+            }
+        }
+
+        /* --- PERCENT --- */
+        .loader-percent {
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            font-weight: 600;
             margin-top: 8px;
             z-index: 2;
             letter-spacing: 2px;
-            font-weight: 300;
+            opacity: 0.9;
+            font-variant-numeric: tabular-nums;
         }
-        .loader-percent {
-            color: var(--gold-light);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 4px;
+
+        /* --- TAGLINE (BOTTOM) — MODERN & ATTRACTIVE --- */
+        .loader-tagline {
+            margin-top: 24px;
             z-index: 2;
-            letter-spacing: 1px;
-            opacity: 0.8;
+            text-align: center;
+            padding: 0 20px;
+            opacity: 0;
+            animation: taglineReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.4s forwards;
         }
+        .loader-tagline .tagline-line {
+            display: block;
+            font-size: clamp(0.9rem, 1.4vw, 1.3rem);
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            position: relative;
+            padding: 4px 0;
+        }
+        .loader-tagline .tagline-line .highlight {
+            color: var(--gold-light);
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .loader-tagline .tagline-line .highlight-gold {
+            color: var(--gold);
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+        .loader-tagline .tagline-divider {
+            display: inline-block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 8px auto;
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+        @keyframes taglineReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .loader-tagline .tagline-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .loader-tagline .tagline-ornament i {
+            color: var(--gold);
+            font-size: 0.7rem;
+            opacity: 0.4;
+        }
+
+        /* --- SPARKLES & STARS --- */
         .loader-sparkles {
             position: absolute;
             inset: 0;
@@ -245,7 +339,7 @@
         }
 
         /* ============================================================
-           PARTIKEL BINTANG
+           PARTIKEL BINTANG (tetap)
            ============================================================ */
         .particle-container {
             position: fixed;
@@ -288,7 +382,7 @@
         }
 
         /* ============================================================
-           MOBILE HEADER
+           MOBILE HEADER (tetap)
            ============================================================ */
         .mobile-header {
             position: fixed;
@@ -346,7 +440,7 @@
         }
 
         /* ============================================================
-           MAIN CONTENT
+           MAIN CONTENT (tetap)
            ============================================================ */
         .main-content {
             padding: 16px 16px 80px 16px;
@@ -357,7 +451,7 @@
         }
 
         /* ============================================================
-           COVER — DIPERBAIKI UNTUK KESEIMBANGAN LAPTOP
+           COVER (tetap)
            ============================================================ */
         .cover-wrapper {
             display: flex;
@@ -436,8 +530,6 @@
         .cover-logo-group img:hover {
             transform: scale(1.05);
         }
-
-        /* JUDUL DENGAN EFEK WARNA BERUBAH-UBAH */
         .cover-title {
             font-size: clamp(2.2rem, 4.5vw, 3.6rem);
             font-weight: 800;
@@ -463,8 +555,6 @@
                 background-position: 0% 50%;
             }
         }
-
-        /* SCHOOL DENGAN WARNA GRADASI EMAS */
         .cover-school {
             font-size: clamp(1.4rem, 2.6vw, 2.4rem);
             font-weight: 700;
@@ -477,8 +567,6 @@
             margin-bottom: 14px;
             display: inline-block;
         }
-
-        /* TEACHER & NIP TANPA KOTAK */
         .cover-teacher {
             font-size: 1rem;
             color: var(--text-primary);
@@ -512,7 +600,6 @@
             opacity: 0.7;
             margin-right: 6px;
         }
-
         .cover-sub {
             font-size: clamp(0.95rem, 1.1vw, 1.15rem);
             color: var(--text-secondary);
@@ -563,7 +650,7 @@
         }
 
         /* ============================================================
-           NAVIGASI CEPAT — DIPERBAIKI UNTUK LAPTOP
+           QUICK NAV (tetap)
            ============================================================ */
         .quick-nav {
             display: grid;
@@ -1434,7 +1521,7 @@
         }
 
         /* ============================================================
-           NAVIGATION BUTTONS
+           NAVIGATION BUTTONS (tetap)
            ============================================================ */
         .nav-buttons {
             display: flex;
@@ -1601,7 +1688,7 @@
         }
 
         /* ============================================================
-           RESPONSIVE — LAPTOP DIPERBAIKI
+           RESPONSIVE
            ============================================================ */
         @media (max-width: 899px) {
             .cover-wrapper {
@@ -1674,6 +1761,13 @@
                 padding: 1px 6px;
                 top: 6px;
                 right: 6px;
+            }
+            .loader-title {
+                font-size: clamp(2rem, 8vw, 3.2rem) !important;
+                letter-spacing: 4px !important;
+            }
+            .loader-tagline .tagline-line {
+                font-size: clamp(0.75rem, 2.5vw, 1rem) !important;
             }
         }
 
@@ -1857,9 +1951,27 @@
                 <div class="face face-bottom">⭐</div>
             </div>
         </div>
-        <div class="loader-text" id="loaderText">MEMUAT SEJARAH</div>
+
+        <!-- MAIN TITLE: HISTOEXPLORER -->
+        <div class="loader-title" id="loaderTitle">HISTOEXPLORER</div>
+
+        <!-- PERCENT -->
         <div class="loader-percent" id="loaderPercent">0%</div>
-        <div class="loader-sub" id="loaderSub">Menyiapkan petualangan sejarahmu...</div>
+
+        <!-- TAGLINE (BOTTOM) — MODERN & ATTRACTIVE -->
+        <div class="loader-tagline" id="loaderTagline">
+            <div class="tagline-divider"></div>
+            <span class="tagline-line">
+                <span class="highlight">Menjelajahi</span> Masa Lalu,
+                <span class="highlight-gold">Memahami</span> Masa Kini,
+                <span class="highlight">Membangun</span> Masa Depan
+            </span>
+            <div class="tagline-ornament">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-circle" style="font-size:0.3rem;"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
     </div>
 
     <!-- ===== PARTIKEL BINTANG ===== -->
@@ -2508,8 +2620,7 @@
             // ===== LOADER =====
             const loader = document.getElementById('loader');
             const percentText = document.getElementById('loaderPercent');
-            const subText = document.getElementById('loaderSub');
-            const mainText = document.getElementById('loaderText');
+            const titleEl = document.getElementById('loaderTitle');
 
             const starsContainer = document.getElementById('loaderStars');
             for (let i = 0; i < 40; i++) {
@@ -2546,32 +2657,20 @@
             const totalDuration = 3200;
             const interval = 30;
             const step = 100 / (totalDuration / interval);
-            const messages = [
-                'Menyiapkan petualangan sejarahmu...',
-                'Membuka lembaran masa lalu...',
-                'Menelusuri jejak peradaban...',
-                'Menggali kisah para pahlawan...',
-                'Menghubungkan masa lalu & masa kini...',
-                'Hampir siap, sejarawan muda!'
-            ];
 
             function updateLoader() {
                 progress += step;
                 if (progress > 100) progress = 100;
                 const pct = Math.round(progress);
                 percentText.textContent = pct + '%';
-                const idx = Math.min(Math.floor(progress / 18), messages.length - 1);
-                subText.textContent = messages[idx] || messages[0];
                 if (progress > 80) {
-                    mainText.textContent = '✨ SIAP! ✨';
-                    mainText.style.animation = 'none';
-                    mainText.style.textShadow = '0 0 40px rgba(212,175,55,0.9), 0 0 80px rgba(212,175,55,0.5)';
+                    titleEl.style.animation = 'none';
+                    titleEl.style.textShadow = '0 0 50px rgba(212,175,55,0.9), 0 0 100px rgba(212,175,55,0.5), 0 0 150px rgba(212,175,55,0.2)';
                 }
                 if (progress < 100) {
                     requestAnimationFrame(updateLoader);
                 } else {
                     percentText.textContent = '100%';
-                    subText.textContent = '✨ Selamat belajar!';
                     setTimeout(() => {
                         loader.classList.add('hidden');
                         setTimeout(() => loader.style.display = 'none', 800);
