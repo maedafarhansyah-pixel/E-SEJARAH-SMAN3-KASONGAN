@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Modul Ajar Deep Learning – Penelitian Sejarah (Kelas X)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           RESET & VARIABEL (tetap sama)
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-card: #222240;
+            --bg-card-hover: #2a2a4a;
+            --text-primary: #f0ece4;
+            --text-secondary: #b0b0c0;
+            --gold: #d4af37;
+            --gold-light: #e6c85c;
+            --gold-dark: #b8962e;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 16px;
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+        .light-mode {
+            --bg-primary: #f5f0eb;
+            --bg-secondary: #e8e0d8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0ece4;
+            --text-primary: #1a1a2e;
+            --text-secondary: #3a3a4a;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.08);
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background var(--transition), color var(--transition);
+            padding-top: 56px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============================================================
+           LOADER — TIDAK ADA DUPLIKASI
+           ============================================================ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a12 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow: hidden;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-cube-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            perspective: 600px;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+        .loader-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 4s infinite linear;
+        }
+        .loader-cube .face {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            margin: -40px 0 0 -40px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 30px rgba(212, 175, 55, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+            backface-visibility: visible;
+        }
+        .loader-cube .face-front { transform: rotateY(0deg) translateZ(40px); }
+        .loader-cube .face-back { transform: rotateY(180deg) translateZ(40px); }
+        .loader-cube .face-right { transform: rotateY(90deg) translateZ(40px); }
+        .loader-cube .face-left { transform: rotateY(-90deg) translateZ(40px); }
+        .loader-cube .face-top { transform: rotateX(90deg) translateZ(40px); }
+        .loader-cube .face-bottom { transform: rotateX(-90deg) translateZ(40px); }
+        @keyframes spinCube {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+        .loader-ring-glow {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            left: 50%;
+            margin: -80px 0 0 -80px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--gold-light), transparent);
+            animation: rotateGlow 3s linear infinite;
+            filter: blur(8px);
+            opacity: 0.4;
+            z-index: 1;
+        }
+        @keyframes rotateGlow {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .loader-title {
+            color: var(--gold);
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 900;
+            letter-spacing: 6px;
+            z-index: 2;
+            background: linear-gradient(135deg, #f9d423 0%, #f7971e 40%, #f9d423 70%, #f7971e 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.4));
+            animation: titlePulse 2.5s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
+        }
+        .loader-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            border-radius: 4px;
+            animation: titleUnderline 2s ease-in-out infinite;
+        }
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        @keyframes titleUnderline {
+            0%, 100% { width: 20%; left: 40%; opacity: 0.4; }
+            50% { width: 80%; left: 10%; opacity: 1; }
+        }
+        .loader-percent {
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 8px;
+            z-index: 2;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            font-variant-numeric: tabular-nums;
+        }
+        .loader-tagline {
+            margin-top: 24px;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            opacity: 0;
+            animation: taglineReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.4s forwards;
+        }
+        .loader-tagline .tagline-line {
+            display: block;
+            font-size: clamp(0.9rem, 1.4vw, 1.3rem);
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        .loader-tagline .tagline-line .highlight {
+            color: var(--gold-light);
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .loader-tagline .tagline-line .highlight-gold {
+            color: var(--gold);
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+        .loader-tagline .tagline-divider {
+            display: inline-block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 8px auto;
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+        @keyframes taglineReveal {
+            0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .loader-tagline .tagline-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .loader-tagline .tagline-ornament i {
+            color: var(--gold);
+            font-size: 0.7rem;
+            opacity: 0.4;
+        }
+        .loader-sparkles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .loader-sparkles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold), 0 0 30px var(--gold);
+            animation: sparkleFloat 3s infinite alternate ease-in-out;
+            opacity: 0;
+        }
+        @keyframes sparkleFloat {
+            0% { opacity: 0; transform: translate(0,0) scale(0.5); }
+            50% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.5); }
+            100% { opacity: 0; transform: translate(var(--tx2), var(--ty2)) scale(0.3); }
+        }
+        .loader-stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .loader-stars i {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 1rem;
+            animation: starTwinkle 4s infinite alternate;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0.05; transform: scale(0.8); }
+            100% { opacity: 0.25; transform: scale(1.2); }
+        }
+
+        /* ============================================================
+           PARTIKEL BINTANG
+           ============================================================ */
+        .particle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .star-particle {
+            position: absolute;
+            font-size: 1rem;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            animation: floatStar 25s infinite alternate ease-in-out;
+            text-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+            will-change: transform, opacity;
+        }
+        @keyframes floatStar {
+            0% { opacity: 0.2; transform: translate(0,0) scale(0.5) rotate(0deg); }
+            25% { opacity: 0.9; transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(120deg); }
+            50% { opacity: 0.5; transform: translate(var(--tx2), var(--ty2)) scale(0.8) rotate(240deg); }
+            75% { opacity: 0.9; transform: translate(var(--tx3), var(--ty3)) scale(1.4) rotate(360deg); }
+            100% { opacity: 0.2; transform: translate(var(--tx4), var(--ty4)) scale(0.4) rotate(480deg); }
+        }
+
+        /* ============================================================
+           MOBILE HEADER
+           ============================================================ */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1001;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            transition: background var(--transition);
+        }
+        .mobile-header .brand {
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1.5px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        .header-actions button:hover {
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        .home-btn-mobile {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .home-btn-mobile:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+        .main-content {
+            padding: 16px 16px 80px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================================
+           COVER
+           ============================================================ */
+        .cover-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(30px, 5vw, 70px);
+            min-height: 70vh;
+            padding: 20px 0 10px;
+            flex-wrap: wrap;
+        }
+        .cover-left {
+            flex: 1 1 50%;
+            min-width: 320px;
+            max-width: 560px;
+            padding: 10px 0;
+        }
+        .cover-right {
+            flex: 1 1 45%;
+            min-width: 280px;
+            max-width: 480px;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cover-right .image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--bg-secondary);
+            border: 3px dashed var(--gold);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .cover-right .image-placeholder:hover {
+            border-color: var(--gold-light);
+            box-shadow: 0 0 40px rgba(212,175,55,0.15), var(--shadow);
+        }
+        .cover-right .image-placeholder img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+        .cover-right .image-placeholder .fallback-content {
+            display: none;
+            z-index: 2;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cover-logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: clamp(14px, 2vw, 24px);
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .cover-logo-group img {
+            height: clamp(40px, 4.5vw, 60px);
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+            transition: transform var(--transition);
+        }
+        .cover-logo-group img:hover {
+            transform: scale(1.05);
+        }
+        .cover-title {
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 6px 0 10px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff9ff3, #feca57, #ff6b6b);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(212,175,55,0.2);
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .cover-school {
+            font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #f9d423, #f7971e, #f9d423);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(247,151,30,0.3);
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+        .cover-teacher {
+            font-size: 1rem;
+            color: var(--text-primary);
+            padding: 4px 0;
+            margin-bottom: 8px;
+            text-align: left;
+            width: 100%;
+            max-width: 480px;
+        }
+        .cover-teacher .teacher-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .cover-teacher .teacher-name {
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip {
+            color: #b8d4e3;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: block;
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip i {
+            color: var(--gold-light);
+            opacity: 0.7;
+            margin-right: 6px;
+        }
+        .cover-sub {
+            font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .cover-nav-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        .start-btn {
+            background: var(--gold);
+            color: #121212;
+            border: none;
+            padding: 14px 42px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .start-btn:hover::before {
+            transform: translateX(100%);
+        }
+        .start-btn:hover {
+            background: var(--gold-light);
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(212,175,55,0.6);
+        }
+        .start-btn-wrapper {
+            margin: 14px 0 10px;
+        }
+
+        /* ============================================================
+           QUICK NAV
+           ============================================================ */
+        .quick-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 20px;
+            margin: 30px 0 16px;
+            padding: 6px 0;
+        }
+        .quick-nav-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 18px 12px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            animation: cardReveal 0.6s cubic-bezier(0.23,1,0.32,1) forwards;
+            animation-delay: calc(0.04s * var(--i, 0));
+        }
+        .quick-nav-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            padding: 2px;
+            background: conic-gradient(from var(--angle, 0deg), transparent 0%, var(--gold) 30%, var(--gold-light) 60%, transparent 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: --angle 0.6s ease;
+        }
+        .quick-nav-card:hover::before {
+            --angle: 360deg;
+        }
+        .quick-nav-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(212,175,55,0.2), var(--shadow);
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.07);
+        }
+        .quick-nav-card .card-number {
+            display: block;
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212,175,55,0.3);
+            transition: all 0.4s ease;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .quick-nav-card:hover .card-number {
+            transform: scale(1.1) rotate(-2deg);
+            text-shadow: 0 0 40px rgba(212,175,55,0.5);
+        }
+        .quick-nav-card .card-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .quick-nav-card .card-desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1.3;
+        }
+        .quick-nav-card .card-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 -2px 0 rgba(0,0,0,0.2);
+            border: 2px solid #b8860b;
+            transition: all 0.3s ease;
+            z-index: 2;
+            font-weight: 700;
+        }
+        .quick-nav-card .card-badge i {
+            font-size: 0.9rem;
+            color: #121212;
+            transition: transform 0.3s ease;
+        }
+        .quick-nav-card:hover .card-badge {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 20px rgba(212,175,55,0.5), inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @keyframes cardReveal {
+            0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        .section {
+            display: none;
+            animation: fadeSlide 0.6s cubic-bezier(0.23,1,0.32,1);
+            padding: 20px 0 12px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-light);
+            animation: headerGlow 2s ease-in-out infinite;
+        }
+        @keyframes headerGlow {
+            0%, 100% { opacity: 0.5; width: 60px; }
+            50% { opacity: 1; width: 120px; }
+        }
+        .section-header .num {
+            background: var(--gold);
+            color: #121212;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+        }
+        .section-header h2 {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        .section-header h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
+        }
+        .meeting-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            color: var(--gold);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid var(--gold);
+            margin-left: 10px;
+            white-space: nowrap;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.2); }
+            50% { box-shadow: 0 0 20px rgba(212,175,55,0.15); }
+        }
+
+        /* ============================================================
+           KARTU, GRID, ACCORDION, DLL
+           ============================================================ */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            border-color: var(--gold);
+        }
+        .card .icon {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .card p, .card li {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .card ul {
+            padding-left: 18px;
+            margin: 6px 0;
+        }
+        .card ul li {
+            list-style-type: disc;
+        }
+        .card.highlight {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+        }
+        .card.merdeka-badge {
+            border-left: 6px solid var(--gold);
+        }
+        .interactive-card {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+        }
+        .interactive-card .back {
+            display: none;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(212,175,55,0.3);
+            margin-top: 12px;
+            animation: fadeSlide 0.4s ease;
+        }
+        .interactive-card.open .back {
+            display: block;
+        }
+        .interactive-card.open {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .interactive-card.open::before {
+            opacity: 1;
+        }
+
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 16px;
+            margin: 14px 0 8px;
+        }
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
+        .grid-4 { grid-template-columns: 1fr; }
+
+        .accordion-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 8px 0;
+        }
+        .accordion-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .accordion-item:hover {
+            border-color: var(--gold);
+            box-shadow: var(--glow-gold);
+        }
+        .accordion-item.open {
+            border-color: var(--gold);
+            box-shadow: 0 4px 24px rgba(212,175,55,0.08);
+        }
+        .accordion-header {
+            background: var(--bg-secondary);
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .accordion-header:hover {
+            background: var(--bg-card-hover);
+        }
+        .accordion-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+        .accordion-header h3 i {
+            color: var(--gold);
+        }
+        .accordion-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--gold);
+            transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+        }
+        .accordion-item.open .accordion-header .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.23,1,0.32,1), padding 0.4s ease;
+            padding: 0 20px;
+            background: var(--bg-primary);
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 3000px;
+            padding: 18px 20px 20px;
+        }
+
+        .def-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--gold);
+            margin: 12px 0;
+            transition: all var(--transition);
+        }
+        .def-block:hover {
+            box-shadow: var(--glow-gold);
+            border-left-width: 8px;
+        }
+        .def-block .source {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .def-block .source i {
+            color: var(--gold);
+            margin-right: 6px;
+        }
+
+        .activity-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            border: 2px dashed var(--gold);
+            margin: 14px 0 6px;
+            transition: all var(--transition);
+        }
+        .activity-box:hover {
+            border-color: var(--gold-light);
+            box-shadow: var(--glow-gold);
+        }
+        .activity-box h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .activity-box h3 i {
+            color: var(--gold);
+        }
+
+        .assessment-question {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            transition: all var(--transition);
+        }
+        .assessment-question:hover {
+            transform: translateX(4px);
+            box-shadow: var(--glow-gold);
+        }
+        .assessment-question .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .assessment-question .q-options {
+            padding-left: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .assessment-question .q-options span {
+            display: inline-block;
+            margin-right: 16px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .assessment-question .q-options span:hover {
+            background: rgba(212,175,55,0.1);
+            color: var(--gold);
+        }
+
+        .refleksi-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .refleksi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all var(--transition);
+        }
+        .refleksi-list li:hover {
+            padding-left: 8px;
+        }
+        .refleksi-list li:last-child {
+            border-bottom: none;
+        }
+        .refleksi-list li .check {
+            font-size: 1.4rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .quote-block {
+            background: var(--bg-secondary);
+            border-left: 6px solid var(--gold);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+        .quote-block:hover {
+            box-shadow: var(--glow-gold);
+            border-left-width: 8px;
+        }
+        .quote-block .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--gold);
+            text-align: right;
+        }
+
+        .celebration-box {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .celebration-box::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.05), transparent, rgba(212,175,55,0.05), transparent);
+            animation: rotateGlow 10s linear infinite;
+        }
+        .celebration-box * {
+            position: relative;
+            z-index: 1;
+        }
+        .celebration-box h3 {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+        .ref-list li:hover {
+            padding-left: 8px;
+            color: var(--text-primary);
+        }
+        .ref-list li i {
+            color: var(--gold);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .method-step {
+            background: var(--bg-card);
+            padding: 14px 16px;
+            border-radius: 12px;
+            border-left: 6px solid var(--gold);
+            margin-bottom: 12px;
+            transition: all var(--transition);
+        }
+        .method-step:hover {
+            transform: translateX(6px);
+            box-shadow: var(--glow-gold);
+        }
+        .method-step h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .method-step p {
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .method-step ul {
+            color: var(--text-secondary);
+            padding-left: 20px;
+            margin-top: 4px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+        .compare-table th {
+            background: var(--gold);
+            color: #121212;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .compare-table td {
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+
+        .pillar-icon {
+            font-size: 2.4rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .modal-overlay .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            position: relative;
+            text-align: center;
+            animation: modalZoom 0.4s cubic-bezier(0.23,1,0.32,1);
+        }
+        @keyframes modalZoom {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal-overlay .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            display: block;
+        }
+        .modal-overlay .modal-content .caption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: var(--gold);
+            color: #121212;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #121212;
+            transition: all var(--transition);
+        }
+        .modal-overlay .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--gold-light);
+        }
+
+        .badge-modern {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #121212;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           NAVIGATION BUTTONS
+           ============================================================ */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid rgba(255,255,255,0.06);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons.hidden {
+            display: none;
+        }
+        .nav-buttons .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-buttons button {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--gold);
+            color: #121212;
+            transform: scale(1.04);
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+        }
+        .nav-buttons button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .nav-buttons .counter {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 0 8px;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+        .page-numbers a.active {
+            background: var(--gold);
+            color: #121212;
+            border-color: var(--gold);
+            box-shadow: 0 2px 12px rgba(212,175,55,0.4);
+        }
+
+        .progress-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--bg-secondary);
+            z-index: 999;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            transition: width 0.6s cubic-bezier(0.23,1,0.32,1);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+        .progress-wrap .bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 10px;
+            height: 9px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            filter: blur(4px);
+            animation: progressDot 1.5s ease-in-out infinite;
+        }
+        @keyframes progressDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 899px) {
+            .cover-wrapper {
+                flex-direction: column;
+                min-height: auto;
+                gap: 20px;
+                padding: 10px 0;
+            }
+            .cover-left {
+                flex: 1 1 100%;
+                max-width: 100%;
+                text-align: center;
+                padding: 10px 5px;
+            }
+            .cover-left .cover-logo-group {
+                justify-content: center;
+            }
+            .cover-left .cover-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cover-right {
+                flex: 1 1 100%;
+                max-width: 100%;
+                padding: 10px 5px;
+            }
+            .cover-right .image-placeholder {
+                max-width: 100%;
+                aspect-ratio: 16/10;
+            }
+            .cover-title {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+            }
+            .cover-school {
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
+            }
+            .cover-teacher {
+                text-align: center;
+                max-width: 100%;
+            }
+            .start-btn {
+                padding: 12px 32px;
+                font-size: 1rem;
+            }
+            .main-content {
+                padding: 16px 12px 80px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 14px;
+                margin: 24px 0 16px;
+                padding: 6px 0;
+            }
+            .quick-nav-card {
+                padding: 14px 10px 12px;
+                border-radius: 12px;
+            }
+            .quick-nav-card .card-number {
+                font-size: 2rem;
+                margin-bottom: 2px;
+            }
+            .quick-nav-card .card-title {
+                font-size: 0.8rem;
+            }
+            .quick-nav-card .card-desc {
+                font-size: 0.65rem;
+            }
+            .quick-nav-card .card-badge {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+                top: 6px;
+                right: 6px;
+            }
+            .quick-nav-card .card-badge i {
+                font-size: 0.7rem;
+            }
+            .loader-title {
+                font-size: clamp(2rem, 8vw, 3.2rem) !important;
+                letter-spacing: 4px !important;
+            }
+            .loader-tagline .tagline-line {
+                font-size: clamp(0.75rem, 2.5vw, 1rem) !important;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .section-header h2 {
+                font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+            }
+            .main-content {
+                padding: 20px 24px 80px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            body {
+                padding-top: 0;
+            }
+            .mobile-header {
+                display: none;
+            }
+            .main-content {
+                padding: 28px 48px 80px;
+                max-width: 1200px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+                gap: 22px;
+                margin: 28px 0 16px;
+            }
+            .quick-nav-card .card-number {
+                font-size: 2.6rem;
+            }
+            .cover-left {
+                padding: 10px 20px 10px 0;
+            }
+            .cover-right {
+                padding: 10px 0 10px 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .main-content {
+                padding: 36px 60px 80px;
+            }
+            .cover-left {
+                padding: 10px 30px 10px 0;
+            }
+            .cover-right {
+                padding: 10px 0 10px 30px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+            transition: all var(--transition);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== LOADER ===== -->
+    <div id="loader">
+        <div class="loader-stars" id="loaderStars"></div>
+        <div class="loader-sparkles" id="loaderSparkles"></div>
+        <div class="loader-cube-wrapper">
+            <div class="loader-ring-glow"></div>
+            <div class="loader-cube" id="loaderCube">
+                <div class="face face-front">📜</div>
+                <div class="face face-back">🏛️</div>
+                <div class="face face-right">⚔️</div>
+                <div class="face face-left">🌍</div>
+                <div class="face face-top">📖</div>
+                <div class="face face-bottom">⭐</div>
+            </div>
+        </div>
+        <!-- HANYA SATU JUDUL DAN SATU TAGLINE -->
+        <div class="loader-title">HISTOEXPLORER</div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+        <div class="loader-tagline">
+            <div class="tagline-divider"></div>
+            <span class="tagline-line">
+                <span class="highlight">Menjelajahi</span> Masa Lalu,
+                <span class="highlight-gold">Memahami</span> Masa Kini,
+                <span class="highlight">Membangun</span> Masa Depan
+            </span>
+            <div class="tagline-ornament">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-circle" style="font-size:0.3rem;"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PARTIKEL BINTANG ===== -->
+    <div class="particle-container" id="particleContainer"></div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="modal-close" onclick="closeModal()">✕</span>
+            <img id="modalImage" src="" alt="Gambar besar" />
+            <div class="caption" id="modalCaption">Klik di luar gambar untuk menutup</div>
+        </div>
+    </div>
+
+    <!-- ===== MOBILE HEADER ===== -->
+    <header class="mobile-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+            <button class="home-btn-mobile" onclick="navigateTo(0)" title="Beranda">
+                <i class="fas fa-home"></i>
+            </button>
+            <div class="brand">SEJARAH</div>
+        </div>
+        <div class="header-actions">
+            <button onclick="toggleTheme()" title="Ganti tema">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HOME FLOAT ===== -->
+    <button class="home-float" onclick="navigateTo(0)" title="Kembali ke Beranda" style="position:fixed;bottom:80px;right:20px;z-index:999;width:50px;height:50px;border-radius:50%;background:var(--gold);color:#121212;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(212,175,55,0.5);border:none;cursor:pointer;transition:var(--transition);">
+        <i class="fas fa-home"></i>
+    </button>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ========== SECTION 0 : COVER ========== -->
+        <section id="section0" class="section active">
+            <div class="cover-wrapper">
+                <div class="cover-left">
+                    <div class="cover-logo-group">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi" onerror="this.style.display='none'">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/imagesdisdiklogo.png" alt="Logo Dinas" onerror="this.style.display='none'">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/LOGOSMAN3KAS.png" alt="Logo SMAN" onerror="this.style.display='none'">
+                    </div>
+                    <div style="margin-bottom:12px;">
+                        <span class="badge-modern">KELAS X / FASE E</span>
+                        <span style="background:#6b4c1a;color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
+                    </div>
+                    <h1 class="cover-title">PENELITIAN SEJARAH</h1>
+                    <p class="cover-sub">Modul Ajar Deep Learning – Metode Ilmiah dalam Menyelidiki Masa Lalu</p>
+                    <div class="cover-school">SMAN 3 KASONGAN</div>
+                    <div class="start-btn-wrapper">
+                        <button class="start-btn" onclick="navigateTo(1)">
+                            <i class="fas fa-play-circle"></i> Mulai Belajar
+                        </button>
+                    </div>
+                    <div class="cover-teacher">
+                        <div>
+                            <i class="fas fa-chalkboard-teacher" style="color:var(--gold-light);margin-right:8px;"></i>
+                            <span class="teacher-label">Guru Pengampu :</span>
+                            <span class="teacher-name">SYAHRANI, S.Pd</span>
+                        </div>
+                        <div class="teacher-nip">
+                            <i class="fas fa-id-card"></i>
+                            NIP. 197512172005011016
+                        </div>
+                    </div>
+                    <div class="cover-nav-hint">
+                        <i class="fas fa-chevron-down" style="color:#555;margin-right:4px;"></i>
+                        Pilih materi di bawah atau gunakan tombol navigasi
+                    </div>
+                    <div class="quick-nav" id="quickNav"></div>
+                </div>
+                <div class="cover-right">
+                    <div class="image-placeholder">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/coversejarahbab1.png" alt="Ilustrasi Penelitian Sejarah" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-content').style.display='flex';">
+                        <div class="fallback-content">
+                            <i class="fas fa-upload" style="font-size:3rem;color:var(--gold);margin-bottom:10px;"></i>
+                            <p style="color:var(--text-secondary);">Unggah Gambar Ilustrasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 1 : KOMPONEN PEMBELAJARAN ========== -->
+        <section id="section1" class="section">
+            <div class="section-header"><div class="num">01</div><h2>Komponen Pembelajaran <small>CP · ATP · Tujuan · DPL · Deep Learning</small></h2></div>
+            <div class="accordion-wrap">
+                <div class="accordion-item open">
+                    <div class="accordion-header" onclick="toggleAccordion(this)"><h3><i class="fas fa-flag-checkered"></i> Capaian & Alur Tujuan</h3><span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></div>
+                    <div class="accordion-body">
+                        <div class="def-block">
+                            <div class="source"><i class="fas fa-flag-checkered"></i> Capaian Pembelajaran (CP) – Fase E</div>
+                            <p style="color:var(--text-secondary);">Peserta didik memahami konsep dasar ilmu sejarah serta <strong>mengenali penelitian sejarah</strong> untuk menganalisis keterhubungan antara masa lampau, masa kini, dan masa yang akan datang. Peserta didik mampu mengumpulkan informasi dari sumber primer dan/atau sekunder, melakukan observasi, mendokumentasikan, menarik simpulan, dan mengomunikasikan hasil analisis.</p>
+                            <p style="color:var(--text-secondary);margin-top:6px;font-style:italic;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Bab 2 ini berfokus pada <strong>bagaimana sejarah diteliti dan ditulis</strong> secara ilmiah, berbeda dengan Bab 1 yang memperkenalkan konsep dasar sejarah.</p>
+                        </div>
+                        <div class="grid-2">
+                            <div class="card merdeka-badge">
+                                <div class="icon"><i class="fas fa-route"></i></div>
+                                <h3>Alur Tujuan Pembelajaran (ATP)</h3>
+                                <ul>
+                                    <li><strong>TP 1:</strong> Menjelaskan pengertian dan urgensi penelitian sejarah.</li>
+                                    <li><strong>TP 2:</strong> Mengidentifikasi jenis-jenis sumber sejarah (primer, sekunder, lisan, tulisan, benda).</li>
+                                    <li><strong>TP 3:</strong> Merencanakan langkah heuristik untuk topik sejarah sederhana.</li>
+                                    <li><strong>TP 4:</strong> Menjelaskan konsep kritik ekstern dan intern sumber sejarah.</li>
+                                    <li><strong>TP 5:</strong> Menerapkan kritik sumber untuk memverifikasi keaslian dan kredibilitas.</li>
+                                    <li><strong>TP 6:</strong> Melakukan interpretasi dan sintesis informasi dari berbagai sumber.</li>
+                                    <li><strong>TP 7:</strong> Menyusun kerangka historiografi sederhana dengan etika penulisan.</li>
+                                </ul>
+                            </div>
+                            <div class="card merdeka-badge">
+                                <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                                <h3>Dimensi Profil Lulusan (DPL)</h3>
+                                <ul style="list-style:none;padding-left:0;">
+                                    <li><strong>Penalaran Kritis</strong> — Menganalisis sumber, membedakan fakta dan opini, mengidentifikasi bias.</li>
+                                    <li><strong>Kreativitas</strong> — Menyajikan hasil penelitian dalam format inovatif.</li>
+                                    <li><strong>Kolaborasi</strong> — Bekerja sama dalam mengumpulkan dan menganalisis sumber.</li>
+                                    <li><strong>Kemandirian</strong> — Merencanakan dan melaksanakan penelitian sederhana.</li>
+                                    <li><strong>Komunikasi</strong> — Menyampaikan hasil penelitian secara logis dan meyakinkan.</li>
+                                    <li><strong>Ketelitian</strong> — Cermat dalam memverifikasi keaslian dan kredibilitas sumber.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)"><h3><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h3><span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></div>
+                    <div class="accordion-body">
+                        <div class="card"><h3>Pertemuan 1 (3 x 45 menit) – Heuristik & Jenis Sumber</h3>
+                            <ul>
+                                <li>Menjelaskan pengertian penelitian sejarah sebagai proses ilmiah (C2).</li>
+                                <li>Mengidentifikasi jenis-jenis sumber sejarah (primer, sekunder, lisan, tulisan, benda) dan memberikan contoh masing-masing (C3).</li>
+                                <li>Merencanakan langkah heuristik (pencarian dan pengumpulan sumber) untuk topik sejarah sederhana (P4).</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="margin-top:12px;"><h3>Pertemuan 2 (3 x 45 menit) – Kritik, Interpretasi &amp; Historiografi</h3>
+                            <ul>
+                                <li>Menjelaskan konsep kritik ekstern (autentisitas) dan kritik intern (kredibilitas) (C2).</li>
+                                <li>Menerapkan langkah kritik sumber untuk memverifikasi keaslian dan kredibilitas (C3).</li>
+                                <li>Melakukan interpretasi (penafsiran) dan sintesis informasi untuk membangun narasi sejarah (C4).</li>
+                                <li>Menyusun kerangka historiografi sederhana dengan etika penulisan (P4).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)"><h3><i class="fas fa-cubes"></i> Kerangka Deep Learning</h3><span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></div>
+                    <div class="accordion-body">
+                        <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:16px;">
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--gold);">
+                                    <h4 style="color:var(--gold);font-size:0.9rem;"><i class="fas fa-brain"></i> Mindful Learning</h4>
+                                    <p style="font-size:0.8rem;color:var(--text-secondary);">Refleksi tentang pentingnya verifikasi informasi dan skeptisisme sehat terhadap klaim sejarah.</p>
+                                </div>
+                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--gold);">
+                                    <h4 style="color:var(--gold);font-size:0.9rem;"><i class="fas fa-link"></i> Meaningful Learning</h4>
+                                    <p style="font-size:0.8rem;color:var(--text-secondary);">Menghubungkan metode penelitian sejarah dengan investigasi hoaks, detektif, dan riset ilmiah di kehidupan nyata.</p>
+                                </div>
+                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--gold);">
+                                    <h4 style="color:var(--gold);font-size:0.9rem;"><i class="fas fa-smile"></i> Joyful Learning</h4>
+                                    <p style="font-size:0.8rem;color:var(--text-secondary);">Simulasi "detektif sejarah", game verifikasi sumber, dan proyek penelitian mini yang kontekstual.</p>
+                                </div>
+                            </div>
+                            <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:10px;border-top:1px solid rgba(255,255,255,0.06);padding-top:8px;">
+                                <i class="fas fa-info-circle" style="color:var(--gold);"></i>
+                                Pendekatan ini mengajak peserta didik <strong>berlaku seperti sejarawan</strong>, bukan sekadar menghafal teori.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 2 : PERTEMUAN 1 (Heuristik) ========== -->
+        <section id="section2" class="section">
+            <div class="section-header"><div class="num">02</div><h2>Pertemuan 1: Heuristik &amp; Jenis Sumber Sejarah <small>Mengumpulkan Jejak Masa Lalu (3 x 45 menit) <span class="meeting-badge">Pertemuan 1</span></small></h2></div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-microscope"></i> A. Penelitian Sejarah sebagai Proses Ilmiah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Penelitian sejarah adalah <strong>proses ilmiah</strong> untuk menemukan dan menafsirkan fakta-fakta masa lalu. Berbeda dengan cerita atau legenda, penelitian sejarah menggunakan <strong>metode yang terstruktur</strong> dan <strong>bukti yang dapat dipertanggungjawabkan</strong>.</p>
+                <div style="margin-top:10px;background:var(--bg-card);border-radius:8px;padding:12px;border-left:4px solid var(--gold);">
+                    <p style="color:var(--text-secondary);font-size:0.9rem;"><i class="fas fa-quote-left" style="color:var(--gold);opacity:0.6;"></i> <strong style="color:var(--text-primary);">Sejarah adalah ilmu yang rekonstruktif</strong> — ia tidak mengulang masa lalu, tetapi membangun kembali masa lalu berdasarkan sisa-sisa yang ditinggalkan. <span style="color:#888;font-size:0.8rem;">— Kuntowijoyo</span></p>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px;">
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">🔍</span><span style="color:var(--text-secondary);font-size:0.8rem;">Mencari</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">✅</span><span style="color:var(--text-secondary);font-size:0.8rem;">Memverifikasi</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">🧩</span><span style="color:var(--text-secondary);font-size:0.8rem;">Menafsirkan</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">📝</span><span style="color:var(--text-secondary);font-size:0.8rem;">Menulis</span></div>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-search"></i> B. Heuristik — Seni Mencari Sumber</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><strong>Heuristik</strong> (dari bahasa Yunani <em>heuriskein</em> = menemukan) adalah tahap <strong>pencarian dan pengumpulan sumber</strong> yang relevan dengan topik penelitian. Ini adalah langkah pertama dan paling krusial dalam penelitian sejarah.</p>
+                <div style="margin-top:10px;background:var(--bg-card);border-radius:8px;padding:12px;">
+                    <h4 style="color:var(--gold);font-size:1rem;">📌 Tempat Mencari Sumber Sejarah</h4>
+                    <ul style="color:var(--text-secondary);padding-left:18px;margin-top:4px;">
+                        <li><strong>Arsip Nasional</strong> — dokumen resmi pemerintah, surat-surat diplomatik, laporan tahunan.</li>
+                        <li><strong>Perpustakaan</strong> — buku, jurnal, majalah, koran lama, manuskrip.</li>
+                        <li><strong>Museum</strong> — artefak, benda-benda bersejarah, koleksi fotografi.</li>
+                        <li><strong>Situs Daring</strong> — arsip digital, perpustakaan nasional digital, ANRI Online.</li>
+                        <li><strong>Wawancara</strong> — narasumber yang mengalami atau mengetahui peristiwa (saksi mata, pelaku, ahli).</li>
+                        <li><strong>Lingkungan Sekitar</strong> — prasasti, bangunan tua, makam, monumen, tradisi lisan.</li>
+                    </ul>
+                </div>
+                <div class="def-block" style="margin-top:12px;">
+                    <div class="source"><i class="fas fa-lightbulb"></i> Contoh Heuristik dalam Kehidupan Sehari-hari</div>
+                    <ul style="color:var(--text-secondary);padding-left:18px;">
+                        <li><strong>Mencari sejarah keluarga:</strong> Menanyakan kepada kakek-nenek tentang asal-usul keluarga, mencari foto-foto lama di album, atau melihat dokumen kelahiran.</li>
+                        <li><strong>Meneliti asal-usul nama desa:</strong> Bertanya kepada tetua desa, mencari prasasti atau dokumen di kantor desa, atau mencari artikel di perpustakaan daerah.</li>
+                        <li><strong>Membuat biografi teman:</strong> Mewawancarai teman, melihat foto-foto masa kecilnya, dan membaca buku tahunan sekolah.</li>
+                        <li><strong>Menelusuri sejarah sekolah:</strong> Mencari arsip di kantor sekolah, mewawancarai guru senior, atau melihat foto-foto lama di papan pengumuman.</li>
+                    </ul>
+                    <p style="margin-top:6px;font-size:0.85rem;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Intinya: heuristik adalah <strong>kegiatan detektif</strong> — mengumpulkan petunjuk dari berbagai tempat untuk memecahkan misteri masa lalu.</p>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-tags"></i> C. Jenis-Jenis Sumber Sejarah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Sumber sejarah diklasifikasikan berdasarkan <strong>kedekatannya dengan peristiwa</strong> (primer/sekunder) dan <strong>bentuknya</strong> (tulisan/lisan/benda).</p>
+                <div class="grid-2">
+                    <div class="card interactive-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon">📜</span><h3>Sumber Primer</h3>
+                        <p>Dibuat pada <strong>saat peristiwa terjadi</strong> atau oleh pelaku/saksi langsung.</p>
+                        <div class="back">
+                            <p><strong>Ciri:</strong> Autentik, asli, tidak melalui interpretasi orang lain.</p>
+                            <ul>
+                                <li><strong>Tulisan:</strong> Naskah Proklamasi, surat pribadi Soekarno, diary, prasasti.</li>
+                                <li><strong>Benda:</strong> Artefak, bangunan bersejarah, senjata, perhiasan kuno.</li>
+                                <li><strong>Lisan:</strong> Rekaman pidato, wawancara saksi mata.</li>
+                                <li><strong>Visual:</strong> Foto asli, lukisan kontemporer, film dokumenter masa itu.</li>
+                            </ul>
+                            <p style="margin-top:6px;background:var(--bg-primary);padding:6px;border-radius:4px;font-size:0.85rem;"><strong>Contoh sehari-hari:</strong> Foto KTP kamu sendiri, ijazah asli, atau buku harian pribadi.</p>
+                        </div>
+                    </div>
+                    <div class="card interactive-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon">📖</span><h3>Sumber Sekunder</h3>
+                        <p>Dibuat <strong>setelah peristiwa</strong> oleh orang yang tidak terlibat langsung.</p>
+                        <div class="back">
+                            <p><strong>Ciri:</strong> Mengolah, menafsirkan, atau merangkum sumber primer.</p>
+                            <ul>
+                                <li><strong>Buku teks sejarah</strong> — merangkum berbagai peristiwa.</li>
+                                <li><strong>Biografi</strong> — ditulis oleh orang lain tentang tokoh sejarah.</li>
+                                <li><strong>Jurnal ilmiah</strong> — analisis sejarawan tentang suatu topik.</li>
+                                <li><strong>Artikel populer</strong> — tulisan di media massa tentang peristiwa masa lalu.</li>
+                            </ul>
+                            <p style="margin-top:6px;background:var(--bg-primary);padding:6px;border-radius:4px;font-size:0.85rem;"><strong>Contoh sehari-hari:</strong> Buku biografi pahlawan, artikel Wikipedia tentang sejarah, atau film dokumenter yang dibuat belakangan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold);">
+                        <h4 style="color:var(--gold);font-size:0.9rem;">📝 Sumber Tertulis</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Naskah, surat, dokumen, buku, koran, arsip.</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Surat kabar lama, buku tahunan sekolah.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold-light);">
+                        <h4 style="color:var(--gold-light);font-size:0.9rem;">🗣️ Sumber Lisan</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Cerita rakyat, wawancara, pidato, tradisi lisan.</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Cerita nenek tentang masa kecil, wawancara dengan veteran.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold);">
+                        <h4 style="color:var(--gold);font-size:0.9rem;">🏺 Sumber Benda</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Artefak, bangunan, monumen, pakaian, perhiasan.</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Prasasti di museum, rumah tua di kampung, benda pusaka keluarga.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold-light);">
+                        <h4 style="color:var(--gold-light);font-size:0.9rem;">🖼️ Sumber Visual</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Foto, lukisan, relief, film, poster, peta kuno.</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Foto pernikahan orang tua, lukisan di dinding gereja tua, film dokumenter.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-clipboard-check"></i> D. Contoh Penerapan Heuristik dalam Kehidupan</h3>
+                <div style="background:var(--bg-card);border-radius:8px;padding:14px;margin-top:6px;">
+                    <p style="color:var(--text-primary);font-weight:600;"><i class="fas fa-flag" style="color:var(--gold);"></i> Topik: Asal-usul Nama Desa/Kampungku</p>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
+                        <div style="background:var(--bg-primary);padding:8px;border-radius:6px;">
+                            <span style="color:var(--gold);font-weight:600;">Sumber Primer</span>
+                            <ul style="color:var(--text-secondary);font-size:0.8rem;padding-left:16px;">
+                                <li>Wawancara dengan tetua desa (lisan).</li>
+                                <li>Prasasti atau batu peringatan di desa (benda).</li>
+                                <li>Foto-foto lama desa (visual).</li>
+                            </ul>
+                        </div>
+                        <div style="background:var(--bg-primary);padding:8px;border-radius:6px;">
+                            <span style="color:var(--gold-light);font-weight:600;">Sumber Sekunder</span>
+                            <ul style="color:var(--text-secondary);font-size:0.8rem;padding-left:16px;">
+                                <li>Buku sejarah daerah di perpustakaan.</li>
+                                <li>Artikel di website tentang sejarah desa.</li>
+                                <li>Dokumen dari kantor desa (profil desa).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:6px;"><i class="fas fa-arrow-right" style="color:var(--gold);"></i> Dengan menggabungkan sumber primer dan sekunder, kita bisa mendapatkan gambaran yang lebih utuh tentang asal-usul desa.</p>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:14px;margin-top:10px;border-top:3px solid var(--gold-light);">
+                    <p style="color:var(--text-primary);font-weight:600;"><i class="fas fa-user-graduate" style="color:var(--gold-light);"></i> Aktivitas Sederhana: Buat Silsilah Keluarga</p>
+                    <ul style="color:var(--text-secondary);font-size:0.85rem;padding-left:18px;">
+                        <li>Wawancarai orang tua dan kakek-nenek tentang nama-nama leluhur (sumber lisan primer).</li>
+                        <li>Cari foto-foto lama di album keluarga (sumber visual primer).</li>
+                        <li>Lihat buku nikah atau dokumen keluarga (sumber tertulis primer).</li>
+                        <li>Bandingkan cerita dari berbagai anggota keluarga — apakah ada perbedaan? (mulai berpikir kritis).</li>
+                    </ul>
+                    <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:4px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Ini adalah contoh heuristik yang sangat dekat dengan kehidupan sehari-hari!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 3 : PERTEMUAN 2 (Kritik, Interpretasi, Historiografi) ========== -->
+        <section id="section3" class="section">
+            <div class="section-header"><div class="num">03</div><h2>Pertemuan 2: Kritik, Interpretasi &amp; Historiografi <small>Memverifikasi &amp; Menulis Sejarah (3 x 45 menit) <span class="meeting-badge">Pertemuan 2</span></small></h2></div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-check-double"></i> A. Kritik Sumber — Menguji Kebenaran</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Setelah sumber terkumpul, sejarawan harus <strong>menguji keaslian dan kredibilitasnya</strong>. Proses ini disebut <strong>kritik sumber</strong> atau verifikasi. Tanpa kritik, sejarah bisa menjadi kumpulan mitos dan hoaks.</p>
+                <div class="grid-2" style="margin-top:10px;">
+                    <div class="card interactive-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon">🔐</span><h3>Kritik Ekstern (Autentisitas)</h3>
+                        <p>Menguji <strong>keaslian fisik</strong> sumber.</p>
+                        <div class="back">
+                            <p><strong>Pertanyaan kunci:</strong> "Apakah sumber ini asli?"</p>
+                            <ul>
+                                <li><strong>Bahan:</strong> Apakah kertas/tinta sesuai zaman?</li>
+                                <li><strong>Usia:</strong> Kapan dokumen dibuat? (menggunakan metode karbon, paleografi).</li>
+                                <li><strong>Penulis:</strong> Apakah penulis benar-benar orang yang disebutkan?</li>
+                                <li><strong>Tanda tangan/segul:</strong> Apakah autentik?</li>
+                            </ul>
+                            <p style="margin-top:4px;background:var(--bg-primary);padding:6px;border-radius:4px;font-size:0.85rem;"><strong>Contoh sehari-hari:</strong> Memeriksa apakah ijazah yang kita pegang benar-benar asli dengan melihat tanda tangan, stempel, dan kertasnya.</p>
+                        </div>
+                    </div>
+                    <div class="card interactive-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon">📊</span><h3>Kritik Intern (Kredibilitas)</h3>
+                        <p>Menguji <strong>kebenaran isi</strong> sumber.</p>
+                        <div class="back">
+                            <p><strong>Pertanyaan kunci:</strong> "Apakah isi sumber ini dapat dipercaya?"</p>
+                            <ul>
+                                <li><strong>Kesesuaian:</strong> Apakah isi sumber sesuai dengan fakta lain?</li>
+                                <li><strong>Bias:</strong> Apakah penulis memiliki kepentingan atau sudut pandang tertentu?</li>
+                                <li><strong>Konsistensi:</strong> Apakah ada kontradiksi di dalam sumber?</li>
+                                <li><strong>Kompetensi:</strong> Apakah penulis menguasai topik yang ditulis?</li>
+                            </ul>
+                            <p style="margin-top:4px;background:var(--bg-primary);padding:6px;border-radius:4px;font-size:0.85rem;"><strong>Contoh sehari-hari:</strong> Dua orang teman bercerita tentang kejadian yang sama dengan versi berbeda. Kita harus membandingkan, mencari siapa yang lebih objektif, dan melihat bukti lain untuk menentukan mana yang lebih kredibel.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:8px;border-top:3px solid var(--gold);">
+                    <p style="color:var(--text-secondary);font-size:0.95rem;"><i class="fas fa-quote-left" style="color:var(--gold);opacity:0.6;"></i> <strong style="color:var(--text-primary);">Prinsip:</strong> Semakin dekat sumber dengan peristiwa, semakin kuat kredibilitasnya. Namun, sumber primer pun tetap perlu dikritisi!</p>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-puzzle-piece"></i> B. Interpretasi — Menemukan Makna</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Setelah sumber diverifikasi, sejarawan melakukan <strong>interpretasi</strong>: menafsirkan fakta-fakta, menghubungkan satu peristiwa dengan peristiwa lain, dan mencari <strong>makna</strong> di balik data mentah.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+                    <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
+                        <h4 style="color:var(--gold);font-size:0.95rem;"><i class="fas fa-link"></i> Kausalitas</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Menghubungkan sebab dan akibat. Mengapa peristiwa itu terjadi? Apa dampaknya?</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Karena ada kebijakan tanam paksa, rakyat menderita kelaparan.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
+                        <h4 style="color:var(--gold-light);font-size:0.95rem;"><i class="fas fa-sync-alt"></i> Perubahan &amp; Kesinambungan</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Apa yang berubah? Apa yang tetap bertahan? Bagaimana masyarakat bertransformasi?</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Cara berpakaian berubah, tetapi nilai gotong royong tetap ada.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
+                        <h4 style="color:var(--gold);font-size:0.95rem;"><i class="fas fa-users"></i> Perspektif</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Bagaimana sudut pandang pelaku, korban, dan pengamat berbeda? Interpretasi sejarah selalu dipengaruhi perspektif.</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Seorang pejuang kemerdekaan dan seorang Belanda akan memiliki cerita berbeda tentang perang.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
+                        <h4 style="color:var(--gold-light);font-size:0.95rem;"><i class="fas fa-flag"></i> Signifikansi</h4>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;">Mengapa peristiwa ini penting? Apa relevansinya bagi kehidupan sekarang?</p>
+                        <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Peristiwa Sumpah Pemuda mengingatkan kita akan pentingnya persatuan.</p>
+                    </div>
+                </div>
+                <div class="def-block" style="margin-top:10px;">
+                    <div class="source"><i class="fas fa-quote-right"></i> Interpretasi dalam Kehidupan Sehari-hari</div>
+                    <p style="color:var(--text-secondary);font-style:italic;">"Ketika ibu bercerita tentang masa kecilnya, kita tidak hanya mendengar fakta, tetapi juga menafsirkan nilai-nilai yang ingin disampaikan — seperti kerja keras, kesederhanaan, atau kebersamaan."</p>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-pen-fancy"></i> C. Historiografi — Menulis Sejarah</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;"><strong>Historiografi</strong> adalah tahap akhir: <strong>penulisan sejarah</strong> dalam bentuk narasi yang sistematis, menarik, dan dapat dipertanggungjawabkan secara ilmiah.</p>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:8px;">
+                    <h4 style="color:var(--gold);font-size:0.95rem;">📝 Panduan Menulis Sejarah yang Baik</h4>
+                    <ul style="color:var(--text-secondary);padding-left:18px;font-size:0.9rem;">
+                        <li><strong>Struktur jelas:</strong> Pendahuluan (latar belakang) → Isi (kronologi/analisis) → Penutup (kesimpulan).</li>
+                        <li><strong>Bahasa lugas dan ilmiah:</strong> Gunakan istilah sejarah dengan tepat, hindari opini tanpa data.</li>
+                        <li><strong>Menghargai sumber:</strong> Cantumkan sumber (catatan kaki/daftar pustaka) untuk setiap klaim.</li>
+                        <li><strong>Objektif:</strong> Sajikan berbagai sudut pandang, hindari bias berlebihan.</li>
+                        <li><strong>Menarik:</strong> Sejarah bukan hanya tanggal dan nama, tetapi cerita manusia yang hidup.</li>
+                    </ul>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-top:3px solid var(--gold-light);">
+                    <h4 style="color:var(--gold-light);font-size:0.95rem;">📖 Contoh Historiografi Sederhana</h4>
+                    <p style="color:var(--text-secondary);font-size:0.85rem;font-style:italic;">"Desaku bernama Sumberejo. Menurut wawancara dengan Mbah Joyo (2023), nama ini berasal dari adanya mata air yang melimpah. Prasasti di balai desa (berangka tahun 1920) menyebutkan kata 'sumber'. Buku sejarah daerah (1985) juga mencatat bahwa desa ini dikenal sebagai daerah pertanian sejak zaman kolonial. Dari ketiga sumber ini, dapat disimpulkan bahwa nama Sumberejo berkaitan erat dengan sumber air dan kesuburan tanah, yang masih terlihat hingga kini."</p>
+                    <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:4px;">(Ini adalah contoh tulisan sejarah sederhana yang menggabungkan heuristik, kritik, dan interpretasi).</p>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
+                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-sitemap"></i> D. Tahapan Penelitian Sejarah — Ringkasan</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">1</span> Heuristik</h4><p style="font-size:0.85rem;">Mencari dan mengumpulkan sumber sebanyak mungkin.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Wawancara, cari arsip, foto lama.</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">2</span> Kritik</h4><p style="font-size:0.85rem;">Memverifikasi keaslian (ekstern) dan kredibilitas (intern) sumber.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Cek tanda tangan, bandingkan cerita.</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">3</span> Interpretasi</h4><p style="font-size:0.85rem;">Menafsirkan fakta, mencari makna, dan menghubungkan peristiwa.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Mengapa peristiwa itu penting?</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">4</span> Historiografi</h4><p style="font-size:0.85rem;">Menulis sejarah dalam narasi yang sistematis dan bertanggung jawab.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Buat cerita sejarah dengan struktur yang jelas.</p></div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:10px;margin-top:8px;text-align:center;border:2px dashed var(--gold);">
+                    <p style="color:var(--text-secondary);font-size:0.9rem;"><i class="fas fa-arrow-right" style="color:var(--gold);"></i> <strong>Ingat!</strong> Penelitian sejarah adalah siklus — sering kali kita harus kembali ke heuristik jika menemukan sumber baru yang mengubah interpretasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4 : AKTIVITAS ========== -->
+        <section id="section4" class="section">
+            <div class="section-header"><div class="num">04</div><h2>Aktivitas <small>Proyek Penelitian Sejarah Mini</small></h2></div>
+            <div class="activity-box">
+                <h3><i class="fas fa-user-secret"></i> Jadilah Detektif Sejarah!</h3>
+                <p style="margin:6px 0 10px 0;font-size:0.95rem;color:var(--text-secondary);">Praktikkan seluruh tahapan penelitian sejarah — dari heuristik hingga historiografi — dengan topik pilihanmu. Gunakan contoh-contoh dari materi pertemuan 1 dan 2 sebagai panduan.</p>
+                <div style="background:var(--bg-primary);border-radius:10px;padding:12px 16px;margin:12px 0;border-left:4px solid var(--gold);">
+                    <h4 style="color:var(--gold);font-size:1rem;">📌 Pilih Salah Satu Topik (dekat dengan kehidupanmu)</h4>
+                    <ul style="color:var(--text-secondary);padding-left:18px;">
+                        <li><strong>Sejarah keluarga:</strong> Buat silsilah keluarga hingga 3 generasi ke atas. Cari tahu asal-usul nama keluarga atau cerita tentang leluhur.</li>
+                        <li><strong>Asal-usul nama desa/kampung atau jalan di sekitarmu.</strong></li>
+                        <li><strong>Sejarah sekolahmu</strong> — kapan didirikan, siapa pendirinya, bagaimana perkembangannya.</li>
+                        <li><strong>Sebuah tradisi lokal</strong> (misalnya, upacara adat, makanan khas, permainan tradisional).</li>
+                        <li><strong>Verifikasi sebuah klaim sejarah</strong> yang kamu temukan di media sosial atau dari cerita turun-temurun (misalnya, "di desa ini dulu ada kerajaan").</li>
+                    </ul>
+                </div>
+                <div style="margin-top:12px;">
+                    <h4 style="color:var(--text-primary);font-size:1.05rem;"><i class="fas fa-list-ol" style="color:var(--gold);"></i> Langkah-Langkah (sesuai materi)</h4>
+                    <ol style="color:var(--text-secondary);padding-left:20px;line-height:2.2;">
+                        <li><strong>Heuristik (Mencari Sumber):</strong> Kumpulkan minimal 3 sumber berbeda — bisa wawancara, dokumen, foto, artikel, atau benda. Catat dari mana sumber itu diperoleh.</li>
+                        <li><strong>Kritik Sumber (Verifikasi):</strong> Tulis analisis singkat: sumber mana yang primer dan mana yang sekunder? Sebutkan kelebihan dan kelemahan masing-masing. Lakukan kritik ekstern dan intern.</li>
+                        <li><strong>Interpretasi:</strong> Buat narasi 2-3 paragraf tentang topikmu. Hubungkan sebab-akibat, perubahan, dan maknanya bagi kehidupan sekarang.</li>
+                        <li><strong>Historiografi:</strong> Susun laporan lengkap (judul, pendahuluan, isi, kesimpulan, daftar sumber) dalam format tulis tangan, digital, atau infografis.</li>
+                        <li><strong>Presentasi:</strong> Sampaikan hasilnya di depan kelas atau kelompok kecil (durasi 3-5 menit).</li>
+                    </ol>
+                </div>
+                <div style="background:var(--bg-card);border-radius:10px;padding:12px 16px;margin:12px 0;border:1px solid rgba(255,255,255,0.05);">
+                    <h4 style="color:var(--text-primary);font-size:1rem;"><i class="fas fa-check-circle" style="color:var(--gold);"></i> Rubrik Penilaian (disesuaikan)</h4>
+                    <div style="display:grid;grid-template-columns:1fr 2fr;gap:6px;font-size:0.85rem;color:var(--text-secondary);margin-top:6px;">
+                        <span><strong>Heuristik (25%)</strong></span><span>Kesesuaian & keragaman sumber, ketepatan identifikasi primer/sekunder.</span>
+                        <span><strong>Kritik Sumber (30%)</strong></span><span>Kemampuan menganalisis autentisitas (ekstern) dan kredibilitas (intern).</span>
+                        <span><strong>Interpretasi (25%)</strong></span><span>Keterhubungan fakta, kedalaman makna, kesesuaian dengan konsep kausalitas dan perspektif.</span>
+                        <span><strong>Historiografi &amp; Komunikasi (20%)</strong></span><span>Kejelasan narasi, tata tulis, penyebutan sumber, dan presentasi.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 5 : ASESMEN ========== -->
+        <section id="section5" class="section">
+            <div class="section-header"><div class="num">05</div><h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman</small></h2></div>
+            <p style="font-size:1rem;margin-bottom:16px;color:var(--text-secondary);"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Kerjakan soal-soal berikut untuk mengukur pemahamanmu tentang metode penelitian sejarah, berdasarkan contoh-contoh yang telah dipelajari.</p>
+
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
+                <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">A</span> Pilihan Ganda (berdasarkan contoh)
+                </h3>
+                <div class="assessment-question"><div class="q-text">1. Ketika kamu mewawancarai nenek tentang masa kecilnya, kamu sedang melakukan tahap ...</div><div class="q-options"><span>A. Kritik</span><span>B. Heuristik</span><span>C. Interpretasi</span><span>D. Historiografi</span></div></div>
+                <div class="assessment-question"><div class="q-text">2. Foto KTP kamu sendiri termasuk contoh sumber ...</div><div class="q-options"><span>A. Sekunder</span><span>B. Tersier</span><span>C. Primer</span><span>D. Lisan</span></div></div>
+                <div class="assessment-question"><div class="q-text">3. Memeriksa apakah tanda tangan pada ijazah asli atau palsu termasuk kritik ...</div><div class="q-options"><span>A. Intern</span><span>B. Ekstern</span><span>C. Historiografi</span><span>D. Heuristik</span></div></div>
+                <div class="assessment-question"><div class="q-text">4. Ketika dua teman bercerita berbeda tentang suatu kejadian, untuk mengetahui mana yang lebih benar kita melakukan ...</div><div class="q-options"><span>A. Heuristik</span><span>B. Kritik intern</span><span>C. Historiografi</span><span>D. Interpretasi</span></div></div>
+                <div class="assessment-question"><div class="q-text">5. Berikut yang termasuk sumber primer dalam penelitian sejarah keluarga adalah ...</div><div class="q-options"><span>A. Buku silsilah yang diterbitkan</span><span>B. Cerita dari kakek-nenek</span><span>C. Artikel tentang keluarga di koran</span><span>D. Wikipedia tentang asal-usul nama</span></div></div>
+                <div class="assessment-question"><div class="q-text">6. Menjelaskan mengapa sebuah tradisi masih bertahan hingga kini termasuk dalam tahap ...</div><div class="q-options"><span>A. Heuristik</span><span>B. Kritik</span><span>C. Interpretasi</span><span>D. Historiografi</span></div></div>
+                <div class="assessment-question"><div class="q-text">7. Tahap akhir berupa penulisan narasi sejarah yang sistematis disebut ...</div><div class="q-options"><span>A. Heuristik</span><span>B. Kritik</span><span>C. Interpretasi</span><span>D. Historiografi</span></div></div>
+            </div>
+
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
+                <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">B</span> Essay (terkait contoh sehari-hari)
+                </h3>
+                <div class="assessment-question"><div class="q-text">1. Jelaskan mengapa kritik sumber (verifikasi) sangat penting dalam penelitian sejarah, berikan contoh dari kehidupan sehari-hari (misalnya, ketika mendengar dua versi cerita tentang suatu kejadian).</div></div>
+                <div class="assessment-question"><div class="q-text">2. Kamu ingin meneliti sejarah asal-usul nama desamu. Rincikan langkah-langkah heuristik yang akan kamu lakukan, sebutkan jenis sumber yang akan dicari!</div></div>
+                <div class="assessment-question"><div class="q-text">3. Bandingkan sumber primer dan sumber sekunder dengan memberikan contoh dari lingkungan sekitarmu (misalnya, foto pribadi vs buku sejarah).</div></div>
+                <div class="assessment-question"><div class="q-text">4. Mengapa interpretasi sejarah bisa berbeda antara satu sejarawan dengan yang lain? Berikan contoh sederhana dari perbedaan cerita dalam keluarga atau masyarakat.</div></div>
+            </div>
+
+            <div style="background:var(--bg-primary);border-radius:16px;padding:20px 18px;border:2px solid var(--gold);text-align:center;">
+                <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-lock" style="color:var(--gold);margin-right:8px;"></i> <strong style="color:var(--text-primary);">Kunci Jawaban</strong> dilindungi password.</p>
+                <div style="display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <input type="password" id="passwordInput" placeholder="Masukkan password" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:40px;color:var(--text-primary);font-size:0.9rem;width:200px;outline:none;transition:0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <button onclick="toggleKunci()" style="background:var(--gold);color:#121212;border:none;padding:8px 24px;border-radius:40px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.3s;">Lihat Kunci Jawaban</button>
+                </div>
+                <div id="kunciContainer" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);text-align:left;">
+                    <div style="background:var(--bg-card);border-radius:10px;padding:16px;">
+                        <p style="color:var(--gold);font-weight:700;margin-bottom:8px;"><i class="fas fa-key"></i> KUNCI JAWABAN</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;"><strong style="color:var(--gold);">Pilihan Ganda:</strong> 1.B, 2.C, 3.B, 4.B, 5.B, 6.C, 7.D</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:6px;"><strong style="color:var(--gold);">Essay:</strong> Jawaban harus mencakup konsep heuristik, kritik (ekstern & intern), interpretasi, dan historiografi dengan contoh konkret.</p>
+                    </div>
+                </div>
+                <p id="passwordError" style="color:#e74c3c;font-size:0.85rem;margin-top:8px;display:none;">Password salah! Silakan coba lagi.</p>
+            </div>
+            <script>
+                function toggleKunci() {
+                    const password = document.getElementById('passwordInput').value;
+                    const container = document.getElementById('kunciContainer');
+                    const error = document.getElementById('passwordError');
+                    if (password === '1234567890') {
+                        container.style.display = 'block';
+                        error.style.display = 'none';
+                        document.getElementById('passwordInput').value = '';
+                    } else {
+                        error.style.display = 'block';
+                        container.style.display = 'none';
+                    }
+                }
+                document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') toggleKunci();
+                });
+            </script>
+        </section>
+
+        <!-- ========== SECTION 6 : REFLEKSI ========== -->
+        <section id="section6" class="section">
+            <div class="section-header"><div class="num">06</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2></div>
+            <div class="card" style="background:var(--bg-secondary);border:1px solid var(--gold);">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
+                <ul class="refleksi-list">
+                    <li><span class="check">✅</span><span>Memahami penelitian sejarah sebagai proses ilmiah yang sistematis (bukan sekadar hafalan).</span></li>
+                    <li><span class="check">✅</span><span>Mengenal 4 tahapan: heuristik, kritik, interpretasi, historiografi dengan contoh-contoh nyata.</span></li>
+                    <li><span class="check">✅</span><span>Mampu membedakan sumber primer dan sekunder dari lingkungan sekitar.</span></li>
+                    <li><span class="check">✅</span><span>Terampil melakukan kritik ekstern dan intern terhadap sumber (misalnya, membandingkan cerita).</span></li>
+                    <li><span class="check">✅</span><span>Mampu menyusun narasi sejarah sederhana dengan etika penulisan yang baik.</span></li>
+                </ul>
+            </div>
+            <div class="card" style="margin-top:16px;border-left:6px solid var(--gold);">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><i class="fas fa-pen-fancy" style="color:var(--gold);font-size:1.4rem;"></i> Renungkan</h3>
+                <p style="font-size:1.05rem;color:var(--text-secondary);font-style:italic;margin-top:4px;">"Setelah mempelajari metode penelitian sejarah, bagaimana kamu akan menyikapi informasi sejarah yang beredar di media sosial? Apakah kamu akan langsung percaya? Mengapa?"</p>
+                <p style="margin-top:8px;font-size:0.9rem;color:var(--text-secondary);"><i class="fas fa-arrow-right" style="color:var(--gold);"></i> Tuliskan refleksimu di buku catatan, sertakan contoh kasus yang pernah kamu temui.</p>
+            </div>
+            <div class="quote-block"><i class="fas fa-book-open" style="color:var(--gold);margin-right:10px;"></i> 📖 Pesan Hari Ini
+                <blockquote style="margin:8px 0 0 0;padding:0;border:none;background:transparent;color:var(--text-secondary);">"Sejarah bukanlah apa yang terjadi, tetapi apa yang dicatat dan ditafsirkan. Maka, jadilah pencatat dan penafsir yang bertanggung jawab."<span class="author">— Refleksi Sejarawan</span></blockquote>
+            </div>
+            <div class="celebration-box"><h3>🎉 Selamat!</h3><p>Kamu telah memahami <strong>metode penelitian sejarah</strong> secara mendalam. Keterampilan ini akan membantumu menjadi pembelajar yang kritis, tidak mudah percaya hoaks, dan mampu menggali kebenaran di balik berbagai peristiwa.</p><div style="margin-top:16px;"><span class="next-step-btn" style="display:inline-block;background:var(--gold);color:#121212;padding:12px 32px;border-radius:60px;font-weight:700;font-size:1rem;border:none;cursor:default;">➡️ Lanjutkan ke materi berikutnya: Historiografi Indonesia</span></div><p style="margin-top:12px;font-size:0.85rem;color:#888;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Jadilah detektif sejarah yang kritis, jujur, dan bertanggung jawab!</p></div>
+        </section>
+
+        <!-- ========== SECTION 7 : REFERENSI ========== -->
+        <section id="section7" class="section">
+            <div class="section-header"><div class="num">07</div><h2>Referensi <small>Daftar Pustaka</small></h2></div>
+            <ul class="ref-list">
+                <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran Mata Pelajaran Sejarah Fase E-Fase F, BSKAP Kemendikbudristek (2022).</li>
+                <li><i class="fas fa-book"></i> Gottschalk, Louis. <em>Mengerti Sejarah</em>. Jakarta: UI Press, 1985.</li>
+                <li><i class="fas fa-book"></i> Kuntowijoyo. <em>Pengantar Ilmu Sejarah</em>. Yogyakarta: Bentang, 1995.</li>
+                <li><i class="fas fa-book"></i> Carr, E.H. <em>What is History?</em>. London: Penguin, 1961.</li>
+                <li><i class="fas fa-book"></i> Sjamsuddin, Helius. <em>Metodologi Sejarah</em>. Yogyakarta: Ombak, 2007.</li>
+                <li><i class="fas fa-book"></i> Abdurahman, Dudung. <em>Metodologi Penelitian Sejarah</em>. Yogyakarta: Ar-Ruzz Media, 2007.</li>
+                <li><i class="fas fa-globe"></i> Arsip Nasional Republik Indonesia (ANRI) – anri.go.id</li>
+                <li><i class="fas fa-globe"></i> Perpustakaan Nasional Digital – digital.perpusnas.go.id</li>
+            </ul>
+            <div class="footer-credit" style="text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);color:var(--text-secondary);">
+                <i class="fas fa-school" style="color:var(--gold);"></i> <strong style="color:var(--text-primary);">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp;
+                <i class="fas fa-chalkboard-teacher" style="color:var(--gold);"></i> Guru Pengampu: <strong style="color:var(--text-primary);">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
+            </div>
+        </section>
+
+        <!-- ===== NAVIGATION BUTTONS ===== -->
+        <div class="nav-buttons hidden" id="navButtons">
+            <div class="nav-group">
+                <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <div class="page-numbers" id="pageNumbers"></div>
+                <button id="nextBtn">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter" id="slideCounter">1 / 8</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // ============================================================
+            // LOADER — menggunakan setInterval yang andal
+            // ============================================================
+            const loader = document.getElementById('loader');
+            const percentText = document.getElementById('loaderPercent');
+
+            // Dekorasi loader
+            const starsContainer = document.getElementById('loaderStars');
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('i');
+                star.className = 'fas fa-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.fontSize = (0.4 + Math.random() * 0.8) + 'rem';
+                star.style.animationDelay = (Math.random() * 4) + 's';
+                star.style.animationDuration = (3 + Math.random() * 4) + 's';
+                starsContainer.appendChild(star);
+            }
+            const sparklesContainer = document.getElementById('loaderSparkles');
+            for (let i = 0; i < 20; i++) {
+                const sp = document.createElement('span');
+                const size = 2 + Math.random() * 5;
+                sp.style.width = size + 'px';
+                sp.style.height = size + 'px';
+                sp.style.left = Math.random() * 100 + '%';
+                sp.style.top = Math.random() * 100 + '%';
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                sp.style.setProperty('--tx', tx + 'px');
+                sp.style.setProperty('--ty', ty + 'px');
+                sp.style.setProperty('--tx2', (tx * 1.5) + 'px');
+                sp.style.setProperty('--ty2', (ty * 1.5) + 'px');
+                sp.style.animationDelay = (Math.random() * 2) + 's';
+                sp.style.animationDuration = (2 + Math.random() * 3) + 's';
+                sparklesContainer.appendChild(sp);
+            }
+
+            let progress = 0;
+            const step = 100 / (3200 / 30);
+            let intervalId = setInterval(function() {
+                progress += step;
+                if (progress > 100) progress = 100;
+                percentText.textContent = Math.round(progress) + '%';
+                if (progress >= 100) {
+                    clearInterval(intervalId);
+                    percentText.textContent = '100%';
+                    setTimeout(function() {
+                        loader.classList.add('hidden');
+                        setTimeout(function() { loader.style.display = 'none'; }, 800);
+                    }, 400);
+                }
+            }, 30);
+
+            // ===== PARTIKEL BINTANG =====
+            const starContainer = document.getElementById('particleContainer');
+            const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BD6', '#845EC2', '#FF9671', '#00C9A7', '#F9ED69',
+                '#FF5E5B', '#3B9C9C', '#B83B5E', '#2C73D2', '#FFC75F', '#00B4D8', '#F28482'
+            ];
+            const starSymbols = ['★', '✦', '✧', '⭐', '✨', '💫', '🌟'];
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('span');
+                star.className = 'star-particle';
+                star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+                star.style.color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.fontSize = (0.5 + Math.random() * 1.2) + 'rem';
+                star.style.left = (Math.random() * 100) + '%';
+                star.style.top = (Math.random() * 100) + '%';
+                const tx1 = (Math.random() - 0.5) * 600,
+                    ty1 = (Math.random() - 0.5) * 400;
+                const tx2 = (Math.random() - 0.5) * 700,
+                    ty2 = (Math.random() - 0.5) * 500;
+                const tx3 = (Math.random() - 0.5) * 500,
+                    ty3 = (Math.random() - 0.5) * 600;
+                const tx4 = (Math.random() - 0.5) * 800,
+                    ty4 = (Math.random() - 0.5) * 500;
+                star.style.setProperty('--tx1', tx1 + 'px');
+                star.style.setProperty('--ty1', ty1 + 'px');
+                star.style.setProperty('--tx2', tx2 + 'px');
+                star.style.setProperty('--ty2', ty2 + 'px');
+                star.style.setProperty('--tx3', tx3 + 'px');
+                star.style.setProperty('--ty3', ty3 + 'px');
+                star.style.setProperty('--tx4', tx4 + 'px');
+                star.style.setProperty('--ty4', ty4 + 'px');
+                star.style.animationDuration = (18 + Math.random() * 20) + 's';
+                star.style.animationDelay = (Math.random() * 8) + 's';
+                starContainer.appendChild(star);
+            }
+
+            // ===== MODAL =====
+            window.openModal = function(src, caption) {
+                const modal = document.getElementById('imageModal');
+                const img = document.getElementById('modalImage');
+                const cap = document.getElementById('modalCaption');
+                img.src = src;
+                cap.textContent = caption || 'Klik di luar gambar untuk menutup';
+                modal.classList.add('active');
+            };
+            window.closeModal = function() {
+                document.getElementById('imageModal').classList.remove('active');
+            };
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // ===== THEME =====
+            window.toggleTheme = function() {
+                document.body.classList.toggle('light-mode');
+                const icon = document.getElementById('themeIcon');
+                icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            };
+
+            // ===== NAVIGATION DATA =====
+            const total = 8;
+            let current = 0;
+            const navData = [
+                { label: 'Beranda', desc: 'Cover Modul' },
+                { label: 'Komponen', desc: 'CP, ATP, DPL, Deep Learning' },
+                { label: 'Pertemuan 1', desc: 'Heuristik & Jenis Sumber' },
+                { label: 'Pertemuan 2', desc: 'Kritik, Interpretasi, Historiografi' },
+                { label: 'Aktivitas', desc: 'Proyek Penelitian Mini' },
+                { label: 'Asesmen', desc: 'Evaluasi Pemahaman' },
+                { label: 'Refleksi', desc: 'Menyimpulkan Materi' },
+                { label: 'Referensi', desc: 'Daftar Pustaka' }
+            ];
+
+            // ===== QUICK NAV =====
+            const quickNav = document.getElementById('quickNav');
+            navData.forEach((item, i) => {
+                const card = document.createElement('div');
+                card.className = 'quick-nav-card';
+                card.style.setProperty('--i', i);
+                card.innerHTML = `
+                    <span class="card-badge"><i class="fas fa-plus"></i></span>
+                    <span class="card-number">${i+1}</span>
+                    <div class="card-title">${item.label}</div>
+                    <div class="card-desc">${item.desc}</div>
+                `;
+                card.addEventListener('click', () => navigateTo(i));
+                quickNav.appendChild(card);
+            });
+
+            // ===== NAVIGATION =====
+            const sections = document.querySelectorAll('.section');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const counter = document.getElementById('slideCounter');
+            const progressBar = document.getElementById('progressBar');
+            const navButtons = document.getElementById('navButtons');
+            const pageNumbers = document.getElementById('pageNumbers');
+
+            function updateUI(index) {
+                sections.forEach((el, i) => el.classList.toggle('active', i === index));
+                current = index;
+                pageNumbers.innerHTML = '';
+                for (let i = 0; i < total; i++) {
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.textContent = i + 1;
+                    a.classList.toggle('active', i === index);
+                    a.addEventListener('click', (e) => { e.preventDefault();
+                        navigateTo(i); });
+                    pageNumbers.appendChild(a);
+                }
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === total - 1;
+                counter.textContent = (index + 1) + ' / ' + total;
+                progressBar.style.width = ((index + 1) / total * 100) + '%';
+                if (index === 0) navButtons.classList.add('hidden');
+                else navButtons.classList.remove('hidden');
+                if (index === total - 1) nextBtn.style.display = 'none';
+                else nextBtn.style.display = 'flex';
+                document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            window.navigateTo = function(index) {
+                if (index >= 0 && index < total && index !== current) updateUI(index);
+            };
+
+            prevBtn.addEventListener('click', () => { if (current > 0) updateUI(current - 1); });
+            nextBtn.addEventListener('click', () => { if (current < total - 1) updateUI(current + 1); });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); if (current < total -
+                        1) updateUI(current + 1); }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); if (current > 0) updateUI(
+                        current - 1); }
+                if (e.key === 'Home' && !e.ctrlKey && !e.metaKey) { e.preventDefault();
+                    navigateTo(0); }
+                if (e.key === 'End' && !e.ctrlKey && !e.metaKey) { e.preventDefault();
+                    navigateTo(total - 1); }
+            });
+
+            // ===== ACCORDION =====
+            window.toggleAccordion = function(header) {
+                const item = header.closest('.accordion-item');
+                if (item) item.classList.toggle('open');
+            };
+
+            updateUI(0);
+        })();
+    </script>
+</body>
+</html>
