@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         /* ============================================================
-           RESET & VARIABEL (tetap sama)
+           RESET & VARIABEL — WARNA ACCENT MODERN (BIRU-UNGU)
            ============================================================ */
         * {
             margin: 0;
@@ -15,19 +15,20 @@
             box-sizing: border-box;
         }
         :root {
-            --bg-primary: #0f0f1a;
-            --bg-secondary: #1a1a2e;
-            --bg-card: #222240;
-            --bg-card-hover: #2a2a4a;
-            --text-primary: #f0ece4;
-            --text-secondary: #b0b0c0;
-            --gold: #d4af37;
-            --gold-light: #e6c85c;
-            --gold-dark: #b8962e;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --bg-primary: #0b0e17;
+            --bg-secondary: #131b2e;
+            --bg-card: #1c2538;
+            --bg-card-hover: #26324a;
+            --text-primary: #eef2ff;
+            --text-secondary: #b0c4e8;
+            /* Aksen baru: biru-ungu modern */
+            --accent: #6C63FF;
+            --accent-light: #8B83FF;
+            --accent-dark: #4A42C4;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --radius: 16px;
-            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.15);
+            --glow-accent: 0 0 30px rgba(108, 99, 255, 0.15);
         }
         .light-mode {
             --bg-primary: #f5f0eb;
@@ -37,7 +38,7 @@
             --text-primary: #1a1a2e;
             --text-secondary: #3a3a4a;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.08);
+            --glow-accent: 0 0 30px rgba(108, 99, 255, 0.08);
         }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -51,12 +52,12 @@
         }
 
         /* ============================================================
-           LOADER — TIDAK ADA DUPLIKASI
+           LOADER — disesuaikan dengan warna baru
            ============================================================ */
         #loader {
             position: fixed;
             inset: 0;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a12 100%);
+            background: radial-gradient(ellipse at center, #131b2e 0%, #070a12 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -93,14 +94,14 @@
             left: 50%;
             margin: -40px 0 0 -40px;
             border-radius: 12px;
-            background: rgba(212, 175, 55, 0.15);
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 30px rgba(212, 175, 55, 0.05);
+            background: rgba(108, 99, 255, 0.10);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.15), inset 0 0 30px rgba(108, 99, 255, 0.04);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: var(--gold);
+            color: var(--accent);
             backface-visibility: visible;
         }
         .loader-cube .face-front { transform: rotateY(0deg) translateZ(40px); }
@@ -122,10 +123,10 @@
             margin: -80px 0 0 -80px;
             border-radius: 50%;
             border: 2px solid transparent;
-            background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--gold-light), transparent);
+            background: conic-gradient(from 0deg, transparent, var(--accent), transparent, var(--accent-light), transparent);
             animation: rotateGlow 3s linear infinite;
             filter: blur(8px);
-            opacity: 0.4;
+            opacity: 0.3;
             z-index: 1;
         }
         @keyframes rotateGlow {
@@ -133,17 +134,17 @@
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         .loader-title {
-            color: var(--gold);
+            color: var(--accent);
             font-size: clamp(2.8rem, 6vw, 4.8rem);
             font-weight: 900;
             letter-spacing: 6px;
             z-index: 2;
-            background: linear-gradient(135deg, #f9d423 0%, #f7971e 40%, #f9d423 70%, #f7971e 100%);
+            background: linear-gradient(135deg, #8B83FF 0%, #6C63FF 40%, #4A42C4 70%, #6C63FF 100%);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.4));
+            filter: drop-shadow(0 0 40px rgba(108, 99, 255, 0.3));
             animation: titlePulse 2.5s ease-in-out infinite;
             position: relative;
             display: inline-block;
@@ -155,7 +156,7 @@
             left: 10%;
             width: 80%;
             height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
             border-radius: 4px;
             animation: titleUnderline 2s ease-in-out infinite;
         }
@@ -168,7 +169,7 @@
             50% { width: 80%; left: 10%; opacity: 1; }
         }
         .loader-percent {
-            color: var(--gold-light);
+            color: var(--accent-light);
             font-size: 1.2rem;
             font-weight: 600;
             margin-top: 8px;
@@ -191,23 +192,23 @@
             font-weight: 400;
             letter-spacing: 2px;
             color: rgba(255, 255, 255, 0.7);
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            text-shadow: 0 0 20px rgba(108, 99, 255, 0.10);
         }
         .loader-tagline .tagline-line .highlight {
-            color: var(--gold-light);
+            color: var(--accent-light);
             font-weight: 600;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            text-shadow: 0 0 30px rgba(108, 99, 255, 0.2);
         }
         .loader-tagline .tagline-line .highlight-gold {
-            color: var(--gold);
+            color: var(--accent);
             font-weight: 600;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            text-shadow: 0 0 30px rgba(108, 99, 255, 0.3);
         }
         .loader-tagline .tagline-divider {
             display: inline-block;
             width: 60px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
             margin: 8px auto;
             border-radius: 4px;
             opacity: 0.5;
@@ -224,7 +225,7 @@
             margin-top: 4px;
         }
         .loader-tagline .tagline-ornament i {
-            color: var(--gold);
+            color: var(--accent);
             font-size: 0.7rem;
             opacity: 0.4;
         }
@@ -239,9 +240,9 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: var(--gold);
+            background: var(--accent);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--gold), 0 0 30px var(--gold);
+            box-shadow: 0 0 10px var(--accent), 0 0 30px var(--accent);
             animation: sparkleFloat 3s infinite alternate ease-in-out;
             opacity: 0;
         }
@@ -258,17 +259,17 @@
         }
         .loader-stars i {
             position: absolute;
-            color: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.07);
             font-size: 1rem;
             animation: starTwinkle 4s infinite alternate;
         }
         @keyframes starTwinkle {
             0% { opacity: 0.05; transform: scale(0.8); }
-            100% { opacity: 0.25; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(1.2); }
         }
 
         /* ============================================================
-           PARTIKEL BINTANG
+           PARTIKEL BINTANG (disesuaikan)
            ============================================================ */
         .particle-container {
             position: fixed;
@@ -288,11 +289,11 @@
             will-change: transform, opacity;
         }
         @keyframes floatStar {
-            0% { opacity: 0.2; transform: translate(0,0) scale(0.5) rotate(0deg); }
-            25% { opacity: 0.9; transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(120deg); }
-            50% { opacity: 0.5; transform: translate(var(--tx2), var(--ty2)) scale(0.8) rotate(240deg); }
-            75% { opacity: 0.9; transform: translate(var(--tx3), var(--ty3)) scale(1.4) rotate(360deg); }
-            100% { opacity: 0.2; transform: translate(var(--tx4), var(--ty4)) scale(0.4) rotate(480deg); }
+            0% { opacity: 0.15; transform: translate(0,0) scale(0.5) rotate(0deg); }
+            25% { opacity: 0.7; transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(120deg); }
+            50% { opacity: 0.4; transform: translate(var(--tx2), var(--ty2)) scale(0.8) rotate(240deg); }
+            75% { opacity: 0.7; transform: translate(var(--tx3), var(--ty3)) scale(1.4) rotate(360deg); }
+            100% { opacity: 0.15; transform: translate(var(--tx4), var(--ty4)) scale(0.4) rotate(480deg); }
         }
 
         /* ============================================================
@@ -310,12 +311,12 @@
             justify-content: space-between;
             padding: 0 16px;
             z-index: 1001;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
             backdrop-filter: blur(8px);
             transition: background var(--transition);
         }
         .mobile-header .brand {
-            color: var(--gold);
+            color: var(--accent);
             font-weight: 900;
             font-size: 1.4rem;
             letter-spacing: 1.5px;
@@ -336,13 +337,13 @@
             border-radius: 8px;
         }
         .header-actions button:hover {
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            background: rgba(108, 99, 255, 0.1);
         }
         .home-btn-mobile {
             background: none;
             border: none;
-            color: var(--gold);
+            color: var(--accent);
             font-size: 1.6rem;
             cursor: pointer;
             padding: 4px 8px;
@@ -350,7 +351,7 @@
             transition: var(--transition);
         }
         .home-btn-mobile:hover {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(108, 99, 255, 0.1);
         }
 
         /* ============================================================
@@ -395,7 +396,7 @@
             width: 100%;
             aspect-ratio: 4/3;
             background: var(--bg-secondary);
-            border: 3px dashed var(--gold);
+            border: 3px dashed var(--accent);
             border-radius: 24px;
             display: flex;
             flex-direction: column;
@@ -409,8 +410,8 @@
             transition: border-color var(--transition), box-shadow var(--transition);
         }
         .cover-right .image-placeholder:hover {
-            border-color: var(--gold-light);
-            box-shadow: 0 0 40px rgba(212,175,55,0.15), var(--shadow);
+            border-color: var(--accent-light);
+            box-shadow: 0 0 40px rgba(108, 99, 255, 0.12), var(--shadow);
         }
         .cover-right .image-placeholder img {
             position: absolute;
@@ -438,7 +439,7 @@
             height: clamp(40px, 4.5vw, 60px);
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
             transition: transform var(--transition);
         }
         .cover-logo-group img:hover {
@@ -450,13 +451,13 @@
             line-height: 1.15;
             margin: 6px 0 10px;
             letter-spacing: 1px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff9ff3, #feca57, #ff6b6b);
+            background: linear-gradient(90deg, #6C63FF, #8B83FF, #4A42C4, #6C63FF);
             background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: gradientMove 5s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(212,175,55,0.2);
+            text-shadow: 0 0 30px rgba(108, 99, 255, 0.15);
         }
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
@@ -467,11 +468,11 @@
             font-size: clamp(1.4rem, 2.6vw, 2.4rem);
             font-weight: 700;
             letter-spacing: 4px;
-            background: linear-gradient(135deg, #f9d423, #f7971e, #f9d423);
+            background: linear-gradient(135deg, #8B83FF, #6C63FF, #4A42C4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(247,151,30,0.3);
+            text-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
             margin-bottom: 14px;
             display: inline-block;
         }
@@ -490,7 +491,7 @@
             opacity: 0.8;
         }
         .cover-teacher .teacher-name {
-            color: var(--gold-light);
+            color: var(--accent-light);
             font-weight: 700;
             font-size: 1.2rem;
             letter-spacing: 0.5px;
@@ -504,7 +505,7 @@
             letter-spacing: 0.5px;
         }
         .cover-teacher .teacher-nip i {
-            color: var(--gold-light);
+            color: var(--accent-light);
             opacity: 0.7;
             margin-right: 6px;
         }
@@ -521,8 +522,8 @@
             margin-top: 10px;
         }
         .start-btn {
-            background: var(--gold);
-            color: #121212;
+            background: var(--accent);
+            color: #fff;
             border: none;
             padding: 14px 42px;
             border-radius: 60px;
@@ -530,7 +531,7 @@
             font-size: 1.1rem;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.35);
             display: inline-flex;
             align-items: center;
             gap: 14px;
@@ -549,9 +550,9 @@
             transform: translateX(100%);
         }
         .start-btn:hover {
-            background: var(--gold-light);
+            background: var(--accent-light);
             transform: scale(1.04);
-            box-shadow: 0 8px 28px rgba(212,175,55,0.6);
+            box-shadow: 0 8px 28px rgba(108, 99, 255, 0.5);
         }
         .start-btn-wrapper {
             margin: 14px 0 10px;
@@ -568,16 +569,16 @@
             padding: 6px 0;
         }
         .quick-nav-card {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.03);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: var(--radius);
             padding: 18px 12px 16px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
             opacity: 0;
@@ -591,7 +592,7 @@
             inset: 0;
             border-radius: var(--radius);
             padding: 2px;
-            background: conic-gradient(from var(--angle, 0deg), transparent 0%, var(--gold) 30%, var(--gold-light) 60%, transparent 100%);
+            background: conic-gradient(from var(--angle, 0deg), transparent 0%, var(--accent) 30%, var(--accent-light) 60%, transparent 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -603,28 +604,28 @@
         }
         .quick-nav-card:hover {
             transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 12px 40px rgba(212,175,55,0.2), var(--shadow);
-            border-color: var(--gold);
-            background: rgba(255,255,255,0.07);
+            box-shadow: 0 12px 40px rgba(108, 99, 255, 0.15), var(--shadow);
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.05);
         }
         .quick-nav-card .card-number {
             display: block;
             font-size: 2.6rem;
             font-weight: 800;
             line-height: 1.1;
-            color: var(--gold);
-            text-shadow: 0 0 20px rgba(212,175,55,0.3);
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
             transition: all 0.4s ease;
             margin-bottom: 4px;
             letter-spacing: -1px;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .quick-nav-card:hover .card-number {
             transform: scale(1.1) rotate(-2deg);
-            text-shadow: 0 0 40px rgba(212,175,55,0.5);
+            text-shadow: 0 0 40px rgba(108, 99, 255, 0.4);
         }
         .quick-nav-card .card-title {
             font-weight: 700;
@@ -645,26 +646,26 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: var(--gold);
-            color: #121212;
+            background: var(--accent);
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 -2px 0 rgba(0,0,0,0.2);
-            border: 2px solid #b8860b;
+            border: 2px solid var(--accent-dark);
             transition: all 0.3s ease;
             z-index: 2;
             font-weight: 700;
         }
         .quick-nav-card .card-badge i {
             font-size: 0.9rem;
-            color: #121212;
+            color: #fff;
             transition: transform 0.3s ease;
         }
         .quick-nav-card:hover .card-badge {
             transform: scale(1.1) rotate(90deg);
-            box-shadow: 0 0 20px rgba(212,175,55,0.5), inset 0 -2px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.4), inset 0 -2px 0 rgba(0,0,0,0.2);
         }
         @property --angle {
             syntax: '<angle>';
@@ -701,7 +702,7 @@
             align-items: center;
             gap: 14px;
             margin-bottom: 24px;
-            border-bottom: 3px solid var(--gold);
+            border-bottom: 3px solid var(--accent);
             padding-bottom: 12px;
             flex-wrap: wrap;
             position: relative;
@@ -713,7 +714,7 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: var(--gold-light);
+            background: var(--accent-light);
             animation: headerGlow 2s ease-in-out infinite;
         }
         @keyframes headerGlow {
@@ -721,8 +722,8 @@
             50% { opacity: 1; width: 120px; }
         }
         .section-header .num {
-            background: var(--gold);
-            color: #121212;
+            background: var(--accent);
+            color: #fff;
             font-weight: 700;
             font-size: 1.1rem;
             width: 40px;
@@ -732,7 +733,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+            box-shadow: 0 4px 16px rgba(108, 99, 255, 0.25);
         }
         .section-header h2 {
             font-size: clamp(1.1rem, 2.5vw, 1.5rem);
@@ -750,19 +751,19 @@
         .meeting-badge {
             display: inline-block;
             background: var(--bg-card);
-            color: var(--gold);
+            color: var(--accent);
             padding: 2px 14px;
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 700;
-            border: 1px solid var(--gold);
+            border: 1px solid var(--accent);
             margin-left: 10px;
             white-space: nowrap;
             animation: badgePulse 3s ease-in-out infinite;
         }
         @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.2); }
-            50% { box-shadow: 0 0 20px rgba(212,175,55,0.15); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.15); }
+            50% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.10); }
         }
 
         /* ============================================================
@@ -773,7 +774,7 @@
             border-radius: var(--radius);
             padding: 18px 16px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.04);
             transition: all var(--transition);
             cursor: default;
             position: relative;
@@ -786,7 +787,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
             opacity: 0;
             transition: opacity var(--transition);
         }
@@ -796,11 +797,11 @@
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-            border-color: var(--gold);
+            border-color: var(--accent);
         }
         .card .icon {
             font-size: 1.8rem;
-            color: var(--gold);
+            color: var(--accent);
             margin-bottom: 8px;
         }
         .card h3 {
@@ -823,10 +824,10 @@
         }
         .card.highlight {
             background: var(--bg-card-hover);
-            border-color: var(--gold);
+            border-color: var(--accent);
         }
         .card.merdeka-badge {
-            border-left: 6px solid var(--gold);
+            border-left: 6px solid var(--accent);
         }
         .interactive-card {
             cursor: pointer;
@@ -835,7 +836,7 @@
         .interactive-card .back {
             display: none;
             padding-top: 12px;
-            border-top: 2px dashed rgba(212,175,55,0.3);
+            border-top: 2px dashed rgba(108, 99, 255, 0.2);
             margin-top: 12px;
             animation: fadeSlide 0.4s ease;
         }
@@ -844,7 +845,7 @@
         }
         .interactive-card.open {
             background: var(--bg-card-hover);
-            border-color: var(--gold);
+            border-color: var(--accent);
             transform: translateY(-2px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.4);
         }
@@ -870,17 +871,17 @@
         .accordion-item {
             background: var(--bg-card);
             border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.05);
             overflow: hidden;
             transition: all var(--transition);
         }
         .accordion-item:hover {
-            border-color: var(--gold);
-            box-shadow: var(--glow-gold);
+            border-color: var(--accent);
+            box-shadow: var(--glow-accent);
         }
         .accordion-item.open {
-            border-color: var(--gold);
-            box-shadow: 0 4px 24px rgba(212,175,55,0.08);
+            border-color: var(--accent);
+            box-shadow: 0 4px 24px rgba(108, 99, 255, 0.06);
         }
         .accordion-header {
             background: var(--bg-secondary);
@@ -905,11 +906,11 @@
             margin: 0;
         }
         .accordion-header h3 i {
-            color: var(--gold);
+            color: var(--accent);
         }
         .accordion-header .toggle-icon {
             font-size: 1.2rem;
-            color: var(--gold);
+            color: var(--accent);
             transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
         }
         .accordion-item.open .accordion-header .toggle-icon {
@@ -931,12 +932,12 @@
             background: var(--bg-card);
             border-radius: var(--radius);
             padding: 16px 18px;
-            border-left: 6px solid var(--gold);
+            border-left: 6px solid var(--accent);
             margin: 12px 0;
             transition: all var(--transition);
         }
         .def-block:hover {
-            box-shadow: var(--glow-gold);
+            box-shadow: var(--glow-accent);
             border-left-width: 8px;
         }
         .def-block .source {
@@ -944,7 +945,7 @@
             color: var(--text-primary);
         }
         .def-block .source i {
-            color: var(--gold);
+            color: var(--accent);
             margin-right: 6px;
         }
 
@@ -952,13 +953,13 @@
             background: var(--bg-secondary);
             border-radius: var(--radius);
             padding: 20px 18px;
-            border: 2px dashed var(--gold);
+            border: 2px dashed var(--accent);
             margin: 14px 0 6px;
             transition: all var(--transition);
         }
         .activity-box:hover {
-            border-color: var(--gold-light);
-            box-shadow: var(--glow-gold);
+            border-color: var(--accent-light);
+            box-shadow: var(--glow-accent);
         }
         .activity-box h3 {
             color: var(--text-primary);
@@ -969,7 +970,7 @@
             flex-wrap: wrap;
         }
         .activity-box h3 i {
-            color: var(--gold);
+            color: var(--accent);
         }
 
         .assessment-question {
@@ -977,12 +978,12 @@
             padding: 12px 16px;
             background: var(--bg-card);
             border-radius: 10px;
-            border-left: 4px solid var(--gold);
+            border-left: 4px solid var(--accent);
             transition: all var(--transition);
         }
         .assessment-question:hover {
             transform: translateX(4px);
-            box-shadow: var(--glow-gold);
+            box-shadow: var(--glow-accent);
         }
         .assessment-question .q-text {
             font-weight: 600;
@@ -1002,8 +1003,8 @@
             transition: all var(--transition);
         }
         .assessment-question .q-options span:hover {
-            background: rgba(212,175,55,0.1);
-            color: var(--gold);
+            background: rgba(108, 99, 255, 0.08);
+            color: var(--accent);
         }
 
         .refleksi-list {
@@ -1017,7 +1018,7 @@
             gap: 12px;
             padding: 8px 0;
             font-size: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
             transition: all var(--transition);
         }
         .refleksi-list li:hover {
@@ -1028,13 +1029,13 @@
         }
         .refleksi-list li .check {
             font-size: 1.4rem;
-            color: var(--gold);
+            color: var(--accent);
             flex-shrink: 0;
         }
 
         .quote-block {
             background: var(--bg-secondary);
-            border-left: 6px solid var(--gold);
+            border-left: 6px solid var(--accent);
             padding: 16px 20px;
             border-radius: 10px;
             margin: 12px 0;
@@ -1044,7 +1045,7 @@
             transition: all var(--transition);
         }
         .quote-block:hover {
-            box-shadow: var(--glow-gold);
+            box-shadow: var(--glow-accent);
             border-left-width: 8px;
         }
         .quote-block .author {
@@ -1052,13 +1053,13 @@
             margin-top: 8px;
             font-style: normal;
             font-weight: 600;
-            color: var(--gold);
+            color: var(--accent);
             text-align: right;
         }
 
         .celebration-box {
             background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
-            border: 2px solid var(--gold);
+            border: 2px solid var(--accent);
             border-radius: var(--radius);
             padding: 24px 20px;
             text-align: center;
@@ -1070,7 +1071,7 @@
             content: '';
             position: absolute;
             inset: -50%;
-            background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.05), transparent, rgba(212,175,55,0.05), transparent);
+            background: conic-gradient(from 0deg, transparent, rgba(108, 99, 255, 0.04), transparent, rgba(108, 99, 255, 0.04), transparent);
             animation: rotateGlow 10s linear infinite;
         }
         .celebration-box * {
@@ -1079,7 +1080,7 @@
         }
         .celebration-box h3 {
             font-size: 1.6rem;
-            color: var(--gold);
+            color: var(--accent);
             margin-bottom: 10px;
         }
 
@@ -1089,7 +1090,7 @@
         }
         .ref-list li {
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
             font-size: 0.88rem;
             display: flex;
             align-items: baseline;
@@ -1102,7 +1103,7 @@
             color: var(--text-primary);
         }
         .ref-list li i {
-            color: var(--gold);
+            color: var(--accent);
             width: 20px;
             flex-shrink: 0;
         }
@@ -1111,16 +1112,16 @@
             background: var(--bg-card);
             padding: 14px 16px;
             border-radius: 12px;
-            border-left: 6px solid var(--gold);
+            border-left: 6px solid var(--accent);
             margin-bottom: 12px;
             transition: all var(--transition);
         }
         .method-step:hover {
             transform: translateX(6px);
-            box-shadow: var(--glow-gold);
+            box-shadow: var(--glow-accent);
         }
         .method-step h4 {
-            color: var(--gold);
+            color: var(--accent);
             font-size: 1.1rem;
             display: flex;
             align-items: center;
@@ -1143,8 +1144,8 @@
             font-size: 0.9rem;
         }
         .compare-table th {
-            background: var(--gold);
-            color: #121212;
+            background: var(--accent);
+            color: #fff;
             padding: 10px;
             text-align: left;
             border: 1px solid rgba(255,255,255,0.1);
@@ -1158,7 +1159,7 @@
 
         .pillar-icon {
             font-size: 2.4rem;
-            color: var(--gold);
+            color: var(--accent);
             display: block;
             margin-bottom: 4px;
         }
@@ -1187,7 +1188,7 @@
             background: var(--bg-card);
             border-radius: var(--radius);
             padding: 16px;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--accent);
             box-shadow: 0 20px 60px rgba(0,0,0,0.9);
             position: relative;
             text-align: center;
@@ -1214,8 +1215,8 @@
             position: absolute;
             top: -14px;
             right: -14px;
-            background: var(--gold);
-            color: #121212;
+            background: var(--accent);
+            color: #fff;
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -1225,18 +1226,18 @@
             font-size: 1.4rem;
             font-weight: 700;
             cursor: pointer;
-            border: 2px solid #121212;
+            border: 2px solid #fff;
             transition: all var(--transition);
         }
         .modal-overlay .modal-close:hover {
             transform: scale(1.1) rotate(90deg);
-            background: var(--gold-light);
+            background: var(--accent-light);
         }
 
         .badge-modern {
             display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: #121212;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #fff;
             padding: 4px 16px;
             border-radius: 30px;
             font-size: 0.7rem;
@@ -1254,7 +1255,7 @@
             align-items: center;
             margin-top: 32px;
             padding-top: 14px;
-            border-top: 2px solid rgba(255,255,255,0.06);
+            border-top: 2px solid rgba(255,255,255,0.05);
             flex-wrap: wrap;
             gap: 10px;
         }
@@ -1284,11 +1285,11 @@
             border: 1px solid transparent;
         }
         .nav-buttons button:hover:not(:disabled) {
-            background: var(--gold);
-            color: #121212;
+            background: var(--accent);
+            color: #fff;
             transform: scale(1.04);
-            border-color: var(--gold);
-            box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.25);
         }
         .nav-buttons button:disabled {
             opacity: 0.35;
@@ -1317,22 +1318,22 @@
             font-weight: 600;
             color: var(--text-secondary);
             background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.05);
             text-decoration: none;
             transition: all var(--transition);
             cursor: pointer;
         }
         .page-numbers a:hover {
             background: var(--bg-card-hover);
-            border-color: var(--gold);
+            border-color: var(--accent);
             color: var(--text-primary);
             transform: scale(1.1);
         }
         .page-numbers a.active {
-            background: var(--gold);
-            color: #121212;
-            border-color: var(--gold);
-            box-shadow: 0 2px 12px rgba(212,175,55,0.4);
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 2px 12px rgba(108, 99, 255, 0.35);
         }
 
         .progress-wrap {
@@ -1347,7 +1348,7 @@
         .progress-wrap .bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
             transition: width 0.6s cubic-bezier(0.23,1,0.32,1);
             border-radius: 0 4px 4px 0;
             position: relative;
@@ -1359,7 +1360,7 @@
             top: -2px;
             width: 10px;
             height: 9px;
-            background: var(--gold-light);
+            background: var(--accent-light);
             border-radius: 50%;
             filter: blur(4px);
             animation: progressDot 1.5s ease-in-out infinite;
@@ -1521,12 +1522,12 @@
             background: var(--bg-primary);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--gold);
+            background: var(--accent);
             border-radius: 10px;
             transition: all var(--transition);
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold-light);
+            background: var(--accent-light);
         }
     </style>
 </head>
@@ -1546,7 +1547,6 @@
                 <div class="face face-bottom">⭐</div>
             </div>
         </div>
-        <!-- HANYA SATU JUDUL DAN SATU TAGLINE -->
         <div class="loader-title">HISTOEXPLORER</div>
         <div class="loader-percent" id="loaderPercent">0%</div>
         <div class="loader-tagline">
@@ -1592,7 +1592,7 @@
     </header>
 
     <!-- ===== HOME FLOAT ===== -->
-    <button class="home-float" onclick="navigateTo(0)" title="Kembali ke Beranda" style="position:fixed;bottom:80px;right:20px;z-index:999;width:50px;height:50px;border-radius:50%;background:var(--gold);color:#121212;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(212,175,55,0.5);border:none;cursor:pointer;transition:var(--transition);">
+    <button class="home-float" onclick="navigateTo(0)" title="Kembali ke Beranda" style="position:fixed;bottom:80px;right:20px;z-index:999;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(108,99,255,0.4);border:none;cursor:pointer;transition:var(--transition);">
         <i class="fas fa-home"></i>
     </button>
 
@@ -1613,7 +1613,7 @@
                     </div>
                     <div style="margin-bottom:12px;">
                         <span class="badge-modern">KELAS X / FASE E</span>
-                        <span style="background:#6b4c1a;color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
+                        <span style="background:var(--accent-dark);color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
                     </div>
                     <h1 class="cover-title">PENELITIAN SEJARAH</h1>
                     <p class="cover-sub">Modul Ajar Deep Learning – Metode Ilmiah dalam Menyelidiki Masa Lalu</p>
@@ -1625,7 +1625,7 @@
                     </div>
                     <div class="cover-teacher">
                         <div>
-                            <i class="fas fa-chalkboard-teacher" style="color:var(--gold-light);margin-right:8px;"></i>
+                            <i class="fas fa-chalkboard-teacher" style="color:var(--accent-light);margin-right:8px;"></i>
                             <span class="teacher-label">Guru Pengampu :</span>
                             <span class="teacher-name">SYAHRANI, S.Pd</span>
                         </div>
@@ -1644,7 +1644,7 @@
                     <div class="image-placeholder">
                         <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/coversejarahbab1.png" alt="Ilustrasi Penelitian Sejarah" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-content').style.display='flex';">
                         <div class="fallback-content">
-                            <i class="fas fa-upload" style="font-size:3rem;color:var(--gold);margin-bottom:10px;"></i>
+                            <i class="fas fa-upload" style="font-size:3rem;color:var(--accent);margin-bottom:10px;"></i>
                             <p style="color:var(--text-secondary);">Unggah Gambar Ilustrasi</p>
                         </div>
                     </div>
@@ -1662,7 +1662,7 @@
                         <div class="def-block">
                             <div class="source"><i class="fas fa-flag-checkered"></i> Capaian Pembelajaran (CP) – Fase E</div>
                             <p style="color:var(--text-secondary);">Peserta didik memahami konsep dasar ilmu sejarah serta <strong>mengenali penelitian sejarah</strong> untuk menganalisis keterhubungan antara masa lampau, masa kini, dan masa yang akan datang. Peserta didik mampu mengumpulkan informasi dari sumber primer dan/atau sekunder, melakukan observasi, mendokumentasikan, menarik simpulan, dan mengomunikasikan hasil analisis.</p>
-                            <p style="color:var(--text-secondary);margin-top:6px;font-style:italic;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Bab 2 ini berfokus pada <strong>bagaimana sejarah diteliti dan ditulis</strong> secara ilmiah, berbeda dengan Bab 1 yang memperkenalkan konsep dasar sejarah.</p>
+                            <p style="color:var(--text-secondary);margin-top:6px;font-style:italic;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> Bab 2 ini berfokus pada <strong>bagaimana sejarah diteliti dan ditulis</strong> secara ilmiah, berbeda dengan Bab 1 yang memperkenalkan konsep dasar sejarah.</p>
                         </div>
                         <div class="grid-2">
                             <div class="card merdeka-badge">
@@ -1716,23 +1716,23 @@
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)"><h3><i class="fas fa-cubes"></i> Kerangka Deep Learning</h3><span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></div>
                     <div class="accordion-body">
-                        <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:16px;">
+                        <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:16px;">
                             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--gold);">
-                                    <h4 style="color:var(--gold);font-size:0.9rem;"><i class="fas fa-brain"></i> Mindful Learning</h4>
+                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--accent);">
+                                    <h4 style="color:var(--accent);font-size:0.9rem;"><i class="fas fa-brain"></i> Mindful Learning</h4>
                                     <p style="font-size:0.8rem;color:var(--text-secondary);">Refleksi tentang pentingnya verifikasi informasi dan skeptisisme sehat terhadap klaim sejarah.</p>
                                 </div>
-                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--gold);">
-                                    <h4 style="color:var(--gold);font-size:0.9rem;"><i class="fas fa-link"></i> Meaningful Learning</h4>
+                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--accent);">
+                                    <h4 style="color:var(--accent);font-size:0.9rem;"><i class="fas fa-link"></i> Meaningful Learning</h4>
                                     <p style="font-size:0.8rem;color:var(--text-secondary);">Menghubungkan metode penelitian sejarah dengan investigasi hoaks, detektif, dan riset ilmiah di kehidupan nyata.</p>
                                 </div>
-                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--gold);">
-                                    <h4 style="color:var(--gold);font-size:0.9rem;"><i class="fas fa-smile"></i> Joyful Learning</h4>
+                                <div style="background:var(--bg-card);padding:12px;border-radius:8px;border-top:3px solid var(--accent);">
+                                    <h4 style="color:var(--accent);font-size:0.9rem;"><i class="fas fa-smile"></i> Joyful Learning</h4>
                                     <p style="font-size:0.8rem;color:var(--text-secondary);">Simulasi "detektif sejarah", game verifikasi sumber, dan proyek penelitian mini yang kontekstual.</p>
                                 </div>
                             </div>
                             <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:10px;border-top:1px solid rgba(255,255,255,0.06);padding-top:8px;">
-                                <i class="fas fa-info-circle" style="color:var(--gold);"></i>
+                                <i class="fas fa-info-circle" style="color:var(--accent);"></i>
                                 Pendekatan ini mengajak peserta didik <strong>berlaku seperti sejarawan</strong>, bukan sekadar menghafal teori.
                             </p>
                         </div>
@@ -1745,25 +1745,25 @@
         <section id="section2" class="section">
             <div class="section-header"><div class="num">02</div><h2>Pertemuan 1: Heuristik &amp; Jenis Sumber Sejarah <small>Mengumpulkan Jejak Masa Lalu (3 x 45 menit) <span class="meeting-badge">Pertemuan 1</span></small></h2></div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-microscope"></i> A. Penelitian Sejarah sebagai Proses Ilmiah</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-microscope"></i> A. Penelitian Sejarah sebagai Proses Ilmiah</h3>
                 <p style="color:var(--text-secondary);margin-top:4px;">Penelitian sejarah adalah <strong>proses ilmiah</strong> untuk menemukan dan menafsirkan fakta-fakta masa lalu. Berbeda dengan cerita atau legenda, penelitian sejarah menggunakan <strong>metode yang terstruktur</strong> dan <strong>bukti yang dapat dipertanggungjawabkan</strong>.</p>
-                <div style="margin-top:10px;background:var(--bg-card);border-radius:8px;padding:12px;border-left:4px solid var(--gold);">
-                    <p style="color:var(--text-secondary);font-size:0.9rem;"><i class="fas fa-quote-left" style="color:var(--gold);opacity:0.6;"></i> <strong style="color:var(--text-primary);">Sejarah adalah ilmu yang rekonstruktif</strong> — ia tidak mengulang masa lalu, tetapi membangun kembali masa lalu berdasarkan sisa-sisa yang ditinggalkan. <span style="color:#888;font-size:0.8rem;">— Kuntowijoyo</span></p>
+                <div style="margin-top:10px;background:var(--bg-card);border-radius:8px;padding:12px;border-left:4px solid var(--accent);">
+                    <p style="color:var(--text-secondary);font-size:0.9rem;"><i class="fas fa-quote-left" style="color:var(--accent);opacity:0.6;"></i> <strong style="color:var(--text-primary);">Sejarah adalah ilmu yang rekonstruktif</strong> — ia tidak mengulang masa lalu, tetapi membangun kembali masa lalu berdasarkan sisa-sisa yang ditinggalkan. <span style="color:#888;font-size:0.8rem;">— Kuntowijoyo</span></p>
                 </div>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px;">
-                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">🔍</span><span style="color:var(--text-secondary);font-size:0.8rem;">Mencari</span></div>
-                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">✅</span><span style="color:var(--text-secondary);font-size:0.8rem;">Memverifikasi</span></div>
-                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">🧩</span><span style="color:var(--text-secondary);font-size:0.8rem;">Menafsirkan</span></div>
-                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--gold);">📝</span><span style="color:var(--text-secondary);font-size:0.8rem;">Menulis</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--accent);">🔍</span><span style="color:var(--text-secondary);font-size:0.8rem;">Mencari</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--accent);">✅</span><span style="color:var(--text-secondary);font-size:0.8rem;">Memverifikasi</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--accent);">🧩</span><span style="color:var(--text-secondary);font-size:0.8rem;">Menafsirkan</span></div>
+                    <div style="background:var(--bg-card);padding:10px;border-radius:8px;text-align:center;"><span style="display:block;font-size:2rem;color:var(--accent);">📝</span><span style="color:var(--text-secondary);font-size:0.8rem;">Menulis</span></div>
                 </div>
             </div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-search"></i> B. Heuristik — Seni Mencari Sumber</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-search"></i> B. Heuristik — Seni Mencari Sumber</h3>
                 <p style="color:var(--text-secondary);margin-top:4px;"><strong>Heuristik</strong> (dari bahasa Yunani <em>heuriskein</em> = menemukan) adalah tahap <strong>pencarian dan pengumpulan sumber</strong> yang relevan dengan topik penelitian. Ini adalah langkah pertama dan paling krusial dalam penelitian sejarah.</p>
                 <div style="margin-top:10px;background:var(--bg-card);border-radius:8px;padding:12px;">
-                    <h4 style="color:var(--gold);font-size:1rem;">📌 Tempat Mencari Sumber Sejarah</h4>
+                    <h4 style="color:var(--accent);font-size:1rem;">📌 Tempat Mencari Sumber Sejarah</h4>
                     <ul style="color:var(--text-secondary);padding-left:18px;margin-top:4px;">
                         <li><strong>Arsip Nasional</strong> — dokumen resmi pemerintah, surat-surat diplomatik, laporan tahunan.</li>
                         <li><strong>Perpustakaan</strong> — buku, jurnal, majalah, koran lama, manuskrip.</li>
@@ -1781,12 +1781,12 @@
                         <li><strong>Membuat biografi teman:</strong> Mewawancarai teman, melihat foto-foto masa kecilnya, dan membaca buku tahunan sekolah.</li>
                         <li><strong>Menelusuri sejarah sekolah:</strong> Mencari arsip di kantor sekolah, mewawancarai guru senior, atau melihat foto-foto lama di papan pengumuman.</li>
                     </ul>
-                    <p style="margin-top:6px;font-size:0.85rem;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Intinya: heuristik adalah <strong>kegiatan detektif</strong> — mengumpulkan petunjuk dari berbagai tempat untuk memecahkan misteri masa lalu.</p>
+                    <p style="margin-top:6px;font-size:0.85rem;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> Intinya: heuristik adalah <strong>kegiatan detektif</strong> — mengumpulkan petunjuk dari berbagai tempat untuk memecahkan misteri masa lalu.</p>
                 </div>
             </div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-tags"></i> C. Jenis-Jenis Sumber Sejarah</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-tags"></i> C. Jenis-Jenis Sumber Sejarah</h3>
                 <p style="color:var(--text-secondary);margin-top:4px;">Sumber sejarah diklasifikasikan berdasarkan <strong>kedekatannya dengan peristiwa</strong> (primer/sekunder) dan <strong>bentuknya</strong> (tulisan/lisan/benda).</p>
                 <div class="grid-2">
                     <div class="card interactive-card" onclick="this.classList.toggle('open')">
@@ -1819,36 +1819,36 @@
                     </div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold);">
-                        <h4 style="color:var(--gold);font-size:0.9rem;">📝 Sumber Tertulis</h4>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--accent);">
+                        <h4 style="color:var(--accent);font-size:0.9rem;">📝 Sumber Tertulis</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Naskah, surat, dokumen, buku, koran, arsip.</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Surat kabar lama, buku tahunan sekolah.</p>
                     </div>
-                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold-light);">
-                        <h4 style="color:var(--gold-light);font-size:0.9rem;">🗣️ Sumber Lisan</h4>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--accent-light);">
+                        <h4 style="color:var(--accent-light);font-size:0.9rem;">🗣️ Sumber Lisan</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Cerita rakyat, wawancara, pidato, tradisi lisan.</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Cerita nenek tentang masa kecil, wawancara dengan veteran.</p>
                     </div>
-                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold);">
-                        <h4 style="color:var(--gold);font-size:0.9rem;">🏺 Sumber Benda</h4>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--accent);">
+                        <h4 style="color:var(--accent);font-size:0.9rem;">🏺 Sumber Benda</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Artefak, bangunan, monumen, pakaian, perhiasan.</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Prasasti di museum, rumah tua di kampung, benda pusaka keluarga.</p>
                     </div>
-                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--gold-light);">
-                        <h4 style="color:var(--gold-light);font-size:0.9rem;">🖼️ Sumber Visual</h4>
+                    <div style="background:var(--bg-card);border-radius:8px;padding:10px;border-left:4px solid var(--accent-light);">
+                        <h4 style="color:var(--accent-light);font-size:0.9rem;">🖼️ Sumber Visual</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Foto, lukisan, relief, film, poster, peta kuno.</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Foto pernikahan orang tua, lukisan di dinding gereja tua, film dokumenter.</p>
                     </div>
                 </div>
             </div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-clipboard-check"></i> D. Contoh Penerapan Heuristik dalam Kehidupan</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-clipboard-check"></i> D. Contoh Penerapan Heuristik dalam Kehidupan</h3>
                 <div style="background:var(--bg-card);border-radius:8px;padding:14px;margin-top:6px;">
-                    <p style="color:var(--text-primary);font-weight:600;"><i class="fas fa-flag" style="color:var(--gold);"></i> Topik: Asal-usul Nama Desa/Kampungku</p>
+                    <p style="color:var(--text-primary);font-weight:600;"><i class="fas fa-flag" style="color:var(--accent);"></i> Topik: Asal-usul Nama Desa/Kampungku</p>
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
                         <div style="background:var(--bg-primary);padding:8px;border-radius:6px;">
-                            <span style="color:var(--gold);font-weight:600;">Sumber Primer</span>
+                            <span style="color:var(--accent);font-weight:600;">Sumber Primer</span>
                             <ul style="color:var(--text-secondary);font-size:0.8rem;padding-left:16px;">
                                 <li>Wawancara dengan tetua desa (lisan).</li>
                                 <li>Prasasti atau batu peringatan di desa (benda).</li>
@@ -1856,7 +1856,7 @@
                             </ul>
                         </div>
                         <div style="background:var(--bg-primary);padding:8px;border-radius:6px;">
-                            <span style="color:var(--gold-light);font-weight:600;">Sumber Sekunder</span>
+                            <span style="color:var(--accent-light);font-weight:600;">Sumber Sekunder</span>
                             <ul style="color:var(--text-secondary);font-size:0.8rem;padding-left:16px;">
                                 <li>Buku sejarah daerah di perpustakaan.</li>
                                 <li>Artikel di website tentang sejarah desa.</li>
@@ -1864,17 +1864,17 @@
                             </ul>
                         </div>
                     </div>
-                    <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:6px;"><i class="fas fa-arrow-right" style="color:var(--gold);"></i> Dengan menggabungkan sumber primer dan sekunder, kita bisa mendapatkan gambaran yang lebih utuh tentang asal-usul desa.</p>
+                    <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:6px;"><i class="fas fa-arrow-right" style="color:var(--accent);"></i> Dengan menggabungkan sumber primer dan sekunder, kita bisa mendapatkan gambaran yang lebih utuh tentang asal-usul desa.</p>
                 </div>
-                <div style="background:var(--bg-card);border-radius:8px;padding:14px;margin-top:10px;border-top:3px solid var(--gold-light);">
-                    <p style="color:var(--text-primary);font-weight:600;"><i class="fas fa-user-graduate" style="color:var(--gold-light);"></i> Aktivitas Sederhana: Buat Silsilah Keluarga</p>
+                <div style="background:var(--bg-card);border-radius:8px;padding:14px;margin-top:10px;border-top:3px solid var(--accent-light);">
+                    <p style="color:var(--text-primary);font-weight:600;"><i class="fas fa-user-graduate" style="color:var(--accent-light);"></i> Aktivitas Sederhana: Buat Silsilah Keluarga</p>
                     <ul style="color:var(--text-secondary);font-size:0.85rem;padding-left:18px;">
                         <li>Wawancarai orang tua dan kakek-nenek tentang nama-nama leluhur (sumber lisan primer).</li>
                         <li>Cari foto-foto lama di album keluarga (sumber visual primer).</li>
                         <li>Lihat buku nikah atau dokumen keluarga (sumber tertulis primer).</li>
                         <li>Bandingkan cerita dari berbagai anggota keluarga — apakah ada perbedaan? (mulai berpikir kritis).</li>
                     </ul>
-                    <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:4px;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Ini adalah contoh heuristik yang sangat dekat dengan kehidupan sehari-hari!</p>
+                    <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:4px;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> Ini adalah contoh heuristik yang sangat dekat dengan kehidupan sehari-hari!</p>
                 </div>
             </div>
         </section>
@@ -1883,8 +1883,8 @@
         <section id="section3" class="section">
             <div class="section-header"><div class="num">03</div><h2>Pertemuan 2: Kritik, Interpretasi &amp; Historiografi <small>Memverifikasi &amp; Menulis Sejarah (3 x 45 menit) <span class="meeting-badge">Pertemuan 2</span></small></h2></div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-check-double"></i> A. Kritik Sumber — Menguji Kebenaran</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-check-double"></i> A. Kritik Sumber — Menguji Kebenaran</h3>
                 <p style="color:var(--text-secondary);margin-top:4px;">Setelah sumber terkumpul, sejarawan harus <strong>menguji keaslian dan kredibilitasnya</strong>. Proses ini disebut <strong>kritik sumber</strong> atau verifikasi. Tanpa kritik, sejarah bisa menjadi kumpulan mitos dan hoaks.</p>
                 <div class="grid-2" style="margin-top:10px;">
                     <div class="card interactive-card" onclick="this.classList.toggle('open')">
@@ -1916,32 +1916,32 @@
                         </div>
                     </div>
                 </div>
-                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:8px;border-top:3px solid var(--gold);">
-                    <p style="color:var(--text-secondary);font-size:0.95rem;"><i class="fas fa-quote-left" style="color:var(--gold);opacity:0.6;"></i> <strong style="color:var(--text-primary);">Prinsip:</strong> Semakin dekat sumber dengan peristiwa, semakin kuat kredibilitasnya. Namun, sumber primer pun tetap perlu dikritisi!</p>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:8px;border-top:3px solid var(--accent);">
+                    <p style="color:var(--text-secondary);font-size:0.95rem;"><i class="fas fa-quote-left" style="color:var(--accent);opacity:0.6;"></i> <strong style="color:var(--text-primary);">Prinsip:</strong> Semakin dekat sumber dengan peristiwa, semakin kuat kredibilitasnya. Namun, sumber primer pun tetap perlu dikritisi!</p>
                 </div>
             </div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-puzzle-piece"></i> B. Interpretasi — Menemukan Makna</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-puzzle-piece"></i> B. Interpretasi — Menemukan Makna</h3>
                 <p style="color:var(--text-secondary);margin-top:4px;">Setelah sumber diverifikasi, sejarawan melakukan <strong>interpretasi</strong>: menafsirkan fakta-fakta, menghubungkan satu peristiwa dengan peristiwa lain, dan mencari <strong>makna</strong> di balik data mentah.</p>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
                     <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
-                        <h4 style="color:var(--gold);font-size:0.95rem;"><i class="fas fa-link"></i> Kausalitas</h4>
+                        <h4 style="color:var(--accent);font-size:0.95rem;"><i class="fas fa-link"></i> Kausalitas</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Menghubungkan sebab dan akibat. Mengapa peristiwa itu terjadi? Apa dampaknya?</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Karena ada kebijakan tanam paksa, rakyat menderita kelaparan.</p>
                     </div>
                     <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
-                        <h4 style="color:var(--gold-light);font-size:0.95rem;"><i class="fas fa-sync-alt"></i> Perubahan &amp; Kesinambungan</h4>
+                        <h4 style="color:var(--accent-light);font-size:0.95rem;"><i class="fas fa-sync-alt"></i> Perubahan &amp; Kesinambungan</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Apa yang berubah? Apa yang tetap bertahan? Bagaimana masyarakat bertransformasi?</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Cara berpakaian berubah, tetapi nilai gotong royong tetap ada.</p>
                     </div>
                     <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
-                        <h4 style="color:var(--gold);font-size:0.95rem;"><i class="fas fa-users"></i> Perspektif</h4>
+                        <h4 style="color:var(--accent);font-size:0.95rem;"><i class="fas fa-users"></i> Perspektif</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Bagaimana sudut pandang pelaku, korban, dan pengamat berbeda? Interpretasi sejarah selalu dipengaruhi perspektif.</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Seorang pejuang kemerdekaan dan seorang Belanda akan memiliki cerita berbeda tentang perang.</p>
                     </div>
                     <div style="background:var(--bg-card);border-radius:8px;padding:12px;">
-                        <h4 style="color:var(--gold-light);font-size:0.95rem;"><i class="fas fa-flag"></i> Signifikansi</h4>
+                        <h4 style="color:var(--accent-light);font-size:0.95rem;"><i class="fas fa-flag"></i> Signifikansi</h4>
                         <p style="color:var(--text-secondary);font-size:0.85rem;">Mengapa peristiwa ini penting? Apa relevansinya bagi kehidupan sekarang?</p>
                         <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:2px;"><strong>Contoh:</strong> Peristiwa Sumpah Pemuda mengingatkan kita akan pentingnya persatuan.</p>
                     </div>
@@ -1952,11 +1952,11 @@
                 </div>
             </div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-pen-fancy"></i> C. Historiografi — Menulis Sejarah</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-pen-fancy"></i> C. Historiografi — Menulis Sejarah</h3>
                 <p style="color:var(--text-secondary);margin-top:4px;"><strong>Historiografi</strong> adalah tahap akhir: <strong>penulisan sejarah</strong> dalam bentuk narasi yang sistematis, menarik, dan dapat dipertanggungjawabkan secara ilmiah.</p>
                 <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:8px;">
-                    <h4 style="color:var(--gold);font-size:0.95rem;">📝 Panduan Menulis Sejarah yang Baik</h4>
+                    <h4 style="color:var(--accent);font-size:0.95rem;">📝 Panduan Menulis Sejarah yang Baik</h4>
                     <ul style="color:var(--text-secondary);padding-left:18px;font-size:0.9rem;">
                         <li><strong>Struktur jelas:</strong> Pendahuluan (latar belakang) → Isi (kronologi/analisis) → Penutup (kesimpulan).</li>
                         <li><strong>Bahasa lugas dan ilmiah:</strong> Gunakan istilah sejarah dengan tepat, hindari opini tanpa data.</li>
@@ -1965,23 +1965,23 @@
                         <li><strong>Menarik:</strong> Sejarah bukan hanya tanggal dan nama, tetapi cerita manusia yang hidup.</li>
                     </ul>
                 </div>
-                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-top:3px solid var(--gold-light);">
-                    <h4 style="color:var(--gold-light);font-size:0.95rem;">📖 Contoh Historiografi Sederhana</h4>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-top:3px solid var(--accent-light);">
+                    <h4 style="color:var(--accent-light);font-size:0.95rem;">📖 Contoh Historiografi Sederhana</h4>
                     <p style="color:var(--text-secondary);font-size:0.85rem;font-style:italic;">"Desaku bernama Sumberejo. Menurut wawancara dengan Mbah Joyo (2023), nama ini berasal dari adanya mata air yang melimpah. Prasasti di balai desa (berangka tahun 1920) menyebutkan kata 'sumber'. Buku sejarah daerah (1985) juga mencatat bahwa desa ini dikenal sebagai daerah pertanian sejak zaman kolonial. Dari ketiga sumber ini, dapat disimpulkan bahwa nama Sumberejo berkaitan erat dengan sumber air dan kesuburan tanah, yang masih terlihat hingga kini."</p>
                     <p style="color:var(--text-secondary);font-size:0.75rem;margin-top:4px;">(Ini adalah contoh tulisan sejarah sederhana yang menggabungkan heuristik, kritik, dan interpretasi).</p>
                 </div>
             </div>
 
-            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--gold);margin-bottom:20px;">
-                <h3 style="color:var(--gold);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-sitemap"></i> D. Tahapan Penelitian Sejarah — Ringkasan</h3>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-sitemap"></i> D. Tahapan Penelitian Sejarah — Ringkasan</h3>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
-                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">1</span> Heuristik</h4><p style="font-size:0.85rem;">Mencari dan mengumpulkan sumber sebanyak mungkin.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Wawancara, cari arsip, foto lama.</p></div>
-                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">2</span> Kritik</h4><p style="font-size:0.85rem;">Memverifikasi keaslian (ekstern) dan kredibilitas (intern) sumber.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Cek tanda tangan, bandingkan cerita.</p></div>
-                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">3</span> Interpretasi</h4><p style="font-size:0.85rem;">Menafsirkan fakta, mencari makna, dan menghubungkan peristiwa.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Mengapa peristiwa itu penting?</p></div>
-                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--gold);color:#121212;padding:0 10px;border-radius:30px;font-size:0.8rem;">4</span> Historiografi</h4><p style="font-size:0.85rem;">Menulis sejarah dalam narasi yang sistematis dan bertanggung jawab.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Buat cerita sejarah dengan struktur yang jelas.</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--accent);color:#fff;padding:0 10px;border-radius:30px;font-size:0.8rem;">1</span> Heuristik</h4><p style="font-size:0.85rem;">Mencari dan mengumpulkan sumber sebanyak mungkin.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Wawancara, cari arsip, foto lama.</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--accent);color:#fff;padding:0 10px;border-radius:30px;font-size:0.8rem;">2</span> Kritik</h4><p style="font-size:0.85rem;">Memverifikasi keaslian (ekstern) dan kredibilitas (intern) sumber.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Cek tanda tangan, bandingkan cerita.</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--accent);color:#fff;padding:0 10px;border-radius:30px;font-size:0.8rem;">3</span> Interpretasi</h4><p style="font-size:0.85rem;">Menafsirkan fakta, mencari makna, dan menghubungkan peristiwa.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Mengapa peristiwa itu penting?</p></div>
+                    <div class="method-step" style="margin-bottom:0;"><h4><span style="background:var(--accent);color:#fff;padding:0 10px;border-radius:30px;font-size:0.8rem;">4</span> Historiografi</h4><p style="font-size:0.85rem;">Menulis sejarah dalam narasi yang sistematis dan bertanggung jawab.</p><p style="font-size:0.75rem;color:var(--text-secondary);">Contoh: Buat cerita sejarah dengan struktur yang jelas.</p></div>
                 </div>
-                <div style="background:var(--bg-card);border-radius:8px;padding:10px;margin-top:8px;text-align:center;border:2px dashed var(--gold);">
-                    <p style="color:var(--text-secondary);font-size:0.9rem;"><i class="fas fa-arrow-right" style="color:var(--gold);"></i> <strong>Ingat!</strong> Penelitian sejarah adalah siklus — sering kali kita harus kembali ke heuristik jika menemukan sumber baru yang mengubah interpretasi.</p>
+                <div style="background:var(--bg-card);border-radius:8px;padding:10px;margin-top:8px;text-align:center;border:2px dashed var(--accent);">
+                    <p style="color:var(--text-secondary);font-size:0.9rem;"><i class="fas fa-arrow-right" style="color:var(--accent);"></i> <strong>Ingat!</strong> Penelitian sejarah adalah siklus — sering kali kita harus kembali ke heuristik jika menemukan sumber baru yang mengubah interpretasi.</p>
                 </div>
             </div>
         </section>
@@ -1992,8 +1992,8 @@
             <div class="activity-box">
                 <h3><i class="fas fa-user-secret"></i> Jadilah Detektif Sejarah!</h3>
                 <p style="margin:6px 0 10px 0;font-size:0.95rem;color:var(--text-secondary);">Praktikkan seluruh tahapan penelitian sejarah — dari heuristik hingga historiografi — dengan topik pilihanmu. Gunakan contoh-contoh dari materi pertemuan 1 dan 2 sebagai panduan.</p>
-                <div style="background:var(--bg-primary);border-radius:10px;padding:12px 16px;margin:12px 0;border-left:4px solid var(--gold);">
-                    <h4 style="color:var(--gold);font-size:1rem;">📌 Pilih Salah Satu Topik (dekat dengan kehidupanmu)</h4>
+                <div style="background:var(--bg-primary);border-radius:10px;padding:12px 16px;margin:12px 0;border-left:4px solid var(--accent);">
+                    <h4 style="color:var(--accent);font-size:1rem;">📌 Pilih Salah Satu Topik (dekat dengan kehidupanmu)</h4>
                     <ul style="color:var(--text-secondary);padding-left:18px;">
                         <li><strong>Sejarah keluarga:</strong> Buat silsilah keluarga hingga 3 generasi ke atas. Cari tahu asal-usul nama keluarga atau cerita tentang leluhur.</li>
                         <li><strong>Asal-usul nama desa/kampung atau jalan di sekitarmu.</strong></li>
@@ -2003,7 +2003,7 @@
                     </ul>
                 </div>
                 <div style="margin-top:12px;">
-                    <h4 style="color:var(--text-primary);font-size:1.05rem;"><i class="fas fa-list-ol" style="color:var(--gold);"></i> Langkah-Langkah (sesuai materi)</h4>
+                    <h4 style="color:var(--text-primary);font-size:1.05rem;"><i class="fas fa-list-ol" style="color:var(--accent);"></i> Langkah-Langkah (sesuai materi)</h4>
                     <ol style="color:var(--text-secondary);padding-left:20px;line-height:2.2;">
                         <li><strong>Heuristik (Mencari Sumber):</strong> Kumpulkan minimal 3 sumber berbeda — bisa wawancara, dokumen, foto, artikel, atau benda. Catat dari mana sumber itu diperoleh.</li>
                         <li><strong>Kritik Sumber (Verifikasi):</strong> Tulis analisis singkat: sumber mana yang primer dan mana yang sekunder? Sebutkan kelebihan dan kelemahan masing-masing. Lakukan kritik ekstern dan intern.</li>
@@ -2013,7 +2013,7 @@
                     </ol>
                 </div>
                 <div style="background:var(--bg-card);border-radius:10px;padding:12px 16px;margin:12px 0;border:1px solid rgba(255,255,255,0.05);">
-                    <h4 style="color:var(--text-primary);font-size:1rem;"><i class="fas fa-check-circle" style="color:var(--gold);"></i> Rubrik Penilaian (disesuaikan)</h4>
+                    <h4 style="color:var(--text-primary);font-size:1rem;"><i class="fas fa-check-circle" style="color:var(--accent);"></i> Rubrik Penilaian (disesuaikan)</h4>
                     <div style="display:grid;grid-template-columns:1fr 2fr;gap:6px;font-size:0.85rem;color:var(--text-secondary);margin-top:6px;">
                         <span><strong>Heuristik (25%)</strong></span><span>Kesesuaian & keragaman sumber, ketepatan identifikasi primer/sekunder.</span>
                         <span><strong>Kritik Sumber (30%)</strong></span><span>Kemampuan menganalisis autentisitas (ekstern) dan kredibilitas (intern).</span>
@@ -2027,11 +2027,11 @@
         <!-- ========== SECTION 5 : ASESMEN ========== -->
         <section id="section5" class="section">
             <div class="section-header"><div class="num">05</div><h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman</small></h2></div>
-            <p style="font-size:1rem;margin-bottom:16px;color:var(--text-secondary);"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Kerjakan soal-soal berikut untuk mengukur pemahamanmu tentang metode penelitian sejarah, berdasarkan contoh-contoh yang telah dipelajari.</p>
+            <p style="font-size:1rem;margin-bottom:16px;color:var(--text-secondary);"><i class="fas fa-clipboard-list" style="color:var(--accent);"></i> Kerjakan soal-soal berikut untuk mengukur pemahamanmu tentang metode penelitian sejarah, berdasarkan contoh-contoh yang telah dipelajari.</p>
 
-            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
-                <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
-                    <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">A</span> Pilihan Ganda (berdasarkan contoh)
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--accent);">
+                <h3 style="color:var(--accent);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--accent);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--accent);color:#fff;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">A</span> Pilihan Ganda (berdasarkan contoh)
                 </h3>
                 <div class="assessment-question"><div class="q-text">1. Ketika kamu mewawancarai nenek tentang masa kecilnya, kamu sedang melakukan tahap ...</div><div class="q-options"><span>A. Kritik</span><span>B. Heuristik</span><span>C. Interpretasi</span><span>D. Historiografi</span></div></div>
                 <div class="assessment-question"><div class="q-text">2. Foto KTP kamu sendiri termasuk contoh sumber ...</div><div class="q-options"><span>A. Sekunder</span><span>B. Tersier</span><span>C. Primer</span><span>D. Lisan</span></div></div>
@@ -2042,9 +2042,9 @@
                 <div class="assessment-question"><div class="q-text">7. Tahap akhir berupa penulisan narasi sejarah yang sistematis disebut ...</div><div class="q-options"><span>A. Heuristik</span><span>B. Kritik</span><span>C. Interpretasi</span><span>D. Historiografi</span></div></div>
             </div>
 
-            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--gold);">
-                <h3 style="color:var(--gold);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;">
-                    <span style="background:var(--gold);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">B</span> Essay (terkait contoh sehari-hari)
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--accent);">
+                <h3 style="color:var(--accent);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--accent);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--accent);color:#fff;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">B</span> Essay (terkait contoh sehari-hari)
                 </h3>
                 <div class="assessment-question"><div class="q-text">1. Jelaskan mengapa kritik sumber (verifikasi) sangat penting dalam penelitian sejarah, berikan contoh dari kehidupan sehari-hari (misalnya, ketika mendengar dua versi cerita tentang suatu kejadian).</div></div>
                 <div class="assessment-question"><div class="q-text">2. Kamu ingin meneliti sejarah asal-usul nama desamu. Rincikan langkah-langkah heuristik yang akan kamu lakukan, sebutkan jenis sumber yang akan dicari!</div></div>
@@ -2052,17 +2052,17 @@
                 <div class="assessment-question"><div class="q-text">4. Mengapa interpretasi sejarah bisa berbeda antara satu sejarawan dengan yang lain? Berikan contoh sederhana dari perbedaan cerita dalam keluarga atau masyarakat.</div></div>
             </div>
 
-            <div style="background:var(--bg-primary);border-radius:16px;padding:20px 18px;border:2px solid var(--gold);text-align:center;">
-                <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-lock" style="color:var(--gold);margin-right:8px;"></i> <strong style="color:var(--text-primary);">Kunci Jawaban</strong> dilindungi password.</p>
+            <div style="background:var(--bg-primary);border-radius:16px;padding:20px 18px;border:2px solid var(--accent);text-align:center;">
+                <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-lock" style="color:var(--accent);margin-right:8px;"></i> <strong style="color:var(--text-primary);">Kunci Jawaban</strong> dilindungi password.</p>
                 <div style="display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;">
-                    <input type="password" id="passwordInput" placeholder="Masukkan password" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:40px;color:var(--text-primary);font-size:0.9rem;width:200px;outline:none;transition:0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-                    <button onclick="toggleKunci()" style="background:var(--gold);color:#121212;border:none;padding:8px 24px;border-radius:40px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.3s;">Lihat Kunci Jawaban</button>
+                    <input type="password" id="passwordInput" placeholder="Masukkan password" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:40px;color:var(--text-primary);font-size:0.9rem;width:200px;outline:none;transition:0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <button onclick="toggleKunci()" style="background:var(--accent);color:#fff;border:none;padding:8px 24px;border-radius:40px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.3s;">Lihat Kunci Jawaban</button>
                 </div>
                 <div id="kunciContainer" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);text-align:left;">
                     <div style="background:var(--bg-card);border-radius:10px;padding:16px;">
-                        <p style="color:var(--gold);font-weight:700;margin-bottom:8px;"><i class="fas fa-key"></i> KUNCI JAWABAN</p>
-                        <p style="color:var(--text-secondary);font-size:0.9rem;"><strong style="color:var(--gold);">Pilihan Ganda:</strong> 1.B, 2.C, 3.B, 4.B, 5.B, 6.C, 7.D</p>
-                        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:6px;"><strong style="color:var(--gold);">Essay:</strong> Jawaban harus mencakup konsep heuristik, kritik (ekstern & intern), interpretasi, dan historiografi dengan contoh konkret.</p>
+                        <p style="color:var(--accent);font-weight:700;margin-bottom:8px;"><i class="fas fa-key"></i> KUNCI JAWABAN</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;"><strong style="color:var(--accent);">Pilihan Ganda:</strong> 1.B, 2.C, 3.B, 4.B, 5.B, 6.C, 7.D</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:6px;"><strong style="color:var(--accent);">Essay:</strong> Jawaban harus mencakup konsep heuristik, kritik (ekstern & intern), interpretasi, dan historiografi dengan contoh konkret.</p>
                     </div>
                 </div>
                 <p id="passwordError" style="color:#e74c3c;font-size:0.85rem;margin-top:8px;display:none;">Password salah! Silakan coba lagi.</p>
@@ -2090,7 +2090,7 @@
         <!-- ========== SECTION 6 : REFLEKSI ========== -->
         <section id="section6" class="section">
             <div class="section-header"><div class="num">06</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2></div>
-            <div class="card" style="background:var(--bg-secondary);border:1px solid var(--gold);">
+            <div class="card" style="background:var(--bg-secondary);border:1px solid var(--accent);">
                 <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
                 <ul class="refleksi-list">
                     <li><span class="check">✅</span><span>Memahami penelitian sejarah sebagai proses ilmiah yang sistematis (bukan sekadar hafalan).</span></li>
@@ -2100,15 +2100,15 @@
                     <li><span class="check">✅</span><span>Mampu menyusun narasi sejarah sederhana dengan etika penulisan yang baik.</span></li>
                 </ul>
             </div>
-            <div class="card" style="margin-top:16px;border-left:6px solid var(--gold);">
-                <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><i class="fas fa-pen-fancy" style="color:var(--gold);font-size:1.4rem;"></i> Renungkan</h3>
+            <div class="card" style="margin-top:16px;border-left:6px solid var(--accent);">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><i class="fas fa-pen-fancy" style="color:var(--accent);font-size:1.4rem;"></i> Renungkan</h3>
                 <p style="font-size:1.05rem;color:var(--text-secondary);font-style:italic;margin-top:4px;">"Setelah mempelajari metode penelitian sejarah, bagaimana kamu akan menyikapi informasi sejarah yang beredar di media sosial? Apakah kamu akan langsung percaya? Mengapa?"</p>
-                <p style="margin-top:8px;font-size:0.9rem;color:var(--text-secondary);"><i class="fas fa-arrow-right" style="color:var(--gold);"></i> Tuliskan refleksimu di buku catatan, sertakan contoh kasus yang pernah kamu temui.</p>
+                <p style="margin-top:8px;font-size:0.9rem;color:var(--text-secondary);"><i class="fas fa-arrow-right" style="color:var(--accent);"></i> Tuliskan refleksimu di buku catatan, sertakan contoh kasus yang pernah kamu temui.</p>
             </div>
-            <div class="quote-block"><i class="fas fa-book-open" style="color:var(--gold);margin-right:10px;"></i> 📖 Pesan Hari Ini
+            <div class="quote-block"><i class="fas fa-book-open" style="color:var(--accent);margin-right:10px;"></i> 📖 Pesan Hari Ini
                 <blockquote style="margin:8px 0 0 0;padding:0;border:none;background:transparent;color:var(--text-secondary);">"Sejarah bukanlah apa yang terjadi, tetapi apa yang dicatat dan ditafsirkan. Maka, jadilah pencatat dan penafsir yang bertanggung jawab."<span class="author">— Refleksi Sejarawan</span></blockquote>
             </div>
-            <div class="celebration-box"><h3>🎉 Selamat!</h3><p>Kamu telah memahami <strong>metode penelitian sejarah</strong> secara mendalam. Keterampilan ini akan membantumu menjadi pembelajar yang kritis, tidak mudah percaya hoaks, dan mampu menggali kebenaran di balik berbagai peristiwa.</p><div style="margin-top:16px;"><span class="next-step-btn" style="display:inline-block;background:var(--gold);color:#121212;padding:12px 32px;border-radius:60px;font-weight:700;font-size:1rem;border:none;cursor:default;">➡️ Lanjutkan ke materi berikutnya: Historiografi Indonesia</span></div><p style="margin-top:12px;font-size:0.85rem;color:#888;"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Jadilah detektif sejarah yang kritis, jujur, dan bertanggung jawab!</p></div>
+            <div class="celebration-box"><h3>🎉 Selamat!</h3><p>Kamu telah memahami <strong>metode penelitian sejarah</strong> secara mendalam. Keterampilan ini akan membantumu menjadi pembelajar yang kritis, tidak mudah percaya hoaks, dan mampu menggali kebenaran di balik berbagai peristiwa.</p><div style="margin-top:16px;"><span class="next-step-btn" style="display:inline-block;background:var(--accent);color:#fff;padding:12px 32px;border-radius:60px;font-weight:700;font-size:1rem;border:none;cursor:default;">➡️ Lanjutkan ke materi berikutnya: Historiografi Indonesia</span></div><p style="margin-top:12px;font-size:0.85rem;color:#888;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> Jadilah detektif sejarah yang kritis, jujur, dan bertanggung jawab!</p></div>
         </section>
 
         <!-- ========== SECTION 7 : REFERENSI ========== -->
@@ -2125,8 +2125,8 @@
                 <li><i class="fas fa-globe"></i> Perpustakaan Nasional Digital – digital.perpusnas.go.id</li>
             </ul>
             <div class="footer-credit" style="text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);color:var(--text-secondary);">
-                <i class="fas fa-school" style="color:var(--gold);"></i> <strong style="color:var(--text-primary);">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp;
-                <i class="fas fa-chalkboard-teacher" style="color:var(--gold);"></i> Guru Pengampu: <strong style="color:var(--text-primary);">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
+                <i class="fas fa-school" style="color:var(--accent);"></i> <strong style="color:var(--text-primary);">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp;
+                <i class="fas fa-chalkboard-teacher" style="color:var(--accent);"></i> Guru Pengampu: <strong style="color:var(--text-primary);">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
             </div>
         </section>
 
