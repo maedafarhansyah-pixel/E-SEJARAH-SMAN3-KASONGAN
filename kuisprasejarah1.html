@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a2e1a">
+<title>Kuis Interaktif Sejarah — SMAN 3 Kasongan</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<script>
+try {
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','Georgia','serif'] },
+      colors: {
+        green: {50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d',950:'#052e16'},
+        gold: {300:'#fde68a',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309'}
+      }
+    }}
+  };
+} catch(e) {}
+</script>
+<style>
+  :root {
+    --green-950:#052e16;--green-900:#14532d;--green-800:#166534;
+    --green-700:#15803d;--green-600:#16a34a;--green-500:#22c55e;
+    --lime:#84cc16;--lime-light:#a3e635;
+    --gold-400:#fbbf24;--gold-500:#f59e0b;
+    --emerald:#22c55e;--rose:#ef4444;
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    background:
+      radial-gradient(circle at 15% 15%, rgba(34,197,94,.25) 0%, transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(132,204,22,.18) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, #14532d 0%, #052e16 70%, #020d06 100%);
+    background-attachment: fixed;
+    color:#f8fafc; min-height:100vh; margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  .custom-scrollbar::-webkit-scrollbar{width:6px}
+  .custom-scrollbar::-webkit-scrollbar-track{background:rgba(20,83,45,.6)}
+  .custom-scrollbar::-webkit-scrollbar-thumb{background:#16a34a;border-radius:9999px}
+  .glass-panel {
+    background:linear-gradient(160deg,rgba(22,101,52,.75),rgba(5,46,22,.92));
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(34,197,94,.25);
+    box-shadow:0 20px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .is-hidden{display:none!important}
+
+  /* LOADER */
+  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,#14532d 0%,#052e16 70%,#020d06 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;padding:16px}
+  #loader.fade-out{opacity:0;visibility:hidden;pointer-events:none}
+  .loader-compass{position:relative;width:96px;height:96px;animation:compassSpin 3s ease-in-out infinite}
+  .loader-compass svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 24px rgba(251,191,36,.6))}
+  .loader-ring{position:absolute;top:-26px;left:-26px;width:148px;height:148px;border-radius:50%;border:5px solid transparent;border-top-color:#fbbf24;border-right-color:#22c55e;border-bottom-color:#84cc16;border-left-color:#16a34a;animation:ringSpin 3s linear infinite;box-shadow:0 0 50px rgba(34,197,94,.4)}
+  @keyframes ringSpin{to{transform:rotate(360deg)}}
+  @keyframes compassSpin{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.08)}}
+  .loader-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,7vw,3rem);font-weight:900;letter-spacing:-1px;margin-top:26px;background:linear-gradient(135deg,#fbbf24 0%,#22c55e 40%,#84cc16 70%,#fbbf24 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s ease-in-out infinite;text-align:center}
+  @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .loader-sub{font-size:0.7rem;font-weight:600;color:#86efac;margin-top:6px;letter-spacing:3px;text-transform:uppercase;text-align:center}
+  .loader-bar-track{width:min(320px,80vw);height:8px;background:rgba(5,46,22,.9);border-radius:99px;margin-top:24px;overflow:hidden;border:1px solid rgba(34,197,94,.3)}
+  .loader-bar{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#166534,#22c55e,#84cc16,#fbbf24);transition:width .3s ease;box-shadow:0 0 20px rgba(34,197,94,.7)}
+  .loader-percent{color:#fbbf24;font-size:.8rem;font-weight:800;margin-top:12px;letter-spacing:3px}
+  .loader-tip{margin-top:16px;font-size:.72rem;color:#86efac;font-style:italic;text-align:center;max-width:280px}
+
+  /* PARTICLES */
+  #particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(134,239,172,.6),transparent 70%);animation:floatUp linear infinite}
+  @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.8}100%{transform:translateY(-100vh) scale(1.4);opacity:0}}
+
+  /* SCHOOL NAME */
+  .school-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(132,204,22,.15));border:1.5px solid rgba(251,191,36,.5);border-radius:99px;font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;position:relative;overflow:hidden;box-shadow:0 0 20px rgba(34,197,94,.35);white-space:nowrap}
+  .school-badge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:badgeShine 3s ease-in-out infinite}
+  @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
+  .school-name{background:linear-gradient(135deg,#fde68a 0%,#fbbf24 30%,#22c55e 70%,#84cc16 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:2px;animation:shimmerText 3s ease-in-out infinite;filter:drop-shadow(0 2px 10px rgba(251,191,36,.5))}
+
+  /* FEEDBACK SECTIONS */
+  .fb-section{padding:11px 12px;border-radius:10px;margin-bottom:7px;border:1px solid rgba(34,197,94,.2);background:rgba(5,46,22,.5)}
+  .fb-section .fb-t{font-size:.62rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+  .fb-section .fb-b{font-size:.8rem;line-height:1.55;color:#dcfce7}
+  .fb-section.topic .fb-t{color:#fbbf24}
+  .fb-section.topic .fb-b{display:inline-block;padding:3px 10px;border-radius:99px;background:linear-gradient(135deg,rgba(251,191,36,.2),rgba(251,191,36,.05));color:#fde68a;font-weight:700;font-size:.7rem;letter-spacing:.5px;text-transform:uppercase}
+  .fb-section.why .fb-t{color:#4ade80}
+  .fb-section.yours .fb-t{color:#f87171}
+  .fb-section.yours .fb-b{background:linear-gradient(90deg,rgba(248,113,113,.12),rgba(248,113,113,.02));padding:9px 11px;border-radius:8px;border-left:3px solid #ef4444}
+  .fb-section.key .fb-t{color:#22c55e}
+  .fb-section.key .fb-b{background:linear-gradient(90deg,rgba(34,197,94,.18),rgba(34,197,94,.04));padding:9px 11px;border-radius:8px;border-left:3px solid #22c55e;color:#a7f3d0;font-weight:600}
+  .badge-pick{display:inline-block;padding:1px 7px;border-radius:5px;background:rgba(248,113,113,.25);color:#fca5a5;font-weight:800;margin-right:4px}
+  .badge-correct{display:inline-block;padding:1px 7px;border-radius:5px;background:rgba(74,222,128,.25);color:#86efac;font-weight:800;margin-right:4px}
+
+  /* GRADE */
+  .grade-badge-big{width:80px;height:80px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#fff;font-family:'Playfair Display',Georgia,serif;box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 30px rgba(34,197,94,.4)}
+  @media (min-width:480px){ .grade-badge-big{width:96px;height:96px;font-size:3rem;border-radius:20px;} }
+  .grade-A{background:linear-gradient(135deg,#fbbf24,#22c55e)}
+  .grade-B{background:linear-gradient(135deg,#22c55e,#15803d)}
+  .grade-C{background:linear-gradient(135deg,#84cc16,#65a30d)}
+  .grade-D{background:linear-gradient(135deg,#a3e635,#4ade80)}
+  .grade-E{background:linear-gradient(135deg,#166534,#052e16)}
+
+  /* SCORE CIRCLE */
+  .score-circle{position:relative;width:110px;height:110px;flex-shrink:0}
+  @media (min-width:480px){ .score-circle{width:140px;height:140px;} }
+  .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
+  .score-circle .track{stroke:rgba(34,197,94,.18);fill:none}
+  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 14px rgba(34,197,94,.7))}
+  .score-circle .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;background:linear-gradient(180deg,#fbbf24,#22c55e);-webkit-background-clip:text;background-clip:text;color:transparent}
+  @media (min-width:480px){ .score-circle .num{font-size:2.4rem;} }
+  .score-circle .lbl{font-size:.5rem;letter-spacing:1.5px;color:#86efac;text-transform:uppercase;font-weight:800;margin-top:3px}
+
+  /* DIFFICULTY */
+  .diff-badge{font-size:.58rem;letter-spacing:1px;font-weight:800;padding:3px 9px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
+  .diff-mudah{color:#4ade80;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.35)}
+  .diff-sedang{color:#fbbf24;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.35)}
+  .diff-sulit{color:#fb7185;background:rgba(251,113,133,.15);border:1px solid rgba(251,113,133,.35)}
+  .diff-sangat{color:#c084fc;background:rgba(192,132,252,.15);border:1px solid rgba(192,132,252,.35)}
+
+  /* OPTIONS */
+  .opt-btn{
+    width:100%; text-align:left;
+    background:rgba(22,101,52,.7);
+    border:1.5px solid rgba(34,197,94,.25);
+    border-radius:12px;
+    padding:13px 14px;
+    font-size:.85rem;
+    color:#dcfce7;
+    font-weight:500;
+    line-height:1.4;
+    transition:all .2s;
+    cursor:pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (min-width:768px){ .opt-btn{font-size:.9rem;padding:14px 16px;} }
+  .opt-btn:hover{background:rgba(34,197,94,.7);border-color:rgba(34,197,94,.6);transform:translateY(-1px)}
+  .opt-btn:active{transform:scale(.99)}
+  .opt-selected{background:linear-gradient(135deg,#22c55e,#15803d)!important;border-color:#4ade80!important;color:#fff!important;box-shadow:0 0 24px rgba(34,197,94,.6),inset 0 0 16px rgba(74,222,128,.15);transform:translateY(-1px)}
+  .opt-correct{background:linear-gradient(135deg,#16a34a,#22c55e)!important;border-color:#22c55e!important;color:#fff!important;box-shadow:0 0 30px rgba(34,197,94,.7);animation:correctPulse .7s ease}
+  .opt-wrong{background:linear-gradient(135deg,#dc2626,#ef4444)!important;border-color:#ef4444!important;color:#fff!important;box-shadow:0 0 30px rgba(239,68,68,.7);animation:wrongShake .5s ease}
+  .opt-eliminated{opacity:.2!important;pointer-events:none!important;text-decoration:line-through}
+  @keyframes correctPulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+  @keyframes wrongShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+  /* SOUND */
+  .sound-toggle{width:36px;height:36px;border-radius:50%;background:rgba(22,101,52,.7);border:1px solid rgba(34,197,94,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+  .sound-toggle:hover{background:rgba(34,197,94,.8);transform:scale(1.08);box-shadow:0 0 20px rgba(34,197,94,.5)}
+  .sound-toggle.muted{opacity:.5}
+
+  /* PROGRESS */
+  .q-progress{height:5px;background:rgba(5,46,22,.9);border-radius:99px;overflow:hidden;margin-bottom:10px;border:1px solid rgba(34,197,94,.2)}
+  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#166534,#22c55e,#84cc16,#fbbf24);border-radius:99px;transition:width .5s ease;box-shadow:0 0 14px rgba(34,197,94,.7)}
+
+  /* KUNCI JAWABAN BUTTON - GREEN/LIME */
+  .lock-btn-container{margin-top:12px;display:flex;justify-content:center;animation:slideUp .4s ease}
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .lock-btn{
+    padding:13px 32px;
+    font-size:.88rem;
+    font-weight:900;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:#052e16;
+    background:linear-gradient(135deg,#a3e635 0%,#84cc16 30%,#22c55e 60%,#16a34a 100%);
+    border-radius:60px;
+    cursor:pointer;
+    border:none;
+    box-shadow:
+      0 0 30px rgba(34,197,94,.6),
+      0 10px 26px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.5);
+    transition:all .2s ease;
+    position:relative;
+    overflow:hidden;
+    animation:lockPulse 1.8s ease-in-out infinite;
+  }
+  @media (min-width:480px){ .lock-btn{padding:14px 42px;font-size:.95rem;letter-spacing:3px;} }
+  @keyframes lockPulse{
+    0%,100%{box-shadow:0 0 30px rgba(34,197,94,.6),0 10px 26px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.5)}
+    50%{box-shadow:0 0 50px rgba(74,222,128,.9),0 10px 26px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.5)}
+  }
+  .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:shineBtn 2.2s ease-in-out infinite}
+  @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
+  .lock-btn:hover{transform:translateY(-2px) scale(1.02)}
+  .lock-btn:active{transform:translateY(0) scale(.97)}
+
+  /* REVEAL OVERLAY - SMALLER ON MOBILE */
+  #reveal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;pointer-events:none;padding:16px}
+  #reveal-overlay.show{display:flex}
+  #reveal-overlay.backdrop{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background:rgba(5,46,22,.75);pointer-events:auto;animation:fadeInBackdrop .25s ease}
+  @keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
+  .reveal-badge{
+    font-size:clamp(1.6rem,6.5vw,3.5rem);
+    font-weight:900;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-family:'Playfair Display',Georgia,serif;
+    padding:14px 32px;
+    border-radius:18px;
+    position:relative;
+    text-align:center;
+    line-height:1.1;
+    animation:revealPop .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  @media (min-width:480px){ .reveal-badge{font-size:clamp(2rem,7vw,4.5rem);padding:18px 46px;letter-spacing:4px;border-radius:22px;} }
+  @keyframes revealPop{0%{opacity:0;transform:scale(.4) rotate(-8deg)}50%{transform:scale(1.1) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+  .reveal-badge.benar{
+    color:#fff;
+    background:linear-gradient(135deg,#15803d 0%,#22c55e 50%,#4ade80 100%);
+    box-shadow:0 0 50px rgba(34,197,94,1),0 0 100px rgba(34,197,94,.5),0 16px 40px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow:0 0 14px rgba(255,255,255,.9),0 3px 8px rgba(0,0,0,.4);
+    border:2.5px solid rgba(255,255,255,.6);
+  }
+  .reveal-badge.benar::before{content:'✓';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes checkPop{0%{opacity:0;transform:scale(0)}100%{opacity:1;transform:scale(1)}}
+  .reveal-badge.salah{
+    color:#fff;
+    background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 50%,#f87171 100%);
+    box-shadow:0 0 50px rgba(239,68,68,1),0 0 100px rgba(239,68,68,.5),0 16px 40px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow:0 0 14px rgba(255,255,255,.9),0 3px 8px rgba(0,0,0,.4);
+    border:2.5px solid rgba(255,255,255,.6);
+    animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease;
+  }
+  .reveal-badge.salah::before{content:'✗';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes salahShake{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-8px) rotate(-1.5deg)}40%{transform:translateX(8px) rotate(1.5deg)}60%{transform:translateX(-5px) rotate(-.8deg)}80%{transform:translateX(5px) rotate(.8deg)}}
+
+  .burst-particle{position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;animation:burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards}
+  @keyframes burstOut{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}}
+
+  /* BUTTONS */
+  .btn-primary-gradient{background:linear-gradient(135deg,#166534 0%,#22c55e 50%,#84cc16 100%);color:#fff;font-weight:900;letter-spacing:2px;padding:15px 28px;border-radius:14px;border:1px solid rgba(163,230,53,.4);box-shadow:0 10px 32px rgba(34,197,94,.5),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;cursor:pointer;position:relative;overflow:hidden;font-size:.92rem;width:100%}
+  @media (min-width:480px){ .btn-primary-gradient{padding:16px 32px;font-size:1rem;} }
+  .btn-primary-gradient:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(34,197,94,.7),inset 0 1px 0 rgba(255,255,255,.2)}
+  .btn-primary-gradient:active{transform:translateY(0) scale(.98)}
+  .btn-primary-gradient::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shineBtn 2.5s ease-in-out infinite}
+
+  .navy-input{background:rgba(5,46,22,.85);border:2px solid rgba(34,197,94,.35);color:#f0fdf4;transition:all .2s;width:100%;border-radius:12px;padding:13px 16px;font-size:.95rem;font-weight:500}
+  .navy-input:focus{outline:none;border-color:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.15),0 0 24px rgba(34,197,94,.4)}
+  .navy-input::placeholder{color:rgba(240,253,244,.4)}
+
+  /* GAME SCREEN - Mobile-first */
+  .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
+  @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
+
+  .question-text{font-size:.92rem;font-weight:700;color:#dcfce7;line-height:1.55;word-wrap:break-word}
+  @media (min-width:480px){ .question-text{font-size:1rem;} }
+  @media (min-width:768px){ .question-text{font-size:1.1rem;} }
+
+  /* Prevent overflow */
+  .overflow-safe{word-wrap:break-word;overflow-wrap:break-word;hyphens:auto}
+
+  /* Lifeline buttons - more compact on mobile */
+  .lifeline-item{padding:10px 4px;font-size:.68rem}
+  @media (min-width:640px){ .lifeline-item{padding:12px 6px;font-size:.72rem;} }
+
+  /* Prevent iOS zoom on input */
+  input[type="text"], textarea, select { font-size: 16px !important; }
+  @media (min-width:640px){ input[type="text"], textarea, select { font-size: .95rem !important; } }
+
+  /* Small screens: reduce padding */
+  @media (max-width:640px){
+    .glass-panel{padding:14px}
+    .game-frame{gap:10px}
+    main{padding:12px 10px 20px !important}
+    header{padding:10px 12px !important}
+    footer{padding:10px 12px !important}
+  }
+  @media (max-width:380px){
+    body{font-size:14px}
+    .opt-btn{padding:11px 12px;font-size:.8rem;border-radius:10px}
+    .reveal-badge{font-size:1.4rem;padding:12px 24px;letter-spacing:2px}
+    .lock-btn{padding:11px 22px;font-size:.78rem;letter-spacing:1.8px}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-compass">
+    <div class="loader-ring"></div>
+    <svg viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="36" stroke="#fbbf24" stroke-width="3" fill="none" opacity="0.2"/>
+      <polygon points="50,20 54.5,46 50,50 45.5,46" fill="#fbbf24"/>
+      <polygon points="50,80 54.5,54 50,50 45.5,54" fill="#22c55e"/>
+      <polygon points="20,50 46,45.5 50,50 46,54.5" fill="#84cc16"/>
+      <polygon points="80,50 54,45.5 50,50 54,54.5" fill="#16a34a"/>
+      <circle cx="50" cy="50" r="4.5" fill="#fde68a"/>
+    </svg>
+  </div>
+  <div class="loader-title">HistoExplorer</div>
+  <div class="loader-sub">Kuis Interaktif Sejarah</div>
+  <div class="loader-bar-track"><div class="loader-bar" id="loader-bar"></div></div>
+  <div class="loader-percent" id="loader-percent">0%</div>
+  <div class="loader-tip" id="loader-tip">🏺 Menyiapkan 30 soal sejarah...</div>
+</div>
+
+<div id="particles"></div>
+
+<!-- HEADER -->
+<header class="w-full border-b border-green-500/30 bg-gradient-to-r from-[#14532d] via-[#166534] to-[#14532d] backdrop-blur sticky top-0 z-40 px-3 py-2.5 shadow-lg shadow-black/40">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2 min-w-0 flex-1">
+      <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-gradient-to-tr from-green-400 to-green-600 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg shadow-green-500/40 ring-2 ring-green-400/50 shrink-0">🏺</div>
+      <div class="min-w-0 flex-1">
+        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-lime-300 to-amber-300 truncate">KUIS INTERAKTIF SEJARAH</h1>
+        <p class="text-[9px] md:text-[11px] font-medium truncate">
+          <span class="school-name">SMAN 3 KASONGAN</span>
+          <span class="text-green-300"> • </span>
+          <span class="text-emerald-400 font-semibold">Kelas X / Fase E</span>
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <div class="hidden md:flex items-center gap-1.5 bg-green-900/60 border border-green-500/30 px-2.5 py-1 rounded-full">
+        <span class="text-[11px] text-green-300 font-semibold">📚 PRAAKSARA</span>
+      </div>
+      <button class="sound-toggle" id="sound-toggle" type="button">🔊</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
+
+  <!-- START SCREEN -->
+  <section id="start-screen" class="w-full max-w-lg glass-panel p-4 md:p-6 lg:p-8 rounded-2xl my-auto">
+    <div class="text-center mb-4">
+      <div class="school-badge mb-3">
+        <span>🏫</span>
+        <span class="school-name">SMAN 3 KASONGAN</span>
+      </div>
+    </div>
+
+    <div class="text-center mb-5">
+      <div class="text-4xl md:text-5xl mb-2" style="filter:drop-shadow(0 0 24px rgba(34,197,94,.7))">🏺</div>
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-black font-serif text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-lime-300 to-amber-300 mb-1.5 leading-tight">KUIS INTERAKTIF SEJARAH</h2>
+      <p class="text-xs md:text-sm text-green-200/70">Materi: <span class="text-green-400 font-semibold">Jejak Kehidupan Masyarakat Praaksara di Indonesia</span></p>
+    </div>
+
+    <div class="mb-5 p-3 md:p-4 bg-gradient-to-r from-green-900/60 via-green-800/40 to-green-900/60 border border-green-500/30 rounded-xl">
+      <div class="text-center">
+        <div class="text-[10px] uppercase tracking-widest text-green-400 font-bold mb-1.5 flex items-center justify-center gap-1.5">
+          <span>👨‍🏫</span> Guru Pengampu
+        </div>
+        <div class="text-sm md:text-base font-black text-green-100 tracking-wide">SYAHRANI, S.Pd.</div>
+        <div class="text-[10px] md:text-[11px] text-green-300/70 font-mono mt-0.5">NIP. 19751217200501 1 016</div>
+      </div>
+    </div>
+
+    <div class="bg-green-950/60 border border-green-500/20 rounded-xl p-3 md:p-4 mb-5 space-y-2 text-xs md:text-sm">
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-green-500/30">1</span>
+        <span class="text-green-50/90 overflow-safe">Jawab <b class="text-green-300">15 soal</b> dari bank <b class="text-green-300">30 soal</b></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-green-500/30">2</span>
+        <span class="text-green-50/90 overflow-safe">Pilih jawaban → klik <b class="text-green-300">KUNCI JAWABAN</b></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-green-500/30">3</span>
+        <span class="text-green-50/90 overflow-safe">Gunakan <b class="text-green-300">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
+      </div>
+    </div>
+
+    <form id="start-form" class="space-y-3.5">
+      <div>
+        <label for="student-name" class="block text-[11px] md:text-xs font-bold uppercase tracking-wider text-green-300 mb-1.5">
+          Nama Siswa <span class="text-rose-400">*</span>
+        </label>
+        <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input">
+      </div>
+      <button type="submit" id="btn-start" class="btn-primary-gradient">▶ MULAI KUIS</button>
+    </form>
+
+    <div id="best-score-summary" class="is-hidden mt-4 pt-4 border-t border-green-500/20 text-center">
+      <div class="text-[10px] uppercase tracking-widest text-green-400 font-bold mb-1.5">🏆 Skor Terbaikmu</div>
+      <div class="flex justify-center gap-3 text-xs">
+        <div>
+          <div class="text-green-400/70 text-[10px] uppercase">Benar</div>
+          <div id="best-score-correct" class="text-emerald-400 font-bold text-sm md:text-base">0/15</div>
+        </div>
+        <div class="border-l border-green-500/20"></div>
+        <div>
+          <div class="text-green-400/70 text-[10px] uppercase">Skor</div>
+          <div id="best-score-points" class="text-green-400 font-bold text-sm md:text-base">0</div>
+        </div>
+        <div class="border-l border-green-500/20"></div>
+        <div>
+          <div class="text-green-400/70 text-[10px] uppercase">Gelar</div>
+          <div id="best-score-title" class="text-amber-300 font-bold text-[11px] mt-0.5">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4 text-[10px] text-green-400/60">© SMAN 3 Kasongan • Kelas X / Fase E</div>
+  </section>
+
+  <!-- GAME SCREEN -->
+  <section id="game-screen" class="is-hidden w-full game-frame">
+    <div class="space-y-3 md:space-y-4 min-w-0">
+      <div class="glass-panel p-2.5 md:p-3 rounded-xl flex items-center justify-between text-[11px] md:text-sm flex-wrap gap-2">
+        <div class="flex items-center gap-1.5 flex-wrap">
+          <div class="bg-green-900/80 px-2.5 py-1 rounded-lg border border-green-500/20 flex items-center gap-1">👤 <span id="player-display-name" class="font-bold text-green-100 max-w-[90px] md:max-w-none truncate">Siswa</span></div>
+          <div class="bg-green-900/80 px-2.5 py-1 rounded-lg border border-green-500/20">⚡ <span id="xp-counter" class="font-bold text-green-400">0</span></div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <div id="streak-container" class="is-hidden bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 px-2.5 py-1 rounded-lg">🔥 <span id="streak-counter" class="font-black text-amber-400">0</span></div>
+          <div class="bg-green-900/80 px-2.5 py-1 rounded-lg border border-green-500/20">⏱️ <span id="timer-display" class="font-mono font-bold text-green-400">00:00</span></div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-2 md:p-2.5 rounded-xl">
+        <div class="text-[9px] md:text-[10px] text-green-400/70 uppercase font-bold text-center mb-1.5">Bantuan (masing-masing 1x pakai)</div>
+        <div class="flex justify-center gap-1.5 md:gap-2">
+          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] bg-green-900/80 hover:bg-green-700/80 border border-green-500/30 rounded-lg text-green-300 cursor-pointer transition font-bold">
+            <div class="flex items-center justify-center gap-1">✂️ <span>50:50</span></div>
+            <div class="text-[8px] md:text-[9px] text-green-500/60 mt-0.5 font-normal">Hapus 2 salah</div>
+          </button>
+          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] bg-green-900/80 hover:bg-green-700/80 border border-green-500/30 rounded-lg text-green-300 cursor-pointer transition font-bold">
+            <div class="flex items-center justify-center gap-1">💡 <span>Petunjuk</span></div>
+            <div class="text-[8px] md:text-[9px] text-green-500/60 mt-0.5 font-normal">Guru memberi hint</div>
+          </button>
+          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] bg-green-900/80 hover:bg-green-700/80 border border-green-500/30 rounded-lg text-green-300 cursor-pointer transition font-bold">
+            <div class="flex items-center justify-center gap-1">⏭️ <span>Lewati</span></div>
+            <div class="text-[8px] md:text-[9px] text-green-500/60 mt-0.5 font-normal">Tanpa pengurangan</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-panel p-4 md:p-6 rounded-2xl border-l-4 border-l-green-400 relative">
+        <div class="q-progress"><i id="q-progress"></i></div>
+        <div class="flex justify-between items-center mb-2 flex-wrap gap-1.5">
+          <span class="text-[10px] md:text-xs font-bold text-green-400 uppercase tracking-wider">Pertanyaan <span id="current-q-num">1</span>/15</span>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span id="difficulty-tag" class="diff-badge diff-mudah">Mudah</span>
+            <span id="reward-tag" class="text-[10px] md:text-xs font-mono bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">Lvl 1 — 100</span>
+          </div>
+        </div>
+        <h3 id="question-text" class="question-text overflow-safe">Memuat pertanyaan...</h3>
+
+        <div id="hint-panel" class="is-hidden mt-3 p-2.5 md:p-3 bg-green-500/10 border border-green-500/30 rounded-xl">
+          <div class="text-[10px] uppercase font-black tracking-widest text-green-400 mb-1.5 flex items-center gap-1.5">💡 Petunjuk dari Guru</div>
+          <div class="text-[11px] md:text-xs text-green-100 leading-relaxed overflow-safe" id="hint-text"></div>
+        </div>
+      </div>
+
+      <div id="answers-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3"></div>
+
+      <div id="lock-btn-container" class="lock-btn-container is-hidden">
+        <button id="btn-lock-answer" type="button" class="lock-btn">🔒 KUNCI JAWABAN</button>
+      </div>
+    </div>
+
+    <div class="glass-panel p-3 md:p-4 rounded-2xl hidden lg:flex flex-col">
+      <div class="text-xs font-bold text-green-400 uppercase mb-2">🏆 Progres Level</div>
+      <div id="prize-ladder" class="space-y-1 text-xs font-mono"></div>
+    </div>
+  </section>
+
+  <!-- REVEAL OVERLAY -->
+  <div id="reveal-overlay"><div class="reveal-badge" id="reveal-badge">BENAR</div></div>
+
+  <!-- FEEDBACK MODAL -->
+  <div id="feedback-modal" class="is-hidden fixed inset-0 bg-green-950/90 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto">
+    <div class="glass-panel max-w-lg w-full p-4 md:p-6 rounded-2xl border-2 border-emerald-500/50 my-auto" id="feedback-modal-content">
+      <div class="flex items-center gap-2.5 mb-3">
+        <div id="feedback-icon-bg" class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-xl md:text-2xl font-black bg-emerald-500/20 text-emerald-400 shrink-0">✓</div>
+        <div class="min-w-0">
+          <h3 id="feedback-title" class="text-base md:text-xl font-black text-emerald-400 truncate">🎉 BENAR!</h3>
+          <p id="feedback-subtitle" class="text-[10px] md:text-xs text-green-200/70">Apresiasi dan Penjelasan</p>
+        </div>
+      </div>
+      <div id="feedback-details" class="my-3"></div>
+      <div class="my-3">
+        <div class="fb-section topic"><div class="fb-t">📚 Topik</div><div class="fb-b" id="fb-topic">—</div></div>
+        <div class="fb-section why"><div class="fb-t">💡 Mengapa Jawaban Ini Benar</div><div class="fb-b" id="fb-why">—</div></div>
+        <div class="fb-section yours" id="fb-yours-section"><div class="fb-t">⚠️ Analisis Pilihanmu</div><div class="fb-b" id="fb-yours">—</div></div>
+        <div class="fb-section key"><div class="fb-t">🎯 Poin Kunci untuk Diingat</div><div class="fb-b" id="fb-key">—</div></div>
+      </div>
+      <button type="button" id="btn-next" class="w-full bg-gradient-to-r from-green-400 via-green-500 to-lime-500 text-green-950 font-black py-3 px-5 rounded-xl cursor-pointer hover:from-green-300 hover:to-lime-400 transition text-sm md:text-base">
+        ➡ LANJUT KE SOAL BERIKUTNYA
+      </button>
+    </div>
+  </div>
+
+  <!-- SKIP MODAL -->
+  <div id="skip-modal" class="is-hidden fixed inset-0 bg-green-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="glass-panel max-w-sm w-full p-5 md:p-6 rounded-2xl text-center">
+      <div class="text-3xl md:text-4xl mb-2">⏭️</div>
+      <h3 class="text-base md:text-lg font-extrabold text-green-400 mb-2">Lewati Soal Ini?</h3>
+      <p class="text-[11px] md:text-xs text-green-100/80 mb-4 leading-relaxed">Soal ini akan ditandai <b>dilewati</b> dan tidak dihitung benar/salah.</p>
+      <div class="flex gap-2">
+        <button type="button" id="btn-skip-cancel" class="flex-1 bg-green-900 hover:bg-green-700 text-green-100 font-bold py-2.5 rounded-xl text-xs md:text-sm cursor-pointer border border-green-500/20">Batal</button>
+        <button type="button" id="btn-skip-confirm" class="flex-1 bg-gradient-to-r from-green-500 to-lime-500 text-green-950 font-bold py-2.5 rounded-xl text-xs md:text-sm cursor-pointer">Ya, Lewati</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4">
+    <div id="record-banner" class="is-hidden glass-panel border-green-500/50 bg-gradient-to-r from-green-500/20 via-lime-600/20 to-amber-500/20 p-3 md:p-4 rounded-2xl text-center">
+      <h3 id="record-text" class="text-base md:text-xl font-black text-green-400">🎉 SKOR BARU TERBAIK!</h3>
+      <p id="record-subtext" class="text-[11px] md:text-xs text-green-200">Luar biasa!</p>
+    </div>
+
+    <div class="glass-panel p-4 md:p-8 rounded-2xl border-2 border-green-500/40">
+      <div class="border-b-2 border-dashed border-green-500/30 pb-3 mb-4 text-center">
+        <div class="text-base md:text-xl font-black font-serif tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-amber-400">🏺 KUIS INTERAKTIF SEJARAH</div>
+        <div class="school-name text-xs md:text-sm tracking-widest mt-1">SMAN 3 KASONGAN</div>
+        <div class="text-[9px] md:text-[10px] text-green-300/80 font-bold uppercase mt-0.5">HASIL TUGAS INDIVIDU</div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 md:gap-5 mb-5">
+        <div class="flex flex-col items-center gap-1.5">
+          <div id="result-avatar" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg ring-2 ring-green-400/50">?</div>
+          <div class="text-[9px] md:text-[10px] text-green-400/70 uppercase font-bold">Avatar</div>
+        </div>
+        <div class="score-circle">
+          <svg viewBox="0 0 120 120">
+            <defs><linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#166534"/><stop offset="50%" stop-color="#22c55e"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>
+            <circle class="track" cx="60" cy="60" r="50" stroke-width="9"/>
+            <circle class="bar" cx="60" cy="60" r="50" stroke-width="9" stroke="url(#scGrad)" stroke-dasharray="314.16" stroke-dashoffset="314.16" id="score-circle-bar"/>
+          </svg>
+          <div class="inner">
+            <div class="num" id="score-circle-num">0</div>
+            <div class="lbl">Skor</div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center gap-1.5">
+          <div id="grade-badge" class="grade-badge-big grade-A">A</div>
+          <div class="text-[9px] md:text-[10px] text-green-400/70 uppercase font-bold">Grade</div>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px] md:text-sm">
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70 shrink-0">Nama Siswa:</span><span id="card-name" class="font-bold text-green-50 text-sm md:text-base text-right overflow-safe">—</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70 shrink-0">Materi:</span><span class="font-semibold text-green-300 text-right">PRAAKSARA</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">Jawaban Benar:</span><span id="card-correct" class="font-bold text-emerald-400 font-mono">0 / 15</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">Salah:</span><span id="card-wrong" class="font-bold text-rose-400 font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">Dilewati:</span><span id="card-skipped" class="font-bold text-green-300/70 font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">Skor Akhir:</span><span id="card-score" class="font-black text-green-400 text-base md:text-lg font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">XP Diperoleh:</span><span id="card-xp" class="font-bold text-green-300 font-mono">0 XP</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">Streak:</span><span id="card-streak" class="font-bold text-orange-400 font-mono">0 🔥</span></div>
+        <div class="flex justify-between items-center py-1 border-b border-green-500/15 gap-2"><span class="text-green-400/70">Gelar:</span><span id="card-title" class="font-extrabold text-amber-300 text-xs md:text-sm text-right overflow-safe">🌱 PEMBELAJAR SEJARAH</span></div>
+        <div class="flex justify-between items-center py-1 gap-2"><span class="text-green-400/70">Percobaan:</span><span id="card-attempt" class="font-bold text-green-100 font-mono">1</span></div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-green-500/20 text-center">
+        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-green-400/70 font-bold mb-1">Guru Pengampu</div>
+        <div class="text-xs md:text-sm font-black text-green-200">SYAHRANI, S.Pd.</div>
+        <div class="text-[9px] md:text-[10px] text-green-300/60 font-mono">NIP. 19751217200501 1 016</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
+      <button type="button" id="btn-restart" class="bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-400 hover:to-lime-400 text-green-950 font-bold p-2.5 md:p-3 rounded-xl text-[11px] md:text-xs cursor-pointer shadow-lg">🔄 MAIN LAGI</button>
+      <button type="button" id="btn-copy" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-green-50 font-bold p-2.5 md:p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-green-500/30">📋 <span id="copy-btn-text">SALIN</span></button>
+      <button type="button" id="btn-review" class="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-green-50 font-bold p-2.5 md:p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-green-500/30">📖 PEMBAHASAN</button>
+      <button type="button" id="btn-menu" class="bg-green-900 hover:bg-green-700 text-green-100 font-bold p-2.5 md:p-3 rounded-xl text-[11px] md:text-xs border border-green-500/20 cursor-pointer">🏠 MENU</button>
+    </div>
+  </section>
+
+  <!-- REVIEW MODAL -->
+  <div id="review-modal" class="is-hidden fixed inset-0 bg-green-950/95 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3">
+    <div class="glass-panel max-w-3xl w-full h-[90vh] md:h-[85vh] flex flex-col rounded-2xl p-3 md:p-4">
+      <div class="flex justify-between items-center pb-2.5 border-b border-green-500/20 gap-2">
+        <h3 class="text-sm md:text-lg font-black text-green-400 truncate">📖 Rangkuman Pembahasan</h3>
+        <button type="button" id="btn-close-review" class="text-green-400 hover:text-green-200 p-1 text-xl md:text-2xl cursor-pointer shrink-0">×</button>
+      </div>
+      <div id="review-list" class="flex-1 overflow-y-auto custom-scrollbar my-3 space-y-2.5 pr-1"></div>
+      <button type="button" id="btn-close-review-2" class="bg-green-900 text-green-100 font-bold px-4 py-2 rounded-xl text-[11px] md:text-xs cursor-pointer self-end border border-green-500/20">Tutup</button>
+    </div>
+  </div>
+</main>
+
+<footer class="w-full text-center py-3 px-3 text-[10px] md:text-[11px] text-green-400/60 border-t border-green-500/20 bg-gradient-to-r from-green-950 via-green-900 to-green-950">
+  <div class="school-name text-[11px] md:text-xs mb-1">SMAN 3 KASONGAN</div>
+  <div>Kuis Interaktif Sejarah • Guru Pengampu: SYAHRANI, S.Pd.</div>
+</footer>
+
+<script>
+"use strict";
+function show(id){const el=document.getElementById(id);if(el)el.classList.remove('is-hidden');}
+function hide(id){const el=document.getElementById(id);if(el)el.classList.add('is-hidden');}
+function setText(id,t){const el=document.getElementById(id);if(el)el.textContent=t;}
+function setHTML(id,h){const el=document.getElementById(id);if(el)el.innerHTML=h;}
+function bind(id,h){const el=document.getElementById(id);if(el)el.addEventListener('click',h);}
+
+let audioCtx=null,soundMuted=false;
+function playTone(freq,dur,type,vol,delay){
+  if(soundMuted)return;
+  try{
+    if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();}
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const t=audioCtx.currentTime+(delay||0);
+    const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+    osc.type=type||'sine';osc.frequency.setValueAtTime(freq,t);
+    gain.gain.setValueAtTime(0.0001,t);
+    gain.gain.exponentialRampToValueAtTime(vol||0.15,t+0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(t);osc.stop(t+dur+0.05);
+  }catch(e){}
+}
+function sfx(type){
+  try{
+    if(type==='correct'){[523.25,659.25,783.99,1046.5].forEach((f,i)=>playTone(f,.2,'triangle',.2,i*.1));}
+    else if(type==='wrong'){playTone(220,.25,'sawtooth',.2,0);playTone(110,.4,'sawtooth',.2,.2);}
+    else if(type==='click'){playTone(440,.05,'sine',.08,0);}
+    else if(type==='select'){playTone(660,.08,'sine',.12,0);playTone(880,.1,'sine',.1,.06);}
+    else if(type==='lock'){playTone(330,.1,'square',.1,0);playTone(220,.15,'square',.1,.08);}
+    else if(type==='win'){[440,554.37,659.25,880].forEach((f,i)=>playTone(f,.25,'sine',.2,i*.13));}
+    else if(type==='hint'){playTone(660,.1,'sine',.15,0);playTone(880,.15,'sine',.15,.08);}
+    else if(type==='skip'){playTone(330,.1,'sine',.1,0);playTone(220,.15,'sine',.1,.08);}
+  }catch(e){}
+}
+function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
+
+(function(){
+  try{
+    const bar=document.getElementById('loader-bar'),pct=document.getElementById('loader-percent'),tip=document.getElementById('loader-tip');
+    const tips=["🏺 Menyiapkan 30 soal sejarah...","🦴 Mengumpulkan data fosil...","🗿 Menyusun artefak...","📚 Merangkai peninggalan...","✅ Siap dimulai!"];
+    let p=0;
+    const iv=setInterval(function(){
+      p+=Math.random()*20+8;
+      if(p>=100){p=100;clearInterval(iv);}
+      if(bar)bar.style.width=p+'%';
+      if(pct)pct.textContent=Math.round(p)+'%';
+      if(tip)tip.textContent=tips[Math.min(Math.floor(p/22),tips.length-1)];
+      if(p>=100)setTimeout(function(){const l=document.getElementById('loader');if(l)l.classList.add('fade-out');},500);
+    },180);
+    setTimeout(function(){const l=document.getElementById('loader');if(l)l.classList.add('fade-out');},4000);
+  }catch(e){}
+})();
+
+(function(){
+  try{
+    const layer=document.getElementById('particles');if(!layer)return;
+    const n = window.innerWidth < 640 ? 10 : 18;
+    for(let i=0;i<n;i++){
+      const p=document.createElement('div');p.className='particle';
+      const s=4+Math.random()*10;
+      p.style.width=s+'px';p.style.height=s+'px';
+      p.style.left=Math.random()*100+'vw';
+      p.style.animationDuration=(14+Math.random()*18)+'s';
+      p.style.animationDelay=(-Math.random()*20)+'s';
+      layer.appendChild(p);
+    }
+  }catch(e){}
+})();
+
+/* ============ BANK SOAL (30 SOAL) - SEJARAH PRAAKSARA ============ */
+const questionsBankFull = [
+  { q:"Istilah 'praaksara' secara harfiah berarti ...",
+    options:["A. Sebelum tulisan","B. Setelah tulisan","C. Masa lampau","D. Zaman batu"],correct:0,
+    explanation:"Praaksara berasal dari kata 'pra' (sebelum) dan 'aksara' (tulisan). Jadi, masa praaksara adalah masa ketika manusia belum mengenal tulisan.",
+    topic:"Pengertian Praaksara",keyPoint:"Praaksara = sebelum mengenal tulisan.",difficulty:"Mudah" },
+  { q:"Perbedaan utama antara praaksara dan prasejarah terletak pada ...",
+    options:["A. Lokasi penemuan","B. Ada tidaknya sumber tertulis","C. Jenis manusia pendukungnya","D. Tingkat teknologi"],correct:1,
+    explanation:"Istilah praaksara lebih netral karena hanya menunjuk pada 'belum adanya aksara', sedangkan prasejarah secara harfiah berarti 'sebelum sejarah'. Perbedaan utamanya adalah ada tidaknya sumber tertulis.",
+    topic:"Pengertian Praaksara",keyPoint:"Praaksara fokus pada belum ada aksara; prasejarah fokus pada sebelum sejarah.",difficulty:"Sedang" },
+  { q:"Fosil Pithecanthropus erectus yang ditemukan Dubois di Trinil kini diklasifikasikan sebagai ...",
+    options:["A. Homo sapiens","B. Homo erectus","C. Meganthropus","D. Homo soloensis"],correct:1,
+    explanation:"Pithecanthropus erectus adalah nama lama yang kini diklasifikasikan sebagai Homo erectus, bagian dari spesies manusia purba yang tersebar luas di Asia.",
+    topic:"Manusia Purba",keyPoint:"Pithecanthropus erectus = Homo erectus.",difficulty:"Mudah" },
+  { q:"Mengapa Meganthropus paleojavanicus masih diperdebatkan status klasifikasinya?",
+    options:["A. Karena fosilnya tidak pernah ditemukan","B. Karena hanya ditemukan rahang dan gigi yang fragmenter","C. Karena berasal dari luar Indonesia","D. Karena sudah punah"],correct:1,
+    explanation:"Fosil Meganthropus yang ditemukan hanya berupa rahang dan gigi (fragmenter), sehingga apakah ia spesies tersendiri atau bagian dari variasi Homo erectus masih diperdebatkan.",
+    topic:"Manusia Purba",keyPoint:"Meganthropus: status klasifikasi masih debat karena fosil fragmenter.",difficulty:"Sulit" },
+  { q:"Situs Sangiran diakui UNESCO karena ...",
+    options:["A. Memiliki bangunan batu besar","B. Menyimpan fosil manusia purba, hewan, dan alat batu dalam jumlah besar","C. Ditemukan lukisan gua tertua","D. Menjadi pusat perdagangan kuno"],correct:1,
+    explanation:"Sangiran adalah salah satu situs praaksara paling penting di dunia dan ditetapkan UNESCO sebagai Warisan Budaya Dunia pada tahun 1996 karena menyimpan fosil manusia purba, hewan, dan alat batu dalam jumlah besar.",
+    topic:"Situs Praaksara",keyPoint:"Sangiran = Warisan Budaya Dunia UNESCO 1996.",difficulty:"Sedang" },
+  { q:"Sumber sejarah masa praaksara yang berupa benda buatan manusia disebut ...",
+    options:["A. Fosil","B. Artefak","C. Ecofact","D. Situs"],correct:1,
+    explanation:"Artefak adalah benda yang sengaja dibuat atau dimodifikasi manusia, seperti kapak genggam, kapak persegi, mata panah, dan tembikar.",
+    topic:"Sumber Sejarah",keyPoint:"Artefak = benda buatan manusia.",difficulty:"Mudah" },
+  { q:"Fosil adalah ...",
+    options:["A. Benda buatan manusia","B. Sisa makhluk hidup yang membatu","C. Sisa lingkungan alami","D. Lokasi penemuan"],correct:1,
+    explanation:"Fosil adalah sisa makhluk hidup yang membatu, bisa berupa tulang, tengkorak, gigi manusia purba, atau hewan yang hidup sezaman.",
+    topic:"Sumber Sejarah",keyPoint:"Fosil = sisa makhluk hidup yang membatu.",difficulty:"Mudah" },
+  { q:"Periodisasi zaman batu sebaiknya dipahami sebagai ...",
+    options:["A. Garis tegas pemisah antar zaman","B. Alat bantu pemahaman, bukan garis tegas","C. Urutan yang pasti dan tidak berubah","D. Hanya berlaku di Eropa"],correct:1,
+    explanation:"Periodisasi zaman batu dibuat untuk memudahkan pemahaman — bukan garis tegas pemisah. Perubahan antarbabak berlangsung bertahap dan berbeda-beda di setiap daerah.",
+    topic:"Periodisasi",keyPoint:"Periodisasi = alat bantu, bukan garis tegas.",difficulty:"Sedang" },
+  { q:"Ciri kehidupan Paleolitikum adalah ...",
+    options:["A. Bercocok tanam dan menetap","B. Berburu, meramu, dan nomaden","C. Mengenal logam","D. Membangun megalit"],correct:1,
+    explanation:"Pada masa Paleolitikum (Batu Tua), manusia hidup nomaden (berpindah-pindah) dengan mata pencaharian berburu dan meramu. Alat masih kasar seperti kapak genggam dan kapak perimbas.",
+    topic:"Paleolitikum",keyPoint:"Paleolitikum = berburu, meramu, nomaden.",difficulty:"Mudah" },
+  { q:"Perubahan dari food gathering menjadi food producing terjadi pada masa ...",
+    options:["A. Paleolitikum","B. Mesolitikum","C. Neolitikum","D. Megalitikum"],correct:2,
+    explanation:"Perubahan dari berburu-meramu (food gathering) ke bercocok tanam (food producing) terjadi pada masa Neolitikum (Batu Muda). Manusia mulai menghasilkan makanan sendiri dan hidup menetap.",
+    topic:"Neolitikum",keyPoint:"Food producing = Neolitikum.",difficulty:"Sedang" },
+  { q:"Teknik pembuatan alat dengan cara diasah dan dipoles terjadi pada masa ...",
+    options:["A. Paleolitikum","B. Mesolitikum","C. Neolitikum","D. Perundagian"],correct:2,
+    explanation:"Pada masa Neolitikum, alat batu dibuat dengan teknik diasah dan dipoles hingga halus, seperti kapak persegi dan kapak lonjong, untuk membabat hutan dan mengolah tanah.",
+    topic:"Teknologi Batu",keyPoint:"Diasah & dipoles = Neolitikum.",difficulty:"Mudah" },
+  { q:"Kapak persegi adalah contoh alat dari masa ...",
+    options:["A. Paleolitikum","B. Mesolitikum","C. Neolitikum","D. Megalitikum"],correct:2,
+    explanation:"Kapak persegi adalah alat dari masa Neolitikum yang digunakan untuk membabat hutan dan membuka lahan pertanian. Ditemukan di Sumatera, Jawa, dan Sulawesi.",
+    topic:"Peninggalan Neolitikum",keyPoint:"Kapak persegi = Neolitikum.",difficulty:"Mudah" },
+  { q:"Contoh peninggalan masa Megalitikum adalah ...",
+    options:["A. Nekara dan kapak corong","B. Menhir, dolmen, dan sarkofagus","C. Kapak genggam dan alat serpih","D. Mata panah dan alat tulang"],correct:1,
+    explanation:"Masa Megalitikum meninggalkan bangunan batu besar seperti menhir (tugu batu), dolmen (meja batu), sarkofagus (peti jenazah batu), dan waruga.",
+    topic:"Megalitikum",keyPoint:"Megalitikum = menhir, dolmen, sarkofagus.",difficulty:"Sedang" },
+  { q:"Lukisan gua prasejarah banyak ditemukan di ...",
+    options:["A. Sangiran dan Trinil","B. Leang-Leang dan Goa Kira","C. Gunung Padang dan Lore Lindu","D. Dong Son dan Gilimanuk"],correct:1,
+    explanation:"Lukisan gua prasejarah banyak ditemukan di Leang-Leang (Sulawesi Selatan) dan Goa Kira. Lukisan ini menggambarkan hewan buruan dan tangan manusia.",
+    topic:"Lukisan Gua",keyPoint:"Lukisan gua = Leang-Leang & Goa Kira.",difficulty:"Mudah" },
+  { q:"Kepercayaan bahwa segala sesuatu memiliki roh disebut ...",
+    options:["A. Dinamisme","B. Animisme","C. Totemisme","D. Monoteisme"],correct:1,
+    explanation:"Animisme adalah kepercayaan bahwa segala sesuatu memiliki roh — pohon, batu, sungai, gunung, dan terutama roh leluhur. Roh-roh ini harus dihormati.",
+    topic:"Sistem Kepercayaan",keyPoint:"Animisme = segala sesuatu punya roh.",difficulty:"Mudah" },
+  { q:"Kepercayaan pada benda-benda yang memiliki kekuatan gaib disebut ...",
+    options:["A. Animisme","B. Dinamisme","C. Totemisme","D. Politeisme"],correct:1,
+    explanation:"Dinamisme adalah kepercayaan bahwa benda-benda tertentu memiliki kekuatan gaib — seperti batu, senjata, perhiasan, atau patung.",
+    topic:"Sistem Kepercayaan",keyPoint:"Dinamisme = benda punya kekuatan gaib.",difficulty:"Sedang" },
+  { q:"Hubungan khusus antara kelompok manusia dengan hewan atau tumbuhan tertentu disebut ...",
+    options:["A. Animisme","B. Dinamisme","C. Totemisme","D. Fetisisme"],correct:2,
+    explanation:"Totemisme adalah kepercayaan bahwa ada hubungan khusus antara suatu kelompok manusia dengan hewan atau tumbuhan tertentu (totem), yang dianggap sebagai leluhur atau pelindung.",
+    topic:"Sistem Kepercayaan",keyPoint:"Totemisme = hubungan khusus dengan hewan/tumbuhan.",difficulty:"Sedang" },
+  { q:"Peti jenazah dari batu disebut ...",
+    options:["A. Menhir","B. Dolmen","C. Sarkofagus","D. Waruga"],correct:2,
+    explanation:"Sarkofagus adalah peti jenazah dari batu, ditemukan di Bali. Merupakan peninggalan masa Megalitikum.",
+    topic:"Peninggalan Megalitikum",keyPoint:"Sarkofagus = peti jenazah batu.",difficulty:"Mudah" },
+  { q:"Kubur rumah kecil khas Minahasa disebut ...",
+    options:["A. Sarkofagus","B. Waruga","C. Dolmen","D. Menhir"],correct:1,
+    explanation:"Waruga adalah kubur berbentuk rumah kecil khas Minahasa (Sulawesi Utara) dari masa Megalitikum.",
+    topic:"Peninggalan Megalitikum",keyPoint:"Waruga = kubur khas Minahasa.",difficulty:"Sulit" },
+  { q:"Bekal kubur ditemukan di makam-makam praaksara sebagai bukti kepercayaan terhadap ...",
+    options:["A. Kekuatan alam","B. Kehidupan setelah mati","C. Roh hewan","D. Kekuatan benda"],correct:1,
+    explanation:"Bekal kubur menunjukkan kepercayaan terhadap kehidupan setelah mati. Masyarakat praaksara percaya bahwa roh orang meninggal membutuhkan bekal untuk perjalanan ke alam baka.",
+    topic:"Sistem Kepercayaan",keyPoint:"Bekal kubur = kepercayaan kehidupan setelah mati.",difficulty:"Sedang" },
+  { q:"Perubahan dari berburu ke bercocok tanam terjadi karena ...",
+    options:["A. Manusia malas berburu","B. Berkurangnya hewan buruan dan penemuan biji tumbuh","C. Perintah dari kepala suku","D. Adanya teknologi logam"],correct:1,
+    explanation:"Perubahan terjadi karena berkurangnya hewan buruan (akhir zaman es) dan penemuan tak sengaja bahwa biji yang jatuh dapat tumbuh menjadi tanaman baru.",
+    topic:"Revolusi Neolitikum",keyPoint:"Faktor perubahan: hewan buruan berkurang + penemuan biji tumbuh.",difficulty:"Sedang" },
+  { q:"Kegiatan bertukar barang dengan barang tanpa uang disebut ...",
+    options:["A. Jual beli","B. Barter","C. Lelang","D. Investasi"],correct:1,
+    explanation:"Barter adalah kegiatan bertukar barang dengan barang tanpa menggunakan uang. Sistem ini mulai dikenal pada masa Neolitikum dan Megalitikum.",
+    topic:"Interaksi Antarkelompok",keyPoint:"Barter = tukar barang tanpa uang.",difficulty:"Mudah" },
+  { q:"Bukti perdagangan antar pulau pada masa praaksara adalah ditemukannya ...",
+    options:["A. Fosil manusia purba","B. Manik-manik dari India dan kerang dari Maluku","C. Alat batu kasar","D. Lukisan gua"],correct:1,
+    explanation:"Arkeolog menemukan manik-manik dari India, kerang dari Maluku, dan perunggu dari Vietnam yang tersebar di berbagai wilayah Indonesia — bukti perdagangan antar pulau.",
+    topic:"Interaksi Antarkelompok",keyPoint:"Manik-manik India & kerang Maluku = bukti perdagangan.",difficulty:"Sulit" },
+  { q:"Nekara adalah drum perunggu yang berasal dari kebudayaan ...",
+    options:["A. Dong Son","B. Sangiran","C. Leang-Leang","D. Gunung Padang"],correct:0,
+    explanation:"Nekara adalah drum perunggu dari kebudayaan Dong Son (Vietnam) yang digunakan dalam upacara dan sebagai simbol status.",
+    topic:"Zaman Logam",keyPoint:"Nekara = drum perunggu Dong Son.",difficulty:"Sulit" },
+  { q:"Perkembangan teknologi logam di Nusantara ...",
+    options:["A. Terjadi serentak di seluruh wilayah","B. Berlangsung bertahap dan tidak dipatok satu titik waktu","C. Dimulai pada masa Paleolitikum","D. Hanya dikenal di Jawa"],correct:1,
+    explanation:"Perkembangan teknologi logam di Nusantara berlangsung secara bertahap dan tidak dapat dipatok pada satu titik waktu tunggal. Ada daerah yang masih menggunakan alat batu ketika daerah lain sudah mengenal perunggu.",
+    topic:"Zaman Logam",keyPoint:"Logam: bertahap, tidak serentak.",difficulty:"Sulit" },
+  { q:"Gunung Padang di Jawa Barat adalah situs ...",
+    options:["A. Paleolitikum","B. Megalitikum","C. Neolitikum","D. Perundagian"],correct:1,
+    explanation:"Gunung Padang (Cianjur, Jawa Barat) adalah situs megalitikum terbesar di Asia Tenggara, dianggap sebagai tempat pemujaan dan pengamatan astronomi.",
+    topic:"Situs Praaksara",keyPoint:"Gunung Padang = megalitikum terbesar di Asia Tenggara.",difficulty:"Sedang" },
+  { q:"Spesialisasi kerja mulai muncul pada masa ...",
+    options:["A. Paleolitikum","B. Mesolitikum","C. Neolitikum dan Megalitikum","D. Zaman Es"],correct:2,
+    explanation:"Dengan adanya surplus hasil pertanian dan perdagangan pada masa Neolitikum dan Megalitikum, muncul spesialisasi kerja — ada yang menjadi pandai besi, pembuat perhiasan, pedagang, dan pemuka agama.",
+    topic:"Struktur Sosial",keyPoint:"Spesialisasi kerja = Neolitikum & Megalitikum.",difficulty:"Sulit" },
+  { q:"Homo floresiensis dijuluki ...",
+    options:["A. Java Man","B. Hobbit","C. Manusia Solo","D. Manusia Trinil"],correct:1,
+    explanation:"Homo floresiensis dijuluki 'Hobbit' karena tubuhnya sangat kecil (±100 cm) dengan volume otak ±380 cc. Ditemukan di Liang Bua, Flores.",
+    topic:"Manusia Purba",keyPoint:"Homo floresiensis = Hobbit.",difficulty:"Mudah" },
+  { q:"Salah satu contoh keberlanjutan nilai praaksara dalam kehidupan Indonesia sekarang adalah ...",
+    options:["A. Penggunaan smartphone","B. Gotong royong","C. Bermain game online","D. Mengendarai mobil"],correct:1,
+    explanation:"Gotong royong adalah nilai yang masih hidup dalam masyarakat Indonesia dan merupakan warisan dari masyarakat praaksara yang terbiasa bekerja sama.",
+    topic:"Perubahan & Keberlanjutan",keyPoint:"Gotong royong = warisan praaksara.",difficulty:"Mudah" },
+  { q:"Pernyataan yang paling tepat tentang migrasi manusia ke Nusantara adalah ...",
+    options:["A. Terjadi dalam satu gelombang tunggal yang sederhana","B. Proses panjang, bertahap, dan kompleks","C. Hanya terjadi sekali pada zaman es","D. Tidak pernah terjadi"],correct:1,
+    explanation:"Migrasi manusia ke Nusantara adalah proses panjang, bertahap, dan kompleks — bukan peristiwa tunggal. Melibatkan beberapa gelombang penyebaran dengan latar belakang evolusi dan budaya yang berbeda.",
+    topic:"Migrasi",keyPoint:"Migrasi ke Nusantara: panjang, bertahap, kompleks.",difficulty:"Sulit" }
+];
+
+function getRandomQuestions(){
+  const byDiff={
+    "Mudah":questionsBankFull.filter(q=>q.difficulty==="Mudah"),
+    "Sedang":questionsBankFull.filter(q=>q.difficulty==="Sedang"),
+    "Sulit":questionsBankFull.filter(q=>q.difficulty==="Sulit"),
+    "Sangat Sulit":questionsBankFull.filter(q=>q.difficulty==="Sangat Sulit")
+  };
+  const shuffle=a=>a.slice().sort(()=>Math.random()-.5);
+  const pick=(a,n)=>shuffle(a).slice(0,n);
+  return [...pick(byDiff["Mudah"],5),...pick(byDiff["Sedang"],5),...pick(byDiff["Sulit"],3),...pick(byDiff["Sangat Sulit"],2)];
+}
+
+const prizeAmounts=[
+  "Lvl 1 — 100","Lvl 2 — 200","Lvl 3 — 300","Lvl 4 — 500","Lvl 5 — 1.000",
+  "Lvl 6 — 2.000","Lvl 7 — 4.000","Lvl 8 — 8.000","Lvl 9 — 16.000","Lvl 10 — 32.000",
+  "Lvl 11 — 64.000","Lvl 12 — 125.000","Lvl 13 — 250.000","Lvl 14 — 500.000","Lvl 15 — 1.000.000"
+];
+
+let currentQuestions=[];let studentName="";let currentQuestionIndex=0;let score=0;
+let correctAnswersCount=0;let wrongAnswersCount=0;let skippedCount=0;
+let xpGained=0;let streak=0;let maxStreak=0;let attemptCount=1;
+let timerInterval=null;let secondsElapsed=0;let userAnswersHistory=[];
+let lifelinesUsed={'5050':false,'hint':false,'skip':false};
+let selectedAnswerIndex=null;let answerLocked=false;
+const STORAGE_PREFIX="kuis_sejarah_v1_";
+
+window.addEventListener('DOMContentLoaded',function(){
+  try{
+    const st=document.getElementById('sound-toggle');
+    if(st)st.addEventListener('click',function(){
+      soundMuted=!soundMuted;
+      st.textContent=soundMuted?'🔇':'🔊';
+      st.classList.toggle('muted',soundMuted);
+      if(!soundMuted)sfx('click');
+    });
+    const form=document.getElementById('start-form');
+    if(form)form.addEventListener('submit',function(e){e.preventDefault();startGame();});
+    bind('btn-lock-answer',confirmAnswer);
+    bind('btn-next',nextQuestion);
+    bind('btn-restart',restartGame);
+    bind('btn-copy',copyFormattedResult);
+    bind('btn-review',openReviewModal);
+    bind('btn-menu',returnToMainScreen);
+    bind('btn-close-review',closeReviewModal);
+    bind('btn-close-review-2',closeReviewModal);
+    bind('lifeline-5050',function(){useFiftyFifty();});
+    bind('lifeline-hint',function(){useHint();});
+    bind('lifeline-skip',function(){openSkipModal();});
+    bind('btn-skip-cancel',function(){hide('skip-modal');});
+    bind('btn-skip-confirm',function(){confirmSkip();});
+    loadAttemptHistory();updateBestScoreSummary();
+    console.log('✅ Bank soal:',questionsBankFull.length);
+  }catch(e){console.error('Init error:',e);}
+});
+
+function loadAttemptHistory(){
+  try{const s=localStorage.getItem(STORAGE_PREFIX+"attempts");attemptCount=s?parseInt(s)+1:1;}catch(e){attemptCount=1;}
+}
+function updateBestScoreSummary(){
+  try{
+    const bc=localStorage.getItem(STORAGE_PREFIX+"best_correct");
+    const bs=localStorage.getItem(STORAGE_PREFIX+"best_score");
+    const bt=localStorage.getItem(STORAGE_PREFIX+"best_title");
+    if(bs!==null){show("best-score-summary");setText("best-score-correct",bc+"/15");setText("best-score-points",bs);setText("best-score-title",bt);}
+  }catch(e){}
+}
+
+function startGame(){
+  try{
+    sfx('click');
+    const ni=document.getElementById("student-name");
+    studentName=(ni?ni.value:"").trim();
+    if(!studentName){alert("Mohon isi nama terlebih dahulu.");return;}
+    currentQuestions=getRandomQuestions();
+    if(!currentQuestions||currentQuestions.length===0){alert("Bank soal kosong!");return;}
+    currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
+    xpGained=0;streak=0;maxStreak=0;secondsElapsed=0;userAnswersHistory=[];
+    lifelinesUsed={'5050':false,'hint':false,'skip':false};
+    selectedAnswerIndex=null;answerLocked=false;
+    setText("player-display-name",studentName);
+    hide("start-screen");hide("result-screen");show("game-screen");
+    resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
+  }catch(e){console.error("startGame error:",e);alert("Terjadi kesalahan: "+e.message);}
+}
+
+function startTimer(){
+  try{
+    clearInterval(timerInterval);secondsElapsed=0;setText("timer-display","00:00");
+    timerInterval=setInterval(function(){
+      secondsElapsed++;
+      const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
+      const s=String(secondsElapsed%60).padStart(2,'0');
+      setText("timer-display",m+":"+s);
+    },1000);
+  }catch(e){}
+}
+
+function renderPrizeLadder(){
+  try{
+    const el=document.getElementById("prize-ladder");if(!el)return;el.innerHTML="";
+    for(let i=14;i>=0;i--){
+      const isM=(i===4||i===9||i===14);
+      const item=document.createElement("div");
+      item.id="ladder-step-"+i;
+      item.className="flex justify-between items-center px-2 py-1 rounded font-mono text-[11px] "+(isM?"text-amber-300 font-bold":"text-green-200/60");
+      item.innerHTML="<span>Soal "+(i+1)+"</span><span>"+prizeAmounts[i]+"</span>";
+      el.appendChild(item);
+    }
+  }catch(e){}
+}
+function updatePrizeLadderHighlight(){
+  try{
+    for(let i=0;i<15;i++){
+      const el=document.getElementById("ladder-step-"+i);if(!el)continue;
+      if(i===currentQuestionIndex){el.className="flex justify-between items-center px-2 py-1 rounded font-mono text-[11px] bg-gradient-to-r from-green-500 to-lime-500 text-green-950 font-extrabold shadow-md";}
+      else if(i<currentQuestionIndex){
+        const st=userAnswersHistory[i];
+        if(st&&st.isSkipped){el.className="flex justify-between items-center px-2 py-1 rounded font-mono text-[11px] text-green-400/40 italic";}
+        else{el.className="flex justify-between items-center px-2 py-1 rounded font-mono text-[11px] "+(st&&st.isCorrect?"text-emerald-400":"text-rose-400 line-through opacity-70");}
+      }
+    }
+  }catch(e){}
+}
+function getDifficultyClass(diff){
+  const d=(diff||"Mudah").toLowerCase();
+  if(d.indexOf("sangat")>=0)return "diff-sangat";
+  if(d.indexOf("sulit")>=0)return "diff-sulit";
+  if(d.indexOf("sedang")>=0)return "diff-sedang";
+  return "diff-mudah";
+}
+
+function loadQuestion(){
+  try{
+    updatePrizeLadderHighlight();
+    selectedAnswerIndex=null;answerLocked=false;
+    const qData=currentQuestions[currentQuestionIndex];
+    if(!qData){console.error("Question not found");return;}
+    setText("current-q-num",currentQuestionIndex+1);
+    setText("reward-tag",prizeAmounts[currentQuestionIndex]);
+    setText("question-text",qData.q);
+    setText("xp-counter",xpGained);
+    hide("hint-panel");hide("lock-btn-container");
+    const diffTag=document.getElementById("difficulty-tag");
+    if(diffTag){diffTag.className="diff-badge "+getDifficultyClass(qData.difficulty);diffTag.textContent=qData.difficulty||"Mudah";}
+    const prog=document.getElementById("q-progress");
+    if(prog)prog.style.width=((currentQuestionIndex)/15*100)+"%";
+    const c=document.getElementById("answers-container");if(!c)return;c.innerHTML="";
+    qData.options.forEach(function(opt,index){
+      const btn=document.createElement("button");
+      btn.type="button";btn.id="opt-btn-"+index;
+      btn.className="opt-btn overflow-safe";
+      btn.textContent=opt;
+      btn.addEventListener("click",function(){selectAnswer(index);});
+      c.appendChild(btn);
+    });
+    updateLifelineButtons();
+  }catch(e){console.error("loadQuestion error:",e);}
+}
+function updateLifelineButtons(){
+  const configs=[
+    {id:'lifeline-5050',used:lifelinesUsed['5050']},
+    {id:'lifeline-hint',used:lifelinesUsed['hint']},
+    {id:'lifeline-skip',used:lifelinesUsed['skip']}
+  ];
+  configs.forEach(function(cfg){
+    const btn=document.getElementById(cfg.id);if(!btn)return;
+    if(cfg.used||answerLocked){btn.disabled=true;btn.style.opacity=".3";btn.style.cursor="not-allowed";}
+    else{btn.disabled=false;btn.style.opacity="";btn.style.cursor="pointer";}
+  });
+}
+function resetLifelineButtons(){lifelinesUsed={'5050':false,'hint':false,'skip':false};updateLifelineButtons();}
+
+function selectAnswer(index){
+  if(answerLocked)return;
+  try{
+    sfx('select');selectedAnswerIndex=index;
+    document.querySelectorAll('#answers-container button').forEach(function(b){b.classList.remove('opt-selected');});
+    const sb=document.getElementById("opt-btn-"+index);
+    if(sb)sb.classList.add('opt-selected');
+    show("lock-btn-container");
+  }catch(e){}
+}
+
+function useFiftyFifty(){
+  try{
+    if(lifelinesUsed['5050']||answerLocked)return;
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    sfx('click');lifelinesUsed['5050']=true;
+    let wrongIdx=[0,1,2,3].filter(function(i){return i!==qData.correct;});
+    wrongIdx.sort(function(){return Math.random()-.5;});
+    const toRemove=wrongIdx.slice(0,2);
+    toRemove.forEach(function(i){
+      const b=document.getElementById("opt-btn-"+i);
+      if(b){b.classList.add('opt-eliminated');b.disabled=true;}
+    });
+    if(selectedAnswerIndex!==null&&toRemove.indexOf(selectedAnswerIndex)>=0){selectedAnswerIndex=null;hide("lock-btn-container");}
+    updateLifelineButtons();
+    showToast("✂️ 50:50 aktif — 2 jawaban salah dihapus");
+  }catch(e){}
+}
+function useHint(){
+  try{
+    if(lifelinesUsed['hint']||answerLocked)return;
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    sfx('hint');lifelinesUsed['hint']=true;updateLifelineButtons();
+    const topic=qData.topic||"Sejarah";const difficulty=qData.difficulty||"Mudah";
+    const nudges={"Mudah":"Soal MUDAH. Fokus pada definisi dasar atau ciri umum topik ini.","Sedang":"Soal SEDANG. Perhatikan perbedaan antar pilihan jawaban.","Sulit":"Soal SULIT. Sering memuat perhitungan atau klasifikasi.","Sangat Sulit":"Soal SANGAT SULIT. Waspadai istilah teknis — baca kata kunci teliti."};
+    const nudge=nudges[difficulty]||"Perhatikan kata kunci dalam soal.";
+    const ht=document.getElementById("hint-text");
+    if(ht){ht.innerHTML='<div class="flex flex-wrap items-center gap-1.5 mb-1.5"><span class="px-2 py-0.5 rounded-full bg-green-500/20 text-green-300 text-[10px] font-bold uppercase tracking-wider border border-green-500/30">Topik: '+topic+'</span><span class="px-2 py-0.5 rounded-full bg-green-700/50 text-green-200 text-[10px] font-bold uppercase tracking-wider border border-green-500/20">'+difficulty+'</span></div><div>'+nudge+'</div><div class="mt-1.5 text-[10px] italic text-green-300/60">⚠️ Guru tidak membocorkan jawaban — gunakan nalar!</div>';}
+    show("hint-panel");
+  }catch(e){}
+}
+function openSkipModal(){try{if(lifelinesUsed['skip']||answerLocked)return;sfx('click');show("skip-modal");}catch(e){}}
+function confirmSkip(){
+  try{
+    if(lifelinesUsed['skip'])return;
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    sfx('skip');lifelinesUsed['skip']=true;hide("skip-modal");
+    userAnswersHistory.push({questionNum:currentQuestionIndex+1,questionText:qData.q,userAnswer:"— Dilewati —",correctAnswer:qData.options[qData.correct],explanation:qData.explanation,topic:qData.topic,keyPoint:qData.keyPoint,difficulty:qData.difficulty,isCorrect:false,isSkipped:true});
+    skippedCount++;streak=0;hide("streak-container");
+    showToast("⏭️ Soal dilewati — lanjut berikutnya");
+    setTimeout(function(){currentQuestionIndex++;if(currentQuestionIndex<currentQuestions.length){loadQuestion();}else{endGame();}},900);
+  }catch(e){}
+}
+function showToast(msg){
+  const t=document.createElement("div");
+  t.className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-gradient-to-r from-green-400 to-lime-500 text-green-950 font-bold text-xs md:text-sm shadow-2xl max-w-[90vw] text-center";
+  t.style.animation="fadeInOut 2s ease";t.textContent=msg;
+  document.body.appendChild(t);setTimeout(function(){t.remove();},2000);
+}
+
+function confirmAnswer(){
+  if(answerLocked)return;
+  if(selectedAnswerIndex===null){alert("Pilih salah satu jawaban terlebih dahulu!");return;}
+  try{
+    answerLocked=true;sfx('lock');hide("lock-btn-container");
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    const isCorrect=(selectedAnswerIndex===qData.correct);
+    document.querySelectorAll('#answers-container button').forEach(function(b){b.disabled=true;});
+    updateLifelineButtons();
+    const sb=document.getElementById("opt-btn-"+selectedAnswerIndex);
+    const cb=document.getElementById("opt-btn-"+qData.correct);
+    if(sb)sb.classList.remove('opt-selected');
+    if(isCorrect){
+      if(sb)sb.classList.add('opt-correct');
+      showRevealOverlay("BENAR","benar");sfx('correct');
+      correctAnswersCount++;streak++;
+      if(streak>maxStreak)maxStreak=streak;
+      const earnedXP=100+streak*20;xpGained+=earnedXP;
+      if(streak>=2){show("streak-container");setText("streak-counter",streak);}
+      setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,true,selectedAnswerIndex,earnedXP);},1400);
+    }else{
+      if(sb)sb.classList.add('opt-wrong');
+      if(cb)cb.classList.add('opt-correct');
+      showRevealOverlay("SALAH","salah");sfx('wrong');
+      wrongAnswersCount++;streak=0;hide("streak-container");
+      setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,false,selectedAnswerIndex,0);},1600);
+    }
+    userAnswersHistory.push({questionNum:currentQuestionIndex+1,questionText:qData.q,userAnswer:qData.options[selectedAnswerIndex],correctAnswer:qData.options[qData.correct],explanation:qData.explanation,topic:qData.topic,keyPoint:qData.keyPoint,difficulty:qData.difficulty,isCorrect:isCorrect,isSkipped:false});
+  }catch(e){}
+}
+function showRevealOverlay(text,type){
+  const o=document.getElementById("reveal-overlay"),b=document.getElementById("reveal-badge");
+  if(!o||!b)return;
+  b.className="reveal-badge";b.textContent=text;
+  if(type==="benar"){b.classList.add("benar");createBurst(window.innerWidth/2,window.innerHeight/2,['#22c55e','#4ade80','#fbbf24','#86efac']);}
+  else{b.classList.add("salah");createBurst(window.innerWidth/2,window.innerHeight/2,['#ef4444','#f87171','#dc2626','#fca5a5']);}
+  o.classList.add("show");o.classList.add("backdrop");
+}
+function hideRevealOverlay(){const o=document.getElementById("reveal-overlay");if(!o)return;o.classList.remove("show");o.classList.remove("backdrop");}
+function createBurst(cx,cy,colors){
+  const count = window.innerWidth < 640 ? 18 : 28;
+  for(let i=0;i<count;i++){
+    const p=document.createElement("div");p.className="burst-particle";
+    p.style.left=cx+"px";p.style.top=cy+"px";p.style.background=colors[i%colors.length];
+    const angle=(Math.PI*2*i)/count;const dist=80+Math.random()*180;
+    p.style.setProperty('--tx',Math.cos(angle)*dist+'px');
+    p.style.setProperty('--ty',Math.sin(angle)*dist+'px');
+    p.style.animationDelay=(Math.random()*.15)+'s';
+    p.style.boxShadow="0 0 12px "+colors[i%colors.length];
+    document.body.appendChild(p);setTimeout(function(){p.remove();},1300);
+  }
+}
+function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
+  try{
+    const mc=document.getElementById("feedback-modal-content");
+    const ib=document.getElementById("feedback-icon-bg");
+    const ti=document.getElementById("feedback-title");
+    const su=document.getElementById("feedback-subtitle");
+    const de=document.getElementById("feedback-details");
+    const ys=document.getElementById("fb-yours-section");
+    const letters=["A","B","C","D"];
+    if(isCorrect){
+      if(mc)mc.className="glass-panel max-w-lg w-full p-4 md:p-6 rounded-2xl border-2 border-emerald-500/60 my-auto";
+      if(ib){ib.className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-xl md:text-2xl font-black bg-emerald-500/20 text-emerald-400 shrink-0";ib.textContent="✓";}
+      if(ti){ti.className="text-base md:text-xl font-black text-emerald-400";ti.textContent="🎉 JAWABAN BENAR!";}
+      if(su)su.textContent="Luar biasa! +"+earnedXP+" XP (Streak 🔥 "+streak+")";
+      if(de)de.innerHTML='<div class="p-2.5 md:p-3 bg-emerald-950/40 border border-emerald-500/40 rounded-xl"><div class="text-[10px] md:text-[11px] text-emerald-400 font-bold uppercase mb-1">Jawaban Kamu:</div><div class="font-bold text-emerald-200 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div>';
+      if(ys)ys.classList.add('is-hidden');
+    }else{
+      if(mc)mc.className="glass-panel max-w-lg w-full p-4 md:p-6 rounded-2xl border-2 border-rose-500/60 my-auto";
+      if(ib){ib.className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-xl md:text-2xl font-black bg-rose-500/20 text-rose-400 shrink-0";ib.textContent="✗";}
+      if(ti){ti.className="text-base md:text-xl font-black text-rose-400";ti.textContent="❌ BELUM TEPAT";}
+      if(su)su.textContent="Jangan berkecil hati! Pelajari pembahasannya di bawah ini.";
+      if(de)de.innerHTML='<div class="space-y-2"><div class="p-2.5 bg-rose-950/40 border border-rose-500/40 rounded-xl"><div class="text-[10px] text-rose-300 font-bold uppercase">Jawaban Kamu:</div><div class="font-semibold text-rose-200 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div><div class="p-2.5 bg-emerald-950/40 border border-emerald-500/40 rounded-xl"><div class="text-[10px] text-emerald-400 font-bold uppercase">Jawaban Yang Benar:</div><div class="font-bold text-emerald-300 text-xs md:text-sm overflow-safe">'+qData.options[qData.correct]+'</div></div></div>';
+      if(ys)ys.classList.remove('is-hidden');
+      setHTML("fb-yours",'Kamu memilih <span class="badge-pick">'+letters[selectedIdx]+'</span><b>"'+qData.options[selectedIdx].replace(/^[A-D]\.\s*/,'')+'"</b> — belum tepat. Bandingkan dengan jawaban benar <span class="badge-correct">'+letters[qData.correct]+'</span> <b>'+qData.options[qData.correct].replace(/^[A-D]\.\s*/,'')+'</b>. Perhatikan kata kunci dan topik <b>'+(qData.topic||"sejarah")+'</b>.');
+    }
+    setText("fb-topic",qData.topic||"Sejarah");
+    setText("fb-why",qData.explanation);
+    setText("fb-key",qData.keyPoint||"Baca kembali materi terkait.");
+    show("feedback-modal");
+  }catch(e){}
+}
+function nextQuestion(){
+  try{
+    sfx('click');hide("feedback-modal");
+    currentQuestionIndex++;
+    if(currentQuestionIndex<currentQuestions.length){loadQuestion();}
+    else{endGame();}
+  }catch(e){}
+}
+function calculateTitle(s){if(s>=90)return "🏆 MASTER SEJARAH";if(s>=75)return "🧭 AHLI PRAAKSARA";if(s>=50)return "🗿 EXPLORER SEJARAH";return "🌱 PEMBELAJAR SEJARAH";}
+function calculateGrade(s){if(s>=90)return "A";if(s>=80)return "B";if(s>=70)return "C";if(s>=60)return "D";return "E";}
+
+function endGame(){
+  try{
+    clearInterval(timerInterval);hide("game-screen");show("result-screen");
+    score=Math.round((correctAnswersCount/15)*100);
+    const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
+    const initials=studentName.trim().split(/\s+/).map(function(w){return w[0];}).join("").slice(0,2).toUpperCase()||"?";
+    setText("result-avatar",initials);
+    const CIRC=314.16;const bar=document.getElementById("score-circle-bar");
+    if(bar){bar.style.strokeDashoffset=CIRC;setTimeout(function(){bar.style.strokeDashoffset=CIRC*(1-score/100);},300);}
+    let counter=0;const ce=document.getElementById("score-circle-num");
+    const iv=setInterval(function(){counter+=Math.ceil(score/30)||1;if(counter>=score){counter=score;clearInterval(iv);}if(ce)ce.textContent=counter;},40);
+    const ge=document.getElementById("grade-badge");
+    if(ge){ge.textContent=grade;ge.className="grade-badge-big grade-"+grade;}
+    setText("card-name",studentName.toUpperCase());
+    setText("card-correct",correctAnswersCount+" / 15");
+    setText("card-wrong",wrongAnswersCount);
+    setText("card-skipped",skippedCount);
+    setText("card-score",score);
+    setText("card-xp",xpGained.toLocaleString('id-ID')+" XP");
+    setText("card-streak",maxStreak+" 🔥");
+    setText("card-title",earnedTitle);
+    setText("card-attempt",attemptCount);
+    let prevBest=null;try{prevBest=localStorage.getItem(STORAGE_PREFIX+"best_score");}catch(e){}
+    if(prevBest===null||score>parseInt(prevBest)){
+      try{
+        localStorage.setItem(STORAGE_PREFIX+"best_correct",correctAnswersCount);
+        localStorage.setItem(STORAGE_PREFIX+"best_score",score);
+        localStorage.setItem(STORAGE_PREFIX+"best_xp",xpGained);
+        localStorage.setItem(STORAGE_PREFIX+"best_title",earnedTitle);
+        localStorage.setItem(STORAGE_PREFIX+"best_attempt",attemptCount);
+      }catch(e){}
+      show("record-banner");
+      setText("record-text","🎉 SKOR BARU TERBAIK!");
+      setText("record-subtext","Luar biasa! Kamu melampaui rekor sebelumnya.");
+      sfx('win');triggerConfetti(true);
+    }else{
+      show("record-banner");
+      setText("record-text","💪 Tetap Semangat!");
+      setText("record-subtext","Belum jadi skor terbaik. Coba lagi untuk nilai maksimal!");
+      if(score>=60)triggerConfetti(false);
+    }
+    try{localStorage.setItem(STORAGE_PREFIX+"attempts",attemptCount);}catch(e){}
+    updateBestScoreSummary();
+  }catch(e){}
+}
+function triggerConfetti(isRecord){
+  const colors=['#fbbf24','#22c55e','#84cc16','#4ade80','#fde68a'];
+  safeConfetti({particleCount:70,spread:90,origin:{y:.6},colors:colors});
+  if(isRecord){
+    setTimeout(function(){safeConfetti({particleCount:50,angle:60,spread:70,origin:{x:0,y:.7},colors:colors});},300);
+    setTimeout(function(){safeConfetti({particleCount:50,angle:120,spread:70,origin:{x:1,y:.7},colors:colors});},500);
+  }
+}
+function copyFormattedResult(){
+  try{
+    sfx('click');
+    const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
+    const txt="HASIL KUIS INTERAKTIF SEJARAH\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Jejak Kehidupan Masyarakat Praaksara di Indonesia\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
+    const ta=document.createElement('textarea');ta.value=txt;
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+    const cbt=document.getElementById("copy-btn-text");
+    if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
+  }catch(e){alert("Gagal menyalin. Coba salin manual.");}
+}
+function openReviewModal(){
+  try{
+    sfx('click');
+    const l=document.getElementById("review-list");if(!l)return;l.innerHTML="";
+    userAnswersHistory.forEach(function(item){
+      const isC=item.isCorrect,isS=item.isSkipped;
+      let cardClass="bg-rose-950/30 border-rose-500/40";let statusText="✗ Soal "+item.questionNum+" — Belum tepat";let statusColor="text-rose-400";
+      if(isC){cardClass="bg-emerald-950/30 border-emerald-500/40";statusText="✓ Soal "+item.questionNum+" — Benar";statusColor="text-emerald-400";}
+      else if(isS){cardClass="bg-green-900/50 border-green-500/30";statusText="⏭️ Soal "+item.questionNum+" — Dilewati";statusColor="text-green-400";}
+      const card=document.createElement("div");
+      card.className="p-3 md:p-4 rounded-xl border "+cardClass+" space-y-2 text-[11px] md:text-xs";
+      card.innerHTML='<div class="flex items-center justify-between font-bold flex-wrap gap-2"><span class="'+statusColor+'">'+statusText+'</span><span class="diff-badge '+getDifficultyClass(item.difficulty)+'">'+(item.difficulty||"Mudah")+'</span></div><p class="font-medium text-green-50 overflow-safe">'+item.questionText+'</p><div class="bg-green-950/80 p-2 rounded-lg"><div class="text-green-200/80">Jawabanmu: <span class="'+(isC?"text-emerald-400 font-bold":(isS?"text-green-400/60 font-bold":"text-rose-400 font-bold"))+'">'+item.userAnswer+'</span></div>'+(!isC?'<div class="text-green-200/80 mt-1">Jawaban Benar: <span class="text-emerald-400 font-bold">'+item.correctAnswer+'</span></div>':'')+'</div><div class="bg-green-500/10 border border-green-500/30 p-2 rounded-lg text-green-200 overflow-safe"><strong class="text-green-400">📚 Topik:</strong> '+(item.topic||"Sejarah")+'</div><div class="bg-green-500/10 border border-green-500/30 p-2 rounded-lg text-green-200 overflow-safe"><strong class="text-green-400">📖 Pembahasan:</strong> '+item.explanation+'</div><div class="bg-green-500/10 border border-green-500/30 p-2 rounded-lg text-green-100 overflow-safe"><strong class="text-green-400">🎯 Poin Kunci:</strong> '+(item.keyPoint||"—")+'</div>';
+      l.appendChild(card);
+    });
+    show("review-modal");
+  }catch(e){}
+}
+function closeReviewModal(){sfx('click');hide("review-modal");}
+function restartGame(){
+  try{
+    sfx('click');attemptCount++;
+    hide("result-screen");show("game-screen");
+    currentQuestions=getRandomQuestions();
+    currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
+    xpGained=0;streak=0;maxStreak=0;secondsElapsed=0;userAnswersHistory=[];
+    selectedAnswerIndex=null;answerLocked=false;
+    resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
+  }catch(e){}
+}
+function returnToMainScreen(){
+  sfx('click');
+  hide("result-screen");hide("game-screen");show("start-screen");
+  loadAttemptHistory();updateBestScoreSummary();
+}
+(function(){
+  const style=document.createElement('style');
+  style.textContent='@keyframes fadeInOut{0%{opacity:0;transform:translate(-50%,-10px)}15%{opacity:1;transform:translate(-50%,0)}85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-10px)}}';
+  document.head.appendChild(style);
+})();
+</script>
+</body>
+</html>
