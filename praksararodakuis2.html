@@ -764,10 +764,17 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
     <button id="btnHome" type="button" class="btn-home">🏠 KEMBALI KE HALAMAN UTAMA</button>
 
-    <button id="btnCopy" type="button" class="w-full font-bold p-3 rounded-xl text-xs cursor-pointer border border-cyan-500/30"
+        <button id="btnCopy" type="button" class="w-full font-bold p-3 rounded-xl text-xs cursor-pointer border border-cyan-500/30"
       style="background: linear-gradient(135deg,#1e3a8a,#2563eb); color:#e0f2fe">
       📋 SALIN HASIL
     </button>
+
+    <!-- ===== TOMBOL KIRIM NILAI KE GURU ===== -->
+    <button id="btnKirim" type="button" class="btn-home" style="background: linear-gradient(135deg,#22c55e 0%,#16a34a 50%,#15803d 100%); border-color: rgba(74,222,128,.6); animation: homePulse 2s ease-in-out infinite;">
+      📤 KIRIM NILAI KE GURU
+    </button>
+    <div id="kirimStatus" class="is-hidden text-center text-xs font-bold px-3 py-2 rounded-xl"
+      style="background: rgba(5,8,22,.6); border:1px solid rgba(34,211,238,.3)"></div>
   </section>
 
 </main>
@@ -1045,6 +1052,85 @@ const state = {
   catStats: {}
 };
 const STORAGE_PREFIX = 'kuis_roda_sejarah_v1_';
+ /* =========================================================
+   KONFIGURASI GOOGLE APPS SCRIPT
+   ========================================================= */
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/XXXXXXXXXXXX/exec";
+// ⚠️ GANTI URL DI ATAS dengan Web app URL dari Bagian A langkah 7.
+
+/* =========================================================
+   FUNGSI KIRIM NILAI KE GOOGLE SHEETS
+   ========================================================= */
+function kirimNilai() {
+  if (!state.studentName) {
+    alert("Nama siswa tidak ditemukan. Silakan ulangi kuis.");
+    return;
+  }
+
+  const btn = $('btnKirim');
+  const statusEl = $('kirimStatus');
+
+  // Cegah kirim ganda di sesi yang sama
+  const sendKey = 'kuis_terkirim_' + state.studentName + '_' + state.totalScore;
+  try {
+    if (localStorage.getItem(sendKey) === 'ya') {
+      btn.textContent = '✓ SUDAH TERKIRIM';
+      btn.disabled = true;
+      statusEl.textContent = '✅ Nilai kamu sudah terkirim sebelumnya.';
+      statusEl.className = 'text-center text-xs font-bold px-3 py-2 rounded-xl text-emerald-300';
+      statusEl.style.background = 'rgba(34,197,94,.12)';
+      statusEl.style.border = '1px solid rgba(34,197,94,.4)';
+      statusEl.classList.remove('is-hidden');
+      return;
+    }
+  } catch(e) {}
+
+  // Kunci tombol & tampilkan status
+  btn.disabled = true;
+  btn.innerHTML = '⏳ MENGIRIM...';
+  statusEl.classList.add('is-hidden');
+
+  const accuracy = Math.round((state.correctCount / state.totalRounds) * 100);
+  const ach = getAchievement(accuracy, state.correctCount, state.totalRounds);
+
+  const params = new URLSearchParams();
+  params.append('nama',     state.studentName);
+  params.append('skor',     state.totalScore);
+  params.append('benar',    state.correctCount);
+  params.append('salah',    state.wrongCount);
+  params.append('total',    state.totalRounds);
+  params.append('akurasi',  accuracy);
+  params.append('streak',   state.maxStreak);
+  params.append('gelar',    ach.title);
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: params,
+    mode: 'no-cors' // wajib agar tidak kena CORS dari GitHub Pages
+  })
+  .then(function() {
+    // mode no-cors: response tidak bisa dibaca, tapi request tetap terkirim
+    try { localStorage.setItem(sendKey, 'ya'); } catch(e) {}
+    btn.innerHTML = '✓ NILAI TERKIRIM';
+    btn.style.background = 'linear-gradient(135deg,#16a34a 0%,#15803d 100%)';
+    btn.style.animation = 'none';
+    statusEl.textContent = '✅ Nilai berhasil dikirim ke guru. Terima kasih, ' + state.studentName + '!';
+    statusEl.className = 'text-center text-xs font-bold px-3 py-2 rounded-xl text-emerald-300';
+    statusEl.style.background = 'rgba(34,197,94,.12)';
+    statusEl.style.border = '1px solid rgba(34,197,94,.4)';
+    statusEl.classList.remove('is-hidden');
+    sfx('win');
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    btn.innerHTML = '📤 KIRIM NILAI KE GURU';
+    statusEl.textContent = '❌ Gagal mengirim. Cek koneksi internet lalu coba lagi. (' + err + ')';
+    statusEl.className = 'text-center text-xs font-bold px-3 py-2 rounded-xl text-rose-300';
+    statusEl.style.background = 'rgba(239,68,68,.12)';
+    statusEl.style.border = '1px solid rgba(239,68,68,.4)';
+    statusEl.classList.remove('is-hidden');
+  });
+}
 
 /* =========================================================
    MEMBANGUN RODA
@@ -1666,6 +1752,7 @@ function init() {
 
   $('btnHome').addEventListener('click', returnToMainScreen);
   $('btnCopy').addEventListener('click', copyResult);
+   $('btnKirim').addEventListener('click', kirimNilai);
 
   try {
     const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
