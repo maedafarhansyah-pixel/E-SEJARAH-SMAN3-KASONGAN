@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050816">
+<title>Kuis Roda Berputar — Sejarah Praaksara SMAN 3 Kasongan</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'], display: ['Space Grotesk','sans-serif'] } } } }; } catch(e){}
+</script>
+<style>
+  * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    background: #050816;
+    color:#f8fafc; min-height:100vh; margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size: 15px; line-height: 1.5;
+    overflow-x: hidden; position: relative;
+  }
+  body::before {
+    content:''; position: fixed; inset: -50%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(59,130,246,.28) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(34,211,238,.20) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(139,92,246,.14) 0%, transparent 50%);
+    z-index: -3; animation: bgShift 24s ease-in-out infinite alternate;
+  }
+  @keyframes bgShift { 0% { transform: translate(0,0) scale(1) rotate(0); } 100% { transform: translate(3%,-2%) scale(1.15) rotate(4deg); } }
+  body::after {
+    content:''; position: fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(59,130,246,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,.045) 1px, transparent 1px);
+    background-size: 44px 44px; z-index: -2; pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+  }
+  .is-hidden{display:none!important}
+  .glass-panel{
+    background: linear-gradient(160deg, rgba(15,23,60,.75), rgba(5,8,22,.92));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(59,130,246,.18);
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 24px 60px rgba(0,0,0,.55);
+    border-radius: 20px;
+    position: relative; overflow: hidden;
+  }
+  .glass-panel::before{
+    content:''; position: absolute; top:0; left:10%; right:10%; height:1px;
+    background: linear-gradient(90deg, transparent, rgba(34,211,238,.6), transparent);
+  }
+
+  .school-badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:10px 28px;
+    background: linear-gradient(135deg, rgba(251,191,36,.25), rgba(245,158,11,.12));
+    border: 2.5px solid rgba(251,191,36,.75);
+    border-radius: 99px;
+    font-size: 1rem; font-weight: 900; letter-spacing: 3px;
+    text-transform: uppercase; position: relative; overflow: hidden;
+    box-shadow: 0 0 40px rgba(251,191,36,.55), inset 0 1px 0 rgba(255,255,255,.2);
+    white-space: nowrap;
+  }
+  @media (min-width:480px){
+    .school-badge{ padding:12px 36px; font-size:1.15rem; letter-spacing:4px; }
+  }
+  @media (min-width:768px){
+    .school-badge{ padding:14px 44px; font-size:1.35rem; letter-spacing:5px; }
+  }
+  .school-badge::before{
+    content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+    animation: badgeShine 3s ease-in-out infinite;
+  }
+  @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
+
+  .school-name{
+    background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 25%, #f59e0b 50%, #fbbf24 75%, #fef3c7 100%);
+    background-size: 300% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; letter-spacing: 3px;
+    animation: shimmerText 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 14px rgba(251,191,36,.9)) drop-shadow(0 2px 4px rgba(0,0,0,.5));
+  }
+  @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+  .teacher-name{
+    background: linear-gradient(135deg, #a5f3fc 0%, #22d3ee 30%, #06b6d4 60%, #67e8f9 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; letter-spacing: 1.5px;
+    animation: shimmerText 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(34,211,238,.9)) drop-shadow(0 2px 4px rgba(0,0,0,.5));
+  }
+  .nip-text{
+    color: #67e8f9; font-family: monospace; font-weight: 700;
+    letter-spacing: .5px;
+    text-shadow: 0 0 10px rgba(34,211,238,.6);
+  }
+
+  .navy-input{
+    background: linear-gradient(135deg, rgba(10,15,46,.9), rgba(5,8,22,.95));
+    border: 1.5px solid rgba(59,130,246,.35); color: #f0f9ff;
+    transition: all .22s; width: 100%; border-radius: 12px;
+    padding: 13px 16px; font-size: 16px; font-weight: 500;
+  }
+  @media (min-width:640px){ .navy-input{font-size:.95rem;} }
+  .navy-input:focus{ outline:none; border-color:#22d3ee; box-shadow: 0 0 0 4px rgba(34,211,238,.15), 0 0 30px rgba(34,211,238,.4); }
+  .navy-input::placeholder{color: rgba(226,232,240,.35);}
+
+  .btn-primary{
+    background: linear-gradient(135deg,#2563eb 0%,#3b82f6 40%,#22d3ee 100%);
+    color: #050816; font-weight: 900; letter-spacing: 2px;
+    padding: 15px 28px; border-radius: 14px;
+    border: 1px solid rgba(103,232,249,.5);
+    box-shadow: 0 10px 34px rgba(59,130,246,.5), 0 1px 0 rgba(255,255,255,.4) inset;
+    transition: all .22s; cursor: pointer; font-size: .92rem;
+    width: 100%; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase;
+    position: relative; overflow: hidden;
+  }
+  @media (min-width:480px){ .btn-primary{padding:16px 32px;font-size:1rem;} }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 46px rgba(34,211,238,.65); }
+  .btn-primary:active{ transform:translateY(0) scale(.98); }
+  .btn-primary::after{
+    content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+    animation: shineBtn 2.6s ease-in-out infinite;
+  }
+  @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
+
+  /* ================= RODA ================= */
+  .wheel-stage{
+    position: relative; width: min(88vw, 430px); aspect-ratio: 1;
+    margin: 20px auto;
+    filter: drop-shadow(0 20px 60px rgba(34,211,238,.4));
+  }
+  #wheelSvg{
+    width: 100%; height: 100%; display: block;
+    transform-origin: center center;
+    will-change: transform;
+    filter: drop-shadow(0 0 30px rgba(34,211,238,.35));
+    cursor: pointer;
+    overflow: visible;
+  }
+
+  .wheel-pointer{
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 56px solid #fbbf24;
+    filter: drop-shadow(0 0 20px rgba(251,191,36,.95)) drop-shadow(0 8px 16px rgba(0,0,0,.55));
+    z-index: 5;
+    animation: pointerBounce 2s ease-in-out infinite;
+  }
+  @media (min-width:480px){
+    .wheel-pointer{ border-left-width:34px; border-right-width:34px; border-top-width:64px; top:-12px; }
+  }
+  @keyframes pointerBounce{
+    0%,100%{transform: translateX(-50%) translateY(0);}
+    50%{transform: translateX(-50%) translateY(-5px);}
+  }
+  .wheel-pointer::before{
+    content:''; position:absolute;
+    top: -10px; left: 50%; transform: translateX(-50%);
+    width: 62%; height: 12px; border-radius: 99px;
+    background: linear-gradient(90deg,#fde68a,#fbbf24,#fde68a);
+    box-shadow: 0 0 24px rgba(251,191,36,.9);
+  }
+  .wheel-pointer::after{
+    content:''; position:absolute;
+    top: -58px; left: 50%; transform: translateX(-50%);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #fbbf24; box-shadow: 0 0 26px rgba(251,191,36,1), 0 0 60px rgba(251,191,36,.7);
+  }
+
+  .spin-btn{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 33%; aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #67e8f9, #22d3ee 40%, #3b82f6 80%, #1e40af);
+    border: 5px solid #0a0f2e;
+    color: #050816; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900; letter-spacing: 1px; font-size: clamp(0.85rem, 3.4vw, 1.2rem);
+    cursor: pointer;
+    box-shadow:
+      0 0 0 5px rgba(103,232,249,.35),
+      0 0 55px rgba(34,211,238,.95),
+      0 12px 34px rgba(0,0,0,.65),
+      inset 0 3px 0 rgba(255,255,255,.55);
+    z-index: 4;
+    transition: transform .2s ease, box-shadow .2s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1.05;
+    animation: spinPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes spinPulse{
+    0%,100%{ box-shadow: 0 0 0 5px rgba(103,232,249,.35), 0 0 55px rgba(34,211,238,.9), 0 12px 34px rgba(0,0,0,.65), inset 0 3px 0 rgba(255,255,255,.55); }
+    50%    { box-shadow: 0 0 0 9px rgba(103,232,249,.18), 0 0 80px rgba(34,211,238,1), 0 12px 34px rgba(0,0,0,.65), inset 0 3px 0 rgba(255,255,255,.55); }
+  }
+  .spin-btn:hover{ transform: translate(-50%,-50%) scale(1.07); }
+  .spin-btn:active{ transform: translate(-50%,-50%) scale(.95); }
+  .spin-btn:disabled{ opacity: .65; cursor: wait; animation: none; }
+  .spin-btn .spin-icon{ font-size: 2.1em; display: block; animation: spinIcon 4s linear infinite; }
+  @keyframes spinIcon{ to { transform: rotate(360deg); } }
+
+  .opt-btn{
+    width: 100%; text-align: left;
+    background: linear-gradient(135deg, rgba(15,23,60,.7), rgba(5,8,22,.85));
+    border: 1.5px solid rgba(59,130,246,.22);
+    border-radius: 14px; padding: 13px 15px;
+    font-size: .85rem; color: #e2e8f0; font-weight: 500;
+    line-height: 1.4; transition: all .22s cubic-bezier(.4,0,.2,1);
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  @media (min-width:768px){ .opt-btn{font-size:.9rem;padding:14px 17px;} }
+  .opt-btn:hover{
+    background: linear-gradient(135deg, rgba(30,41,90,.85), rgba(10,15,46,.95));
+    border-color: rgba(34,211,238,.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(34,211,238,.2);
+  }
+  .opt-btn:active{ transform: scale(.99); }
+  .opt-btn:disabled{ cursor: not-allowed; }
+  .opt-correct{ background: linear-gradient(135deg,#16a34a,#22c55e) !important; border-color: #4ade80 !important; color: #fff !important; box-shadow: 0 0 36px rgba(34,197,94,.75); }
+  .opt-wrong{ background: linear-gradient(135deg,#dc2626,#ef4444) !important; border-color: #f87171 !important; color: #fff !important; box-shadow: 0 0 36px rgba(239,68,68,.75); }
+
+  .cat-badge{
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px; border-radius: 99px;
+    font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    font-size: .72rem;
+    box-shadow: 0 0 30px currentColor, inset 0 1px 0 rgba(255,255,255,.2);
+    animation: catPop .5s cubic-bezier(.2,.9,.3,1.4);
+    white-space: nowrap;
+  }
+  @keyframes catPop{ 0%{opacity:0;transform:scale(.6)} 60%{transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
+
+  .fb-section{ padding:11px 13px; border-radius:12px; margin-bottom:8px; background: linear-gradient(135deg, rgba(15,23,60,.5), rgba(5,8,22,.7)); border:1px solid rgba(59,130,246,.16); }
+  .fb-section .fb-t{ font-size:.6rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .fb-section .fb-b{ font-size:.8rem; line-height:1.55; color:#cbd5e1; }
+  .fb-section.why .fb-t{color:#4ade80}
+  .fb-section.key .fb-t{color:#fbbf24}
+  .fb-section.key .fb-b{ background: linear-gradient(90deg,rgba(251,191,36,.16),rgba(251,191,36,.03)); padding:9px 11px; border-radius:9px; border-left:3px solid #f59e0b; color:#fde68a; font-weight:600; }
+
+  .stat-pill{
+    display: flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 99px;
+    background: linear-gradient(135deg, rgba(15,23,60,.7), rgba(5,8,22,.85));
+    border: 1px solid rgba(59,130,246,.25);
+    font-size: .72rem; font-weight: 700;
+  }
+  .stat-pill .lbl{ color: rgba(148,163,184,.8); font-size:.62rem; text-transform:uppercase; letter-spacing:1px; }
+
+  #revealOverlay{ position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; pointer-events: none; padding: 16px; }
+  #revealOverlay.show{ display: flex; }
+  #revealOverlay.backdrop{ backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(5,8,22,.7); pointer-events: auto; animation: fadeInBackdrop .25s ease; }
+  @keyframes fadeInBackdrop{ from{opacity:0} to{opacity:1} }
+  .reveal-badge{
+    font-size: clamp(1.6rem, 6.5vw, 3.5rem); font-weight: 900;
+    letter-spacing: 3px; text-transform: uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 16px 36px; border-radius: 20px;
+    text-align: center; line-height: 1.1;
+    animation: revealPop .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  @media (min-width:480px){ .reveal-badge{ font-size: clamp(2rem,7vw,4.5rem); padding: 22px 52px; letter-spacing: 4px; border-radius: 24px; } }
+  @keyframes revealPop{ 0%{opacity:0;transform:scale(.4) rotate(-8deg)} 50%{transform:scale(1.1) rotate(2deg)} 100%{opacity:1;transform:scale(1) rotate(0)} }
+  .reveal-badge.benar{
+    color:#fff; background: linear-gradient(135deg,#15803d 0%,#22c55e 50%,#4ade80 100%);
+    box-shadow: 0 0 60px rgba(34,197,94,1), 0 0 120px rgba(34,197,94,.5), 0 16px 44px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow: 0 0 18px rgba(255,255,255,.9); border: 2.5px solid rgba(255,255,255,.6);
+  }
+  .reveal-badge.benar::before{ content:'✓'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
+  .reveal-badge.salah{
+    color:#fff; background: linear-gradient(135deg,#7f1d1d 0%,#dc2626 50%,#f87171 100%);
+    box-shadow: 0 0 60px rgba(239,68,68,1), 0 0 120px rgba(239,68,68,.5), 0 16px 44px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow: 0 0 18px rgba(255,255,255,.9); border: 2.5px solid rgba(255,255,255,.6);
+    animation: revealPop .7s cubic-bezier(.34,1.56,.64,1), salahShake .5s .7s ease;
+  }
+  .reveal-badge.salah::before{ content:'✗'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes checkPop{0%{opacity:0;transform:scale(0)}100%{opacity:1;transform:scale(1)}}
+  @keyframes salahShake{ 0%,100%{transform:translateX(0) rotate(0)} 20%{transform:translateX(-8px) rotate(-1.5deg)} 40%{transform:translateX(8px) rotate(1.5deg)} 60%{transform:translateX(-5px) rotate(-.8deg)} 80%{transform:translateX(5px) rotate(.8deg)} }
+
+  .burst-particle{ position: absolute; width: 10px; height: 10px; border-radius: 50%; pointer-events: none; animation: burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards; }
+  @keyframes burstOut{ 0%{opacity:1;transform:translate(0,0) scale(1)} 100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)} }
+
+  .achievement-card{
+    position: relative;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 2px solid;
+    overflow: hidden;
+    animation: achIn .7s cubic-bezier(.2,.9,.3,1.3);
+  }
+  @keyframes achIn{
+    0%{ opacity: 0; transform: scale(.85) translateY(20px); }
+    100%{ opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .achievement-card::before{
+    content:''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.15), transparent 60%);
+    pointer-events: none;
+  }
+  .ach-tier-gold{
+    background: linear-gradient(135deg, rgba(251,191,36,.22), rgba(245,158,11,.10));
+    border-color: rgba(251,191,36,.7);
+    box-shadow: 0 0 40px rgba(251,191,36,.5), inset 0 0 30px rgba(251,191,36,.1);
+  }
+  .ach-tier-emerald{
+    background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(34,197,94,.10));
+    border-color: rgba(34,197,94,.7);
+    box-shadow: 0 0 40px rgba(34,197,94,.5), inset 0 0 30px rgba(34,197,94,.1);
+  }
+  .ach-tier-blue{
+    background: linear-gradient(135deg, rgba(59,130,246,.22), rgba(59,130,246,.10));
+    border-color: rgba(59,130,246,.7);
+    box-shadow: 0 0 40px rgba(59,130,246,.5), inset 0 0 30px rgba(59,130,246,.1);
+  }
+  .ach-tier-violet{
+    background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(139,92,246,.10));
+    border-color: rgba(139,92,246,.7);
+    box-shadow: 0 0 40px rgba(139,92,246,.5), inset 0 0 30px rgba(139,92,246,.1);
+  }
+  .ach-tier-slate{
+    background: linear-gradient(135deg, rgba(100,116,139,.22), rgba(100,116,139,.10));
+    border-color: rgba(100,116,139,.7);
+    box-shadow: 0 0 40px rgba(100,116,139,.5), inset 0 0 30px rgba(100,116,139,.1);
+  }
+  .ach-icon{
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; flex-shrink: 0;
+    background: rgba(5,8,22,.4);
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.4);
+  }
+
+  .cat-stat-row{
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; border-radius: 10px;
+    background: rgba(5,8,22,.5);
+    border: 1px solid rgba(59,130,246,.15);
+  }
+  .cat-stat-bar{
+    flex: 1; height: 6px; border-radius: 99px;
+    background: rgba(148,163,184,.15);
+    overflow: hidden;
+  }
+  .cat-stat-bar > i{
+    display: block; height: 100%; border-radius: 99px;
+    transition: width 1.2s cubic-bezier(.2,.9,.3,1.2);
+  }
+
+  .kuis-selesai-banner{
+    text-align: center;
+    padding: 20px 16px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(34,211,238,.15), rgba(59,130,246,.1), rgba(139,92,246,.15));
+    border: 2px solid rgba(34,211,238,.5);
+    box-shadow: 0 0 50px rgba(34,211,238,.35), inset 0 0 40px rgba(59,130,246,.1);
+    margin-bottom: 18px;
+    animation: selesaiIn .9s cubic-bezier(.2,.9,.3,1.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .kuis-selesai-banner::before{
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(34,211,238,.25), transparent 60%);
+    pointer-events: none;
+  }
+  @keyframes selesaiIn{
+    0%{ opacity: 0; transform: scale(.7) translateY(-30px); }
+    60%{ transform: scale(1.05) translateY(4px); }
+    100%{ opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .kuis-selesai-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #67e8f9 0%, #22d3ee 30%, #3b82f6 60%, #8b5cf6 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmerText 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(34,211,238,.7));
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  @media (min-width:480px){ .kuis-selesai-title{ font-size: 3rem; letter-spacing: 5px; } }
+  @media (min-width:768px){ .kuis-selesai-title{ font-size: 3.8rem; letter-spacing: 6px; } }
+  .kuis-selesai-sub{
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(165,243,252,.85);
+    font-weight: 700;
+  }
+  @media (min-width:480px){ .kuis-selesai-sub{ font-size: .85rem; } }
+
+  .btn-home{
+    background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #8b5cf6 100%);
+    color: #050816;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 18px 28px;
+    border-radius: 16px;
+    border: 2px solid rgba(103,232,249,.6);
+    box-shadow:
+      0 0 40px rgba(34,211,238,.6),
+      0 14px 40px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.5);
+    transition: all .22s;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    position: relative; overflow: hidden;
+    animation: homePulse 2s ease-in-out infinite;
+  }
+  @media (min-width:480px){ .btn-home{ padding: 20px 36px; font-size: 1.15rem; letter-spacing: 3px; } }
+  @keyframes homePulse{
+    0%,100% { box-shadow: 0 0 40px rgba(34,211,238,.6), 0 14px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5); }
+    50%     { box-shadow: 0 0 70px rgba(34,211,238,1), 0 14px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5); }
+  }
+  .btn-home:hover{ transform: translateY(-3px) scale(1.02); }
+  .btn-home:active{ transform: translateY(0) scale(.98); }
+  .btn-home::after{
+    content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+    animation: shineBtn 2.6s ease-in-out infinite;
+  }
+
+  @media (max-width: 640px){
+    .glass-panel{ padding: 14px; }
+    main{ padding: 12px 10px 20px !important; }
+    header{ padding: 10px 12px !important; }
+    .wheel-stage{ width: min(92vw, 380px); margin: 14px auto; }
+    .wheel-pointer{ border-left-width:26px; border-right-width:26px; border-top-width:48px; top:-8px; }
+  }
+  @media (max-width: 380px){
+    body{ font-size: 14px; }
+    .opt-btn{ padding: 11px 12px; font-size: .8rem; border-radius: 12px; }
+    .wheel-stage{ width: min(94vw, 330px); }
+    .school-badge{ padding: 8px 18px; font-size:.85rem; letter-spacing:2px; }
+    .kuis-selesai-title{ font-size: 1.8rem; }
+  }
+  .overflow-safe{ word-wrap: break-word; overflow-wrap: break-word; }
+
+  #loadingScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #050816;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+    flex-direction: column;
+    padding: 20px;
+  }
+  #loadingScreen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .loader-content {
+    text-align: center;
+    max-width: 340px;
+    width: 100%;
+  }
+  .loader-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #67e8f9, #3b82f6, #8b5cf6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmerText 2s ease-in-out infinite;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .loader-sub {
+    font-size: 0.7rem;
+    color: rgba(165,243,252,.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .loader-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(59,130,246,.2);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.5);
+  }
+  .loader-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22d3ee, #3b82f6, #8b5cf6);
+    border-radius: 99px;
+    animation: loadFill 2s ease-in-out forwards;
+    box-shadow: 0 0 16px rgba(34,211,238,.8);
+  }
+  @keyframes loadFill {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  .loader-text {
+    font-size: 0.65rem;
+    color: rgba(148,163,184,.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    animation: blinkText 1.4s ease-in-out infinite;
+  }
+  @keyframes blinkText {
+    0%,100% { opacity: .6; }
+    50% { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== LOADING SCREEN ========== -->
+<div id="loadingScreen">
+  <div class="loader-content">
+    <div class="loader-title">KUIS RODA BERPUTAR</div>
+    <div class="loader-sub">Sejarah • Praaksara Indonesia</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill"></div>
+    </div>
+    <div class="loader-text">Memuat...</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="w-full border-b border-cyan-500/20 backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5" style="background: linear-gradient(90deg, rgba(5,8,22,.85), rgba(10,15,46,.85), rgba(5,8,22,.85))">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2 min-w-0 flex-1">
+      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0"
+        style="background: linear-gradient(135deg,#3b82f6,#22d3ee); box-shadow: 0 0 24px rgba(34,211,238,.55), inset 0 1px 0 rgba(255,255,255,.3)">🎡</div>
+      <div class="min-w-0 flex-1">
+        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 truncate"
+          style="font-family:'Space Grotesk',sans-serif">KUIS RODA BERPUTAR</h1>
+        <p class="text-[9px] md:text-[11px] font-medium truncate">
+          <span class="school-name">SMAN 3 KASONGAN</span>
+          <span class="text-cyan-500/60"> • </span>
+          <span class="text-cyan-300 font-semibold">Sejarah Praaksara</span>
+        </p>
+      </div>
+    </div>
+    <button class="w-9 h-9 rounded-full flex items-center justify-center border border-cyan-500/30 shrink-0 cursor-pointer"
+      style="background: rgba(10,15,46,.7)" id="soundToggle" type="button">🔊</button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
+
+  <!-- ========== START SCREEN ========== -->
+  <section id="startScreen" class="w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto">
+    <div class="text-center mb-5">
+      <div class="school-badge">
+        <span class="school-name">SMAN 3 KASONGAN</span>
+      </div>
+    </div>
+
+    <div class="text-center mb-5">
+      <div class="text-5xl md:text-6xl mb-2" style="filter:drop-shadow(0 0 28px rgba(34,211,238,.8))">🎡</div>
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 mb-1.5 leading-tight"
+        style="font-family:'Space Grotesk',sans-serif">KUIS RODA BERPUTAR</h2>
+      <p class="text-xs md:text-sm text-blue-200/70">Jejak Kehidupan Masyarakat Praaksara • Sejarah Kelas X</p>
+    </div>
+
+    <div class="mb-5 p-4 md:p-5 rounded-xl" style="background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(59,130,246,.06)); border: 2px solid rgba(34,211,238,.4); box-shadow: 0 0 30px rgba(34,211,238,.2)">
+      <div class="text-center">
+        <div class="text-[10px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
+          style="color: #67e8f9; text-shadow: 0 0 12px rgba(34,211,238,.8)">
+          <span>👨‍🏫</span> GURU PENGAMPU
+        </div>
+        <div class="teacher-name text-lg md:text-2xl tracking-wide">SYAHRANI, S.Pd.</div>
+        <div class="nip-text text-[11px] md:text-xs mt-1.5">NIP. 19751217200501 1 016</div>
+      </div>
+    </div>
+
+    <div class="rounded-xl p-3 md:p-4 mb-5 space-y-2 text-xs md:text-sm border border-blue-500/15" style="background: rgba(5,8,22,.55)">
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+          style="background: linear-gradient(135deg, rgba(34,211,238,.25), rgba(59,130,246,.15)); color:#67e8f9; border: 1px solid rgba(34,211,238,.35)">1</span>
+        <span class="text-slate-300">Putar roda untuk memilih <b class="text-cyan-300">kategori soal</b></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+          style="background: linear-gradient(135deg, rgba(34,211,238,.25), rgba(59,130,246,.15)); color:#67e8f9; border: 1px solid rgba(34,211,238,.35)">2</span>
+        <span class="text-slate-300">Jawab soal dari kategori tersebut → dapat <b class="text-cyan-300">poin</b></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+          style="background: linear-gradient(135deg, rgba(34,211,238,.25), rgba(59,130,246,.15)); color:#67e8f9; border: 1px solid rgba(34,211,238,.35)">3</span>
+        <span class="text-slate-300">Mainkan <b class="text-cyan-300">12 putaran</b> — kumpulkan poin tertinggi!</span>
+      </div>
+    </div>
+
+    <form id="startForm" class="space-y-3.5">
+      <div>
+        <label for="studentName" class="block text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-300 mb-1.5">
+          Nama Siswa <span class="text-rose-400">*</span>
+        </label>
+        <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input">
+      </div>
+      <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
+    </form>
+
+    <div id="bestScoreSummary" class="is-hidden mt-4 pt-4 border-t border-blue-500/15 text-center">
+      <div class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold mb-1.5">🏆 Skor Terbaikmu</div>
+      <div class="flex justify-center gap-3 text-xs">
+        <div>
+          <div class="text-blue-400/70 text-[10px] uppercase">Total Poin</div>
+          <div id="bestScorePoints" class="text-cyan-400 font-bold text-sm md:text-base">0</div>
+        </div>
+        <div class="border-l border-blue-500/15"></div>
+        <div>
+          <div class="text-blue-400/70 text-[10px] uppercase">Akurasi</div>
+          <div id="bestScoreAcc" class="text-emerald-400 font-bold text-sm md:text-base">0%</div>
+        </div>
+        <div class="border-l border-blue-500/15"></div>
+        <div>
+          <div class="text-blue-400/70 text-[10px] uppercase">Gelar</div>
+          <div id="bestScoreTitle" class="text-amber-300 font-bold text-[11px] mt-0.5">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4 text-[10px] text-blue-400/60">© SMAN 3 Kasongan • Kelas X / Fase E</div>
+  </section>
+
+  <!-- ========== WHEEL SCREEN ========== -->
+  <section id="wheelScreen" class="is-hidden w-full max-w-2xl my-auto">
+    <div class="glass-panel p-4 md:p-5 rounded-2xl">
+      <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
+        <div class="stat-pill">👤 <span id="playerName" class="text-cyan-200 font-bold">Siswa</span></div>
+        <div class="flex gap-1.5 flex-wrap">
+          <div class="stat-pill"><span class="lbl">Putaran</span> <span id="roundCounter" class="text-cyan-300 font-mono">1/12</span></div>
+          <div class="stat-pill">⚡ <span id="scoreCounter" class="text-emerald-400 font-mono">0</span></div>
+        </div>
+      </div>
+
+      <div class="wheel-stage">
+        <div class="wheel-pointer"></div>
+        <svg id="wheelSvg" viewBox="0 0 200 200"></svg>
+        <button id="spinBtn" class="spin-btn" type="button">
+          <span class="spin-icon">🎯</span>
+          <span>PUTAR</span>
+        </button>
+      </div>
+
+      <div id="wheelInstruction" class="text-center mt-3 md:mt-4">
+        <div class="text-xs md:text-sm text-cyan-300/80 font-semibold">👆 Tekan tombol <b class="text-cyan-300">PUTAR</b> di tengah roda untuk memilih kategori!</div>
+      </div>
+
+      <div id="categoryResult" class="is-hidden text-center mt-3 md:mt-4"></div>
+    </div>
+  </section>
+
+  <!-- ========== QUESTION SCREEN ========== -->
+  <section id="questionScreen" class="is-hidden w-full max-w-2xl my-auto">
+    <div class="glass-panel p-4 md:p-6 rounded-2xl">
+      <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
+        <div class="stat-pill"><span class="lbl">Putaran</span> <span id="qRoundCounter" class="text-cyan-300 font-mono">1/12</span></div>
+        <div class="stat-pill">⚡ <span id="qScoreCounter" class="text-emerald-400 font-mono">0</span></div>
+      </div>
+
+      <div id="qCatBadge" class="text-center mb-3"></div>
+
+      <div class="rounded-xl p-3.5 md:p-5 mb-3 border border-cyan-500/20" style="background: linear-gradient(135deg, rgba(15,23,60,.5), rgba(5,8,22,.7))">
+        <div class="text-[10px] uppercase tracking-widest text-cyan-400/70 font-bold mb-1.5">❓ Pertanyaan</div>
+        <h3 id="qText" class="text-base md:text-lg font-bold text-slate-100 leading-relaxed overflow-safe">Memuat...</h3>
+      </div>
+
+      <div id="qOptions" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3 mb-3"></div>
+
+      <div id="qFeedback" class="is-hidden"></div>
+
+      <div id="qActions" class="is-hidden flex gap-2 mt-3">
+        <button id="btnNextSpin" type="button" class="btn-primary flex-1" style="background: linear-gradient(135deg,#22d3ee,#3b82f6)">🎡 PUTAR LAGI</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESULT SCREEN ========== -->
+  <section id="resultScreen" class="is-hidden w-full max-w-2xl my-auto space-y-3">
+
+    <div class="kuis-selesai-banner">
+      <div class="kuis-selesai-title">KUIS SELESAI</div>
+      <div class="kuis-selesai-sub">🎉 12 Putaran Telah Selesai 🎉</div>
+    </div>
+
+    <div class="glass-panel p-4 md:p-8 rounded-2xl" style="border: 2px solid rgba(34,211,238,.35)">
+      <div class="border-b-2 border-dashed pb-3 mb-4 text-center" style="border-color: rgba(34,211,238,.25)">
+        <div class="school-name text-base md:text-lg tracking-widest mt-2">SMAN 3 KASONGAN</div>
+        <div class="text-[9px] md:text-[10px] text-cyan-300/80 font-bold uppercase mt-1">HASIL TUGAS INDIVIDU</div>
+      </div>
+
+      <div class="text-center mb-5">
+        <div class="text-[10px] uppercase tracking-widest text-cyan-400/70 font-bold mb-1">Nama Siswa</div>
+        <div id="rName" class="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 leading-tight overflow-safe"
+          style="font-family:'Space Grotesk',sans-serif">—</div>
+      </div>
+
+      <div id="achievementWrap" class="mb-5"></div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-emerald-400/80 font-bold mb-0.5">Benar</div>
+          <div id="rCorrect" class="text-lg md:text-2xl font-black text-emerald-400" style="font-family:'Space Grotesk',sans-serif">0</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-rose-400/80 font-bold mb-0.5">Salah</div>
+          <div id="rWrong" class="text-lg md:text-2xl font-black text-rose-400" style="font-family:'Space Grotesk',sans-serif">0</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-cyan-400/80 font-bold mb-0.5">Akurasi</div>
+          <div id="rAcc" class="text-lg md:text-2xl font-black text-cyan-300" style="font-family:'Space Grotesk',sans-serif">0%</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(251,146,60,.08); border: 1px solid rgba(251,146,60,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-orange-400/80 font-bold mb-0.5">Streak</div>
+          <div id="rStreak" class="text-lg md:text-2xl font-black text-orange-400" style="font-family:'Space Grotesk',sans-serif">0🔥</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl text-center mb-4" style="background: linear-gradient(135deg, rgba(251,191,36,.12), rgba(245,158,11,.05)); border: 1px solid rgba(251,191,36,.35)">
+        <div class="text-[10px] uppercase tracking-widest text-amber-400/90 font-bold mb-1">⚡ Total Poin Diperoleh</div>
+        <div id="totalScoreDisplay" class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400"
+          style="font-family:'Space Grotesk',sans-serif; filter: drop-shadow(0 0 20px rgba(251,191,36,.5))">0</div>
+      </div>
+
+      <div class="mb-4">
+        <div class="text-[10px] uppercase tracking-widest text-cyan-400/80 font-bold mb-2 text-center">📊 Capaian per Kategori</div>
+        <div id="catBreakdown" class="space-y-1.5"></div>
+      </div>
+
+      <div class="mt-4 pt-4 border-t text-center" style="border-color: rgba(34,211,238,.2)">
+        <div class="text-[9px] md:text-[10px] uppercase tracking-widest font-black mb-1.5 flex items-center justify-center gap-1.5"
+          style="color:#67e8f9; text-shadow: 0 0 10px rgba(34,211,238,.7)">
+          <span>👨‍🏫</span> GURU PENGAMPU
+        </div>
+        <div class="teacher-name text-sm md:text-base">SYAHRANI, S.Pd.</div>
+        <div class="nip-text text-[10px] md:text-[11px] mt-0.5">NIP. 19751217200501 1 016</div>
+      </div>
+    </div>
+
+    <button id="btnHome" type="button" class="btn-home">🏠 KEMBALI KE HALAMAN UTAMA</button>
+
+    <button id="btnCopy" type="button" class="w-full font-bold p-3 rounded-xl text-xs cursor-pointer border border-cyan-500/30"
+      style="background: linear-gradient(135deg,#1e3a8a,#2563eb); color:#e0f2fe">
+      📋 SALIN HASIL
+    </button>
+  </section>
+
+</main>
+
+<div id="revealOverlay">
+  <div class="reveal-badge" id="revealBadge">BENAR</div>
+</div>
+
+<footer class="w-full text-center py-4 px-3 border-t border-cyan-500/15"
+  style="background: linear-gradient(90deg, rgba(5,8,22,.9), rgba(10,15,46,.9), rgba(5,8,22,.9))">
+  <div class="text-[10px] md:text-[11px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
+    style="color:#67e8f9; text-shadow: 0 0 10px rgba(34,211,238,.7)">
+    <span>👨‍🏫</span> GURU PENGAMPU
+  </div>
+  <div class="teacher-name text-base md:text-lg">SYAHRANI, S.Pd.</div>
+  <div class="nip-text text-[10px] md:text-xs mt-1">NIP. 19751217200501 1 016</div>
+</footer>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+function show(id){const e=$(id);if(e)e.classList.remove('is-hidden');}
+function hide(id){const e=$(id);if(e)e.classList.add('is-hidden');}
+function setText(id,t){const e=$(id);if(e)e.textContent=t;}
+function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
+
+let audioCtx=null,soundMuted=false;
+function playTone(freq,dur,type,vol,delay){
+  if(soundMuted)return;
+  try{
+    if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();}
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const t=audioCtx.currentTime+(delay||0);
+    const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+    osc.type=type||'sine';osc.frequency.setValueAtTime(freq,t);
+    gain.gain.setValueAtTime(0.0001,t);
+    gain.gain.exponentialRampToValueAtTime(vol||0.15,t+0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(t);osc.stop(t+dur+0.05);
+  }catch(e){}
+}
+function sfx(type){
+  try{
+    if(type==='correct'){[523.25,659.25,783.99,1046.5].forEach((f,i)=>playTone(f,.2,'triangle',.2,i*.1));}
+    else if(type==='wrong'){playTone(220,.25,'sawtooth',.2,0);playTone(110,.4,'sawtooth',.2,.2);}
+    else if(type==='click'){playTone(440,.05,'sine',.08,0);}
+    else if(type==='tick'){playTone(1200,.03,'square',.06,0);}
+    else if(type==='spin'){playTone(400,.5,'sawtooth',.08,0);}
+    else if(type==='win'){[440,554.37,659.25,880].forEach((f,i)=>playTone(f,.25,'sine',.2,i*.13));}
+  }catch(e){}
+}
+
+const CATEGORIES = [
+  { id:'pengertian',  name:'Pengertian & Sumber',   short:'Pengertian',  icon:'📜', color:'#22c55e', points:100 },
+  { id:'manusia',     name:'Manusia Purba',          short:'Manusia',     icon:'🦴', color:'#06b6d4', points:150 },
+  { id:'periodisasi', name:'Periodisasi Zaman Batu', short:'Periodisasi', icon:'⏳', color:'#3b82f6', points:200 },
+  { id:'berburu',     name:'Berburu & Meramu',       short:'Berburu',     icon:'🏹', color:'#6366f1', points:250 },
+  { id:'neolitik',    name:'Bercocok Tanam & Menetap',short:'Neolitik',   icon:'🌾', color:'#8b5cf6', points:300 },
+  { id:'teknologi',   name:'Teknologi Batu',         short:'Teknologi',   icon:'🪨', color:'#a855f7', points:350 },
+  { id:'kepercayaan', name:'Sistem Kepercayaan',     short:'Kepercayaan', icon:'🕯️', color:'#ec4899', points:400 },
+  { id:'peninggalan', name:'Peninggalan & Situs',    short:'Peninggalan', icon:'🏛️', color:'#fbbf24', points:500 },
+  { id:'logam',       name:'Masa Perundagian',       short:'Logam',       icon:'⚒️', color:'#f97316', points:600 }
+];
+
+const QUESTIONS = [
+  // Pengertian & Sumber
+  { cat:'pengertian', q:"Istilah 'praaksara' secara harfiah berasal dari kata 'pra' dan 'aksara' yang berarti...",
+    options:["A. Sebelum tulisan","B. Setelah tulisan","C. Zaman batu","D. Zaman logam"], correct:0,
+    explanation:"Praaksara berasal dari kata 'pra' (sebelum) dan 'aksara' (tulisan). Masa praaksara adalah masa ketika manusia belum mengenal tulisan.",
+    keyPoint:"Praaksara = sebelum mengenal tulisan." },
+  { cat:'pengertian', q:"Perbedaan utama antara istilah 'praaksara' dan 'prasejarah' terletak pada...",
+    options:["A. Waktu terjadinya","B. Nuansa makna istilahnya","C. Lokasi geografisnya","D. Jenis manusianya"], correct:1,
+    explanation:"Praaksara lebih netral karena hanya menunjuk pada 'belum adanya aksara', sedangkan prasejarah secara harfiah berarti 'sebelum sejarah' — padahal masa praaksara tetap memiliki sejarah yang bisa direkonstruksi.",
+    keyPoint:"Praaksara = istilah akademik yang lebih netral." },
+  { cat:'pengertian', q:"Sumber sejarah masa praaksara yang berupa sisa makhluk hidup yang membatu disebut...",
+    options:["A. Artefak","B. Fosil","C. Situs","D. Ecofact"], correct:1,
+    explanation:"Fosil adalah sisa makhluk hidup yang membatu, seperti tulang, tengkorak, dan gigi manusia purba.",
+    keyPoint:"Fosil = sisa makhluk hidup membatu." },
+  { cat:'pengertian', q:"Benda buatan manusia yang menunjukkan tingkat teknologi dan cara hidup pembuatnya disebut...",
+    options:["A. Fosil","B. Artefak","C. Ecofact","D. Situs"], correct:1,
+    explanation:"Artefak adalah benda yang sengaja dibuat atau dimodifikasi manusia, seperti kapak genggam, kapak persegi, mata panah, dan tembikar.",
+    keyPoint:"Artefak = benda buatan manusia." },
+  { cat:'pengertian', q:"Mengapa rekonstruksi kehidupan praaksara bersifat sementara dan dapat berubah?",
+    options:["A. Karena tidak ada sumber tertulis","B. Karena penafsiran bisa berubah seiring temuan baru","C. Karena manusia purba tidak meninggalkan jejak","D. Karena sejarah tidak penting"], correct:1,
+    explanation:"Karena tidak ada sumber tertulis, rekonstruksi kehidupan praaksara selalu bersifat sementara dan dapat berubah jika ditemukan bukti baru. Sejarah praaksara adalah hasil dialog antara bukti dan penafsiran.",
+    keyPoint:"Sejarah praaksara bersifat dinamis." },
+
+  // Manusia Purba
+  { cat:'manusia', q:"Fosil Pithecanthropus erectus yang ditemukan Dubois di Trinil kini diklasifikasikan sebagai...",
+    options:["A. Meganthropus","B. Homo erectus","C. Homo sapiens","D. Homo soloensis"], correct:1,
+    explanation:"Pithecanthropus erectus adalah nama lama; kini diklasifikasikan sebagai Homo erectus — bagian dari spesies manusia purba yang tersebar luas di Asia.",
+    keyPoint:"Pithecanthropus erectus = Homo erectus." },
+  { cat:'manusia', q:"Mengapa status klasifikasi Meganthropus paleojavanicus masih diperdebatkan?",
+    options:["A. Karena fosilnya hilang","B. Karena hanya ditemukan rahang dan gigi yang fragmenter","C. Karena ditemukan di luar Indonesia","D. Karena sudah punah"], correct:1,
+    explanation:"Meganthropus paleojavanicus ditemukan di Sangiran oleh von Koenigswald (1941). Fosil yang ditemukan hanya berupa rahang dan gigi (fragmenter), sehingga apakah ia spesies tersendiri atau bagian dari variasi Homo erectus masih diperdebatkan.",
+    keyPoint:"Meganthropus = fosil fragmenter, status diperdebatkan." },
+  { cat:'manusia', q:"Situs Sangiran di Jawa Tengah diakui UNESCO sebagai Warisan Budaya Dunia pada tahun...",
+    options:["A. 1990","B. 1996","C. 2000","D. 2003"], correct:1,
+    explanation:"Situs Sangiran ditetapkan UNESCO sebagai Warisan Budaya Dunia pada tahun 1996. Situs ini menyimpan fosil manusia purba, hewan, dan alat batu dalam jumlah besar.",
+    keyPoint:"Sangiran = Warisan Dunia UNESCO 1996." },
+  { cat:'manusia', q:"Homo floresiensis yang ditemukan di Liang Bua memiliki ciri utama...",
+    options:["A. Tubuh sangat besar","B. Tubuh sangat kecil (±100 cm)","C. Volume otak 1300 cc","D. Tidak bisa berjalan tegak"], correct:1,
+    explanation:"Homo floresiensis memiliki tubuh sangat kecil (±100 cm) dengan volume otak ±380 cc. Status klasifikasinya masih diperdebatkan.",
+    keyPoint:"Homo floresiensis = manusia kerdil Flores." },
+  { cat:'manusia', q:"Manusia modern (Homo sapiens) memiliki volume otak sekitar...",
+    options:["A. 380 cc","B. 750-900 cc","C. 1000-1300 cc","D. 1300-1400 cc"], correct:3,
+    explanation:"Homo sapiens memiliki volume otak 1300-1400 cc dan sudah memiliki peradaban kompleks.",
+    keyPoint:"Homo sapiens = volume otak 1300-1400 cc." },
+
+  // Periodisasi
+  { cat:'periodisasi', q:"Periodisasi zaman batu sebaiknya dipahami sebagai...",
+    options:["A. Garis tegas pemisah antar zaman","B. Alat bantu pemahaman, bukan garis tegas","C. Urutan yang tidak bisa berubah","D. Hanya berlaku di Eropa"], correct:1,
+    explanation:"Periodisasi adalah pembabakan waktu berdasarkan ciri-ciri tertentu. Periodisasi zaman batu dibuat untuk memudahkan pemahaman — bukan tujuan akhir pembelajaran. Perubahan antarbabak berlangsung bertahap.",
+    keyPoint:"Periodisasi = alat bantu pemahaman." },
+  { cat:'periodisasi', q:"Ciri kehidupan Paleolitikum adalah...",
+    options:["A. Bercocok tanam dan menetap","B. Berburu dan meramu serta nomaden","C. Membangun megalit","D. Mengenal logam"], correct:1,
+    explanation:"Paleolitikum (Batu Tua) ditandai dengan hidup nomaden (berpindah-pindah), mata pencaharian berburu dan meramu, serta alat batu masih kasar.",
+    keyPoint:"Paleolitikum = berburu, meramu, nomaden." },
+  { cat:'periodisasi', q:"Masa Mesolitikum ditandai dengan...",
+    options:["A. Alat batu masih kasar","B. Mulai ada lukisan gua dan semi-nomaden","C. Sudah menetap permanen","D. Mengenal teknologi logam"], correct:1,
+    explanation:"Mesolitikum (Batu Tengah) ditandai dengan alat lebih halus, mulai ada lukisan gua, dan pola hidup semi-nomaden.",
+    keyPoint:"Mesolitikum = semi-nomaden, lukisan gua." },
+  { cat:'periodisasi', q:"Revolusi Neolitikum ditandai dengan perubahan dari food gathering menjadi...",
+    options:["A. Food producing","B. Food consuming","C. Food trading","D. Food storing"], correct:0,
+    explanation:"Perubahan dari berburu-meramu (food gathering) ke bercocok tanam (food producing) adalah salah satu revolusi terbesar dalam sejarah manusia.",
+    keyPoint:"Neolitikum = revolusi food producing." },
+  { cat:'periodisasi', q:"Masa Megalitikum ditandai dengan...",
+    options:["A. Alat batu halus","B. Bangunan batu besar","C. Teknologi logam","D. Lukisan gua"], correct:1,
+    explanation:"Megalitikum (Batu Besar) ditandai dengan pembangunan bangunan batu besar seperti menhir, dolmen, dan sarkofagus yang berhubungan dengan sistem kepercayaan.",
+    keyPoint:"Megalitikum = bangunan batu besar." },
+
+  // Berburu & Meramu
+  { cat:'berburu', q:"Pola kehidupan berburu dan meramu disebut juga...",
+    options:["A. Food producing","B. Food gathering","C. Food trading","D. Food processing"], correct:1,
+    explanation:"Pola kehidupan berburu dan meramu (food gathering) adalah cara bertahan hidup paling awal. Manusia mengambil langsung apa yang tersedia di alam tanpa mengolahnya terlebih dahulu.",
+    keyPoint:"Berburu-meramu = food gathering." },
+  { cat:'berburu', q:"Mengapa masyarakat berburu-meramu hidup nomaden?",
+    options:["A. Karena tidak suka tinggal di rumah","B. Karena berpindah mengikuti hewan buruan dan ketersediaan makanan","C. Karena dilarang menetap","D. Karena belum ada rumah"], correct:1,
+    explanation:"Masyarakat berburu-meramu hidup nomaden (berpindah-pindah) mengikuti hewan buruan dan ketersediaan makanan.",
+    keyPoint:"Nomaden = mengikuti sumber makanan." },
+  { cat:'berburu', q:"Alat batu yang digunakan pada masa Paleolitikum dibuat dengan teknik...",
+    options:["A. Diasah dan dipoles","B. Dipangkas (perkusi)","C. Dilebur","D. Dicetak"], correct:1,
+    explanation:"Pada masa Paleolitikum, alat batu masih kasar karena dibuat dengan teknik pangkas (perkusi), seperti kapak genggam dan kapak perimbas.",
+    keyPoint:"Paleolitikum = teknik pangkas (perkusi)." },
+  { cat:'berburu', q:"Tempat tinggal masyarakat berburu-meramu umumnya berupa...",
+    options:["A. Rumah kayu permanen","B. Goa alam dan tenda sederhana","C. Bangunan batu besar","D. Istana"], correct:1,
+    explanation:"Masyarakat berburu-meramu umumnya tinggal di goa-goa alam (misalnya Leang-Leang) atau di bawah pohon besar, serta tenda sederhana dari ranting, daun, dan kulit hewan.",
+    keyPoint:"Tempat tinggal = goa & tenda sederhana." },
+  { cat:'berburu', q:"Pembagian kerja pada masyarakat berburu-meramu adalah...",
+    options:["A. Laki-laki meramu, perempuan berburu","B. Laki-laki berburu, perempuan meramu dan mengasuh anak","C. Semua bekerja sama tanpa pembagian","D. Anak-anak berburu"], correct:1,
+    explanation:"Pembagian kerja sederhana: laki-laki berburu, perempuan meramu dan mengasuh anak.",
+    keyPoint:"Pembagian kerja sederhana berdasarkan gender." },
+
+  // Bercocok Tanam & Menetap
+  { cat:'neolitik', q:"Apa yang mendorong perubahan dari berburu-meramu ke bercocok tanam?",
+    options:["A. Kemalasan manusia","B. Akhir zaman es dan berkurangnya hewan buruan","C. Perintah raja","D. Penemuan logam"], correct:1,
+    explanation:"Akhir zaman es menyebabkan suhu menghangat, hutan subur, dan hewan besar mulai punah. Berkurangnya hewan buruan mendorong manusia mencari sumber makanan lain, termasuk bercocok tanam.",
+    keyPoint:"Pendorong = akhir zaman es." },
+  { cat:'neolitik', q:"Dampak utama dari kehidupan menetap adalah...",
+    options:["A. Munculnya desa-desa permanen","B. Manusia kembali nomaden","C. Hilangnya kepercayaan","D. Berkurangnya populasi"], correct:0,
+    explanation:"Kehidupan menetap memunculkan desa-desa permanen dengan rumah dari kayu, bambu, dan tanah liat, serta kepemilikan tanah dan hasil panen mulai muncul.",
+    keyPoint:"Menetap = desa permanen." },
+  { cat:'neolitik', q:"Hewan yang didomestikasi pada masa Neolitikum antara lain...",
+    options:["A. Harimau dan gajah","B. Anjing, babi, ayam, dan sapi","C. Ular dan buaya","D. Burung elang"], correct:1,
+    explanation:"Domestikasi hewan — anjing, babi, ayam, dan sapi dijinakkan pada masa Neolitikum.",
+    keyPoint:"Domestikasi = penjinakan hewan." },
+  { cat:'neolitik', q:"Nilai gotong royong yang masih hidup dalam masyarakat Indonesia merupakan warisan dari...",
+    options:["A. Masa Paleolitikum","B. Masa Neolitikum","C. Masa Perundagian","D. Masa Hindu-Buddha"], correct:1,
+    explanation:"Gotong royong menjadi nilai penting yang masih hidup dalam masyarakat Indonesia hingga kini, berakar dari kehidupan desa pada masa Neolitikum.",
+    keyPoint:"Gotong royong = warisan Neolitikum." },
+  { cat:'neolitik', q:"Kepala suku pada masa Neolitikum bertugas...",
+    options:["A. Berburu sendiri","B. Mengatur pembagian lahan dan menyelesaikan konflik","C. Membuat alat batu","D. Melukis gua"], correct:1,
+    explanation:"Muncul pemimpin desa (kepala suku) yang mengatur pembagian lahan, jadwal tanam, dan menyelesaikan konflik.",
+    keyPoint:"Kepala suku = pemimpin desa." },
+
+  // Teknologi Batu
+  { cat:'teknologi', q:"Kapak genggam (chopper) ditemukan di situs...",
+    options:["A. Sangiran & Pacitan","B. Liang Bua & Flores","C. Gunung Padang & Lore Lindu","D. Dong Son & Gilimanuk"], correct:0,
+    explanation:"Kapak genggam (chopper) ditemukan di Sangiran & Pacitan dan digunakan untuk memotong daging dan memecah tulang.",
+    keyPoint:"Kapak genggam = Sangiran & Pacitan." },
+  { cat:'teknologi', q:"Kapak persegi digunakan untuk...",
+    options:["A. Memotong daging","B. Membabat hutan dan membuka lahan pertanian","C. Menangkap ikan","D. Membuat perhiasan"], correct:1,
+    explanation:"Kapak persegi ditemukan di Sumatera, Jawa, Sulawesi. Digunakan untuk membabat hutan dan membuka lahan pertanian.",
+    keyPoint:"Kapak persegi = alat pertanian." },
+  { cat:'teknologi', q:"Kapak lonjong ditemukan di daerah...",
+    options:["A. Sumatera & Jawa","B. Minahasa, Maluku, Papua","C. Bali & Lombok","D. Kalimantan & Sulawesi"], correct:1,
+    explanation:"Kapak lonjong ditemukan di Minahasa, Maluku, Papua. Digunakan sebagai cangkul untuk mengolah tanah.",
+    keyPoint:"Kapak lonjong = Indonesia timur." },
+  { cat:'teknologi', q:"Teknik pembuatan alat batu pada masa Neolitikum adalah...",
+    options:["A. Pangkas (perkusi)","B. Pangkas halus","C. Asah & poles","D. Peleburan"], correct:2,
+    explanation:"Pada masa Neolitikum, alat batu dibuat dengan teknik asah & poles, seperti kapak persegi, kapak lonjong, dan beliung.",
+    keyPoint:"Neolitikum = teknik asah & poles." },
+  { cat:'teknologi', q:"Alat serpih (flakes) pada masa Paleolitikum digunakan untuk...",
+    options:["A. Membabat hutan","B. Memotong, menguliti, dan menggali","C. Membangun rumah","D. Membuat perhiasan"], correct:1,
+    explanation:"Alat serpih adalah alat batu kecil yang digunakan untuk memotong daging, menguliti hewan, dan menggali tanah.",
+    keyPoint:"Alat serpih = alat serbaguna." },
+
+  // Sistem Kepercayaan
+  { cat:'kepercayaan', q:"Kepercayaan bahwa segala sesuatu memiliki roh disebut...",
+    options:["A. Dinamisme","B. Animisme","C. Totemisme","D. Monoteisme"], correct:1,
+    explanation:"Animisme adalah kepercayaan bahwa segala sesuatu memiliki roh — pohon, batu, sungai, gunung, dan terutama roh leluhur.",
+    keyPoint:"Animisme = roh pada segala sesuatu." },
+  { cat:'kepercayaan', q:"Kepercayaan bahwa benda-benda tertentu memiliki kekuatan gaib disebut...",
+    options:["A. Animisme","B. Dinamisme","C. Totemisme","D. Politeisme"], correct:1,
+    explanation:"Dinamisme adalah kepercayaan bahwa benda-benda tertentu memiliki kekuatan gaib — seperti batu, senjata, perhiasan, atau patung.",
+    keyPoint:"Dinamisme = kekuatan gaib pada benda." },
+  { cat:'kepercayaan', q:"Kepercayaan bahwa ada hubungan khusus antara kelompok manusia dengan hewan atau tumbuhan tertentu disebut...",
+    options:["A. Animisme","B. Dinamisme","C. Totemisme","D. Fetisisme"], correct:2,
+    explanation:"Totemisme adalah kepercayaan bahwa ada hubungan khusus antara suatu kelompok manusia dengan hewan atau tumbuhan tertentu (totem). Totem dianggap sebagai leluhur atau pelindung.",
+    keyPoint:"Totemisme = hubungan dengan hewan/tumbuhan." },
+  { cat:'kepercayaan', q:"Tradisi sedekah laut merupakan contoh warisan dari kepercayaan...",
+    options:["A. Animisme","B. Dinamisme","C. Totemisme","D. Ateisme"], correct:0,
+    explanation:"Sedekah laut untuk menghormati penguasa laut adalah bentuk animisme yang masih hidup hingga kini.",
+    keyPoint:"Sedekah laut = warisan animisme." },
+  { cat:'kepercayaan', q:"Menhir dan dolmen pada masa Megalitikum berfungsi sebagai...",
+    options:["A. Alat pertanian","B. Tempat pemujaan dan meletakkan sesaji","C. Senjata perang","D. Alat musik"], correct:1,
+    explanation:"Menhir adalah tugu batu sebagai peringatan atau tempat pemujaan leluhur, sedangkan dolmen adalah meja batu besar sebagai tempat meletakkan sesaji.",
+    keyPoint:"Menhir & dolmen = sarana pemujaan." },
+
+  // Peninggalan & Situs
+  { cat:'peninggalan', q:"Lukisan tangan di dinding gua ditemukan di situs...",
+    options:["A. Sangiran","B. Trinil","C. Leang-Leang (Sulawesi Selatan)","D. Gunung Padang"], correct:2,
+    explanation:"Lukisan tangan di dinding gua ditemukan di Leang-Leang (Sulawesi Selatan) dan Goa Kira. Berusia puluhan ribu tahun dan diyakini sebagai tanda kepemilikan atau ritual spiritual.",
+    keyPoint:"Lukisan gua = Leang-Leang." },
+  { cat:'peninggalan', q:"Situs megalitikum terbesar di Asia Tenggara adalah...",
+    options:["A. Gunung Padang","B. Lore Lindu","C. Pasemah","D. Sangiran"], correct:0,
+    explanation:"Gunung Padang (Cianjur, Jawa Barat) adalah situs megalitikum terbesar di Asia Tenggara. Dianggap sebagai tempat pemujaan dan pengamatan astronomi.",
+    keyPoint:"Gunung Padang = megalit terbesar Asia Tenggara." },
+  { cat:'peninggalan', q:"Sarkofagus adalah peninggalan megalitikum yang berfungsi sebagai...",
+    options:["A. Tempat pemujaan","B. Peti jenazah dari batu","C. Meja sesaji","D. Tugu peringatan"], correct:1,
+    explanation:"Sarkofagus adalah peti jenazah dari batu, ditemukan di Bali.",
+    keyPoint:"Sarkofagus = peti jenazah batu." },
+  { cat:'peninggalan', q:"Lore Lindu di Sulawesi Tengah memiliki peninggalan berupa...",
+    options:["A. Lukisan gua","B. Ratusan menhir dan patung batu kuno","C. Kapak genggam","D. Nekara perunggu"], correct:1,
+    explanation:"Lore Lindu (Sulawesi Tengah) memiliki ratusan menhir dan patung batu kuno.",
+    keyPoint:"Lore Lindu = menhir & patung batu." },
+  { cat:'peninggalan', q:"Situs Pasemah di Sumatera Selatan memiliki peninggalan berupa...",
+    options:["A. Patung megalitik manusia, gajah, dan hewan lainnya","B. Kapak persegi","C. Lukisan tangan","D. Nekara perunggu"], correct:0,
+    explanation:"Pasemah (Sumatera Selatan) memiliki patung megalitik yang menggambarkan manusia, gajah, dan hewan lainnya.",
+    keyPoint:"Pasemah = patung megalitik." },
+
+  // Masa Perundagian
+  { cat:'logam', q:"Masa perundagian adalah masa ketika manusia mulai mengenal...",
+    options:["A. Tulisan","B. Teknologi logam","C. Pertanian","D. Lukisan gua"], correct:1,
+    explanation:"Masa perundagian adalah masa ketika manusia mulai mengenal teknologi logam. Masa ini menandai akhir masa praaksara dan awal mula sejarah di Nusantara.",
+    keyPoint:"Perundagian = zaman logam." },
+  { cat:'logam', q:"Nekara adalah peninggalan zaman perunggu yang berfungsi sebagai...",
+    options:["A. Alat pertanian","B. Drum perunggu untuk upacara dan simbol status","C. Senjata perang","D. Perhiasan"], correct:1,
+    explanation:"Nekara (drum perunggu) digunakan dalam upacara dan sebagai simbol status.",
+    keyPoint:"Nekara = drum perunggu." },
+  { cat:'logam', q:"Kapak corong adalah kapak perunggu yang memiliki ciri...",
+    options:["A. Berbentuk persegi","B. Memiliki lubang di bagian bawah untuk memasukkan gagang","C. Terbuat dari besi","D. Digunakan untuk berburu"], correct:1,
+    explanation:"Kapak corong adalah kapak dengan lubang di bagian bawah untuk memasukkan gagang.",
+    keyPoint:"Kapak corong = kapak berlubang." },
+  { cat:'logam', q:"Teknik peleburan besi membutuhkan suhu yang lebih tinggi daripada perunggu karena...",
+    options:["A. Besi lebih berat","B. Besi lebih keras dan tajam","C. Besi lebih murah","D. Besi lebih langka"], correct:1,
+    explanation:"Besi lebih keras dan tajam daripada perunggu. Teknik peleburan besi membutuhkan suhu lebih tinggi dan keahlian khusus.",
+    keyPoint:"Besi = lebih keras, butuh suhu tinggi." },
+  { cat:'logam', q:"Bukti arkeologis menunjukkan teknik peleburan logam mulai dikenal di Nusantara sekitar...",
+    options:["A. 10.000 tahun lalu","B. Awal milenium pertama SM hingga awal Masehi","C. Abad ke-10 Masehi","D. Zaman Paleolitikum"], correct:1,
+    explanation:"Teknik peleburan logam mulai dikenal di Nusantara sekitar awal milenium pertama SM hingga awal Masehi, melalui kontak dengan kebudayaan Dong Son (Vietnam) dan perkembangan lokal.",
+    keyPoint:"Logam dikenal awal milenium pertama SM." }
+];
+
+const state = {
+  studentName: '', currentRound: 0, totalRounds: 12,
+  totalScore: 0, correctCount: 0, wrongCount: 0,
+  streak: 0, maxStreak: 0,
+  currentCategory: null, currentQuestion: null,
+  currentRotation: 0, spinning: false, answerLocked: false,
+  gameFinished: false,
+  selectedAnswerIndex: null, usedQuestions: new Set(), history: [],
+  catStats: {}
+};
+const STORAGE_PREFIX = 'kuis_roda_sejarah_v1_';
+
+/* =========================================================
+   MEMBANGUN RODA
+   ========================================================= */
+function buildWheel() {
+  const svg = $('wheelSvg');
+  const cx = 100, cy = 100, r = 92;
+  const total = CATEGORIES.length;
+  const segAngle = 360 / total;
+  const half = segAngle / 2;
+
+  let defsHtml = `<radialGradient id="wheelInner" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#0a0f2e" stop-opacity="1"/>
+      <stop offset="62%" stop-color="#0a0f2e" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#1e2a6e" stop-opacity="1"/>
+    </radialGradient>`;
+
+  let segHtml = '';
+
+  for (let i = 0; i < total; i++) {
+    const cat = CATEGORIES[i];
+    const centerDeg = -90 + i * segAngle;
+
+    const a0 = (centerDeg - half) * Math.PI / 180;
+    const a1 = (centerDeg + half) * Math.PI / 180;
+    const sx = cx + r * Math.cos(a0), sy = cy + r * Math.sin(a0);
+    const ex = cx + r * Math.cos(a1), ey = cy + r * Math.sin(a1);
+    const wedge = `M ${cx} ${cy} L ${sx.toFixed(2)} ${sy.toFixed(2)} A ${r} ${r} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)} Z`;
+
+    segHtml += `<path d="${wedge}" fill="${cat.color}" fill-opacity="0.92" stroke="#0a0f2e" stroke-width="1.4"/>`;
+    segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.24"/>`;
+    segHtml += `<path d="${wedge}" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.5"/>`;
+
+    const textR   = r * 0.62;
+    const fontSize = 6.2;
+    const padDeg  = half * 0.84;
+    const isTop   = Math.sin(centerDeg * Math.PI / 180) <= 0;
+
+    const baseR = isTop ? (textR - fontSize * 0.34) : (textR + fontSize * 0.34);
+    const sDeg  = isTop ? (centerDeg - padDeg) : (centerDeg + padDeg);
+    const eDeg  = isTop ? (centerDeg + padDeg) : (centerDeg - padDeg);
+    const sRad  = sDeg * Math.PI / 180;
+    const eRad  = eDeg * Math.PI / 180;
+    const tsx = cx + baseR * Math.cos(sRad), tsy = cy + baseR * Math.sin(sRad);
+    const tex = cx + baseR * Math.cos(eRad), tey = cy + baseR * Math.sin(eRad);
+    const sweep = isTop ? 1 : 0;
+    const pid = `wheelTextPath-${i}`;
+
+    defsHtml += `<path id="${pid}" fill="none" d="M ${tsx.toFixed(2)} ${tsy.toFixed(2)} A ${baseR.toFixed(2)} ${baseR.toFixed(2)} 0 0 ${sweep} ${tex.toFixed(2)} ${tey.toFixed(2)}"/>`;
+
+    segHtml += `<text font-size="${fontSize}" font-weight="900" fill="#ffffff"
+        letter-spacing="0.25" font-family="'Space Grotesk','Inter',sans-serif"
+        style="paint-order:stroke;stroke:rgba(5,8,22,.62);stroke-width:1.8px;stroke-linejoin:round">
+        <textPath href="#${pid}" startOffset="50%" text-anchor="middle">${cat.short.toUpperCase()}</textPath>
+      </text>`;
+
+    const iconR = r * 0.81;
+    const icx = cx + iconR * Math.cos(centerDeg * Math.PI / 180);
+    const icy = cy + iconR * Math.sin(centerDeg * Math.PI / 180);
+    const irot = centerDeg + 90;
+
+    segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)}) rotate(${irot.toFixed(2)})">
+        <circle r="8.6" fill="rgba(5,8,22,.42)" stroke="rgba(255,255,255,.30)" stroke-width="0.6"/>
+        <text x="0" y="3.1" text-anchor="middle" font-size="9.5"
+          font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${cat.icon}</text>
+      </g>`;
+  }
+
+  let html = `<defs>${defsHtml}</defs>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="#0a0f2e" stroke="#22d3ee" stroke-width="2" opacity="0.65"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 6}" fill="none" stroke="#3b82f6" stroke-width="0.5" opacity="0.4"/>`;
+  html += segHtml;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#67e8f9" stroke-width="1.6" opacity="0.75"/>`;
+
+  const dots = total * 2;
+  for (let i = 0; i < dots; i++) {
+    const ang = (i * (360 / dots)) * Math.PI / 180;
+    const dx = cx + (r + 2) * Math.cos(ang);
+    const dy = cy + (r + 2) * Math.sin(ang);
+    html += `<circle cx="${dx.toFixed(2)}" cy="${dy.toFixed(2)}" r="0.9" fill="#67e8f9" opacity="0.55"/>`;
+  }
+
+  svg.innerHTML = html;
+}
+
+function pickQuestion(catId) {
+  const pool = QUESTIONS.filter(q => q.cat === catId);
+  const unused = pool.filter(q => !state.usedQuestions.has(q.q));
+  const source = unused.length > 0 ? unused : pool;
+  const chosen = source[Math.floor(Math.random() * source.length)];
+  state.usedQuestions.add(chosen.q);
+  return chosen;
+}
+
+function spin() {
+  if (state.gameFinished) return;
+  if (state.spinning) return;
+
+  state.spinning = true;
+  $('spinBtn').disabled = true;
+  hide('categoryResult');
+  hide('wheelInstruction');
+  sfx('spin');
+
+  const targetIdx = Math.floor(Math.random() * CATEGORIES.length);
+  const segAngle = 360 / CATEGORIES.length;
+  const extraSpins = 5 + Math.floor(Math.random() * 3);
+  const jitter = (Math.random() - 0.5) * (segAngle * 0.6);
+  const baseTarget = -targetIdx * segAngle + jitter;
+  const currentMod = ((state.currentRotation % 360) + 360) % 360;
+  const targetMod = ((baseTarget % 360) + 360) % 360;
+  const delta = ((targetMod - currentMod) + 360) % 360;
+  const finalRotation = state.currentRotation + extraSpins * 360 + delta;
+  state.currentRotation = finalRotation;
+
+  const wheel = $('wheelSvg');
+  const duration = 5000;
+  wheel.style.transition = `transform ${duration}ms cubic-bezier(0.15, 0.9, 0.25, 1)`;
+  wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+  let t = 0;
+  while (t < duration) {
+    const progress = t / duration;
+    const interval = 30 + progress * progress * 260;
+    setTimeout(() => sfx('tick'), t);
+    t += interval;
+  }
+
+  setTimeout(() => {
+    state.spinning = false;
+    $('spinBtn').disabled = false;
+    onSpinComplete(targetIdx);
+  }, duration + 100);
+}
+
+function onSpinComplete(targetIdx) {
+  const cat = CATEGORIES[targetIdx];
+  state.currentCategory = cat;
+  const res = $('categoryResult');
+  res.innerHTML = `
+    <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}aa); color: #050816; border: 2px solid ${cat.color}">
+      <span style="font-size: 1.2em">${cat.icon}</span>
+      <span>${cat.name}</span>
+      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(5,8,22,.3)">+${cat.points}</span>
+    </div>`;
+  show('categoryResult');
+  playTone(660, .1, 'sine', .15, 0);
+  playTone(880, .15, 'sine', .15, .1);
+  setTimeout(() => startQuestion(cat), 1400);
+}
+
+function startQuestion(cat) {
+  if (state.gameFinished) return;
+
+  state.currentQuestion = pickQuestion(cat.id);
+  state.answerLocked = false;
+  state.selectedAnswerIndex = null;
+
+  hide('wheelScreen');
+  show('questionScreen');
+
+  setText('qRoundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
+  setText('qScoreCounter', state.totalScore);
+
+  $('qCatBadge').innerHTML = `
+    <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}aa); color: #050816; border: 2px solid ${cat.color}">
+      <span>${cat.icon}</span>
+      <span>${cat.name}</span>
+      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(5,8,22,.3)">+${cat.points} poin</span>
+    </div>`;
+
+  setText('qText', state.currentQuestion.q);
+
+  const opts = $('qOptions');
+  opts.innerHTML = '';
+  state.currentQuestion.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'opt-btn overflow-safe';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => selectAnswer(i));
+    opts.appendChild(btn);
+  });
+
+  hide('qFeedback');
+  hide('qActions');
+}
+
+function selectAnswer(idx) {
+  if (state.answerLocked) return;
+  state.answerLocked = true;
+  state.selectedAnswerIndex = idx;
+  sfx('click');
+
+  const q = state.currentQuestion;
+  const isCorrect = idx === q.correct;
+  const cat = state.currentCategory;
+
+  if (!state.catStats[cat.id]) state.catStats[cat.id] = { total: 0, correct: 0, points: 0 };
+  state.catStats[cat.id].total++;
+
+  const btns = document.querySelectorAll('#qOptions .opt-btn');
+  btns.forEach(b => b.disabled = true);
+  btns[idx].classList.add(isCorrect ? 'opt-correct' : 'opt-wrong');
+  if (!isCorrect) btns[q.correct].classList.add('opt-correct');
+
+  showRevealOverlay(isCorrect ? 'BENAR' : 'SALAH', isCorrect ? 'benar' : 'salah');
+
+  let earnedPoints = 0;
+  if (isCorrect) {
+    sfx('correct');
+    state.correctCount++;
+    state.streak++;
+    if (state.streak > state.maxStreak) state.maxStreak = state.streak;
+    const streakBonus = Math.min(state.streak - 1, 5) * 0.1;
+    earnedPoints = Math.round(cat.points * (1 + streakBonus));
+    state.totalScore += earnedPoints;
+    state.catStats[cat.id].correct++;
+    state.catStats[cat.id].points += earnedPoints;
+  } else {
+    sfx('wrong');
+    state.wrongCount++;
+    state.streak = 0;
+  }
+
+  state.history.push({
+    round: state.currentRound + 1, cat: cat.name, catColor: cat.color, catIcon: cat.icon,
+    question: q.q, userAnswer: q.options[idx], correctAnswer: q.options[q.correct],
+    explanation: q.explanation, keyPoint: q.keyPoint, isCorrect, points: earnedPoints
+  });
+
+  setTimeout(() => {
+    hideRevealOverlay();
+    showFeedback(isCorrect, earnedPoints, cat);
+  }, 1500);
+}
+
+function showFeedback(isCorrect, earnedPoints, cat) {
+  const q = state.currentQuestion;
+  const fb = $('qFeedback');
+  let html = '';
+  if (isCorrect) {
+    html += `<div class="p-3 rounded-xl mb-2" style="background: linear-gradient(135deg, rgba(34,197,94,.12), rgba(34,197,94,.03)); border: 1px solid rgba(34,197,94,.35)">
+      <div class="text-[10px] text-emerald-400 font-bold uppercase mb-1">✓ Jawaban Benar</div>
+      <div class="font-bold text-emerald-200 text-xs md:text-sm overflow-safe">${q.options[state.selectedAnswerIndex]}</div>
+      <div class="text-[11px] mt-1.5 text-emerald-300/90 font-bold">+${earnedPoints} poin ${state.streak >= 2 ? `(🔥 Streak x${state.streak})` : ''}</div>
+    </div>`;
+  } else {
+    html += `<div class="space-y-2 mb-2">
+      <div class="p-2.5 rounded-xl" style="background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.35)">
+        <div class="text-[10px] text-rose-300 font-bold uppercase">✗ Jawabanmu:</div>
+        <div class="font-semibold text-rose-200 text-xs md:text-sm overflow-safe">${q.options[state.selectedAnswerIndex]}</div>
+      </div>
+      <div class="p-2.5 rounded-xl" style="background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.35)">
+        <div class="text-[10px] text-emerald-400 font-bold uppercase">✓ Jawaban Benar:</div>
+        <div class="font-bold text-emerald-300 text-xs md:text-sm overflow-safe">${q.options[q.correct]}</div>
+      </div>
+    </div>`;
+  }
+  html += `<div class="fb-section why"><div class="fb-t">💡 Pembahasan</div><div class="fb-b">${q.explanation}</div></div>`;
+  html += `<div class="fb-section key"><div class="fb-t">🎯 Poin Kunci</div><div class="fb-b">${q.keyPoint}</div></div>`;
+  fb.innerHTML = html;
+  show('qFeedback');
+
+  if (state.currentRound >= state.totalRounds - 1) {
+    const btn = $('btnNextSpin');
+    btn.innerHTML = '🏁 LIHAT HASIL KUIS';
+    btn.style.background = 'linear-gradient(135deg,#fbbf24,#f59e0b)';
+  } else {
+    const btn = $('btnNextSpin');
+    btn.innerHTML = '🎡 PUTAR LAGI';
+    btn.style.background = 'linear-gradient(135deg,#22d3ee,#3b82f6)';
+  }
+  show('qActions');
+  setText('qScoreCounter', state.totalScore);
+
+  if (isCorrect && state.streak >= 3) {
+    safeConfetti({ particleCount: 40, spread: 60, origin: { y: .7 }, colors: ['#22d3ee','#3b82f6','#fbbf24'] });
+  }
+}
+
+function nextRound() {
+  sfx('click');
+  if (state.gameFinished) return;
+
+  state.currentRound++;
+
+  if (state.currentRound >= state.totalRounds) {
+    state.gameFinished = true;
+    hide('questionScreen');
+    hide('wheelScreen');
+    endGame();
+    return;
+  }
+
+  hide('questionScreen');
+  show('wheelScreen');
+  setText('roundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
+  setText('scoreCounter', state.totalScore);
+  show('wheelInstruction');
+  hide('categoryResult');
+}
+
+function showRevealOverlay(text, type) {
+  const o = $('revealOverlay');
+  const b = $('revealBadge');
+  b.className = 'reveal-badge';
+  b.textContent = text;
+  if (type === 'benar') {
+    b.classList.add('benar');
+    createBurst(window.innerWidth/2, window.innerHeight/2, ['#22c55e','#4ade80','#67e8f9','#86efac']);
+  } else {
+    b.classList.add('salah');
+    createBurst(window.innerWidth/2, window.innerHeight/2, ['#ef4444','#f87171','#fbbf24','#fca5a5']);
+  }
+  o.classList.add('show');
+  o.classList.add('backdrop');
+}
+function hideRevealOverlay() {
+  const o = $('revealOverlay');
+  o.classList.remove('show');
+  o.classList.remove('backdrop');
+}
+function createBurst(cx, cy, colors) {
+  const count = window.innerWidth < 640 ? 18 : 28;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'burst-particle';
+    p.style.left = cx + 'px'; p.style.top = cy + 'px';
+    p.style.background = colors[i % colors.length];
+    const angle = (Math.PI * 2 * i) / count;
+    const dist = 90 + Math.random() * 200;
+    p.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    p.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    p.style.animationDelay = (Math.random() * .15) + 's';
+    p.style.boxShadow = '0 0 14px ' + colors[i % colors.length];
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1300);
+  }
+}
+
+function getAchievement(accuracy, correct, total) {
+  if (accuracy >= 95) return {
+    tier: 'gold', icon: '👑',
+    title: 'LEGENDA SEJARAH',
+    desc: 'Sempurna! Kamu menguasai materi Praaksara dengan sangat luar biasa.',
+    color: '#fbbf24'
+  };
+  if (accuracy >= 85) return {
+    tier: 'gold', icon: '🏆',
+    title: 'MASTER ARKEOLOG',
+    desc: 'Luar biasa! Pemahamanmu tentang masa praaksara sangat tinggi.',
+    color: '#fbbf24'
+  };
+  if (accuracy >= 70) return {
+    tier: 'emerald', icon: '🌟',
+    title: 'AHLI SEJARAH',
+    desc: 'Hebat! Kamu sudah menguasai sebagian besar konsep praaksara.',
+    color: '#22c55e'
+  };
+  if (accuracy >= 55) return {
+    tier: 'blue', icon: '🧭',
+    title: 'PENJELAJAH MASA LALU',
+    desc: 'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.',
+    color: '#3b82f6'
+  };
+  if (accuracy >= 40) return {
+    tier: 'violet', icon: '📜',
+    title: 'PEMBELAJAR AKTIF',
+    desc: 'Cukup baik! Pelajari kembali materi yang belum dikuasai.',
+    color: '#8b5cf6'
+  };
+  return {
+    tier: 'slate', icon: '🌱',
+    title: 'PEMULA SEMANGAT',
+    desc: 'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.',
+    color: '#94a3b8'
+  };
+}
+
+function endGame() {
+  hide('wheelScreen');
+  hide('questionScreen');
+  show('resultScreen');
+
+  const total = state.totalRounds;
+  const correct = state.correctCount;
+  const wrong = state.wrongCount;
+  const accuracy = Math.round((correct / total) * 100);
+  const score = state.totalScore;
+
+  const ach = getAchievement(accuracy, correct, total);
+
+  setText('rName', state.studentName.toUpperCase());
+
+  const achWrap = $('achievementWrap');
+  achWrap.innerHTML = `
+    <div class="achievement-card ach-tier-${ach.tier}">
+      <div class="flex items-center gap-3 relative z-10">
+        <div class="ach-icon">${ach.icon}</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] uppercase tracking-widest font-black mb-1" style="color: ${ach.color}; text-shadow: 0 0 12px ${ach.color}aa">🏅 KATEGORI CAPAIAN</div>
+          <div class="text-lg md:text-2xl font-black leading-tight overflow-safe" style="color: ${ach.color}; font-family:'Space Grotesk',sans-serif; text-shadow: 0 0 20px ${ach.color}aa">
+            ${ach.title}
+          </div>
+          <div class="text-[11px] md:text-xs mt-1.5 leading-snug" style="color: rgba(226,232,240,.9)">${ach.desc}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  setText('rCorrect', correct);
+  setText('rWrong', wrong);
+  setText('rAcc', accuracy + '%');
+  setText('rStreak', state.maxStreak + '🔥');
+
+  let counter = 0;
+  const targetScore = score;
+  const scoreEl = $('totalScoreDisplay');
+  const step = Math.max(1, Math.ceil(targetScore / 40));
+  const iv = setInterval(() => {
+    counter += step;
+    if (counter >= targetScore) { counter = targetScore; clearInterval(iv); }
+    scoreEl.textContent = counter;
+  }, 30);
+
+  const breakdown = $('catBreakdown');
+  breakdown.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    const s = state.catStats[cat.id];
+    if (!s || s.total === 0) return;
+    const pct = Math.round((s.correct / s.total) * 100);
+    const row = document.createElement('div');
+    row.className = 'cat-stat-row';
+    row.innerHTML = `
+      <span class="text-base shrink-0">${cat.icon}</span>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <span class="text-[10px] md:text-[11px] font-bold truncate" style="color: ${cat.color}">${cat.name}</span>
+          <span class="text-[10px] md:text-[11px] font-mono font-bold text-slate-300 shrink-0">${s.correct}/${s.total} • ${s.points} poin</span>
+        </div>
+        <div class="cat-stat-bar">
+          <i style="width: ${pct}%; background: linear-gradient(90deg, ${cat.color}, ${cat.color}cc); box-shadow: 0 0 12px ${cat.color}aa"></i>
+        </div>
+      </div>
+    `;
+    breakdown.appendChild(row);
+  });
+
+  let prev = null;
+  try { prev = localStorage.getItem(STORAGE_PREFIX + 'best_score'); } catch(e) {}
+  const isRecord = prev === null || score > parseInt(prev);
+
+  if (isRecord) {
+    try {
+      localStorage.setItem(STORAGE_PREFIX + 'best_score', score);
+      localStorage.setItem(STORAGE_PREFIX + 'best_acc', accuracy);
+      localStorage.setItem(STORAGE_PREFIX + 'best_title', ach.title);
+    } catch(e) {}
+    sfx('win');
+    safeConfetti({ particleCount: 100, spread: 100, origin: { y: .6 }, colors: ['#22d3ee','#3b82f6','#8b5cf6','#fbbf24'] });
+    setTimeout(() => safeConfetti({ particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: .7 }, colors: ['#22d3ee','#3b82f6'] }), 300);
+    setTimeout(() => safeConfetti({ particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: .7 }, colors: ['#8b5cf6','#fbbf24'] }), 500);
+  } else {
+    if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 } });
+  }
+}
+
+function copyResult() {
+  sfx('click');
+  const total = state.totalRounds;
+  const accuracy = Math.round((state.correctCount / total) * 100);
+  const ach = getAchievement(accuracy, state.correctCount, total);
+
+  let catBreakdownText = '';
+  CATEGORIES.forEach(cat => {
+    const s = state.catStats[cat.id];
+    if (!s || s.total === 0) return;
+    catBreakdownText += `  • ${cat.name}: ${s.correct}/${s.total} (${s.points} poin)\n`;
+  });
+
+  const txt =
+`HASIL KUIS RODA BERPUTAR SEJARAH
+Sekolah: SMAN 3 Kasongan
+Kelas: X / Fase E
+Guru Pengampu: SYAHRANI, S.Pd.
+NIP. 19751217200501 1 016
+━━━━━━━━━━━━━━━━━━━━
+Nama Siswa: ${state.studentName}
+Materi: Jejak Kehidupan Masyarakat Praaksara
+━━━━━━━━━━━━━━━━━━━━
+🏅 KATEGORI CAPAIAN: ${ach.title}
+${ach.icon} ${ach.desc}
+━━━━━━━━━━━━━━━━━━━━
+📊 STATISTIK:
+  • Total Poin: ${state.totalScore}
+  • Jawaban Benar: ${state.correctCount}/${total}
+  • Jawaban Salah: ${state.wrongCount}
+  • Akurasi: ${accuracy}%
+  • Streak Terbaik: ${state.maxStreak}
+━━━━━━━━━━━━━━━━━━━━
+📚 CAPAIAN PER KATEGORI:
+${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`;
+
+  const ta = document.createElement('textarea');
+  ta.value = txt;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+
+  const btn = $('btnCopy');
+  const oldText = btn.textContent;
+  btn.textContent = '✓ TERSALIN!';
+  setTimeout(() => { btn.textContent = oldText; }, 2000);
+}
+
+function returnToMainScreen() {
+  sfx('click');
+
+  state.studentName = '';
+  state.currentRound = 0;
+  state.totalScore = 0;
+  state.correctCount = 0;
+  state.wrongCount = 0;
+  state.streak = 0;
+  state.maxStreak = 0;
+  state.usedQuestions.clear();
+  state.history = [];
+  state.currentRotation = 0;
+  state.catStats = {};
+  state.currentCategory = null;
+  state.currentQuestion = null;
+  state.selectedAnswerIndex = null;
+  state.answerLocked = false;
+  state.spinning = false;
+  state.gameFinished = false;
+
+  const wheel = $('wheelSvg');
+  wheel.style.transition = 'none';
+  wheel.style.transform = 'rotate(0deg)';
+
+  const nameInput = $('studentName');
+  if (nameInput) nameInput.value = '';
+
+  hide('resultScreen');
+  hide('wheelScreen');
+  hide('questionScreen');
+  hide('categoryResult');
+  hide('wheelInstruction');
+  hide('qFeedback');
+  hide('qActions');
+
+  try {
+    const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
+    const ba = localStorage.getItem(STORAGE_PREFIX + 'best_acc');
+    const bt = localStorage.getItem(STORAGE_PREFIX + 'best_title');
+    if (bs !== null) {
+      show('bestScoreSummary');
+      setText('bestScorePoints', bs);
+      setText('bestScoreAcc', ba + '%');
+      setText('bestScoreTitle', bt);
+    } else {
+      hide('bestScoreSummary');
+    }
+  } catch(e) {}
+
+  show('startScreen');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function init() {
+  buildWheel();
+
+  $('soundToggle').addEventListener('click', () => {
+    soundMuted = !soundMuted;
+    $('soundToggle').textContent = soundMuted ? '🔇' : '🔊';
+    $('soundToggle').style.opacity = soundMuted ? '0.5' : '1';
+    if (!soundMuted) sfx('click');
+  });
+
+  $('startForm').addEventListener('submit', e => {
+    e.preventDefault();
+    sfx('click');
+    const name = $('studentName').value.trim();
+    if (!name) { alert('Mohon isi nama terlebih dahulu.'); return; }
+    state.studentName = name;
+    state.currentRound = 0;
+    state.totalScore = 0;
+    state.correctCount = 0;
+    state.wrongCount = 0;
+    state.streak = 0;
+    state.maxStreak = 0;
+    state.usedQuestions.clear();
+    state.history = [];
+    state.currentRotation = 0;
+    state.catStats = {};
+    state.gameFinished = false;
+
+    const btn = $('btnNextSpin');
+    if (btn) {
+      btn.innerHTML = '🎡 PUTAR LAGI';
+      btn.style.background = 'linear-gradient(135deg,#22d3ee,#3b82f6)';
+    }
+
+    setText('playerName', name);
+    setText('roundCounter', `1/${state.totalRounds}`);
+    setText('scoreCounter', state.totalScore);
+
+    hide('startScreen');
+    show('wheelScreen');
+    show('wheelInstruction');
+    hide('categoryResult');
+  });
+
+  $('spinBtn').addEventListener('click', spin);
+  $('wheelSvg').addEventListener('click', () => { if (!state.spinning && !state.gameFinished) spin(); });
+  $('btnNextSpin').addEventListener('click', nextRound);
+
+  $('btnHome').addEventListener('click', returnToMainScreen);
+  $('btnCopy').addEventListener('click', copyResult);
+
+  try {
+    const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
+    const ba = localStorage.getItem(STORAGE_PREFIX + 'best_acc');
+    const bt = localStorage.getItem(STORAGE_PREFIX + 'best_title');
+    if (bs !== null) {
+      show('bestScoreSummary');
+      setText('bestScorePoints', bs);
+      setText('bestScoreAcc', ba + '%');
+      setText('bestScoreTitle', bt);
+    }
+  } catch(e) {}
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const ls = document.getElementById('loadingScreen');
+    if (ls) {
+      ls.classList.add('hidden');
+      setTimeout(() => ls.remove(), 800);
+    }
+  }, 2200);
+});
+</script>
+</body>
+</html>
