@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#022c22">
+<meta name="theme-color" content="#1a120a">
 <title>Kuis Interaktif Sejarah — SMAN 3 Kasongan</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -12,133 +12,153 @@
 try {
   tailwind.config = {
     theme: { extend: {
-      fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','Georgia','serif'] }
+      fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','Georgia','serif'] },
+      colors: {
+        // Base: cokelat espresso hangat (menggantikan emerald)
+        emerald: {
+          50:'#faf6f1', 100:'#f5ede3', 200:'#e8d5c2', 300:'#d4b496',
+          400:'#b8916a', 500:'#9c7348', 600:'#7a5733', 700:'#5c4025',
+          800:'#3d2a18', 900:'#2a1d10', 950:'#1a120a'
+        },
+        // Aksen: emas / amber (menggantikan teal)
+        teal: {
+          50:'#fffbeb', 100:'#fef3c7', 200:'#fde68a', 300:'#fcd34d',
+          400:'#fbbf24', 500:'#f59e0b', 600:'#d97706', 700:'#b45309',
+          800:'#92400e', 900:'#78350f', 950:'#451a03'
+        },
+        // Aksen terang: krem / kuning muda
+        lime: { 400:'#fef08a', 500:'#fde047' }
+      }
     }}
   };
 } catch(e) {}
 </script>
+<script>
+  window.addEventListener('DOMContentLoaded', function(){
+    if (typeof tailwind === 'undefined') {
+      var warn = document.createElement('div');
+      warn.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#dc2626;color:#fff;padding:8px;text-align:center;font-size:12px;z-index:99999';
+      warn.textContent = '⚠️ Gagal memuat Tailwind CDN. Periksa koneksi internet.';
+      document.body.appendChild(warn);
+    }
+    if (typeof confetti !== 'function') {
+      console.warn('Confetti tidak tersedia — efek perayaan dimatikan.');
+    }
+  });
+</script>
 <style>
   :root {
-    --emerald-950:#022c22;--emerald-900:#064e3b;--emerald-800:#065f46;
-    --emerald-700:#047857;--emerald-600:#059669;--emerald-500:#10b981;
-    --emerald-400:#34d399;--emerald-300:#6ee7b7;
-    --teal-900:#134e4a;--teal-700:#0f766e;--teal-500:#14b8a6;
-    --lime-400:#a3e635;--lime-500:#84cc16;
-    --gold-400:#fbbf24;--gold-500:#f59e0b;--gold-600:#d97706;
+    --espresso-950:#0f0a06;--espresso-900:#1a120a;--espresso-800:#2a1d10;
+    --espresso-700:#3d2a18;--espresso-600:#5c4025;--espresso-500:#7a5733;
+    --espresso-400:#9c7348;--espresso-300:#b8916a;--espresso-200:#d4b496;
+    --gold-300:#fcd34d;--gold-400:#fbbf24;--gold-500:#f59e0b;
+    --gold-600:#d97706;--gold-700:#b45309;
+    --cream:#fef3c7;--cream-soft:#fde68a;
   }
   * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(16,185,129,.28) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 100%, rgba(20,184,166,.22) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, rgba(6,78,59,.9) 0%, #022c22 60%, #01140e 100%);
+      radial-gradient(ellipse at 20% 0%, rgba(245,158,11,.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(217,119,6,.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(42,29,16,.95) 0%, #1a120a 55%, #0f0a06 100%);
     background-attachment: fixed;
-    color:#ecfdf5; min-height:100vh; margin:0;
+    color:#fef3c7; min-height:100vh; margin:0;
     font-family:'Inter',system-ui,sans-serif;
     font-size: 15px;
     line-height: 1.5;
     overflow-x: hidden;
   }
   .custom-scrollbar::-webkit-scrollbar{width:6px}
-  .custom-scrollbar::-webkit-scrollbar-track{background:rgba(2,44,34,.6)}
-  .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#10b981,#14b8a6);border-radius:9999px}
+  .custom-scrollbar::-webkit-scrollbar-track{background:rgba(15,10,6,.7)}
+  .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#f59e0b,#fbbf24);border-radius:9999px}
 
-  /* GLASS PANEL - lebih premium */
   .glass-panel {
-    background:linear-gradient(155deg,rgba(6,95,70,.65) 0%,rgba(2,44,34,.88) 100%);
+    background:linear-gradient(155deg,rgba(61,42,24,.78) 0%,rgba(26,18,10,.92) 100%);
     backdrop-filter:blur(20px) saturate(140%);
     -webkit-backdrop-filter:blur(20px) saturate(140%);
-    border:1px solid rgba(52,211,153,.22);
+    border:1px solid rgba(251,191,36,.22);
     box-shadow:
-      0 24px 64px rgba(0,0,0,.55),
+      0 24px 64px rgba(0,0,0,.6),
       0 0 0 1px rgba(255,255,255,.03) inset,
-      0 1px 0 rgba(255,255,255,.08) inset;
+      0 1px 0 rgba(251,191,36,.12) inset;
     position: relative;
   }
   .glass-panel::before {
     content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-    background:linear-gradient(135deg,rgba(52,211,153,.06) 0%,transparent 40%,transparent 60%,rgba(251,191,36,.04) 100%);
+    background:linear-gradient(135deg,rgba(251,191,36,.08) 0%,transparent 40%,transparent 60%,rgba(217,119,6,.06) 100%);
   }
   .is-hidden{display:none!important}
 
-  /* LOADER */
-  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,#064e3b 0%,#022c22 60%,#01140e 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;padding:16px}
+  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,#2a1d10 0%,#1a120a 60%,#0a0604 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;padding:16px}
   #loader.fade-out{opacity:0;visibility:hidden;pointer-events:none}
   .loader-compass{position:relative;width:100px;height:100px;animation:compassSpin 3.5s ease-in-out infinite}
   .loader-compass svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 28px rgba(251,191,36,.7))}
-  .loader-ring{position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;border:4px solid transparent;border-top-color:#fbbf24;border-right-color:#34d399;border-bottom-color:#14b8a6;border-left-color:#84cc16;animation:ringSpin 3s linear infinite;box-shadow:0 0 60px rgba(16,185,129,.45),inset 0 0 30px rgba(16,185,129,.2)}
+  .loader-ring{position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;border:4px solid transparent;border-top-color:#fbbf24;border-right-color:#fde68a;border-bottom-color:#f59e0b;border-left-color:#d97706;animation:ringSpin 3s linear infinite;box-shadow:0 0 60px rgba(245,158,11,.5),inset 0 0 30px rgba(245,158,11,.22)}
   @keyframes ringSpin{to{transform:rotate(360deg)}}
   @keyframes compassSpin{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.1)}}
-  .loader-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:900;letter-spacing:-1.5px;margin-top:30px;background:linear-gradient(135deg,#fbbf24 0%,#34d399 35%,#14b8a6 65%,#fbbf24 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s ease-in-out infinite;text-align:center;filter:drop-shadow(0 4px 20px rgba(16,185,129,.4))}
+  .loader-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:900;letter-spacing:-1.5px;margin-top:30px;background:linear-gradient(135deg,#fde68a 0%,#fbbf24 35%,#f59e0b 65%,#fde68a 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s ease-in-out infinite;text-align:center;filter:drop-shadow(0 4px 20px rgba(245,158,11,.5))}
   @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  .loader-sub{font-size:0.68rem;font-weight:700;color:#6ee7b7;margin-top:8px;letter-spacing:4px;text-transform:uppercase;text-align:center}
-  .loader-bar-track{width:min(340px,80vw);height:8px;background:rgba(2,44,34,.9);border-radius:99px;margin-top:28px;overflow:hidden;border:1px solid rgba(52,211,153,.25);box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
-  .loader-bar{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#065f46,#10b981,#14b8a6,#fbbf24);transition:width .3s ease;box-shadow:0 0 22px rgba(16,185,129,.8)}
+  .loader-sub{font-size:0.68rem;font-weight:700;color:#fcd34d;margin-top:8px;letter-spacing:4px;text-transform:uppercase;text-align:center}
+  .loader-bar-track{width:min(340px,80vw);height:8px;background:rgba(15,10,6,.9);border-radius:99px;margin-top:28px;overflow:hidden;border:1px solid rgba(251,191,36,.25);box-shadow:inset 0 2px 6px rgba(0,0,0,.6)}
+  .loader-bar{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#7a5733,#f59e0b,#fbbf24,#fde68a);transition:width .3s ease;box-shadow:0 0 22px rgba(245,158,11,.85)}
   .loader-percent{color:#fbbf24;font-size:.82rem;font-weight:800;margin-top:14px;letter-spacing:4px}
-  .loader-tip{margin-top:18px;font-size:.72rem;color:#6ee7b7;font-style:italic;text-align:center;max-width:280px}
+  .loader-tip{margin-top:18px;font-size:.72rem;color:#fcd34d;font-style:italic;text-align:center;max-width:280px}
 
-  /* PARTICLES */
   #particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(52,211,153,.7),transparent 70%);animation:floatUp linear infinite}
+  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.75),transparent 70%);animation:floatUp linear infinite}
   @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.8}100%{transform:translateY(-100vh) scale(1.4);opacity:0}}
 
-  /* SCHOOL BADGE */
-  .school-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:linear-gradient(135deg,rgba(16,185,129,.22),rgba(20,184,166,.12));border:1.5px solid rgba(251,191,36,.55);border-radius:99px;font-size:.62rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;position:relative;overflow:hidden;box-shadow:0 0 24px rgba(16,185,129,.35),inset 0 1px 0 rgba(255,255,255,.1);white-space:nowrap}
+  .school-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(217,119,6,.15));border:1.5px solid rgba(251,191,36,.6);border-radius:99px;font-size:.62rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;position:relative;overflow:hidden;box-shadow:0 0 24px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.1);white-space:nowrap}
   .school-badge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:badgeShine 3s ease-in-out infinite}
   @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
-  .school-name{background:linear-gradient(135deg,#fde68a 0%,#fbbf24 30%,#34d399 70%,#14b8a6 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:2px;animation:shimmerText 3s ease-in-out infinite;filter:drop-shadow(0 2px 10px rgba(251,191,36,.5))}
+  .school-name{background:linear-gradient(135deg,#fef3c7 0%,#fbbf24 30%,#f59e0b 70%,#fde68a 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:2px;animation:shimmerText 3s ease-in-out infinite;filter:drop-shadow(0 2px 10px rgba(251,191,36,.5))}
 
-  /* FEEDBACK SECTIONS */
-  .fb-section{padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid rgba(52,211,153,.2);background:linear-gradient(135deg,rgba(2,44,34,.7),rgba(6,78,59,.4))}
+  .fb-section{padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid rgba(251,191,36,.2);background:linear-gradient(135deg,rgba(15,10,6,.75),rgba(42,29,16,.5))}
   .fb-section .fb-t{font-size:.62rem;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:6px}
-  .fb-section .fb-b{font-size:.8rem;line-height:1.6;color:#d1fae5}
+  .fb-section .fb-b{font-size:.8rem;line-height:1.6;color:#fef3c7}
   .fb-section.topic .fb-t{color:#fbbf24}
-  .fb-section.topic .fb-b{display:inline-block;padding:4px 12px;border-radius:99px;background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(251,191,36,.06));color:#fde68a;font-weight:700;font-size:.7rem;letter-spacing:.5px;text-transform:uppercase}
-  .fb-section.why .fb-t{color:#34d399}
+  .fb-section.topic .fb-b{display:inline-block;padding:4px 12px;border-radius:99px;background:linear-gradient(135deg,rgba(251,191,36,.25),rgba(251,191,36,.06));color:#fde68a;font-weight:700;font-size:.7rem;letter-spacing:.5px;text-transform:uppercase}
+  .fb-section.why .fb-t{color:#fcd34d}
   .fb-section.yours .fb-t{color:#f87171}
   .fb-section.yours .fb-b{background:linear-gradient(90deg,rgba(248,113,113,.14),rgba(248,113,113,.02));padding:10px 12px;border-radius:8px;border-left:3px solid #ef4444}
-  .fb-section.key .fb-t{color:#14b8a6}
-  .fb-section.key .fb-b{background:linear-gradient(90deg,rgba(20,184,166,.2),rgba(20,184,166,.04));padding:10px 12px;border-radius:8px;border-left:3px solid #14b8a6;color:#99f6e4;font-weight:600}
+  .fb-section.key .fb-t{color:#fb923c}
+  .fb-section.key .fb-b{background:linear-gradient(90deg,rgba(251,146,60,.2),rgba(251,146,60,.04));padding:10px 12px;border-radius:8px;border-left:3px solid #fb923c;color:#fed7aa;font-weight:600}
   .badge-pick{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(248,113,113,.28);color:#fca5a5;font-weight:800;margin-right:5px}
-  .badge-correct{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(52,211,153,.28);color:#6ee7b7;font-weight:800;margin-right:5px}
+  .badge-correct{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(251,191,36,.28);color:#fde68a;font-weight:800;margin-right:5px}
 
-  /* GRADE */
-  .grade-badge-big{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#fff;font-family:'Playfair Display',Georgia,serif;box-shadow:0 14px 36px rgba(0,0,0,.5),0 0 34px rgba(16,185,129,.5),inset 0 2px 0 rgba(255,255,255,.2)}
+  .grade-badge-big{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#1a120a;font-family:'Playfair Display',Georgia,serif;box-shadow:0 14px 36px rgba(0,0,0,.55),0 0 34px rgba(245,158,11,.5),inset 0 2px 0 rgba(255,255,255,.3)}
   @media (min-width:480px){ .grade-badge-big{width:96px;height:96px;font-size:3rem;border-radius:22px;} }
-  .grade-A{background:linear-gradient(135deg,#fbbf24,#14b8a6)}
-  .grade-B{background:linear-gradient(135deg,#10b981,#047857)}
-  .grade-C{background:linear-gradient(135deg,#84cc16,#65a30d)}
-  .grade-D{background:linear-gradient(135deg,#34d399,#059669)}
-  .grade-E{background:linear-gradient(135deg,#065f46,#022c22)}
+  .grade-A{background:linear-gradient(135deg,#fde68a,#f59e0b)}
+  .grade-B{background:linear-gradient(135deg,#fbbf24,#d97706)}
+  .grade-C{background:linear-gradient(135deg,#f59e0b,#b45309)}
+  .grade-D{background:linear-gradient(135deg,#d97706,#92400e)}
+  .grade-E{background:linear-gradient(135deg,#b45309,#3d2a18)}
 
-  /* SCORE CIRCLE */
   .score-circle{position:relative;width:110px;height:110px;flex-shrink:0}
   @media (min-width:480px){ .score-circle{width:140px;height:140px;} }
   .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
-  .score-circle .track{stroke:rgba(52,211,153,.15);fill:none}
-  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 16px rgba(16,185,129,.8))}
+  .score-circle .track{stroke:rgba(251,191,36,.15);fill:none}
+  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 16px rgba(245,158,11,.85))}
   .score-circle .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;background:linear-gradient(180deg,#fbbf24,#34d399);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;background:linear-gradient(180deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
   @media (min-width:480px){ .score-circle .num{font-size:2.4rem;} }
-  .score-circle .lbl{font-size:.5rem;letter-spacing:2px;color:#6ee7b7;text-transform:uppercase;font-weight:800;margin-top:4px}
+  .score-circle .lbl{font-size:.5rem;letter-spacing:2px;color:#fcd34d;text-transform:uppercase;font-weight:800;margin-top:4px}
 
-  /* DIFFICULTY */
   .diff-badge{font-size:.58rem;letter-spacing:1.2px;font-weight:800;padding:4px 10px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
-  .diff-mudah{color:#6ee7b7;background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.4)}
-  .diff-sedang{color:#fbbf24;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4)}
+  .diff-mudah{color:#fde68a;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.45)}
+  .diff-sedang{color:#fb923c;background:rgba(251,146,60,.15);border:1px solid rgba(251,146,60,.45)}
   .diff-sulit{color:#fb7185;background:rgba(251,113,133,.15);border:1px solid rgba(251,113,133,.4)}
   .diff-sangat{color:#c084fc;background:rgba(192,132,252,.15);border:1px solid rgba(192,132,252,.4)}
 
-  /* OPTIONS - lebih halus */
   .opt-btn{
     width:100%; text-align:left;
-    background:linear-gradient(135deg,rgba(6,95,70,.7),rgba(4,120,87,.5));
-    border:1.5px solid rgba(52,211,153,.25);
+    background:linear-gradient(135deg,rgba(61,42,24,.75),rgba(92,64,37,.55));
+    border:1.5px solid rgba(251,191,36,.25);
     border-radius:14px;
     padding:14px 16px;
     font-size:.85rem;
-    color:#d1fae5;
+    color:#fde68a;
     font-weight:500;
     line-height:1.45;
     transition:all .25s cubic-bezier(.4,0,.2,1);
@@ -148,27 +168,25 @@ try {
     overflow:hidden;
   }
   @media (min-width:768px){ .opt-btn{font-size:.9rem;padding:15px 18px;} }
-  .opt-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(52,211,153,.15),transparent);opacity:0;transition:opacity .25s}
-  .opt-btn:hover{background:linear-gradient(135deg,rgba(16,185,129,.7),rgba(20,184,166,.5));border-color:rgba(52,211,153,.6);transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,.3)}
+  .opt-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(251,191,36,.15),transparent);opacity:0;transition:opacity .25s}
+  .opt-btn:hover{background:linear-gradient(135deg,rgba(245,158,11,.75),rgba(217,119,6,.55));border-color:rgba(251,191,36,.7);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.35)}
   .opt-btn:hover::before{opacity:1}
   .opt-btn:active{transform:scale(.99)}
-  .opt-selected{background:linear-gradient(135deg,#10b981,#14b8a6)!important;border-color:#6ee7b7!important;color:#fff!important;box-shadow:0 0 28px rgba(16,185,129,.65),inset 0 0 20px rgba(110,231,183,.15);transform:translateY(-2px)!important}
-  .opt-correct{background:linear-gradient(135deg,#059669,#10b981)!important;border-color:#34d399!important;color:#fff!important;box-shadow:0 0 34px rgba(16,185,129,.8);animation:correctPulse .7s ease}
-  .opt-wrong{background:linear-gradient(135deg,#dc2626,#ef4444)!important;border-color:#ef4444!important;color:#fff!important;box-shadow:0 0 34px rgba(239,68,68,.75);animation:wrongShake .5s ease}
-  .opt-eliminated{opacity:.18!important;pointer-events:none!important;text-decoration:line-through}
+  .opt-btn:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}
+  .opt-selected{background:linear-gradient(135deg,#f59e0b,#d97706)!important;border-color:#fde68a!important;color:#fff!important;box-shadow:0 0 28px rgba(245,158,11,.7),inset 0 0 20px rgba(254,243,199,.15);transform:translateY(-2px)!important}
+  .opt-correct{background:linear-gradient(135deg,#059669,#10b981)!important;border-color:#6ee7b7!important;color:#fff!important;box-shadow:0 0 34px rgba(16,185,129,.85);animation:correctPulse .7s ease}
+  .opt-wrong{background:linear-gradient(135deg,#dc2626,#ef4444)!important;border-color:#ef4444!important;color:#fff!important;box-shadow:0 0 34px rgba(239,68,68,.8);animation:wrongShake .5s ease}
+  .opt-eliminated{opacity:.15!important;pointer-events:none!important;text-decoration:line-through}
   @keyframes correctPulse{0%{transform:scale(1)}50%{transform:scale(1.025)}100%{transform:scale(1)}}
   @keyframes wrongShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 
-  /* SOUND */
-  .sound-toggle{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,rgba(6,95,70,.8),rgba(4,120,87,.6));border:1px solid rgba(52,211,153,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .25s;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.3)}
-  .sound-toggle:hover{background:linear-gradient(135deg,rgba(16,185,129,.9),rgba(20,184,166,.7));transform:scale(1.1);box-shadow:0 0 22px rgba(16,185,129,.6)}
+  .sound-toggle{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,rgba(61,42,24,.85),rgba(92,64,37,.7));border:1px solid rgba(251,191,36,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .25s;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .sound-toggle:hover{background:linear-gradient(135deg,rgba(245,158,11,.95),rgba(251,191,36,.8));transform:scale(1.1);box-shadow:0 0 22px rgba(245,158,11,.6)}
   .sound-toggle.muted{opacity:.5}
 
-  /* PROGRESS */
-  .q-progress{height:6px;background:rgba(2,44,34,.9);border-radius:99px;overflow:hidden;margin-bottom:12px;border:1px solid rgba(52,211,153,.2);box-shadow:inset 0 2px 4px rgba(0,0,0,.4)}
-  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#065f46,#10b981,#14b8a6,#fbbf24);border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 16px rgba(16,185,129,.8)}
+  .q-progress{height:6px;background:rgba(15,10,6,.9);border-radius:99px;overflow:hidden;margin-bottom:12px;border:1px solid rgba(251,191,36,.2);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#7a5733,#f59e0b,#fbbf24,#fde68a);border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 16px rgba(245,158,11,.85)}
 
-  /* LOCK BUTTON - lebih elegan */
   .lock-btn-container{margin-top:14px;display:flex;justify-content:center;animation:slideUp .4s ease}
   @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   .lock-btn{
@@ -177,15 +195,15 @@ try {
     font-weight:900;
     letter-spacing:3px;
     text-transform:uppercase;
-    color:#022c22;
-    background:linear-gradient(135deg,#a3e635 0%,#84cc16 25%,#10b981 65%,#14b8a6 100%);
+    color:#1a120a;
+    background:linear-gradient(135deg,#fde68a 0%,#fbbf24 25%,#f59e0b 65%,#d97706 100%);
     border-radius:60px;
     cursor:pointer;
     border:none;
     box-shadow:
-      0 0 34px rgba(16,185,129,.6),
-      0 12px 28px rgba(0,0,0,.5),
-      inset 0 1px 0 rgba(255,255,255,.6);
+      0 0 34px rgba(245,158,11,.65),
+      0 12px 28px rgba(0,0,0,.55),
+      inset 0 1px 0 rgba(255,255,255,.7);
     transition:all .2s ease;
     position:relative;
     overflow:hidden;
@@ -193,18 +211,17 @@ try {
   }
   @media (min-width:480px){ .lock-btn{padding:15px 46px;font-size:.95rem;letter-spacing:3.5px;} }
   @keyframes lockPulse{
-    0%,100%{box-shadow:0 0 34px rgba(16,185,129,.6),0 12px 28px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.6)}
-    50%{box-shadow:0 0 56px rgba(52,211,153,.95),0 12px 28px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.6)}
+    0%,100%{box-shadow:0 0 34px rgba(245,158,11,.65),0 12px 28px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7)}
+    50%{box-shadow:0 0 56px rgba(251,191,36,.95),0 12px 28px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7)}
   }
-  .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:shineBtn 2.4s ease-in-out infinite}
+  .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);animation:shineBtn 2.4s ease-in-out infinite}
   @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
-  .lock-btn:hover{transform:translateY(-3px) scale(1.02)}
+  .lock-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 44px rgba(251,191,36,.8),0 12px 28px rgba(0,0,0,.5)}
   .lock-btn:active{transform:translateY(0) scale(.97)}
 
-  /* REVEAL OVERLAY */
   #reveal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;pointer-events:none;padding:16px}
   #reveal-overlay.show{display:flex}
-  #reveal-overlay.backdrop{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(2,44,34,.78);pointer-events:auto;animation:fadeInBackdrop .25s ease}
+  #reveal-overlay.backdrop{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(15,10,6,.82);pointer-events:auto;animation:fadeInBackdrop .25s ease}
   @keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
   .reveal-badge{
     font-size:clamp(1.6rem,6.5vw,3.5rem);
@@ -224,7 +241,7 @@ try {
   .reveal-badge.benar{
     color:#fff;
     background:linear-gradient(135deg,#047857 0%,#10b981 50%,#34d399 100%);
-    box-shadow:0 0 60px rgba(16,185,129,1),0 0 120px rgba(16,185,129,.5),0 18px 44px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.6);
+    box-shadow:0 0 60px rgba(16,185,129,1),0 0 120px rgba(16,185,129,.5),0 18px 44px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.6);
     text-shadow:0 0 16px rgba(255,255,255,.9),0 4px 10px rgba(0,0,0,.4);
     border:2.5px solid rgba(255,255,255,.65);
   }
@@ -233,7 +250,7 @@ try {
   .reveal-badge.salah{
     color:#fff;
     background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 50%,#f87171 100%);
-    box-shadow:0 0 60px rgba(239,68,68,1),0 0 120px rgba(239,68,68,.5),0 18px 44px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.6);
+    box-shadow:0 0 60px rgba(239,68,68,1),0 0 120px rgba(239,68,68,.5),0 18px 44px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.6);
     text-shadow:0 0 16px rgba(255,255,255,.9),0 4px 10px rgba(0,0,0,.4);
     border:2.5px solid rgba(255,255,255,.65);
     animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease;
@@ -244,34 +261,33 @@ try {
   .burst-particle{position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;animation:burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards}
   @keyframes burstOut{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}}
 
-  /* BUTTONS */
   .btn-primary-gradient{
-    background:linear-gradient(135deg,#047857 0%,#10b981 40%,#14b8a6 70%,#a3e635 100%);
+    background:linear-gradient(135deg,#7a5733 0%,#f59e0b 40%,#fbbf24 70%,#fde68a 100%);
     background-size:200% auto;
-    color:#022c22;
+    color:#1a120a;
     font-weight:900;
     letter-spacing:2.5px;
     padding:16px 30px;
     border-radius:16px;
-    border:1px solid rgba(255,255,255,.25);
-    box-shadow:0 12px 36px rgba(16,185,129,.5),inset 0 1px 0 rgba(255,255,255,.4);
+    border:1px solid rgba(255,255,255,.3);
+    box-shadow:0 12px 36px rgba(245,158,11,.55),inset 0 1px 0 rgba(255,255,255,.5);
     transition:all .3s cubic-bezier(.4,0,.2,1);
     cursor:pointer;
     position:relative;
     overflow:hidden;
     font-size:.92rem;
     width:100%;
-    text-shadow:0 1px 2px rgba(255,255,255,.2);
+    text-shadow:0 1px 2px rgba(255,255,255,.25);
   }
   @media (min-width:480px){ .btn-primary-gradient{padding:17px 34px;font-size:1rem;} }
-  .btn-primary-gradient:hover{transform:translateY(-3px);background-position:100% center;box-shadow:0 18px 48px rgba(16,185,129,.7),inset 0 1px 0 rgba(255,255,255,.5)}
+  .btn-primary-gradient:hover{transform:translateY(-3px);background-position:100% center;box-shadow:0 18px 48px rgba(245,158,11,.75),inset 0 1px 0 rgba(255,255,255,.6)}
   .btn-primary-gradient:active{transform:translateY(0) scale(.98)}
-  .btn-primary-gradient::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shineBtn 2.8s ease-in-out infinite}
+  .btn-primary-gradient::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shineBtn 2.8s ease-in-out infinite}
 
   .navy-input{
-    background:linear-gradient(135deg,rgba(2,44,34,.9),rgba(6,78,59,.7));
-    border:2px solid rgba(52,211,153,.35);
-    color:#ecfdf5;
+    background:linear-gradient(135deg,rgba(15,10,6,.9),rgba(42,29,16,.75));
+    border:2px solid rgba(251,191,36,.35);
+    color:#fef3c7;
     transition:all .25s;
     width:100%;
     border-radius:14px;
@@ -279,14 +295,13 @@ try {
     font-size:.95rem;
     font-weight:500;
   }
-  .navy-input:focus{outline:none;border-color:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.15),0 0 28px rgba(16,185,129,.45);background:linear-gradient(135deg,rgba(2,44,34,.95),rgba(6,78,59,.8))}
-  .navy-input::placeholder{color:rgba(209,250,229,.4)}
+  .navy-input:focus{outline:none;border-color:#fbbf24;box-shadow:0 0 0 4px rgba(251,191,36,.15),0 0 28px rgba(245,158,11,.5);background:linear-gradient(135deg,rgba(15,10,6,.95),rgba(42,29,16,.85))}
+  .navy-input::placeholder{color:rgba(254,243,199,.35)}
 
-  /* GAME SCREEN */
   .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
   @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
 
-  .question-text{font-size:.92rem;font-weight:700;color:#d1fae5;line-height:1.6;word-wrap:break-word}
+  .question-text{font-size:.92rem;font-weight:700;color:#fef3c7;line-height:1.6;word-wrap:break-word}
   @media (min-width:480px){ .question-text{font-size:1rem;} }
   @media (min-width:768px){ .question-text{font-size:1.1rem;} }
 
@@ -294,7 +309,7 @@ try {
 
   .lifeline-item{padding:11px 5px;font-size:.68rem;transition:all .25s}
   @media (min-width:640px){ .lifeline-item{padding:13px 7px;font-size:.72rem;} }
-  .lifeline-item:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,.4)}
+  .lifeline-item:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,158,11,.4)}
 
   input[type="text"], textarea, select { font-size: 16px !important; }
   @media (min-width:640px){ input[type="text"], textarea, select { font-size: .95rem !important; } }
@@ -313,25 +328,34 @@ try {
     .lock-btn{padding:12px 26px;font-size:.78rem;letter-spacing:2px}
   }
 
-  /* Fade in animation */
   @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   .fade-in-up{animation:fadeInUp .5s ease both}
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .particle, .burst-particle { display: none !important; }
+  }
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
+<div id="loader" role="status" aria-live="polite" aria-label="Memuat kuis">
   <div class="loader-compass">
     <div class="loader-ring"></div>
-    <svg viewBox="0 0 100 100" fill="none">
-      <circle cx="50" cy="50" r="38" stroke="#fbbf24" stroke-width="2.5" fill="none" opacity="0.25"/>
-      <circle cx="50" cy="50" r="30" stroke="#34d399" stroke-width="1.5" fill="none" opacity="0.4"/>
-      <polygon points="50,18 54.5,46 50,50 45.5,46" fill="#fbbf24"/>
-      <polygon points="50,82 54.5,54 50,50 45.5,54" fill="#10b981"/>
-      <polygon points="18,50 46,45.5 50,50 46,54.5" fill="#14b8a6"/>
-      <polygon points="82,50 54,45.5 50,50 54,54.5" fill="#a3e635"/>
-      <circle cx="50" cy="50" r="5" fill="#fde68a"/>
+    <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="38" stroke="#fbbf24" stroke-width="2.5" fill="none" opacity="0.3"/>
+      <circle cx="50" cy="50" r="30" stroke="#fde68a" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <polygon points="50,18 54.5,46 50,50 45.5,46" fill="#fde68a"/>
+      <polygon points="50,82 54.5,54 50,50 45.5,54" fill="#f59e0b"/>
+      <polygon points="18,50 46,45.5 50,50 46,54.5" fill="#d97706"/>
+      <polygon points="82,50 54,45.5 50,50 54,54.5" fill="#fbbf24"/>
+      <circle cx="50" cy="50" r="5" fill="#fef3c7"/>
       <circle cx="50" cy="50" r="2" fill="#fff"/>
     </svg>
   </div>
@@ -342,27 +366,26 @@ try {
   <div class="loader-tip" id="loader-tip">🏺 Menyiapkan 30 soal sejarah...</div>
 </div>
 
-<div id="particles"></div>
+<div id="particles" aria-hidden="true"></div>
 
-<!-- HEADER -->
-<header class="w-full border-b border-emerald-400/25 bg-gradient-to-r from-[#022c22] via-[#064e3b] to-[#022c22] backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5 shadow-lg shadow-black/50">
+<header class="w-full border-b border-amber-400/25 bg-gradient-to-r from-[#1a120a] via-[#3d2a18] to-[#1a120a] backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5 shadow-lg shadow-black/60">
   <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
     <div class="flex items-center gap-2.5 min-w-0 flex-1">
-      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-tr from-emerald-400 via-teal-500 to-lime-500 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg shadow-emerald-500/50 ring-2 ring-emerald-400/40 shrink-0">🏺</div>
+      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-tr from-amber-400 via-orange-500 to-yellow-300 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg shadow-amber-500/50 ring-2 ring-amber-400/40 shrink-0" aria-hidden="true">🏺</div>
       <div class="min-w-0 flex-1">
-        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 truncate">KUIS INTERAKTIF SEJARAH</h1>
+        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 truncate">KUIS INTERAKTIF SEJARAH</h1>
         <p class="text-[9px] md:text-[11px] font-medium truncate">
           <span class="school-name">SMAN 3 KASONGAN</span>
-          <span class="text-emerald-300"> • </span>
-          <span class="text-lime-400 font-semibold">Kelas X / Fase E</span>
+          <span class="text-amber-300"> • </span>
+          <span class="text-yellow-300 font-semibold">Kelas X / Fase E</span>
         </p>
       </div>
     </div>
     <div class="flex items-center gap-2 shrink-0">
-      <div class="hidden md:flex items-center gap-1.5 bg-emerald-900/70 border border-emerald-400/30 px-3 py-1.5 rounded-full shadow-inner">
-        <span class="text-[11px] text-emerald-200 font-bold tracking-wide">📚 PRAAKSARA</span>
+      <div class="hidden md:flex items-center gap-1.5 bg-amber-900/70 border border-amber-400/30 px-3 py-1.5 rounded-full shadow-inner">
+        <span class="text-[11px] text-amber-200 font-bold tracking-wide">📚 PRAAKSARA</span>
       </div>
-      <button class="sound-toggle" id="sound-toggle" type="button">🔊</button>
+      <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Hidupkan/matikan suara">🔊</button>
     </div>
   </div>
 </header>
@@ -373,75 +396,82 @@ try {
   <section id="start-screen" class="w-full max-w-lg glass-panel p-5 md:p-7 lg:p-9 rounded-3xl my-auto fade-in-up">
     <div class="text-center mb-4">
       <div class="school-badge mb-3">
-        <span>🏫</span>
+        <span aria-hidden="true">🏫</span>
         <span class="school-name">SMAN 3 KASONGAN</span>
       </div>
     </div>
 
     <div class="text-center mb-6">
       <div class="mb-3 flex justify-center">
-        <div class="text-5xl md:text-6xl" style="filter:drop-shadow(0 0 28px rgba(16,185,129,.8))">🏺</div>
+        <div class="text-5xl md:text-6xl" style="filter:drop-shadow(0 0 28px rgba(245,158,11,.85))" aria-hidden="true">🏺</div>
       </div>
-      <h2 class="text-xl md:text-2xl lg:text-3xl font-black font-serif text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 mb-2 leading-tight">KUIS INTERAKTIF SEJARAH</h2>
-      <p class="text-xs md:text-sm text-emerald-200/75">Materi: <span class="text-emerald-300 font-semibold">Jejak Kehidupan Masyarakat Praaksara di Indonesia</span></p>
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-black font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 mb-2 leading-tight">KUIS INTERAKTIF SEJARAH</h2>
+      <p class="text-xs md:text-sm text-amber-200/75">Materi: <span class="text-amber-300 font-semibold">Jejak Kehidupan Masyarakat Praaksara di Indonesia</span></p>
     </div>
 
-    <div class="mb-5 p-4 bg-gradient-to-br from-emerald-900/60 via-teal-900/40 to-emerald-900/60 border border-emerald-400/30 rounded-2xl shadow-inner">
+    <div class="mb-5 p-4 bg-gradient-to-br from-amber-900/60 via-orange-900/40 to-amber-900/60 border border-amber-400/30 rounded-2xl shadow-inner">
       <div class="text-center">
-        <div class="text-[10px] uppercase tracking-widest text-emerald-300 font-bold mb-2 flex items-center justify-center gap-1.5">
-          <span>👨‍🏫</span> Guru Pengampu
+        <div class="text-[10px] uppercase tracking-widest text-amber-300 font-bold mb-2 flex items-center justify-center gap-1.5">
+          <span aria-hidden="true">👨‍🏫</span> Guru Pengampu
         </div>
-        <div class="text-sm md:text-base font-black text-emerald-50 tracking-wide">SYAHRANI, S.Pd.</div>
-        <div class="text-[10px] md:text-[11px] text-emerald-300/70 font-mono mt-1">NIP. 19751217200501 1 016</div>
+        <div class="text-sm md:text-base font-black text-amber-50 tracking-wide">SYAHRANI, S.Pd.</div>
+        <div class="text-[10px] md:text-[11px] text-amber-300/70 font-mono mt-1">NIP. 19751217200501 1 016</div>
       </div>
     </div>
 
-    <div class="bg-emerald-950/50 border border-emerald-400/20 rounded-2xl p-4 mb-5 space-y-2.5 text-xs md:text-sm">
+    <div class="bg-espresso-950/60 border border-amber-400/20 rounded-2xl p-4 mb-5 space-y-2.5 text-xs md:text-sm" style="background:rgba(15,10,6,.55)">
       <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-emerald-400/40">1</span>
-        <span class="text-emerald-50/90 overflow-safe">Jawab <b class="text-emerald-300">15 soal</b> dari bank <b class="text-emerald-300">30 soal</b></span>
+        <span class="w-7 h-7 rounded-full bg-amber-500/25 text-amber-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-amber-400/40">1</span>
+        <span class="text-amber-50/90 overflow-safe">Jawab <b class="text-amber-300">15 soal</b> dari bank <b class="text-amber-300">30 soal</b></span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-emerald-400/40">2</span>
-        <span class="text-emerald-50/90 overflow-safe">Pilih jawaban → klik <b class="text-emerald-300">KUNCI JAWABAN</b></span>
+        <span class="w-7 h-7 rounded-full bg-amber-500/25 text-amber-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-amber-400/40">2</span>
+        <span class="text-amber-50/90 overflow-safe">Pilih jawaban → klik <b class="text-amber-300">KUNCI JAWABAN</b></span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-emerald-400/40">3</span>
-        <span class="text-emerald-50/90 overflow-safe">Gunakan <b class="text-emerald-300">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
+        <span class="w-7 h-7 rounded-full bg-amber-500/25 text-amber-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-amber-400/40">3</span>
+        <span class="text-amber-50/90 overflow-safe">Gunakan <b class="text-amber-300">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
       </div>
     </div>
 
     <form id="start-form" class="space-y-4">
       <div>
-        <label for="student-name" class="block text-[11px] md:text-xs font-bold uppercase tracking-widest text-emerald-300 mb-2">
+        <label for="student-name" class="block text-[11px] md:text-xs font-bold uppercase tracking-widest text-amber-300 mb-2">
           Nama Siswa <span class="text-rose-400">*</span>
         </label>
-        <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input">
+        <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input" autocomplete="name">
       </div>
       <button type="submit" id="btn-start" class="btn-primary-gradient">▶ MULAI KUIS</button>
     </form>
 
-    <div id="best-score-summary" class="is-hidden mt-5 pt-5 border-t border-emerald-400/20 text-center">
-      <div class="text-[10px] uppercase tracking-widest text-emerald-300 font-bold mb-2">🏆 Skor Terbaikmu</div>
+    <div id="resume-panel" class="is-hidden mt-4 p-3 bg-gradient-to-br from-amber-500/15 to-orange-500/10 border border-amber-400/40 rounded-2xl text-center">
+      <div class="text-[10px] uppercase tracking-widest text-amber-300 font-bold mb-1">⏸️ Ada Progres Belum Selesai</div>
+      <div class="text-[11px] text-amber-100/80 mb-2" id="resume-info">—</div>
+      <button type="button" id="btn-resume" class="bg-gradient-to-r from-amber-400 to-yellow-300 text-espresso-950 font-bold px-4 py-2 rounded-xl text-[11px] cursor-pointer shadow-lg" style="color:#1a120a">▶ LANJUTKAN</button>
+      <button type="button" id="btn-discard" class="ml-1 bg-espresso-900 hover:bg-espresso-700 text-amber-100 font-bold px-4 py-2 rounded-xl text-[11px] cursor-pointer border border-amber-400/25" style="background:rgba(26,18,10,.9)">✕ Mulai Baru</button>
+    </div>
+
+    <div id="best-score-summary" class="is-hidden mt-5 pt-5 border-t border-amber-400/20 text-center">
+      <div class="text-[10px] uppercase tracking-widest text-amber-300 font-bold mb-2">🏆 Skor Terbaikmu</div>
       <div class="flex justify-center gap-4 text-xs">
         <div>
-          <div class="text-emerald-400/70 text-[10px] uppercase">Benar</div>
-          <div id="best-score-correct" class="text-emerald-300 font-bold text-sm md:text-base">0/15</div>
+          <div class="text-amber-400/70 text-[10px] uppercase">Benar</div>
+          <div id="best-score-correct" class="text-amber-300 font-bold text-sm md:text-base">0/15</div>
         </div>
-        <div class="border-l border-emerald-400/20"></div>
+        <div class="border-l border-amber-400/20"></div>
         <div>
-          <div class="text-emerald-400/70 text-[10px] uppercase">Skor</div>
-          <div id="best-score-points" class="text-teal-300 font-bold text-sm md:text-base">0</div>
+          <div class="text-amber-400/70 text-[10px] uppercase">Skor</div>
+          <div id="best-score-points" class="text-yellow-200 font-bold text-sm md:text-base">0</div>
         </div>
-        <div class="border-l border-emerald-400/20"></div>
+        <div class="border-l border-amber-400/20"></div>
         <div>
-          <div class="text-emerald-400/70 text-[10px] uppercase">Gelar</div>
+          <div class="text-amber-400/70 text-[10px] uppercase">Gelar</div>
           <div id="best-score-title" class="text-amber-300 font-bold text-[11px] mt-0.5">—</div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-5 text-[10px] text-emerald-400/60">© SMAN 3 Kasongan • Kelas X / Fase E</div>
+    <div class="text-center mt-5 text-[10px] text-amber-400/60">© SMAN 3 Kasongan • Kelas X / Fase E</div>
   </section>
 
   <!-- GAME SCREEN -->
@@ -449,51 +479,51 @@ try {
     <div class="space-y-3 md:space-y-4 min-w-0">
       <div class="glass-panel p-3 md:p-3.5 rounded-2xl flex items-center justify-between text-[11px] md:text-sm flex-wrap gap-2">
         <div class="flex items-center gap-1.5 flex-wrap">
-          <div class="bg-emerald-900/80 px-3 py-1.5 rounded-xl border border-emerald-400/25 flex items-center gap-1.5 shadow-inner">👤 <span id="player-display-name" class="font-bold text-emerald-100 max-w-[90px] md:max-w-none truncate">Siswa</span></div>
-          <div class="bg-emerald-900/80 px-3 py-1.5 rounded-xl border border-emerald-400/25 shadow-inner">⚡ <span id="xp-counter" class="font-bold text-emerald-300">0</span></div>
+          <div class="px-3 py-1.5 rounded-xl border border-amber-400/25 flex items-center gap-1.5 shadow-inner" style="background:rgba(26,18,10,.85)">👤 <span id="player-display-name" class="font-bold text-amber-100 max-w-[90px] md:max-w-none truncate">Siswa</span></div>
+          <div class="px-3 py-1.5 rounded-xl border border-amber-400/25 shadow-inner" style="background:rgba(26,18,10,.85)">⚡ <span id="xp-counter" class="font-bold text-amber-300">0</span></div>
         </div>
         <div class="flex items-center gap-1.5">
-          <div id="streak-container" class="is-hidden bg-gradient-to-r from-amber-500/25 to-orange-500/25 border border-amber-400/50 px-3 py-1.5 rounded-xl shadow-inner">🔥 <span id="streak-counter" class="font-black text-amber-300">0</span></div>
-          <div class="bg-emerald-900/80 px-3 py-1.5 rounded-xl border border-emerald-400/25 shadow-inner">⏱️ <span id="timer-display" class="font-mono font-bold text-emerald-300">00:00</span></div>
+          <div id="streak-container" class="is-hidden bg-gradient-to-r from-orange-500/30 to-amber-500/30 border border-amber-400/50 px-3 py-1.5 rounded-xl shadow-inner">🔥 <span id="streak-counter" class="font-black text-amber-300">0</span></div>
+          <div class="px-3 py-1.5 rounded-xl border border-amber-400/25 shadow-inner" style="background:rgba(26,18,10,.85)" aria-label="Waktu berjalan">⏱️ <span id="timer-display" class="font-mono font-bold text-amber-300" aria-live="off">00:00</span></div>
         </div>
       </div>
 
       <div class="glass-panel p-3 md:p-3 rounded-2xl">
-        <div class="text-[9px] md:text-[10px] text-emerald-400/80 uppercase font-bold text-center mb-2 tracking-widest">Bantuan (masing-masing 1x pakai)</div>
+        <div class="text-[9px] md:text-[10px] text-amber-400/80 uppercase font-bold text-center mb-2 tracking-widest">Bantuan (masing-masing 1x pakai)</div>
         <div class="flex justify-center gap-1.5 md:gap-2">
-          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-emerald-900/80 to-teal-900/60 hover:from-emerald-700/80 hover:to-teal-700/60 border border-emerald-400/30 rounded-xl text-emerald-200 cursor-pointer transition font-bold shadow-md">
+          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-amber-900/70 to-orange-900/50 hover:from-amber-700/80 hover:to-orange-700/60 border border-amber-400/30 rounded-xl text-amber-200 cursor-pointer transition font-bold shadow-md" aria-label="Bantuan 50:50: hapus dua jawaban salah">
             <div class="flex items-center justify-center gap-1">✂️ <span>50:50</span></div>
-            <div class="text-[8px] md:text-[9px] text-emerald-400/70 mt-1 font-normal">Hapus 2 salah</div>
+            <div class="text-[8px] md:text-[9px] text-amber-400/70 mt-1 font-normal">Hapus 2 salah</div>
           </button>
-          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-emerald-900/80 to-teal-900/60 hover:from-emerald-700/80 hover:to-teal-700/60 border border-emerald-400/30 rounded-xl text-emerald-200 cursor-pointer transition font-bold shadow-md">
+          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-amber-900/70 to-orange-900/50 hover:from-amber-700/80 hover:to-orange-700/60 border border-amber-400/30 rounded-xl text-amber-200 cursor-pointer transition font-bold shadow-md" aria-label="Bantuan petunjuk dari guru">
             <div class="flex items-center justify-center gap-1">💡 <span>Petunjuk</span></div>
-            <div class="text-[8px] md:text-[9px] text-emerald-400/70 mt-1 font-normal">Guru memberi hint</div>
+            <div class="text-[8px] md:text-[9px] text-amber-400/70 mt-1 font-normal">Guru memberi hint</div>
           </button>
-          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-emerald-900/80 to-teal-900/60 hover:from-emerald-700/80 hover:to-teal-700/60 border border-emerald-400/30 rounded-xl text-emerald-200 cursor-pointer transition font-bold shadow-md">
+          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-amber-900/70 to-orange-900/50 hover:from-amber-700/80 hover:to-orange-700/60 border border-amber-400/30 rounded-xl text-amber-200 cursor-pointer transition font-bold shadow-md" aria-label="Lewati soal ini">
             <div class="flex items-center justify-center gap-1">⏭️ <span>Lewati</span></div>
-            <div class="text-[8px] md:text-[9px] text-emerald-400/70 mt-1 font-normal">Tanpa pengurangan</div>
+            <div class="text-[8px] md:text-[9px] text-amber-400/70 mt-1 font-normal">Tanpa pengurangan</div>
           </button>
         </div>
       </div>
 
-      <div class="glass-panel p-4 md:p-6 rounded-3xl border-l-4 border-l-emerald-400 relative">
-        <div class="q-progress"><i id="q-progress"></i></div>
+      <div class="glass-panel p-4 md:p-6 rounded-3xl border-l-4 border-l-amber-400 relative">
+        <div class="q-progress" id="q-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progres pengerjaan soal"><i id="q-progress"></i></div>
         <div class="flex justify-between items-center mb-3 flex-wrap gap-1.5">
-          <span class="text-[10px] md:text-xs font-bold text-emerald-300 uppercase tracking-widest">Pertanyaan <span id="current-q-num">1</span>/15</span>
+          <span class="text-[10px] md:text-xs font-bold text-amber-300 uppercase tracking-widest">Pertanyaan <span id="current-q-num">1</span>/<span id="total-q-num">15</span></span>
           <div class="flex items-center gap-1.5 flex-wrap">
             <span id="difficulty-tag" class="diff-badge diff-mudah">Mudah</span>
-            <span id="reward-tag" class="text-[10px] md:text-xs font-mono bg-emerald-500/25 text-emerald-200 border border-emerald-400/35 px-2.5 py-1 rounded-full font-bold whitespace-nowrap">Lvl 1 — 100</span>
+            <span id="reward-tag" class="text-[10px] md:text-xs font-mono bg-amber-500/25 text-amber-200 border border-amber-400/35 px-2.5 py-1 rounded-full font-bold whitespace-nowrap">Lvl 1 — 100</span>
           </div>
         </div>
-        <h3 id="question-text" class="question-text overflow-safe">Memuat pertanyaan...</h3>
+        <h3 id="question-text" class="question-text overflow-safe" aria-live="polite">Memuat pertanyaan...</h3>
 
-        <div id="hint-panel" class="is-hidden mt-3 p-3 md:p-3.5 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 border border-teal-400/35 rounded-2xl">
-          <div class="text-[10px] uppercase font-black tracking-widest text-teal-300 mb-2 flex items-center gap-1.5">💡 Petunjuk dari Guru</div>
-          <div class="text-[11px] md:text-xs text-teal-100 leading-relaxed overflow-safe" id="hint-text"></div>
+        <div id="hint-panel" class="is-hidden mt-3 p-3 md:p-3.5 bg-gradient-to-br from-orange-500/15 to-amber-500/10 border border-orange-400/35 rounded-2xl" role="region" aria-label="Petunjuk dari guru">
+          <div class="text-[10px] uppercase font-black tracking-widest text-orange-300 mb-2 flex items-center gap-1.5">💡 Petunjuk dari Guru</div>
+          <div class="text-[11px] md:text-xs text-orange-100 leading-relaxed overflow-safe" id="hint-text"></div>
         </div>
       </div>
 
-      <div id="answers-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3"></div>
+      <div id="answers-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3" role="group" aria-label="Pilihan jawaban"></div>
 
       <div id="lock-btn-container" class="lock-btn-container is-hidden">
         <button id="btn-lock-answer" type="button" class="lock-btn">🔒 KUNCI JAWABAN</button>
@@ -501,22 +531,22 @@ try {
     </div>
 
     <div class="glass-panel p-4 rounded-3xl hidden lg:flex flex-col">
-      <div class="text-xs font-bold text-emerald-300 uppercase mb-3 tracking-widest">🏆 Progres Level</div>
+      <div class="text-xs font-bold text-amber-300 uppercase mb-3 tracking-widest">🏆 Progres Level</div>
       <div id="prize-ladder" class="space-y-1 text-xs font-mono"></div>
     </div>
   </section>
 
   <!-- REVEAL OVERLAY -->
-  <div id="reveal-overlay"><div class="reveal-badge" id="reveal-badge">BENAR</div></div>
+  <div id="reveal-overlay" role="status" aria-live="polite"><div class="reveal-badge" id="reveal-badge">BENAR</div></div>
 
   <!-- FEEDBACK MODAL -->
-  <div id="feedback-modal" class="is-hidden fixed inset-0 bg-emerald-950/90 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto">
-    <div class="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-emerald-400/50 my-auto" id="feedback-modal-content">
+  <div id="feedback-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto" style="background:rgba(15,10,6,.92)" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+    <div class="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-amber-400/50 my-auto" id="feedback-modal-content">
       <div class="flex items-center gap-3 mb-4">
-        <div id="feedback-icon-bg" class="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-emerald-500/25 text-emerald-300 shrink-0 shadow-lg">✓</div>
+        <div id="feedback-icon-bg" class="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-amber-500/25 text-amber-300 shrink-0 shadow-lg" aria-hidden="true">✓</div>
         <div class="min-w-0">
-          <h3 id="feedback-title" class="text-base md:text-xl font-black text-emerald-300 truncate">🎉 BENAR!</h3>
-          <p id="feedback-subtitle" class="text-[10px] md:text-xs text-emerald-200/70">Apresiasi dan Penjelasan</p>
+          <h3 id="feedback-title" class="text-base md:text-xl font-black text-amber-300 truncate">🎉 BENAR!</h3>
+          <p id="feedback-subtitle" class="text-[10px] md:text-xs text-amber-200/70">Apresiasi dan Penjelasan</p>
         </div>
       </div>
       <div id="feedback-details" class="my-3"></div>
@@ -526,47 +556,47 @@ try {
         <div class="fb-section yours" id="fb-yours-section"><div class="fb-t">⚠️ Analisis Pilihanmu</div><div class="fb-b" id="fb-yours">—</div></div>
         <div class="fb-section key"><div class="fb-t">🎯 Poin Kunci untuk Diingat</div><div class="fb-b" id="fb-key">—</div></div>
       </div>
-      <button type="button" id="btn-next" class="w-full bg-gradient-to-r from-emerald-400 via-teal-400 to-lime-400 text-emerald-950 font-black py-3.5 px-5 rounded-2xl cursor-pointer hover:from-emerald-300 hover:via-teal-300 hover:to-lime-300 transition text-sm md:text-base shadow-lg">
+      <button type="button" id="btn-next" class="w-full bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 text-espresso-950 font-black py-3.5 px-5 rounded-2xl cursor-pointer hover:from-amber-200 hover:via-yellow-200 hover:to-amber-300 transition text-sm md:text-base shadow-lg" style="color:#1a120a">
         ➡ LANJUT KE SOAL BERIKUTNYA
       </button>
     </div>
   </div>
 
   <!-- SKIP MODAL -->
-  <div id="skip-modal" class="is-hidden fixed inset-0 bg-emerald-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+  <div id="skip-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4" style="background:rgba(15,10,6,.92)" role="dialog" aria-modal="true" aria-labelledby="skip-title">
     <div class="glass-panel max-w-sm w-full p-6 rounded-3xl text-center">
-      <div class="text-4xl md:text-5xl mb-3">⏭️</div>
-      <h3 class="text-base md:text-lg font-extrabold text-emerald-300 mb-2">Lewati Soal Ini?</h3>
-      <p class="text-[11px] md:text-xs text-emerald-100/80 mb-5 leading-relaxed">Soal ini akan ditandai <b>dilewati</b> dan tidak dihitung benar/salah.</p>
+      <div class="text-4xl md:text-5xl mb-3" aria-hidden="true">⏭️</div>
+      <h3 id="skip-title" class="text-base md:text-lg font-extrabold text-amber-300 mb-2">Lewati Soal Ini?</h3>
+      <p class="text-[11px] md:text-xs text-amber-100/80 mb-5 leading-relaxed">Soal ini akan ditandai <b>dilewati</b> dan tidak dihitung benar/salah.</p>
       <div class="flex gap-2">
-        <button type="button" id="btn-skip-cancel" class="flex-1 bg-emerald-900 hover:bg-emerald-700 text-emerald-100 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer border border-emerald-400/25 transition">Batal</button>
-        <button type="button" id="btn-skip-confirm" class="flex-1 bg-gradient-to-r from-emerald-500 to-lime-500 text-emerald-950 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer transition shadow-lg">Ya, Lewati</button>
+        <button type="button" id="btn-skip-cancel" class="flex-1 text-amber-100 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer border border-amber-400/25 transition hover:opacity-90" style="background:rgba(26,18,10,.9)">Batal</button>
+        <button type="button" id="btn-skip-confirm" class="flex-1 bg-gradient-to-r from-amber-400 to-yellow-300 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer transition shadow-lg" style="color:#1a120a">Ya, Lewati</button>
       </div>
     </div>
   </div>
 
   <!-- RESULT SCREEN -->
   <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4">
-    <div id="record-banner" class="is-hidden glass-panel border-emerald-400/50 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-amber-500/20 p-4 md:p-4 rounded-2xl text-center">
-      <h3 id="record-text" class="text-base md:text-xl font-black text-emerald-300">🎉 SKOR BARU TERBAIK!</h3>
-      <p id="record-subtext" class="text-[11px] md:text-xs text-emerald-200">Luar biasa!</p>
+    <div id="record-banner" class="is-hidden glass-panel border-amber-400/50 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-yellow-500/20 p-4 md:p-4 rounded-2xl text-center">
+      <h3 id="record-text" class="text-base md:text-xl font-black text-amber-300">🎉 SKOR BARU TERBAIK!</h3>
+      <p id="record-subtext" class="text-[11px] md:text-xs text-amber-200">Luar biasa!</p>
     </div>
 
-    <div class="glass-panel p-5 md:p-8 rounded-3xl border-2 border-emerald-400/40">
-      <div class="border-b-2 border-dashed border-emerald-400/30 pb-4 mb-5 text-center">
-        <div class="text-base md:text-xl font-black font-serif tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-amber-400">🏺 KUIS INTERAKTIF SEJARAH</div>
+    <div class="glass-panel p-5 md:p-8 rounded-3xl border-2 border-amber-400/40">
+      <div class="border-b-2 border-dashed border-amber-400/30 pb-4 mb-5 text-center">
+        <div class="text-base md:text-xl font-black font-serif tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-300">🏺 KUIS INTERAKTIF SEJARAH</div>
         <div class="school-name text-xs md:text-sm tracking-widest mt-1.5">SMAN 3 KASONGAN</div>
-        <div class="text-[9px] md:text-[10px] text-emerald-300/80 font-bold uppercase mt-1 tracking-widest">HASIL TUGAS INDIVIDU</div>
+        <div class="text-[9px] md:text-[10px] text-amber-300/80 font-bold uppercase mt-1 tracking-widest">HASIL TUGAS INDIVIDU</div>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-4 md:gap-5 mb-6">
         <div class="flex flex-col items-center gap-2">
-          <div id="result-avatar" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg ring-2 ring-emerald-400/50">?</div>
-          <div class="text-[9px] md:text-[10px] text-emerald-400/70 uppercase font-bold tracking-widest">Avatar</div>
+          <div id="result-avatar" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg ring-2 ring-amber-400/50">?</div>
+          <div class="text-[9px] md:text-[10px] text-amber-400/70 uppercase font-bold tracking-widest">Avatar</div>
         </div>
         <div class="score-circle">
-          <svg viewBox="0 0 120 120">
-            <defs><linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#047857"/><stop offset="50%" stop-color="#10b981"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7a5733"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#fde68a"/></linearGradient></defs>
             <circle class="track" cx="60" cy="60" r="50" stroke-width="9"/>
             <circle class="bar" cx="60" cy="60" r="50" stroke-width="9" stroke="url(#scGrad)" stroke-dasharray="314.16" stroke-dashoffset="314.16" id="score-circle-bar"/>
           </svg>
@@ -577,58 +607,62 @@ try {
         </div>
         <div class="flex flex-col items-center gap-2">
           <div id="grade-badge" class="grade-badge-big grade-A">A</div>
-          <div class="text-[9px] md:text-[10px] text-emerald-400/70 uppercase font-bold tracking-widest">Grade</div>
+          <div class="text-[9px] md:text-[10px] text-amber-400/70 uppercase font-bold tracking-widest">Grade</div>
         </div>
       </div>
 
       <div class="space-y-2 text-[11px] md:text-sm">
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75 shrink-0">Nama Siswa:</span><span id="card-name" class="font-bold text-emerald-50 text-sm md:text-base text-right overflow-safe">—</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75 shrink-0">Materi:</span><span class="font-semibold text-emerald-300 text-right">PRAAKSARA</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">Jawaban Benar:</span><span id="card-correct" class="font-bold text-emerald-300 font-mono">0 / 15</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">Salah:</span><span id="card-wrong" class="font-bold text-rose-400 font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">Dilewati:</span><span id="card-skipped" class="font-bold text-emerald-300/60 font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">Skor Akhir:</span><span id="card-score" class="font-black text-emerald-300 text-base md:text-lg font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">XP Diperoleh:</span><span id="card-xp" class="font-bold text-teal-300 font-mono">0 XP</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">Streak:</span><span id="card-streak" class="font-bold text-orange-400 font-mono">0 🔥</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-emerald-400/15 gap-2"><span class="text-emerald-300/75">Gelar:</span><span id="card-title" class="font-extrabold text-amber-300 text-xs md:text-sm text-right overflow-safe">🌱 PEMBELAJAR SEJARAH</span></div>
-        <div class="flex justify-between items-center py-1.5 gap-2"><span class="text-emerald-300/75">Percobaan:</span><span id="card-attempt" class="font-bold text-emerald-100 font-mono">1</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75 shrink-0">Nama Siswa:</span><span id="card-name" class="font-bold text-amber-50 text-sm md:text-base text-right overflow-safe">—</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75 shrink-0">Materi:</span><span class="font-semibold text-amber-300 text-right">PRAAKSARA</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Jawaban Benar:</span><span id="card-correct" class="font-bold text-amber-300 font-mono">0 / 15</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Salah:</span><span id="card-wrong" class="font-bold text-rose-400 font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Dilewati:</span><span id="card-skipped" class="font-bold text-amber-300/60 font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Skor Akhir:</span><span id="card-score" class="font-black text-amber-300 text-base md:text-lg font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">XP Diperoleh:</span><span id="card-xp" class="font-bold text-yellow-200 font-mono">0 XP</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Streak:</span><span id="card-streak" class="font-bold text-orange-400 font-mono">0 🔥</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Gelar:</span><span id="card-title" class="font-extrabold text-amber-300 text-xs md:text-sm text-right overflow-safe">🌱 PEMBELAJAR SEJARAH</span></div>
+        <div class="flex justify-between items-center py-1.5 gap-2"><span class="text-amber-300/75">Percobaan:</span><span id="card-attempt" class="font-bold text-amber-100 font-mono">1</span></div>
       </div>
 
-      <div class="mt-5 pt-4 border-t border-emerald-400/20 text-center">
-        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-emerald-300/70 font-bold mb-1.5">Guru Pengampu</div>
-        <div class="text-xs md:text-sm font-black text-emerald-200">SYAHRANI, S.Pd.</div>
-        <div class="text-[9px] md:text-[10px] text-emerald-300/60 font-mono">NIP. 19751217200501 1 016</div>
+      <div class="mt-5 pt-4 border-t border-amber-400/20 text-center">
+        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-amber-300/70 font-bold mb-1.5">Guru Pengampu</div>
+        <div class="text-xs md:text-sm font-black text-amber-200">SYAHRANI, S.Pd.</div>
+        <div class="text-[9px] md:text-[10px] text-amber-300/60 font-mono">NIP. 19751217200501 1 016</div>
       </div>
     </div>
 
     <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
-      <button type="button" id="btn-restart" class="bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-400 hover:to-lime-400 text-emerald-950 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer shadow-lg transition">🔄 MAIN LAGI</button>
-      <button type="button" id="btn-copy" class="bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-emerald-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-emerald-400/30 transition">📋 <span id="copy-btn-text">SALIN</span></button>
-      <button type="button" id="btn-review" class="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-emerald-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-emerald-400/30 transition">📖 PEMBAHASAN</button>
-      <button type="button" id="btn-menu" class="bg-emerald-900 hover:bg-emerald-700 text-emerald-100 font-bold p-3 rounded-xl text-[11px] md:text-xs border border-emerald-400/20 cursor-pointer transition">🏠 MENU</button>
+      <button type="button" id="btn-restart" class="bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer shadow-lg transition" style="color:#1a120a">🔄 MAIN LAGI</button>
+      <button type="button" id="btn-copy" class="bg-gradient-to-r from-orange-700 to-amber-700 hover:from-orange-600 hover:to-amber-600 text-amber-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-amber-400/30 transition">📋 <span id="copy-btn-text">SALIN</span></button>
+      <button type="button" id="btn-review" class="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-amber-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-amber-400/30 transition">📖 PEMBAHASAN</button>
+      <button type="button" id="btn-menu" class="text-amber-100 font-bold p-3 rounded-xl text-[11px] md:text-xs border border-amber-400/20 cursor-pointer transition hover:opacity-90" style="background:rgba(26,18,10,.9)">🏠 MENU</button>
     </div>
   </section>
 
   <!-- REVIEW MODAL -->
-  <div id="review-modal" class="is-hidden fixed inset-0 bg-emerald-950/95 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3">
+  <div id="review-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3" style="background:rgba(15,10,6,.96)" role="dialog" aria-modal="true" aria-labelledby="review-title">
     <div class="glass-panel max-w-3xl w-full h-[90vh] md:h-[85vh] flex flex-col rounded-3xl p-4 md:p-5">
-      <div class="flex justify-between items-center pb-3 border-b border-emerald-400/20 gap-2">
-        <h3 class="text-sm md:text-lg font-black text-emerald-300 truncate">📖 Rangkuman Pembahasan</h3>
-        <button type="button" id="btn-close-review" class="text-emerald-300 hover:text-emerald-100 p-1 text-xl md:text-2xl cursor-pointer shrink-0 transition">×</button>
+      <div class="flex justify-between items-center pb-3 border-b border-amber-400/20 gap-2">
+        <h3 id="review-title" class="text-sm md:text-lg font-black text-amber-300 truncate">📖 Rangkuman Pembahasan</h3>
+        <button type="button" id="btn-close-review" class="text-amber-300 hover:text-amber-100 p-1 text-xl md:text-2xl cursor-pointer shrink-0 transition" aria-label="Tutup pembahasan">×</button>
       </div>
       <div id="review-list" class="flex-1 overflow-y-auto custom-scrollbar my-3 space-y-3 pr-1"></div>
-      <button type="button" id="btn-close-review-2" class="bg-emerald-900 text-emerald-100 font-bold px-5 py-2.5 rounded-xl text-[11px] md:text-xs cursor-pointer self-end border border-emerald-400/20 transition hover:bg-emerald-700">Tutup</button>
+      <button type="button" id="btn-close-review-2" class="text-amber-100 font-bold px-5 py-2.5 rounded-xl text-[11px] md:text-xs cursor-pointer self-end border border-amber-400/20 transition hover:opacity-90" style="background:rgba(26,18,10,.9)">Tutup</button>
     </div>
   </div>
 </main>
 
-<footer class="w-full text-center py-4 px-3 text-[10px] md:text-[11px] text-emerald-300/60 border-t border-emerald-400/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950">
+<footer class="w-full text-center py-4 px-3 text-[10px] md:text-[11px] text-amber-300/60 border-t border-amber-400/20 bg-gradient-to-r from-[#1a120a] via-[#3d2a18] to-[#1a120a]">
   <div class="school-name text-[11px] md:text-xs mb-1">SMAN 3 KASONGAN</div>
   <div>Kuis Interaktif Sejarah • Guru Pengampu: SYAHRANI, S.Pd.</div>
 </footer>
 
 <script>
 "use strict";
+
+window.addEventListener('error', function(e){ console.error('Global error:', e.error || e.message); });
+window.addEventListener('unhandledrejection', function(e){ console.error('Promise rejection:', e.reason); });
+
 function show(id){const el=document.getElementById(id);if(el)el.classList.remove('is-hidden');}
 function hide(id){const el=document.getElementById(id);if(el)el.classList.add('is-hidden');}
 function setText(id,t){const el=document.getElementById(id);if(el)el.textContent=t;}
@@ -678,7 +712,7 @@ function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(
       if(tip)tip.textContent=tips[Math.min(Math.floor(p/22),tips.length-1)];
       if(p>=100)setTimeout(function(){const l=document.getElementById('loader');if(l)l.classList.add('fade-out');},500);
     },180);
-    setTimeout(function(){const l=document.getElementById('loader');if(l)l.classList.add('fade-out');},4000);
+    setTimeout(function(){const l=document.getElementById('loader');if(l&&!l.classList.contains('fade-out'))l.classList.add('fade-out');},5000);
   }catch(e){}
 })();
 
@@ -822,16 +856,37 @@ const questionsBankFull = [
     topic:"Migrasi",keyPoint:"Migrasi ke Nusantara: panjang, bertahap, kompleks.",difficulty:"Sulit" }
 ];
 
+const TOTAL_QUESTIONS = 15;
+
 function getRandomQuestions(){
-  const byDiff={
-    "Mudah":questionsBankFull.filter(q=>q.difficulty==="Mudah"),
-    "Sedang":questionsBankFull.filter(q=>q.difficulty==="Sedang"),
-    "Sulit":questionsBankFull.filter(q=>q.difficulty==="Sulit"),
-    "Sangat Sulit":questionsBankFull.filter(q=>q.difficulty==="Sangat Sulit")
+  const shuffle = a => a.slice().sort(() => Math.random() - .5);
+  const byDiff = {
+    "Mudah":        questionsBankFull.filter(q => q.difficulty === "Mudah"),
+    "Sedang":       questionsBankFull.filter(q => q.difficulty === "Sedang"),
+    "Sulit":        questionsBankFull.filter(q => q.difficulty === "Sulit"),
+    "Sangat Sulit": questionsBankFull.filter(q => q.difficulty === "Sangat Sulit")
   };
-  const shuffle=a=>a.slice().sort(()=>Math.random()-.5);
-  const pick=(a,n)=>shuffle(a).slice(0,n);
-  return [...pick(byDiff["Mudah"],5),...pick(byDiff["Sedang"],5),...pick(byDiff["Sulit"],3),...pick(byDiff["Sangat Sulit"],2)];
+  const target = { "Mudah": 5, "Sedang": 5, "Sulit": 3, "Sangat Sulit": 2 };
+  const chosen = [];
+  const usedSet = new Set();
+
+  for (const key of ["Mudah", "Sedang", "Sulit", "Sangat Sulit"]) {
+    const pool = shuffle(byDiff[key]);
+    const take = Math.min(target[key], pool.length);
+    for (let i = 0; i < take; i++) {
+      chosen.push(pool[i]);
+      usedSet.add(pool[i]);
+    }
+  }
+
+  if (chosen.length < TOTAL_QUESTIONS) {
+    const remaining = shuffle(questionsBankFull.filter(q => !usedSet.has(q)));
+    while (chosen.length < TOTAL_QUESTIONS && remaining.length > 0) {
+      chosen.push(remaining.shift());
+    }
+  }
+
+  return chosen.slice(0, TOTAL_QUESTIONS);
 }
 
 const prizeAmounts=[
@@ -847,6 +902,7 @@ let timerInterval=null;let secondsElapsed=0;let userAnswersHistory=[];
 let lifelinesUsed={'5050':false,'hint':false,'skip':false};
 let selectedAnswerIndex=null;let answerLocked=false;
 const STORAGE_PREFIX="kuis_sejarah_v2_";
+const PROGRESS_KEY = STORAGE_PREFIX + "progress";
 
 window.addEventListener('DOMContentLoaded',function(){
   try{
@@ -855,6 +911,7 @@ window.addEventListener('DOMContentLoaded',function(){
       soundMuted=!soundMuted;
       st.textContent=soundMuted?'🔇':'🔊';
       st.classList.toggle('muted',soundMuted);
+      st.setAttribute('aria-pressed', soundMuted ? 'true' : 'false');
       if(!soundMuted)sfx('click');
     });
     const form=document.getElementById('start-form');
@@ -872,7 +929,30 @@ window.addEventListener('DOMContentLoaded',function(){
     bind('lifeline-skip',function(){openSkipModal();});
     bind('btn-skip-cancel',function(){hide('skip-modal');});
     bind('btn-skip-confirm',function(){confirmSkip();});
-    loadAttemptHistory();updateBestScoreSummary();
+    bind('btn-resume', resumeGame);
+    bind('btn-discard', function(){ clearProgress(); hide('resume-panel'); });
+
+    document.addEventListener('keydown', function(e){
+      var gs = document.getElementById('game-screen');
+      if (!gs || gs.classList.contains('is-hidden')) return;
+      if (['1','2','3','4'].includes(e.key)) {
+        var idx = parseInt(e.key) - 1;
+        var btn = document.getElementById('opt-btn-' + idx);
+        if (btn && !btn.disabled) { btn.click(); }
+      }
+      if (e.key === 'Enter') {
+        var lock = document.getElementById('btn-lock-answer');
+        var next = document.getElementById('btn-next');
+        var fm = document.getElementById('feedback-modal');
+        if (fm && !fm.classList.contains('is-hidden')) { next && next.click(); }
+        else if (lock && lock.parentElement && !lock.parentElement.classList.contains('is-hidden')) { lock.click(); }
+      }
+      if (e.key === 'Escape') { hide('skip-modal'); hide('review-modal'); }
+    });
+
+    loadAttemptHistory();
+    updateBestScoreSummary();
+    showResumePanelIfAny();
     console.log('✅ Bank soal:',questionsBankFull.length);
   }catch(e){console.error('Init error:',e);}
 });
@@ -885,8 +965,64 @@ function updateBestScoreSummary(){
     const bc=localStorage.getItem(STORAGE_PREFIX+"best_correct");
     const bs=localStorage.getItem(STORAGE_PREFIX+"best_score");
     const bt=localStorage.getItem(STORAGE_PREFIX+"best_title");
-    if(bs!==null){show("best-score-summary");setText("best-score-correct",bc+"/15");setText("best-score-points",bs);setText("best-score-title",bt);}
+    if(bs!==null){
+      show("best-score-summary");
+      setText("best-score-correct",bc+"/"+TOTAL_QUESTIONS);
+      setText("best-score-points",bs);
+      setText("best-score-title",bt);
+    }
   }catch(e){}
+}
+
+function saveProgress(){
+  try{
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+      studentName: studentName, questions: currentQuestions, index: currentQuestionIndex,
+      score: score, correct: correctAnswersCount, wrong: wrongAnswersCount, skipped: skippedCount,
+      xp: xpGained, streak: streak, maxStreak: maxStreak, seconds: secondsElapsed,
+      history: userAnswersHistory, lifelines: lifelinesUsed, savedAt: Date.now()
+    }));
+  }catch(e){}
+}
+function clearProgress(){ try{ localStorage.removeItem(PROGRESS_KEY); }catch(e){} }
+function hasSavedProgress(){
+  try{
+    var raw = localStorage.getItem(PROGRESS_KEY);
+    if (!raw) return null;
+    var p = JSON.parse(raw);
+    if (Date.now() - p.savedAt > 24*3600*1000){ clearProgress(); return null; }
+    if (!p.questions || p.index >= p.questions.length) { clearProgress(); return null; }
+    return p;
+  }catch(e){ return null; }
+}
+function showResumePanelIfAny(){
+  var p = hasSavedProgress();
+  if (!p) { hide('resume-panel'); return; }
+  var sisa = p.questions.length - p.index;
+  setText('resume-info', (p.studentName || 'Siswa') + ' — ' + sisa + ' soal tersisa');
+  show('resume-panel');
+}
+function resumeGame(){
+  var p = hasSavedProgress();
+  if (!p) { hide('resume-panel'); return; }
+  studentName = p.studentName || "Siswa";
+  currentQuestions = p.questions || [];
+  currentQuestionIndex = p.index || 0;
+  score = p.score || 0;
+  correctAnswersCount = p.correct || 0;
+  wrongAnswersCount = p.wrong || 0;
+  skippedCount = p.skipped || 0;
+  xpGained = p.xp || 0;
+  streak = p.streak || 0;
+  maxStreak = p.maxStreak || 0;
+  secondsElapsed = p.seconds || 0;
+  userAnswersHistory = p.history || [];
+  lifelinesUsed = p.lifelines || {'5050':false,'hint':false,'skip':false};
+  selectedAnswerIndex = null; answerLocked = false;
+  setText("player-display-name", studentName);
+  setText("total-q-num", currentQuestions.length);
+  hide("start-screen"); hide("result-screen"); show("game-screen");
+  startTimer(); renderPrizeLadder(); loadQuestion();
 }
 
 function startGame(){
@@ -896,20 +1032,26 @@ function startGame(){
     studentName=(ni?ni.value:"").trim();
     if(!studentName){alert("Mohon isi nama terlebih dahulu.");return;}
     currentQuestions=getRandomQuestions();
-    if(!currentQuestions||currentQuestions.length===0){alert("Bank soal kosong!");return;}
+    if(!currentQuestions||currentQuestions.length<TOTAL_QUESTIONS){
+      alert("Bank soal tidak mencukupi (minimal "+TOTAL_QUESTIONS+"). Hubungi guru.");
+      return;
+    }
+    clearProgress();
     currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
     xpGained=0;streak=0;maxStreak=0;secondsElapsed=0;userAnswersHistory=[];
     lifelinesUsed={'5050':false,'hint':false,'skip':false};
     selectedAnswerIndex=null;answerLocked=false;
     setText("player-display-name",studentName);
-    hide("start-screen");hide("result-screen");show("game-screen");
+    setText("total-q-num",currentQuestions.length);
+    hide("start-screen");hide("result-screen");hide("resume-panel");show("game-screen");
     resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
   }catch(e){console.error("startGame error:",e);alert("Terjadi kesalahan: "+e.message);}
 }
 
 function startTimer(){
   try{
-    clearInterval(timerInterval);secondsElapsed=0;setText("timer-display","00:00");
+    clearInterval(timerInterval);
+    setText("timer-display", String(Math.floor(secondsElapsed/60)).padStart(2,'0')+":"+String(secondsElapsed%60).padStart(2,'0'));
     timerInterval=setInterval(function(){
       secondsElapsed++;
       const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
@@ -926,7 +1068,7 @@ function renderPrizeLadder(){
       const isM=(i===4||i===9||i===14);
       const item=document.createElement("div");
       item.id="ladder-step-"+i;
-      item.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(isM?"text-amber-300 font-bold":"text-emerald-200/60");
+      item.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(isM?"text-amber-300 font-bold":"text-amber-200/60");
       item.innerHTML="<span>Soal "+(i+1)+"</span><span>"+prizeAmounts[i]+"</span>";
       el.appendChild(item);
     }
@@ -936,11 +1078,11 @@ function updatePrizeLadderHighlight(){
   try{
     for(let i=0;i<15;i++){
       const el=document.getElementById("ladder-step-"+i);if(!el)continue;
-      if(i===currentQuestionIndex){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] bg-gradient-to-r from-emerald-500 to-lime-500 text-emerald-950 font-extrabold shadow-md";}
+      if(i===currentQuestionIndex){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] bg-gradient-to-r from-amber-400 to-yellow-300 font-extrabold shadow-md";el.style.color="#1a120a";}
       else if(i<currentQuestionIndex){
         const st=userAnswersHistory[i];
-        if(st&&st.isSkipped){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] text-emerald-400/40 italic";}
-        else{el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(st&&st.isCorrect?"text-emerald-300":"text-rose-400 line-through opacity-70");}
+        if(st&&st.isSkipped){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] text-amber-400/40 italic";}
+        else{el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(st&&st.isCorrect?"text-amber-300":"text-rose-400 line-through opacity-70");}
       }
     }
   }catch(e){}
@@ -959,25 +1101,34 @@ function loadQuestion(){
     selectedAnswerIndex=null;answerLocked=false;
     const qData=currentQuestions[currentQuestionIndex];
     if(!qData){console.error("Question not found");return;}
+    const totalQ = currentQuestions.length;
     setText("current-q-num",currentQuestionIndex+1);
-    setText("reward-tag",prizeAmounts[currentQuestionIndex]);
+    setText("total-q-num",totalQ);
+    setText("reward-tag",prizeAmounts[currentQuestionIndex]||("Lvl "+(currentQuestionIndex+1)));
     setText("question-text",qData.q);
     setText("xp-counter",xpGained);
     hide("hint-panel");hide("lock-btn-container");
     const diffTag=document.getElementById("difficulty-tag");
     if(diffTag){diffTag.className="diff-badge "+getDifficultyClass(qData.difficulty);diffTag.textContent=qData.difficulty||"Mudah";}
     const prog=document.getElementById("q-progress");
-    if(prog)prog.style.width=((currentQuestionIndex)/15*100)+"%";
+    const pctProgress = Math.round((currentQuestionIndex/totalQ)*100);
+    if(prog)prog.style.width=pctProgress+"%";
+    const pbar = document.getElementById("q-progress-bar");
+    if (pbar) pbar.setAttribute("aria-valuenow", pctProgress);
     const c=document.getElementById("answers-container");if(!c)return;c.innerHTML="";
     qData.options.forEach(function(opt,index){
       const btn=document.createElement("button");
       btn.type="button";btn.id="opt-btn-"+index;
       btn.className="opt-btn overflow-safe";
       btn.textContent=opt;
+      btn.setAttribute("aria-label","Pilihan "+String.fromCharCode(65+index)+": "+opt);
+      btn.setAttribute("aria-pressed","false");
       btn.addEventListener("click",function(){selectAnswer(index);});
       c.appendChild(btn);
     });
     updateLifelineButtons();
+    var first = document.getElementById('opt-btn-0');
+    if (first) setTimeout(function(){ try{ first.focus({preventScroll:true}); }catch(_){} }, 80);
   }catch(e){console.error("loadQuestion error:",e);}
 }
 function updateLifelineButtons(){
@@ -988,8 +1139,8 @@ function updateLifelineButtons(){
   ];
   configs.forEach(function(cfg){
     const btn=document.getElementById(cfg.id);if(!btn)return;
-    if(cfg.used||answerLocked){btn.disabled=true;btn.style.opacity=".3";btn.style.cursor="not-allowed";}
-    else{btn.disabled=false;btn.style.opacity="";btn.style.cursor="pointer";}
+    if(cfg.used||answerLocked){btn.disabled=true;btn.style.opacity=".3";btn.style.cursor="not-allowed";btn.setAttribute("aria-disabled","true");}
+    else{btn.disabled=false;btn.style.opacity="";btn.style.cursor="pointer";btn.setAttribute("aria-disabled","false");}
   });
 }
 function resetLifelineButtons(){lifelinesUsed={'5050':false,'hint':false,'skip':false};updateLifelineButtons();}
@@ -998,9 +1149,12 @@ function selectAnswer(index){
   if(answerLocked)return;
   try{
     sfx('select');selectedAnswerIndex=index;
-    document.querySelectorAll('#answers-container button').forEach(function(b){b.classList.remove('opt-selected');});
+    document.querySelectorAll('#answers-container button').forEach(function(b){
+      b.classList.remove('opt-selected');
+      b.setAttribute('aria-pressed','false');
+    });
     const sb=document.getElementById("opt-btn-"+index);
-    if(sb)sb.classList.add('opt-selected');
+    if(sb){sb.classList.add('opt-selected');sb.setAttribute('aria-pressed','true');}
     show("lock-btn-container");
   }catch(e){}
 }
@@ -1031,7 +1185,7 @@ function useHint(){
     const nudges={"Mudah":"Soal MUDAH. Fokus pada definisi dasar atau ciri umum topik ini.","Sedang":"Soal SEDANG. Perhatikan perbedaan antar pilihan jawaban.","Sulit":"Soal SULIT. Sering memuat perhitungan atau klasifikasi.","Sangat Sulit":"Soal SANGAT SULIT. Waspadai istilah teknis — baca kata kunci teliti."};
     const nudge=nudges[difficulty]||"Perhatikan kata kunci dalam soal.";
     const ht=document.getElementById("hint-text");
-    if(ht){ht.innerHTML='<div class="flex flex-wrap items-center gap-1.5 mb-2"><span class="px-2.5 py-1 rounded-full bg-emerald-500/25 text-emerald-200 text-[10px] font-bold uppercase tracking-wider border border-emerald-400/35">Topik: '+topic+'</span><span class="px-2.5 py-1 rounded-full bg-teal-700/50 text-teal-100 text-[10px] font-bold uppercase tracking-wider border border-teal-400/25">'+difficulty+'</span></div><div>'+nudge+'</div><div class="mt-2 text-[10px] italic text-teal-300/70">⚠️ Guru tidak membocorkan jawaban — gunakan nalar!</div>';}
+    if(ht){ht.innerHTML='<div class="flex flex-wrap items-center gap-1.5 mb-2"><span class="px-2.5 py-1 rounded-full bg-amber-500/25 text-amber-200 text-[10px] font-bold uppercase tracking-wider border border-amber-400/35">Topik: '+topic+'</span><span class="px-2.5 py-1 rounded-full text-orange-100 text-[10px] font-bold uppercase tracking-wider border border-orange-400/25" style="background:rgba(180,83,9,.5)">'+difficulty+'</span></div><div>'+nudge+'</div><div class="mt-2 text-[10px] italic text-amber-300/70">⚠️ Guru tidak membocorkan jawaban — gunakan nalar!</div>';}
     show("hint-panel");
   }catch(e){}
 }
@@ -1044,13 +1198,16 @@ function confirmSkip(){
     userAnswersHistory.push({questionNum:currentQuestionIndex+1,questionText:qData.q,userAnswer:"— Dilewati —",correctAnswer:qData.options[qData.correct],explanation:qData.explanation,topic:qData.topic,keyPoint:qData.keyPoint,difficulty:qData.difficulty,isCorrect:false,isSkipped:true});
     skippedCount++;streak=0;hide("streak-container");
     showToast("⏭️ Soal dilewati — lanjut berikutnya");
+    saveProgress();
     setTimeout(function(){currentQuestionIndex++;if(currentQuestionIndex<currentQuestions.length){loadQuestion();}else{endGame();}},900);
   }catch(e){}
 }
 function showToast(msg){
   const t=document.createElement("div");
-  t.className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-gradient-to-r from-emerald-400 to-lime-500 text-emerald-950 font-bold text-xs md:text-sm shadow-2xl max-w-[90vw] text-center";
+  t.className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-300 font-bold text-xs md:text-sm shadow-2xl max-w-[90vw] text-center";
+  t.style.color="#1a120a";
   t.style.animation="fadeInOut 2s ease";t.textContent=msg;
+  t.setAttribute('role','status');
   document.body.appendChild(t);setTimeout(function(){t.remove();},2000);
 }
 
@@ -1082,6 +1239,7 @@ function confirmAnswer(){
       setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,false,selectedAnswerIndex,0);},1600);
     }
     userAnswersHistory.push({questionNum:currentQuestionIndex+1,questionText:qData.q,userAnswer:qData.options[selectedAnswerIndex],correctAnswer:qData.options[qData.correct],explanation:qData.explanation,topic:qData.topic,keyPoint:qData.keyPoint,difficulty:qData.difficulty,isCorrect:isCorrect,isSkipped:false});
+    saveProgress();
   }catch(e){}
 }
 function showRevealOverlay(text,type){
@@ -1094,6 +1252,7 @@ function showRevealOverlay(text,type){
 }
 function hideRevealOverlay(){const o=document.getElementById("reveal-overlay");if(!o)return;o.classList.remove("show");o.classList.remove("backdrop");}
 function createBurst(cx,cy,colors){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const count = window.innerWidth < 640 ? 18 : 28;
   for(let i=0;i<count;i++){
     const p=document.createElement("div");p.className="burst-particle";
@@ -1116,18 +1275,18 @@ function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
     const ys=document.getElementById("fb-yours-section");
     const letters=["A","B","C","D"];
     if(isCorrect){
-      if(mc)mc.className="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-emerald-400/60 my-auto";
+      if(mc)mc.className="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-amber-400/60 my-auto";
       if(ib){ib.className="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-emerald-500/25 text-emerald-300 shrink-0 shadow-lg";ib.textContent="✓";}
-      if(ti){ti.className="text-base md:text-xl font-black text-emerald-300";ti.textContent="🎉 JAWABAN BENAR!";}
+      if(ti){ti.className="text-base md:text-xl font-black text-amber-300";ti.textContent="🎉 JAWABAN BENAR!";}
       if(su)su.textContent="Luar biasa! +"+earnedXP+" XP (Streak 🔥 "+streak+")";
-      if(de)de.innerHTML='<div class="p-3 bg-emerald-950/50 border border-emerald-400/40 rounded-xl"><div class="text-[10px] md:text-[11px] text-emerald-300 font-bold uppercase mb-1">Jawaban Kamu:</div><div class="font-bold text-emerald-100 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div>';
+      if(de)de.innerHTML='<div class="p-3 border border-amber-400/40 rounded-xl" style="background:rgba(15,10,6,.6)"><div class="text-[10px] md:text-[11px] text-amber-300 font-bold uppercase mb-1">Jawaban Kamu:</div><div class="font-bold text-amber-100 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div>';
       if(ys)ys.classList.add('is-hidden');
     }else{
       if(mc)mc.className="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-rose-500/60 my-auto";
       if(ib){ib.className="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-rose-500/25 text-rose-300 shrink-0 shadow-lg";ib.textContent="✗";}
       if(ti){ti.className="text-base md:text-xl font-black text-rose-400";ti.textContent="❌ BELUM TEPAT";}
       if(su)su.textContent="Jangan berkecil hati! Pelajari pembahasannya di bawah ini.";
-      if(de)de.innerHTML='<div class="space-y-2"><div class="p-3 bg-rose-950/40 border border-rose-500/40 rounded-xl"><div class="text-[10px] text-rose-300 font-bold uppercase">Jawaban Kamu:</div><div class="font-semibold text-rose-200 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div><div class="p-3 bg-emerald-950/40 border border-emerald-400/40 rounded-xl"><div class="text-[10px] text-emerald-300 font-bold uppercase">Jawaban Yang Benar:</div><div class="font-bold text-emerald-200 text-xs md:text-sm overflow-safe">'+qData.options[qData.correct]+'</div></div></div>';
+      if(de)de.innerHTML='<div class="space-y-2"><div class="p-3 border border-rose-500/40 rounded-xl" style="background:rgba(60,10,10,.5)"><div class="text-[10px] text-rose-300 font-bold uppercase">Jawaban Kamu:</div><div class="font-semibold text-rose-200 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div><div class="p-3 border border-amber-400/40 rounded-xl" style="background:rgba(30,20,5,.5)"><div class="text-[10px] text-amber-300 font-bold uppercase">Jawaban Yang Benar:</div><div class="font-bold text-amber-200 text-xs md:text-sm overflow-safe">'+qData.options[qData.correct]+'</div></div></div>';
       if(ys)ys.classList.remove('is-hidden');
       setHTML("fb-yours",'Kamu memilih <span class="badge-pick">'+letters[selectedIdx]+'</span><b>"'+qData.options[selectedIdx].replace(/^[A-D]\.\s*/,'')+'"</b> — belum tepat. Bandingkan dengan jawaban benar <span class="badge-correct">'+letters[qData.correct]+'</span> <b>'+qData.options[qData.correct].replace(/^[A-D]\.\s*/,'')+'</b>. Perhatikan kata kunci dan topik <b>'+(qData.topic||"sejarah")+'</b>.');
     }
@@ -1135,6 +1294,7 @@ function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
     setText("fb-why",qData.explanation);
     setText("fb-key",qData.keyPoint||"Baca kembali materi terkait.");
     show("feedback-modal");
+    setTimeout(function(){ var n=document.getElementById('btn-next'); if(n) try{n.focus({preventScroll:true});}catch(_){} }, 100);
   }catch(e){}
 }
 function nextQuestion(){
@@ -1150,8 +1310,11 @@ function calculateGrade(s){if(s>=90)return "A";if(s>=80)return "B";if(s>=70)retu
 
 function endGame(){
   try{
-    clearInterval(timerInterval);hide("game-screen");show("result-screen");
-    score=Math.round((correctAnswersCount/15)*100);
+    clearInterval(timerInterval);
+    clearProgress();
+    hide("game-screen");show("result-screen");
+    const totalQ = currentQuestions.length || TOTAL_QUESTIONS;
+    score=Math.round((correctAnswersCount/totalQ)*100);
     const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
     const initials=studentName.trim().split(/\s+/).map(function(w){return w[0];}).join("").slice(0,2).toUpperCase()||"?";
     setText("result-avatar",initials);
@@ -1162,7 +1325,7 @@ function endGame(){
     const ge=document.getElementById("grade-badge");
     if(ge){ge.textContent=grade;ge.className="grade-badge-big grade-"+grade;}
     setText("card-name",studentName.toUpperCase());
-    setText("card-correct",correctAnswersCount+" / 15");
+    setText("card-correct",correctAnswersCount+" / "+totalQ);
     setText("card-wrong",wrongAnswersCount);
     setText("card-skipped",skippedCount);
     setText("card-score",score);
@@ -1194,7 +1357,7 @@ function endGame(){
   }catch(e){}
 }
 function triggerConfetti(isRecord){
-  const colors=['#fbbf24','#10b981','#84cc16','#34d399','#fde68a','#14b8a6'];
+  const colors=['#fbbf24','#f59e0b','#fde68a','#d97706','#fef3c7','#fcd34d'];
   safeConfetti({particleCount:80,spread:100,origin:{y:.6},colors:colors});
   if(isRecord){
     setTimeout(function(){safeConfetti({particleCount:60,angle:60,spread:75,origin:{x:0,y:.7},colors:colors});},300);
@@ -1204,13 +1367,22 @@ function triggerConfetti(isRecord){
 function copyFormattedResult(){
   try{
     sfx('click');
+    const totalQ = currentQuestions.length || TOTAL_QUESTIONS;
     const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
-    const txt="HASIL KUIS INTERAKTIF SEJARAH\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Jejak Kehidupan Masyarakat Praaksara di Indonesia\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
-    const ta=document.createElement('textarea');ta.value=txt;
-    document.body.appendChild(ta);ta.select();document.execCommand('copy');
-    document.body.removeChild(ta);
-    const cbt=document.getElementById("copy-btn-text");
-    if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
+    const txt="HASIL KUIS INTERAKTIF SEJARAH\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Jejak Kehidupan Masyarakat Praaksara di Indonesia\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/"+totalQ+"\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
+    function markCopied(){
+      const cbt=document.getElementById("copy-btn-text");
+      if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
+    }
+    function fallback(){
+      const ta=document.createElement('textarea');ta.value=txt;
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');markCopied();}catch(e){alert("Gagal menyalin. Coba salin manual.");}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(markCopied).catch(fallback);
+    } else { fallback(); }
   }catch(e){alert("Gagal menyalin. Coba salin manual.");}
 }
 function openReviewModal(){
@@ -1219,12 +1391,14 @@ function openReviewModal(){
     const l=document.getElementById("review-list");if(!l)return;l.innerHTML="";
     userAnswersHistory.forEach(function(item){
       const isC=item.isCorrect,isS=item.isSkipped;
-      let cardClass="bg-rose-950/30 border-rose-500/40";let statusText="✗ Soal "+item.questionNum+" — Belum tepat";let statusColor="text-rose-400";
-      if(isC){cardClass="bg-emerald-950/30 border-emerald-400/40";statusText="✓ Soal "+item.questionNum+" — Benar";statusColor="text-emerald-300";}
-      else if(isS){cardClass="bg-emerald-900/40 border-emerald-400/30";statusText="⏭️ Soal "+item.questionNum+" — Dilewati";statusColor="text-emerald-400";}
+      let cardClass="border-rose-500/40";let statusText="✗ Soal "+item.questionNum+" — Belum tepat";let statusColor="text-rose-400";
+      let bgColor="rgba(60,10,10,.35)";
+      if(isC){cardClass="border-amber-400/40";statusText="✓ Soal "+item.questionNum+" — Benar";statusColor="text-amber-300";bgColor="rgba(30,20,5,.4)";}
+      else if(isS){cardClass="border-amber-400/30";statusText="⏭️ Soal "+item.questionNum+" — Dilewati";statusColor="text-amber-400";bgColor="rgba(26,18,10,.4)";}
       const card=document.createElement("div");
       card.className="p-4 rounded-2xl border "+cardClass+" space-y-2.5 text-[11px] md:text-xs";
-      card.innerHTML='<div class="flex items-center justify-between font-bold flex-wrap gap-2"><span class="'+statusColor+'">'+statusText+'</span><span class="diff-badge '+getDifficultyClass(item.difficulty)+'">'+(item.difficulty||"Mudah")+'</span></div><p class="font-medium text-emerald-50 overflow-safe">'+item.questionText+'</p><div class="bg-emerald-950/70 p-2.5 rounded-lg"><div class="text-emerald-200/80">Jawabanmu: <span class="'+(isC?"text-emerald-300 font-bold":(isS?"text-emerald-400/60 font-bold":"text-rose-400 font-bold"))+'">'+item.userAnswer+'</span></div>'+(!isC?'<div class="text-emerald-200/80 mt-1">Jawaban Benar: <span class="text-emerald-300 font-bold">'+item.correctAnswer+'</span></div>':'')+'</div><div class="bg-emerald-500/10 border border-emerald-400/30 p-2.5 rounded-lg text-emerald-100 overflow-safe"><strong class="text-emerald-300">📚 Topik:</strong> '+(item.topic||"Sejarah")+'</div><div class="bg-emerald-500/10 border border-emerald-400/30 p-2.5 rounded-lg text-emerald-100 overflow-safe"><strong class="text-emerald-300">📖 Pembahasan:</strong> '+item.explanation+'</div><div class="bg-teal-500/10 border border-teal-400/30 p-2.5 rounded-lg text-teal-100 overflow-safe"><strong class="text-teal-300">🎯 Poin Kunci:</strong> '+(item.keyPoint||"—")+'</div>';
+      card.style.background=bgColor;
+      card.innerHTML='<div class="flex items-center justify-between font-bold flex-wrap gap-2"><span class="'+statusColor+'">'+statusText+'</span><span class="diff-badge '+getDifficultyClass(item.difficulty)+'">'+(item.difficulty||"Mudah")+'</span></div><p class="font-medium text-amber-50 overflow-safe">'+item.questionText+'</p><div class="p-2.5 rounded-lg" style="background:rgba(15,10,6,.75)"><div class="text-amber-200/80">Jawabanmu: <span class="'+(isC?"text-amber-300 font-bold":(isS?"text-amber-400/60 font-bold":"text-rose-400 font-bold"))+'">'+item.userAnswer+'</span></div>'+(!isC?'<div class="text-amber-200/80 mt-1">Jawaban Benar: <span class="text-amber-300 font-bold">'+item.correctAnswer+'</span></div>':'')+'</div><div class="bg-amber-500/10 border border-amber-400/30 p-2.5 rounded-lg text-amber-100 overflow-safe"><strong class="text-amber-300">📚 Topik:</strong> '+(item.topic||"Sejarah")+'</div><div class="bg-amber-500/10 border border-amber-400/30 p-2.5 rounded-lg text-amber-100 overflow-safe"><strong class="text-amber-300">📖 Pembahasan:</strong> '+item.explanation+'</div><div class="bg-orange-500/10 border border-orange-400/30 p-2.5 rounded-lg text-orange-100 overflow-safe"><strong class="text-orange-300">🎯 Poin Kunci:</strong> '+(item.keyPoint||"—")+'</div>';
       l.appendChild(card);
     });
     show("review-modal");
@@ -1236,16 +1410,21 @@ function restartGame(){
     sfx('click');attemptCount++;
     hide("result-screen");show("game-screen");
     currentQuestions=getRandomQuestions();
+    if(!currentQuestions||currentQuestions.length<TOTAL_QUESTIONS){
+      alert("Bank soal tidak mencukupi.");
+      return;
+    }
     currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
     xpGained=0;streak=0;maxStreak=0;secondsElapsed=0;userAnswersHistory=[];
     selectedAnswerIndex=null;answerLocked=false;
+    setText("total-q-num",currentQuestions.length);
     resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
   }catch(e){}
 }
 function returnToMainScreen(){
   sfx('click');
   hide("result-screen");hide("game-screen");show("start-screen");
-  loadAttemptHistory();updateBestScoreSummary();
+  loadAttemptHistory();updateBestScoreSummary();showResumePanelIfAny();
 }
 (function(){
   const style=document.createElement('style');
