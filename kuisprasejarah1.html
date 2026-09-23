@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a120a">
+<meta name="theme-color" content="#1a0b2e">
 <title>Kuis Interaktif Sejarah — SMAN 3 Kasongan</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -14,20 +14,17 @@ try {
     theme: { extend: {
       fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','Georgia','serif'] },
       colors: {
-        // Base: cokelat espresso hangat (menggantikan emerald)
         emerald: {
-          50:'#faf6f1', 100:'#f5ede3', 200:'#e8d5c2', 300:'#d4b496',
-          400:'#b8916a', 500:'#9c7348', 600:'#7a5733', 700:'#5c4025',
-          800:'#3d2a18', 900:'#2a1d10', 950:'#1a120a'
+          50:'#f5f0ff', 100:'#ede0ff', 200:'#d9c2ff', 300:'#bd96ff',
+          400:'#9e6aff', 500:'#8338ec', 600:'#6d28d9', 700:'#5b21b6',
+          800:'#3f1a70', 900:'#2a1050', 950:'#1a0b2e'
         },
-        // Aksen: emas / amber (menggantikan teal)
         teal: {
-          50:'#fffbeb', 100:'#fef3c7', 200:'#fde68a', 300:'#fcd34d',
-          400:'#fbbf24', 500:'#f59e0b', 600:'#d97706', 700:'#b45309',
-          800:'#92400e', 900:'#78350f', 950:'#451a03'
+          50:'#fdf4ff', 100:'#fae8ff', 200:'#f5d0fe', 300:'#f0abfc',
+          400:'#e879f9', 500:'#d946ef', 600:'#c026d3', 700:'#a21caf',
+          800:'#86198f', 900:'#701a75', 950:'#4a044e'
         },
-        // Aksen terang: krem / kuning muda
-        lime: { 400:'#fef08a', 500:'#fde047' }
+        lime: { 400:'#c4b5fd', 500:'#a78bfa' }
       }
     }}
   };
@@ -48,117 +45,117 @@ try {
 </script>
 <style>
   :root {
-    --espresso-950:#0f0a06;--espresso-900:#1a120a;--espresso-800:#2a1d10;
-    --espresso-700:#3d2a18;--espresso-600:#5c4025;--espresso-500:#7a5733;
-    --espresso-400:#9c7348;--espresso-300:#b8916a;--espresso-200:#d4b496;
-    --gold-300:#fcd34d;--gold-400:#fbbf24;--gold-500:#f59e0b;
-    --gold-600:#d97706;--gold-700:#b45309;
-    --cream:#fef3c7;--cream-soft:#fde68a;
+    --violet-950:#0d0518;--violet-900:#1a0b2e;--violet-800:#2a1050;
+    --violet-700:#3f1a70;--violet-600:#5b21b6;--violet-500:#6d28d9;
+    --violet-400:#8338ec;--violet-300:#9e6aff;--violet-200:#bd96ff;
+    --fuchsia-300:#f0abfc;--fuchsia-400:#e879f9;--fuchsia-500:#d946ef;
+    --fuchsia-600:#c026d3;--fuchsia-700:#a21caf;
+    --lavender:#ede0ff;--lavender-soft:#d9c2ff;
   }
   * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(245,158,11,.18) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 100%, rgba(217,119,6,.14) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, rgba(42,29,16,.95) 0%, #1a120a 55%, #0f0a06 100%);
+      radial-gradient(ellipse at 20% 0%, rgba(217,70,239,.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(131,56,236,.20) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(42,16,80,.95) 0%, #1a0b2e 55%, #0d0518 100%);
     background-attachment: fixed;
-    color:#fef3c7; min-height:100vh; margin:0;
+    color:#ede0ff; min-height:100vh; margin:0;
     font-family:'Inter',system-ui,sans-serif;
     font-size: 15px;
     line-height: 1.5;
     overflow-x: hidden;
   }
   .custom-scrollbar::-webkit-scrollbar{width:6px}
-  .custom-scrollbar::-webkit-scrollbar-track{background:rgba(15,10,6,.7)}
-  .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#f59e0b,#fbbf24);border-radius:9999px}
+  .custom-scrollbar::-webkit-scrollbar-track{background:rgba(13,5,24,.7)}
+  .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#d946ef,#8338ec);border-radius:9999px}
 
   .glass-panel {
-    background:linear-gradient(155deg,rgba(61,42,24,.78) 0%,rgba(26,18,10,.92) 100%);
+    background:linear-gradient(155deg,rgba(63,26,112,.78) 0%,rgba(26,11,46,.92) 100%);
     backdrop-filter:blur(20px) saturate(140%);
     -webkit-backdrop-filter:blur(20px) saturate(140%);
-    border:1px solid rgba(251,191,36,.22);
+    border:1px solid rgba(217,70,239,.28);
     box-shadow:
       0 24px 64px rgba(0,0,0,.6),
       0 0 0 1px rgba(255,255,255,.03) inset,
-      0 1px 0 rgba(251,191,36,.12) inset;
+      0 1px 0 rgba(232,121,249,.15) inset;
     position: relative;
   }
   .glass-panel::before {
     content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-    background:linear-gradient(135deg,rgba(251,191,36,.08) 0%,transparent 40%,transparent 60%,rgba(217,119,6,.06) 100%);
+    background:linear-gradient(135deg,rgba(217,70,239,.10) 0%,transparent 40%,transparent 60%,rgba(131,56,236,.08) 100%);
   }
   .is-hidden{display:none!important}
 
-  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,#2a1d10 0%,#1a120a 60%,#0a0604 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;padding:16px}
+  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,#2a1050 0%,#1a0b2e 60%,#0d0518 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;padding:16px}
   #loader.fade-out{opacity:0;visibility:hidden;pointer-events:none}
   .loader-compass{position:relative;width:100px;height:100px;animation:compassSpin 3.5s ease-in-out infinite}
-  .loader-compass svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 28px rgba(251,191,36,.7))}
-  .loader-ring{position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;border:4px solid transparent;border-top-color:#fbbf24;border-right-color:#fde68a;border-bottom-color:#f59e0b;border-left-color:#d97706;animation:ringSpin 3s linear infinite;box-shadow:0 0 60px rgba(245,158,11,.5),inset 0 0 30px rgba(245,158,11,.22)}
+  .loader-compass svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 28px rgba(217,70,239,.8))}
+  .loader-ring{position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;border:4px solid transparent;border-top-color:#e879f9;border-right-color:#d9c2ff;border-bottom-color:#d946ef;border-left-color:#8338ec;animation:ringSpin 3s linear infinite;box-shadow:0 0 60px rgba(217,70,239,.6),inset 0 0 30px rgba(217,70,239,.25)}
   @keyframes ringSpin{to{transform:rotate(360deg)}}
   @keyframes compassSpin{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.1)}}
-  .loader-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:900;letter-spacing:-1.5px;margin-top:30px;background:linear-gradient(135deg,#fde68a 0%,#fbbf24 35%,#f59e0b 65%,#fde68a 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s ease-in-out infinite;text-align:center;filter:drop-shadow(0 4px 20px rgba(245,158,11,.5))}
+  .loader-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:900;letter-spacing:-1.5px;margin-top:30px;background:linear-gradient(135deg,#f5d0fe 0%,#e879f9 35%,#d946ef 65%,#c4b5fd 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s ease-in-out infinite;text-align:center;filter:drop-shadow(0 4px 20px rgba(217,70,239,.6))}
   @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  .loader-sub{font-size:0.68rem;font-weight:700;color:#fcd34d;margin-top:8px;letter-spacing:4px;text-transform:uppercase;text-align:center}
-  .loader-bar-track{width:min(340px,80vw);height:8px;background:rgba(15,10,6,.9);border-radius:99px;margin-top:28px;overflow:hidden;border:1px solid rgba(251,191,36,.25);box-shadow:inset 0 2px 6px rgba(0,0,0,.6)}
-  .loader-bar{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#7a5733,#f59e0b,#fbbf24,#fde68a);transition:width .3s ease;box-shadow:0 0 22px rgba(245,158,11,.85)}
-  .loader-percent{color:#fbbf24;font-size:.82rem;font-weight:800;margin-top:14px;letter-spacing:4px}
-  .loader-tip{margin-top:18px;font-size:.72rem;color:#fcd34d;font-style:italic;text-align:center;max-width:280px}
+  .loader-sub{font-size:0.68rem;font-weight:700;color:#f0abfc;margin-top:8px;letter-spacing:4px;text-transform:uppercase;text-align:center}
+  .loader-bar-track{width:min(340px,80vw);height:8px;background:rgba(13,5,24,.9);border-radius:99px;margin-top:28px;overflow:hidden;border:1px solid rgba(217,70,239,.3);box-shadow:inset 0 2px 6px rgba(0,0,0,.6)}
+  .loader-bar{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#5b21b6,#d946ef,#e879f9,#f5d0fe);transition:width .3s ease;box-shadow:0 0 22px rgba(217,70,239,.9)}
+  .loader-percent{color:#e879f9;font-size:.82rem;font-weight:800;margin-top:14px;letter-spacing:4px}
+  .loader-tip{margin-top:18px;font-size:.72rem;color:#f0abfc;font-style:italic;text-align:center;max-width:280px}
 
   #particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.75),transparent 70%);animation:floatUp linear infinite}
+  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(232,121,249,.8),transparent 70%);animation:floatUp linear infinite}
   @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.8}100%{transform:translateY(-100vh) scale(1.4);opacity:0}}
 
-  .school-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(217,119,6,.15));border:1.5px solid rgba(251,191,36,.6);border-radius:99px;font-size:.62rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;position:relative;overflow:hidden;box-shadow:0 0 24px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.1);white-space:nowrap}
-  .school-badge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:badgeShine 3s ease-in-out infinite}
+  .school-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:linear-gradient(135deg,rgba(217,70,239,.28),rgba(131,56,236,.18));border:1.5px solid rgba(232,121,249,.65);border-radius:99px;font-size:.62rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;position:relative;overflow:hidden;box-shadow:0 0 24px rgba(217,70,239,.5),inset 0 1px 0 rgba(255,255,255,.1);white-space:nowrap}
+  .school-badge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:badgeShine 3s ease-in-out infinite}
   @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
-  .school-name{background:linear-gradient(135deg,#fef3c7 0%,#fbbf24 30%,#f59e0b 70%,#fde68a 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:2px;animation:shimmerText 3s ease-in-out infinite;filter:drop-shadow(0 2px 10px rgba(251,191,36,.5))}
+  .school-name{background:linear-gradient(135deg,#f5f0ff 0%,#e879f9 30%,#d946ef 70%,#c4b5fd 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:2px;animation:shimmerText 3s ease-in-out infinite;filter:drop-shadow(0 2px 10px rgba(217,70,239,.6))}
 
-  .fb-section{padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid rgba(251,191,36,.2);background:linear-gradient(135deg,rgba(15,10,6,.75),rgba(42,29,16,.5))}
+  .fb-section{padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid rgba(217,70,239,.22);background:linear-gradient(135deg,rgba(13,5,24,.75),rgba(42,16,80,.5))}
   .fb-section .fb-t{font-size:.62rem;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:6px}
-  .fb-section .fb-b{font-size:.8rem;line-height:1.6;color:#fef3c7}
-  .fb-section.topic .fb-t{color:#fbbf24}
-  .fb-section.topic .fb-b{display:inline-block;padding:4px 12px;border-radius:99px;background:linear-gradient(135deg,rgba(251,191,36,.25),rgba(251,191,36,.06));color:#fde68a;font-weight:700;font-size:.7rem;letter-spacing:.5px;text-transform:uppercase}
-  .fb-section.why .fb-t{color:#fcd34d}
-  .fb-section.yours .fb-t{color:#f87171}
+  .fb-section .fb-b{font-size:.8rem;line-height:1.6;color:#ede0ff}
+  .fb-section.topic .fb-t{color:#e879f9}
+  .fb-section.topic .fb-b{display:inline-block;padding:4px 12px;border-radius:99px;background:linear-gradient(135deg,rgba(217,70,239,.28),rgba(217,70,239,.08));color:#f5d0fe;font-weight:700;font-size:.7rem;letter-spacing:.5px;text-transform:uppercase}
+  .fb-section.why .fb-t{color:#f0abfc}
+  .fb-section.yours .fb-t{color:#fb7185}
   .fb-section.yours .fb-b{background:linear-gradient(90deg,rgba(248,113,113,.14),rgba(248,113,113,.02));padding:10px 12px;border-radius:8px;border-left:3px solid #ef4444}
-  .fb-section.key .fb-t{color:#fb923c}
-  .fb-section.key .fb-b{background:linear-gradient(90deg,rgba(251,146,60,.2),rgba(251,146,60,.04));padding:10px 12px;border-radius:8px;border-left:3px solid #fb923c;color:#fed7aa;font-weight:600}
+  .fb-section.key .fb-t{color:#c084fc}
+  .fb-section.key .fb-b{background:linear-gradient(90deg,rgba(192,132,252,.22),rgba(192,132,252,.05));padding:10px 12px;border-radius:8px;border-left:3px solid #c084fc;color:#e9d5ff;font-weight:600}
   .badge-pick{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(248,113,113,.28);color:#fca5a5;font-weight:800;margin-right:5px}
-  .badge-correct{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(251,191,36,.28);color:#fde68a;font-weight:800;margin-right:5px}
+  .badge-correct{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(217,70,239,.28);color:#f5d0fe;font-weight:800;margin-right:5px}
 
-  .grade-badge-big{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#1a120a;font-family:'Playfair Display',Georgia,serif;box-shadow:0 14px 36px rgba(0,0,0,.55),0 0 34px rgba(245,158,11,.5),inset 0 2px 0 rgba(255,255,255,.3)}
+  .grade-badge-big{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#1a0b2e;font-family:'Playfair Display',Georgia,serif;box-shadow:0 14px 36px rgba(0,0,0,.55),0 0 34px rgba(217,70,239,.6),inset 0 2px 0 rgba(255,255,255,.3)}
   @media (min-width:480px){ .grade-badge-big{width:96px;height:96px;font-size:3rem;border-radius:22px;} }
-  .grade-A{background:linear-gradient(135deg,#fde68a,#f59e0b)}
-  .grade-B{background:linear-gradient(135deg,#fbbf24,#d97706)}
-  .grade-C{background:linear-gradient(135deg,#f59e0b,#b45309)}
-  .grade-D{background:linear-gradient(135deg,#d97706,#92400e)}
-  .grade-E{background:linear-gradient(135deg,#b45309,#3d2a18)}
+  .grade-A{background:linear-gradient(135deg,#f5d0fe,#d946ef)}
+  .grade-B{background:linear-gradient(135deg,#e879f9,#a21caf)}
+  .grade-C{background:linear-gradient(135deg,#d946ef,#8338ec)}
+  .grade-D{background:linear-gradient(135deg,#a21caf,#5b21b6)}
+  .grade-E{background:linear-gradient(135deg,#8338ec,#3f1a70)}
 
   .score-circle{position:relative;width:110px;height:110px;flex-shrink:0}
   @media (min-width:480px){ .score-circle{width:140px;height:140px;} }
   .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
-  .score-circle .track{stroke:rgba(251,191,36,.15);fill:none}
-  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 16px rgba(245,158,11,.85))}
+  .score-circle .track{stroke:rgba(217,70,239,.15);fill:none}
+  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 16px rgba(217,70,239,.9))}
   .score-circle .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;background:linear-gradient(180deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;background:linear-gradient(180deg,#f5d0fe,#d946ef);-webkit-background-clip:text;background-clip:text;color:transparent}
   @media (min-width:480px){ .score-circle .num{font-size:2.4rem;} }
-  .score-circle .lbl{font-size:.5rem;letter-spacing:2px;color:#fcd34d;text-transform:uppercase;font-weight:800;margin-top:4px}
+  .score-circle .lbl{font-size:.5rem;letter-spacing:2px;color:#f0abfc;text-transform:uppercase;font-weight:800;margin-top:4px}
 
   .diff-badge{font-size:.58rem;letter-spacing:1.2px;font-weight:800;padding:4px 10px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
-  .diff-mudah{color:#fde68a;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.45)}
-  .diff-sedang{color:#fb923c;background:rgba(251,146,60,.15);border:1px solid rgba(251,146,60,.45)}
+  .diff-mudah{color:#f5d0fe;background:rgba(217,70,239,.18);border:1px solid rgba(217,70,239,.5)}
+  .diff-sedang{color:#c084fc;background:rgba(192,132,252,.18);border:1px solid rgba(192,132,252,.5)}
   .diff-sulit{color:#fb7185;background:rgba(251,113,133,.15);border:1px solid rgba(251,113,133,.4)}
-  .diff-sangat{color:#c084fc;background:rgba(192,132,252,.15);border:1px solid rgba(192,132,252,.4)}
+  .diff-sangat{color:#f472b6;background:rgba(244,114,182,.15);border:1px solid rgba(244,114,182,.4)}
 
   .opt-btn{
     width:100%; text-align:left;
-    background:linear-gradient(135deg,rgba(61,42,24,.75),rgba(92,64,37,.55));
-    border:1.5px solid rgba(251,191,36,.25);
+    background:linear-gradient(135deg,rgba(63,26,112,.75),rgba(91,33,182,.55));
+    border:1.5px solid rgba(217,70,239,.3);
     border-radius:14px;
     padding:14px 16px;
     font-size:.85rem;
-    color:#fde68a;
+    color:#e9d5ff;
     font-weight:500;
     line-height:1.45;
     transition:all .25s cubic-bezier(.4,0,.2,1);
@@ -168,24 +165,24 @@ try {
     overflow:hidden;
   }
   @media (min-width:768px){ .opt-btn{font-size:.9rem;padding:15px 18px;} }
-  .opt-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(251,191,36,.15),transparent);opacity:0;transition:opacity .25s}
-  .opt-btn:hover{background:linear-gradient(135deg,rgba(245,158,11,.75),rgba(217,119,6,.55));border-color:rgba(251,191,36,.7);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.35)}
+  .opt-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(217,70,239,.18),transparent);opacity:0;transition:opacity .25s}
+  .opt-btn:hover{background:linear-gradient(135deg,rgba(217,70,239,.75),rgba(131,56,236,.55));border-color:rgba(232,121,249,.8);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,70,239,.4)}
   .opt-btn:hover::before{opacity:1}
   .opt-btn:active{transform:scale(.99)}
-  .opt-btn:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}
-  .opt-selected{background:linear-gradient(135deg,#f59e0b,#d97706)!important;border-color:#fde68a!important;color:#fff!important;box-shadow:0 0 28px rgba(245,158,11,.7),inset 0 0 20px rgba(254,243,199,.15);transform:translateY(-2px)!important}
+  .opt-btn:focus-visible{outline:3px solid #e879f9;outline-offset:2px}
+  .opt-selected{background:linear-gradient(135deg,#d946ef,#a21caf)!important;border-color:#f5d0fe!important;color:#fff!important;box-shadow:0 0 28px rgba(217,70,239,.75),inset 0 0 20px rgba(245,208,254,.18);transform:translateY(-2px)!important}
   .opt-correct{background:linear-gradient(135deg,#059669,#10b981)!important;border-color:#6ee7b7!important;color:#fff!important;box-shadow:0 0 34px rgba(16,185,129,.85);animation:correctPulse .7s ease}
   .opt-wrong{background:linear-gradient(135deg,#dc2626,#ef4444)!important;border-color:#ef4444!important;color:#fff!important;box-shadow:0 0 34px rgba(239,68,68,.8);animation:wrongShake .5s ease}
   .opt-eliminated{opacity:.15!important;pointer-events:none!important;text-decoration:line-through}
   @keyframes correctPulse{0%{transform:scale(1)}50%{transform:scale(1.025)}100%{transform:scale(1)}}
   @keyframes wrongShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 
-  .sound-toggle{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,rgba(61,42,24,.85),rgba(92,64,37,.7));border:1px solid rgba(251,191,36,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .25s;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.4)}
-  .sound-toggle:hover{background:linear-gradient(135deg,rgba(245,158,11,.95),rgba(251,191,36,.8));transform:scale(1.1);box-shadow:0 0 22px rgba(245,158,11,.6)}
+  .sound-toggle{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,rgba(63,26,112,.85),rgba(91,33,182,.7));border:1px solid rgba(232,121,249,.55);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .25s;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .sound-toggle:hover{background:linear-gradient(135deg,rgba(217,70,239,.95),rgba(232,121,249,.8));transform:scale(1.1);box-shadow:0 0 22px rgba(217,70,239,.65)}
   .sound-toggle.muted{opacity:.5}
 
-  .q-progress{height:6px;background:rgba(15,10,6,.9);border-radius:99px;overflow:hidden;margin-bottom:12px;border:1px solid rgba(251,191,36,.2);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
-  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#7a5733,#f59e0b,#fbbf24,#fde68a);border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 16px rgba(245,158,11,.85)}
+  .q-progress{height:6px;background:rgba(13,5,24,.9);border-radius:99px;overflow:hidden;margin-bottom:12px;border:1px solid rgba(217,70,239,.25);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#5b21b6,#d946ef,#e879f9,#f5d0fe);border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 16px rgba(217,70,239,.9)}
 
   .lock-btn-container{margin-top:14px;display:flex;justify-content:center;animation:slideUp .4s ease}
   @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -195,13 +192,13 @@ try {
     font-weight:900;
     letter-spacing:3px;
     text-transform:uppercase;
-    color:#1a120a;
-    background:linear-gradient(135deg,#fde68a 0%,#fbbf24 25%,#f59e0b 65%,#d97706 100%);
+    color:#1a0b2e;
+    background:linear-gradient(135deg,#f5d0fe 0%,#e879f9 25%,#d946ef 65%,#a21caf 100%);
     border-radius:60px;
     cursor:pointer;
     border:none;
     box-shadow:
-      0 0 34px rgba(245,158,11,.65),
+      0 0 34px rgba(217,70,239,.7),
       0 12px 28px rgba(0,0,0,.55),
       inset 0 1px 0 rgba(255,255,255,.7);
     transition:all .2s ease;
@@ -211,17 +208,17 @@ try {
   }
   @media (min-width:480px){ .lock-btn{padding:15px 46px;font-size:.95rem;letter-spacing:3.5px;} }
   @keyframes lockPulse{
-    0%,100%{box-shadow:0 0 34px rgba(245,158,11,.65),0 12px 28px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7)}
-    50%{box-shadow:0 0 56px rgba(251,191,36,.95),0 12px 28px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7)}
+    0%,100%{box-shadow:0 0 34px rgba(217,70,239,.7),0 12px 28px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7)}
+    50%{box-shadow:0 0 56px rgba(232,121,249,1),0 12px 28px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7)}
   }
   .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);animation:shineBtn 2.4s ease-in-out infinite}
   @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
-  .lock-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 44px rgba(251,191,36,.8),0 12px 28px rgba(0,0,0,.5)}
+  .lock-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 44px rgba(232,121,249,.9),0 12px 28px rgba(0,0,0,.5)}
   .lock-btn:active{transform:translateY(0) scale(.97)}
 
   #reveal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;pointer-events:none;padding:16px}
   #reveal-overlay.show{display:flex}
-  #reveal-overlay.backdrop{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(15,10,6,.82);pointer-events:auto;animation:fadeInBackdrop .25s ease}
+  #reveal-overlay.backdrop{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(13,5,24,.85);pointer-events:auto;animation:fadeInBackdrop .25s ease}
   @keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
   .reveal-badge{
     font-size:clamp(1.6rem,6.5vw,3.5rem);
@@ -262,15 +259,15 @@ try {
   @keyframes burstOut{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}}
 
   .btn-primary-gradient{
-    background:linear-gradient(135deg,#7a5733 0%,#f59e0b 40%,#fbbf24 70%,#fde68a 100%);
+    background:linear-gradient(135deg,#5b21b6 0%,#d946ef 40%,#e879f9 70%,#f5d0fe 100%);
     background-size:200% auto;
-    color:#1a120a;
+    color:#1a0b2e;
     font-weight:900;
     letter-spacing:2.5px;
     padding:16px 30px;
     border-radius:16px;
     border:1px solid rgba(255,255,255,.3);
-    box-shadow:0 12px 36px rgba(245,158,11,.55),inset 0 1px 0 rgba(255,255,255,.5);
+    box-shadow:0 12px 36px rgba(217,70,239,.6),inset 0 1px 0 rgba(255,255,255,.5);
     transition:all .3s cubic-bezier(.4,0,.2,1);
     cursor:pointer;
     position:relative;
@@ -280,14 +277,14 @@ try {
     text-shadow:0 1px 2px rgba(255,255,255,.25);
   }
   @media (min-width:480px){ .btn-primary-gradient{padding:17px 34px;font-size:1rem;} }
-  .btn-primary-gradient:hover{transform:translateY(-3px);background-position:100% center;box-shadow:0 18px 48px rgba(245,158,11,.75),inset 0 1px 0 rgba(255,255,255,.6)}
+  .btn-primary-gradient:hover{transform:translateY(-3px);background-position:100% center;box-shadow:0 18px 48px rgba(217,70,239,.8),inset 0 1px 0 rgba(255,255,255,.6)}
   .btn-primary-gradient:active{transform:translateY(0) scale(.98)}
   .btn-primary-gradient::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shineBtn 2.8s ease-in-out infinite}
 
   .navy-input{
-    background:linear-gradient(135deg,rgba(15,10,6,.9),rgba(42,29,16,.75));
-    border:2px solid rgba(251,191,36,.35);
-    color:#fef3c7;
+    background:linear-gradient(135deg,rgba(13,5,24,.9),rgba(42,16,80,.75));
+    border:2px solid rgba(217,70,239,.4);
+    color:#ede0ff;
     transition:all .25s;
     width:100%;
     border-radius:14px;
@@ -295,13 +292,13 @@ try {
     font-size:.95rem;
     font-weight:500;
   }
-  .navy-input:focus{outline:none;border-color:#fbbf24;box-shadow:0 0 0 4px rgba(251,191,36,.15),0 0 28px rgba(245,158,11,.5);background:linear-gradient(135deg,rgba(15,10,6,.95),rgba(42,29,16,.85))}
-  .navy-input::placeholder{color:rgba(254,243,199,.35)}
+  .navy-input:focus{outline:none;border-color:#e879f9;box-shadow:0 0 0 4px rgba(217,70,239,.18),0 0 28px rgba(217,70,239,.55);background:linear-gradient(135deg,rgba(13,5,24,.95),rgba(42,16,80,.85))}
+  .navy-input::placeholder{color:rgba(237,224,255,.35)}
 
   .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
   @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
 
-  .question-text{font-size:.92rem;font-weight:700;color:#fef3c7;line-height:1.6;word-wrap:break-word}
+  .question-text{font-size:.92rem;font-weight:700;color:#ede0ff;line-height:1.6;word-wrap:break-word}
   @media (min-width:480px){ .question-text{font-size:1rem;} }
   @media (min-width:768px){ .question-text{font-size:1.1rem;} }
 
@@ -309,7 +306,7 @@ try {
 
   .lifeline-item{padding:11px 5px;font-size:.68rem;transition:all .25s}
   @media (min-width:640px){ .lifeline-item{padding:13px 7px;font-size:.72rem;} }
-  .lifeline-item:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,158,11,.4)}
+  .lifeline-item:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(217,70,239,.45)}
 
   input[type="text"], textarea, select { font-size: 16px !important; }
   @media (min-width:640px){ input[type="text"], textarea, select { font-size: .95rem !important; } }
@@ -349,13 +346,13 @@ try {
   <div class="loader-compass">
     <div class="loader-ring"></div>
     <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-      <circle cx="50" cy="50" r="38" stroke="#fbbf24" stroke-width="2.5" fill="none" opacity="0.3"/>
-      <circle cx="50" cy="50" r="30" stroke="#fde68a" stroke-width="1.5" fill="none" opacity="0.45"/>
-      <polygon points="50,18 54.5,46 50,50 45.5,46" fill="#fde68a"/>
-      <polygon points="50,82 54.5,54 50,50 45.5,54" fill="#f59e0b"/>
-      <polygon points="18,50 46,45.5 50,50 46,54.5" fill="#d97706"/>
-      <polygon points="82,50 54,45.5 50,50 54,54.5" fill="#fbbf24"/>
-      <circle cx="50" cy="50" r="5" fill="#fef3c7"/>
+      <circle cx="50" cy="50" r="38" stroke="#e879f9" stroke-width="2.5" fill="none" opacity="0.3"/>
+      <circle cx="50" cy="50" r="30" stroke="#f5d0fe" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <polygon points="50,18 54.5,46 50,50 45.5,46" fill="#f5d0fe"/>
+      <polygon points="50,82 54.5,54 50,50 45.5,54" fill="#d946ef"/>
+      <polygon points="18,50 46,45.5 50,50 46,54.5" fill="#a21caf"/>
+      <polygon points="82,50 54,45.5 50,50 54,54.5" fill="#e879f9"/>
+      <circle cx="50" cy="50" r="5" fill="#ede0ff"/>
       <circle cx="50" cy="50" r="2" fill="#fff"/>
     </svg>
   </div>
@@ -368,22 +365,22 @@ try {
 
 <div id="particles" aria-hidden="true"></div>
 
-<header class="w-full border-b border-amber-400/25 bg-gradient-to-r from-[#1a120a] via-[#3d2a18] to-[#1a120a] backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5 shadow-lg shadow-black/60">
+<header class="w-full border-b border-fuchsia-400/30 bg-gradient-to-r from-[#1a0b2e] via-[#3f1a70] to-[#1a0b2e] backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5 shadow-lg shadow-black/60">
   <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
     <div class="flex items-center gap-2.5 min-w-0 flex-1">
-      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-tr from-amber-400 via-orange-500 to-yellow-300 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg shadow-amber-500/50 ring-2 ring-amber-400/40 shrink-0" aria-hidden="true">🏺</div>
+      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-tr from-fuchsia-400 via-purple-500 to-violet-300 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg shadow-fuchsia-500/50 ring-2 ring-fuchsia-400/40 shrink-0" aria-hidden="true">🏺</div>
       <div class="min-w-0 flex-1">
-        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 truncate">KUIS INTERAKTIF SEJARAH</h1>
+        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-200 via-purple-100 to-fuchsia-300 truncate">KUIS INTERAKTIF SEJARAH</h1>
         <p class="text-[9px] md:text-[11px] font-medium truncate">
           <span class="school-name">SMAN 3 KASONGAN</span>
-          <span class="text-amber-300"> • </span>
-          <span class="text-yellow-300 font-semibold">Kelas X / Fase E</span>
+          <span class="text-fuchsia-300"> • </span>
+          <span class="text-purple-300 font-semibold">Kelas X / Fase E</span>
         </p>
       </div>
     </div>
     <div class="flex items-center gap-2 shrink-0">
-      <div class="hidden md:flex items-center gap-1.5 bg-amber-900/70 border border-amber-400/30 px-3 py-1.5 rounded-full shadow-inner">
-        <span class="text-[11px] text-amber-200 font-bold tracking-wide">📚 PRAAKSARA</span>
+      <div class="hidden md:flex items-center gap-1.5 bg-purple-900/70 border border-fuchsia-400/30 px-3 py-1.5 rounded-full shadow-inner">
+        <span class="text-[11px] text-fuchsia-200 font-bold tracking-wide">📚 PRAAKSARA</span>
       </div>
       <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Hidupkan/matikan suara">🔊</button>
     </div>
@@ -403,40 +400,40 @@ try {
 
     <div class="text-center mb-6">
       <div class="mb-3 flex justify-center">
-        <div class="text-5xl md:text-6xl" style="filter:drop-shadow(0 0 28px rgba(245,158,11,.85))" aria-hidden="true">🏺</div>
+        <div class="text-5xl md:text-6xl" style="filter:drop-shadow(0 0 28px rgba(217,70,239,.9))" aria-hidden="true">🏺</div>
       </div>
-      <h2 class="text-xl md:text-2xl lg:text-3xl font-black font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 mb-2 leading-tight">KUIS INTERAKTIF SEJARAH</h2>
-      <p class="text-xs md:text-sm text-amber-200/75">Materi: <span class="text-amber-300 font-semibold">Jejak Kehidupan Masyarakat Praaksara di Indonesia</span></p>
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-black font-serif text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-200 via-purple-100 to-fuchsia-300 mb-2 leading-tight">KUIS INTERAKTIF SEJARAH</h2>
+      <p class="text-xs md:text-sm text-fuchsia-200/75">Materi: <span class="text-fuchsia-300 font-semibold">Jejak Kehidupan Masyarakat Praaksara di Indonesia</span></p>
     </div>
 
-    <div class="mb-5 p-4 bg-gradient-to-br from-amber-900/60 via-orange-900/40 to-amber-900/60 border border-amber-400/30 rounded-2xl shadow-inner">
+    <div class="mb-5 p-4 bg-gradient-to-br from-purple-900/60 via-violet-900/40 to-purple-900/60 border border-fuchsia-400/30 rounded-2xl shadow-inner">
       <div class="text-center">
-        <div class="text-[10px] uppercase tracking-widest text-amber-300 font-bold mb-2 flex items-center justify-center gap-1.5">
+        <div class="text-[10px] uppercase tracking-widest text-fuchsia-300 font-bold mb-2 flex items-center justify-center gap-1.5">
           <span aria-hidden="true">👨‍🏫</span> Guru Pengampu
         </div>
-        <div class="text-sm md:text-base font-black text-amber-50 tracking-wide">SYAHRANI, S.Pd.</div>
-        <div class="text-[10px] md:text-[11px] text-amber-300/70 font-mono mt-1">NIP. 19751217200501 1 016</div>
+        <div class="text-sm md:text-base font-black text-fuchsia-50 tracking-wide">SYAHRANI, S.Pd.</div>
+        <div class="text-[10px] md:text-[11px] text-fuchsia-300/70 font-mono mt-1">NIP. 19751217200501 1 016</div>
       </div>
     </div>
 
-    <div class="bg-espresso-950/60 border border-amber-400/20 rounded-2xl p-4 mb-5 space-y-2.5 text-xs md:text-sm" style="background:rgba(15,10,6,.55)">
+    <div class="bg-violet-950/60 border border-fuchsia-400/20 rounded-2xl p-4 mb-5 space-y-2.5 text-xs md:text-sm" style="background:rgba(13,5,24,.55)">
       <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-amber-500/25 text-amber-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-amber-400/40">1</span>
-        <span class="text-amber-50/90 overflow-safe">Jawab <b class="text-amber-300">15 soal</b> dari bank <b class="text-amber-300">30 soal</b></span>
+        <span class="w-7 h-7 rounded-full bg-fuchsia-500/25 text-fuchsia-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-fuchsia-400/40">1</span>
+        <span class="text-fuchsia-50/90 overflow-safe">Jawab <b class="text-fuchsia-300">15 soal</b> dari bank <b class="text-fuchsia-300">30 soal</b></span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-amber-500/25 text-amber-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-amber-400/40">2</span>
-        <span class="text-amber-50/90 overflow-safe">Pilih jawaban → klik <b class="text-amber-300">KUNCI JAWABAN</b></span>
+        <span class="w-7 h-7 rounded-full bg-fuchsia-500/25 text-fuchsia-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-fuchsia-400/40">2</span>
+        <span class="text-fuchsia-50/90 overflow-safe">Pilih jawaban → klik <b class="text-fuchsia-300">KUNCI JAWABAN</b></span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full bg-amber-500/25 text-amber-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-amber-400/40">3</span>
-        <span class="text-amber-50/90 overflow-safe">Gunakan <b class="text-amber-300">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
+        <span class="w-7 h-7 rounded-full bg-fuchsia-500/25 text-fuchsia-300 flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0 border border-fuchsia-400/40">3</span>
+        <span class="text-fuchsia-50/90 overflow-safe">Gunakan <b class="text-fuchsia-300">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
       </div>
     </div>
 
     <form id="start-form" class="space-y-4">
       <div>
-        <label for="student-name" class="block text-[11px] md:text-xs font-bold uppercase tracking-widest text-amber-300 mb-2">
+        <label for="student-name" class="block text-[11px] md:text-xs font-bold uppercase tracking-widest text-fuchsia-300 mb-2">
           Nama Siswa <span class="text-rose-400">*</span>
         </label>
         <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input" autocomplete="name">
@@ -444,34 +441,34 @@ try {
       <button type="submit" id="btn-start" class="btn-primary-gradient">▶ MULAI KUIS</button>
     </form>
 
-    <div id="resume-panel" class="is-hidden mt-4 p-3 bg-gradient-to-br from-amber-500/15 to-orange-500/10 border border-amber-400/40 rounded-2xl text-center">
-      <div class="text-[10px] uppercase tracking-widest text-amber-300 font-bold mb-1">⏸️ Ada Progres Belum Selesai</div>
-      <div class="text-[11px] text-amber-100/80 mb-2" id="resume-info">—</div>
-      <button type="button" id="btn-resume" class="bg-gradient-to-r from-amber-400 to-yellow-300 text-espresso-950 font-bold px-4 py-2 rounded-xl text-[11px] cursor-pointer shadow-lg" style="color:#1a120a">▶ LANJUTKAN</button>
-      <button type="button" id="btn-discard" class="ml-1 bg-espresso-900 hover:bg-espresso-700 text-amber-100 font-bold px-4 py-2 rounded-xl text-[11px] cursor-pointer border border-amber-400/25" style="background:rgba(26,18,10,.9)">✕ Mulai Baru</button>
+    <div id="resume-panel" class="is-hidden mt-4 p-3 bg-gradient-to-br from-fuchsia-500/15 to-purple-500/10 border border-fuchsia-400/40 rounded-2xl text-center">
+      <div class="text-[10px] uppercase tracking-widest text-fuchsia-300 font-bold mb-1">⏸️ Ada Progres Belum Selesai</div>
+      <div class="text-[11px] text-fuchsia-100/80 mb-2" id="resume-info">—</div>
+      <button type="button" id="btn-resume" class="bg-gradient-to-r from-fuchsia-400 to-purple-300 text-violet-950 font-bold px-4 py-2 rounded-xl text-[11px] cursor-pointer shadow-lg" style="color:#1a0b2e">▶ LANJUTKAN</button>
+      <button type="button" id="btn-discard" class="ml-1 bg-violet-900 hover:bg-violet-700 text-fuchsia-100 font-bold px-4 py-2 rounded-xl text-[11px] cursor-pointer border border-fuchsia-400/25" style="background:rgba(26,11,46,.9)">✕ Mulai Baru</button>
     </div>
 
-    <div id="best-score-summary" class="is-hidden mt-5 pt-5 border-t border-amber-400/20 text-center">
-      <div class="text-[10px] uppercase tracking-widest text-amber-300 font-bold mb-2">🏆 Skor Terbaikmu</div>
+    <div id="best-score-summary" class="is-hidden mt-5 pt-5 border-t border-fuchsia-400/20 text-center">
+      <div class="text-[10px] uppercase tracking-widest text-fuchsia-300 font-bold mb-2">🏆 Skor Terbaikmu</div>
       <div class="flex justify-center gap-4 text-xs">
         <div>
-          <div class="text-amber-400/70 text-[10px] uppercase">Benar</div>
-          <div id="best-score-correct" class="text-amber-300 font-bold text-sm md:text-base">0/15</div>
+          <div class="text-fuchsia-400/70 text-[10px] uppercase">Benar</div>
+          <div id="best-score-correct" class="text-fuchsia-300 font-bold text-sm md:text-base">0/15</div>
         </div>
-        <div class="border-l border-amber-400/20"></div>
+        <div class="border-l border-fuchsia-400/20"></div>
         <div>
-          <div class="text-amber-400/70 text-[10px] uppercase">Skor</div>
-          <div id="best-score-points" class="text-yellow-200 font-bold text-sm md:text-base">0</div>
+          <div class="text-fuchsia-400/70 text-[10px] uppercase">Skor</div>
+          <div id="best-score-points" class="text-purple-200 font-bold text-sm md:text-base">0</div>
         </div>
-        <div class="border-l border-amber-400/20"></div>
+        <div class="border-l border-fuchsia-400/20"></div>
         <div>
-          <div class="text-amber-400/70 text-[10px] uppercase">Gelar</div>
-          <div id="best-score-title" class="text-amber-300 font-bold text-[11px] mt-0.5">—</div>
+          <div class="text-fuchsia-400/70 text-[10px] uppercase">Gelar</div>
+          <div id="best-score-title" class="text-fuchsia-300 font-bold text-[11px] mt-0.5">—</div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-5 text-[10px] text-amber-400/60">© SMAN 3 Kasongan • Kelas X / Fase E</div>
+    <div class="text-center mt-5 text-[10px] text-fuchsia-400/60">© SMAN 3 Kasongan • Kelas X / Fase E</div>
   </section>
 
   <!-- GAME SCREEN -->
@@ -479,47 +476,47 @@ try {
     <div class="space-y-3 md:space-y-4 min-w-0">
       <div class="glass-panel p-3 md:p-3.5 rounded-2xl flex items-center justify-between text-[11px] md:text-sm flex-wrap gap-2">
         <div class="flex items-center gap-1.5 flex-wrap">
-          <div class="px-3 py-1.5 rounded-xl border border-amber-400/25 flex items-center gap-1.5 shadow-inner" style="background:rgba(26,18,10,.85)">👤 <span id="player-display-name" class="font-bold text-amber-100 max-w-[90px] md:max-w-none truncate">Siswa</span></div>
-          <div class="px-3 py-1.5 rounded-xl border border-amber-400/25 shadow-inner" style="background:rgba(26,18,10,.85)">⚡ <span id="xp-counter" class="font-bold text-amber-300">0</span></div>
+          <div class="px-3 py-1.5 rounded-xl border border-fuchsia-400/25 flex items-center gap-1.5 shadow-inner" style="background:rgba(26,11,46,.85)">👤 <span id="player-display-name" class="font-bold text-fuchsia-100 max-w-[90px] md:max-w-none truncate">Siswa</span></div>
+          <div class="px-3 py-1.5 rounded-xl border border-fuchsia-400/25 shadow-inner" style="background:rgba(26,11,46,.85)">⚡ <span id="xp-counter" class="font-bold text-fuchsia-300">0</span></div>
         </div>
         <div class="flex items-center gap-1.5">
-          <div id="streak-container" class="is-hidden bg-gradient-to-r from-orange-500/30 to-amber-500/30 border border-amber-400/50 px-3 py-1.5 rounded-xl shadow-inner">🔥 <span id="streak-counter" class="font-black text-amber-300">0</span></div>
-          <div class="px-3 py-1.5 rounded-xl border border-amber-400/25 shadow-inner" style="background:rgba(26,18,10,.85)" aria-label="Waktu berjalan">⏱️ <span id="timer-display" class="font-mono font-bold text-amber-300" aria-live="off">00:00</span></div>
+          <div id="streak-container" class="is-hidden bg-gradient-to-r from-fuchsia-500/30 to-purple-500/30 border border-fuchsia-400/50 px-3 py-1.5 rounded-xl shadow-inner">🔥 <span id="streak-counter" class="font-black text-fuchsia-300">0</span></div>
+          <div class="px-3 py-1.5 rounded-xl border border-fuchsia-400/25 shadow-inner" style="background:rgba(26,11,46,.85)" aria-label="Waktu berjalan">⏱️ <span id="timer-display" class="font-mono font-bold text-fuchsia-300" aria-live="off">00:00</span></div>
         </div>
       </div>
 
       <div class="glass-panel p-3 md:p-3 rounded-2xl">
-        <div class="text-[9px] md:text-[10px] text-amber-400/80 uppercase font-bold text-center mb-2 tracking-widest">Bantuan (masing-masing 1x pakai)</div>
+        <div class="text-[9px] md:text-[10px] text-fuchsia-400/80 uppercase font-bold text-center mb-2 tracking-widest">Bantuan (masing-masing 1x pakai)</div>
         <div class="flex justify-center gap-1.5 md:gap-2">
-          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-amber-900/70 to-orange-900/50 hover:from-amber-700/80 hover:to-orange-700/60 border border-amber-400/30 rounded-xl text-amber-200 cursor-pointer transition font-bold shadow-md" aria-label="Bantuan 50:50: hapus dua jawaban salah">
+          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-purple-900/70 to-violet-900/50 hover:from-purple-700/80 hover:to-violet-700/60 border border-fuchsia-400/30 rounded-xl text-fuchsia-200 cursor-pointer transition font-bold shadow-md" aria-label="Bantuan 50:50: hapus dua jawaban salah">
             <div class="flex items-center justify-center gap-1">✂️ <span>50:50</span></div>
-            <div class="text-[8px] md:text-[9px] text-amber-400/70 mt-1 font-normal">Hapus 2 salah</div>
+            <div class="text-[8px] md:text-[9px] text-fuchsia-400/70 mt-1 font-normal">Hapus 2 salah</div>
           </button>
-          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-amber-900/70 to-orange-900/50 hover:from-amber-700/80 hover:to-orange-700/60 border border-amber-400/30 rounded-xl text-amber-200 cursor-pointer transition font-bold shadow-md" aria-label="Bantuan petunjuk dari guru">
+          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-purple-900/70 to-violet-900/50 hover:from-purple-700/80 hover:to-violet-700/60 border border-fuchsia-400/30 rounded-xl text-fuchsia-200 cursor-pointer transition font-bold shadow-md" aria-label="Bantuan petunjuk dari guru">
             <div class="flex items-center justify-center gap-1">💡 <span>Petunjuk</span></div>
-            <div class="text-[8px] md:text-[9px] text-amber-400/70 mt-1 font-normal">Guru memberi hint</div>
+            <div class="text-[8px] md:text-[9px] text-fuchsia-400/70 mt-1 font-normal">Guru memberi hint</div>
           </button>
-          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-amber-900/70 to-orange-900/50 hover:from-amber-700/80 hover:to-orange-700/60 border border-amber-400/30 rounded-xl text-amber-200 cursor-pointer transition font-bold shadow-md" aria-label="Lewati soal ini">
+          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] bg-gradient-to-br from-purple-900/70 to-violet-900/50 hover:from-purple-700/80 hover:to-violet-700/60 border border-fuchsia-400/30 rounded-xl text-fuchsia-200 cursor-pointer transition font-bold shadow-md" aria-label="Lewati soal ini">
             <div class="flex items-center justify-center gap-1">⏭️ <span>Lewati</span></div>
-            <div class="text-[8px] md:text-[9px] text-amber-400/70 mt-1 font-normal">Tanpa pengurangan</div>
+            <div class="text-[8px] md:text-[9px] text-fuchsia-400/70 mt-1 font-normal">Tanpa pengurangan</div>
           </button>
         </div>
       </div>
 
-      <div class="glass-panel p-4 md:p-6 rounded-3xl border-l-4 border-l-amber-400 relative">
+      <div class="glass-panel p-4 md:p-6 rounded-3xl border-l-4 border-l-fuchsia-400 relative">
         <div class="q-progress" id="q-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progres pengerjaan soal"><i id="q-progress"></i></div>
         <div class="flex justify-between items-center mb-3 flex-wrap gap-1.5">
-          <span class="text-[10px] md:text-xs font-bold text-amber-300 uppercase tracking-widest">Pertanyaan <span id="current-q-num">1</span>/<span id="total-q-num">15</span></span>
+          <span class="text-[10px] md:text-xs font-bold text-fuchsia-300 uppercase tracking-widest">Pertanyaan <span id="current-q-num">1</span>/<span id="total-q-num">15</span></span>
           <div class="flex items-center gap-1.5 flex-wrap">
             <span id="difficulty-tag" class="diff-badge diff-mudah">Mudah</span>
-            <span id="reward-tag" class="text-[10px] md:text-xs font-mono bg-amber-500/25 text-amber-200 border border-amber-400/35 px-2.5 py-1 rounded-full font-bold whitespace-nowrap">Lvl 1 — 100</span>
+            <span id="reward-tag" class="text-[10px] md:text-xs font-mono bg-fuchsia-500/25 text-fuchsia-200 border border-fuchsia-400/35 px-2.5 py-1 rounded-full font-bold whitespace-nowrap">Lvl 1 — 100</span>
           </div>
         </div>
         <h3 id="question-text" class="question-text overflow-safe" aria-live="polite">Memuat pertanyaan...</h3>
 
-        <div id="hint-panel" class="is-hidden mt-3 p-3 md:p-3.5 bg-gradient-to-br from-orange-500/15 to-amber-500/10 border border-orange-400/35 rounded-2xl" role="region" aria-label="Petunjuk dari guru">
-          <div class="text-[10px] uppercase font-black tracking-widest text-orange-300 mb-2 flex items-center gap-1.5">💡 Petunjuk dari Guru</div>
-          <div class="text-[11px] md:text-xs text-orange-100 leading-relaxed overflow-safe" id="hint-text"></div>
+        <div id="hint-panel" class="is-hidden mt-3 p-3 md:p-3.5 bg-gradient-to-br from-purple-500/15 to-violet-500/10 border border-purple-400/35 rounded-2xl" role="region" aria-label="Petunjuk dari guru">
+          <div class="text-[10px] uppercase font-black tracking-widest text-purple-300 mb-2 flex items-center gap-1.5">💡 Petunjuk dari Guru</div>
+          <div class="text-[11px] md:text-xs text-purple-100 leading-relaxed overflow-safe" id="hint-text"></div>
         </div>
       </div>
 
@@ -531,7 +528,7 @@ try {
     </div>
 
     <div class="glass-panel p-4 rounded-3xl hidden lg:flex flex-col">
-      <div class="text-xs font-bold text-amber-300 uppercase mb-3 tracking-widest">🏆 Progres Level</div>
+      <div class="text-xs font-bold text-fuchsia-300 uppercase mb-3 tracking-widest">🏆 Progres Level</div>
       <div id="prize-ladder" class="space-y-1 text-xs font-mono"></div>
     </div>
   </section>
@@ -540,13 +537,13 @@ try {
   <div id="reveal-overlay" role="status" aria-live="polite"><div class="reveal-badge" id="reveal-badge">BENAR</div></div>
 
   <!-- FEEDBACK MODAL -->
-  <div id="feedback-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto" style="background:rgba(15,10,6,.92)" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
-    <div class="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-amber-400/50 my-auto" id="feedback-modal-content">
+  <div id="feedback-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto" style="background:rgba(13,5,24,.92)" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+    <div class="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-fuchsia-400/50 my-auto" id="feedback-modal-content">
       <div class="flex items-center gap-3 mb-4">
-        <div id="feedback-icon-bg" class="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-amber-500/25 text-amber-300 shrink-0 shadow-lg" aria-hidden="true">✓</div>
+        <div id="feedback-icon-bg" class="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-fuchsia-500/25 text-fuchsia-300 shrink-0 shadow-lg" aria-hidden="true">✓</div>
         <div class="min-w-0">
-          <h3 id="feedback-title" class="text-base md:text-xl font-black text-amber-300 truncate">🎉 BENAR!</h3>
-          <p id="feedback-subtitle" class="text-[10px] md:text-xs text-amber-200/70">Apresiasi dan Penjelasan</p>
+          <h3 id="feedback-title" class="text-base md:text-xl font-black text-fuchsia-300 truncate">🎉 BENAR!</h3>
+          <p id="feedback-subtitle" class="text-[10px] md:text-xs text-fuchsia-200/70">Apresiasi dan Penjelasan</p>
         </div>
       </div>
       <div id="feedback-details" class="my-3"></div>
@@ -556,47 +553,47 @@ try {
         <div class="fb-section yours" id="fb-yours-section"><div class="fb-t">⚠️ Analisis Pilihanmu</div><div class="fb-b" id="fb-yours">—</div></div>
         <div class="fb-section key"><div class="fb-t">🎯 Poin Kunci untuk Diingat</div><div class="fb-b" id="fb-key">—</div></div>
       </div>
-      <button type="button" id="btn-next" class="w-full bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 text-espresso-950 font-black py-3.5 px-5 rounded-2xl cursor-pointer hover:from-amber-200 hover:via-yellow-200 hover:to-amber-300 transition text-sm md:text-base shadow-lg" style="color:#1a120a">
+      <button type="button" id="btn-next" class="w-full bg-gradient-to-r from-fuchsia-300 via-purple-300 to-fuchsia-400 text-violet-950 font-black py-3.5 px-5 rounded-2xl cursor-pointer hover:from-fuchsia-200 hover:via-purple-200 hover:to-fuchsia-300 transition text-sm md:text-base shadow-lg" style="color:#1a0b2e">
         ➡ LANJUT KE SOAL BERIKUTNYA
       </button>
     </div>
   </div>
 
   <!-- SKIP MODAL -->
-  <div id="skip-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4" style="background:rgba(15,10,6,.92)" role="dialog" aria-modal="true" aria-labelledby="skip-title">
+  <div id="skip-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4" style="background:rgba(13,5,24,.92)" role="dialog" aria-modal="true" aria-labelledby="skip-title">
     <div class="glass-panel max-w-sm w-full p-6 rounded-3xl text-center">
       <div class="text-4xl md:text-5xl mb-3" aria-hidden="true">⏭️</div>
-      <h3 id="skip-title" class="text-base md:text-lg font-extrabold text-amber-300 mb-2">Lewati Soal Ini?</h3>
-      <p class="text-[11px] md:text-xs text-amber-100/80 mb-5 leading-relaxed">Soal ini akan ditandai <b>dilewati</b> dan tidak dihitung benar/salah.</p>
+      <h3 id="skip-title" class="text-base md:text-lg font-extrabold text-fuchsia-300 mb-2">Lewati Soal Ini?</h3>
+      <p class="text-[11px] md:text-xs text-fuchsia-100/80 mb-5 leading-relaxed">Soal ini akan ditandai <b>dilewati</b> dan tidak dihitung benar/salah.</p>
       <div class="flex gap-2">
-        <button type="button" id="btn-skip-cancel" class="flex-1 text-amber-100 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer border border-amber-400/25 transition hover:opacity-90" style="background:rgba(26,18,10,.9)">Batal</button>
-        <button type="button" id="btn-skip-confirm" class="flex-1 bg-gradient-to-r from-amber-400 to-yellow-300 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer transition shadow-lg" style="color:#1a120a">Ya, Lewati</button>
+        <button type="button" id="btn-skip-cancel" class="flex-1 text-fuchsia-100 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer border border-fuchsia-400/25 transition hover:opacity-90" style="background:rgba(26,11,46,.9)">Batal</button>
+        <button type="button" id="btn-skip-confirm" class="flex-1 bg-gradient-to-r from-fuchsia-400 to-purple-300 font-bold py-3 rounded-xl text-xs md:text-sm cursor-pointer transition shadow-lg" style="color:#1a0b2e">Ya, Lewati</button>
       </div>
     </div>
   </div>
 
   <!-- RESULT SCREEN -->
   <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4">
-    <div id="record-banner" class="is-hidden glass-panel border-amber-400/50 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-yellow-500/20 p-4 md:p-4 rounded-2xl text-center">
-      <h3 id="record-text" class="text-base md:text-xl font-black text-amber-300">🎉 SKOR BARU TERBAIK!</h3>
-      <p id="record-subtext" class="text-[11px] md:text-xs text-amber-200">Luar biasa!</p>
+    <div id="record-banner" class="is-hidden glass-panel border-fuchsia-400/50 bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-violet-500/20 p-4 md:p-4 rounded-2xl text-center">
+      <h3 id="record-text" class="text-base md:text-xl font-black text-fuchsia-300">🎉 SKOR BARU TERBAIK!</h3>
+      <p id="record-subtext" class="text-[11px] md:text-xs text-fuchsia-200">Luar biasa!</p>
     </div>
 
-    <div class="glass-panel p-5 md:p-8 rounded-3xl border-2 border-amber-400/40">
-      <div class="border-b-2 border-dashed border-amber-400/30 pb-4 mb-5 text-center">
-        <div class="text-base md:text-xl font-black font-serif tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-300">🏺 KUIS INTERAKTIF SEJARAH</div>
+    <div class="glass-panel p-5 md:p-8 rounded-3xl border-2 border-fuchsia-400/40">
+      <div class="border-b-2 border-dashed border-fuchsia-400/30 pb-4 mb-5 text-center">
+        <div class="text-base md:text-xl font-black font-serif tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-200 to-purple-300">🏺 KUIS INTERAKTIF SEJARAH</div>
         <div class="school-name text-xs md:text-sm tracking-widest mt-1.5">SMAN 3 KASONGAN</div>
-        <div class="text-[9px] md:text-[10px] text-amber-300/80 font-bold uppercase mt-1 tracking-widest">HASIL TUGAS INDIVIDU</div>
+        <div class="text-[9px] md:text-[10px] text-fuchsia-300/80 font-bold uppercase mt-1 tracking-widest">HASIL TUGAS INDIVIDU</div>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-4 md:gap-5 mb-6">
         <div class="flex flex-col items-center gap-2">
-          <div id="result-avatar" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg ring-2 ring-amber-400/50">?</div>
-          <div class="text-[9px] md:text-[10px] text-amber-400/70 uppercase font-bold tracking-widest">Avatar</div>
+          <div id="result-avatar" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-fuchsia-400 to-purple-600 flex items-center justify-center text-white font-black text-lg md:text-xl shadow-lg ring-2 ring-fuchsia-400/50">?</div>
+          <div class="text-[9px] md:text-[10px] text-fuchsia-400/70 uppercase font-bold tracking-widest">Avatar</div>
         </div>
         <div class="score-circle">
           <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7a5733"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#fde68a"/></linearGradient></defs>
+            <defs><linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5b21b6"/><stop offset="50%" stop-color="#d946ef"/><stop offset="100%" stop-color="#f5d0fe"/></linearGradient></defs>
             <circle class="track" cx="60" cy="60" r="50" stroke-width="9"/>
             <circle class="bar" cx="60" cy="60" r="50" stroke-width="9" stroke="url(#scGrad)" stroke-dasharray="314.16" stroke-dashoffset="314.16" id="score-circle-bar"/>
           </svg>
@@ -607,52 +604,52 @@ try {
         </div>
         <div class="flex flex-col items-center gap-2">
           <div id="grade-badge" class="grade-badge-big grade-A">A</div>
-          <div class="text-[9px] md:text-[10px] text-amber-400/70 uppercase font-bold tracking-widest">Grade</div>
+          <div class="text-[9px] md:text-[10px] text-fuchsia-400/70 uppercase font-bold tracking-widest">Grade</div>
         </div>
       </div>
 
       <div class="space-y-2 text-[11px] md:text-sm">
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75 shrink-0">Nama Siswa:</span><span id="card-name" class="font-bold text-amber-50 text-sm md:text-base text-right overflow-safe">—</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75 shrink-0">Materi:</span><span class="font-semibold text-amber-300 text-right">PRAAKSARA</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Jawaban Benar:</span><span id="card-correct" class="font-bold text-amber-300 font-mono">0 / 15</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Salah:</span><span id="card-wrong" class="font-bold text-rose-400 font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Dilewati:</span><span id="card-skipped" class="font-bold text-amber-300/60 font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Skor Akhir:</span><span id="card-score" class="font-black text-amber-300 text-base md:text-lg font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">XP Diperoleh:</span><span id="card-xp" class="font-bold text-yellow-200 font-mono">0 XP</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Streak:</span><span id="card-streak" class="font-bold text-orange-400 font-mono">0 🔥</span></div>
-        <div class="flex justify-between items-center py-1.5 border-b border-amber-400/15 gap-2"><span class="text-amber-300/75">Gelar:</span><span id="card-title" class="font-extrabold text-amber-300 text-xs md:text-sm text-right overflow-safe">🌱 PEMBELAJAR SEJARAH</span></div>
-        <div class="flex justify-between items-center py-1.5 gap-2"><span class="text-amber-300/75">Percobaan:</span><span id="card-attempt" class="font-bold text-amber-100 font-mono">1</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75 shrink-0">Nama Siswa:</span><span id="card-name" class="font-bold text-fuchsia-50 text-sm md:text-base text-right overflow-safe">—</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75 shrink-0">Materi:</span><span class="font-semibold text-fuchsia-300 text-right">PRAAKSARA</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">Jawaban Benar:</span><span id="card-correct" class="font-bold text-fuchsia-300 font-mono">0 / 15</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">Salah:</span><span id="card-wrong" class="font-bold text-rose-400 font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">Dilewati:</span><span id="card-skipped" class="font-bold text-fuchsia-300/60 font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">Skor Akhir:</span><span id="card-score" class="font-black text-fuchsia-300 text-base md:text-lg font-mono">0</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">XP Diperoleh:</span><span id="card-xp" class="font-bold text-purple-200 font-mono">0 XP</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">Streak:</span><span id="card-streak" class="font-bold text-fuchsia-400 font-mono">0 🔥</span></div>
+        <div class="flex justify-between items-center py-1.5 border-b border-fuchsia-400/15 gap-2"><span class="text-fuchsia-300/75">Gelar:</span><span id="card-title" class="font-extrabold text-fuchsia-300 text-xs md:text-sm text-right overflow-safe">🌱 PEMBELAJAR SEJARAH</span></div>
+        <div class="flex justify-between items-center py-1.5 gap-2"><span class="text-fuchsia-300/75">Percobaan:</span><span id="card-attempt" class="font-bold text-fuchsia-100 font-mono">1</span></div>
       </div>
 
-      <div class="mt-5 pt-4 border-t border-amber-400/20 text-center">
-        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-amber-300/70 font-bold mb-1.5">Guru Pengampu</div>
-        <div class="text-xs md:text-sm font-black text-amber-200">SYAHRANI, S.Pd.</div>
-        <div class="text-[9px] md:text-[10px] text-amber-300/60 font-mono">NIP. 19751217200501 1 016</div>
+      <div class="mt-5 pt-4 border-t border-fuchsia-400/20 text-center">
+        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-fuchsia-300/70 font-bold mb-1.5">Guru Pengampu</div>
+        <div class="text-xs md:text-sm font-black text-fuchsia-200">SYAHRANI, S.Pd.</div>
+        <div class="text-[9px] md:text-[10px] text-fuchsia-300/60 font-mono">NIP. 19751217200501 1 016</div>
       </div>
     </div>
 
     <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
-      <button type="button" id="btn-restart" class="bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer shadow-lg transition" style="color:#1a120a">🔄 MAIN LAGI</button>
-      <button type="button" id="btn-copy" class="bg-gradient-to-r from-orange-700 to-amber-700 hover:from-orange-600 hover:to-amber-600 text-amber-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-amber-400/30 transition">📋 <span id="copy-btn-text">SALIN</span></button>
-      <button type="button" id="btn-review" class="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-amber-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-amber-400/30 transition">📖 PEMBAHASAN</button>
-      <button type="button" id="btn-menu" class="text-amber-100 font-bold p-3 rounded-xl text-[11px] md:text-xs border border-amber-400/20 cursor-pointer transition hover:opacity-90" style="background:rgba(26,18,10,.9)">🏠 MENU</button>
+      <button type="button" id="btn-restart" class="bg-gradient-to-r from-fuchsia-400 to-purple-300 hover:from-fuchsia-300 hover:to-purple-200 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer shadow-lg transition" style="color:#1a0b2e">🔄 MAIN LAGI</button>
+      <button type="button" id="btn-copy" class="bg-gradient-to-r from-purple-700 to-violet-700 hover:from-purple-600 hover:to-violet-600 text-fuchsia-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-fuchsia-400/30 transition">📋 <span id="copy-btn-text">SALIN</span></button>
+      <button type="button" id="btn-review" class="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 text-fuchsia-50 font-bold p-3 rounded-xl text-[11px] md:text-xs cursor-pointer border border-fuchsia-400/30 transition">📖 PEMBAHASAN</button>
+      <button type="button" id="btn-menu" class="text-fuchsia-100 font-bold p-3 rounded-xl text-[11px] md:text-xs border border-fuchsia-400/20 cursor-pointer transition hover:opacity-90" style="background:rgba(26,11,46,.9)">🏠 MENU</button>
     </div>
   </section>
 
   <!-- REVIEW MODAL -->
-  <div id="review-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3" style="background:rgba(15,10,6,.96)" role="dialog" aria-modal="true" aria-labelledby="review-title">
+  <div id="review-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3" style="background:rgba(13,5,24,.96)" role="dialog" aria-modal="true" aria-labelledby="review-title">
     <div class="glass-panel max-w-3xl w-full h-[90vh] md:h-[85vh] flex flex-col rounded-3xl p-4 md:p-5">
-      <div class="flex justify-between items-center pb-3 border-b border-amber-400/20 gap-2">
-        <h3 id="review-title" class="text-sm md:text-lg font-black text-amber-300 truncate">📖 Rangkuman Pembahasan</h3>
-        <button type="button" id="btn-close-review" class="text-amber-300 hover:text-amber-100 p-1 text-xl md:text-2xl cursor-pointer shrink-0 transition" aria-label="Tutup pembahasan">×</button>
+      <div class="flex justify-between items-center pb-3 border-b border-fuchsia-400/20 gap-2">
+        <h3 id="review-title" class="text-sm md:text-lg font-black text-fuchsia-300 truncate">📖 Rangkuman Pembahasan</h3>
+        <button type="button" id="btn-close-review" class="text-fuchsia-300 hover:text-fuchsia-100 p-1 text-xl md:text-2xl cursor-pointer shrink-0 transition" aria-label="Tutup pembahasan">×</button>
       </div>
       <div id="review-list" class="flex-1 overflow-y-auto custom-scrollbar my-3 space-y-3 pr-1"></div>
-      <button type="button" id="btn-close-review-2" class="text-amber-100 font-bold px-5 py-2.5 rounded-xl text-[11px] md:text-xs cursor-pointer self-end border border-amber-400/20 transition hover:opacity-90" style="background:rgba(26,18,10,.9)">Tutup</button>
+      <button type="button" id="btn-close-review-2" class="text-fuchsia-100 font-bold px-5 py-2.5 rounded-xl text-[11px] md:text-xs cursor-pointer self-end border border-fuchsia-400/20 transition hover:opacity-90" style="background:rgba(26,11,46,.9)">Tutup</button>
     </div>
   </div>
 </main>
 
-<footer class="w-full text-center py-4 px-3 text-[10px] md:text-[11px] text-amber-300/60 border-t border-amber-400/20 bg-gradient-to-r from-[#1a120a] via-[#3d2a18] to-[#1a120a]">
+<footer class="w-full text-center py-4 px-3 text-[10px] md:text-[11px] text-fuchsia-300/60 border-t border-fuchsia-400/20 bg-gradient-to-r from-[#1a0b2e] via-[#3f1a70] to-[#1a0b2e]">
   <div class="school-name text-[11px] md:text-xs mb-1">SMAN 3 KASONGAN</div>
   <div>Kuis Interaktif Sejarah • Guru Pengampu: SYAHRANI, S.Pd.</div>
 </footer>
@@ -1068,7 +1065,7 @@ function renderPrizeLadder(){
       const isM=(i===4||i===9||i===14);
       const item=document.createElement("div");
       item.id="ladder-step-"+i;
-      item.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(isM?"text-amber-300 font-bold":"text-amber-200/60");
+      item.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(isM?"text-fuchsia-300 font-bold":"text-fuchsia-200/60");
       item.innerHTML="<span>Soal "+(i+1)+"</span><span>"+prizeAmounts[i]+"</span>";
       el.appendChild(item);
     }
@@ -1078,11 +1075,11 @@ function updatePrizeLadderHighlight(){
   try{
     for(let i=0;i<15;i++){
       const el=document.getElementById("ladder-step-"+i);if(!el)continue;
-      if(i===currentQuestionIndex){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] bg-gradient-to-r from-amber-400 to-yellow-300 font-extrabold shadow-md";el.style.color="#1a120a";}
+      if(i===currentQuestionIndex){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] bg-gradient-to-r from-fuchsia-400 to-purple-300 font-extrabold shadow-md";el.style.color="#1a0b2e";}
       else if(i<currentQuestionIndex){
         const st=userAnswersHistory[i];
-        if(st&&st.isSkipped){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] text-amber-400/40 italic";}
-        else{el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(st&&st.isCorrect?"text-amber-300":"text-rose-400 line-through opacity-70");}
+        if(st&&st.isSkipped){el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] text-fuchsia-400/40 italic";}
+        else{el.className="flex justify-between items-center px-3 py-1.5 rounded-lg font-mono text-[11px] "+(st&&st.isCorrect?"text-fuchsia-300":"text-rose-400 line-through opacity-70");}
       }
     }
   }catch(e){}
@@ -1185,7 +1182,7 @@ function useHint(){
     const nudges={"Mudah":"Soal MUDAH. Fokus pada definisi dasar atau ciri umum topik ini.","Sedang":"Soal SEDANG. Perhatikan perbedaan antar pilihan jawaban.","Sulit":"Soal SULIT. Sering memuat perhitungan atau klasifikasi.","Sangat Sulit":"Soal SANGAT SULIT. Waspadai istilah teknis — baca kata kunci teliti."};
     const nudge=nudges[difficulty]||"Perhatikan kata kunci dalam soal.";
     const ht=document.getElementById("hint-text");
-    if(ht){ht.innerHTML='<div class="flex flex-wrap items-center gap-1.5 mb-2"><span class="px-2.5 py-1 rounded-full bg-amber-500/25 text-amber-200 text-[10px] font-bold uppercase tracking-wider border border-amber-400/35">Topik: '+topic+'</span><span class="px-2.5 py-1 rounded-full text-orange-100 text-[10px] font-bold uppercase tracking-wider border border-orange-400/25" style="background:rgba(180,83,9,.5)">'+difficulty+'</span></div><div>'+nudge+'</div><div class="mt-2 text-[10px] italic text-amber-300/70">⚠️ Guru tidak membocorkan jawaban — gunakan nalar!</div>';}
+    if(ht){ht.innerHTML='<div class="flex flex-wrap items-center gap-1.5 mb-2"><span class="px-2.5 py-1 rounded-full bg-fuchsia-500/25 text-fuchsia-200 text-[10px] font-bold uppercase tracking-wider border border-fuchsia-400/35">Topik: '+topic+'</span><span class="px-2.5 py-1 rounded-full text-purple-100 text-[10px] font-bold uppercase tracking-wider border border-purple-400/25" style="background:rgba(126,34,206,.5)">'+difficulty+'</span></div><div>'+nudge+'</div><div class="mt-2 text-[10px] italic text-fuchsia-300/70">⚠️ Guru tidak membocorkan jawaban — gunakan nalar!</div>';}
     show("hint-panel");
   }catch(e){}
 }
@@ -1197,15 +1194,24 @@ function confirmSkip(){
     sfx('skip');lifelinesUsed['skip']=true;hide("skip-modal");
     userAnswersHistory.push({questionNum:currentQuestionIndex+1,questionText:qData.q,userAnswer:"— Dilewati —",correctAnswer:qData.options[qData.correct],explanation:qData.explanation,topic:qData.topic,keyPoint:qData.keyPoint,difficulty:qData.difficulty,isCorrect:false,isSkipped:true});
     skippedCount++;streak=0;hide("streak-container");
-    showToast("⏭️ Soal dilewati — lanjut berikutnya");
+    const isLastQuestion = (currentQuestionIndex === currentQuestions.length - 1);
+    if(isLastQuestion){
+      showToast("⏭️ Soal terakhir dilewati — menampilkan hasil...");
+    }else{
+      showToast("⏭️ Soal dilewati — lanjut berikutnya");
+    }
     saveProgress();
-    setTimeout(function(){currentQuestionIndex++;if(currentQuestionIndex<currentQuestions.length){loadQuestion();}else{endGame();}},900);
+    setTimeout(function(){
+      currentQuestionIndex++;
+      if(currentQuestionIndex<currentQuestions.length){loadQuestion();}
+      else{endGame();}
+    },900);
   }catch(e){}
 }
 function showToast(msg){
   const t=document.createElement("div");
-  t.className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-300 font-bold text-xs md:text-sm shadow-2xl max-w-[90vw] text-center";
-  t.style.color="#1a120a";
+  t.className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-purple-300 font-bold text-xs md:text-sm shadow-2xl max-w-[90vw] text-center";
+  t.style.color="#1a0b2e";
   t.style.animation="fadeInOut 2s ease";t.textContent=msg;
   t.setAttribute('role','status');
   document.body.appendChild(t);setTimeout(function(){t.remove();},2000);
@@ -1246,7 +1252,7 @@ function showRevealOverlay(text,type){
   const o=document.getElementById("reveal-overlay"),b=document.getElementById("reveal-badge");
   if(!o||!b)return;
   b.className="reveal-badge";b.textContent=text;
-  if(type==="benar"){b.classList.add("benar");createBurst(window.innerWidth/2,window.innerHeight/2,['#10b981','#34d399','#fbbf24','#6ee7b7']);}
+  if(type==="benar"){b.classList.add("benar");createBurst(window.innerWidth/2,window.innerHeight/2,['#10b981','#34d399','#a78bfa','#6ee7b7']);}
   else{b.classList.add("salah");createBurst(window.innerWidth/2,window.innerHeight/2,['#ef4444','#f87171','#dc2626','#fca5a5']);}
   o.classList.add("show");o.classList.add("backdrop");
 }
@@ -1273,23 +1279,40 @@ function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
     const su=document.getElementById("feedback-subtitle");
     const de=document.getElementById("feedback-details");
     const ys=document.getElementById("fb-yours-section");
+    const btnNext=document.getElementById("btn-next");
     const letters=["A","B","C","D"];
+
+    /* Cek apakah ini soal terakhir */
+    const isLastQuestion = (currentQuestionIndex === currentQuestions.length - 1);
+
     if(isCorrect){
-      if(mc)mc.className="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-amber-400/60 my-auto";
+      if(mc)mc.className="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-fuchsia-400/60 my-auto";
       if(ib){ib.className="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-emerald-500/25 text-emerald-300 shrink-0 shadow-lg";ib.textContent="✓";}
-      if(ti){ti.className="text-base md:text-xl font-black text-amber-300";ti.textContent="🎉 JAWABAN BENAR!";}
+      if(ti){ti.className="text-base md:text-xl font-black text-fuchsia-300";ti.textContent="🎉 JAWABAN BENAR!";}
       if(su)su.textContent="Luar biasa! +"+earnedXP+" XP (Streak 🔥 "+streak+")";
-      if(de)de.innerHTML='<div class="p-3 border border-amber-400/40 rounded-xl" style="background:rgba(15,10,6,.6)"><div class="text-[10px] md:text-[11px] text-amber-300 font-bold uppercase mb-1">Jawaban Kamu:</div><div class="font-bold text-amber-100 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div>';
+      if(de)de.innerHTML='<div class="p-3 border border-fuchsia-400/40 rounded-xl" style="background:rgba(13,5,24,.6)"><div class="text-[10px] md:text-[11px] text-fuchsia-300 font-bold uppercase mb-1">Jawaban Kamu:</div><div class="font-bold text-fuchsia-100 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div>';
       if(ys)ys.classList.add('is-hidden');
     }else{
       if(mc)mc.className="glass-panel max-w-lg w-full p-5 md:p-6 rounded-3xl border-2 border-rose-500/60 my-auto";
       if(ib){ib.className="w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-black bg-rose-500/25 text-rose-300 shrink-0 shadow-lg";ib.textContent="✗";}
       if(ti){ti.className="text-base md:text-xl font-black text-rose-400";ti.textContent="❌ BELUM TEPAT";}
       if(su)su.textContent="Jangan berkecil hati! Pelajari pembahasannya di bawah ini.";
-      if(de)de.innerHTML='<div class="space-y-2"><div class="p-3 border border-rose-500/40 rounded-xl" style="background:rgba(60,10,10,.5)"><div class="text-[10px] text-rose-300 font-bold uppercase">Jawaban Kamu:</div><div class="font-semibold text-rose-200 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div><div class="p-3 border border-amber-400/40 rounded-xl" style="background:rgba(30,20,5,.5)"><div class="text-[10px] text-amber-300 font-bold uppercase">Jawaban Yang Benar:</div><div class="font-bold text-amber-200 text-xs md:text-sm overflow-safe">'+qData.options[qData.correct]+'</div></div></div>';
+      if(de)de.innerHTML='<div class="space-y-2"><div class="p-3 border border-rose-500/40 rounded-xl" style="background:rgba(60,10,10,.5)"><div class="text-[10px] text-rose-300 font-bold uppercase">Jawaban Kamu:</div><div class="font-semibold text-rose-200 text-xs md:text-sm overflow-safe">'+qData.options[selectedIdx]+'</div></div><div class="p-3 border border-fuchsia-400/40 rounded-xl" style="background:rgba(30,15,50,.5)"><div class="text-[10px] text-fuchsia-300 font-bold uppercase">Jawaban Yang Benar:</div><div class="font-bold text-fuchsia-200 text-xs md:text-sm overflow-safe">'+qData.options[qData.correct]+'</div></div></div>';
       if(ys)ys.classList.remove('is-hidden');
       setHTML("fb-yours",'Kamu memilih <span class="badge-pick">'+letters[selectedIdx]+'</span><b>"'+qData.options[selectedIdx].replace(/^[A-D]\.\s*/,'')+'"</b> — belum tepat. Bandingkan dengan jawaban benar <span class="badge-correct">'+letters[qData.correct]+'</span> <b>'+qData.options[qData.correct].replace(/^[A-D]\.\s*/,'')+'</b>. Perhatikan kata kunci dan topik <b>'+(qData.topic||"sejarah")+'</b>.');
     }
+
+    /* Ubah teks tombol jika ini soal terakhir */
+    if(btnNext){
+      if(isLastQuestion){
+        btnNext.innerHTML="🏆 LIHAT HASIL";
+        btnNext.setAttribute("aria-label","Lihat hasil akhir kuis");
+      }else{
+        btnNext.innerHTML="➡ LANJUT KE SOAL BERIKUTNYA";
+        btnNext.setAttribute("aria-label","Lanjut ke soal berikutnya");
+      }
+    }
+
     setText("fb-topic",qData.topic||"Sejarah");
     setText("fb-why",qData.explanation);
     setText("fb-key",qData.keyPoint||"Baca kembali materi terkait.");
@@ -1308,6 +1331,9 @@ function nextQuestion(){
 function calculateTitle(s){if(s>=90)return "🏆 MASTER SEJARAH";if(s>=75)return "🧭 AHLI PRAAKSARA";if(s>=50)return "🗿 EXPLORER SEJARAH";return "🌱 PEMBELAJAR SEJARAH";}
 function calculateGrade(s){if(s>=90)return "A";if(s>=80)return "B";if(s>=70)return "C";if(s>=60)return "D";return "E";}
 
+/* ============================================================
+   ✅ endGame() — Banner DINAMIS sesuai nilai yang diperoleh
+   ============================================================ */
 function endGame(){
   try{
     clearInterval(timerInterval);
@@ -1333,8 +1359,17 @@ function endGame(){
     setText("card-streak",maxStreak+" 🔥");
     setText("card-title",earnedTitle);
     setText("card-attempt",attemptCount);
-    let prevBest=null;try{prevBest=localStorage.getItem(STORAGE_PREFIX+"best_score");}catch(e){}
-    if(prevBest===null||score>parseInt(prevBest)){
+
+    /* --- BANNER DINAMIS SESUAI NILAI --- */
+    let prevBest=null;
+    try{prevBest=localStorage.getItem(STORAGE_PREFIX+"best_score");}catch(e){}
+    const isNewRecord = (prevBest===null || score > parseInt(prevBest));
+
+    const banner = document.getElementById("record-banner");
+    const rText  = document.getElementById("record-text");
+    const rSub   = document.getElementById("record-subtext");
+
+    if(isNewRecord){
       try{
         localStorage.setItem(STORAGE_PREFIX+"best_correct",correctAnswersCount);
         localStorage.setItem(STORAGE_PREFIX+"best_score",score);
@@ -1342,22 +1377,58 @@ function endGame(){
         localStorage.setItem(STORAGE_PREFIX+"best_title",earnedTitle);
         localStorage.setItem(STORAGE_PREFIX+"best_attempt",attemptCount);
       }catch(e){}
-      show("record-banner");
-      setText("record-text","🎉 SKOR BARU TERBAIK!");
-      setText("record-subtext","Luar biasa! Kamu melampaui rekor sebelumnya.");
-      sfx('win');triggerConfetti(true);
-    }else{
-      show("record-banner");
-      setText("record-text","💪 Tetap Semangat!");
-      setText("record-subtext","Belum jadi skor terbaik. Coba lagi untuk nilai maksimal!");
-      if(score>=60)triggerConfetti(false);
     }
+
+    let bannerTitle="", bannerSub="", bannerClass="";
+    if(isNewRecord){
+      bannerTitle = "🎉 SKOR BARU TERBAIK!";
+      bannerSub   = "Luar biasa! Kamu melampaui rekor sebelumnya dengan skor "+score+".";
+      bannerClass = "border-fuchsia-400/60 bg-gradient-to-r from-fuchsia-500/25 via-purple-500/25 to-violet-500/25";
+    } else if(score >= 90){
+      bannerTitle = "🏅 LUAR BIASA!";
+      bannerSub   = "Skor "+score+" — kamu menguasai materi praaksara dengan sangat baik!";
+      bannerClass = "border-fuchsia-400/50 bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-violet-500/20";
+    } else if(score >= 75){
+      bannerTitle = "✨ HEBAT!";
+      bannerSub   = "Skor "+score+" — pemahamanmu sudah sangat bagus. Pertahankan!";
+      bannerClass = "border-purple-400/50 bg-gradient-to-r from-purple-500/20 via-violet-500/20 to-fuchsia-500/15";
+    } else if(score >= 60){
+      bannerTitle = "👍 BAGUS!";
+      bannerSub   = "Skor "+score+" — kamu sudah lulus. Tingkatkan lagi untuk hasil maksimal!";
+      bannerClass = "border-violet-400/50 bg-gradient-to-r from-violet-500/20 via-purple-500/15 to-fuchsia-500/10";
+    } else if(score >= 40){
+      bannerTitle = "💪 TETAP SEMANGAT!";
+      bannerSub   = "Skor "+score+" — pelajari kembali materi praaksara dan coba lagi!";
+      bannerClass = "border-amber-400/50 bg-gradient-to-r from-amber-500/15 via-purple-500/10 to-violet-500/10";
+    } else {
+      bannerTitle = "🌱 JANGAN MENYERAH!";
+      bannerSub   = "Skor "+score+" — baca ulang materi, lalu coba lagi. Kamu pasti bisa!";
+      bannerClass = "border-rose-400/50 bg-gradient-to-r from-rose-500/15 via-purple-500/10 to-violet-500/10";
+    }
+
+    if(banner){
+      banner.className = "glass-panel p-4 md:p-4 rounded-2xl text-center " + bannerClass;
+    }
+    if(rText) rText.textContent = bannerTitle;
+    if(rSub)  rSub.textContent  = bannerSub;
+
+    /* Efek suara & confetti sesuai capaian */
+    if(isNewRecord){
+      sfx('win'); triggerConfetti(true);
+    } else if(score >= 90){
+      sfx('win'); triggerConfetti(true);
+    } else if(score >= 60){
+      sfx('win'); triggerConfetti(false);
+    } else {
+      sfx('click');
+    }
+
     try{localStorage.setItem(STORAGE_PREFIX+"attempts",attemptCount);}catch(e){}
     updateBestScoreSummary();
-  }catch(e){}
+  }catch(e){console.error("endGame error:",e);}
 }
 function triggerConfetti(isRecord){
-  const colors=['#fbbf24','#f59e0b','#fde68a','#d97706','#fef3c7','#fcd34d'];
+  const colors=['#e879f9','#d946ef','#f5d0fe','#a21caf','#ede0ff','#c4b5fd'];
   safeConfetti({particleCount:80,spread:100,origin:{y:.6},colors:colors});
   if(isRecord){
     setTimeout(function(){safeConfetti({particleCount:60,angle:60,spread:75,origin:{x:0,y:.7},colors:colors});},300);
@@ -1393,12 +1464,12 @@ function openReviewModal(){
       const isC=item.isCorrect,isS=item.isSkipped;
       let cardClass="border-rose-500/40";let statusText="✗ Soal "+item.questionNum+" — Belum tepat";let statusColor="text-rose-400";
       let bgColor="rgba(60,10,10,.35)";
-      if(isC){cardClass="border-amber-400/40";statusText="✓ Soal "+item.questionNum+" — Benar";statusColor="text-amber-300";bgColor="rgba(30,20,5,.4)";}
-      else if(isS){cardClass="border-amber-400/30";statusText="⏭️ Soal "+item.questionNum+" — Dilewati";statusColor="text-amber-400";bgColor="rgba(26,18,10,.4)";}
+      if(isC){cardClass="border-fuchsia-400/40";statusText="✓ Soal "+item.questionNum+" — Benar";statusColor="text-fuchsia-300";bgColor="rgba(30,15,50,.4)";}
+      else if(isS){cardClass="border-fuchsia-400/30";statusText="⏭️ Soal "+item.questionNum+" — Dilewati";statusColor="text-fuchsia-400";bgColor="rgba(26,11,46,.4)";}
       const card=document.createElement("div");
       card.className="p-4 rounded-2xl border "+cardClass+" space-y-2.5 text-[11px] md:text-xs";
       card.style.background=bgColor;
-      card.innerHTML='<div class="flex items-center justify-between font-bold flex-wrap gap-2"><span class="'+statusColor+'">'+statusText+'</span><span class="diff-badge '+getDifficultyClass(item.difficulty)+'">'+(item.difficulty||"Mudah")+'</span></div><p class="font-medium text-amber-50 overflow-safe">'+item.questionText+'</p><div class="p-2.5 rounded-lg" style="background:rgba(15,10,6,.75)"><div class="text-amber-200/80">Jawabanmu: <span class="'+(isC?"text-amber-300 font-bold":(isS?"text-amber-400/60 font-bold":"text-rose-400 font-bold"))+'">'+item.userAnswer+'</span></div>'+(!isC?'<div class="text-amber-200/80 mt-1">Jawaban Benar: <span class="text-amber-300 font-bold">'+item.correctAnswer+'</span></div>':'')+'</div><div class="bg-amber-500/10 border border-amber-400/30 p-2.5 rounded-lg text-amber-100 overflow-safe"><strong class="text-amber-300">📚 Topik:</strong> '+(item.topic||"Sejarah")+'</div><div class="bg-amber-500/10 border border-amber-400/30 p-2.5 rounded-lg text-amber-100 overflow-safe"><strong class="text-amber-300">📖 Pembahasan:</strong> '+item.explanation+'</div><div class="bg-orange-500/10 border border-orange-400/30 p-2.5 rounded-lg text-orange-100 overflow-safe"><strong class="text-orange-300">🎯 Poin Kunci:</strong> '+(item.keyPoint||"—")+'</div>';
+      card.innerHTML='<div class="flex items-center justify-between font-bold flex-wrap gap-2"><span class="'+statusColor+'">'+statusText+'</span><span class="diff-badge '+getDifficultyClass(item.difficulty)+'">'+(item.difficulty||"Mudah")+'</span></div><p class="font-medium text-fuchsia-50 overflow-safe">'+item.questionText+'</p><div class="p-2.5 rounded-lg" style="background:rgba(13,5,24,.75)"><div class="text-fuchsia-200/80">Jawabanmu: <span class="'+(isC?"text-fuchsia-300 font-bold":(isS?"text-fuchsia-400/60 font-bold":"text-rose-400 font-bold"))+'">'+item.userAnswer+'</span></div>'+(!isC?'<div class="text-fuchsia-200/80 mt-1">Jawaban Benar: <span class="text-fuchsia-300 font-bold">'+item.correctAnswer+'</span></div>':'')+'</div><div class="bg-fuchsia-500/10 border border-fuchsia-400/30 p-2.5 rounded-lg text-fuchsia-100 overflow-safe"><strong class="text-fuchsia-300">📚 Topik:</strong> '+(item.topic||"Sejarah")+'</div><div class="bg-fuchsia-500/10 border border-fuchsia-400/30 p-2.5 rounded-lg text-fuchsia-100 overflow-safe"><strong class="text-fuchsia-300">📖 Pembahasan:</strong> '+item.explanation+'</div><div class="bg-purple-500/10 border border-purple-400/30 p-2.5 rounded-lg text-purple-100 overflow-safe"><strong class="text-purple-300">🎯 Poin Kunci:</strong> '+(item.keyPoint||"—")+'</div>';
       l.appendChild(card);
     });
     show("review-modal");
