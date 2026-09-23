@@ -65,8 +65,12 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     box-shadow: 0 0 40px rgba(251,191,36,.55), inset 0 1px 0 rgba(255,255,255,.2);
     white-space: nowrap;
   }
-  @media (min-width:480px){ .school-badge{ padding:12px 36px; font-size:1.15rem; letter-spacing:4px; } }
-  @media (min-width:768px){ .school-badge{ padding:14px 44px; font-size:1.35rem; letter-spacing:5px; } }
+  @media (min-width:480px){
+    .school-badge{ padding:12px 36px; font-size:1.15rem; letter-spacing:4px; }
+  }
+  @media (min-width:768px){
+    .school-badge{ padding:14px 44px; font-size:1.35rem; letter-spacing:5px; }
+  }
   .school-badge::before{
     content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
@@ -607,17 +611,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       <p class="text-xs md:text-sm text-purple-200/70">Jejak Kehidupan Masyarakat Praaksara • Sejarah Kelas X</p>
     </div>
 
-    <div class="mb-5 p-4 md:p-5 rounded-xl" style="background: linear-gradient(135deg, rgba(236,72,153,.12), rgba(168,85,247,.06)); border: 2px solid rgba(236,72,153,.4); box-shadow: 0 0 30px rgba(236,72,153,.2)">
-      <div class="text-center">
-        <div class="text-[10px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
-          style="color: #6ee7b7; text-shadow: 0 0 12px rgba(16,185,129,.8)">
-          <span>👨‍🏫</span> GURU PENGAMPU
-        </div>
-        <div class="teacher-name text-lg md:text-2xl tracking-wide">SYAHRANI, S.Pd.</div>
-        <div class="nip-text text-[11px] md:text-xs mt-1.5">NIP. 19751217200501 1 016</div>
-      </div>
-    </div>
-
     <div class="rounded-xl p-3 md:p-4 mb-5 space-y-2 text-xs md:text-sm border border-fuchsia-500/15" style="background: rgba(11,4,22,.55)">
       <div class="flex items-center gap-2.5">
         <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
@@ -812,14 +805,12 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   <div class="reveal-badge" id="revealBadge">BENAR</div>
 </div>
 
-<footer class="w-full text-center py-4 px-3 border-t border-fuchsia-500/15"
+<footer class="w-full text-center py-3 px-3 border-t border-fuchsia-500/15"
   style="background: linear-gradient(90deg, rgba(11,4,22,.9), rgba(45,15,75,.9), rgba(11,4,22,.9))">
-  <div class="text-[10px] md:text-[11px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
-    style="color:#6ee7b7; text-shadow: 0 0 10px rgba(16,185,129,.7)">
-    <span>👨‍🏫</span> GURU PENGAMPU
+  <div class="text-[10px] md:text-[11px] text-purple-300/70 font-semibold tracking-wider">
+    🎡 <span class="school-name">SMAN 3 KASONGAN</span> • Kelas X / Fase E • Sejarah Praaksara
   </div>
-  <div class="teacher-name text-base md:text-lg">SYAHRANI, S.Pd.</div>
-  <div class="nip-text text-[10px] md:text-xs mt-1">NIP. 19751217200501 1 016</div>
+  <div class="text-[9px] text-purple-400/50 mt-1">© 2024 — Media Pembelajaran Interaktif</div>
 </footer>
 
 <script>
@@ -859,7 +850,7 @@ function sfx(type){
 }
 
 /* =========================================================
-   KATEGORI — warna diubah ke palet ungu/pink/emerald/amber
+   KATEGORI — palet ungu/pink/emerald/amber
    ========================================================= */
 const CATEGORIES = [
   { id:'pengertian',  name:'Pengertian & Sumber',   short:'Pengertian',  icon:'📜', color:'#10b981', points:100 },
@@ -876,10 +867,8 @@ const CATEGORIES = [
 /* ==================================================================
    BANK SOAL RODA BERPUTAR — 45 SOAL (5 per kategori)
    Komplementer dengan kuisprasejarah1.html.
-   Fokus: metode rekonstruksi, situs spesifik, artefak khas, konsep
-   kepercayaan spesifik, dan teknologi detail.
    Opsi TIDAK diberi huruf A/B/C/D — huruf ditambahkan saat render,
-   sehingga pengacakan (shuffle) tetap konsisten dan merata.
+   sehingga pengacakan (Fisher-Yates) tetap konsisten dan merata.
    ================================================================== */
 const QUESTIONS = [
   // ============ PENGERTIAN & SUMBER (5) ============
@@ -1128,12 +1117,10 @@ const QUESTIONS = [
 
 /* =========================================================
    FUNGSI PENGACAKAN OPSI — Fisher-Yates Shuffle
-   Menjamin distribusi jawaban benar merata di A/B/C/D
    ========================================================= */
 function shuffleOptions(q) {
   const arr = q.options.slice();
   const correctText = arr[q.correct];
-  // Fisher-Yates
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
@@ -1160,7 +1147,6 @@ const state = {
 };
 const STORAGE_PREFIX = 'kuis_roda_sejarah_v1_';
 
-/* Flag untuk beforeunload */
 let kuisAktif = false;
 
 window.addEventListener('beforeunload', function(e) {
@@ -1263,7 +1249,7 @@ function updateProgressBars() {
 }
 
 /* =========================================================
-   MEMBANGUN RODA
+   MEMBANGUN RODA — teks RADIAL dari luar ke dalam lingkaran
    ========================================================= */
 function buildWheel() {
   const svg = $('wheelSvg');
@@ -1283,7 +1269,9 @@ function buildWheel() {
   for (let i = 0; i < total; i++) {
     const cat = CATEGORIES[i];
     const centerDeg = -90 + i * segAngle;
+    const rad = centerDeg * Math.PI / 180;
 
+    /* ====== GAMBAR WEDGE (potongan roda) ====== */
     const a0 = (centerDeg - half) * Math.PI / 180;
     const a1 = (centerDeg + half) * Math.PI / 180;
     const sx = cx + r * Math.cos(a0), sy = cy + r * Math.sin(a0);
@@ -1294,41 +1282,50 @@ function buildWheel() {
     segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.24"/>`;
     segHtml += `<path d="${wedge}" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.5"/>`;
 
-    const textR   = r * 0.62;
-    const fontSize = 6.2;
-    const padDeg  = half * 0.84;
-    const isTop   = Math.sin(centerDeg * Math.PI / 180) <= 0;
+    /* =========================================================
+       TEKS RADIAL — dari tepi luar mengarah ke pusat lingkaran
+       Semua label LURUS mengikuti jari-jari, tidak melengkung.
+       ========================================================= */
+    const label = cat.short.toUpperCase();
 
-    const baseR = isTop ? (textR - fontSize * 0.34) : (textR + fontSize * 0.34);
-    const sDeg  = isTop ? (centerDeg - padDeg) : (centerDeg + padDeg);
-    const eDeg  = isTop ? (centerDeg + padDeg) : (centerDeg - padDeg);
-    const sRad  = sDeg * Math.PI / 180;
-    const eRad  = eDeg * Math.PI / 180;
-    const tsx = cx + baseR * Math.cos(sRad), tsy = cy + baseR * Math.sin(sRad);
-    const tex = cx + baseR * Math.cos(eRad), tey = cy + baseR * Math.sin(eRad);
-    const sweep = isTop ? 1 : 0;
-    const pid = `wheelTextPath-${i}`;
+    let fontSize = 6.2;
+    if (label.length > 10) fontSize = 5.2;
+    else if (label.length > 8) fontSize = 5.7;
 
-    defsHtml += `<path id="${pid}" fill="none" d="M ${tsx.toFixed(2)} ${tsy.toFixed(2)} A ${baseR.toFixed(2)} ${baseR.toFixed(2)} 0 0 ${sweep} ${tex.toFixed(2)} ${tey.toFixed(2)}"/>`;
+    const labelR = r * 0.66;
+    const lx = cx + labelR * Math.cos(rad);
+    const ly = cy + labelR * Math.sin(rad);
 
-    segHtml += `<text font-size="${fontSize}" font-weight="900" fill="#ffffff"
-        letter-spacing="0.25" font-family="'Space Grotesk','Inter',sans-serif"
-        style="paint-order:stroke;stroke:rgba(11,4,22,.62);stroke-width:1.8px;stroke-linejoin:round">
-        <textPath href="#${pid}" startOffset="50%" text-anchor="middle">${cat.short.toUpperCase()}</textPath>
-      </text>`;
+    let rotDeg = centerDeg;
+    if (Math.cos(rad) < 0) {
+      rotDeg = centerDeg + 180;
+    }
 
-    const iconR = r * 0.81;
-    const icx = cx + iconR * Math.cos(centerDeg * Math.PI / 180);
-    const icy = cy + iconR * Math.sin(centerDeg * Math.PI / 180);
-    const irot = centerDeg + 90;
+    segHtml += `<text
+        x="${lx.toFixed(2)}"
+        y="${ly.toFixed(2)}"
+        font-size="${fontSize}"
+        font-weight="900"
+        fill="#ffffff"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="'Space Grotesk','Inter',sans-serif"
+        transform="rotate(${rotDeg.toFixed(2)} ${lx.toFixed(2)} ${ly.toFixed(2)})"
+        style="paint-order:stroke;stroke:rgba(11,4,22,.78);stroke-width:1.6px;stroke-linejoin:round;letter-spacing:0.3">${label}</text>`;
 
-    segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)}) rotate(${irot.toFixed(2)})">
-        <circle r="8.6" fill="rgba(11,4,22,.42)" stroke="rgba(255,255,255,.30)" stroke-width="0.6"/>
-        <text x="0" y="3.1" text-anchor="middle" font-size="9.5"
+    /* ====== IKON di tepi luar roda ====== */
+    const iconR = r * 0.9;
+    const icx = cx + iconR * Math.cos(rad);
+    const icy = cy + iconR * Math.sin(rad);
+
+    segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)})">
+        <circle r="7" fill="rgba(11,4,22,.6)" stroke="rgba(255,255,255,.45)" stroke-width="0.6"/>
+        <text x="0" y="2.7" text-anchor="middle" font-size="8.2"
           font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${cat.icon}</text>
       </g>`;
   }
 
+  /* ====== RAKIT SVG ====== */
   let html = `<defs>${defsHtml}</defs>`;
   html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="#1a0b2e" stroke="#ec4899" stroke-width="2" opacity="0.7"/>`;
   html += `<circle cx="${cx}" cy="${cy}" r="${r + 6}" fill="none" stroke="#a855f7" stroke-width="0.5" opacity="0.4"/>`;
@@ -1415,7 +1412,6 @@ function onSpinComplete(targetIdx) {
 function startQuestion(cat) {
   if (state.gameFinished) return;
 
-  /* Pilih soal, lalu acak posisi opsi via Fisher-Yates */
   state.currentQuestion = shuffleOptions(pickQuestion(cat.id));
   state.answerLocked = false;
   state.selectedAnswerIndex = null;
@@ -1447,7 +1443,6 @@ function startQuestion(cat) {
     btn.className = 'opt-btn overflow-safe';
     btn.setAttribute('role', 'radio');
     btn.setAttribute('aria-checked', 'false');
-    /* Tambahkan huruf A/B/C/D saat render — sumber soal tidak pakai huruf */
     const letter = String.fromCharCode(65 + i);
     btn.textContent = letter + '. ' + opt;
     btn.setAttribute('aria-label', `Pilihan ${letter}: ${opt}`);
