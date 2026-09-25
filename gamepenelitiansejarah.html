@@ -741,6 +741,40 @@ const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 const rnd=n=>Math.random()*n|0;
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
 
+/* ============ RANDOMIZATION: soal selalu berbeda tiap sesi ============ */
+const SEEN_KEY='histoexplorer_seen_v2';
+function loadSeen(){try{return JSON.parse(localStorage.getItem(SEEN_KEY))||{};}catch(e){return{};}}
+function saveSeen(s){try{localStorage.setItem(SEEN_KEY,JSON.stringify(s));}catch(e){}}
+function markSeen(game,ids){
+  const s=loadSeen();
+  const cur=new Set(s[game]||[]);
+  ids.forEach(i=>cur.add(i));
+  s[game]=[...cur];
+  if(s[game].length>500)s[game]=s[game].slice(-250);
+  saveSeen(s);
+}
+function clearSeenAll(){try{localStorage.removeItem(SEEN_KEY);}catch(e){}}
+/* Pilih N soal, prioritaskan yang belum pernah muncul */
+function pickFresh(pool,n,game,idFn){
+  const s=loadSeen();
+  const seen=new Set(s[game]||[]);
+  const unseen=pool.filter(q=>!seen.has(idFn(q)));
+  const shown=pool.filter(q=>seen.has(idFn(q)));
+  let combined;
+  if(unseen.length>=n){combined=[...shuffle(unseen),...shuffle(shown)];}
+  else{s[game]=[];saveSeen(s);combined=shuffle(pool);}
+  const picked=combined.slice(0,n);
+  markSeen(game,picked.map(idFn));
+  return picked;
+}
+/* Acak urutan opsi jawaban (a = index jawaban benar) */
+function shuffleOpts(q){
+  if(!q||!q.o)return q;
+  const correctText=q.o[q.a];
+  const newO=shuffle(q.o);
+  return {...q,o:newO,a:newO.indexOf(correctText)};
+}
+
 /* APRESIASI & SEMANGAT */
 const PRAISE=['🎯 Tepat sekali!','⭐ Hebat!','🔥 Luar biasa!','✨ Cerdas!','💎 Brilian!','🏆 Sempurna!','👏 Mantap!','🌟 Keren!','💡 Jenius!','🎉 Excellent!','🚀 Spektakuler!','🎖️ Mengagumkan!'];
 const ENCOURAGE=['💪 Hampir! Coba lagi ya.','🌱 Belajar dari kesalahan itu hebat!','📚 Tetap semangat, kamu bisa!','🎓 Setiap kesalahan = pelajaran baru.','🧠 Pikirkan sekali lagi, kamu pasti bisa!','🌟 Jangan menyerah, terus coba!','🚀 Kesalahan adalah tangga menuju sukses!','📖 Cek lagi konsepnya ya, kamu hebat!','🌈 Tetap tenang, kamu sedang berkembang!','🎯 Fokus lagi, kamu hampir tepat!'];
@@ -776,7 +810,7 @@ function sfxGold(){[1200,1600,2000].forEach((f,i)=>setTimeout(()=>beep(f,.1,'sin
   loop();
 })();
 
-/* Sound feedback on click (particle burst & cursor removed) */
+/* Sound feedback on click (cursor effect removed) */
 document.addEventListener('click',()=>{sfxClick();});
 
 function shakeScreen(){document.body.animate([{transform:'translate(0,0)'},{transform:'translate(-6px,3px)'},{transform:'translate(6px,-3px)'},{transform:'translate(-4px,2px)'},{transform:'translate(4px,-2px)'},{transform:'translate(0,0)'}],{duration:400,easing:'ease-out'});}
@@ -794,7 +828,12 @@ const PROG_KEY='histoexplorer_blue_v5';
 function loadProgress(){try{return JSON.parse(localStorage.getItem(PROG_KEY))||{};}catch(e){return{};}}
 function saveProgress(p){try{localStorage.setItem(PROG_KEY,JSON.stringify(p));}catch(e){}}
 function markDone(id){const p=loadProgress();if(p[id]&&p[id].done){updateMenu();return;}p[id]={done:true,date:new Date().toISOString()};saveProgress(p);updateMenu();}
-function resetProgress(){if(!confirm('Reset semua progress? Semua tanda centang akan hilang.'))return;try{localStorage.removeItem(PROG_KEY);}catch(e){}updateMenu();notif('Progress direset!','gold');}
+function resetProgress(){
+  if(!confirm('Reset semua progress & riwayat soal? Semua tanda centang akan hilang.'))return;
+  try{localStorage.removeItem(PROG_KEY);}catch(e){}
+  clearSeenAll();
+  updateMenu();notif('Progress & riwayat soal direset!','gold');
+}
 function updateMenu(){
   const p=loadProgress();
   $$('.gc').forEach(c=>{
@@ -888,7 +927,18 @@ const G1_DATA=[
   {e:'🔍',n:'Karya Tulis Sejarah Umum',t:'s'}
 ];
 const g1={deck:[],idx:0,score:0,combo:0,streak:0,time:60,timer:null,golden:false,right:0,playing:false};
-function g1Start(){g1.deck=shuffle(G1_DATA);g1.idx=0;g1.score=0;g1.combo=0;g1.streak=0;g1.time=60;g1.golden=false;g1.right=0;g1.playing=true;g1Update();g1Next();clearInterval(g1.timer);g1.timer=setInterval(()=>{if(!g1.playing)return;g1.time-=.1;if(g1.time<=0){g1.time=0;g1Update();g1End();return;}g1Update();},100);}
+function g1Start(){
+  const s=loadSeen();
+  const seen=new Set(s.g1||[]);
+  const unseen=G1_DATA.filter(q=>!seen.has(q.n));
+  const shown=G1_DATA.filter(q=>seen.has(q.n));
+  g1.deck=[...shuffle(unseen),...shuffle(shown)];
+  markSeen('g1',g1.deck.slice(0,25).map(q=>q.n));
+  g1.idx=0;g1.score=0;g1.combo=0;g1.streak=0;g1.time=60;g1.golden=false;g1.right=0;g1.playing=true;
+  g1Update();g1Next();
+  clearInterval(g1.timer);
+  g1.timer=setInterval(()=>{if(!g1.playing)return;g1.time-=.1;if(g1.time<=0){g1.time=0;g1Update();g1End();return;}g1Update();},100);
+}
 function g1Update(){$('#g1Score').textContent=g1.score;$('#g1Combo').textContent='x'+Math.max(1,g1.combo);$('#g1Time').textContent=Math.ceil(g1.time);const p=g1.time/60*100;$('#g1Bar').style.width=p+'%';$('#g1Bar').classList.toggle('low',g1.time<=15);$('#g1ScorePill').textContent=g1.score;}
 function g1Next(){if(g1.idx>=g1.deck.length){g1End();return;}const s=g1.deck[g1.idx];const c=$('#g1Card');c.classList.remove('out');c.classList.toggle('golden',g1.golden);$('#g1Emoji').textContent=s.e;$('#g1Name').textContent=s.n;$('#g1Hint').textContent=g1.golden?'⚡ Sumber Emas — nilai 3x!':'Sumber apa ini?';}
 function g1Answer(t){if(!g1.playing)return;const s=g1.deck[g1.idx];const c=$('#g1Card');
@@ -948,7 +998,15 @@ const G3_QS=[
   {q:'Fungsi historiografi dalam penelitian sejarah adalah…',o:['Mengumpulkan data','Menulis narasi & interpretasi sejarah','Menghancurkan sumber','Menyimpan arsip'],a:1,h:'Historiografi = penulisan sejarah.'}
 ];
 const g3={deck:[],idx:0,score:0,right:0,streak:0,answered:false,used:{t50:false,hint:false,skip:false},bonus:[]};
-function g3Start(){g3.deck=shuffle(G3_QS).slice(0,10);g3.idx=0;g3.score=0;g3.right=0;g3.streak=0;g3.used={t50:false,hint:false,skip:false};g3.bonus=g3.deck.map((_,i)=>[3,6,9].includes(i));['g3T50','g3THint','g3TSkip'].forEach(id=>{const b=$('#'+id);b.disabled=false;b.classList.remove('used');});g3BuildDots();g3Render();}
+function g3Start(){
+  const picked=pickFresh(G3_QS,10,'g3',q=>q.q);
+  g3.deck=picked.map(shuffleOpts);
+  g3.idx=0;g3.score=0;g3.right=0;g3.streak=0;
+  g3.used={t50:false,hint:false,skip:false};
+  g3.bonus=g3.deck.map((_,i)=>[3,6,9].includes(i));
+  ['g3T50','g3THint','g3TSkip'].forEach(id=>{const b=$('#'+id);b.disabled=false;b.classList.remove('used');});
+  g3BuildDots();g3Render();
+}
 function g3BuildDots(){const d=$('#g3Dots');d.innerHTML='';g3.deck.forEach((_,i)=>{const s=document.createElement('div');s.className='dot'+(g3.bonus[i]?' bonus':'');d.appendChild(s);});}
 function g3UpdateDots(){[...$('#g3Dots').children].forEach((d,i)=>{d.classList.remove('cur','done');if(i<g3.idx)d.classList.add('done');if(i===g3.idx)d.classList.add('cur');});}
 function g3HUD(){$('#g3Score').textContent=g3.score;$('#g3Right').textContent=g3.right;$('#g3Streak').textContent=g3.streak+'🔥';}
@@ -998,7 +1056,13 @@ const G4_DATA=[
   {s:'G30S/PKI adalah murni kesalahan PKI tanpa keterlibatan pihak lain.',t:'b',h:'Narasi sepihak era Orde Baru yang masih diperdebatkan.'}
 ];
 const g4={deck:[],idx:0,score:0,combo:0,right:0,time:75,timer:null,playing:false};
-function g4Start(){g4.deck=shuffle(G4_DATA).slice(0,15);g4.idx=0;g4.score=0;g4.combo=0;g4.right=0;g4.time=75;g4.playing=true;g4Update();g4Next();clearInterval(g4.timer);g4.timer=setInterval(()=>{if(!g4.playing)return;g4.time-=.1;if(g4.time<=0){g4.time=0;g4Update();g4End();return;}g4Update();},100);}
+function g4Start(){
+  g4.deck=pickFresh(G4_DATA,15,'g4',q=>q.s);
+  g4.idx=0;g4.score=0;g4.combo=0;g4.right=0;g4.time=75;g4.playing=true;
+  g4Update();g4Next();
+  clearInterval(g4.timer);
+  g4.timer=setInterval(()=>{if(!g4.playing)return;g4.time-=.1;if(g4.time<=0){g4.time=0;g4Update();g4End();return;}g4Update();},100);
+}
 function g4Update(){$('#g4Score').textContent=g4.score;$('#g4Combo').textContent='x'+Math.max(1,g4.combo);$('#g4Right').textContent=g4.right+'/'+g4.deck.length;const p=g4.time/75*100;$('#g4Bar').style.width=p+'%';$('#g4Bar').classList.toggle('low',g4.time<=15);$('#g4ScorePill').textContent=g4.score;}
 function g4Next(){if(g4.idx>=g4.deck.length){g4End();return;}const s=g4.deck[g4.idx];const c=$('#g4Card');c.classList.remove('out');$('#g4Emoji').textContent='💬';$('#g4Statement').textContent='"'+s.s+'"';$('#g4Hint').textContent='Fakta, Opini, atau Propaganda?';}
 function g4Answer(t){if(!g4.playing)return;const s=g4.deck[g4.idx];const c=$('#g4Card');
@@ -1072,7 +1136,13 @@ const G6_QS=[
   {q:'Kesimpulan penelitian sejarah harus…',o:['Berisi opini penulis','Didasarkan pada fakta & sumber terverifikasi','Panjang & bertele-tele','Menyenangkan pembaca'],a:1}
 ];
 const g6={pos:0,score:0,right:0,rolls:0,rolling:false,finished:false,pool:[],iv:null};
-function g6Start(){g6.pos=0;g6.score=0;g6.right=0;g6.rolls=0;g6.rolling=false;g6.finished=false;g6.pool=shuffle(G6_QS);g6Render();g6HUD();$('#g6RollBtn').disabled=false;$('#g6RollBtn').textContent='🎲 KOCOK DADU';$('#g6Dice').textContent='🎲';$('#g6Log').innerHTML='Tekan <b>KOCOK DADU</b> untuk memulai!';}
+function g6Start(){
+  g6.pool=pickFresh(G6_QS,12,'g6',q=>q.q);
+  g6.pos=0;g6.score=0;g6.right=0;g6.rolls=0;g6.rolling=false;g6.finished=false;
+  g6Render();g6HUD();
+  $('#g6RollBtn').disabled=false;$('#g6RollBtn').textContent='🎲 KOCOK DADU';$('#g6Dice').textContent='🎲';
+  $('#g6Log').innerHTML='Tekan <b>KOCOK DADU</b> untuk memulai!';
+}
 function g6HUD(){$('#g6Pos').textContent=g6.pos+1;$('#g6PosPill').textContent='Posisi '+(g6.pos+1);$('#g6Score').textContent=g6.score;$('#g6Right').textContent=g6.right;$('#g6Rolls').textContent=g6.rolls;}
 function g6Render(){const b=$('#g6Board');b.innerHTML='';G6_TILES.forEach((t,i)=>{const d=document.createElement('div');d.className='tile '+t.t;if(i<g6.pos)d.classList.add('passed');if(i===g6.pos)d.classList.add('here');d.innerHTML=`<span class="no">${i+1}</span><span class="ic">${i===g6.pos?'🧑‍🎓':t.ic}</span><span>${t.lb}</span>`;b.appendChild(d);});g6HUD();}
 function g6Roll(){if(g6.rolling||g6.finished)return;g6.rolling=true;$('#g6RollBtn').disabled=true;const dice=$('#g6Dice');dice.classList.add('rolling');let ticks=0;const iv=setInterval(()=>{dice.textContent=1+rnd(6);beep(400+rnd(400),.03,'sine',.02);if(++ticks>12){clearInterval(iv);dice.classList.remove('rolling');const n=1+rnd(6);dice.textContent=n;g6.rolls++;g6Move(n);}},70);}
@@ -1090,7 +1160,17 @@ function g6Surprise(){const r=Math.random();
   else if(r<.85){g6.score+=10;g6HUD();$('#g6Log').innerHTML='🎁 <b>KEJUTAN!</b> Tips dari tetua. +10 poin.';g6Next();}
   else{$('#g6Log').innerHTML='🎁 <b>KEJUTAN!</b> Mundur 1 petak. Tak apa, lanjut terus!';sfxWrong();setTimeout(()=>{g6.pos=Math.max(0,g6.pos-1);g6Render();g6Next();},800);}}
 function g6Next(){g6.rolling=false;if(g6.pos>=G6_TILES.length-1){setTimeout(g6End,400);return;}$('#g6RollBtn').disabled=false;$('#g6RollBtn').textContent='🎲 KOCOK DADU';}
-function g6Ask(){if(g6.pool.length===0)g6.pool=shuffle(G6_QS);const q=g6.pool.splice(rnd(g6.pool.length),1)[0];let html=`<h2>❓ TANTANGAN</h2><p>${q.q}</p>`;q.o.forEach((o,i)=>{html+=`<button class="btn ghost" style="display:block;width:100%;margin-bottom:8px;text-align:left;justify-content:flex-start" onclick="g6Answer(${i},${q.a},this)"><b style="color:#2563eb;margin-right:8px">${'ABCD'[i]}.</b>${o}</button>`;});$('#mEmoji').textContent='❓';$('#mTitle').textContent='Tantangan Sejarawan';$('#mBadge').style.display='none';$('#mText').innerHTML=html;$('#modal').classList.add('on');}
+function g6Ask(){
+  if(g6.pool.length===0)g6.pool=pickFresh(G6_QS,12,'g6',q=>q.q);
+  const raw=g6.pool.splice(rnd(g6.pool.length),1)[0];
+  const q=shuffleOpts(raw);
+  let html=`<h2>❓ TANTANGAN</h2><p>${q.q}</p>`;
+  q.o.forEach((o,i)=>{
+    html+=`<button class="btn ghost" style="display:block;width:100%;margin-bottom:8px;text-align:left;justify-content:flex-start" onclick="g6Answer(${i},${q.a},this)"><b style="color:#2563eb;margin-right:8px">${'ABCD'[i]}.</b>${o}</button>`;
+  });
+  $('#mEmoji').textContent='❓';$('#mTitle').textContent='Tantangan Sejarawan';
+  $('#mBadge').style.display='none';$('#mText').innerHTML=html;$('#modal').classList.add('on');
+}
 function g6Answer(i,correct,btn){const opts=[...document.querySelectorAll('#mText .btn')];opts.forEach(b=>b.disabled=true);
   if(i===correct){btn.style.background='linear-gradient(135deg,rgba(16,185,129,.3),rgba(16,185,129,.1))';btn.style.borderColor='#10b981';btn.style.color='#10b981';g6.score+=15;g6.right++;$('#g6Log').innerHTML='✅ <b>TEPAT!</b> '+praise()+' +15 poin.';g6HUD();sfxCorrect();pulseScreen();}
   else{btn.style.background='rgba(245,158,11,.2)';btn.style.borderColor='#f59e0b';btn.style.color='#b45309';opts[correct].style.background='linear-gradient(135deg,rgba(16,185,129,.3),rgba(16,185,129,.1))';opts[correct].style.borderColor='#10b981';opts[correct].style.color='#10b981';$('#g6Log').innerHTML='❌ '+encourage()+' Jawaban: <b>'+'ABCD'[correct]+'</b>.';sfxWrong();}
