@@ -2,7 +2,11 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#1e4d8c"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <title>HistoExplorer — 6 Game Penelitian Sejarah</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 <style>
@@ -26,9 +30,42 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 .bg-vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center, transparent 55%, rgba(30,77,140,.08) 100%),linear-gradient(180deg, rgba(30,77,140,.04) 0%, transparent 15%, transparent 85%, rgba(30,77,140,.05) 100%)}
 #bgCanvas{position:fixed;inset:0;z-index:-2;pointer-events:none}
 
-.audio-toggle{position:fixed;top:18px;right:18px;z-index:500;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:2px solid rgba(30,77,140,.2);color:var(--maroon2);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(30,77,140,.15);transition:all .35s var(--ease);font-size:1rem;font-family:inherit}
+/* ==================== TOP CONTROLS (Audio + Fullscreen) ==================== */
+.top-controls{position:fixed;top:18px;right:18px;z-index:5000;display:flex;gap:10px}
+.audio-toggle{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:2px solid rgba(30,77,140,.2);color:var(--maroon2);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(30,77,140,.15);transition:all .35s var(--ease);font-size:1rem;font-family:inherit;padding:0}
 .audio-toggle:hover{transform:scale(1.12) rotate(-6deg);background:var(--maroon2);color:#fff;border-color:var(--maroon2)}
 .audio-toggle.muted{color:var(--text3);border-color:rgba(30,77,140,.15)}
+.audio-toggle.active{background:linear-gradient(135deg,var(--maroon2),var(--blue2));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(37,99,235,.45)}
+.audio-toggle.active:hover{transform:scale(1.12) rotate(6deg)}
+.audio-toggle:active{transform:scale(.94)}
+
+/* ==================== FULLSCREEN STYLES ==================== */
+/* Ketika native fullscreen aktif */
+:fullscreen, :-webkit-full-screen, :-moz-full-screen, :-ms-fullscreen { background: var(--cream); }
+:fullscreen .screen, :-webkit-full-screen .screen { max-width:1400px; padding-top:34px; }
+:fullscreen .hero, :-webkit-full-screen .hero { padding:48px 24px 56px; }
+:fullscreen .hero-title, :-webkit-full-screen .hero-title { font-size:clamp(2.6rem,6vw,5rem); }
+:fullscreen .game-grid, :-webkit-full-screen .game-grid { gap:26px; }
+:fullscreen .gc, :-webkit-full-screen .gc { min-height:230px; }
+:fullscreen .top-controls, :-webkit-full-screen .top-controls { top:22px; right:26px; }
+:fullscreen .audio-toggle, :-webkit-full-screen .audio-toggle { width:52px; height:52px; font-size:1.15rem; }
+:fullscreen .hunt-tile .em, :-webkit-full-screen .hunt-tile .em { font-size:2.6rem; }
+
+/* Fallback pseudo-fullscreen (untuk browser/perangkat yang tidak support API native) */
+body.fake-fs{
+  overflow:hidden;
+  width:100vw;
+  height:100vh;
+  position:fixed;
+  top:0;left:0;
+}
+body.fake-fs .top-controls{top:12px;right:12px}
+body.fake-fs .screen{padding-top:18px;min-height:100vh;max-width:1400px}
+body.fake-fs .audio-toggle{width:52px;height:52px;font-size:1.15rem}
+body.fake-fs .hero{padding:44px 24px 54px;border-radius:22px}
+body.fake-fs .hero-title{font-size:clamp(2.4rem,6vw,4.6rem)}
+body.fake-fs .game-grid{gap:24px}
+body.fake-fs .gc{min-height:220px}
 
 /* ==================== LOADER ==================== */
 #loader{position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at center, #ffffff 0%, #eff6ff 40%, #dbeafe 100%);overflow:hidden;transition:opacity .8s var(--ease),visibility .8s}
@@ -434,7 +471,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 </head>
 <body>
 
-<button class="audio-toggle" id="audioToggle" onclick="toggleMute()" title="Suara ON/OFF"><i class="fas fa-volume-high"></i></button>
+<div class="top-controls">
+  <button class="audio-toggle" id="audioToggle" type="button" onclick="toggleMute()" title="Suara ON/OFF"><i class="fas fa-volume-high"></i></button>
+  <button class="audio-toggle" id="fsToggle" type="button" onclick="toggleFullscreen(event)" title="Layar Penuh (F)"><i class="fas fa-expand"></i></button>
+</div>
 
 <div class="bg-base"></div>
 <div class="bg-grid"></div>
@@ -754,7 +794,6 @@ function markSeen(game,ids){
   saveSeen(s);
 }
 function clearSeenAll(){try{localStorage.removeItem(SEEN_KEY);}catch(e){}}
-/* Pilih N soal, prioritaskan yang belum pernah muncul */
 function pickFresh(pool,n,game,idFn){
   const s=loadSeen();
   const seen=new Set(s[game]||[]);
@@ -767,7 +806,6 @@ function pickFresh(pool,n,game,idFn){
   markSeen(game,picked.map(idFn));
   return picked;
 }
-/* Acak urutan opsi jawaban (a = index jawaban benar) */
 function shuffleOpts(q){
   if(!q||!q.o)return q;
   const correctText=q.o[q.a];
@@ -792,6 +830,138 @@ function sfxWrong(){beep(280,.12,'sine',.03);setTimeout(()=>beep(220,.15,'sine',
 function sfxVictory(){[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.18,'triangle',.06),i*110));}
 function sfxGold(){[1200,1600,2000].forEach((f,i)=>setTimeout(()=>beep(f,.1,'sine',.05),i*70));}
 
+/* ==================== FULLSCREEN MODE ==================== */
+function fsElement(){
+  const d = document;
+  return d.fullscreenElement ||
+         d.webkitFullscreenElement ||
+         d.webkitCurrentFullScreenElement ||
+         d.mozFullScreenElement ||
+         d.msFullscreenElement || null;
+}
+
+let fakeFsActive = false;
+
+function toggleFullscreen(e){
+  if(e && e.preventDefault) e.preventDefault();
+  if(e && e.stopPropagation) e.stopPropagation();
+
+  const d = document;
+  const el = d.documentElement;
+  const isFs = !!fsElement();
+
+  /* ---------- EXIT NATIVE ---------- */
+  if(isFs){
+    const exit = d.exitFullscreen ||
+                 d.webkitExitFullscreen ||
+                 d.webkitCancelFullScreen ||
+                 d.mozCancelFullScreen ||
+                 d.msExitFullscreen;
+    if(exit){
+      try{
+        const p = exit.call(d);
+        if(p && p.catch) p.catch(err => console.warn('[FS] exit failed:', err));
+      }catch(err){ console.warn('[FS] exit exception:', err); }
+    }
+    return;
+  }
+
+  /* ---------- EXIT FAKE ---------- */
+  if(fakeFsActive){
+    document.body.classList.remove('fake-fs');
+    fakeFsActive = false;
+    updateFsIcon();
+    notif('🖥️ Keluar dari mode layar penuh', 'gold', 1500);
+    return;
+  }
+
+  /* ---------- ENTER NATIVE ---------- */
+  const req = el.requestFullscreen ||
+              el.webkitRequestFullscreen ||
+              el.webkitRequestFullScreen ||
+              el.mozRequestFullScreen ||
+              el.msRequestFullscreen;
+
+  if(!req){
+    console.warn('[FS] No fullscreen API — using fallback');
+    enterFakeFullscreen();
+    return;
+  }
+
+  try{
+    const p = req.call(el);
+    if(p && typeof p.then === 'function'){
+      p.then(() => {
+        console.log('[FS] ✓ entered native fullscreen');
+        updateFsIcon();
+      }).catch(err => {
+        console.warn('[FS] ✗ native fullscreen rejected:', err && err.name, err && err.message);
+        enterFakeFullscreen();
+      });
+    } else {
+      setTimeout(() => {
+        if(fsElement()) updateFsIcon();
+        else enterFakeFullscreen();
+      }, 250);
+    }
+  }catch(err){
+    console.warn('[FS] exception on request:', err);
+    enterFakeFullscreen();
+  }
+}
+
+function enterFakeFullscreen(){
+  fakeFsActive = true;
+  document.body.classList.add('fake-fs');
+  updateFsIcon();
+  notif('🖥️ Mode layar penuh aktif. Tekan Esc / F untuk keluar.', 'ok', 2600);
+}
+
+function updateFsIcon(){
+  const btn = document.getElementById('fsToggle');
+  if(!btn) return;
+  const isFs = !!fsElement() || fakeFsActive;
+  btn.innerHTML = isFs
+    ? '<i class="fas fa-compress"></i>'
+    : '<i class="fas fa-expand"></i>';
+  btn.title = isFs ? 'Keluar Layar Penuh (Esc / F)' : 'Layar Penuh (F)';
+  btn.classList.toggle('active', isFs);
+  btn.setAttribute('aria-pressed', isFs ? 'true' : 'false');
+}
+
+/* Listener perubahan fullscreen dari semua browser */
+['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange','webkitbeginfullscreen','webkitendfullscreen']
+  .forEach(ev => document.addEventListener(ev, () => {
+    console.log('[FS] change event:', ev, '| active:', !!fsElement());
+    updateFsIcon();
+  }));
+
+/* Init ikon setelah DOM siap */
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', updateFsIcon);
+} else {
+  updateFsIcon();
+}
+window.addEventListener('load', updateFsIcon);
+
+/* Shortcut keyboard: F = toggle, Esc = tutup modal + keluar fake-fs */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    closeModal();
+    if(fakeFsActive){
+      document.body.classList.remove('fake-fs');
+      fakeFsActive = false;
+      updateFsIcon();
+    }
+    return;
+  }
+  if((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey){
+    const tag = (e.target.tagName || '').toLowerCase();
+    if(tag === 'input' || tag === 'textarea') return;
+    toggleFullscreen(e);
+  }
+});
+
 /* BG PARTICLES */
 (function(){
   const cv=$('#bgCanvas'),ctx=cv.getContext('2d');
@@ -810,7 +980,7 @@ function sfxGold(){[1200,1600,2000].forEach((f,i)=>setTimeout(()=>beep(f,.1,'sin
   loop();
 })();
 
-/* Sound feedback on click (cursor effect removed) */
+/* Sound feedback on click */
 document.addEventListener('click',()=>{sfxClick();});
 
 function shakeScreen(){document.body.animate([{transform:'translate(0,0)'},{transform:'translate(-6px,3px)'},{transform:'translate(6px,-3px)'},{transform:'translate(-4px,2px)'},{transform:'translate(4px,-2px)'},{transform:'translate(0,0)'}],{duration:400,easing:'ease-out'});}
@@ -1178,8 +1348,6 @@ function g6Answer(i,correct,btn){const opts=[...document.querySelectorAll('#mTex
 function g6End(){if(g6.finished)return;g6.finished=true;$('#g6RollBtn').disabled=true;let rank='📚 Sejarawan Muda',msg='Bagus, terus belajar!';if(g6.score>=150){rank='🏆 Sejarawan Legendaris';msg='Luar biasa!';}else if(g6.score>=100){rank='🥇 Sejarawan Andal';msg='Hebat!';}else if(g6.score>=50){rank='🥈 Sejarawan Muda';msg='Bagus!';}
   markDone('g6');showAchievement('g6');
   modal('🎲',rank,`${msg}<br><br>Skor: <b style="color:#f59e0b;font-size:1.4rem">${g6.score}</b> · Benar: <b style="color:#10b981">${g6.right}</b> · Lemparan: <b style="color:#10b981">${g6.rolls}</b>`,'Petualang Sejati 🎲');}
-
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
