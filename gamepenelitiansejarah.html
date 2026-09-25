@@ -18,12 +18,8 @@
   --radius:18px;--ease:cubic-bezier(0.23,1,0.32,1);
 }
 html,body{height:100%;overflow-x:hidden}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;position:relative}
-@media(max-width:768px){body{cursor:auto}}
-.cursor-glow{position:fixed;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.18),rgba(6,182,212,.12),transparent 65%);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:multiply;will-change:transform;top:0;left:0;opacity:.7}
-.cursor-dot{position:fixed;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--maroon2),var(--blue2),var(--gold));pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;box-shadow:0 0 16px rgba(37,99,235,.6),0 0 32px rgba(6,182,212,.4);will-change:transform;top:0;left:0}
-.cursor-dot.click{width:32px;height:32px;background:radial-gradient(circle,#fff,var(--maroon3))}
-@media(max-width:768px){.cursor-glow,.cursor-dot{display:none}}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative}
+
 .bg-base{position:fixed;inset:0;z-index:-5;background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(37,99,235,.14) 0%, transparent 55%),radial-gradient(ellipse 80% 55% at 85% 100%, rgba(6,182,212,.13) 0%, transparent 50%),radial-gradient(ellipse 60% 40% at 10% 90%, rgba(245,158,11,.07) 0%, transparent 55%),linear-gradient(180deg, #f0f7ff 0%, #e8f2ff 50%, #dbeafe 100%)}
 .bg-grid{position:fixed;inset:0;z-index:-4;pointer-events:none;background-image:linear-gradient(rgba(30,77,140,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(6,182,212,.06) 1px, transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse at center, #000 25%, transparent 82%);mask-image:radial-gradient(ellipse at center, #000 25%, transparent 82%)}
 .bg-noise{position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");mix-blend-mode:multiply}
@@ -45,7 +41,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 .ldr-ring.r2{inset:16px;background:conic-gradient(from 180deg, transparent 0%, var(--gold2) 45%, transparent 85%);-webkit-mask:radial-gradient(circle, transparent 58%, #000 59%, #000 100%);mask:radial-gradient(circle, transparent 58%, #000 59%, #000 100%);animation:ldrSpin 2.4s linear infinite reverse;filter:drop-shadow(0 0 12px rgba(251,191,36,.4))}
 @keyframes ldrSpin{to{transform:rotate(360deg)}}
 
-/* ORB TANPA IKON — Gradient murni dengan inner shine */
 .ldr-orb{position:relative;width:96px;height:96px;border-radius:50%;
   background:
     radial-gradient(circle at 32% 28%, rgba(255,255,255,.85) 0%, rgba(255,255,255,.15) 18%, transparent 32%),
@@ -136,11 +131,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 .gc:hover::after{opacity:1}
 .gc:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(30,77,140,.18),0 0 40px var(--c1-glow);border-color:transparent}
 
-/* ===== DONE STATE: Badge SELESAI besar & jelas ===== */
 .gc.done{border-color:var(--good);background:linear-gradient(135deg,#ffffff 0%,rgba(16,185,129,.06) 100%)}
 .gc.done::before{opacity:1;background:conic-gradient(from var(--angle), transparent 0%, var(--good) 40%, transparent 80%);animation:gcAngle 4s linear infinite}
 
-/* Badge SELESAI di atas kartu */
 .gc-done-badge{
   position:absolute;top:14px;left:50%;transform:translateX(-50%) translateY(-120%);
   display:none;align-items:center;gap:6px;
@@ -163,7 +156,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
   100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
 }
 
-/* Centang besar di pojok kanan atas */
 .gc.done .gc-num{
   -webkit-text-stroke-color:rgba(16,185,129,.2);
   opacity:.35;
@@ -239,6 +231,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 .btn-mini{margin-left:auto;padding:9px 18px;font-size:.8rem;background:rgba(37,99,235,.1);border:2px solid var(--maroon3);color:var(--maroon);border-radius:30px;cursor:pointer;font-weight:700;transition:all .3s;font-family:inherit;min-height:38px}
 .btn-mini:hover{background:var(--maroon2);color:#fff}
 
+/* Instruksi khusus Game 2 — teks lebih besar */
+#gameG2 .inst{
+  font-size:1.02rem;
+  line-height:1.75;
+  padding:16px 20px;
+  border-left-width:6px;
+}
+#gameG2 .inst i{font-size:1.45rem}
+#gameG2 .inst strong{font-size:1.05rem}
+
 .hud{display:grid;gap:7px;margin-bottom:12px}
 .hud.c3{grid-template-columns:repeat(3,1fr)}
 .hud.c4{grid-template-columns:repeat(4,1fr)}
@@ -280,17 +282,43 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 .choice:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
 .choice:disabled{opacity:.5;cursor:not-allowed}
 
-.hunt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-@media(min-width:520px){.hunt-grid{gap:10px}}
-.hunt-tile{aspect-ratio:1;background:#ffffff;border:2px solid rgba(30,77,140,.18);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.25s;padding:4px;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(30,77,140,.06)}
+/* ===== G2 Hunt Grid: teks lebih besar ===== */
+.hunt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px}
+@media(min-width:520px){.hunt-grid{gap:12px}}
+@media(max-width:520px){.hunt-grid{grid-template-columns:repeat(3,1fr);gap:10px}}
+
+.hunt-tile{
+  aspect-ratio:1;
+  background:#ffffff;
+  border:2px solid rgba(30,77,140,.18);
+  border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;transition:.25s;
+  padding:8px 6px;
+  position:relative;overflow:hidden;
+  box-shadow:0 2px 10px rgba(30,77,140,.06);
+}
 .hunt-tile:hover{border-color:var(--maroon2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.2)}
-.hunt-tile .em{font-size:1.6rem;line-height:1}
-.hunt-tile .lb{font-size:.55rem;color:var(--text2);text-align:center;margin-top:3px;line-height:1.1;padding:0 2px;font-weight:600}
+.hunt-tile .em{font-size:2.3rem;line-height:1;margin-bottom:2px}
+.hunt-tile .lb{
+  font-size:.82rem;
+  color:var(--text2);
+  text-align:center;
+  margin-top:4px;
+  line-height:1.25;
+  padding:0 3px;
+  font-weight:700;
+  letter-spacing:.1px;
+}
+@media(max-width:520px){
+  .hunt-tile .em{font-size:2rem}
+  .hunt-tile .lb{font-size:.74rem;line-height:1.2}
+}
 .hunt-tile.found{border-color:var(--good);background:linear-gradient(160deg,rgba(16,185,129,.18),rgba(16,185,129,.05));animation:pop .4s var(--ease)}
 .hunt-tile.wrong{border-color:#ef4444;background:linear-gradient(160deg,rgba(239,68,68,.18),rgba(239,68,68,.05));opacity:.55;cursor:not-allowed}
 .hunt-tile.gold{border-color:var(--gold);animation:goldPulse 1.4s ease-in-out infinite}
 .hunt-tile.locked{pointer-events:none}
-.hunt-tile .star{position:absolute;top:3px;right:5px;font-size:.75rem}
+.hunt-tile .star{position:absolute;top:4px;right:6px;font-size:1rem}
 @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.12)}100%{transform:scale(1)}}
 
 .dots{display:flex;gap:6px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
@@ -406,9 +434,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 </head>
 <body>
 
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-
 <button class="audio-toggle" id="audioToggle" onclick="toggleMute()" title="Suara ON/OFF"><i class="fas fa-volume-high"></i></button>
 
 <div class="bg-base"></div>
@@ -418,7 +443,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cream);color:v
 <canvas id="bgCanvas"></canvas>
 <canvas id="confetti"></canvas>
 
-<!-- LOADER (ikon peta dihapus) -->
+<!-- LOADER -->
 <div id="loader">
   <div class="ldr-orb-wrap">
     <div class="ldr-ring"></div>
@@ -733,14 +758,6 @@ function sfxWrong(){beep(280,.12,'sine',.03);setTimeout(()=>beep(220,.15,'sine',
 function sfxVictory(){[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.18,'triangle',.06),i*110));}
 function sfxGold(){[1200,1600,2000].forEach((f,i)=>setTimeout(()=>beep(f,.1,'sine',.05),i*70));}
 
-/* CURSOR */
-const cg=$('#cursorGlow'),cd=$('#cursorDot');
-let mx=0,my=0,cx=0,cy=0,dx=0,dy=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function loop(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;dx+=(mx-dx)*.35;dy+=(my-dy)*.35;cg.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;cd.style.transform=`translate(${dx}px,${dy}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();
-document.addEventListener('mousedown',()=>cd.classList.add('click'));
-document.addEventListener('mouseup',()=>cd.classList.remove('click'));
-
 /* BG PARTICLES */
 (function(){
   const cv=$('#bgCanvas'),ctx=cv.getContext('2d');
@@ -759,10 +776,8 @@ document.addEventListener('mouseup',()=>cd.classList.remove('click'));
   loop();
 })();
 
-document.addEventListener('click',e=>{
-  sfxClick();
-  for(let i=0;i<8;i++){const p=document.createElement('div');p.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:6px;height:6px;border-radius:50%;background:${['#3b82f6','#06b6d4','#22d3ee','#fbbf24'][i%4]};pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 10px currentColor;transition:all .6s cubic-bezier(.23,1,.32,1)`;document.body.appendChild(p);const ang=(i/8)*Math.PI*2+Math.random()*.5,dist=50+Math.random()*70;requestAnimationFrame(()=>{p.style.transform=`translate(calc(${Math.cos(ang)*dist}px - 50%),calc(${Math.sin(ang)*dist}px - 50%)) scale(.2)`;p.style.opacity='0';});setTimeout(()=>p.remove(),650);}
-});
+/* Sound feedback on click (particle burst & cursor removed) */
+document.addEventListener('click',()=>{sfxClick();});
 
 function shakeScreen(){document.body.animate([{transform:'translate(0,0)'},{transform:'translate(-6px,3px)'},{transform:'translate(6px,-3px)'},{transform:'translate(-4px,2px)'},{transform:'translate(4px,-2px)'},{transform:'translate(0,0)'}],{duration:400,easing:'ease-out'});}
 function pulseScreen(){document.body.animate([{filter:'brightness(1)'},{filter:'brightness(1.06)'},{filter:'brightness(1)'}],{duration:300,easing:'ease-out'});}
@@ -831,7 +846,6 @@ function stopAll(){if(g1.timer)clearInterval(g1.timer);if(g2.timer)clearInterval
 
 /* ============ G1 — DETEKTIF SUMBER (40 ITEM) ============ */
 const G1_DATA=[
-  /* PRIMER (20) */
   {e:'📜',n:'Naskah Proklamasi Asli',t:'p'},
   {e:'🪪',n:'Foto KTP Kamu Sendiri',t:'p'},
   {e:'🎓',n:'Ijazah Asli Milikmu',t:'p'},
@@ -852,7 +866,6 @@ const G1_DATA=[
   {e:'🎞️',n:'Rekaman Audio Mbah Kakung',t:'p'},
   {e:'⚱️',n:'Guci Temuan Situs',t:'p'},
   {e:'📝',n:'Surat Perjanjian Asli',t:'p'},
-  /* SEKUNDER (20) */
   {e:'📖',n:'Buku Teks Sejarah',t:'s'},
   {e:'📚',n:'Biografi Pahlawan',t:'s'},
   {e:'🌐',n:'Artikel Wikipedia',t:'s'},
@@ -953,7 +966,6 @@ function g3End(){let rank='📚 Calon Sejarawan',msg='Terus asah ketelitianmu, k
 
 /* ============ G4 — DETEKTIF FAKTA (30 PERNYATAAN) ============ */
 const G4_DATA=[
-  /* FAKTA (10) */
   {s:'Proklamasi Kemerdekaan dibacakan pada 17 Agustus 1945.',t:'f',h:'Tanggal pasti yang bisa diverifikasi.'},
   {s:'Perang Diponegoro berlangsung tahun 1825–1830.',t:'f',h:'Peristiwa terdokumentasi dalam arsip Belanda.'},
   {s:'VOC didirikan pada 20 Maret 1602.',t:'f',h:'Fakta sejarah yang tercatat resmi.'},
@@ -964,7 +976,6 @@ const G4_DATA=[
   {s:'Kerajaan Majapahit mencapai puncak kejayaan pada masa Hayam Wuruk.',t:'f',h:'Tercatat dalam Kitab Negarakertagama.'},
   {s:'Pertempuran Surabaya terjadi pada 10 November 1945.',t:'f',h:'Diperingati sebagai Hari Pahlawan.'},
   {s:'Indonesia merdeka dari penjajahan Jepang pada tahun 1945.',t:'f',h:'Peristiwa historis yang terdokumentasi.'},
-  /* OPINI (10) */
   {s:'Soekarno adalah presiden terbaik dalam sejarah Indonesia.',t:'o',h:'Penilaian subjektif — "terbaik" itu relatif.'},
   {s:'Pemuda zaman dahulu lebih berani daripada pemuda sekarang.',t:'o',h:'Perbandingan subjektif antar generasi.'},
   {s:'Sejarah adalah pelajaran yang paling membosankan di sekolah.',t:'o',h:'Pendapat pribadi, bukan fakta umum.'},
@@ -975,7 +986,6 @@ const G4_DATA=[
   {s:'Makanan khas daerah lebih enak daripada makanan modern.',t:'o',h:'Selera pribadi, bukan data historis.'},
   {s:'Soekarno lebih hebat daripada Soeharto.',t:'o',h:'Perbandingan subjektif tanpa parameter jelas.'},
   {s:'Buku sejarah terbitan luar negeri lebih akurat.',t:'o',h:'Klaim kualitas tanpa bukti — subjektif.'},
-  /* PROPAGANDA (10) */
   {s:'Jepang datang ke Indonesia untuk membebaskan Asia dari penjajahan Barat.',t:'b',h:'Narasi resmi Jepang (Gerakan 3A) untuk mendapat dukungan rakyat.'},
   {s:'Bangsa Arya adalah ras unggul yang berhak memerintah dunia.',t:'b',h:'Propaganda Nazi Jerman untuk melegitimasi kekejaman.'},
   {s:'Pemerintahan kolonial Belanda membawa peradaban dan kemakmuran bagi rakyat Indonesia.',t:'b',h:'Narasi "Politik Etis" Belanda untuk melegitimasi penjajahan.'},
