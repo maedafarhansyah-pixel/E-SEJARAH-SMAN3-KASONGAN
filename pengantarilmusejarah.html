@@ -10,17 +10,13 @@
 <style>
 /* ============================================================
    FONT SEDERHANA — SATU JENIS SAJA (SYSTEM FONT STACK)
-   Tidak ada font dekoratif, tidak ada serif, tidak ada mono khusus.
    ============================================================ */
 :root{
   --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
-
-/* ============ RESET ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  /* ===== WARNA ASLI MODUL SEJARAH (TIDAK DIUBAH) ===== */
   --primary:#F59E0B;--primary-light:#FCD34D;--primary-dark:#B45309;
   --primary-rgb:245,158,11;
   --accent:#06B6D4;--accent-rgb:6,182,212;
@@ -56,7 +52,6 @@ body{
 h1,h2,h3,h4,h5{font-family: inherit;line-height:1.25}
 ::selection{background:var(--gold);color:#121212}
 
-/* ============ BACKGROUND ============ */
 .geo-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;
   background-image:radial-gradient(circle at 15% 12%,rgba(245,158,11,.13) 0%,transparent 55%),
     radial-gradient(circle at 85% 80%,rgba(6,182,212,.09) 0%,transparent 52%),
@@ -66,7 +61,6 @@ h1,h2,h3,h4,h5{font-family: inherit;line-height:1.25}
     repeating-linear-gradient(-45deg,transparent,transparent 46px,rgba(245,158,11,.030) 46px,rgba(245,158,11,.030) 47px);
   background-size:92px 92px,92px 92px;}
 
-/* ============ LOADER ============ */
 #loader{position:fixed;inset:0;background:rgba(10,10,20,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;
   transition:opacity .7s ease,visibility .7s ease;padding:20px;text-align:center}
@@ -92,7 +86,6 @@ html[data-theme="light"] #loader{background:rgba(250,248,245,.97)}
 .loader-bar{height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));transition:width .3s ease}
 .loader-percent{color:var(--text-muted);font-size:.75rem;font-weight:700;margin-top:10px;letter-spacing:1px;font-family: var(--font-mono)}
 
-/* ============ HEADER ============ */
 .site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);
   background:rgba(18,18,31,.92);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
   border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;
@@ -117,12 +110,10 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .site-header .menu-toggle{display:none;width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
   background:var(--card-bg);font-size:1rem;color:var(--gold-light);cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
 
-/* ============ PROGRESS RAIL ============ */
 .progress-rail{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(245,158,11,.08);z-index:999}
 .progress-rail .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));
   transition:width .6s cubic-bezier(.34,1.56,.64,1);border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(245,158,11,.5)}
 
-/* ============ DRAWER ============ */
 .mobile-drawer{position:fixed;top:0;right:-360px;width:min(330px,88vw);height:100%;background:var(--card-bg);z-index:1002;
   padding:22px 18px;box-shadow:-10px 0 50px rgba(0,0,0,.5);transition:right .5s cubic-bezier(.34,1.56,.64,1);
   overflow-y:auto;overscroll-behavior:contain;border-left:1px solid var(--line-soft)}
@@ -138,14 +129,12 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);z-index:1001;opacity:0;visibility:hidden;transition:all .4s ease}
 .drawer-overlay.open{opacity:1;visibility:visible}
 
-/* ============ LAYOUT ============ */
 .main-wrap{position:relative;z-index:1;padding-top:calc(var(--header-h) + 26px);max-width:1180px;margin:0 auto;
   padding-left:clamp(14px,3.5vw,48px);padding-right:clamp(14px,3.5vw,48px);padding-bottom:70px}
 .section{display:none;animation:fadeUp .7s cubic-bezier(.34,1.56,.64,1) forwards;padding:6px 0 20px}
 .section.active{display:block}
 @keyframes fadeUp{0%{opacity:0;transform:translateY(34px) scale(.985)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
-/* ============ SECTION HEADER ============ */
 .section-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:26px;padding-bottom:16px;
   border-bottom:2px solid var(--line-soft);flex-wrap:wrap;position:relative}
 .section-header::after{content:'';position:absolute;bottom:-2px;left:0;width:96px;height:2px;
@@ -160,7 +149,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .section-header .badge.badge-time{background:rgba(6,182,212,.10);color:var(--accent);border-color:rgba(6,182,212,.20)}
 .section-header .badge.badge-asesmen{background:rgba(245,158,11,.14);color:var(--gold-light);border-color:rgba(245,158,11,.24)}
 
-/* ============ BANNER ============ */
 .pertemuan-banner{display:flex;align-items:center;gap:16px;
   background:linear-gradient(135deg,rgba(245,158,11,.09),rgba(6,182,212,.04));
   border-left:5px solid var(--gold);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:20px;
@@ -173,7 +161,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .pertemuan-banner .time-chip{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));
   color:#121212;font-size:.74rem;font-weight:700;padding:7px 15px;border-radius:30px;white-space:nowrap;box-shadow:0 6px 18px rgba(245,158,11,.32)}
 
-/* ============ ESSENTIAL QUESTIONS ============ */
 .essential-box{background:linear-gradient(135deg,rgba(139,92,246,.09),rgba(6,182,212,.04));
   border-left:5px solid var(--violet);border-radius:var(--radius-sm);padding:18px 22px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .essential-box .es-title{display:flex;align-items:center;gap:10px;color:var(--violet);font-size:.88rem;font-weight:800;
@@ -184,7 +171,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .essential-box ul li{position:relative;padding:7px 0 7px 26px;color:var(--text-light);font-size:.9rem;line-height:1.7;font-style:italic}
 .essential-box ul li::before{content:'❓';position:absolute;left:0;top:7px;font-size:.85rem}
 
-/* ============ TUJUAN ============ */
 .tujuan-box{background:linear-gradient(135deg,rgba(245,158,11,.10),rgba(6,182,212,.04));
   border-left:5px solid var(--gold);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px;box-shadow:0 8px 28px rgba(0,0,0,.25)}
 .tujuan-box .tujuan-title{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:.92rem;font-weight:800;
@@ -200,7 +186,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
   background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.76rem;box-shadow:0 4px 12px rgba(245,158,11,.35)}
 
-/* ============ CAPAIAN / PROFIL ============ */
 .cp-box{background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(245,158,11,.03));
   border-left:5px solid var(--emerald);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px}
 .cp-box .cp-title{display:flex;align-items:center;gap:10px;color:var(--emerald);font-size:.92rem;font-weight:800;
@@ -214,7 +199,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .pancasila-item .pi-icon{font-size:1.5rem;display:block;margin-bottom:4px}
 .pancasila-item .pi-name{font-size:.76rem;font-weight:800;color:var(--emerald);letter-spacing:.2px;line-height:1.35}
 
-/* ============ PROSES ============ */
 .proses-box{background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(245,158,11,.02));
   border-left:5px solid var(--gold);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px}
 .proses-box .proses-title{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:.92rem;font-weight:800;
@@ -231,7 +215,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .proses-item .proses-text strong{display:block;font-size:.84rem;color:var(--text);font-weight:800;margin-bottom:2px}
 .proses-item .proses-text span{font-size:.81rem;color:var(--text-light);line-height:1.55}
 
-/* ============ FORMATIF ============ */
 .formatif-box{background:linear-gradient(135deg,rgba(6,182,212,.07),rgba(245,158,11,.04));
   border-left:5px solid var(--accent);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px}
 .formatif-box .formatif-title{display:flex;align-items:center;gap:10px;color:var(--accent);font-size:.92rem;font-weight:800;
@@ -251,7 +234,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .formatif-refleksi .refleksi-label{font-size:.68rem;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:4px}
 .formatif-refleksi p{font-size:.87rem;color:var(--text-light);line-height:1.7;font-style:italic}
 
-/* ============ PENGAYAAN / PENDALAMAN ============ */
 .pengayaan-box{background:linear-gradient(135deg,rgba(139,92,246,.09),rgba(245,158,11,.04));
   border-left:5px solid var(--violet);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px}
 .pengayaan-box .pengayaan-title{display:flex;align-items:center;gap:10px;color:#A78BFA;font-size:.92rem;font-weight:800;
@@ -282,7 +264,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .pendalaman-item p,.pendalaman-item li{font-size:.87rem;color:var(--text-light);line-height:1.72}
 .pendalaman-item ul,.pendalaman-item ol{padding-left:20px;margin-top:4px}
 
-/* ============ DEEP LEARNING ============ */
 .deep-box{background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(6,182,212,.03));
   border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px 22px;margin:22px 0;position:relative;overflow:hidden}
 .deep-box::before{content:'DEEP LEARNING';position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--gold),var(--gold-dark));
@@ -298,7 +279,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .deep-item:nth-child(3){border-left-color:var(--emerald)} .deep-item:nth-child(3) .di-tag{color:var(--emerald)}
 .deep-item:nth-child(4){border-left-color:var(--violet)} .deep-item:nth-child(4) .di-tag{color:#C4B5FD}
 
-/* ============ MISKONSEPSI ============ */
 .miskonsepsi-card{background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(245,158,11,.04));
   border:1px solid rgba(239,68,68,.22);border-radius:var(--radius-xs);padding:15px 18px;margin:12px 0}
 .miskonsepsi-card .miskon-label{display:inline-block;background:#EF4444;color:#fff;font-size:.64rem;font-weight:800;
@@ -307,7 +287,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .miskonsepsi-card .miskon-label.info{background:var(--accent)}
 .miskonsepsi-card p{font-size:.87rem;color:var(--text-light);line-height:1.72}
 
-/* ============ SUB HEADER ============ */
 .sub-header{display:flex;align-items:center;gap:11px;margin:26px 0 12px;padding:8px 0;
   font-family: inherit;font-size:1.02rem;font-weight:800;color:var(--gold-light);
   border-bottom:1px dashed rgba(245,158,11,.25)}
@@ -315,7 +294,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
   background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;font-size:.75rem;font-weight:900;flex-shrink:0;
   box-shadow:0 4px 12px rgba(245,158,11,.25)}
 
-/* ============ CARD ============ */
 .card{background:var(--card-bg);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow);
   transition:all var(--transition);border:1px solid var(--line-soft);margin-bottom:16px}
 .card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);border-color:rgba(245,158,11,.30)}
@@ -328,7 +306,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 
 .grid-2,.grid-3,.grid-4{display:grid;gap:16px;margin:12px 0 8px;grid-template-columns:1fr}
 
-/* ============ HERO / BERANDA ============ */
 .hero-section{text-align:center;padding:12px 0 8px}
 .hero-section .logo-row{display:flex;justify-content:center;align-items:center;gap:clamp(16px,4vw,48px);flex-wrap:wrap;margin-bottom:24px}
 .hero-section .logo-row img{height:clamp(50px,8vw,100px);width:auto;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));transition:transform .4s ease}
@@ -368,7 +345,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
   font-family:inherit;font-weight:700;font-size:clamp(.88rem,1.2vw,1rem);cursor:pointer;transition:all var(--transition)}
 .hero-cta .btn-ghost:hover{background:rgba(245,158,11,.10);border-color:var(--gold);transform:translateY(-3px)}
 
-/* ============ QUICK NAV ============ */
 .quick-nav{background:transparent;border-radius:var(--radius);padding:0;margin-top:26px;border:none}
 .quick-nav .nav-title{display:flex;align-items:center;gap:12px;font-family: inherit;font-weight:800;
   font-size:1.2rem;color:var(--text);padding-bottom:16px;margin-bottom:22px;justify-content:center;letter-spacing:-.2px}
@@ -400,7 +376,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .quick-nav .nav-item:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 24px 52px rgba(245,158,11,.45), 0 2px 0 rgba(255,255,255,.2) inset, 0 -3px 0 rgba(0,0,0,.2) inset;filter:brightness(1.06)}
 .quick-nav .nav-item:active{transform:translateY(-2px) scale(.97);transition:all .1s ease}
 
-/* ============ MATERI ACCORDION ============ */
 .materi-box{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
   border:1px solid var(--line-soft);margin-bottom:14px;transition:box-shadow var(--ease),border-color var(--ease)}
 .materi-box:hover{box-shadow:var(--shadow-hover);border-color:rgba(245,158,11,.28)}
@@ -419,13 +394,11 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
   padding:0 20px;opacity:0;border-top:1px solid transparent}
 .materi-box .body.open{max-height:22000px;padding:18px 20px 22px;opacity:1;border-top-color:var(--line-soft)}
 
-/* ============ HIGHLIGHT BOX ============ */
 .highlight-box{background:rgba(245,158,11,.05);border-radius:var(--radius-xs);padding:15px 18px;
   border-left:4px solid var(--gold);margin:8px 0 12px}
 .highlight-box p{font-size:.93rem;color:var(--text-light);line-height:1.8}
 .highlight-box strong{color:var(--text);font-weight:700}
 
-/* ============ TABEL ============ */
 .table-wrap{overflow-x:auto;margin:10px 0;border-radius:var(--radius-xs);-webkit-overflow-scrolling:touch;border:1px solid var(--line-soft)}
 .table-wrap table{width:100%;border-collapse:collapse;font-size:.87rem;background:var(--card-bg);min-width:420px}
 .table-wrap th,.table-wrap td{padding:11px 15px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top;line-height:1.65}
@@ -440,7 +413,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .compare-table tr:nth-child(even) td{background:var(--card-alt)}
 .compare-table tr:hover td{background:rgba(245,158,11,.07)}
 
-/* ============ INTERACTIVE CARD ============ */
 .interactive-card{cursor:pointer;transition:all var(--transition);background:linear-gradient(145deg,var(--card-bg),var(--card-alt));
   border:1px solid var(--line);border-radius:var(--radius);padding:18px 17px;box-shadow:var(--shadow-sm)}
 .interactive-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-hover)}
@@ -463,7 +435,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .ahli-header .sub{font-size:.76rem;font-weight:400;color:var(--text-muted);display:block}
 .pillar-icon{font-size:2.1rem;display:block;margin-bottom:6px}
 
-/* ============ TIMELINE ============ */
 .timeline{position:relative;padding:12px 0 12px 34px;margin:14px 0}
 .timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:3px;border-radius:3px;
   background:linear-gradient(180deg,var(--gold-dark),var(--gold),var(--gold-light))}
@@ -477,14 +448,12 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .tl-title{font-size:.94rem;font-weight:800;color:var(--text);margin-bottom:3px}
 .tl-desc{font-size:.85rem;color:var(--text-light);line-height:1.65}
 
-/* ============ TIMELINE (METODE) ============ */
 .method-step{background:var(--card-bg);border-radius:var(--radius-sm);padding:18px 20px;border-left:4px solid var(--gold);
   box-shadow:var(--shadow-sm);transition:all var(--ease)}
 .method-step:hover{transform:translateX(4px);box-shadow:var(--shadow);border-left-color:var(--gold-light)}
 .method-step h4{font-size:1rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .method-step p{font-size:.9rem;color:var(--text-light);line-height:1.75}
 
-/* ============ PETA KONSEP ============ */
 .concept-map{background:linear-gradient(145deg,rgba(245,158,11,.07),rgba(6,182,212,.03));
   border-radius:var(--radius);padding:22px;margin:18px 0;border:1px solid var(--line);overflow-x:auto}
 .cm-center{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;text-align:center;
@@ -503,7 +472,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .cm-branch:nth-child(4){border-top-color:var(--violet)}
 .cm-branch:nth-child(5){border-top-color:var(--accent)}
 
-/* ============ GLOSARIUM ============ */
 .glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
 .glossary-item{background:var(--card-bg);border-radius:12px;padding:13px 16px;border-left:4px solid var(--gold);
   transition:all var(--ease);box-shadow:var(--shadow-sm)}
@@ -512,7 +480,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .glossary-item .gl-term i{font-size:.7rem;opacity:.65}
 .glossary-item .gl-def{font-size:.82rem;color:var(--text-light);line-height:1.6}
 
-/* ============ RUBRIK ============ */
 .rubric-table{width:100%;border-collapse:collapse;font-size:.82rem;background:var(--card-bg);min-width:560px}
 .rubric-table th{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;padding:11px 13px;
   text-align:left;font-weight:700;font-size:.76rem;letter-spacing:.4px}
@@ -522,7 +489,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .score-pill{display:inline-block;background:rgba(245,158,11,.18);color:var(--gold-light);font-weight:800;font-size:.7rem;
   padding:2px 10px;border-radius:20px;letter-spacing:.3px}
 
-/* ============ LKPD / AKTIVITAS ============ */
 .lkpd-box{background:linear-gradient(145deg,rgba(6,182,212,.07),rgba(139,92,246,.05));
   border:2px solid rgba(245,158,11,.24);border-radius:var(--radius);padding:22px 24px;margin:18px 0}
 .lkpd-box .lkpd-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -542,7 +508,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .worksheet-table .cell{background:var(--card-bg);padding:10px 8px;color:var(--text-light);border-bottom:1px solid var(--line-soft);min-height:44px;text-align:center;font-weight:600}
 .worksheet-table .cell-empty{background:var(--card-alt);color:var(--text-muted);font-style:italic;padding:10px 8px;border-bottom:1px solid var(--line-soft);min-height:44px}
 
-/* ============ SOAL ============ */
 .soal-pg{margin-bottom:12px;padding:15px 18px;background:rgba(245,158,11,.04);border-radius:var(--radius-xs);
   border-left:4px solid var(--gold);transition:all .3s ease}
 .soal-pg:hover{background:rgba(245,158,11,.08);transform:translateX(3px)}
@@ -572,7 +537,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .soal-essay .pertanyaan{color:var(--text);font-weight:600;font-size:.93rem;margin-bottom:5px;line-height:1.7}
 .soal-essay .petunjuk{color:var(--text-muted);font-size:.81rem;font-style:italic}
 
-/* ============ SCORE PANEL ============ */
 .score-panel{position:sticky;bottom:14px;z-index:50;background:linear-gradient(135deg,var(--card-bg),var(--card-alt));
   border:2px solid var(--line);border-radius:var(--radius);padding:14px 20px;margin:20px 0;
   display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 14px 40px rgba(0,0,0,.45)}
@@ -586,7 +550,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .score-panel .sp-btn:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(245,158,11,.45)}
 .score-panel .sp-btn.reset{background:linear-gradient(135deg,#4b5563,#374151);color:#f5f2ec;box-shadow:none}
 
-/* ============ KUNCI ============ */
 .kunci-lock-box{background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(245,158,11,.06));
   border:2px dashed rgba(239,68,68,.35);border-radius:var(--radius-sm);padding:28px 24px;text-align:center;margin:20px 0}
 .kunci-lock-box .lock-icon{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#EF4444,var(--gold));
@@ -616,7 +579,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .kunci-essay-item .essay-num{font-weight:800;color:#34D399;font-size:.85rem;margin-bottom:5px}
 .kunci-essay-item p{font-size:.87rem;color:var(--text-light);line-height:1.75}
 
-/* ============ REFLEKSI ============ */
 .refleksi-list{list-style:none;padding:0;margin:8px 0}
 .refleksi-list li{display:flex;align-items:flex-start;gap:14px;padding:11px 0;font-size:.95rem;color:var(--text-light);
   border-bottom:1px solid var(--line-soft);transition:all var(--ease)}
@@ -624,7 +586,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .refleksi-list li:last-child{border-bottom:none}
 .refleksi-list li .check{color:var(--gold);font-weight:700;flex-shrink:0;margin-top:2px}
 
-/* ============ CELEBRATION ============ */
 .celebration-box{background:linear-gradient(145deg,rgba(245,158,11,.08),rgba(6,182,212,.05));
   border:2px solid var(--line-soft);border-radius:var(--radius);padding:34px 26px;text-align:center;margin-top:16px}
 .celebration-box h3{font-size:1.6rem;font-weight:900;color:var(--gold-light);margin-bottom:8px;font-family: inherit}
@@ -634,13 +595,11 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
   box-shadow:0 10px 28px rgba(245,158,11,.3)}
 .celebration-box .next-btn:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(245,158,11,.5)}
 
-/* ============ QUOTE ============ */
 .quote-block{background:linear-gradient(145deg,rgba(245,158,11,.07),rgba(6,182,212,.03));
   border-left:6px solid var(--gold);padding:18px 22px;border-radius:12px;margin:14px 0;font-style:italic;
   font-size:1.02rem;color:var(--text-light);line-height:1.8}
 .quote-block .author{display:block;margin-top:10px;font-style:normal;font-weight:700;color:var(--gold-light);text-align:right;font-size:.9rem}
 
-/* ============ PREVIEW TRIGGER (GAMBAR) ============ */
 .preview-trigger{display:inline-block;background:var(--card-bg);color:var(--gold-light);padding:10px 22px;border-radius:30px;
   font-weight:600;cursor:pointer;border:2px solid var(--gold);transition:all var(--transition);position:relative;
   margin:10px 0 6px;font-size:.92rem;box-shadow:0 2px 12px rgba(245,158,11,.18)}
@@ -654,7 +613,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .preview-trigger .popup-diagram .caption{font-size:.75rem;color:var(--text-light);margin-top:8px;border-top:1px solid var(--line-soft);padding-top:8px}
 .preview-trigger .popup-diagram .caption strong{color:var(--gold-light)}
 
-/* ============ ETYM TABS ============ */
 .etym-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 10px}
 .etym-tabs button{background:rgba(245,158,11,.06);border:1.5px solid var(--line);padding:8px 18px;border-radius:26px;
   font-weight:600;font-size:.82rem;color:var(--text-light);cursor:pointer;transition:all var(--transition);
@@ -669,7 +627,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .etym-panel ul{padding-left:20px;margin-top:6px}
 .etym-panel ul li{font-size:.87rem;color:var(--text-light);line-height:1.75}
 
-/* ============ MODAL ============ */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;justify-content:center;align-items:center;
   cursor:pointer;backdrop-filter:blur(10px)}
 .modal-overlay.active{display:flex;animation:fadeIn .3s ease}
@@ -685,7 +642,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
   font-size:1.2rem;font-weight:700;cursor:pointer;border:2px solid #121212;transition:all var(--transition)}
 .modal-overlay .modal-close:hover{transform:scale(1.1) rotate(90deg)}
 
-/* ============ NAV BUTTONS ============ */
 .nav-buttons{display:flex;justify-content:center;align-items:center;margin-top:34px;padding-top:22px;
   border-top:1px solid var(--line-soft);flex-wrap:wrap;gap:12px}
 .nav-buttons .group{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;width:100%}
@@ -707,7 +663,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .nav-buttons .page-numbers a.active{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;
   border-color:transparent;box-shadow:0 6px 18px rgba(245,158,11,.35);transform:scale(1.08)}
 
-/* ============ REFERENSI ============ */
 .ref-list{list-style:none;padding:0}
 .ref-list li{padding:11px 0;border-bottom:1px solid var(--line-soft);font-size:.88rem;display:flex;align-items:baseline;
   gap:12px;color:var(--text-light);transition:all .3s ease;line-height:1.7}
@@ -719,11 +674,9 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .footer-credit strong{color:var(--text);font-weight:700}
 .footer-credit .gold{color:var(--gold);font-weight:700}
 
-/* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(24px);transition:all .7s cubic-bezier(.34,1.56,.64,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ============ TO TOP ============ */
 .to-top{position:fixed;right:clamp(14px,2.5vw,28px);bottom:clamp(80px,12vw,96px);width:48px;height:48px;border-radius:16px;
   border:none;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;font-size:1rem;cursor:pointer;
   z-index:998;display:grid;place-items:center;box-shadow:0 10px 30px rgba(245,158,11,.4);
@@ -732,7 +685,6 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .to-top:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 16px 40px rgba(245,158,11,.55)}
 .to-top:active{transform:scale(.92)}
 
-/* ============ FLOATING NAV ============ */
 .float-nav{position:fixed;left:50%;bottom:clamp(16px,2.5vw,26px);transform:translateX(-50%) translateY(24px) scale(.9);
   display:flex;align-items:center;gap:6px;padding:8px;background:rgba(30,30,52,.96);
   backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
@@ -752,7 +704,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
 .float-nav .fn-home:active{transform:scale(.95)}
 .float-nav button:disabled{opacity:.28;cursor:not-allowed;transform:none!important;box-shadow:none}
 
-/* ============ RESPONSIVE ============ */
 @media (min-width:600px){
   .grid-2{grid-template-columns:repeat(2,1fr)}
   .grid-3{grid-template-columns:repeat(2,1fr)}
@@ -817,7 +768,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
 }
 @media (min-width:1400px){.main-wrap{max-width:1240px}}
 
-/* ============ PRINT ============ */
 @media print{
   .site-header,.progress-rail,.float-nav,.to-top,.mobile-drawer,.drawer-overlay,
   #loader,.geo-bg,.nav-buttons,.hero-cta,.kunci-lock-box,.modal-overlay{display:none!important}
@@ -1018,9 +968,11 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
             <span class="icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="body open">
+            <!-- ✅ PERBAIKAN 5: Kutipan CP diselaraskan dengan PDF hlm. 29 -->
             <div class="cp-box" style="margin-bottom:16px;">
                 <div class="cp-title"><i class="fas fa-flag-checkered"></i> Capaian Pembelajaran (CP) – Fase E</div>
-                <p>Pada akhir Fase E, peserta didik mampu memahami konsep-konsep dasar manusia, ruang, waktu, diakronis (kronologi), sinkronis, guna sejarah, sejarah dan teori sosial, metode penelitian sejarah, serta sejarah lokal. Melalui literasi, peserta didik mampu menggunakan sumber primer atau sekunder untuk menganalisis keterhubungan antara masa lampau, masa kini, dan masa yang akan datang.</p>
+                <p>Pada akhir Fase E, peserta didik mampu <strong>memahami konsep dasar ilmu sejarah</strong> serta <strong>menginterpretasi berbagai peristiwa sejarah Indonesia</strong> yang berkaitan dengan masa Kerajaan Hindu–Buddha, Kerajaan Islam, Penjajahan Bangsa Barat, hingga Perjuangan Pergerakan Kebangsaan Indonesia.</p>
+                <p style="font-size:.84rem;color:var(--text-muted);font-style:italic;margin-top:8px;"><i class="fas fa-book" style="color:var(--emerald);"></i> Sumber: Panduan Mata Pelajaran Sejarah, BSKAP Kemendikbudristek (2022), hlm. 29.</p>
             </div>
 
             <div class="grid-2">
@@ -1800,6 +1752,80 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         <p><i class="fas fa-lightbulb" style="color:var(--gold);"></i> <strong>Cara mudah mengingat:</strong> Sumber Primer = <em>langsung</em> dari sumbernya (first-hand), Sumber Sekunder = <em>tidak langsung</em> (second-hand).</p>
     </div>
 
+    <!-- ✅ PERBAIKAN 3: Sub-bab "Kritik Sumber di Era Digital" -->
+    <div class="sub-header reveal"><span class="tag-letter">E</span> Kritik Sumber di Era Digital</div>
+
+    <div class="card reveal">
+        <p style="font-size:1rem;color:var(--text-light);">
+            <i class="fas fa-shield-alt" style="color:var(--gold);"></i>
+            Di era digital, informasi sejarah dapat dengan mudah disebarkan — tetapi juga dengan mudah dipalsukan. Sejarawan dan pelajar sejarah perlu memiliki <strong>keterampilan kritik sumber digital</strong> untuk membedakan informasi yang kredibel dari yang menyesatkan.
+        </p>
+    </div>
+
+    <div class="grid-2 reveal">
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">🚫</span>
+            <h3>Hoaks Sejarah</h3>
+            <p>Informasi sejarah palsu yang disebarkan secara sengaja.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Cara mengenali dan memverifikasi:</strong></p>
+                <ul>
+                    <li>Periksa <strong>sumber asli</strong> — apakah ada rujukan yang jelas dan dapat dilacak?</li>
+                    <li>Bandingkan dengan <strong>sumber kredibel</strong> seperti buku, jurnal, atau arsip resmi.</li>
+                    <li>Waspadai judul yang <strong>bombastis</strong> dan provokatif.</li>
+                    <li>Cek tanggal dan konteks peristiwa — apakah sesuai dengan kronologi yang diketahui?</li>
+                </ul>
+            </div>
+        </div>
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">🤖</span>
+            <h3>AI-Generated Content</h3>
+            <p>Konten yang dihasilkan oleh kecerdasan buatan.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Keterbatasan dan bahaya:</strong></p>
+                <ul>
+                    <li>AI dapat menghasilkan teks, gambar, atau video yang <strong>terlihat nyata tetapi palsu</strong>.</li>
+                    <li>AI bisa "berhalusinasi" — menghasilkan informasi yang <strong>tidak akurat</strong> namun terdengar meyakinkan.</li>
+                    <li>Selalu <strong>verifikasi</strong> informasi dari AI dengan sumber primer atau sekunder yang kredibel.</li>
+                    <li>Gunakan AI sebagai <strong>alat bantu</strong>, bukan sumber utama.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">🖼️</span>
+            <h3>Manipulasi Foto/Video</h3>
+            <p>Foto atau video yang diubah untuk menyesatkan.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Cara mengecek keaslian:</strong></p>
+                <ul>
+                    <li>Periksa <strong>metadata</strong> file (tanggal, lokasi, perangkat).</li>
+                    <li>Cari <strong>sumber asli</strong> foto/video — apakah ada versi lain yang lebih awal?</li>
+                    <li>Gunakan <strong>reverse image search</strong> (Google Images, TinEye) untuk melacak asal gambar.</li>
+                    <li>Perhatikan <strong>detail yang janggal</strong> — bayangan, proporsi, teks, atau latar belakang yang tidak konsisten.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">✅</span>
+            <h3>Sumber Daring Kredibel</h3>
+            <p>Rujukan digital yang dapat dipercaya.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Contoh sumber daring yang kredibel:</strong></p>
+                <ul>
+                    <li><strong>ANRI</strong> (Arsip Nasional Republik Indonesia) — anri.go.id</li>
+                    <li><strong>Perpusnas</strong> (Perpustakaan Nasional) — perpusnas.go.id</li>
+                    <li><strong>Jurnal ilmiah</strong> — seperti Jurnal Sejarah, Historia, atau jurnal universitas.</li>
+                    <li><strong>Situs resmi</strong> pemerintah, museum, atau lembaga kebudayaan.</li>
+                </ul>
+                <p><strong>Tips:</strong> Prioritaskan domain <strong>.go.id</strong>, <strong>.ac.id</strong>, atau <strong>.edu</strong> untuk informasi yang lebih dapat dipercaya.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="formatif-box reveal">
         <div class="formatif-title"><i class="fas fa-clipboard-check"></i> Asesmen Formatif</div>
         <div class="formatif-kuis">
@@ -1996,7 +2022,7 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
             <span><i class="fas fa-lightbulb" style="color:var(--gold);font-size:1.2rem;"></i> <strong style="color:var(--text);">Inspiratif</strong></span>
             <span><i class="fas fa-bullhorn" style="color:var(--gold);font-size:1.2rem;"></i> <strong style="color:var(--text);">Instruktif</strong></span>
         </p>
-        <p style="font-size:.95rem;text-align:center;margin-top:6px;"><i class="fas fa-quote-left" style="color:var(--gold);opacity:.6;"></i> <em>“Histories make men wise”</em> — Sejarah membuat manusia bijaksana.</p>
+        <p style="font-size:.95rem;text-align:center;margin-top:6px;"><i class="fas fa-quote-left" style="color:var(--gold);opacity:.6;"></i> <em>"Histories make men wise"</em> — Sejarah membuat manusia bijaksana.</p>
     </div>
 
     <div class="formatif-box reveal">
@@ -2041,8 +2067,8 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
     <div class="pertemuan-banner reveal">
         <div class="icon-wrap"><i class="fas fa-microscope"></i></div>
         <div class="info">
-            <h4>Pertemuan 5 · Heuristik, Kritik, Interpretasi, Historiografi</h4>
-            <p>Fokus: empat tahap metode penelitian sejarah dan hubungan sumber, fakta, serta bukti.</p>
+            <h4>Pertemuan 5 · Heuristik, Ilmu Bantu, Kritik, Interpretasi, Historiografi</h4>
+            <p>Fokus: empat tahap metode penelitian sejarah, ilmu bantu sejarah, dan jenis-jenis historiografi.</p>
         </div>
         <span class="time-chip"><i class="fas fa-hourglass-half"></i> 135 menit</span>
     </div>
@@ -2052,9 +2078,9 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         <p class="tujuan-desc">Setelah mengikuti Pertemuan 5, peserta didik diharapkan mampu:</p>
         <ol>
             <li><strong>Menjelaskan empat tahap metode penelitian sejarah</strong> (heuristik, kritik, interpretasi, historiografi).</li>
+            <li><strong>Mengidentifikasi ilmu bantu sejarah</strong> yang berperan dalam penelitian sejarah.</li>
             <li><strong>Membedakan kritik eksternal dan kritik internal</strong> dalam verifikasi sumber.</li>
-            <li><strong>Membedakan pengertian sumber, fakta, dan bukti</strong> dalam penelitian sejarah.</li>
-            <li><strong>Menerapkan langkah-langkah metode sejarah</strong> pada topik sederhana di sekitar.</li>
+            <li><strong>Membedakan jenis-jenis historiografi</strong> (tradisional, kolonial, nasional, modern).</li>
         </ol>
     </div>
 
@@ -2065,6 +2091,9 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         </p>
     </div>
 
+    <!-- ✅ PERBAIKAN 1: Sub-header A + Ilmu Bantu Sejarah -->
+    <div class="sub-header reveal"><span class="tag-letter">A</span> Empat Tahap Metode Sejarah</div>
+
     <div style="display:grid;gap:16px;" class="reveal">
         <div class="method-step">
             <h4><span style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;padding:2px 12px;border-radius:30px;font-size:.85rem;font-weight:800;">1</span> Heuristik (Pengumpulan Sumber)</h4>
@@ -2074,6 +2103,43 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
                 <li style="font-size:.88rem;line-height:1.8;"><strong>Sumber Sekunder:</strong> Buku, artikel, atau tulisan yang membahas sumber primer (misal: buku sejarah tentang Proklamasi).</li>
             </ul>
             <p style="font-size:.88rem;margin-top:6px;"><i class="fas fa-search" style="color:var(--gold);"></i> <strong>Contoh:</strong> Sejarawan mencari arsip VOC di Arsip Nasional untuk meneliti perdagangan rempah.</p>
+        </div>
+
+        <!-- ✅ PERBAIKAN 1: Ilmu Bantu Sejarah (setelah Heuristik, sebelum Kritik) -->
+        <div class="method-step" style="border-left-color:var(--accent);background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(245,158,11,.02));">
+            <h4><span style="background:linear-gradient(135deg,var(--accent),#0E7490);color:#fff;padding:2px 12px;border-radius:30px;font-size:.85rem;font-weight:800;">BANTU</span> Ilmu Bantu Sejarah</h4>
+            <p><strong>Ilmu bantu sejarah</strong> adalah disiplin-disiplin ilmu yang membantu sejarawan dalam mengumpulkan, memverifikasi, dan menafsirkan sumber sejarah. Tanpa ilmu bantu, penelitian sejarah akan kesulitan memastikan keaslian dan makna sumber.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px;">
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-scroll"></i> Paleografi</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang tulisan kuno. Membantu membaca dan memahami naskah atau prasasti dari masa lampau.</p>
+                </div>
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-monument"></i> Epigrafi</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang prasasti. Mempelajari tulisan pada batu, logam, atau bahan keras lainnya.</p>
+                </div>
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-image"></i> Ikonografi</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang makna gambar dan simbol. Membantu menafsirkan relief candi, lukisan, dan patung.</p>
+                </div>
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-coins"></i> Numismatik</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang mata uang kuno. Membantu menentukan usia, ekonomi, dan perdagangan suatu peradaban.</p>
+                </div>
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-clock"></i> Kronologi</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang urutan waktu. Membantu menyusun peristiwa secara sistematis dan logis.</p>
+                </div>
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-stamp"></i> Sigillografi</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang segel/stempel. Membantu memverifikasi keaslian dokumen resmi dan identitas pemiliknya.</p>
+                </div>
+                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
+                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-sitemap"></i> Genealogi</strong>
+                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang silsilah keluarga. Membantu melacak garis keturunan dan hubungan kekerabatan.</p>
+                </div>
+            </div>
+            <p style="font-size:.84rem;margin-top:10px;font-style:italic;color:var(--text-muted);"><i class="fas fa-lightbulb" style="color:var(--accent);"></i> Ilmu bantu bekerja seperti "detektif" yang membantu sejarawan memastikan keaslian dan makna sumber sejarah sebelum digunakan sebagai bukti.</p>
         </div>
 
         <div class="method-step">
@@ -2109,6 +2175,83 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         </div>
     </div>
 
+    <!-- ✅ PERBAIKAN 2: Sub-bab "Jenis-Jenis Historiografi" -->
+    <div class="sub-header reveal"><span class="tag-letter">B</span> Jenis-Jenis Historiografi</div>
+
+    <div class="card reveal">
+        <p style="font-size:1rem;color:var(--text-light);">
+            <i class="fas fa-book" style="color:var(--gold);"></i>
+            Historiografi tidak hanya sekadar "menulis sejarah". Ia memiliki aliran dan perkembangan yang mencerminkan cara pandang zamannya. Berikut empat jenis historiografi yang perlu dipahami.
+        </p>
+    </div>
+
+    <div class="grid-2 reveal">
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">🏛️</span>
+            <h3>Historiografi Tradisional</h3>
+            <p>Bercorak istana-sentris dan religio-magis.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Ciri-ciri:</strong></p>
+                <ul>
+                    <li>Ditulis oleh pujangga atau abdi istana.</li>
+                    <li>Bersifat <strong>istana-sentris</strong> — berpusat pada raja dan keluarganya.</li>
+                    <li>Bercampur antara fakta, mitos, dan legenda.</li>
+                    <li>Bertujuan untuk melegitimasi kekuasaan raja.</li>
+                </ul>
+                <p><strong>Contoh:</strong> Babad Tanah Jawi, Hikayat Hang Tuah, Sejarah Melayu, Babad Diponegoro.</p>
+            </div>
+        </div>
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">⛵</span>
+            <h3>Historiografi Kolonial</h3>
+            <p>Ditulis dari sudut pandang penjajah Belanda.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Ciri-ciri:</strong></p>
+                <ul>
+                    <li>Ditulis oleh sejarawan Belanda atau orang Eropa.</li>
+                    <li>Bersifat <strong>Neerlando-sentris</strong> — berpusat pada kepentingan penjajah.</li>
+                    <li>Menggambarkan rakyat Indonesia sebagai pihak yang kalah dan pasif.</li>
+                    <li>Sering mengabaikan peran dan perspektif pribumi.</li>
+                </ul>
+                <p><strong>Contoh:</strong> Buku-buku sejarah yang ditulis oleh sejarawan Hindia-Belanda tentang VOC dan pemerintahan kolonial.</p>
+            </div>
+        </div>
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">🇮🇩</span>
+            <h3>Historiografi Nasional</h3>
+            <p>Perspektif Indonesia-sentris.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Ciri-ciri:</strong></p>
+                <ul>
+                    <li>Ditulis oleh sejarawan Indonesia setelah kemerdekaan.</li>
+                    <li>Bersifat <strong>Indonesia-sentris</strong> — menempatkan bangsa Indonesia sebagai pelaku utama.</li>
+                    <li>Menekankan perjuangan, persatuan, dan nasionalisme.</li>
+                    <li>Bertujuan membangun identitas dan kebanggaan bangsa.</li>
+                </ul>
+                <p><strong>Contoh:</strong> <em>Sejarah Nasional Indonesia</em> (SNI) yang disusun oleh tim sejarawan Indonesia di bawah koordinasi Nugroho Notosusanto.</p>
+            </div>
+        </div>
+        <div class="interactive-card" onclick="this.classList.toggle('open')">
+            <span class="pillar-icon">🔬</span>
+            <h3>Historiografi Modern</h3>
+            <p>Pendekatan kritis dan multidisipliner.</p>
+            <div class="flip-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</div>
+            <div class="back">
+                <p><strong>Ciri-ciri:</strong></p>
+                <ul>
+                    <li>Menggunakan pendekatan <strong>kritis-analitis</strong> dan multidisipliner (sosiologi, antropologi, ekonomi).</li>
+                    <li>Tidak hanya menekankan aspek politik, tetapi juga sosial, budaya, dan ekonomi.</li>
+                    <li>Memberi ruang pada sejarah lokal, sejarah perempuan, dan sejarah kelompok marginal.</li>
+                    <li>Menggunakan metode penelitian yang ketat dan sumber yang beragam.</li>
+                </ul>
+                <p><strong>Contoh:</strong> Karya-karya Kuntowijoyo, Sartono Kartodirdjo, dan sejarawan kontemporer lainnya yang mengangkat tema sosial-budaya.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="highlight-box reveal" style="margin-top:14px;">
         <h4 style="color:var(--gold-light);display:flex;align-items:center;gap:8px;font-size:.98rem;margin-bottom:6px;"><i class="fas fa-link"></i> Hubungan Sumber, Fakta, dan Bukti</h4>
         <p style="font-size:.93rem;"><strong>Sumber</strong> adalah bahan mentah (primer/sekunder). <strong>Fakta</strong> adalah bagian dari sumber yang telah teruji kebenarannya melalui kritik. <strong>Bukti</strong> adalah fakta yang dipilih dan digunakan untuk mendukung argumen sejarah. Ketiganya adalah ruh dari penelitian sejarah.</p>
@@ -2128,12 +2271,22 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         </div>
         <div class="formatif-kuis">
             <div class="kuis-label">Kuis Singkat 2</div>
-            <div class="kuis-pertanyaan">Tahap penyajian hasil penelitian sejarah dalam bentuk tulisan disebut ...</div>
+            <div class="kuis-pertanyaan">Ilmu tentang tulisan kuno yang membantu membaca naskah atau prasasti disebut ...</div>
             <div class="kuis-opsi" onclick="checkFormatif(this, event)">
-                <span data-answer="false">A. Heuristik</span>
-                <span data-answer="false">B. Kritik</span>
-                <span data-answer="false">C. Interpretasi</span>
-                <span data-answer="true">D. Historiografi</span>
+                <span data-answer="true">A. Paleografi</span>
+                <span data-answer="false">B. Epigrafi</span>
+                <span data-answer="false">C. Numismatik</span>
+                <span data-answer="false">D. Genealogi</span>
+            </div>
+        </div>
+        <div class="formatif-kuis">
+            <div class="kuis-label">Kuis Singkat 3</div>
+            <div class="kuis-pertanyaan">Historiografi yang ditulis dari sudut pandang penjajah Belanda disebut historiografi ...</div>
+            <div class="kuis-opsi" onclick="checkFormatif(this, event)">
+                <span data-answer="false">A. Tradisional</span>
+                <span data-answer="true">B. Kolonial</span>
+                <span data-answer="false">C. Nasional</span>
+                <span data-answer="false">D. Modern</span>
             </div>
         </div>
         <div class="formatif-refleksi">
@@ -2188,8 +2341,50 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
                 <li><strong>Presentasikan</strong> hasilnya di depan kelas atau kelompok kecil.</li>
             </ol>
 
+            <!-- ✅ PERBAIKAN 4: Panduan Wawancara Praktis -->
             <div class="highlight-box" style="margin-top:16px;border-left-color:var(--accent);">
-                <p style="color:var(--accent);font-weight:800;display:flex;align-items:center;gap:8px;"><i class="fas fa-microphone"></i> Panduan Wawancara</p>
+                <p style="color:var(--accent);font-weight:800;font-size:.95rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-microphone"></i> Panduan Wawancara Sejarah Praktis</p>
+                <p style="font-size:.88rem;color:var(--text-light);margin-bottom:12px;">Wawancara adalah teknik utama dalam pengumpulan sumber lisan. Ikuti panduan berikut agar hasil wawancara maksimal.</p>
+                
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:10px;">
+                    <div style="background:var(--card-bg);border-radius:10px;padding:12px 14px;border-left:3px solid var(--accent);">
+                        <strong style="color:var(--accent);font-size:.86rem;"><i class="fas fa-question-circle"></i> 1. Menyusun Pertanyaan</strong>
+                        <ul style="padding-left:16px;margin-top:6px;">
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Pertanyaan terbuka:</strong> "Bagaimana cerita..." (mengundang narasi panjang).</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Pertanyaan tertutup:</strong> "Apakah..." (jawaban ya/tidak, untuk konfirmasi).</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;">Gunakan pertanyaan terbuka sebagai pembuka, lalu perdalam dengan pertanyaan tertutup.</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--card-bg);border-radius:10px;padding:12px 14px;border-left:3px solid var(--accent);">
+                        <strong style="color:var(--accent);font-size:.86rem;"><i class="fas fa-record-vinyl"></i> 2. Teknik Merekam</strong>
+                        <ul style="padding-left:16px;margin-top:6px;">
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Minta izin</strong> terlebih dahulu sebelum merekam.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;">Gunakan <strong>perekam suara</strong> di HP atau alat khusus.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;">Sambil merekam, <strong>catat poin-poin penting</strong> di buku.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;">Pastikan suasana tenang dan suara narasumber terdengar jelas.</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--card-bg);border-radius:10px;padding:12px 14px;border-left:3px solid var(--accent);">
+                        <strong style="color:var(--accent);font-size:.86rem;"><i class="fas fa-handshake"></i> 3. Etika Wawancara</strong>
+                        <ul style="padding-left:16px;margin-top:6px;">
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Sopan dan hormat</strong> — gunakan bahasa yang sesuai.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Jangan memaksa</strong> — hargai jika narasumber tidak ingin menjawab.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;">Sampaikan <strong>tujuan wawancara</strong> di awal.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;">Ucapkan <strong>terima kasih</strong> setelah wawancara selesai.</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--card-bg);border-radius:10px;padding:12px 14px;border-left:3px solid var(--accent);">
+                        <strong style="color:var(--accent);font-size:.86rem;"><i class="fas fa-file-alt"></i> 4. Membuat Transkrip</strong>
+                        <ul style="padding-left:16px;margin-top:6px;">
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Dengarkan ulang</strong> hasil rekaman dengan saksama.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Tulis ulang</strong> isi wawancara dalam bentuk teks.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Ringkas</strong> bagian yang tidak relevan.</li>
+                            <li style="font-size:.82rem;color:var(--text-light);line-height:1.7;"><strong>Beri tanda waktu</strong> (menit ke-) untuk bagian penting.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p style="color:var(--accent);font-weight:800;font-size:.9rem;margin-top:16px;display:flex;align-items:center;gap:8px;"><i class="fas fa-list"></i> Contoh Pertanyaan Wawancara</p>
                 <ul style="padding-left:20px;">
                     <li style="font-size:.88rem;color:var(--text-light);line-height:1.9;">"Di mana bapak/ibu/kakek/nenek dilahirkan dan dibesarkan?"</li>
                     <li style="font-size:.88rem;color:var(--text-light);line-height:1.9;">"Apa pekerjaan atau mata pencaharian utama di masa lalu?"</li>
@@ -2647,6 +2842,7 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         <li><i class="fas fa-book"></i> Yamin, Mohammad. <em>Tatanegara Majapahit</em>. Jakarta: Prapantja, 1962.</li>
         <li><i class="fas fa-book"></i> Carr, E.H. <em>What is History?</em>. London: Penguin, 1961.</li>
         <li><i class="fas fa-book"></i> Gottschalk, Louis. <em>Mengerti Sejarah</em>. Jakarta: UI Press, 1985.</li>
+        <li><i class="fas fa-book"></i> Kartodirdjo, Sartono. <em>Pendekatan Ilmu Sosial dalam Metodologi Sejarah</em>. Jakarta: Gramedia, 1992.</li>
         <li><i class="fas fa-globe"></i> Arsip Nasional Republik Indonesia (ANRI) – anri.go.id</li>
         <li><i class="fas fa-globe"></i> Perpustakaan Nasional Republik Indonesia – perpusnas.go.id</li>
     </ul>
@@ -2672,7 +2868,13 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Guna Inspiratif</div><div class="gl-def">Kegunaan sejarah yang membangkitkan semangat, kreativitas, dan dorongan berkarya.</div></div>
         <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Guna Instruktif</div><div class="gl-def">Kegunaan sejarah sebagai panduan dan arahan dalam mengambil keputusan.</div></div>
         <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Guna Rekreatif</div><div class="gl-def">Kegunaan sejarah sebagai hiburan yang mendidik dan memperkaya pengalaman batin.</div></div>
-        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Antroposfer</div><div class="gl-def">Lapisan manusia beserta aktivitas, budaya, dan persebarannya.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Paleografi</div><div class="gl-def">Ilmu bantu sejarah tentang tulisan kuno, membantu membaca naskah atau prasasti.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Epigrafi</div><div class="gl-def">Ilmu bantu sejarah tentang prasasti, mempelajari tulisan pada batu atau logam.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Numismatik</div><div class="gl-def">Ilmu bantu sejarah tentang mata uang kuno, membantu menentukan usia dan ekonomi peradaban.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Historiografi Tradisional</div><div class="gl-def">Penulisan sejarah yang bercorak istana-sentris, bercampur mitos dan legenda.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Historiografi Kolonial</div><div class="gl-def">Penulisan sejarah dari sudut pandang penjajah Belanda (Neerlando-sentris).</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Historiografi Nasional</div><div class="gl-def">Penulisan sejarah dari perspektif Indonesia-sentris, menekankan perjuangan dan nasionalisme.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Historiografi Modern</div><div class="gl-def">Penulisan sejarah dengan pendekatan kritis-analitis dan multidisipliner.</div></div>
     </div>
 
     <div class="card reveal" style="margin-top:20px;">
