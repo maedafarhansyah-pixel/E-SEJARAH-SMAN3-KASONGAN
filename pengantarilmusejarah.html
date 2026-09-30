@@ -8,9 +8,6 @@
 <title>Memahami Prinsip Ilmu Sejarah – Modul Premium Kelas X · Fase E</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 <style>
-/* ============================================================
-   FONT SEDERHANA — SATU JENIS SAJA (SYSTEM FONT STACK)
-   ============================================================ */
 :root{
   --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -287,12 +284,14 @@ html[data-theme="light"] .site-header{background:rgba(255,255,255,.92)}
 .miskonsepsi-card .miskon-label.info{background:var(--accent)}
 .miskonsepsi-card p{font-size:.87rem;color:var(--text-light);line-height:1.72}
 
-.sub-header{display:flex;align-items:center;gap:11px;margin:26px 0 12px;padding:8px 0;
+.sub-header{display:flex;align-items:center;gap:11px;margin:26px 0 12px;padding:8px 0;flex-wrap:wrap;
   font-family: inherit;font-size:1.02rem;font-weight:800;color:var(--gold-light);
   border-bottom:1px dashed rgba(245,158,11,.25)}
 .sub-header .tag-letter{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;
   background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#121212;font-size:.75rem;font-weight:900;flex-shrink:0;
   box-shadow:0 4px 12px rgba(245,158,11,.25)}
+.sub-header .sub-tag{font-size:.7rem;font-weight:600;background:rgba(6,182,212,.14);color:var(--accent);padding:3px 12px;
+  border-radius:20px;letter-spacing:.5px;text-transform:none;border:1px solid rgba(6,182,212,.28);margin-left:auto;}
 
 .card{background:var(--card-bg);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow);
   transition:all var(--transition);border:1px solid var(--line-soft);margin-bottom:16px}
@@ -782,7 +781,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
 
 <div class="geo-bg"></div>
 
-<!-- LOADER -->
 <div id="loader">
     <div class="loader-geo">
         <div class="loader-ring-big"></div>
@@ -803,7 +801,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
     <div class="loader-percent" id="loaderPercent">0%</div>
 </div>
 
-<!-- HEADER -->
 <header class="site-header" id="siteHeader">
     <a href="#" class="brand" onclick="navigateTo('section1'); return false;">
         <span class="logo-dot"><i class="fas fa-scroll"></i></span>
@@ -854,7 +851,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
     <a onclick="navigateTo('section11'); toggleDrawer();">📚 Referensi</a>
 </div>
 
-<!-- MODAL GAMBAR -->
 <div class="modal-overlay" id="imageModal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation();">
         <span class="modal-close" onclick="closeModal()">✕</span>
@@ -968,7 +964,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
             <span class="icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="body open">
-            <!-- ✅ PERBAIKAN 5: Kutipan CP diselaraskan dengan PDF hlm. 29 -->
             <div class="cp-box" style="margin-bottom:16px;">
                 <div class="cp-title"><i class="fas fa-flag-checkered"></i> Capaian Pembelajaran (CP) – Fase E</div>
                 <p>Pada akhir Fase E, peserta didik mampu <strong>memahami konsep dasar ilmu sejarah</strong> serta <strong>menginterpretasi berbagai peristiwa sejarah Indonesia</strong> yang berkaitan dengan masa Kerajaan Hindu–Buddha, Kerajaan Islam, Penjajahan Bangsa Barat, hingga Perjuangan Pergerakan Kebangsaan Indonesia.</p>
@@ -1516,7 +1511,7 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
             <li><strong>Mengidentifikasi definisi sejarah</strong> menurut Aristoteles, Mohammad Yamin, R.G. Collingwood, dan Kuntowijoyo.</li>
             <li><strong>Menganalisis hakikat sejarah</strong> sebagai peristiwa, kisah, seni, dan ilmu.</li>
             <li><strong>Membedakan jenis-jenis sumber sejarah</strong> berdasarkan bentuknya.</li>
-            <li><strong>Membedakan sumber primer dan sumber sekunder</strong> beserta contohnya.</li>
+            <li><strong>Membedakan sumber primer dan sumber sekunder</strong> beserta contohnya, termasuk kritik sumber di era digital.</li>
         </ol>
     </div>
 
@@ -1582,7 +1577,7 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
                     <li>Sejarah adalah sesuatu yang <strong>bersifat ilmiah</strong>, dan tugas sejarawan adalah <strong>menyelidiki kembali pemikiran manusia di masa lampau</strong>.</li>
                     <li>Sejarah berguna untuk <strong>mempelajari tindakan manusia</strong> dan kemudian mempelajari <strong>hakikat manusia</strong>.</li>
                 </ul>
-                <p style="font-size:.85rem;margin-top:6px;padding-top:6px;border-top:1px solid var(--line-soft);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Collingwood menekankan pendekatan <strong>filosofis</strong> dalam sejarah. Baginya, sejarah bukan hanya tentang peristiwa, tetapi tentang <strong>pemikiran di balik tindakan manusia</strong> — sejarah adalah "penyelidikan kembali pemikiran masa lalu".</p>
+                <p style="font-size:.85rem;margin-top:6px;padding-top:6px;border-top:1px solid var(--line-soft);"><i class="fas fa-info-circle" style="color:var(--gold);"></i> Collingwood menekankan pendekatan <strong>filosofis</strong> dalam sejarah. Baginya, sejarah bukan hanya tentang peristiwa, tetapi tentang <strong>pemikiran di balik tindakan manusia</strong>.</p>
             </div>
         </div>
 
@@ -1752,7 +1747,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         <p><i class="fas fa-lightbulb" style="color:var(--gold);"></i> <strong>Cara mudah mengingat:</strong> Sumber Primer = <em>langsung</em> dari sumbernya (first-hand), Sumber Sekunder = <em>tidak langsung</em> (second-hand).</p>
     </div>
 
-    <!-- ✅ PERBAIKAN 3: Sub-bab "Kritik Sumber di Era Digital" -->
     <div class="sub-header reveal"><span class="tag-letter">E</span> Kritik Sumber di Era Digital</div>
 
     <div class="card reveal">
@@ -1846,6 +1840,16 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
                 <span data-answer="true">B. Sekunder</span>
                 <span data-answer="false">C. Benda</span>
                 <span data-answer="false">D. Audiovisual</span>
+            </div>
+        </div>
+        <div class="formatif-kuis">
+            <div class="kuis-label">Kuis Singkat 3</div>
+            <div class="kuis-pertanyaan">Cara mengecek keaslian foto yang beredar di internet adalah dengan ...</div>
+            <div class="kuis-opsi" onclick="checkFormatif(this, event)">
+                <span data-answer="false">A. Langsung membagikannya</span>
+                <span data-answer="true">B. Reverse image search</span>
+                <span data-answer="false">C. Percaya saja</span>
+                <span data-answer="false">D. Menanyakan ke AI</span>
             </div>
         </div>
         <div class="formatif-refleksi">
@@ -2067,7 +2071,7 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
     <div class="pertemuan-banner reveal">
         <div class="icon-wrap"><i class="fas fa-microscope"></i></div>
         <div class="info">
-            <h4>Pertemuan 5 · Heuristik, Ilmu Bantu, Kritik, Interpretasi, Historiografi</h4>
+            <h4>Pertemuan 5 · Metode, Ilmu Bantu &amp; Historiografi</h4>
             <p>Fokus: empat tahap metode penelitian sejarah, ilmu bantu sejarah, dan jenis-jenis historiografi.</p>
         </div>
         <span class="time-chip"><i class="fas fa-hourglass-half"></i> 135 menit</span>
@@ -2091,8 +2095,17 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         </p>
     </div>
 
-    <!-- ✅ PERBAIKAN 1: Sub-header A + Ilmu Bantu Sejarah -->
+    <!-- ============================================ -->
+    <!-- SUB-BAB A: EMPAT TAHAP METODE SEJARAH -->
+    <!-- ============================================ -->
     <div class="sub-header reveal"><span class="tag-letter">A</span> Empat Tahap Metode Sejarah</div>
+
+    <div class="card reveal" style="border-left:5px solid var(--gold);">
+        <p style="font-size:.95rem;color:var(--text-light);">
+            <i class="fas fa-info-circle" style="color:var(--gold);"></i>
+            Metode penelitian sejarah terdiri dari <strong>empat tahap yang berurutan</strong>. Keempat tahap ini adalah alur kerja utama sejarawan — dari mencari sumber hingga menuliskan hasil penelitiannya.
+        </p>
+    </div>
 
     <div style="display:grid;gap:16px;" class="reveal">
         <div class="method-step">
@@ -2103,43 +2116,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
                 <li style="font-size:.88rem;line-height:1.8;"><strong>Sumber Sekunder:</strong> Buku, artikel, atau tulisan yang membahas sumber primer (misal: buku sejarah tentang Proklamasi).</li>
             </ul>
             <p style="font-size:.88rem;margin-top:6px;"><i class="fas fa-search" style="color:var(--gold);"></i> <strong>Contoh:</strong> Sejarawan mencari arsip VOC di Arsip Nasional untuk meneliti perdagangan rempah.</p>
-        </div>
-
-        <!-- ✅ PERBAIKAN 1: Ilmu Bantu Sejarah (setelah Heuristik, sebelum Kritik) -->
-        <div class="method-step" style="border-left-color:var(--accent);background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(245,158,11,.02));">
-            <h4><span style="background:linear-gradient(135deg,var(--accent),#0E7490);color:#fff;padding:2px 12px;border-radius:30px;font-size:.85rem;font-weight:800;">BANTU</span> Ilmu Bantu Sejarah</h4>
-            <p><strong>Ilmu bantu sejarah</strong> adalah disiplin-disiplin ilmu yang membantu sejarawan dalam mengumpulkan, memverifikasi, dan menafsirkan sumber sejarah. Tanpa ilmu bantu, penelitian sejarah akan kesulitan memastikan keaslian dan makna sumber.</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px;">
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-scroll"></i> Paleografi</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang tulisan kuno. Membantu membaca dan memahami naskah atau prasasti dari masa lampau.</p>
-                </div>
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-monument"></i> Epigrafi</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang prasasti. Mempelajari tulisan pada batu, logam, atau bahan keras lainnya.</p>
-                </div>
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-image"></i> Ikonografi</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang makna gambar dan simbol. Membantu menafsirkan relief candi, lukisan, dan patung.</p>
-                </div>
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-coins"></i> Numismatik</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang mata uang kuno. Membantu menentukan usia, ekonomi, dan perdagangan suatu peradaban.</p>
-                </div>
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-clock"></i> Kronologi</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang urutan waktu. Membantu menyusun peristiwa secara sistematis dan logis.</p>
-                </div>
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-stamp"></i> Sigillografi</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang segel/stempel. Membantu memverifikasi keaslian dokumen resmi dan identitas pemiliknya.</p>
-                </div>
-                <div style="background:var(--card-bg);border-radius:10px;padding:10px 13px;border-left:3px solid var(--accent);">
-                    <strong style="color:var(--sky);font-size:.85rem;"><i class="fas fa-sitemap"></i> Genealogi</strong>
-                    <p style="font-size:.82rem;color:var(--text-light);line-height:1.65;margin-top:3px;">Ilmu tentang silsilah keluarga. Membantu melacak garis keturunan dan hubungan kekerabatan.</p>
-                </div>
-            </div>
-            <p style="font-size:.84rem;margin-top:10px;font-style:italic;color:var(--text-muted);"><i class="fas fa-lightbulb" style="color:var(--accent);"></i> Ilmu bantu bekerja seperti "detektif" yang membantu sejarawan memastikan keaslian dan makna sumber sejarah sebelum digunakan sebagai bukti.</p>
         </div>
 
         <div class="method-step">
@@ -2175,8 +2151,74 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         </div>
     </div>
 
-    <!-- ✅ PERBAIKAN 2: Sub-bab "Jenis-Jenis Historiografi" -->
-    <div class="sub-header reveal"><span class="tag-letter">B</span> Jenis-Jenis Historiografi</div>
+    <!-- ============================================ -->
+    <!-- SUB-BAB B: ILMU BANTU SEJARAH (SISIPAN) -->
+    <!-- ============================================ -->
+    <div class="sub-header reveal">
+        <span class="tag-letter">B</span> Ilmu Bantu Sejarah
+        <span class="sub-tag">Sisipan Penting — Bukan Tahap Kelima</span>
+    </div>
+
+    <div class="pengayaan-box reveal">
+        <div class="pengayaan-title"><i class="fas fa-tools"></i> Apa Itu Ilmu Bantu Sejarah?</div>
+        <p class="pengayaan-desc">Disiplin-disiplin ilmu yang membantu sejarawan dalam mengumpulkan, memverifikasi, dan menafsirkan sumber sejarah.</p>
+
+        <div class="miskonsepsi-card" style="border-left-color:var(--accent);background:rgba(6,182,212,.06);margin-bottom:14px;">
+            <span class="miskon-label info"><i class="fas fa-lightbulb"></i> Klarifikasi Penting</span>
+            <p><strong>Ilmu bantu sejarah BUKAN tahap kelima dalam metode sejarah.</strong> Ia adalah <em>alat bantu</em> yang digunakan sejarawan pada <strong>tahap Heuristik dan Kritik</strong>. Ibarat dokter yang memakai stetoskop saat memeriksa pasien — stetoskop bukan langkah pengobatan, melainkan alat untuk membantu diagnosis.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-scroll"></i> Paleografi</h5>
+            <p>Ilmu tentang <strong>tulisan kuno</strong>. Membantu sejarawan membaca dan memahami naskah atau prasasti dari masa lampau yang menggunakan aksara kuno (misalnya aksara Pallawa, Kawi, atau Melayu Kuno).</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Heuristik &amp; Kritik Internal</strong>.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-monument"></i> Epigrafi</h5>
+            <p>Ilmu tentang <strong>prasasti</strong>. Mempelajari tulisan pada batu, logam, atau bahan keras lainnya. Membantu menentukan usia, konteks, dan makna prasasti peninggalan kerajaan kuno.</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Heuristik &amp; Kritik Eksternal</strong>.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-image"></i> Ikonografi</h5>
+            <p>Ilmu tentang <strong>makna gambar dan simbol</strong>. Membantu menafsirkan relief candi, lukisan, patung, dan simbol-simbol visual lainnya untuk mengungkap kehidupan sosial-budaya masa lalu.</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Interpretasi</strong>.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-coins"></i> Numismatik</h5>
+            <p>Ilmu tentang <strong>mata uang kuno</strong>. Membantu menentukan usia, sistem ekonomi, jalur perdagangan, dan kekuasaan politik suatu peradaban berdasarkan temuan koin.</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Kritik Eksternal &amp; Interpretasi</strong>.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-clock"></i> Kronologi</h5>
+            <p>Ilmu tentang <strong>urutan waktu</strong>. Membantu sejarawan menyusun peristiwa secara sistematis, logis, dan sesuai dengan dimensi temporalnya. Menghindari kekeliruan urutan sejarah (anakronisme).</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Interpretasi &amp; Historiografi</strong>.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-stamp"></i> Sigillografi</h5>
+            <p>Ilmu tentang <strong>segel dan stempel</strong>. Membantu memverifikasi keaslian dokumen resmi, mengidentifikasi pemilik dokumen, dan memastikan otoritas penerbitnya.</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Kritik Eksternal</strong>.</p>
+        </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-sitemap"></i> Genealogi</h5>
+            <p>Ilmu tentang <strong>silsilah keluarga</strong>. Membantu melacak garis keturunan, hubungan kekerabatan, dan legitimasi dinasti. Sangat relevan dengan proyek silsilah keluarga di modul ini.</p>
+            <p style="font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:4px;">Digunakan pada tahap: <strong>Heuristik &amp; Interpretasi</strong>.</p>
+        </div>
+
+        <div class="highlight-box" style="margin-top:14px;border-left-color:var(--accent);">
+            <p><i class="fas fa-lightbulb" style="color:var(--accent);"></i> <strong>Cara mengingat:</strong> Empat tahap metode sejarah adalah <em>alurnya</em>. Ilmu bantu sejarah adalah <em>peralatan</em> yang dipakai sejarawan dalam menjalankan alur tersebut. Keduanya berbeda peran.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SUB-BAB C: JENIS-JENIS HISTORIOGRAFI -->
+    <!-- ============================================ -->
+    <div class="sub-header reveal"><span class="tag-letter">C</span> Jenis-Jenis Historiografi</div>
 
     <div class="card reveal">
         <p style="font-size:1rem;color:var(--text-light);">
@@ -2252,8 +2294,13 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
         </div>
     </div>
 
-    <div class="highlight-box reveal" style="margin-top:14px;">
-        <h4 style="color:var(--gold-light);display:flex;align-items:center;gap:8px;font-size:.98rem;margin-bottom:6px;"><i class="fas fa-link"></i> Hubungan Sumber, Fakta, dan Bukti</h4>
+    <!-- ============================================ -->
+    <!-- SUB-BAB D: HUBUNGAN SUMBER, FAKTA, BUKTI -->
+    <!-- ============================================ -->
+    <div class="sub-header reveal"><span class="tag-letter">D</span> Hubungan Sumber, Fakta, dan Bukti</div>
+
+    <div class="highlight-box reveal">
+        <h4 style="color:var(--gold-light);display:flex;align-items:center;gap:8px;font-size:.98rem;margin-bottom:6px;"><i class="fas fa-link"></i> Ruh Penelitian Sejarah</h4>
         <p style="font-size:.93rem;"><strong>Sumber</strong> adalah bahan mentah (primer/sekunder). <strong>Fakta</strong> adalah bagian dari sumber yang telah teruji kebenarannya melalui kritik. <strong>Bukti</strong> adalah fakta yang dipilih dan digunakan untuk mendukung argumen sejarah. Ketiganya adalah ruh dari penelitian sejarah.</p>
     </div>
 
@@ -2341,7 +2388,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
                 <li><strong>Presentasikan</strong> hasilnya di depan kelas atau kelompok kecil.</li>
             </ol>
 
-            <!-- ✅ PERBAIKAN 4: Panduan Wawancara Praktis -->
             <div class="highlight-box" style="margin-top:16px;border-left-color:var(--accent);">
                 <p style="color:var(--accent);font-weight:800;font-size:.95rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-microphone"></i> Panduan Wawancara Sejarah Praktis</p>
                 <p style="font-size:.88rem;color:var(--text-light);margin-bottom:12px;">Wawancara adalah teknik utama dalam pengumpulan sumber lisan. Ikuti panduan berikut agar hasil wawancara maksimal.</p>
@@ -2816,7 +2862,7 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
     <div class="section-header">
         <div class="num">R</div>
         <h2>Referensi <small>Daftar Pustaka &amp; Sumber Belajar</small></h2>
-        <span class="badge">12 Sumber</span>
+        <span class="badge">13 Sumber</span>
     </div>
 
     <div class="pertemuan-banner reveal">
@@ -2913,7 +2959,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
 
 </main>
 
-<!-- FLOATING NAVIGATION -->
 <div class="float-nav" id="floatNav">
     <button class="fn-prev" onclick="navigateTo('prev')" aria-label="Sebelumnya">
         <i class="fas fa-arrow-left"></i>
@@ -2931,7 +2976,6 @@ html[data-theme="light"] .float-nav{background:rgba(255,255,255,.96);box-shadow:
 </button>
 
 <script>
-/* ============ THEME TOGGLE ============ */
 function toggleTheme() {
     var html = document.documentElement;
     var current = html.getAttribute('data-theme');
@@ -2952,7 +2996,6 @@ function toggleTheme() {
     } catch(e) {}
 })();
 
-/* ============ LOADER ============ */
 (function() {
     var loader = document.getElementById('loader');
     var bar = document.getElementById('loaderBar');
@@ -2975,7 +3018,6 @@ function toggleTheme() {
     update();
 })();
 
-/* ============ HEADER SCROLL + TO TOP ============ */
 (function() {
     var header = document.getElementById('siteHeader');
     var toTop = document.getElementById('toTop');
@@ -2991,7 +3033,6 @@ function toggleTheme() {
     }, { passive: true });
 })();
 
-/* ============ DRAWER ============ */
 function toggleDrawer() {
     var drawer = document.getElementById('mobileDrawer');
     var overlay = document.getElementById('drawerOverlay');
@@ -3000,7 +3041,6 @@ function toggleDrawer() {
     document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
 }
 
-/* ============ MODAL GAMBAR ============ */
 function openModal(src, caption) {
     var modal = document.getElementById('imageModal');
     document.getElementById('modalImage').src = src;
@@ -3014,7 +3054,6 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
 });
 
-/* ============ ETYM TABS ============ */
 (function(){
     document.querySelectorAll('.etym-tabs button').forEach(function(btn){
         btn.addEventListener('click', function(){
@@ -3028,7 +3067,6 @@ document.addEventListener('keydown', function(e) {
     });
 })();
 
-/* ============ KUNCI JAWABAN ============ */
 function bukaKunci() {
     var password = prompt("Masukkan kata sandi untuk membuka kunci jawaban:");
     if (password === null) return;
@@ -3041,7 +3079,6 @@ function bukaKunci() {
     }
 }
 
-/* ============ INTERACTIVE SCORE (PG & B/S) ============ */
 (function() {
     var answers = {};
     document.querySelectorAll('.soal-pg, .soal-tf').forEach(function(q, idx) {
@@ -3098,7 +3135,6 @@ function bukaKunci() {
     };
 })();
 
-/* ============ INJECT NAV BUTTONS ============ */
 (function() {
     document.querySelectorAll('.section').forEach(function(sec) {
         var nav = document.createElement('div');
@@ -3114,7 +3150,6 @@ function bukaKunci() {
     });
 })();
 
-/* ============ NAVIGATION ============ */
 (function() {
     var sections = document.querySelectorAll('.section');
     var current = 0;
@@ -3206,7 +3241,6 @@ function bukaKunci() {
     };
 })();
 
-/* ============ MATERI ACCORDION ============ */
 function toggleMateri(header) {
     var body = header.nextElementSibling;
     var icon = header.querySelector('.icon i');
@@ -3233,7 +3267,6 @@ function toggleMateri(header) {
     });
 }
 
-/* ============ FORMATIF QUIZ ============ */
 function checkFormatif(container, event) {
     var target = event.target;
     if (target.tagName !== 'SPAN') return;
@@ -3244,7 +3277,6 @@ function checkFormatif(container, event) {
     else target.classList.add('wrong');
 }
 
-/* ============ REVEAL ON SCROLL ============ */
 (function() {
     var reveals = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)) {
@@ -3259,7 +3291,6 @@ function checkFormatif(container, event) {
     reveals.forEach(function(el) { observer.observe(el); });
 })();
 
-/* ============ KEYBOARD NAV ============ */
 document.addEventListener('keydown', function(e) {
     var tag = (e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
@@ -3271,7 +3302,6 @@ document.addEventListener('keydown', function(e) {
     else if (e.key === 'ArrowLeft') navigateTo('prev');
 });
 
-/* ============ SWIPE NAV ============ */
 (function() {
     var x0 = null, y0 = null, locked = false;
     var main = document.querySelector('.main-wrap');
@@ -3299,7 +3329,6 @@ document.addEventListener('keydown', function(e) {
     }, { passive: true });
 })();
 
-/* ============ INIT ============ */
 function bootGeo() {
     if (typeof window._geoInit === 'function') window._geoInit();
 }
