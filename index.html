@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Sejarah SMAN 3 Kasongan — Portal Materi Kelas 10</title>
+<title>E-Sejarah SMAN 3 Kasongan — Portal Materi Sejarah Fase E &amp; F</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,6 +39,12 @@
     --teal-light:#5eead4;
     --gold:#fbbf24;
     --gold-light:#fde68a;
+    --rose:#e11d48;
+    --rose-light:#fb7185;
+    --amber:#f59e0b;
+    --amber-light:#fcd34d;
+    --emerald:#10b981;
+    --emerald-light:#6ee7b7;
 
     /* ===== TEXT ===== */
     --ink:#eaf2ff;
@@ -90,7 +96,7 @@ body.loading{overflow:hidden;}
 ::selection{background:rgba(56,189,248,.35);color:#fff;}
 
 /* ============================================================
-   LOADING — tema biru sejarah
+   LOADING
    ============================================================ */
 #loader {
     position: fixed;
@@ -445,9 +451,6 @@ body.loading .bg-decor *{
     animation:fadeUp .8s .15s both;
 }
 
-/* ============================================================
-   E-SEJARAH — PREMIUM LAYERED TEXT EFFECT
-   ============================================================ */
 .header h1 .grad{
     position:relative;
     display:inline-block;
@@ -597,7 +600,6 @@ body.loading .bg-decor *{
     animation:fadeUp .8s .25s both;
 }
 
-/* ====== NAMA GURU PENGAMPU ====== */
 .header .teacher{
     position:relative;
     display:inline-block;
@@ -664,6 +666,7 @@ body.loading .bg-decor *{
 .chips i:nth-child(1){border-color:rgba(56,189,248,.55);}
 .chips i:nth-child(2){border-color:rgba(165,180,252,.50);}
 .chips i:nth-child(3){border-color:rgba(103,232,249,.50);}
+.chips i:nth-child(4){border-color:rgba(251,191,36,.50);}
 
 @keyframes fadeUp{
     from{opacity:0;transform:translateY(24px);}
@@ -703,6 +706,15 @@ body.loading .bg-decor *{
     -webkit-backdrop-filter:blur(10px);
 }
 
+/* Warna khusus section label Fase F */
+.section-label.fase-f span{
+    background:rgba(251,191,36,.10);
+    border-color:rgba(251,191,36,.32);
+    box-shadow:
+        0 6px 20px -12px rgba(251,191,36,.85),
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
@@ -711,7 +723,7 @@ body.loading .bg-decor *{
 }
 
 /* ============================================================
-   KARTU MATERI — PREMIUM DARK GLASS
+   KARTU MATERI
    ============================================================ */
 .card{
     position:relative;
@@ -723,9 +735,7 @@ body.loading .bg-decor *{
     overflow:hidden;
     isolation:isolate;
 
-    /* ==== LAYERED PREMIUM BACKGROUND ==== */
     background:
-        /* Top accent bar */
         linear-gradient(90deg,
             #38bdf8 0%,
             #22d3ee 22%,
@@ -733,13 +743,10 @@ body.loading .bg-decor *{
             #a5b4fc 78%,
             #67e8f9 100%)
             top / 100% 4px no-repeat,
-        /* Radial glow — top right */
         radial-gradient(ellipse 260px 220px at 100% 0%,
             rgba(56,189,248,.18), transparent 68%),
-        /* Radial glow — bottom left */
         radial-gradient(ellipse 220px 180px at 0% 100%,
             rgba(99,102,241,.16), transparent 70%),
-        /* Main dark glass gradient */
         linear-gradient(145deg,
             rgba(17,30,55,.94) 0%,
             rgba(12,22,42,.96) 25%,
@@ -747,7 +754,6 @@ body.loading .bg-decor *{
             rgba(14,25,48,.95) 80%,
             rgba(18,32,58,.94) 100%);
 
-    /* ==== PREMIUM MULTI-LAYER SHADOW ==== */
     box-shadow:
         0 28px 56px -24px rgba(0,0,0,.90),
         0 14px 32px -18px rgba(14,165,233,.28),
@@ -769,7 +775,6 @@ body.loading .bg-decor *{
     to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-/* ==== GRADIENT ANIMATED BORDER (mask trick) ==== */
 .card::before{
     content:"";
     position:absolute;
@@ -803,7 +808,6 @@ body.loading .bg-decor *{
     50%    { background-position:100% 100%; }
 }
 
-/* ==== SHINE SWEEP (hover) ==== */
 .card::after{
     content:"";
     position:absolute;
@@ -852,7 +856,6 @@ body.loading .bg-decor *{
     transition-duration:.15s;
 }
 
-/* ====== BADGE BAB ====== */
 .badge{
     position:absolute;
     top:18px;
@@ -876,7 +879,6 @@ body.loading .bg-decor *{
     -webkit-backdrop-filter:blur(8px);
 }
 
-/* ====== IKON ====== */
 .card .ico{
     position:relative;
     display:grid;
@@ -908,7 +910,6 @@ body.loading .bg-decor *{
         inset 0 -1.5px 0 rgba(0,0,0,.45);
 }
 
-/* ====== JUDUL ====== */
 .card h3{
     position:relative;
     margin:0 0 10px;
@@ -922,7 +923,6 @@ body.loading .bg-decor *{
     text-shadow:0 2px 14px rgba(0,0,0,.65);
 }
 
-/* ====== DESKRIPSI ====== */
 .card .desc{
     position:relative;
     margin:0 0 20px;
@@ -938,8 +938,11 @@ body.loading .bg-decor *{
 .card .desc .hl-cyan{color:#67e8f9;font-weight:700;}
 .card .desc .hl-purple{color:#c4b5fd;font-weight:700;}
 .card .desc .hl-teal{color:#5eead4;font-weight:700;}
+.card .desc .hl-rose{color:#fb7185;font-weight:700;}
+.card .desc .hl-amber{color:#fcd34d;font-weight:700;}
+.card .desc .hl-gold{color:#fde047;font-weight:700;}
+.card .desc .hl-emerald{color:#6ee7b7;font-weight:700;}
 
-/* ====== TOMBOL MINI ====== */
 .mini-btn{
     position:relative;
     margin-top:auto;
@@ -984,6 +987,22 @@ body.loading .bg-decor *{
 .mini-btn.teal{
     background:linear-gradient(120deg,#0f766e,#14b8a6 55%,#5eead4);
     box-shadow:0 16px 30px -16px rgba(20,184,166,.95), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.35);
+}
+.mini-btn.rose{
+    background:linear-gradient(120deg,#881337,#e11d48 55%,#fb7185);
+    box-shadow:0 16px 30px -16px rgba(225,29,72,.95), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.35);
+}
+.mini-btn.amber{
+    background:linear-gradient(120deg,#92400e,#f59e0b 55%,#fcd34d);
+    box-shadow:0 16px 30px -16px rgba(245,158,11,.95), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.35);
+}
+.mini-btn.gold{
+    background:linear-gradient(120deg,#854d0e,#eab308 55%,#fde047);
+    box-shadow:0 16px 30px -16px rgba(234,179,8,.95), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.35);
+}
+.mini-btn.emerald{
+    background:linear-gradient(120deg,#064e3b,#10b981 55%,#6ee7b7);
+    box-shadow:0 16px 30px -16px rgba(16,185,129,.95), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.35);
 }
 .mini-btn.disabled{
     background:linear-gradient(120deg,#334155,#475569 55%,#64748b);
@@ -1032,7 +1051,7 @@ body.loading .bg-decor *{
 .card-link:hover .mini-btn .newwin{transform:translate(3px,-3px);}
 
 /* ============================================================
-   KARTU DISABLED — versi muted dark
+   KARTU DISABLED
    ============================================================ */
 .card.disabled{
     background:
@@ -1087,7 +1106,7 @@ body.loading .bg-decor *{
 }
 
 /* ============================================================
-   KARTU PENUTUP (FULL WIDTH) — premium dark glass
+   KARTU PENUTUP (FULL WIDTH)
    ============================================================ */
 .closing-card{
     grid-column:1 / -1;
@@ -1174,6 +1193,8 @@ body.loading .bg-decor *{
 .closing-card .txt p b{color:#dbe7fb;font-weight:700;}
 .closing-card .txt p .hl-sky{color:#7dd3fc;font-weight:700;}
 .closing-card .txt p .hl-blue{color:#a9c2f0;font-weight:700;}
+.closing-card .txt p .hl-emerald{color:#6ee7b7;font-weight:700;}
+.closing-card .txt p .hl-gold{color:#fde047;font-weight:700;}
 .closing-card .tag{
     display:inline-block;
     margin-top:10px;
@@ -1293,21 +1314,24 @@ body.loading .bg-decor *{
     </p>
 
     <p>
-        Telusuri jejak peradaban Nusantara melalui materi interaktif — dari
-        pengantar ilmu sejarah dan metode penelitian, masa praaksara, kejayaan
-        Hindu-Buddha, hingga masuknya Islam di Indonesia.
+        Telusuri jejak peradaban Nusantara &amp; perjuangan bangsa melalui materi interaktif —
+        dari pengantar ilmu sejarah, kejayaan Hindu-Buddha &amp; Islam, kolonialisme,
+        pergerakan nasional, hingga Proklamasi Kemerdekaan 1945.
     </p>
     <div class="chips">
         <i>📜 Ilmu Sejarah</i>
         <i>🏛️ Peradaban Nusantara</i>
         <i>🕌 Warisan Budaya</i>
+        <i>🇮🇩 Menuju Kemerdekaan</i>
     </div>
 </header>
 
 <main class="container">
 
-    <!-- ===== KELOMPOK 1: DASAR & PENGANTAR ===== -->
-    <div class="section-label"><span>📌 Dasar &amp; Pengantar</span></div>
+    <!-- ============================================================
+         FASE E — KELAS X
+         ============================================================ -->
+    <div class="section-label"><span>📘 Fase E — Kelas X · Dasar &amp; Pengantar</span></div>
     <div class="grid">
 
         <!-- MODUL 1 -->
@@ -1348,8 +1372,8 @@ body.loading .bg-decor *{
 
     </div>
 
-    <!-- ===== KELOMPOK 2: PERADABAN NUSANTARA ===== -->
-    <div class="section-label"><span>🏛️ Peradaban Nusantara</span></div>
+    <!-- ===== FASE E — PERADABAN NUSANTARA ===== -->
+    <div class="section-label"><span>🏛️ Fase E — Kelas X · Peradaban Nusantara</span></div>
     <div class="grid">
 
         <!-- MODUL 3 -->
@@ -1408,18 +1432,158 @@ body.loading .bg-decor *{
 
     </div>
 
-    <!-- ===== KELOMPOK 3: SEGERA HADIR ===== -->
+    <!-- ============================================================
+         FASE F — KELAS XI (KOLONIALISME → PROKLAMASI)
+         ============================================================ -->
+    <div class="section-label fase-f"><span>🇮🇩 Fase F — Kelas XI · Kolonialisme &amp; Kemerdekaan</span></div>
+    <div class="grid">
+
+        <!-- MODUL 6 -->
+        <a class="card card-link"
+           href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/kolonialismeimperialisme.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Materi Kolonialisme & Imperialisme (tab baru)">
+            <span class="badge">Modul 6</span>
+            <span class="ico">⚓</span>
+            <h3>Kolonialisme &amp; Imperialisme</h3>
+            <p class="desc">
+                <b class="hl-rose">Kedatangan bangsa Eropa</b>: Portugis, Spanyol,
+                Belanda, Inggris, VOC, hingga sistem kolonial.
+            </p>
+            <span class="mini-btn rose">
+                <span class="play">▶</span> Buka Materi
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+
+        <!-- MODUL 7 -->
+        <a class="card card-link"
+           href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/perlawananthdpenjajahan.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Materi Perlawanan terhadap Penjajahan (tab baru)">
+            <span class="badge">Modul 7</span>
+            <span class="ico">⚔️</span>
+            <h3>Perlawanan thd Penjajahan</h3>
+            <p class="desc">
+                <b class="hl-amber">Semangat perlawanan</b>: Diponegoro,
+                Pattimura, Imam Bonjol, Perang Aceh &amp; Banjar.
+            </p>
+            <span class="mini-btn amber">
+                <span class="play">▶</span> Buka Materi
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+
+        <!-- MODUL 8 -->
+        <a class="card card-link"
+           href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/pergerakannasional.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Materi Pergerakan Nasional (tab baru)">
+            <span class="badge">Modul 8</span>
+            <span class="ico">🌱</span>
+            <h3>Pergerakan Nasional</h3>
+            <p class="desc">
+                <b class="hl-emerald">Kebangkitan bangsa</b>: Budi Utomo,
+                Sarekat Islam, Sumpah Pemuda, hingga Perhimpunan Indonesia.
+            </p>
+            <span class="mini-btn emerald">
+                <span class="play">▶</span> Buka Materi
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+
+        <!-- MODUL 9 -->
+        <a class="card card-link"
+           href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/jepangdiindonesia.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Materi Pendudukan Jepang di Indonesia (tab baru)">
+            <span class="badge">Modul 9</span>
+            <span class="ico">🎌</span>
+            <h3>Pendudukan Jepang</h3>
+            <p class="desc">
+                <b class="hl-gold">Masa kelam 1942–1945</b>: pemerintahan militer,
+                romusha, PETA, &amp; perlawanan rakyat.
+            </p>
+            <span class="mini-btn gold">
+                <span class="play">▶</span> Buka Materi
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+
+        <!-- MODUL 10 -->
+        <a class="card card-link"
+           href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/proklamasi1945.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Materi Proklamasi Kemerdekaan 1945 (tab baru)">
+            <span class="badge">Modul 10</span>
+            <span class="ico">🇮🇩</span>
+            <h3>Proklamasi 1945</h3>
+            <p class="desc">
+                <b class="hl-sky">Puncak perjuangan</b>: peristiwa Rengasdengklok,
+                perumusan naskah, &amp; detik-detik proklamasi.
+            </p>
+            <span class="mini-btn sky">
+                <span class="play">▶</span> Buka Materi
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+
+    </div>
+
+    <!-- ===== KELOMPOK: SEGERA HADIR ===== -->
     <div class="section-label"><span>🚧 Dalam Pengembangan</span></div>
     <div class="grid">
 
-        <!-- MODUL 6 — COMING SOON -->
-        <div class="card disabled" aria-label="Modul Masa Penjajahan & Pergerakan Nasional — segera hadir">
-            <span class="badge">Modul 6</span>
-            <span class="ico">🌏</span>
-            <h3>Masa Penjajahan &amp; Pergerakan Nasional</h3>
+        <!-- MODUL 11 — COMING SOON -->
+        <div class="card disabled" aria-label="Modul Mempertahankan Kemerdekaan — segera hadir">
+            <span class="badge">Modul 11</span>
+            <span class="ico">✊</span>
+            <h3>Mempertahankan Kemerdekaan</h3>
             <p class="desc">
-                Kolonialisme dan <b>pergerakan kebangsaan</b> menuju
-                kemerdekaan Indonesia. Materi sedang disusun.
+                Perjuangan diplomasi &amp; fisik <b>1945–1949</b>:
+                Agresi Militer, KMB, kembali ke NKRI. Materi sedang disusun.
+            </p>
+            <span class="mini-btn disabled">
+                ⏳ Segera Hadir
+            </span>
+        </div>
+
+        <!-- MODUL 12 — COMING SOON -->
+        <div class="card disabled" aria-label="Modul Pemerintahan Sukarno — segera hadir">
+            <span class="badge">Modul 12</span>
+            <span class="ico">🏛️</span>
+            <h3>Pemerintahan Sukarno</h3>
+            <p class="desc">
+                Demokrasi Liberal, Terpimpin, hingga <b>G30S/PKI 1965</b>.
+                Materi sedang disusun.
+            </p>
+            <span class="mini-btn disabled">
+                ⏳ Segera Hadir
+            </span>
+        </div>
+
+        <!-- MODUL 13 — COMING SOON -->
+        <div class="card disabled" aria-label="Modul Pemerintahan Suharto — segera hadir">
+            <span class="badge">Modul 13</span>
+            <span class="ico">📊</span>
+            <h3>Pemerintahan Suharto</h3>
+            <p class="desc">
+                Orde Baru: stabilisasi, pembangunan ekonomi, hingga <b>Krisis 1997</b>.
+                Materi sedang disusun.
+            </p>
+            <span class="mini-btn disabled">
+                ⏳ Segera Hadir
+            </span>
+        </div>
+
+        <!-- MODUL 14 — COMING SOON -->
+        <div class="card disabled" aria-label="Modul Reformasi — segera hadir">
+            <span class="badge">Modul 14</span>
+            <span class="ico">🗳️</span>
+            <h3>Reformasi 1998</h3>
+            <p class="desc">
+                Latar belakang, jalannya, dan dampak reformasi bagi
+                <b>Indonesia modern</b>. Materi sedang disusun.
             </p>
             <span class="mini-btn disabled">
                 ⏳ Segera Hadir
@@ -1430,13 +1594,15 @@ body.loading .bg-decor *{
         <div class="closing-card">
             <span class="ico">🎓</span>
             <div class="txt">
-                <h3>Jelajahi Jejak Peradaban Nusantara</h3>
+                <h3>Jelajahi Jejak Peradaban &amp; Perjuangan Bangsa</h3>
                 <p>
-                    Selamat datang! 🌟 Pelajari <b class="hl-blue">5 modul utama</b>
-                    sejarah kelas 10 — dari konsep dasar ilmu sejarah hingga
-                    kejayaan kerajaan Islam di Indonesia. Modul 6 sedang disiapkan. ⛵✨
+                    Selamat datang! 🌟 Pelajari <b class="hl-blue">10 modul interaktif</b>
+                    sejarah SMA — <b class="hl-sky">5 modul Fase E (Kelas X)</b>
+                    dari pengantar ilmu sejarah hingga kerajaan Islam, dan
+                    <b class="hl-gold">5 modul Fase F (Kelas XI)</b> dari kolonialisme
+                    hingga <b class="hl-emerald">Proklamasi Kemerdekaan 1945</b>. ⛵✨
                 </p>
-                <span class="tag">Kelas 10 — Fase E ✔</span>
+                <span class="tag">Fase E &amp; F — SMA/MA ✔</span>
             </div>
         </div>
 
