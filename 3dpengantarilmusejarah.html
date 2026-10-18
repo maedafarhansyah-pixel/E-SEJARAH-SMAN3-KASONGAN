@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chrono — Prinsip Ilmu Sejarah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input{font:inherit;color:inherit;}
+::selection{background:rgba(156,122,60,.24);color:#1c1814;}
+
+/* ============ TOKENS ============ */
+:root{
+  --bg:#f8f4eb;
+  --bg-2:#f2ede1;
+  --bg-3:#ece5d5;
+  --surface:#ffffff;
+  --surface-2:#fdfbf6;
+  --surface-3:#f5f0e3;
+
+  --border:rgba(28,24,20,.07);
+  --border-2:rgba(28,24,20,.13);
+  --border-3:rgba(28,24,20,.24);
+
+  --ink:#1c1814;
+  --ink-2:#4d463f;
+  --ink-3:#857d72;
+  --ink-4:#b0a89c;
+  --ink-5:#d4ccbc;
+
+  --bronze:#9c7a3c;
+  --bronze-2:#b89552;
+  --bronze-deep:#7a5e2c;
+  --bronze-tint:rgba(156,122,60,.06);
+  --bronze-soft:rgba(156,122,60,.12);
+  --bronze-glow:rgba(156,122,60,.24);
+
+  --rose:#a8473c;
+  --rose-tint:rgba(168,71,60,.06);
+  --teal:#3d6b5f;
+  --teal-tint:rgba(61,107,95,.06);
+  --emerald:#3d6b4a;
+  --emerald-tint:rgba(61,107,74,.06);
+
+  --sans:'Inter Tight',system-ui,-apple-system,sans-serif;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono','SF Mono',monospace;
+
+  --shadow-sm:0 1px 2px rgba(28,24,20,.04);
+  --shadow:0 2px 8px rgba(28,24,20,.06);
+  --shadow-lg:0 12px 32px rgba(28,24,20,.09);
+  --shadow-xl:0 24px 60px rgba(28,24,20,.14);
+
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ============ BASE ============ */
+html,body{height:100%;}
+body{
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.65;
+  color:var(--ink-2);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:'ss01','cv11';
+  overflow:hidden;
+}
+
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(156,122,60,.09), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 105%, rgba(156,122,60,.05), transparent 55%),
+    radial-gradient(ellipse 60% 40% at -5% 85%, rgba(168,71,60,.03), transparent 50%);
+}
+
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:9999;
+  opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+/* ============ TYPOGRAPHY ============ */
+h1,h2,h3,h4{color:var(--ink);font-weight:500;}
+h1{
+  font-family:var(--serif);
+  font-size:clamp(44px,7.5vw,92px);
+  line-height:.94;
+  letter-spacing:-.045em;
+  font-weight:350;
+  font-variation-settings:'opsz' 144,'SOFT' 0,'WONK' 0;
+}
+h2{
+  font-family:var(--serif);
+  font-size:clamp(26px,3.6vw,40px);
+  line-height:1.05;
+  letter-spacing:-.03em;
+  font-weight:400;
+  font-variation-settings:'opsz' 96,'SOFT' 0,'WONK' 0;
+}
+h3{
+  font-family:var(--serif);
+  font-size:22px;
+  line-height:1.25;
+  letter-spacing:-.02em;
+  font-weight:400;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+}
+p{color:var(--ink-2);line-height:1.75;}
+em{color:var(--bronze-deep);font-style:italic;}
+strong,b{color:var(--ink);font-weight:600;}
+a{color:var(--bronze-deep);text-decoration:none;}
+a:hover{text-decoration:underline;text-decoration-color:var(--bronze);text-underline-offset:3px;}
+
+/* ============ LAYOUT ============ */
+.app{display:flex;height:100vh;overflow:hidden;}
+
+/* ============ SIDEBAR ============ */
+.sidebar{
+  width:280px;flex-shrink:0;height:100vh;
+  display:flex;flex-direction:column;
+  background:var(--bg-2);
+  border-right:1px solid var(--border);
+  position:relative;z-index:30;
+}
+
+.brand{
+  padding:32px 24px 28px;
+  display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid var(--border);
+}
+.brand-mark{
+  width:38px;height:38px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:22px;font-weight:500;
+  color:var(--bg);
+  background:var(--ink);
+  border-radius:8px;
+  font-variation-settings:'opsz' 96,'WONK' 1;
+  letter-spacing:-.04em;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.15) inset,
+    0 4px 12px rgba(28,24,20,.15);
+}
+.brand-name{
+  font-family:var(--serif);font-size:20px;font-weight:400;
+  color:var(--ink);letter-spacing:-.02em;line-height:1.1;
+  font-variation-settings:'opsz' 24,'WONK' 0;
+}
+.brand-sub{
+  display:block;font-family:var(--mono);
+  font-size:9px;font-weight:500;
+  color:var(--ink-4);letter-spacing:.14em;
+  text-transform:uppercase;margin-top:4px;
+}
+
+.chapter-nav{
+  flex:1;overflow-y:auto;
+  padding:24px 16px;
+  scrollbar-width:none;
+}
+.chapter-nav::-webkit-scrollbar{display:none;}
+
+.nav-label{
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  color:var(--ink-4);letter-spacing:.18em;text-transform:uppercase;
+  padding:0 12px 14px;
+}
+.chapter-link{
+  display:flex;align-items:center;gap:14px;
+  width:100%;padding:11px 12px;
+  border-radius:7px;text-align:left;
+  color:var(--ink-3);position:relative;
+  transition:all .25s var(--ease);
+  margin-bottom:1px;
+}
+.chapter-link:hover{
+  color:var(--ink-2);
+  background:rgba(255,255,255,.5);
+}
+.chapter-link.active{
+  color:var(--ink);
+  background:var(--surface);
+  box-shadow:var(--shadow-sm);
+}
+.chapter-link.active::before{
+  content:'';position:absolute;left:-16px;
+  top:50%;transform:translateY(-50%);
+  width:2px;height:18px;
+  background:linear-gradient(180deg,var(--bronze),var(--bronze-deep));
+  border-radius:0 2px 2px 0;
+}
+.chapter-num{
+  font-family:var(--mono);font-size:10.5px;font-weight:400;
+  color:var(--ink-4);min-width:20px;letter-spacing:.02em;
+  transition:color .25s;
+}
+.chapter-link:hover .chapter-num,
+.chapter-link.active .chapter-num{color:var(--bronze);}
+.chapter-name{
+  font-size:13px;font-weight:500;line-height:1.35;
+  letter-spacing:-.005em;flex:1;
+}
+.chapter-check{
+  font-family:var(--mono);font-size:9px;
+  color:var(--bronze);opacity:0;transition:opacity .25s;
+}
+.chapter-link.visited .chapter-check{opacity:.7;}
+
+.sidebar-foot{
+  padding:20px 24px 24px;
+  border-top:1px solid var(--border);
+  background:rgba(248,244,235,.4);
+}
+.progress-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  color:var(--ink-4);letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.progress-label span:last-child{color:var(--bronze);letter-spacing:.04em;}
+.progress-track{
+  height:2px;background:rgba(156,122,60,.12);
+  border-radius:2px;overflow:hidden;margin-bottom:18px;
+}
+.progress-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--bronze-deep),var(--bronze),var(--bronze-2));
+  border-radius:2px;
+  transition:width .7s var(--ease);
+}
+.side-controls{display:flex;gap:6px;}
+.ctrl{
+  flex:1;height:32px;display:flex;align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--border-2);
+  border-radius:6px;font-size:12px;color:var(--ink-3);
+  transition:all .2s var(--ease);
+}
+.ctrl:hover{
+  border-color:var(--border-3);color:var(--ink);
+  background:rgba(255,255,255,.5);
+}
+.ctrl.active{
+  background:var(--bronze-tint);border-color:var(--bronze);color:var(--bronze-deep);
+}
+
+/* ============ MAIN ============ */
+.main{
+  flex:1;height:100vh;overflow-y:auto;
+  scroll-behavior:smooth;
+  position:relative;
+}
+.main::-webkit-scrollbar{width:10px;}
+.main::-webkit-scrollbar-track{background:transparent;}
+.main::-webkit-scrollbar-thumb{
+  background:rgba(28,24,20,.12);
+  border-radius:5px;border:3px solid var(--bg);
+}
+.main::-webkit-scrollbar-thumb:hover{background:rgba(28,24,20,.24);}
+
+.content{
+  max-width:760px;margin:0 auto;
+  padding:88px 56px 140px;
+}
+
+.content > *{
+  animation:reveal .7s var(--ease) both;
+}
+.content > *:nth-child(1){animation-delay:0s;}
+.content > *:nth-child(2){animation-delay:.06s;}
+.content > *:nth-child(3){animation-delay:.12s;}
+.content > *:nth-child(4){animation-delay:.18s;}
+.content > *:nth-child(5){animation-delay:.24s;}
+.content > *:nth-child(6){animation-delay:.30s;}
+.content > *:nth-child(7){animation-delay:.36s;}
+.content > *:nth-child(8){animation-delay:.42s;}
+
+@keyframes reveal{
+  from{opacity:0;transform:translateY(12px);filter:blur(3px);}
+  to{opacity:1;transform:translateY(0);filter:blur(0);}
+}
+
+/* ============ HERO ============ */
+.hero{margin-bottom:72px;}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:28px;flex-wrap:wrap;
+}
+.hero-eyebrow-line{
+  width:32px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--bronze),transparent);
+  opacity:.5;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 10px;border-radius:999px;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--border-2);color:var(--bronze-deep);
+  background:var(--bronze-tint);
+}
+.chip-gold{background:var(--bronze-tint);color:var(--bronze-deep);border-color:rgba(156,122,60,.25);}
+.chip-rose{background:var(--rose-tint);color:var(--rose);border-color:rgba(168,71,60,.2);}
+.chip-teal{background:var(--teal-tint);color:var(--teal);border-color:rgba(61,107,95,.2);}
+.chip-emerald{background:var(--emerald-tint);color:var(--emerald);border-color:rgba(61,107,74,.2);}
+
+.hero-meta{
+  font-family:var(--mono);font-size:10px;
+  color:var(--ink-4);letter-spacing:.16em;text-transform:uppercase;
+}
+.hero-title{
+  margin-bottom:16px;
+  color:var(--ink);
+}
+.hero-title .accent{
+  font-style:italic;
+  font-variation-settings:'opsz' 144,'SOFT' 100,'WONK' 1;
+  color:var(--bronze-deep);
+}
+.hero-lede{
+  font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);
+  line-height:1.45;color:var(--ink-2);font-style:italic;
+  letter-spacing:-.01em;margin-bottom:24px;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+  font-weight:350;
+}
+.hero-quote{
+  border-left:2px solid var(--bronze);
+  padding:6px 0 6px 26px;
+  margin:36px 0;
+  font-family:var(--serif);font-style:italic;
+  font-size:19px;line-height:1.55;
+  color:var(--ink-2);font-weight:350;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+  position:relative;
+}
+.hero-quote::before{
+  content:'';position:absolute;left:-2px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--bronze) 0%,var(--bronze-deep) 40%,transparent 100%);
+}
+.hero-quote cite{
+  display:block;margin-top:12px;
+  font-family:var(--mono);font-style:normal;
+  font-size:10px;color:var(--ink-4);
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.hero-body{
+  font-size:16px;color:var(--ink-2);line-height:1.75;
+  max-width:600px;font-weight:400;
+}
+
+/* ============ SECTION ============ */
+.section{margin-bottom:64px;}
+.section-header{
+  display:flex;align-items:baseline;gap:20px;
+  margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.section-header::after{
+  content:'';position:absolute;bottom:-1px;left:0;
+  width:40px;height:1px;background:var(--bronze);
+}
+.section-num{
+  font-family:var(--serif);font-size:14px;font-weight:400;
+  font-style:italic;color:var(--bronze);
+  letter-spacing:.02em;flex-shrink:0;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 1;
+}
+.section-title{
+  font-family:var(--serif);font-size:clamp(23px,2.9vw,31px);
+  font-weight:400;letter-spacing:-.025em;line-height:1.15;
+  color:var(--ink);
+  font-variation-settings:'opsz' 96,'SOFT' 0,'WONK' 0;
+}
+.section-desc{
+  font-size:14.5px;color:var(--ink-3);
+  line-height:1.7;margin:16px 0 28px;max-width:600px;
+}
+
+/* ============ COMPONENT CARDS ============ */
+.comp-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px;margin-top:24px;
+}
+.comp-card{
+  position:relative;text-align:left;padding:24px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  transition:all .35s var(--ease);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.comp-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at top left,rgba(156,122,60,.06),transparent 60%);
+  opacity:0;transition:opacity .35s var(--ease);
+  pointer-events:none;
+}
+.comp-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--border-2);
+  box-shadow:var(--shadow-lg);
+}
+.comp-card:hover::before{opacity:1;}
+.comp-chip{
+  display:inline-block;padding:2px 8px;
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  border-radius:4px;margin-bottom:16px;
+  color:var(--bronze-deep);background:var(--bronze-tint);
+  border:1px solid rgba(156,122,60,.18);
+}
+.comp-title{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  color:var(--ink);margin-bottom:6px;line-height:1.25;
+  letter-spacing:-.015em;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+}
+.comp-desc{
+  font-family:var(--mono);font-size:10px;
+  color:var(--ink-4);letter-spacing:.06em;
+  line-height:1.4;
+}
+.comp-arrow{
+  position:absolute;right:20px;bottom:20px;
+  font-size:14px;color:var(--ink-4);
+  transition:all .3s var(--ease);
+}
+.comp-card:hover .comp-arrow{
+  transform:translateX(4px);color:var(--bronze);
+}
+
+/* ============ INFO CARDS ============ */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:10px;margin-top:20px;
+}
+.info-card{
+  text-align:left;padding:20px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  transition:all .3s var(--ease);
+  display:flex;flex-direction:column;
+  min-height:120px;position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.info-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at top left,var(--tint,rgba(156,122,60,.06)),transparent 55%);
+  opacity:0;transition:opacity .3s var(--ease);
+  pointer-events:none;
+}
+.info-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--border-2);
+  box-shadow:var(--shadow-lg);
+}
+.info-card:hover::before{opacity:1;}
+.info-card .ic-eyebrow{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bronze-deep);margin-bottom:12px;
+}
+.info-card .ic-icon{
+  font-size:22px;margin-bottom:10px;line-height:1;
+  filter:saturate(.85);
+}
+.info-card .ic-name{
+  font-family:var(--serif);font-size:16px;font-weight:400;
+  color:var(--ink);margin-bottom:6px;
+  line-height:1.25;letter-spacing:-.015em;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+}
+.info-card .ic-sub{
+  font-size:12px;color:var(--ink-3);
+  line-height:1.5;margin-top:auto;
+}
+.info-card.amber{--tint:rgba(156,122,60,.08);}
+.info-card.teal{--tint:rgba(61,107,95,.08);}
+.info-card.teal .ic-eyebrow{color:var(--teal);}
+.info-card.rose{--tint:rgba(168,71,60,.08);}
+.info-card.rose .ic-eyebrow{color:var(--rose);}
+.info-card.emerald{--tint:rgba(61,107,74,.08);}
+.info-card.emerald .ic-eyebrow{color:var(--emerald);}
+
+/* ============ TABS ============ */
+.tabs{
+  display:flex;gap:2px;flex-wrap:wrap;
+  margin:0 0 20px;padding:4px;
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  border-radius:8px;width:fit-content;max-width:100%;
+}
+.tab-btn{
+  padding:8px 16px;border-radius:6px;
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  color:var(--ink-3);
+  letter-spacing:.08em;text-transform:uppercase;
+  transition:all .25s var(--ease);
+  white-space:nowrap;
+}
+.tab-btn:hover{color:var(--ink-2);}
+.tab-btn.active{
+  background:var(--surface);
+  color:var(--bronze-deep);
+  box-shadow:var(--shadow-sm);
+}
+.tab-content{animation:reveal .4s var(--ease) both;}
+
+/* ============ TABLES ============ */
+.mini-table{
+  width:100%;border-collapse:separate;border-spacing:0;
+  font-size:14px;
+  background:var(--surface);
+  border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);
+  margin:8px 0;
+  box-shadow:var(--shadow-sm);
+}
+.mini-table th{
+  padding:12px 16px;text-align:left;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bronze-deep);background:var(--surface-3);
+  border-bottom:1px solid var(--border);
+}
+.mini-table td{
+  padding:14px 16px;
+  border-top:1px solid var(--border);
+  color:var(--ink-2);line-height:1.6;
+  vertical-align:top;
+}
+.mini-table tr:first-child td{border-top:none;}
+.mini-table td:first-child{font-weight:500;color:var(--ink);}
+
+/* ============ CALLOUTS ============ */
+.callout{
+  padding:18px 22px;border-radius:8px;
+  font-size:14px;line-height:1.65;
+  margin:20px 0;
+  border-left:2px solid var(--bronze);
+  background:var(--bronze-tint);
+  color:var(--ink-2);
+  position:relative;
+}
+.callout p:last-child{margin-bottom:0;}
+.callout b,.callout strong{color:var(--ink);}
+.callout-teal{
+  border-color:var(--teal);
+  background:var(--teal-tint);
+}
+.callout-rose{
+  border-color:var(--rose);
+  background:var(--rose-tint);
+}
+.callout-emerald{
+  border-color:var(--emerald);
+  background:var(--emerald-tint);
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 24px;border-radius:7px;
+  font-family:var(--sans);font-size:13.5px;font-weight:500;
+  letter-spacing:-.005em;
+  transition:all .3s var(--ease);
+  white-space:nowrap;position:relative;
+}
+.btn-primary{
+  color:var(--bg);
+  background:var(--ink);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.12) inset,
+    0 8px 20px rgba(28,24,20,.18);
+}
+.btn-primary:hover{
+  transform:translateY(-1px);
+  background:#000;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.15) inset,
+    0 12px 28px rgba(28,24,20,.24);
+}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary:disabled{
+  background:var(--ink-5);color:var(--ink-3);
+  box-shadow:none;cursor:not-allowed;transform:none;
+}
+.btn-secondary{
+  background:var(--surface);
+  border:1px solid var(--border-2);
+  color:var(--ink);
+  box-shadow:var(--shadow-sm);
+}
+.btn-secondary:hover{
+  background:var(--surface-2);
+  border-color:var(--border-3);
+  color:var(--bronze-deep);
+  box-shadow:var(--shadow);
+}
+.btn-ghost{
+  background:transparent;color:var(--ink-3);
+  border:1px solid transparent;
+}
+.btn-ghost:hover{color:var(--ink);background:var(--surface);}
+.btn-large{padding:15px 30px;font-size:14.5px;border-radius:9px;}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;}
+
+/* ============ CHAPTER NAV BOTTOM ============ */
+.chapter-nav-bottom{
+  display:flex;justify-content:space-between;
+  gap:12px;margin-top:80px;padding-top:32px;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+
+/* ============ LISTS ============ */
+.styled-list{list-style:none;padding:0;margin:20px 0;counter-reset:li;}
+.styled-list li{
+  position:relative;padding:14px 0 14px 40px;
+  border-bottom:1px solid var(--border);
+  color:var(--ink-2);line-height:1.65;
+  font-size:14.5px;
+}
+.styled-list li:last-child{border-bottom:none;}
+.styled-list li::before{
+  counter-increment:li;content:counter(li,decimal-leading-zero);
+  position:absolute;left:0;top:14px;
+  font-family:var(--mono);font-size:10.5px;font-weight:500;
+  color:var(--bronze);letter-spacing:.04em;
+  width:26px;
+}
+.bullet-list{list-style:none;padding:0;margin:20px 0;}
+.bullet-list li{
+  position:relative;padding:8px 0 8px 26px;
+  color:var(--ink-2);line-height:1.7;font-size:14.5px;
+}
+.bullet-list li::before{
+  content:'';position:absolute;left:8px;top:16px;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--bronze);
+}
+
+/* ============ FORM ============ */
+.form-group{margin-bottom:20px;}
+.form-label{
+  display:block;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  color:var(--ink-3);letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.form-input{
+  width:100%;padding:13px 16px;
+  border:1px solid var(--border-2);
+  border-radius:7px;
+  background:var(--surface);
+  font-size:14px;color:var(--ink);
+  transition:all .25s var(--ease);
+}
+.form-input:focus{
+  outline:none;
+  border-color:var(--bronze);
+  background:var(--surface);
+  box-shadow:
+    0 0 0 3px rgba(156,122,60,.12),
+    0 4px 16px rgba(156,122,60,.06);
+}
+.form-input::placeholder{color:var(--ink-4);}
+
+/* ============ QUIZ ============ */
+.quiz-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:28px;padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;gap:14px;
+}
+.quiz-progress{
+  display:flex;flex-direction:column;gap:4px;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  color:var(--ink-4);letter-spacing:.16em;text-transform:uppercase;
+}
+.quiz-progress strong{
+  font-family:var(--serif);font-size:22px;font-weight:400;
+  color:var(--bronze-deep);letter-spacing:-.02em;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+}
+.quiz-progress strong span{
+  color:var(--ink-4);font-size:12px;
+  font-family:var(--mono);letter-spacing:.02em;
+}
+.quiz-score{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 16px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-family:var(--mono);font-size:10px;
+  color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:var(--shadow-sm);
+}
+.quiz-score strong{
+  font-family:var(--serif);font-size:20px;font-weight:400;
+  color:var(--bronze-deep);letter-spacing:-.02em;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 0;
+}
+.quiz-type{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bronze-deep);margin-bottom:18px;
+}
+.quiz-type::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--bronze);
+}
+.quiz-question{
+  font-family:var(--serif);
+  font-size:clamp(19px,2.4vw,25px);
+  font-weight:400;color:var(--ink);
+  line-height:1.35;margin-bottom:26px;
+  letter-spacing:-.02em;
+  font-variation-settings:'opsz' 96,'SOFT' 0,'WONK' 0;
+}
+.quiz-option{
+  display:flex;align-items:flex-start;gap:14px;
+  width:100%;text-align:left;
+  padding:16px 20px;margin-bottom:8px;
+  background:var(--surface);
+  border:1px solid var(--border-2);
+  border-radius:9px;
+  transition:all .25s var(--ease);
+  font-size:14.5px;line-height:1.55;
+  color:var(--ink-2);font-weight:400;
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  animation:reveal .5s var(--ease) both;
+}
+.quiz-option:nth-child(1){animation-delay:.03s;}
+.quiz-option:nth-child(2){animation-delay:.07s;}
+.quiz-option:nth-child(3){animation-delay:.11s;}
+.quiz-option:nth-child(4){animation-delay:.15s;}
+.quiz-option:hover:not(:disabled){
+  border-color:var(--bronze);
+  background:var(--surface-2);
+  color:var(--ink);
+  transform:translateX(3px);
+  box-shadow:var(--shadow);
+}
+.quiz-option:disabled{cursor:default;}
+.quiz-option .letter{
+  width:26px;height:26px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface-3);
+  border:1px solid var(--border);
+  color:var(--ink-3);
+  border-radius:6px;font-family:var(--mono);
+  font-weight:500;font-size:11px;
+  transition:all .25s var(--ease);
+}
+.quiz-option:hover:not(:disabled) .letter{
+  background:var(--bronze-tint);
+  border-color:rgba(156,122,60,.25);
+  color:var(--bronze-deep);
+}
+.quiz-option.correct{
+  border-color:var(--emerald);
+  background:var(--emerald-tint);
+  color:var(--ink);
+}
+.quiz-option.correct .letter{
+  background:var(--emerald);color:#fff;border-color:var(--emerald);
+}
+.quiz-option.wrong{
+  border-color:var(--rose);
+  background:var(--rose-tint);
+  animation:shake .4s var(--ease);
+}
+.quiz-option.wrong .letter{
+  background:var(--rose);color:#fff;border-color:var(--rose);
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-6px);}
+  40%{transform:translateX(6px);}
+  60%{transform:translateX(-3px);}
+  80%{transform:translateX(3px);}
+}
+.quiz-feedback{
+  display:none;padding:16px 20px;margin-top:14px;
+  border-radius:8px;font-size:14px;
+  line-height:1.65;color:var(--ink-2);
+  border-left:2px solid var(--bronze);
+  background:var(--bronze-tint);
+}
+.quiz-feedback.show{display:block;animation:reveal .3s var(--ease) both;}
+.quiz-feedback.ok{
+  border-color:var(--emerald);
+  background:var(--emerald-tint);
+}
+.quiz-feedback.ok b{color:var(--emerald);}
+.quiz-feedback.no{
+  border-color:var(--rose);
+  background:var(--rose-tint);
+}
+.quiz-feedback.no b{color:var(--rose);}
+
+/* ============ SCORE RESULT ============ */
+.score-display{text-align:center;padding:40px 0 32px;}
+.score-big{
+  font-family:var(--serif);
+  font-size:clamp(72px,12vw,120px);
+  font-weight:300;line-height:.9;
+  letter-spacing:-.05em;
+  color:var(--ink);
+  margin-bottom:16px;
+  font-variation-settings:'opsz' 144,'SOFT' 0,'WONK' 0;
+}
+.score-big .score-total{
+  color:var(--ink-4);
+  font-size:.42em;
+  font-weight:400;
+  letter-spacing:-.02em;
+}
+.score-pct{
+  font-family:var(--serif);font-style:italic;
+  font-size:22px;font-weight:300;
+  color:var(--bronze-deep);
+  margin-bottom:16px;
+  font-variation-settings:'opsz' 24,'SOFT' 0,'WONK' 1;
+}
+.score-msg{
+  font-size:15px;color:var(--ink-2);
+  max-width:480px;margin:0 auto;
+  line-height:1.7;
+}
+
+/* ============ MODAL ============ */
+.modal{
+  position:fixed;inset:0;z-index:1000;
+  display:none;align-items:center;justify-content:center;
+  padding:24px;
+  background:rgba(28,24,20,.32);
+  backdrop-filter:blur(8px) saturate(120%);
+  -webkit-backdrop-filter:blur(8px) saturate(120%);
+}
+.modal.show{display:flex;animation:modalFade .3s var(--ease) both;}
+@keyframes modalFade{from{opacity:0;}to{opacity:1;}}
+.modal-card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  max-width:660px;width:100%;
+  max-height:85vh;overflow-y:auto;
+  padding:40px 44px 36px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.8) inset,
+    var(--shadow-xl);
+  animation:modalPop .45s var(--ease) both;
+}
+@keyframes modalPop{
+  from{opacity:0;transform:scale(.94) translateY(24px);filter:blur(12px);}
+  to{opacity:1;transform:scale(1) translateY(0);filter:blur(0);}
+}
+.modal-card::-webkit-scrollbar{width:8px;}
+.modal-card::-webkit-scrollbar-track{background:transparent;}
+.modal-card::-webkit-scrollbar-thumb{
+  background:rgba(28,24,20,.15);border-radius:4px;
+  border:2px solid var(--surface);
+}
+.modal-close{
+  position:absolute;top:22px;right:22px;
+  width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface-2);
+  border:1px solid var(--border-2);
+  border-radius:6px;
+  font-size:13px;color:var(--ink-3);
+  transition:all .2s var(--ease);
+}
+.modal-close:hover{
+  color:var(--bronze-deep);border-color:var(--bronze);
+  background:var(--bronze-tint);
+}
+.modal-card h3{
+  font-family:var(--serif);
+  font-size:28px;font-weight:400;
+  line-height:1.2;margin:8px 0 20px;
+  letter-spacing:-.025em;color:var(--ink);
+  font-variation-settings:'opsz' 96,'SOFT' 0,'WONK' 0;
+  padding-right:40px;
+}
+.modal-card h3 .modal-icon{
+  margin-right:12px;font-size:26px;
+  filter:saturate(.85);
+}
+.modal-card p{margin-bottom:14px;line-height:1.75;color:var(--ink-2);}
+.modal-card ul,.modal-card ol{
+  padding-left:22px;margin:16px 0;color:var(--ink-2);
+}
+.modal-card li{
+  margin-bottom:8px;line-height:1.65;
+}
+.modal-card li::marker{color:var(--bronze);}
+.modal-tag{
+  display:inline-block;
+  padding:3px 10px;
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  background:var(--bronze-tint);color:var(--bronze-deep);
+  border:1px solid rgba(156,122,60,.18);
+  border-radius:4px;margin-bottom:10px;
+}
+.modal-card .btn-row{
+  margin-top:28px;padding-top:22px;
+  border-top:1px solid var(--border);
+}
+
+/* ============ MOBILE ============ */
+.mobile-bar{
+  display:none;
+  position:fixed;top:0;left:0;right:0;
+  height:56px;z-index:40;
+  align-items:center;padding:0 16px;gap:12px;
+  background:rgba(242,237,225,.94);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.menu-btn{
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:6px;font-size:15px;color:var(--ink);
+}
+.mobile-title{
+  font-family:var(--serif);font-size:15px;font-weight:400;
+  color:var(--ink);flex:1;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mobile-progress{
+  font-family:var(--mono);font-size:10px;
+  color:var(--bronze-deep);font-weight:500;letter-spacing:.06em;
+}
+.backdrop{
+  display:none;position:fixed;inset:0;
+  background:rgba(28,24,20,.25);
+  backdrop-filter:blur(4px);
+  z-index:25;opacity:0;
+  transition:opacity .3s var(--ease);
+}
+.backdrop.show{opacity:1;}
+
+@media (max-width:900px){
+  .mobile-bar{display:flex;}
+  .sidebar{
+    position:fixed;left:0;top:0;
+    transform:translateX(-100%);
+    transition:transform .35s var(--ease);
+    box-shadow:20px 0 60px rgba(28,24,20,.18);
+    width:280px;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .backdrop{display:block;}
+  .main{padding-top:56px;}
+  .content{padding:40px 24px 90px;}
+  .hero{margin-bottom:52px;}
+  .section{margin-bottom:52px;}
+  .comp-grid,.info-grid{
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:8px;
+  }
+  .modal{padding:12px;}
+  .modal-card{padding:28px 24px 24px;border-radius:12px;}
+  .modal-card h3{font-size:22px;padding-right:32px;}
+  .btn{font-size:13px;padding:11px 20px;}
+  .btn-large{padding:14px 24px;}
+  .mini-table{font-size:13px;}
+  .mini-table th,.mini-table td{padding:10px 12px;}
+  .chapter-nav-bottom{flex-direction:column-reverse;}
+  .chapter-nav-bottom .btn{width:100%;}
+}
+@media (max-width:520px){
+  .content{padding:32px 18px 80px;}
+  h1{font-size:40px;}
+  .hero-quote{font-size:17px;padding-left:20px;}
+  .section-header{flex-direction:column;align-items:flex-start;gap:6px;}
+  .comp-grid,.info-grid{grid-template-columns:1fr;}
+  .score-big{font-size:76px;}
+  .quiz-question{font-size:19px;}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="mobile-bar">
+  <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+  <span class="mobile-title" id="mobileTitle">Chrono</span>
+  <span class="mobile-progress" id="mobileProgress">00 / 08</span>
+</header>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">C</div>
+      <div>
+        <div class="brand-name">Chrono</div>
+        <div class="brand-sub">Prinsip Ilmu Sejarah</div>
+      </div>
+    </div>
+    <nav class="chapter-nav" id="chapterNav"></nav>
+    <div class="sidebar-foot">
+      <div class="progress-label">
+        <span>Progres</span>
+        <span id="progressText">0 / 8</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="side-controls">
+        <button class="ctrl" id="soundBtn" title="Suara">🔊</button>
+        <button class="ctrl" id="restartBtn" title="Ulangi">↻</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-card" id="modalCard"></div>
+</div>
+
+<script>
+const CP_ATP_DPL = {
+  cp:`Pada akhir Fase E, peserta didik mampu <b>memahami konsep dasar ilmu sejarah</b> serta <b>menginterpretasi berbagai peristiwa sejarah Indonesia</b> yang berkaitan dengan masa Kerajaan Hindu–Buddha, Kerajaan Islam, Penjajahan Bangsa Barat, hingga Perjuangan Pergerakan Kebangsaan Indonesia.<br><br><em>Sumber: Panduan Mata Pelajaran Sejarah, BSKAP Kemendikbudristek (2022), hlm. 29.</em>`,
+  atp:['Menjelaskan pengertian dan ruang lingkup sejarah','Menganalisis konsep ruang, waktu, diakronis, dan sinkronis dalam sejarah','Menjelaskan kegunaan sejarah bagi kehidupan masa kini','Membedakan pengertian sumber, bukti, dan fakta sejarah','Menganalisis hakikat sejarah dan dimensi-dimensinya','Menerapkan metode penelitian sejarah sederhana'],
+  dpl:[
+    { name:'Penalaran Kritis', desc:'Menganalisis perbedaan antara sumber, fakta, dan bukti sejarah serta menyimpulkan makna sejarah berdasarkan data yang tersedia.' },
+    { name:'Komunikasi', desc:'Menyampaikan hasil diskusi atau presentasi secara lisan maupun tertulis menggunakan istilah sejarah yang tepat.' },
+    { name:'Kolaborasi', desc:'Bekerja sama dalam mengidentifikasi berbagai jenis sumber sejarah dan menyelesaikan tugas kelompok secara bertanggung jawab.' },
+    { name:'Kreativitas', desc:'Menyajikan hasil pemahaman melalui infografis, peta konsep, atau media digital yang menarik.' },
+    { name:'Kemandirian', desc:'Mencari informasi dari berbagai sumber secara mandiri dan bertanggung jawab.' },
+    { name:'Kewargaan', desc:'Menunjukkan sikap menghargai peninggalan sejarah sebagai identitas bangsa dan sumber pembelajaran kehidupan.' }
+  ],
+  deep:[
+    { name:'Mindful Learning', desc:'Peserta didik belajar dengan fokus, aktif terlibat, dan memahami tujuan belajarnya.' },
+    { name:'Meaningful Learning', desc:'Materi dikaitkan dengan kehidupan nyata untuk mengembangkan berpikir kritis dan pemecahan masalah.' },
+    { name:'Joyful Learning', desc:'Suasana belajar yang positif, interaktif, dan kolaboratif sehingga motivasi belajar tinggi.' }
+  ]
+};
+
+const ETIMOLOGI = [
+  { key:'arab', label:'Arab · Syajaratun', content:`<p><b>Syajaratun (شجرة)</b> — berarti <em>pohon</em>.</p><p>Kata ini mengandung makna mendalam: seperti pohon yang memiliki <b>akar</b> (asal-usul), <b>batang</b> (intisari), <b>cabang</b> (peristiwa besar), dan <b>ranting</b> (kejadian kecil yang saling terkait). Sejarah dipandang sebagai sebuah <b>silsilah</b> yang terus tumbuh dan bercabang.</p><p><b>Contoh:</b> Silsilah raja-raja Mataram, pohon keluarga nenek moyang, atau evolusi dinasti.</p><p><b>Implikasi:</b> Sejarah tidak pernah berdiri sendiri — selalu terhubung antara masa lalu, kini, dan masa depan.</p>` },
+  { key:'inggris', label:'Inggris · History', content:`<p><b>History</b> — dari Yunani <em>historia</em> = <b>pengetahuan yang diperoleh melalui penyelidikan</b>.</p><p>Dalam tradisi Yunani kuno, <em>historia</em> merujuk pada kegiatan bertanya, mengumpulkan informasi, dan menyusunnya menjadi narasi bermakna. Ini menekankan bahwa sejarah adalah hasil <b>proses penelitian dan interpretasi</b>, bukan sekadar fakta mentah.</p><p><b>Contoh:</b> Herodotus (Bapak Sejarah) menulis tentang Perang Yunani-Persia dengan mengumpulkan kesaksian dari berbagai sumber.</p><p><b>Implikasi:</b> Sejarah sebagai ilmu menuntut metode kritis dan verifikasi data.</p>` },
+  { key:'jerman', label:'Jerman · Geschichte', content:`<p><b>Geschichte</b> — berarti <em>sesuatu yang telah terjadi</em> atau <em>kejadian</em>.</p><p>Kata ini menekankan pada <b>realitas peristiwa masa lampau</b> yang pernah dialami manusia. Geschichte adalah apa yang sungguh-sungguh berlangsung, berbeda dengan narasi atau tafsir atasnya.</p><p><b>Contoh:</b> Peristiwa Proklamasi 17 Agustus 1945, atau Pertempuran Surabaya 10 November 1945.</p><p><b>Implikasi:</b> Sejarah harus berpijak pada fakta dan bukti otentik agar tidak menjadi mitos.</p>` }
+];
+
+const KBBI = [
+  { n:1, title:'Silsilah / Asal-usul', desc:'Menekankan dimensi <b>genealogis</b> — sejarah sebagai catatan silsilah keluarga/bangsa.' },
+  { n:2, title:'Kejadian Nyata Masa Lampau', desc:'Menekankan <b>objektivitas dan realitas historis</b> — sejarah sebagai fakta nyata.' },
+  { n:3, title:'Ilmu Pengetahuan / Uraian', desc:'Menekankan dimensi <b>ilmiah dan naratif</b> — sejarah sebagai disiplin ilmu yang disusun sistematis.' }
+];
+
+const MRW = [
+  { name:'Manusia', icon:'🧑', sub:'Subjek & objek utama', content:`<p><b>Manusia adalah pelaku dan pencipta sejarah.</b> Tanpa manusia, tidak ada peristiwa sejarah. Manusia berperan sebagai:</p><ul><li><b>Aktor:</b> Individu atau kelompok yang bertindak (Soekarno, pahlawan, rakyat).</li><li><b>Pengamat:</b> Saksi dan pencatat peristiwa.</li><li><b>Penerima dampak:</b> Peristiwa sejarah selalu berdampak pada manusia.</li></ul><p><b>Contoh:</b> Perjuangan kemerdekaan tidak lepas dari peran pemuda, tokoh, dan rakyat.</p>` },
+  { name:'Ruang', icon:'🌍', sub:'Dimensi spasial', content:`<p><b>Ruang adalah lokasi geografis</b> di mana peristiwa terjadi. Ruang mempengaruhi jalannya sejarah.</p><ul><li><b>Aspek Geografis:</b> Letak, iklim, topografi, sumber daya.</li><li><b>Aspek Sosial-Budaya:</b> Ruang interaksi antarmanusia.</li><li><b>Aspek Politik:</b> Batas wilayah kekuasaan.</li></ul><p><b>Contoh:</b> Letak Indonesia di jalur perdagangan internasional menjadi faktor berkembangnya kerajaan maritim seperti Sriwijaya dan Majapahit.</p>` },
+  { name:'Waktu', icon:'⏳', sub:'Dimensi temporal', content:`<p><b>Waktu adalah kerangka kronologis</b> yang menjadi urutan peristiwa.</p><ul><li><b>Kronologis:</b> Urutan waktu melihat proses dan perkembangan.</li><li><b>Periodisasi:</b> Pembagian waktu menjadi periode (praaksara, Hindu-Buddha, Islam, kolonial, kemerdekaan).</li><li><b>Perubahan &amp; Kesinambungan:</b> Apa yang berubah dan apa yang bertahan.</li></ul><p><b>Contoh:</b> Sumpah Pemuda (1928) terjadi di masa pergerakan nasional, menjadi tonggak kesadaran berbangsa.</p>` }
+];
+
+const TOKOH = [
+  { num:1, name:'W.J.S. Poerwodarminta', sub:'Leksikografer Indonesia', content:`<p>Dalam <em>Kamus Umum Bahasa Indonesia</em> (1953), sejarah adalah:</p><ul><li><b>Kesusasteraan lama, silsilah, dan asal-usul</b> — sejarah sebagai catatan genealogis dan tradisi lisan.</li><li><b>Kejadian yang benar-benar terjadi di masa lampau</b> — sejarah sebagai realitas objektif.</li><li><b>Ilmu pengetahuan, cerita pengalaman tentang</b> — sejarah sebagai disiplin ilmu.</li></ul><p><b>Kontribusi:</b> Penyusun kamus bahasa Indonesia pertama yang menjadi rujukan utama, menekankan tiga dimensi: genealogis, faktual, dan ilmiah.</p>` },
+  { num:2, name:'R. Moh. Ali', sub:'Sejarawan Akademisi', content:`<p>Dalam <em>Pengantar Ilmu Sejarah</em>:</p><ul><li><b>Jumlah perubahan-perubahan, kejadian, dan peristiwa</b> dalam kenyataan sekitar.</li><li><b>Cerita tentang perubahan</b> yang merupakan realitas tersebut.</li><li><b>Ilmu yang bertugas menyelidiki</b> perubahan tersebut.</li></ul><p><b>Makna terpenting:</b> Konsep <b>PERUBAHAN</b>. Sejarah selalu bergerak dinamis, bukan statis.</p>` },
+  { num:3, name:'Herodotus', sub:'Bapak Sejarah (484–425 SM)', content:`<p>Dijuluki <em>"The Father of History"</em>. Karyanya: <em>Historia</em> (Perang Yunani–Persia).</p><p>Menurut Herodotus, sejarah tidak berkembang ke arah depan dengan tujuan pasti, melainkan bergerak seperti <b>garis lingkaran</b> yang tinggi rendahnya diakibatkan keadaan manusia.</p><p><b>Kontribusi:</b> Tokoh pertama yang menulis sejarah secara sistematis, menekankan pentingnya <b>bukti dan kesaksian</b>.</p>` },
+  { num:4, name:'Ibnu Khaldun', sub:'Bapak Historiografi (1332–1406 M)', content:`<p>Dalam <em>Mukadimah</em>:</p><p>Sejarah adalah catatan tentang <b>masyarakat, umat manusia, atau peradaban dunia</b>, dan perubahan yang terjadi pada watak masyarakat. Mencakup seluruh proses perubahan dengan segala sebab dan akibatnya.</p><p><b>Kontribusi:</b> Bapak Pendiri Historiografi, Sosiologi, dan Ekonomi. Menekankan analisis <b>peradaban dan perubahan sosial</b>.</p>` },
+  { num:5, name:'Aristoteles', sub:'Filsuf Yunani (384–322 SM)', content:`<p>Menurut Aristoteles, sejarah adalah:</p><ul><li><b>Sistem yang meneliti kejadian sejak awal</b> yang tersusun dalam bentuk <b>kronologi</b>.</li><li><b>Peristiwa masa lalu</b> yang memiliki catatan, record, dan bukti-bukti konkrit.</li></ul><p><b>Kontribusi:</b> Menekankan aspek kronologis dan bukti empiris. Sejarah harus disusun teratur dan dapat dipertanggungjawabkan secara ilmiah.</p>` },
+  { num:6, name:'Mohammad Yamin', sub:'Pahlawan Nasional & Sejarawan', content:`<p>Sejarah adalah <b>ilmu pengetahuan yang disusun atas hasil penyelidikan</b> dari beberapa peristiwa yang mampu <b>dibuktikan dengan kenyataan (fakta)</b>.</p><p><b>Kontribusi:</b> Menekankan bahwa sejarah harus berdasarkan penyelidikan dan fakta yang dapat dibuktikan. Sejarah bukan sekadar cerita — tetapi ilmu dengan metode dan bukti.</p>` },
+  { num:7, name:'R.G. Collingwood', sub:'Filsuf Inggris (1889–1943)', content:`<p>Dalam <em>The Idea of History</em> (1946):</p><ul><li>Sejarah adalah sesuatu yang <b>bersifat ilmiah</b>.</li><li>Tugas sejarawan adalah <b>menyelidiki kembali pemikiran manusia di masa lampau</b>.</li><li>Sejarah berguna untuk mempelajari <b>hakikat manusia</b>.</li></ul><p><b>Kontribusi:</b> Pendekatan filosofis — sejarah bukan hanya peristiwa, tetapi pemikiran di balik tindakan manusia.</p>` },
+  { num:8, name:'Kuntowijoyo', sub:'Bapak Sejarah Indonesia (1943–2005)', content:`<p>Sejarah adalah peristiwa yang sudah terjadi di masa lalu yang <b>direkonstruksi</b> atau membangun kembali kejadian masa lampau.</p><p><b>Kontribusi:</b> Menekankan aspek <b>REKONSTRUKSI</b> — sejarah bukan sekadar mencatat, tetapi membangun kembali masa lalu berdasarkan bukti-bukti yang tersisa.</p>` }
+];
+
+const HAKIKAT = [
+  { name:'Peristiwa', icon:'📜', desc:'Kejadian nyata yang unik, abadi, dan penting', content:`<p>Sejarah sebagai <b>peristiwa</b> menekankan kejadian nyata masa lampau yang memiliki sifat:</p><ul><li><b>Unik</b> — hanya terjadi sekali.</li><li><b>Abadi</b> — tetap dikenang sepanjang masa.</li><li><b>Penting</b> — menjadi momentum/titik balik.</li></ul><p><b>Contoh:</b> Proklamasi Kemerdekaan 17 Agustus 1945, Sumpah Pemuda 28 Oktober 1928, Perang Dunia II.</p>` },
+  { name:'Kisah', icon:'📖', desc:'Narasi yang menghidupkan pelaku', content:`<p>Sejarah sebagai <b>kisah</b> adalah narasi yang disusun berdasarkan peristiwa, melibatkan <b>pelaku sejarah</b> dengan pengalaman, motivasi, dan perannya. Kisah memberikan wajah manusiawi pada peristiwa.</p><p><b>Contoh:</b> Biografi Pangeran Diponegoro, Cut Nyak Dien, atau Soekarno; Hikayat Hang Tuah.</p>` },
+  { name:'Seni', icon:'🎨', desc:'Daya imajinasi & kreativitas', content:`<p>Sejarah sebagai <b>seni</b> berarti penulisan sejarah membutuhkan <b>daya imajinasi, kreativitas, dan kepekaan rasa</b>. Sejarawan tidak hanya menyajikan fakta mentah, tetapi merangkai fakta menjadi narasi hidup.</p><p><b>Contoh:</b> Rekonstruksi masyarakat Hindu-Buddha dari relief Candi Borobudur, interpretasi lukisan gua, analisis filosofis wayang kulit.</p>` },
+  { name:'Ilmu', icon:'🔬', desc:'Metode ilmiah sistematis', content:`<p>Sejarah sebagai <b>ilmu</b> berarti kajian dilakukan sistematis dengan metode ilmiah: <b>heuristik, kritik, interpretasi, historiografi</b>.</p><p><b>Contoh:</b> Penelitian arkeologi, historiografi kritis yang menelaah ulang narasi sejarah resmi.</p>` }
+];
+
+const SUMBER = [
+  { id:'tertulis', name:'Sumber Tertulis', type:'Tulisan & Dokumen', icon:'📜', content:`<p><b>Sumber tertulis</b> adalah sumber sejarah yang memberikan informasi dalam bentuk <b>tulisan</b>.</p><p><b>Contoh:</b> surat, arsip, dokumen, prasasti, surat kabar, catatan harian, laporan, buku, naskah, dokumen resmi.</p><p><b>Contoh konkret:</b> Untuk mengetahui sejarah berdirinya sekolah, kita mencari <b>surat keputusan pendirian, dokumen sekolah, arsip, buku induk</b>, atau surat resmi.</p>` },
+  { id:'lisan', name:'Sumber Lisan', type:'Penuturan & Kesaksian', icon:'🗣️', content:`<p><b>Sumber lisan</b> adalah informasi yang diperoleh melalui <b>penuturan atau kesaksian</b> seseorang. Biasanya melalui <b>wawancara</b>.</p><p><b>Contoh:</b> cerita rakyat, wawancara dengan saksi sejarah, tradisi tutur, kesaksian pelaku.</p><p><b>Contoh konkret:</b> Untuk mengetahui keadaan sekolah saat pertama berdiri, kita mewawancarai <b>kepala sekolah pertama, guru senior, alumni, atau masyarakat sekitar</b>.</p>` },
+  { id:'benda', name:'Sumber Benda', type:'Artefak & Peninggalan', icon:'🏺', content:`<p><b>Sumber benda</b> adalah benda atau peninggalan material yang memberikan informasi tentang kehidupan masa lalu.</p><p><b>Contoh:</b> bangunan lama, candi, arca, senjata, peralatan rumah tangga, pakaian, mata uang, fosil, artefak, makam.</p><p><b>Contoh konkret:</b> Jika menemukan <b>bangunan tua</b>, kita dapat menyelidiki kapan dibuat, siapa pembuatnya, dan untuk apa digunakan.</p>` },
+  { id:'audiovisual', name:'Sumber Audiovisual', type:'Suara & Gambar', icon:'🎥', content:`<p><b>Sumber audiovisual</b> menyampaikan informasi melalui unsur <b>suara dan/atau gambar</b>.</p><p><b>Contoh:</b> foto, film dokumenter, rekaman suara, rekaman video, dokumentasi visual, siaran lama.</p><p><b>Contoh konkret:</b> <b>Rekaman video</b> kegiatan masyarakat masa lalu membantu kita melihat siapa yang terlibat, suasana, pakaian, lingkungan, dan aktivitas masyarakat.</p>` }
+];
+
+const KRITIK_DIGITAL = [
+  { name:'Hoaks Sejarah', icon:'🚫', tone:'rose', content:`<p><b>Hoaks sejarah</b> adalah informasi sejarah palsu yang disebarkan sengaja.</p><p><b>Cara mengenali &amp; memverifikasi:</b></p><ul><li>Periksa <b>sumber asli</b> — apakah ada rujukan jelas dan dapat dilacak?</li><li>Bandingkan dengan <b>sumber kredibel</b> — buku, jurnal, arsip resmi.</li><li>Waspadai judul <b>bombastis</b> dan provokatif.</li><li>Cek tanggal dan konteks — apakah sesuai dengan kronologi?</li></ul>` },
+  { name:'AI-Generated Content', icon:'🤖', tone:'teal', content:`<p><b>Konten yang dihasilkan AI</b> — bisa teks, gambar, atau video — bisa terlihat nyata tapi palsu.</p><p><b>Keterbatasan &amp; bahaya:</b></p><ul><li>AI bisa "berhalusinasi" — menghasilkan informasi <b>tidak akurat</b> tapi terdengar meyakinkan.</li><li>Selalu <b>verifikasi</b> informasi dari AI dengan sumber primer/sekunder kredibel.</li><li>Gunakan AI sebagai <b>alat bantu</b>, bukan sumber utama.</li></ul>` },
+  { name:'Manipulasi Foto/Video', icon:'🖼️', tone:'amber', content:`<p><b>Foto atau video yang diubah</b> untuk menyesatkan.</p><p><b>Cara mengecek keaslian:</b></p><ul><li>Periksa <b>metadata</b> file (tanggal, lokasi, perangkat).</li><li>Cari <b>sumber asli</b> — adakah versi lain lebih awal?</li><li>Gunakan <b>reverse image search</b> (Google Images, TinEye).</li><li>Perhatikan <b>detail janggal</b> — bayangan, proporsi, teks, latar.</li></ul>` },
+  { name:'Sumber Daring Kredibel', icon:'✅', tone:'emerald', content:`<p><b>Rujukan digital yang dapat dipercaya:</b></p><ul><li><b>ANRI</b> (Arsip Nasional) — anri.go.id</li><li><b>Perpusnas</b> — perpusnas.go.id</li><li><b>Jurnal ilmiah</b> — Jurnal Sejarah, Historia, jurnal universitas</li><li><b>Situs resmi</b> pemerintah, museum, lembaga kebudayaan</li></ul><p><b>Tips:</b> Prioritaskan domain <b>.go.id</b>, <b>.ac.id</b>, atau <b>.edu</b> untuk informasi lebih dapat dipercaya.</p>` }
+];
+
+const RUANG_LINGKUP = [
+  { label:'Waktu', desc:'Masa lalu · masa kini · masa depan (periodisasi: praaksara, Hindu-Buddha, Islam, kolonial, kemerdekaan, reformasi).' },
+  { label:'Tema', desc:'Politik · Ekonomi · Sosial · Budaya.' },
+  { label:'Wilayah', desc:'Lokal · Nasional · Regional · Global.' }
+];
+
+const GUNA = [
+  { name:'Rekreatif', icon:'🎭', tone:'amber', content:`<p><b>Sejarah sebagai hiburan yang mendidik.</b> Kisah masa lalu menyuguhkan drama, petualangan, dan keajaiban peradaban yang dapat dinikmati tanpa batas ruang-waktu.</p><p><b>Contoh:</b></p><ul><li>Menonton film <em>Soekarno</em> atau <em>G30S/PKI</em>.</li><li>Membaca novel sejarah seperti <em>Bumi Manusia</em>.</li><li>Berkunjung ke Candi Borobudur atau Museum Nasional.</li></ul>` },
+  { name:'Edukatif', icon:'📚', tone:'emerald', content:`<p><b>Sejarah adalah guru kehidupan.</b> Memberikan hikmah, nilai luhur, dan pelajaran berharga untuk membentuk karakter.</p><p><b>Contoh:</b></p><ul><li>Meneladani semangat juang Pangeran Diponegoro.</li><li>Mempelajari latar belakang perang agar menghargai perdamaian.</li><li>Menumbuhkan nasionalisme melalui kisah pahlawan.</li></ul>` },
+  { name:'Inspiratif', icon:'💡', tone:'teal', content:`<p><b>Sejarah membangkitkan semangat dan kreativitas.</b> Kisah perjuangan tokoh besar memberi dorongan untuk berkarya dan tidak mudah menyerah.</p><p><b>Contoh:</b></p><ul><li>Sumpah Pemuda 28 Oktober 1928 menginspirasi persatuan.</li><li>Perjuangan Soekarno-Hatta menginspirasi kepemimpinan.</li><li>Kisah RA. Kartini menginspirasi kesetaraan gender.</li></ul>` },
+  { name:'Instruktif', icon:'📢', tone:'rose', content:`<p><b>Sejarah menyampaikan pengetahuan dan pengalaman praktis.</b> Memberikan panduan dan arahan agar tidak tersesat dalam mengambil keputusan.</p><p><b>Contoh:</b></p><ul><li>Mempelajari sejarah politik untuk memahami demokrasi.</li><li>Menelaah strategi perang untuk mengerti taktik dan negosiasi.</li><li>Menganalisis revolusi industri untuk melihat dampak teknologi.</li></ul>` }
+];
+
+const METODE = [
+  { num:1, name:'Heuristik', desc:'Pengumpulan Sumber', content:`<p>Tahap mencari dan mengumpulkan <b>sumber-sumber sejarah</b> yang relevan dengan topik penelitian.</p><ul><li><b>Sumber Primer:</b> Dokumen asli, arsip, artefak, saksi mata (naskah Proklamasi).</li><li><b>Sumber Sekunder:</b> Buku, artikel, tulisan yang membahas sumber primer.</li></ul><p><b>Contoh:</b> Sejarawan mencari arsip VOC di Arsip Nasional untuk meneliti perdagangan rempah.</p>` },
+  { num:2, name:'Kritik Sumber', desc:'Verifikasi', content:`<p>Tahap menguji <b>keaslian (otentisitas)</b> dan <b>kredibilitas (kebenaran)</b> sumber.</p><ul><li><b>Kritik Eksternal:</b> Menguji fisik/keaslian sumber (dokumen asli atau palsu?).</li><li><b>Kritik Internal:</b> Menguji isi/kebenaran sumber (keterangan saksi dipercaya?).</li></ul><p><b>Contoh:</b> Membandingkan naskah Proklamasi dengan rekaman suara Soekarno.</p>` },
+  { num:3, name:'Interpretasi', desc:'Penafsiran', content:`<p>Tahap <b>menafsirkan fakta</b> yang telah teruji untuk menemukan makna dan hubungan antar peristiwa. Sejarawan menyusun narasi logis dan koheren.</p><ul><li>Menghubungkan sebab-akibat (kausalitas).</li><li>Melihat perubahan dan kesinambungan.</li><li>Menyusun sudut pandang objektif.</li></ul><p><b>Contoh:</b> Menafsirkan bahwa jatuhnya Konstantinopel (1453) mendorong bangsa Eropa mencari jalur rempah ke Timur.</p>` },
+  { num:4, name:'Historiografi', desc:'Penulisan Sejarah', content:`<p>Tahap <b>penyajian hasil penelitian</b> dalam bentuk tulisan sejarah (narasi, buku, artikel, film dokumenter).</p><ul><li>Menggunakan bahasa menarik dan ilmiah.</li><li>Menyertakan catatan kaki dan daftar pustaka.</li><li>Menampilkan kronologi atau struktur tematik.</li></ul><p><b>Contoh:</b> Penulisan buku <em>Indonesia dalam Arus Sejarah</em>.</p>` }
+];
+
+const ILMU_BANTU = [
+  { name:'Paleografi', icon:'📜', desc:'Ilmu tentang tulisan kuno. Membantu membaca aksara Pallawa, Kawi, Melayu Kuno.' },
+  { name:'Epigrafi', icon:'🏛️', desc:'Ilmu tentang prasasti. Mempelajari tulisan pada batu, logam, bahan keras.' },
+  { name:'Ikonografi', icon:'🖼️', desc:'Ilmu tentang makna gambar dan simbol. Menafsirkan relief candi, lukisan, patung.' },
+  { name:'Numismatik', icon:'🪙', desc:'Ilmu tentang mata uang kuno. Menentukan usia, sistem ekonomi, jalur perdagangan.' },
+  { name:'Kronologi', icon:'🕐', desc:'Ilmu tentang urutan waktu. Menyusun peristiwa sistematis, menghindari anakronisme.' },
+  { name:'Sigillografi', icon:'🔏', desc:'Ilmu tentang segel dan stempel. Verifikasi keaslian dokumen resmi.' },
+  { name:'Genealogi', icon:'🌳', desc:'Ilmu tentang silsilah keluarga. Melacak garis keturunan, legitimasi dinasti.' }
+];
+
+const HISTORIOGRAFI = [
+  { name:'Tradisional', tone:'amber', content:`<p><b>Ciri-ciri:</b></p><ul><li>Ditulis oleh pujangga atau abdi istana.</li><li>Bersifat <b>istana-sentris</b> — berpusat pada raja.</li><li>Bercampur fakta, mitos, dan legenda.</li><li>Bertujuan melegitimasi kekuasaan raja.</li></ul><p><b>Contoh:</b> Babad Tanah Jawi, Hikayat Hang Tuah, Sejarah Melayu, Babad Diponegoro.</p>` },
+  { name:'Kolonial', tone:'rose', content:`<p><b>Ciri-ciri:</b></p><ul><li>Ditulis oleh sejarawan Belanda/Eropa.</li><li>Bersifat <b>Neerlando-sentris</b> — berpusat kepentingan penjajah.</li><li>Menggambarkan rakyat Indonesia sebagai pihak kalah dan pasif.</li><li>Sering mengabaikan perspektif pribumi.</li></ul><p><b>Contoh:</b> Buku-buku sejarah Hindia-Belanda tentang VOC dan pemerintahan kolonial.</p>` },
+  { name:'Nasional', tone:'emerald', content:`<p><b>Ciri-ciri:</b></p><ul><li>Ditulis oleh sejarawan Indonesia setelah kemerdekaan.</li><li>Bersifat <b>Indonesia-sentris</b> — bangsa Indonesia sebagai pelaku utama.</li><li>Menekankan perjuangan, persatuan, nasionalisme.</li><li>Bertujuan membangun identitas dan kebanggaan bangsa.</li></ul><p><b>Contoh:</b> <em>Sejarah Nasional Indonesia</em> (SNI) — Nugroho Notosusanto.</p>` },
+  { name:'Modern', tone:'teal', content:`<p><b>Ciri-ciri:</b></p><ul><li>Pendekatan <b>kritis-analitis</b> dan multidisipliner (sosiologi, antropologi, ekonomi).</li><li>Tidak hanya politik, tetapi sosial, budaya, ekonomi.</li><li>Memberi ruang sejarah lokal, sejarah perempuan, kelompok marginal.</li><li>Metode ketat dan sumber beragam.</li></ul><p><b>Contoh:</b> Karya Kuntowijoyo, Sartono Kartodirdjo.</p>` }
+];
+
+const WAWANCARA = [
+  { title:'Menyusun Pertanyaan', icon:'❓', content:`<ul><li><b>Pertanyaan terbuka:</b> "Bagaimana cerita..." — mengundang narasi panjang.</li><li><b>Pertanyaan tertutup:</b> "Apakah..." — jawaban ya/tidak, untuk konfirmasi.</li><li>Gunakan pertanyaan terbuka sebagai pembuka, lalu perdalam dengan tertutup.</li></ul>` },
+  { title:'Teknik Merekam', icon:'🎙️', content:`<ul><li><b>Minta izin</b> terlebih dahulu sebelum merekam.</li><li>Gunakan <b>perekam suara</b> di HP atau alat khusus.</li><li>Sambil merekam, <b>catat poin-poin penting</b> di buku.</li><li>Pastikan suasana tenang dan suara narasumber jelas.</li></ul>` },
+  { title:'Etika Wawancara', icon:'🤝', content:`<ul><li><b>Sopan dan hormat</b> — gunakan bahasa sesuai.</li><li><b>Jangan memaksa</b> — hargai jika narasumber menolak.</li><li>Sampaikan <b>tujuan wawancara</b> di awal.</li><li>Ucapkan <b>terima kasih</b> setelah wawancara.</li></ul>` },
+  { title:'Membuat Transkrip', icon:'📝', content:`<ul><li><b>Dengarkan ulang</b> hasil rekaman saksama.</li><li><b>Tulis ulang</b> isi wawancara dalam bentuk teks.</li><li><b>Ringkas</b> bagian yang tidak relevan.</li><li><b>Beri tanda waktu</b> (menit ke-) untuk bagian penting.</li></ul>` }
+];
+
+const CONTOH_PERTANYAAN = [
+  'Di mana bapak/ibu/kakek/nenek dilahirkan dan dibesarkan?',
+  'Apa pekerjaan atau mata pencaharian utama di masa lalu?',
+  'Peristiwa besar apa yang paling diingat pada masa muda dulu?',
+  'Bagaimana cerita pertemuan dengan pasangan hingga membentuk keluarga?',
+  'Nilai-nilai atau pesan apa yang ingin disampaikan kepada generasi muda?'
+];
+
+const QUIZ = [
+  { t:'pg', q:'Kata "sejarah" dalam bahasa Arab berasal dari kata…', o:['Historia','Syajaratun','Geschichte','Chronos'], c:1, e:'Syajaratun (شجرة) berarti "pohon" — metafora silsilah yang terus tumbuh.' },
+  { t:'pg', q:'Tokoh yang dijuluki "The Father of History" adalah…', o:['Aristoteles','Herodotus','Ibnu Khaldun','Collingwood'], c:1, e:'Herodotus (484–425 SM) menulis Historia secara sistematis.' },
+  { t:'pg', q:'Kata "History" dari Yunani "historia" berarti…', o:['Pohon','Kejadian','Penyelidikan','Silsilah'], c:2, e:'Historia = penyelidikan — menekankan bahwa sejarah adalah hasil penelitian.' },
+  { t:'pg', q:'Kata "Geschichte" dalam bahasa Jerman berarti…', o:['Pohon','Sesuatu yang telah terjadi','Penyelidikan','Silsilah'], c:1, e:'Geschichte menekankan realitas peristiwa masa lampau yang sungguh terjadi.' },
+  { t:'pg', q:'Menurut KBBI, sejarah arti ke-2 adalah…', o:['Silsilah','Kejadian dan peristiwa yang benar-benar terjadi pada masa lampau','Cerita fiksi','Ramalan'], c:1, e:'KBBI: (1) silsilah, (2) kejadian nyata, (3) ilmu/uraian tentang peristiwa.' },
+  { t:'pg', q:'Konsep Manusia, Ruang, dan Waktu dalam sejarah menekankan bahwa…', o:['Ketiganya terpisah','Ketiganya saling terkait membentuk peristiwa','Hanya waktu yang penting','Manusia tidak penting'], c:1, e:'Manusia bertindak dalam ruang pada waktu tertentu — ketiganya membentuk peristiwa sejarah.' },
+  { t:'pg', q:'Menurut Poerwodarminta, sejarah adalah…', o:['Cerita fiksi','Kesusasteraan lama, silsilah, asal-usul; kejadian nyata; ilmu pengetahuan','Hanya mitos','Ramalan masa depan'], c:1, e:'Poerwodarminta menekankan 3 dimensi: genealogis, faktual, dan ilmiah.' },
+  { t:'pg', q:'Menurut R. Moh. Ali, makna terpenting sejarah adalah…', o:['Silsilah','Kronologi','PERUBAHAN','Rekonstruksi'], c:2, e:'R. Moh. Ali menekankan konsep PERUBAHAN — sejarah selalu bergerak dinamis.' },
+  { t:'pg', q:'Menurut Ibnu Khaldun, sejarah adalah catatan tentang…', o:['Peristiwa alam','Masyarakat, umat manusia, atau peradaban dunia','Silsilah keluarga kerajaan','Kehidupan dewa'], c:1, e:'Ibnu Khaldun menekankan analisis peradaban dan perubahan sosial.' },
+  { t:'pg', q:'Menurut Aristoteles, sejarah harus disusun dalam bentuk…', o:['Narasi bebas','Kronologi (urutan waktu)','Silsilah','Puisi'], c:1, e:'Aristoteles menekankan aspek kronologis dan bukti empiris.' },
+  { t:'pg', q:'Menurut Mohammad Yamin, sejarah adalah ilmu yang disusun atas hasil…', o:['Mimpi','Penyelidikan dengan fakta terbukti','Cerita rakyat','Ramalan'], c:1, e:'Yamin: sejarah berdasarkan penyelidikan dan fakta yang dapat dibuktikan.' },
+  { t:'pg', q:'Menurut Collingwood, tugas sejarawan adalah…', o:['Mengumpulkan benda','Menyelidiki kembali pemikiran manusia di masa lampau','Menghafal nama raja','Menceritakan mitos'], c:1, e:'Collingwood menekankan pendekatan filosofis — pemikiran di balik tindakan.' },
+  { t:'pg', q:'Menurut Kuntowijoyo, sejarah adalah peristiwa yang…', o:['Belum terjadi','Direkonstruksi (dibangun kembali)','Hanya cerita','Tidak nyata'], c:1, e:'Kuntowijoyo menekankan aspek REKONSTRUKSI dalam sejarah.' },
+  { t:'pg', q:'Berpikir diakronik artinya…', o:['Meluas dalam waktu','Memanjang dalam waktu (kronologis)','Mendalam satu masa','Menghafal tanggal'], c:1, e:'Diakronik: memanjang waktu, melihat proses perubahan.' },
+  { t:'pg', q:'Berpikir sinkronik artinya…', o:['Meluas dalam waktu pada satu masa','Memanjang dari masa ke masa','Hanya satu peristiwa','Menghafal tahun'], c:0, e:'Sinkronik: meluas dalam waktu, melihat struktur dan keterkaitan pada satu masa.' },
+  { t:'pg', q:'Dimensi hakikat sejarah yang menekankan kejadian nyata unik dan abadi adalah…', o:['Kisah','Seni','Ilmu','Peristiwa'], c:3, e:'Peristiwa: kejadian nyata yang unik, abadi, dan penting.' },
+  { t:'pg', q:'Sejarah sebagai "seni" menekankan pada…', o:['Penulisan sistematis','Daya imajinasi dan kreativitas','Penghafalan','Pengumpulan sumber'], c:1, e:'Sejarah sebagai seni membutuhkan imajinasi untuk merangkai fakta menjadi narasi hidup.' },
+  { t:'pg', q:'Sumber sejarah yang memberikan informasi dalam bentuk tulisan disebut…', o:['Lisan','Tertulis','Benda','Audiovisual'], c:1, e:'Sumber tertulis: surat, arsip, prasasti, buku, naskah, dokumen.' },
+  { t:'pg', q:'Wawancara dengan saksi mata termasuk sumber…', o:['Sekunder tertulis','Primer dan lisan','Sekunder audiovisual','Primer dan benda'], c:1, e:'Wawancara = sumber primer (langsung) dan sumber lisan (penuturan).' },
+  { t:'pg', q:'Buku pelajaran sejarah termasuk sumber…', o:['Primer','Sekunder','Benda','Lisan'], c:1, e:'Buku pelajaran disusun berdasarkan pengolahan sumber lain = sekunder.' },
+  { t:'pg', q:'Rekaman video kegiatan masyarakat masa lalu termasuk sumber…', o:['Tertulis','Lisan','Benda','Audiovisual'], c:3, e:'Audiovisual: menyampaikan informasi melalui suara dan/atau gambar.' },
+  { t:'pg', q:'Contoh sumber primer untuk mempelajari Proklamasi…', o:['Buku sejarah','Teks Proklamasi asli','Artikel','Ensiklopedia'], c:1, e:'Teks Proklamasi asli adalah sumber primer. Buku/ensiklopedia = sekunder.' },
+  { t:'pg', q:'Cara mengecek keaslian foto yang beredar di internet…', o:['Langsung share','Reverse image search','Percaya saja','Tanya teman'], c:1, e:'Reverse image search (Google Images, TinEye) membantu melacak asal gambar.' },
+  { t:'pg', q:'Sejarah sebagai "guru kehidupan" adalah kegunaan…', o:['Rekreatif','Edukatif','Inspiratif','Instruktif'], c:1, e:'Edukatif: sejarah sebagai guru kehidupan — memberi hikmah dan pelajaran.' },
+  { t:'pg', q:'Kegunaan sejarah yang membangkitkan semangat disebut…', o:['Rekreatif','Edukatif','Inspiratif','Instruktif'], c:2, e:'Inspiratif: kisah perjuangan membangkitkan semangat dan kreativitas.' },
+  { t:'pg', q:'Menonton film Soekarno termasuk kegunaan sejarah…', o:['Rekreatif','Edukatif','Inspiratif','Instruktif'], c:0, e:'Rekreatif: hiburan yang mendidik — film, novel, kunjungan candi.' },
+  { t:'pg', q:'Kajian peristiwa di tingkat desa/kota/daerah disebut sejarah…', o:['Lokal','Nasional','Regional','Global'], c:0, e:'Sejarah lokal: kajian peristiwa di tingkat desa/kota/daerah.' },
+  { t:'pg', q:'Tahap pertama dalam metode penelitian sejarah…', o:['Kritik','Interpretasi','Heuristik','Historiografi'], c:2, e:'Urutan: (1) Heuristik, (2) Kritik, (3) Interpretasi, (4) Historiografi.' },
+  { t:'pg', q:'Ilmu tentang tulisan kuno yang membantu membaca prasasti…', o:['Epigrafi','Paleografi','Numismatik','Genealogi'], c:1, e:'Paleografi = tulisan kuno. Epigrafi = prasasti. Numismatik = mata uang.' },
+  { t:'pg', q:'Historiografi dari sudut pandang penjajah Belanda disebut…', o:['Tradisional','Kolonial','Nasional','Modern'], c:1, e:'Historiografi kolonial: Neerlando-sentris, berpusat pada kepentingan penjajah.' },
+  { t:'tf', q:'Sejarah sebagai "peristiwa" bersifat subjektif dan tergantung penafsiran sejarawan.', c:1, e:'SALAH. Peristiwa bersifat objektif (kejadian nyata). Yang subjektif adalah "kisah" atau penafsirannya.' },
+  { t:'tf', q:'Ilmu bantu sejarah adalah tahap kelima dalam metode penelitian sejarah.', c:1, e:'SALAH. Ilmu bantu adalah ALAT yang dipakai pada tahap heuristik dan kritik — bukan tahap kelima.' },
+  { t:'tf', q:'Diakronik dan sinkronik adalah dua cara berpikir yang saling melengkapi.', c:0, e:'BENAR. Keduanya saling melengkapi untuk memahami sejarah secara utuh.' },
+  { t:'tf', q:'Sumber sekunder dibuat pada saat peristiwa berlangsung.', c:1, e:'SALAH. Sumber sekunder disusun SETELAH peristiwa, berdasarkan pengolahan sumber lain.' },
+  { t:'tf', q:'Candi dan arca termasuk contoh sumber benda.', c:0, e:'BENAR. Bangunan, artefak, fosil, dan benda peninggalan = sumber benda.' },
+  { t:'tf', q:'Historiografi tradisional bersifat istana-sentris dan bercampur mitos.', c:0, e:'BENAR. Contoh: Babad Tanah Jawi, Hikayat Hang Tuah.' },
+  { t:'tf', q:'Untuk menjadi bangsa yang bijaksana, kita tidak perlu mempelajari sejarah.', c:1, e:'SALAH. "Histories make men wise" — sejarah membuat manusia bijaksana.' },
+  { t:'tf', q:'AI bisa menghasilkan konten sejarah yang salah meski terdengar meyakinkan.', c:0, e:'BENAR. AI bisa "berhalusinasi" — selalu verifikasi dengan sumber kredibel.' },
+  { t:'tf', q:'Paleografi adalah ilmu tentang mata uang kuno.', c:1, e:'SALAH. Paleografi = tulisan kuno. Numismatik = mata uang kuno.' },
+  { t:'tf', q:'Sumber lisan diperoleh melalui penggalian arkeologi.', c:1, e:'SALAH. Sumber lisan diperoleh melalui WAWANCARA/penuturan.' }
+];
+
+const GLOSARIUM = [
+  ['Sejarah','Ilmu yang mempelajari peristiwa masa lampau beserta makna dan keterkaitannya dengan masa kini.'],
+  ['Syajaratun','Kata Arab berarti pohon; metafora sejarah sebagai silsilah yang terus tumbuh.'],
+  ['Diakronik','Cara berpikir memanjang dalam waktu, melihat proses perubahan.'],
+  ['Sinkronik','Cara berpikir meluas dalam waktu, melihat struktur pada satu masa.'],
+  ['Heuristik','Tahap pengumpulan sumber-sumber sejarah.'],
+  ['Kritik Sumber','Tahap menguji keaslian dan kredibilitas sumber sejarah.'],
+  ['Interpretasi','Tahap menafsirkan fakta untuk menemukan makna.'],
+  ['Historiografi','Tahap penyajian hasil penelitian sejarah dalam bentuk tulisan.'],
+  ['Sumber Primer','Sumber dari masa/pelaku/saksi yang berkaitan langsung dengan peristiwa.'],
+  ['Sumber Sekunder','Sumber yang disusun berdasarkan pengolahan sumber lain.'],
+  ['Kronologi','Urutan waktu peristiwa dari awal hingga akhir.'],
+  ['Periodisasi','Pembagian waktu sejarah menjadi periode-periode.'],
+  ['Rekonstruksi','Upaya membangun kembali peristiwa masa lalu berdasarkan bukti.'],
+  ['Guna Edukatif','Kegunaan sejarah sebagai guru kehidupan.'],
+  ['Guna Inspiratif','Kegunaan sejarah yang membangkitkan semangat dan kreativitas.'],
+  ['Guna Instruktif','Kegunaan sejarah sebagai panduan dan arahan.'],
+  ['Guna Rekreatif','Kegunaan sejarah sebagai hiburan yang mendidik.'],
+  ['Paleografi','Ilmu bantu tentang tulisan kuno.'],
+  ['Epigrafi','Ilmu bantu tentang prasasti.'],
+  ['Numismatik','Ilmu bantu tentang mata uang kuno.'],
+  ['Historiografi Tradisional','Penulisan sejarah istana-sentris, bercampur mitos.'],
+  ['Historiografi Kolonial','Penulisan sejarah dari sudut pandang penjajah Belanda.'],
+  ['Historiografi Nasional','Penulisan sejarah dari perspektif Indonesia-sentris.'],
+  ['Historiografi Modern','Penulisan sejarah kritis-analitis dan multidisipliner.']
+];
+
+const REFERENSI = [
+  'Kurikulum Merdeka: Capaian Pembelajaran Mata Pelajaran Sejarah Fase E–F. BSKAP Kemendikbudristek (2022).',
+  'Poerwodarminta, W.J.S. <em>Kamus Umum Bahasa Indonesia</em>. Jakarta: Balai Pustaka.',
+  'Ali, R. Moh. <em>Pengantar Ilmu Sejarah</em>. Jakarta: Bhratara, 1963.',
+  'Collingwood, R.G. <em>The Idea of History</em>. Oxford: Clarendon Press, 1946.',
+  'Herodotus. <em>Historia</em>.',
+  'Ibnu Khaldun. <em>Muqaddimah</em>.',
+  'Kuntowijoyo. <em>Pengantar Ilmu Sejarah</em>. Yogyakarta: Bentang, 1995.',
+  'Yamin, Mohammad. <em>Tatanegara Majapahit</em>. Jakarta: Prapantja, 1962.',
+  'Carr, E.H. <em>What is History?</em>. London: Penguin, 1961.',
+  'Gottschalk, Louis. <em>Mengerti Sejarah</em>. Jakarta: UI Press, 1985.',
+  'Kartodirdjo, Sartono. <em>Pendekatan Ilmu Sosial dalam Metodologi Sejarah</em>. Jakarta: Gramedia, 1992.',
+  'Arsip Nasional Republik Indonesia (ANRI) — anri.go.id',
+  'Perpustakaan Nasional Republik Indonesia — perpusnas.go.id'
+];
+
+const App = {
+  currentChapter: 0,
+  visited: new Set([0]),
+  quiz: null,
+  sound: true,
+  chapters: [
+    { num:'00', title:'Pembukaan', short:'Pembukaan' },
+    { num:'01', title:'Pengertian & Konsep', short:'Pengertian' },
+    { num:'02', title:'Sumber & Berpikir', short:'Sumber' },
+    { num:'03', title:'Definisi & Hakikat', short:'Definisi' },
+    { num:'04', title:'Ruang Lingkup & Guna', short:'Guna' },
+    { num:'05', title:'Metode & Historiografi', short:'Metode' },
+    { num:'06', title:'Aktivitas Silsilah', short:'Aktivitas' },
+    { num:'07', title:'Tantangan Akhir', short:'Tantangan' }
+  ]
+};
+
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  const bd = document.getElementById('backdrop');
+  sb.classList.toggle('open');
+  if(sb.classList.contains('open')){
+    bd.style.display='block';
+    requestAnimationFrame(()=>bd.classList.add('show'));
+  } else {
+    bd.classList.remove('show');
+    setTimeout(()=>bd.style.display='none', 300);
+  }
+}
+
+function renderSidebar(){
+  const nav = document.getElementById('chapterNav');
+  nav.innerHTML = `<div class="nav-label">Chapter</div>` +
+    App.chapters.map((ch,i)=>{
+      const active = i === App.currentChapter;
+      const visited = App.visited.has(i) && !active;
+      return `<button class="chapter-link ${active?'active':''} ${visited?'visited':''}" onclick="goToChapter(${i})">
+        <span class="chapter-num">${ch.num}</span>
+        <span class="chapter-name">${ch.short}</span>
+        <span class="chapter-check">✓</span>
+      </button>`;
+    }).join('');
+}
+
+function updateProgress(){
+  const total = App.chapters.length;
+  const visited = App.visited.size;
+  const pct = Math.round(visited / total * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${visited} / ${total}`;
+  document.getElementById('mobileProgress').textContent = `${String(App.currentChapter).padStart(2,'0')} / 07`;
+  document.getElementById('mobileTitle').textContent = App.chapters[App.currentChapter].short;
+}
+
+function goToChapter(idx){
+  if(idx < 0 || idx >= App.chapters.length) return;
+  App.currentChapter = idx;
+  App.visited.add(idx);
+  renderSidebar();
+  updateProgress();
+  if(window.innerWidth <= 900){
+    const sb = document.getElementById('sidebar');
+    if(sb.classList.contains('open')) toggleSidebar();
+  }
+  const content = document.getElementById('content');
+  content.innerHTML = CHAPTERS[idx].render();
+  document.getElementById('main').scrollTop = 0;
+  if(CHAPTERS[idx].setup) setTimeout(()=>CHAPTERS[idx].setup(), 50);
+}
+
+function openModal(html){
+  const card = document.getElementById('modalCard');
+  card.innerHTML = `<button class="modal-close" onclick="closeModal()" aria-label="Tutup">✕</button>` + html;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+}
+document.getElementById('modal').addEventListener('click', e=>{
+  if(e.target.id === 'modal') closeModal();
+});
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape') closeModal();
+  if(document.getElementById('modal').classList.contains('show')) return;
+  if(e.key === 'ArrowRight' && App.currentChapter < 7) goToChapter(App.currentChapter + 1);
+  if(e.key === 'ArrowLeft' && App.currentChapter > 0) goToChapter(App.currentChapter - 1);
+});
+
+function chapterNav(prevIdx, nextIdx, nextLabel='Selanjutnya'){
+  return `<div class="chapter-nav-bottom">
+    ${prevIdx !== null ? `<button class="btn btn-secondary" onclick="goToChapter(${prevIdx})">← Sebelumnya</button>` : '<span></span>'}
+    ${nextIdx !== null ? `<button class="btn btn-primary" onclick="goToChapter(${nextIdx})">${nextLabel} →</button>` : ''}
+  </div>`;
+}
+
+function downloadText(text, filename){
+  const blob = new Blob([text], { type:'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+}
+
+function renderChapter0(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 00</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Pembukaan</span>
+      </div>
+      <h1 class="hero-title">Mesin <span class="accent">Waktu</span></h1>
+      <p class="hero-lede">Memahami prinsip ilmu sejarah — sebuah perjalanan dari etimologi hingga metode.</p>
+      <blockquote class="hero-quote">
+        <p>"Bangsa yang besar adalah bangsa yang menghargai sejarahnya."</p>
+        <cite>— Ir. Soekarno</cite>
+      </blockquote>
+      <p class="hero-body">Delapan bab dirancang untuk Kelas X Fase E Kurikulum Merdeka. Menelusuri hakikat ilmu sejarah dari akar katanya, sumber-sumbernya, hingga bagaimana ia diteliti dan ditulis.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Komponen Pembelajaran</h2>
+      </div>
+      <p class="section-desc">Rujukan kurikulum dan profil lulusan yang mendasari modul ini.</p>
+      <div class="comp-grid">
+        <button class="comp-card" onclick="showComp('cp')">
+          <span class="comp-chip">CP · Fase E</span>
+          <div class="comp-title">Capaian Pembelajaran</div>
+          <div class="comp-desc">Kurikulum Merdeka</div>
+          <span class="comp-arrow">→</span>
+        </button>
+        <button class="comp-card" onclick="showComp('atp')">
+          <span class="comp-chip">ATP</span>
+          <div class="comp-title">Alur Tujuan</div>
+          <div class="comp-desc">6 Tujuan</div>
+          <span class="comp-arrow">→</span>
+        </button>
+        <button class="comp-card" onclick="showComp('dpl')">
+          <span class="comp-chip">DPL</span>
+          <div class="comp-title">Profil Lulusan</div>
+          <div class="comp-desc">6 Dimensi</div>
+          <span class="comp-arrow">→</span>
+        </button>
+        <button class="comp-card" onclick="showComp('deep')">
+          <span class="comp-chip">DEEP</span>
+          <div class="comp-title">Deep Learning</div>
+          <div class="comp-desc">3 Pilar</div>
+          <span class="comp-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Peta Petualangan</h2>
+      </div>
+      <p class="section-desc">Delapan bab yang akan kamu lalui.</p>
+      <table class="mini-table">
+        <thead><tr><th>Bab</th><th>Judul</th><th>Fokus</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Pengertian &amp; Konsep</td><td>Etimologi, KBBI, Manusia–Ruang–Waktu</td></tr>
+          <tr><td>02</td><td>Sumber &amp; Berpikir</td><td>4 jenis sumber, diakronik &amp; sinkronik</td></tr>
+          <tr><td>03</td><td>Definisi &amp; Hakikat</td><td>8 tokoh, 4 dimensi hakikat</td></tr>
+          <tr><td>04</td><td>Ruang Lingkup &amp; Guna</td><td>Waktu–tema–wilayah, 4 kegunaan</td></tr>
+          <tr><td>05</td><td>Metode &amp; Historiografi</td><td>Heuristik–kritik–interpretasi–historiografi</td></tr>
+          <tr><td>06</td><td>Aktivitas Silsilah</td><td>Wawancara &amp; pohon keluarga</td></tr>
+          <tr><td>07</td><td>Tantangan Akhir</td><td>40 soal &amp; refleksi</td></tr>
+        </tbody>
+      </table>
+      <div class="btn-row">
+        <button class="btn btn-primary btn-large" onclick="goToChapter(1)">Mulai Petualangan →</button>
+      </div>
+    </section>
+  `;
+}
+
+window.showComp = (type)=>{
+  let html = '';
+  if(type === 'cp') html = `<span class="modal-tag">CP · Fase E</span><h3>Capaian Pembelajaran</h3><p>${CP_ATP_DPL.cp}</p>`;
+  else if(type === 'atp') html = `<span class="modal-tag">ATP</span><h3>Alur Tujuan Pembelajaran</h3><ol>${CP_ATP_DPL.atp.map(t=>`<li>${t}</li>`).join('')}</ol>`;
+  else if(type === 'dpl') html = `<span class="modal-tag">DPL</span><h3>Dimensi Profil Lulusan</h3>${CP_ATP_DPL.dpl.map(d=>`<p><b>${d.name}:</b> ${d.desc}</p>`).join('')}`;
+  else if(type === 'deep') html = `<span class="modal-tag">Deep Learning</span><h3>3 Pilar Pembelajaran Mendalam</h3>${CP_ATP_DPL.deep.map(d=>`<p><b>${d.name}:</b> ${d.desc}</p>`).join('')}`;
+  html += `<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`;
+  openModal(html);
+};
+
+function renderChapter1(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 01</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Pengertian & Konsep Dasar</span>
+      </div>
+      <h1 class="hero-title">Pengertian <span class="accent">Sejarah</span></h1>
+      <p class="hero-body">Menelusuri kata "sejarah" dari berbagai bahasa hingga makna dalam kamus dan konsep dasarnya.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Etimologi Sejarah</h2>
+      </div>
+      <p class="section-desc">Tiga akar kata yang membentuk pemahaman kita tentang sejarah.</p>
+      <div class="tabs" id="etymTabs">
+        ${ETIMOLOGI.map((e,i)=>`<button class="tab-btn ${i===0?'active':''}" data-key="${e.key}">${e.label}</button>`).join('')}
+      </div>
+      <div class="tab-content" id="etymContent">${ETIMOLOGI[0].content}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Definisi Menurut KBBI</h2>
+      </div>
+      <p class="section-desc">Tiga arti sejarah dalam Kamus Besar Bahasa Indonesia.</p>
+      <div class="info-grid">
+        ${KBBI.map((k,i)=>`
+          <button class="info-card amber" onclick="showKBBI(${i})">
+            <div class="ic-eyebrow">Arti ${k.n}</div>
+            <div class="ic-name">${k.title}</div>
+            <div class="ic-sub">Ketuk untuk penjelasan</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Manusia · Ruang · Waktu</h2>
+      </div>
+      <p class="section-desc">Tiga unsur yang selalu hadir dalam setiap peristiwa sejarah.</p>
+      <div class="info-grid">
+        ${MRW.map((m,i)=>`
+          <button class="info-card ${i===1?'teal':i===2?'rose':''}" onclick="showMRW(${i})">
+            <div class="ic-icon">${m.icon}</div>
+            <div class="ic-name">${m.name}</div>
+            <div class="ic-sub">${m.sub}</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Definisi Para Ahli — Bagian 1</h2>
+      </div>
+      <p class="section-desc">Empat dari delapan tokoh yang mendefinisikan sejarah.</p>
+      <div class="info-grid">
+        ${TOKOH.slice(0,4).map((t,i)=>`
+          <button class="info-card" onclick="openTokohModal(${i})">
+            <div class="ic-eyebrow">Tokoh ${String(t.num).padStart(2,'0')}</div>
+            <div class="ic-name">${t.name}</div>
+            <div class="ic-sub">${t.sub}</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    ${chapterNav(0, 2, 'Sumber & Berpikir')}
+  `;
+}
+function setupChapter1(){
+  document.querySelectorAll('#etymTabs .tab-btn').forEach(btn=>{
+    btn.onclick = ()=>{
+      document.querySelectorAll('#etymTabs .tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const e = ETIMOLOGI.find(x=>x.key===btn.dataset.key);
+      document.getElementById('etymContent').innerHTML = e.content;
+    };
+  });
+}
+window.showKBBI = (i)=>{
+  const k = KBBI[i];
+  openModal(`<span class="modal-tag">KBBI · Arti ke-${k.n}</span><h3>${k.title}</h3><p>${k.desc}</p><div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+window.showMRW = (i)=>{
+  const m = MRW[i];
+  openModal(`<span class="modal-tag">${m.sub}</span><h3><span class="modal-icon">${m.icon}</span>${m.name}</h3>${m.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+window.openTokohModal = (i)=>{
+  const t = TOKOH[i];
+  openModal(`<span class="modal-tag">Tokoh ${t.num} · ${t.sub}</span><h3>${t.name}</h3>${t.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+
+function renderChapter2(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 02</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Sumber & Cara Berpikir</span>
+      </div>
+      <h1 class="hero-title">Sumber <span class="accent">Sejarah</span></h1>
+      <p class="hero-body">Memahami dari mana fakta sejarah berasal, dan bagaimana sejarawan berpikir tentang waktu dan struktur.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Empat Jenis Sumber</h2>
+      </div>
+      <p class="section-desc">Ketuk setiap kartu untuk mempelajari contoh konkretnya.</p>
+      <div class="info-grid">
+        ${SUMBER.map((s,i)=>`
+          <button class="info-card ${i===1?'teal':i===2?'rose':i===3?'emerald':''}" onclick="showSumber(${i})">
+            <div class="ic-icon">${s.icon}</div>
+            <div class="ic-name">${s.name}</div>
+            <div class="ic-sub">${s.type}</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Diakronik vs Sinkronik</h2>
+      </div>
+      <p class="section-desc">Dua cara berpikir yang saling melengkapi dalam memahami sejarah.</p>
+      <table class="mini-table">
+        <thead><tr><th>Aspek</th><th>Diakronik</th><th>Sinkronik</th></tr></thead>
+        <tbody>
+          <tr><td>Fokus</td><td>Perubahan &amp; proses</td><td>Struktur &amp; keadaan</td></tr>
+          <tr><td>Dimensi</td><td>Vertikal (memanjang waktu)</td><td>Horizontal (meluas dalam waktu)</td></tr>
+          <tr><td>Contoh</td><td>Sejarah perkembangan demokrasi Indonesia</td><td>Kondisi ekonomi Indonesia tahun 1998</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-amber">
+        <p><b>Ingat:</b> <em>Diakronik</em> = memanjang waktu. <em>Sinkronik</em> = meluas dalam waktu. Keduanya saling melengkapi.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Primer vs Sekunder</h2>
+      </div>
+      <p class="section-desc">Perbedaan mendasar berdasarkan kedekatan sumber dengan peristiwa.</p>
+      <table class="mini-table">
+        <thead><tr><th>Sumber Primer</th><th>Sumber Sekunder</th></tr></thead>
+        <tbody>
+          <tr><td>Berkaitan langsung dengan masa/peristiwa</td><td>Disusun berdasarkan sumber lain</td></tr>
+          <tr><td>Berasal dari pelaku, saksi, atau masa peristiwa</td><td>Berasal dari hasil kajian/penafsiran</td></tr>
+          <tr><td>Contoh: dokumen asli, foto sezaman</td><td>Contoh: buku sejarah, artikel</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Kritik Sumber di Era Digital</h2>
+      </div>
+      <p class="section-desc">Bagaimana memilah informasi sejarah yang benar dan yang menyesatkan.</p>
+      <div class="info-grid">
+        ${KRITIK_DIGITAL.map((k,i)=>`
+          <button class="info-card ${k.tone}" onclick="showKritik(${i})">
+            <div class="ic-icon">${k.icon}</div>
+            <div class="ic-name">${k.name}</div>
+            <div class="ic-sub">Ketuk untuk detail</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    ${chapterNav(1, 3, 'Definisi & Hakikat')}
+  `;
+}
+window.showSumber = (i)=>{
+  const s = SUMBER[i];
+  openModal(`<span class="modal-tag">${s.type}</span><h3><span class="modal-icon">${s.icon}</span>${s.name}</h3>${s.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+window.showKritik = (i)=>{
+  const k = KRITIK_DIGITAL[i];
+  openModal(`<span class="modal-tag">Kritik Sumber Digital</span><h3><span class="modal-icon">${k.icon}</span>${k.name}</h3>${k.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+
+function renderChapter3(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 03</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Definisi & Hakikat</span>
+      </div>
+      <h1 class="hero-title">Definisi <span class="accent">&</span> Hakikat</h1>
+      <p class="hero-body">Empat tokoh berikutnya, lima dimensi sejarah, dan empat hakikat yang perlu dipahami.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Definisi Para Ahli — Bagian 2</h2>
+      </div>
+      <p class="section-desc">Empat tokoh berikutnya yang memperkaya pemahaman kita.</p>
+      <div class="info-grid">
+        ${TOKOH.slice(4,8).map((t,i)=>`
+          <button class="info-card amber" onclick="openTokohModal(${i+4})">
+            <div class="ic-eyebrow">Tokoh ${String(t.num).padStart(2,'0')}</div>
+            <div class="ic-name">${t.name}</div>
+            <div class="ic-sub">${t.sub}</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Lima Dimensi Sejarah</h2>
+      </div>
+      <p class="section-desc">Sintesis dari delapan definisi para tokoh.</p>
+      <div class="callout callout-teal">
+        <p><b>Fakta · Ilmu · Narasi · Perubahan · Rekonstruksi</b> — lima kata kunci yang merangkum hakikat sejarah menurut para ahli.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Empat Dimensi Hakikat</h2>
+      </div>
+      <p class="section-desc">Sejarah dapat dilihat dari empat sudut pandang yang berbeda.</p>
+      <div class="info-grid">
+        ${HAKIKAT.map((h,i)=>`
+          <button class="info-card ${i===1?'teal':i===2?'rose':i===3?'emerald':'amber'}" onclick="showHakikat(${i})">
+            <div class="ic-icon">${h.icon}</div>
+            <div class="ic-name">Sejarah sebagai ${h.name}</div>
+            <div class="ic-sub">${h.desc}</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Ruh Penelitian Sejarah</h2>
+      </div>
+      <p class="section-desc">Tiga kata kunci yang membentuk inti setiap penelitian sejarah.</p>
+      <table class="mini-table">
+        <thead><tr><th>Tahap</th><th>Makna</th><th>Contoh</th></tr></thead>
+        <tbody>
+          <tr><td>Sumber</td><td>Bahan mentah yang ditemukan peneliti</td><td>Arsip VOC, prasasti, foto sezaman</td></tr>
+          <tr><td>Fakta</td><td>Sumber yang telah lulus kritik</td><td>Naskah Proklamasi yang terverifikasi</td></tr>
+          <tr><td>Bukti</td><td>Fakta yang dipilih untuk mendukung argumen</td><td>Kutipan naskah dalam narasi sejarah</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-emerald">
+        <p><b>Ingat:</b> Sumber → Fakta → Bukti adalah alur yang membedakan sejarah sebagai ilmu dari sekadar cerita.</p>
+      </div>
+    </section>
+
+    ${chapterNav(2, 4, 'Ruang Lingkup & Guna')}
+  `;
+}
+window.showHakikat = (i)=>{
+  const h = HAKIKAT[i];
+  openModal(`<span class="modal-tag">Hakikat Sejarah</span><h3><span class="modal-icon">${h.icon}</span>Sejarah sebagai ${h.name}</h3>${h.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+
+function renderChapter4(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 04</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Ruang Lingkup & Guna</span>
+      </div>
+      <h1 class="hero-title">Ruang Lingkup <span class="accent">&</span> Guna</h1>
+      <p class="hero-body">Sejauh mana sejarah menjangkau, dan mengapa mempelajarinya tetap relevan hari ini.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Ruang Lingkup Sejarah</h2>
+      </div>
+      <p class="section-desc">Tiga dimensi yang membatasi kajian sejarah.</p>
+      <table class="mini-table">
+        <thead><tr><th>Aspek</th><th>Penjelasan</th></tr></thead>
+        <tbody>
+          ${RUANG_LINGKUP.map(r=>`<tr><td>${r.label}</td><td>${r.desc}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Empat Guna Sejarah</h2>
+      </div>
+      <p class="section-desc">Ketuk setiap kartu untuk melihat contoh konkretnya.</p>
+      <div class="info-grid">
+        ${GUNA.map((g,i)=>`
+          <button class="info-card ${g.tone}" onclick="showGuna(${i})">
+            <div class="ic-icon">${g.icon}</div>
+            <div class="ic-name">${g.name}</div>
+            <div class="ic-sub">Ketuk untuk contoh</div>
+          </button>`).join('')}
+      </div>
+      <div class="callout callout-amber" style="margin-top:20px;">
+        <p><em>"Histories make men wise"</em> — Sejarah membuat manusia bijaksana.</p>
+      </div>
+    </section>
+
+    ${chapterNav(3, 5, 'Metode & Historiografi')}
+  `;
+}
+window.showGuna = (i)=>{
+  const g = GUNA[i];
+  openModal(`<span class="modal-tag">Guna ${g.name}</span><h3><span class="modal-icon">${g.icon}</span>${g.name}</h3>${g.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+
+function renderChapter5(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 05</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Metode & Historiografi</span>
+      </div>
+      <h1 class="hero-title">Metode <span class="accent">&</span> Historiografi</h1>
+      <p class="hero-body">Bagaimana sejarah diteliti secara ilmiah, dan bagaimana penulisannya berkembang dari masa ke masa.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Empat Tahap Metode Sejarah</h2>
+      </div>
+      <p class="section-desc">Urutan baku penelitian sejarah dari pengumpulan sumber hingga penulisan.</p>
+      <div class="info-grid">
+        ${METODE.map((m,i)=>`
+          <button class="info-card" onclick="showMetode(${i})">
+            <div class="ic-eyebrow">Tahap ${m.num}</div>
+            <div class="ic-name">${m.name}</div>
+            <div class="ic-sub">${m.desc}</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Tujuh Ilmu Bantu Sejarah</h2>
+      </div>
+      <p class="section-desc">Alat bantu pada tahap Heuristik dan Kritik — bukan tahap kelima.</p>
+      <div class="callout callout-rose">
+        <p><b>⚠ Klarifikasi:</b> Ilmu Bantu Sejarah <b>bukan</b> tahap kelima. Ia adalah alat yang dipakai pada tahap Heuristik dan Kritik.</p>
+      </div>
+      <div class="info-grid">
+        ${ILMU_BANTU.map((ib,i)=>`
+          <button class="info-card ${i%3===0?'amber':i%3===1?'teal':'rose'}" onclick="showIlmuBantu(${i})">
+            <div class="ic-icon">${ib.icon}</div>
+            <div class="ic-name">${ib.name}</div>
+            <div class="ic-sub">Ketuk untuk detail</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Empat Jenis Historiografi</h2>
+      </div>
+      <p class="section-desc">Bagaimana cara pandang penulisan sejarah berubah dari masa ke masa.</p>
+      <div class="info-grid">
+        ${HISTORIOGRAFI.map((h,i)=>`
+          <button class="info-card ${h.tone}" onclick="showHistoriografi(${i})">
+            <div class="ic-eyebrow">Historiografi</div>
+            <div class="ic-name">${h.name}</div>
+            <div class="ic-sub">Ketuk untuk ciri & contoh</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    ${chapterNav(4, 6, 'Aktivitas Silsilah')}
+  `;
+}
+window.showMetode = (i)=>{
+  const m = METODE[i];
+  openModal(`<span class="modal-tag">Metode Sejarah · Tahap ${m.num}</span><h3>${m.name} — ${m.desc}</h3>${m.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+window.showIlmuBantu = (i)=>{
+  const ib = ILMU_BANTU[i];
+  openModal(`<span class="modal-tag">Ilmu Bantu Sejarah</span><h3><span class="modal-icon">${ib.icon}</span>${ib.name}</h3><p>${ib.desc}</p><p style="font-size:13px;color:var(--ink-3);font-style:italic;">Dipakai pada tahap Heuristik &amp; Kritik.</p><div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+window.showHistoriografi = (i)=>{
+  const h = HISTORIOGRAFI[i];
+  openModal(`<span class="modal-tag">Historiografi</span><h3>Historiografi ${h.name}</h3>${h.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+
+function renderChapter6(){
+  return `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 06</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Aktivitas Silsilah</span>
+      </div>
+      <h1 class="hero-title">Telusuri <span class="accent">Silsilah</span> Keluargamu</h1>
+      <p class="hero-body">Kata <em>syajaratun</em> berarti pohon. Sekarang saatnya kamu menjadi sejarawan bagi keluargamu sendiri.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Tujuan & Langkah</h2>
+      </div>
+      <div class="callout callout-teal">
+        <p><b>Tujuan:</b> Mengaplikasikan konsep sejarah sebagai pohon dengan menelusuri silsilah keluarga — melatih wawancara, mencatat data, menyusun cerita, dan merefleksikan nilai-nilai leluhur.</p>
+      </div>
+      <ol class="styled-list">
+        <li>Wawancarai orang tua, kakek-nenek, atau kerabat tertua.</li>
+        <li>Catat data penting setiap generasi: Nama, Tempat/Tanggal Lahir, Pekerjaan, Asal Daerah.</li>
+        <li>Kumpulkan cerita (minimal 1 cerita per generasi).</li>
+        <li>Tuliskan hasilnya ke dalam format tabel di buku tugas.</li>
+        <li>Buat diagram pohon silsilah (manual atau digital).</li>
+        <li>Presentasikan hasilnya di depan kelas/kelompok.</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Panduan Wawancara</h2>
+      </div>
+      <p class="section-desc">Empat keterampilan kunci saat melakukan wawancara sejarah.</p>
+      <div class="info-grid">
+        ${WAWANCARA.map((w,i)=>`
+          <button class="info-card ${i%3===0?'amber':i%3===1?'teal':'rose'}" onclick="showWawancara(${i})">
+            <div class="ic-icon">${w.icon}</div>
+            <div class="ic-name">${w.title}</div>
+            <div class="ic-sub">Ketuk untuk detail</div>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Contoh Pertanyaan</h2>
+      </div>
+      <p class="section-desc">Lima pertanyaan pembuka yang bisa kamu gunakan.</p>
+      <ul class="bullet-list">
+        ${CONTOH_PERTANYAAN.map(p=>`<li>${p}</li>`).join('')}
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Lembar Kerja Silsilah</h2>
+      </div>
+      <p class="section-desc">Isi di sini lalu unduh sebagai file teks, atau salin ke buku tugas.</p>
+      <div class="form-group">
+        <label class="form-label">Generasi 1 · Aku</label>
+        <input class="form-input" id="gen1-name" placeholder="Nama lengkap..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Generasi 2 · Ayah/Ibu</label>
+        <input class="form-input" id="gen2-name" placeholder="Nama + 1 cerita pengalaman hidup..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Generasi 3 · Kakek/Nenek</label>
+        <input class="form-input" id="gen3-name" placeholder="Nama + 1 cerita pengalaman hidup..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Generasi 4 · Buyut</label>
+        <input class="form-input" id="gen4-name" placeholder="Nama + 1 cerita pengalaman hidup..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Generasi 5 · Leluhur ke-5</label>
+        <input class="form-input" id="gen5-name" placeholder="Nama + 1 cerita pengalaman hidup..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nilai-Nilai Luhur</label>
+        <input class="form-input" id="nilai" placeholder="Contoh: kerja keras, gotong royong, jujur..." />
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="downloadSilsilah()">📥 Unduh Isian</button>
+      </div>
+    </section>
+
+    ${chapterNav(5, 7, 'Tantangan Akhir')}
+  `;
+}
+window.showWawancara = (i)=>{
+  const w = WAWANCARA[i];
+  openModal(`<span class="modal-tag">Panduan Wawancara</span><h3><span class="modal-icon">${w.icon}</span>${w.title}</h3>${w.content}<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`);
+};
+window.downloadSilsilah = ()=>{
+  const vals = ['gen1-name','gen2-name','gen3-name','gen4-name','gen5-name','nilai'].map(id=>{
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  });
+  if(vals.every(v=>!v)){ alert('Isi minimal satu kolom terlebih dahulu.'); return; }
+  const txt = `SILSILAH KELUARGA — TELUSURI JEJAK SEJARAH\n${'='.repeat(55)}\n\n`
+    + `Generasi 1 (Aku): ${vals[0] || '(belum diisi)'}\n`
+    + `Generasi 2 (Ayah/Ibu): ${vals[1] || '(belum diisi)'}\n`
+    + `Generasi 3 (Kakek/Nenek): ${vals[2] || '(belum diisi)'}\n`
+    + `Generasi 4 (Buyut): ${vals[3] || '(belum diisi)'}\n`
+    + `Generasi 5 (Leluhur ke-5): ${vals[4] || '(belum diisi)'}\n\n`
+    + `Nilai-nilai luhur yang diwariskan:\n${vals[5] || '(belum diisi)'}\n\n`
+    + `\nKonsep Syajaratun (Pohon Sejarah):\n`
+    + `- Akar   : Asal-usul keluarga\n- Batang : Intisari generasi\n- Cabang : Peristiwa besar\n- Ranting: Kejadian kecil yang terkait\n`;
+  downloadText(txt, 'silsilah-keluarga.txt');
+};
+
+function renderChapter7(){
+  App.quiz = { idx:0, correct:0, answered:[] };
+  return `<div id="quizRoot"></div>`;
+}
+function setupChapter7(){ renderQuiz(); }
+
+function renderQuiz(){
+  const qs = App.quiz;
+  const root = document.getElementById('quizRoot');
+  if(!root) return;
+
+  if(qs.idx >= QUIZ.length){ renderQuizResult(); return; }
+
+  const q = QUIZ[qs.idx];
+  const pct = Math.round(qs.idx / QUIZ.length * 100);
+  const typeLabel = q.t === 'pg' ? 'Pilihan Ganda' : 'Benar / Salah';
+
+  let optionsHtml = '';
+  if(q.t === 'pg'){
+    const letters = ['A','B','C','D'];
+    optionsHtml = q.o.map((opt,i)=>`
+      <button class="quiz-option" data-idx="${i}">
+        <span class="letter">${letters[i]}</span>
+        <span>${opt}</span>
+      </button>`).join('');
+  } else {
+    optionsHtml = ['BENAR','SALAH'].map((opt,i)=>`
+      <button class="quiz-option" data-idx="${i}">
+        <span class="letter">${i===0?'B':'S'}</span>
+        <span>${opt}</span>
+      </button>`).join('');
+  }
+
+  root.innerHTML = `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-gold">Chapter 07</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Tantangan Akhir</span>
+      </div>
+      <h1 class="hero-title">Tantangan <span class="accent">Akhir</span></h1>
+      <p class="hero-body">Uji pemahamanmu tentang prinsip ilmu sejarah.</p>
+    </section>
+
+    <section class="section">
+      <div class="quiz-header">
+        <div class="quiz-progress">
+          Soal
+          <strong>${qs.idx + 1} <span>/ ${QUIZ.length}</span></strong>
+        </div>
+        <div class="quiz-score">
+          Benar <strong>${qs.correct}</strong>
+        </div>
+      </div>
+      <div class="progress-track" style="margin-bottom:32px;"><div class="progress-fill" style="width:${pct}%;"></div></div>
+
+      <div class="quiz-type">${typeLabel}</div>
+      <p class="quiz-question">${q.q}</p>
+      <div id="quizOptions">${optionsHtml}</div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <div class="btn-row" id="quizAfter"></div>
+    </section>
+  `;
+
+  document.querySelectorAll('#quizOptions .quiz-option').forEach(btn=>{
+    btn.onclick = ()=> answerQuestion(parseInt(btn.dataset.idx), btn);
+  });
+}
+
+function answerQuestion(picked, btn){
+  const qs = App.quiz;
+  const q = QUIZ[qs.idx];
+  const all = document.querySelectorAll('#quizOptions .quiz-option');
+  all.forEach(o=>o.disabled = true);
+
+  const fb = document.getElementById('quizFeedback');
+  const isCorrect = picked === q.c;
+
+  if(isCorrect){
+    btn.classList.add('correct');
+    qs.correct++;
+    fb.className = 'quiz-feedback ok show';
+    fb.innerHTML = `<b>✓ Benar.</b> ${q.e}`;
+  } else {
+    btn.classList.add('wrong');
+    all[q.c].classList.add('correct');
+    fb.className = 'quiz-feedback no show';
+    fb.innerHTML = `<b>✗ Belum tepat.</b> ${q.e}`;
+  }
+  qs.answered.push({ picked, correct: isCorrect });
+  qs.idx++;
+
+  const after = document.getElementById('quizAfter');
+  const nb = document.createElement('button');
+  nb.className = 'btn btn-primary';
+  nb.innerHTML = qs.idx < QUIZ.length ? 'Soal Berikutnya →' : 'Lihat Hasil →';
+  nb.onclick = ()=> renderQuiz();
+  after.appendChild(nb);
+}
+
+function renderQuizResult(){
+  const qs = App.quiz;
+  const pct = Math.round(qs.correct / QUIZ.length * 100);
+  let emoji, msg;
+  if(pct >= 90){ emoji='🏆'; msg='Luar biasa. Pemahamanmu tentang ilmu sejarah sangat baik.'; }
+  else if(pct >= 70){ emoji='🥈'; msg='Bagus. Kamu sudah memahami dasar-dasar ilmu sejarah dengan baik.'; }
+  else if(pct >= 50){ emoji='🥉'; msg='Cukup baik. Pelajari kembali bagian sumber, kronologi, dan periodisasi.'; }
+  else { emoji='📚'; msg='Jangan menyerah. Coba ulangi petualangan dan baca penjelasan dengan saksama.'; }
+
+  const root = document.getElementById('quizRoot');
+  root.innerHTML = `
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="chip chip-emerald">Selesai</span>
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-meta">Hasil Tantangan</span>
+      </div>
+      <h1 class="hero-title">${emoji} <span class="accent">Selesai</span></h1>
+    </section>
+
+    <section class="section">
+      <div class="score-display">
+        <div class="score-big">${qs.correct}<span class="score-total">/${QUIZ.length}</span></div>
+        <div class="score-pct">Skor ${pct}%</div>
+        <p class="score-msg">${msg}</p>
+      </div>
+      <blockquote class="hero-quote" style="margin:40px auto 0;max-width:520px;">
+        <p>"Bangsa yang besar adalah bangsa yang menghargai sejarahnya."</p>
+        <cite>— Ir. Soekarno</cite>
+      </blockquote>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Jurnal Refleksi</h2>
+      </div>
+      <p class="section-desc">Luangkan waktu untuk merenungkan pembelajaranmu.</p>
+      <div class="form-group">
+        <label class="form-label">01 · Konsep paling menarik</label>
+        <input class="form-input" id="refl1" placeholder="Tulis di sini..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">02 · Konsep yang masih sulit</label>
+        <input class="form-input" id="refl2" placeholder="Tulis di sini..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">03 · Tindakan nyata setelah belajar sejarah</label>
+        <input class="form-input" id="refl3" placeholder="Tulis di sini..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">04 · Nilai pemahaman materi (1–10)</label>
+        <input class="form-input" id="refl4" placeholder="1 - 10" />
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="downloadRefleksi()">📥 Unduh Refleksi</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Jelajahi Lebih Lanjut</h2>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="showReview()">📖 Pembahasan</button>
+        <button class="btn btn-secondary" onclick="showGlosarium()">📚 Glosarium</button>
+        <button class="btn btn-secondary" onclick="showReferensi()">📎 Referensi</button>
+      </div>
+    </section>
+
+    <div class="chapter-nav-bottom">
+      <button class="btn btn-secondary" onclick="goToChapter(6)">← Aktivitas Silsilah</button>
+      <button class="btn btn-primary" onclick="restartApp()">↻ Ulangi Petualangan</button>
+    </div>
+  `;
+}
+
+window.showReview = ()=>{
+  const qs = App.quiz;
+  let html = '<span class="modal-tag">Pembahasan</span><h3>Pembahasan Lengkap</h3>';
+  QUIZ.forEach((q,i)=>{
+    const a = qs.answered[i];
+    let answer;
+    if(q.t === 'pg') answer = `${String.fromCharCode(65+q.c)}. ${q.o[q.c]}`;
+    else answer = q.c === 0 ? 'BENAR' : 'SALAH';
+    const ok = a?.correct;
+    html += `
+      <div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);">
+        <p style="font-weight:500;color:var(--ink);margin:0 0 8px;line-height:1.5;">${i+1}. [${q.t.toUpperCase()}] ${q.q}</p>
+        <p style="font-size:13px;color:${ok?'var(--emerald)':'var(--bronze-deep)'};margin:0 0 4px;font-weight:500;">
+          ${ok?'✓':'○'} Jawaban benar: ${answer}
+        </p>
+        <p style="font-size:13px;color:var(--ink-3);margin:0;line-height:1.65;">${q.e}</p>
+      </div>`;
+  });
+  html += `<div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>`;
+  openModal(html);
+};
+window.showGlosarium = ()=>{
+  openModal(`
+    <span class="modal-tag">Glosarium</span>
+    <h3>Glosarium Istilah</h3>
+    ${GLOSARIUM.map(g=>`<p style="margin-bottom:14px;"><b style="color:var(--bronze-deep);">${g[0]}:</b> <span style="color:var(--ink-2);">${g[1]}</span></p>`).join('')}
+    <div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>
+  `);
+};
+window.showReferensi = ()=>{
+  openModal(`
+    <span class="modal-tag">Daftar Pustaka</span>
+    <h3>Referensi & Sumber Belajar</h3>
+    <ol style="padding-left:20px;">${REFERENSI.map(r=>`<li style="margin-bottom:12px;line-height:1.65;">${r}</li>`).join('')}</ol>
+    <div class="btn-row"><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div>
+  `);
+};
+window.downloadRefleksi = ()=>{
+  const vals = ['refl1','refl2','refl3','refl4'].map(id=>{
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  });
+  const qs = App.quiz;
+  const pct = Math.round(qs.correct / QUIZ.length * 100);
+  const txt = `JURNAL REFLEKSI — MEMAHAMI PRINSIP ILMU SEJARAH\n${'='.repeat(55)}\n\n`
+    + `Skor Tantangan Akhir: ${qs.correct}/${QUIZ.length} (${pct}%)\n\n`
+    + `1. Konsep paling menarik:\n   ${vals[0] || '(belum diisi)'}\n\n`
+    + `2. Konsep yang masih sulit:\n   ${vals[1] || '(belum diisi)'}\n\n`
+    + `3. Tindakan nyata setelah belajar sejarah:\n   ${vals[2] || '(belum diisi)'}\n\n`
+    + `4. Nilai pemahaman diri (1-10): ${vals[3] || '(belum diisi)'}\n\n`
+    + `${'='.repeat(55)}\n`
+    + `"Bangsa yang besar adalah bangsa yang menghargai sejarahnya."\n— Ir. Soekarno\n`;
+  downloadText(txt, 'refleksi-sejarah.txt');
+};
+window.restartApp = ()=>{
+  if(!confirm('Ulangi petualangan dari awal?')) return;
+  App.visited = new Set([0]);
+  App.quiz = null;
+  goToChapter(0);
+};
+
+const CHAPTERS = {
+  0: { render: renderChapter0, setup: null },
+  1: { render: renderChapter1, setup: setupChapter1 },
+  2: { render: renderChapter2, setup: null },
+  3: { render: renderChapter3, setup: null },
+  4: { render: renderChapter4, setup: null },
+  5: { render: renderChapter5, setup: null },
+  6: { render: renderChapter6, setup: null },
+  7: { render: renderChapter7, setup: setupChapter7 }
+};
+
+document.getElementById('soundBtn').onclick = (e)=>{
+  App.sound = !App.sound;
+  e.currentTarget.textContent = App.sound ? '🔊' : '🔇';
+  e.currentTarget.classList.toggle('active', !App.sound);
+};
+document.getElementById('restartBtn').onclick = ()=>{
+  if(confirm('Ulangi petualangan dari awal?')){
+    App.visited = new Set([0]);
+    App.quiz = null;
+    goToChapter(0);
+  }
+};
+
+renderSidebar();
+updateProgress();
+goToChapter(0);
+window.__Chrono = App;
+</script>
+</body>
+</html>
