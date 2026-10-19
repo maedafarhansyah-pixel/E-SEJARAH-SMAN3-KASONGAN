@@ -13,10 +13,9 @@
 :root{
   --primary:#B8860B;--primary-light:#DAA520;--gold:#FFD700;--emerald:#10B981;
   --rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;
-  --card-alt:#252540;--text:#f5f2ec;--text-light:#c5c5dc;--text-muted:#8d8da8;
+  --card-alt:#252540;--text:#faf8f3;--text-light:#dcdcec;--text-muted:#adadc5;
   --line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);
   --radius:18px;--radius-sm:12px;--header-h:64px;
-  /* aksen tema — diubah dinamis */
   --accent:#B8860B;--accent2:#DAA520;--accent-soft:rgba(184,134,11,.12);
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;
@@ -40,7 +39,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 @keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
 .loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
 @keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-muted);font-size:.85rem;margin-top:6px;font-style:italic}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
 .loader-track{width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);border-radius:10px;margin-top:24px;overflow:hidden;}
 .loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
 .loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
@@ -59,72 +58,68 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .section.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-/* HERO */
-.hero{text-align:center;padding:36px 0 20px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.14),rgba(139,92,246,.08));border:1px solid var(--line);padding:7px 20px;border-radius:40px;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin-bottom:18px}
-.hero-title{font-size:clamp(1.8rem,5.5vw,3.4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px}
-.hero-title .title-top{display:block;background:linear-gradient(135deg,var(--violet) 0%,var(--sky) 30%,var(--primary) 60%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:300% auto;animation:titleTopShimmer 6s ease infinite;filter:drop-shadow(0 2px 8px rgba(139,92,246,.25));}
-@keyframes titleTopShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.hero-title .title-gold{display:block;background:linear-gradient(135deg,#FF8A00 0%,#FFD700 12%,#FFF6C2 24%,#FF3D71 38%,#FF7A45 48%,#FFD700 62%,#FFE066 72%,#FF2E63 84%,#FFD700 94%,#FFB300 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:300% auto;animation:goldShimmer 4.5s ease infinite;filter:drop-shadow(0 1px 0 #8b6914) drop-shadow(0 2px 0 #6a510d) drop-shadow(0 3px 0 #3a2c05) drop-shadow(0 4px 10px rgba(184,134,11,.35)) drop-shadow(0 0 18px rgba(255,215,0,.45)) drop-shadow(0 0 32px rgba(255,61,113,.25));transform:perspective(600px) rotateX(1.5deg);}
-@keyframes goldShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.hero-sub{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text-light);max-width:680px;margin:0 auto 20px;line-height:1.75}
-.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
-.stat-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:16px 24px;min-width:130px;text-align:center;transition:all .3s;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-.stat-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 8px 25px rgba(184,134,11,.18)}
-.stat-card .val{font-size:1.5rem;font-weight:900;color:var(--primary);line-height:1}
+/* HERO — disederhanakan */
+.hero{text-align:center;padding:28px 0 16px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:7px 18px;border-radius:40px;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.hero-title{font-size:clamp(1.8rem,5vw,3.1rem);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:16px}
+.hero-title .title-top{display:block;color:var(--text);background:linear-gradient(135deg,#7DD3FC 0%,#38BDF8 45%,#DAA520 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(56,189,248,.15))}
+.hero-title .title-gold{display:block;color:var(--primary);background:linear-gradient(135deg,#DAA520 0%,#FFD700 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 4px rgba(184,134,11,.2))}
+.hero-sub{font-size:clamp(.92rem,1.5vw,1.02rem);color:var(--text-light);max-width:620px;margin:0 auto 22px;line-height:1.7}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.stat-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px 22px;min-width:110px;text-align:center;transition:all .3s}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--primary)}
+.stat-card .val{font-size:1.4rem;font-weight:900;color:var(--primary);line-height:1}
 .stat-card .lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:6px}
 
 /* SECTION HEADER */
 .section-h{margin-bottom:20px}
-.section-h h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.section-h h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;color:var(--text)}
 .section-h h3 i{color:var(--primary)}
-.section-h p{color:var(--text-muted);font-size:.85rem;margin-bottom:16px}
+.section-h p{color:var(--text-muted);font-size:.88rem;margin-bottom:16px;line-height:1.6}
 
-/* CHAPTER GRID — tiap kartu punya aksen berbeda */
+/* CHAPTER GRID */
 .chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
 .chapter-card{background:linear-gradient(145deg,var(--card),var(--card-alt));border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.2);border-top:3px solid var(--ch-accent,#B8860B)}
 .chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ch-accent,#B8860B),var(--ch-accent2,#DAA520),var(--emerald))}
 .chapter-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,.35);border-color:var(--ch-accent,#B8860B)}
 .chapter-card .ch-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--ch-accent,#B8860B),var(--ch-accent2,#DAA520));color:#fff;font-weight:900;font-size:.82rem;margin-bottom:10px}
-.chapter-card h4{font-size:.94rem;margin-bottom:6px;line-height:1.3}
-.chapter-card p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
-.chapter-card .ch-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:.7rem;font-weight:700;color:var(--ch-accent,#B8860B)}
+.chapter-card h4{font-size:.96rem;margin-bottom:6px;line-height:1.3;color:var(--text)}
+.chapter-card p{font-size:.78rem;color:var(--text-muted);line-height:1.55}
+.chapter-card .ch-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:.72rem;font-weight:700;color:var(--ch-accent,#B8860B)}
 .chapter-card .ch-meta .cnt{color:var(--emerald)}
 .chapter-card .ch-badges{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
-.chapter-card .mini-badge{font-size:.55rem;padding:2px 7px;border-radius:20px;font-weight:700;letter-spacing:.4px;border:1px solid var(--line)}
+.chapter-card .mini-badge{font-size:.58rem;padding:2px 7px;border-radius:20px;font-weight:700;letter-spacing:.4px;border:1px solid}
 
 /* TEST HEADER */
 .test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
-.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem)}
-.test-hdr .test-sub{font-size:.8rem;color:var(--text-muted);margin-top:4px}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
 .test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light)}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
 .chip i{color:var(--primary)}
-.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.85rem;color:var(--primary);letter-spacing:1px}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px}
 
 /* QUESTION CARD */
 .qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent)}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
 .badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
 .badge.MCMA{background:rgba(139,92,246,.15);color:#a78bfa;border-color:rgba(139,92,246,.35)}
 .badge.KATEGORI{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.35)}
-.badge.lv{background:var(--card-alt);color:var(--text-muted);border-color:var(--line)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
 .badge.df{background:rgba(16,185,129,.1);color:var(--emerald);border-color:rgba(16,185,129,.3)}
-.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:5px 16px;border-radius:30px;font-size:.75rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(184,134,11,.35)}
-.q-stim{background:rgba(184,134,11,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.88rem;color:var(--text-light);line-height:1.8;font-style:italic}
-.q-stim .stim-title{font-weight:800;color:var(--accent);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
-.q-text{font-size:.94rem;line-height:1.7;margin-bottom:16px;font-weight:600}
-.q-hint{font-size:.76rem;color:var(--text-muted);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(184,134,11,.35)}
+.q-stim{background:rgba(184,134,11,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--accent);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)}
 
-/* ============================================
-   PG — kartu berhuruf A/B/C/D/E (radio-style)
-   ============================================ */
+/* PG */
 .opts{display:flex;flex-direction:column;gap:9px}
 .opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
 .opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
 .opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--accent);transition:all .2s}
-.opt .txt{flex:1;font-size:.88rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
 .opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
 .opt.sel .lbl{background:var(--accent);color:#fff;border-color:var(--accent)}
 .opt.sel .txt{color:var(--text)}
@@ -133,16 +128,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .opt.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
 .opt.wrong .lbl{background:var(--rose);color:#fff;border-color:var(--rose)}
 
-/* ============================================
-   MCMA — kartu berhuruf A–E + KOTAK CENTANG ✓
-   (bukan radio; jawaban bisa lebih dari satu)
-   ============================================ */
+/* MCMA */
 .checks{display:flex;flex-direction:column;gap:9px}
 .check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(139,92,246,.18);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
 .check:hover{background:rgba(139,92,246,.08);border-color:var(--violet);transform:translateX(3px)}
 .check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(139,92,246,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
 .check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:var(--violet);padding-top:4px}
-.check .txt{flex:1;font-size:.88rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
 .check.sel{background:rgba(139,92,246,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
 .check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
 .check.sel .txt{color:var(--text)}
@@ -153,29 +145,27 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
 .check.wrong .clbl{color:var(--rose)}
 
-/* ============================================
-   KATEGORI — Sesuai / Tidak Sesuai
-   ============================================ */
+/* KATEGORI */
 .kat-wrap{overflow-x:auto;margin-bottom:16px}
-.kat-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
 .kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
-.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
 .kat-table td{color:var(--text-light)}
 .kat-actions{display:flex;gap:6px;flex-wrap:wrap}
-.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
 .kat-btn:hover{border-color:var(--accent);color:var(--accent)}
 .kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
 .kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
 
 /* EXPLANATION */
-.expl{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.84rem;color:var(--text-light);line-height:1.75;animation:fadeUp .3s ease}
-.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
-.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.76rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.25)}
+.expl{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.25)}
 
 /* NAVIGATION */
 .q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
-.q-nav .pos{font-size:.8rem;color:var(--text-muted);font-weight:600}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
 .btn:disabled{opacity:.35;cursor:not-allowed}
 .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 22px rgba(184,134,11,.3)}
 .btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(184,134,11,.4)}
@@ -188,7 +178,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
 /* QMAP */
 .qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
-.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .qmap-btn:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.08)}
 .qmap-btn.ans{background:rgba(16,185,129,.18);border-color:var(--emerald);color:var(--emerald)}
 .qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#fff;box-shadow:0 0 12px rgba(184,134,11,.4);transform:scale(1.1)}
@@ -209,23 +199,23 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .rs.blue .v{color:var(--sky)}
 .recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
 .recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
-.recap-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
-.recap-table th{background:var(--card-alt);color:var(--primary);font-size:.68rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table th{background:var(--card-alt);color:var(--primary);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
 .recap-table td{color:var(--text-light)}
 
 /* IDENTITY FORM */
 .identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
 .identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary)}
-.identity-form p{font-size:.82rem;color:var(--text-muted);margin-bottom:20px}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
 .form-group{margin-bottom:16px;text-align:left}
-.form-group label{display:block;font-size:.78rem;font-weight:700;color:var(--text-light);margin-bottom:6px}
-.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.85rem;transition:border .3s}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
 .form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(184,134,11,.15)}
-.form-group input::placeholder{color:var(--text-muted);font-size:.8rem}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
 
 /* PRIVACY NOTICE */
-.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(184,134,11,.08));border:1.5px solid rgba(251,113,133,.4);font-size:.78rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(184,134,11,.08));border:1.5px solid rgba(251,113,133,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
 @keyframes privacyPulse{0%,100%{border-color:rgba(251,113,133,.4);box-shadow:0 0 0 0 rgba(251,113,133,.15)}50%{border-color:rgba(251,113,133,.65);box-shadow:0 0 0 4px rgba(251,113,133,.1)}}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
@@ -241,13 +231,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   .opt .lbl{width:25px;height:25px;font-size:.72rem}
   .check .box{width:23px;height:23px}
   .check .clbl{width:18px;font-size:.72rem}
-  .opt .txt,.check .txt{font-size:.83rem}
+  .opt .txt,.check .txt{font-size:.86rem}
   .loader-3d-wrap{width:200px;height:200px}
   .loader-circle{width:120px;height:120px}
 }
 @media(max-width:480px){
   .chapter-grid{grid-template-columns:1fr}
-  .btn{padding:9px 16px;font-size:.78rem}
+  .btn{padding:9px 16px;font-size:.8rem}
   .q-nav{flex-direction:column}
   .q-nav .btn{width:100%;justify-content:center}
   .loader-3d-wrap{width:180px;height:180px}
@@ -296,22 +286,21 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 <!-- HOME SECTION -->
 <section id="home" class="section active">
   <div class="hero">
-    <div class="hero-badge"><i class="fas fa-crown"></i> TKA Premium · Literasi Sejarah</div>
+    <div class="hero-badge"><i class="fas fa-crown"></i> TKA Literasi Sejarah</div>
     <h1 class="hero-title">
       <span class="title-top">Tes Kemampuan Akademik</span>
       <span class="title-gold">Literasi Sejarah SMA</span>
     </h1>
-    <p class="hero-sub">Bank soal bergaya TKA lintas tema Fase E &amp; F dengan stimulus autentik, tiga bentuk soal (PG, MCMA, PG Kompleks Kategori), pembahasan mendalam, dan level kognitif <strong>Knowing–Applying–Reasoning</strong>.</p>
+    <p class="hero-sub">Bank soal bergaya TKA dengan stimulus autentik, tiga bentuk soal, dan pembahasan mendalam untuk Fase E–F.</p>
     <div class="hero-stats">
       <div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Tema Materi</div></div>
       <div class="stat-card"><div class="val" id="statQ">308</div><div class="lbl">Soal Bergaya TKA</div></div>
       <div class="stat-card"><div class="val">3</div><div class="lbl">Bentuk Soal</div></div>
-      <div class="stat-card"><div class="val">3</div><div class="lbl">Level Kognitif</div></div>
     </div>
   </div>
   <div class="section-h">
     <h3><i class="fas fa-book-open"></i> Pilih Tema Materi</h3>
-    <p>Setiap tema berisi 22 soal bergaya TKA: 12 PG, 6 MCMA (centang), dan 4 KATEGORI. Soal diacak setiap kali tema dibuka.</p>
+    <p>Setiap tema berisi 22 soal: 12 PG, 6 MCMA (centang), dan 4 Kategori. Soal diacak setiap tema dibuka.</p>
   </div>
   <div class="chapter-grid" id="chapterGrid"></div>
 </section>
@@ -320,7 +309,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 <section id="identity" class="section">
   <div style="text-align:center;padding:20px 0 10px">
      <h2 style="font-size:1.4rem;color:var(--primary)">Identitas Siswa</h2>
-     <p style="color:var(--text-muted);font-size:.85rem">Isi data diri sebelum memulai tes</p>
+     <p style="color:var(--text-muted);font-size:.88rem">Isi data diri sebelum memulai tes</p>
   </div>
   <div class="identity-form">
      <h2>Formulir Peserta</h2>
@@ -363,7 +352,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
       <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">22</span></span>
-      <button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.75rem"><i class="fas fa-arrow-left"></i> Kembali</button>
+      <button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.78rem"><i class="fas fa-arrow-left"></i> Kembali</button>
     </div>
   </div>
   <div class="qcard" id="qcard">
@@ -390,7 +379,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   <div class="result-hero">
     <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
     <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
-    <p style="color:var(--text-muted);font-size:.9rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
     <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
   </div>
   <div class="result-stats">
@@ -460,14 +449,12 @@ const Q1=[
 {t:'PG',l:'Applying',d:'Sedang',i:'Sejarah sebagai seni',s:'Sejarawan Inggris, G.J. Renier, menyatakan bahwa sejarah adalah "ilmu dan seni sekaligus". Sebagai ilmu, sejarah menggunakan metode penelitian yang sistematis dan dapat diuji. Namun sebagai seni, penulisan sejarah membutuhkan imajinasi, intuisi, dan kreativitas untuk merangkai fakta-fakta yang terserak menjadi sebuah narasi yang hidup dan bermakna.',q:'Berdasarkan stimulus tersebut, dimensi hakikat sejarah yang menekankan bahwa penulisan sejarah membutuhkan imajinasi & kreativitas adalah ....',o:['Sejarah sebagai peristiwa','Sejarah sebagai kisah','Sejarah sebagai seni','Sejarah sebagai ilmu','Sejarah sebagai mitos'],a:2,e:'Sejarah sebagai seni: butuh imajinasi & kreativitas.'},
 {t:'PG',l:'Applying',d:'Sedang',i:'Cara berpikir diakronik',s:'Dalam penelitian sejarah, dikenal dua cara berpikir utama: diakronik dan sinkronik. Cara berpikir diakronik memandang peristiwa sejarah secara vertikal, yaitu memanjang dalam waktu, mengikuti urutan kronologis dari satu peristiwa ke peristiwa berikutnya. Sementara itu, cara berpikir sinkronik memandang peristiwa secara horizontal, yaitu meluas dalam ruang.',q:'Berdasarkan stimulus tersebut, cara berpikir yang memandang peristiwa sejarah secara vertikal dan berurutan disebut ....',o:['Sinkronik','Diakronik','Kronologis terbalik','Deskriptif','Anakronistik'],a:1,e:'Diakronik = memanjang dalam waktu (kronologis).'},
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Sumber primer',s:'Dalam penelitian sejarah, sumber primer didefinisikan sebagai sumber yang dihasilkan pada masa peristiwa terjadi, atau oleh orang yang terlibat atau menyaksikan langsung peristiwa tersebut. Sumber primer dapat berupa dokumen tertulis, artefak, foto, rekaman, atau kesaksian lisan. Meskipun demikian, sumber primer tidak otomatis benar. Seorang sejarawan tetap harus melakukan kritik ekstern dan kritik intern.',q:'Berdasarkan stimulus tersebut, pernyataan yang paling tepat tentang sumber primer adalah ....',o:['Dibuat setelah peristiwa oleh sejarawan','Berasal dari masa/pelaku/saksi langsung peristiwa','Selalu berupa tulisan resmi','Hanya berupa artefak','Selalu benar tanpa perlu kritik'],a:1,e:'Sumber primer = dari masa/pelaku/saksi langsung. Tetap perlu dikritik.'},
-/* MCMA 6 — kartu berhuruf A–E + kotak centang ✓ */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Kualitas sumber',s:'Seorang peneliti sedang meneliti peristiwa bersejarah yang terjadi pada abad ke-9 Masehi. Ia menemukan tiga sumber yang berbeda: (1) sebuah prasasti batu yang dibuat pada masa peristiwa terjadi; (2) sebuah kronik yang ditulis oleh seorang sejarawan 200 tahun setelah peristiwa berlangsung; dan (3) sebuah foto dokumentasi yang diambil saat peristiwa sedang berlangsung.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai kualitas sumber-sumber tersebut? (Pilih lebih dari satu)',o:['Prasasti merupakan sumber primer karena dibuat pada masa peristiwa.','Kronik merupakan sumber sekunder karena ditulis jauh setelah peristiwa.','Foto dokumentasi tidak dapat dikategorikan sebagai sumber sejarah.','Ketiga sumber harus dikritik secara ekstern & intern sebelum digunakan.','Kronik selalu lebih akurat daripada prasasti.'],a:[0,1,3],e:'A, B, D benar. C salah (foto = sumber primer visual). E salah (kronik tidak otomatis lebih akurat).'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Klasifikasi sumber',s:'Seorang siswa meneliti Pertempuran Surabaya 1945. Ia mengumpulkan empat sumber: (1) wawancara dengan veteran; (2) buku teks sejarah terbitan 2020; (3) foto dokumentasi saat pertempuran; dan (4) artikel jurnal akademik.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai jenis sumber yang dikumpulkan siswa? (Pilih lebih dari satu)',o:['Wawancara veteran termasuk sumber primer karena berasal dari saksi langsung.','Buku teks terbitan 2020 termasuk sumber sekunder.','Foto dokumentasi pertempuran termasuk sumber primer karena dihasilkan pada masa peristiwa.','Artikel jurnal selalu termasuk sumber primer.','Buku teks & artikel jurnal tidak dapat digunakan dalam penelitian sejarah.'],a:[0,1,2],e:'A, B, C benar. D salah (bisa primer atau sekunder). E salah (sangat berguna).'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Ilmu bantu relevan',s:'Seorang peneliti menemukan sebuah prasasti abad ke-9 M. Prasasti terbuat dari batu andesit dengan aksara yang sudah aus. Pada bagian bawah prasasti terdapat cap kerajaan yang sudah memudar.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai ilmu bantu yang relevan? (Pilih lebih dari satu)',o:['Epigrafi membantu mengkaji tulisan pada prasasti.','Paleografi membantu membaca aksara kuno.','Numismatik mempelajari mata uang kuno.','Ikonografi mempelajari makna gambar & simbol pada relief.','Genealogi mempelajari silsilah keluarga.'],a:[0,1,3,4],e:'A, B, D, E relevan dengan konteks prasasti. Numismatik tidak disebut dalam stimulus.'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Sumber & kritik ekstern',s:'Seorang peneliti mewawancarai veteran Pertempuran Surabaya 1945. Ia juga memeriksa cap dan tanda tangan pada dokumen kuno di arsip nasional.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai sumber yang diperoleh? (Pilih lebih dari satu)',o:['Wawancara veteran termasuk sumber primer lisan.','Pemeriksaan cap pada dokumen merupakan kritik ekstern.','Wawancara veteran termasuk sumber sekunder.','Dokumen kuno dengan cap asli dapat menjadi sumber primer.','Wawancara tidak dapat dijadikan sumber sejarah.'],a:[0,1,3],e:'A benar (primer lisan), B benar (uji cap = kritik ekstern), D benar (dokumen asli = primer). C & E salah.'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Klasifikasi sumber tertulis',s:'Seorang peneliti mengumpulkan sumber untuk meneliti Kerajaan Majapahit: (1) kitab Negarakertagama; (2) terjemahan Negarakertagama oleh sejarawan modern; (3) prasasti yang dibuat pada masa Majapahit; dan (4) artikel jurnal tentang Majapahit.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai jenis sumber? (Pilih lebih dari satu)',o:['Kitab Negarakertagama dapat dikategorikan sumber primer.','Terjemahan Negarakertagama termasuk sumber sekunder.','Prasasti dari masa Majapahit termasuk sumber primer.','Artikel jurnal tentang Majapahit termasuk sumber sekunder.','Semua sumber tersebut adalah sumber primer.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah (tidak semua primer).'},
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Kritik sumber',s:'Seorang sejarawan menemukan sebuah kronik yang ditulis untuk memuji raja. Kronik tersebut menceritakan kemenangan besar raja, tetapi tidak menyebutkan kekalahan. Sejarawan tersebut perlu melakukan kritik sumber sebelum menggunakan kronik sebagai sumber penelitian.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai kritik sumber? (Pilih lebih dari satu)',o:['Kritik intern perlu dilakukan karena kronik berpotensi bias.','Kritik ekstern perlu dilakukan untuk menguji keaslian fisik kronik.','Kronik tersebut tidak dapat digunakan sama sekali.','Sejarawan perlu membandingkan kronik dengan sumber lain.','Kritik sumber hanya dilakukan pada sumber sekunder.'],a:[0,1,3],e:'A, B, D benar. C salah (tetap bisa digunakan dengan kritik). E salah (semua sumber perlu kritik).'},
-/* KATEGORI 4 */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Diakronik & sinkronik',s:'Dua orang sejarawan mengkaji Proklamasi 17 Agustus 1945. Sejarawan A meneliti urutan peristiwa secara kronologis, dari penculikan Soekarno-Hatta ke Rengasdengklok hingga pembacaan teks proklamasi. Sejarawan B mengkaji kondisi sosial, politik, dan ekonomi Indonesia pada Agustus 1945 secara menyeluruh.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Sejarawan A menggunakan pendekatan diakronik karena mengkaji peristiwa secara kronologis & berurutan.',a:'Sesuai'},{x:'Sejarawan B menggunakan pendekatan sinkronik karena mengkaji kondisi sosial-politik pada satu periode secara menyeluruh.',a:'Sesuai'},{x:'Pendekatan Sejarawan A & B tidak dapat digabungkan dalam satu penelitian.',a:'Tidak Sesuai'},{x:'Diakronik menekankan kronologi; sinkronik menekankan analisis struktur pada suatu masa.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (bisa digabung), 4 Sesuai.'},
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kegunaan sejarah',s:'Francis Bacon menulis, "Histories make men wise." Pernyataan ini menegaskan bahwa belajar sejarah bukan sekadar menghafal tahun dan nama tokoh, melainkan upaya mengambil pelajaran berharga dari pengalaman masa lalu. Dengan memahami kesalahan dan keberhasilan generasi sebelumnya, manusia dapat bertindak lebih bijak dalam menghadapi tantangan masa kini dan masa depan.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada pernyataan tentang kegunaan sejarah berikut.',st:[{x:'Belajar sejarah membuat seseorang mampu mengambil pelajaran dari masa lalu untuk bertindak bijak di masa kini.',a:'Sesuai'},{x:'Sejarah hanya berguna untuk menghafal tahun dan nama tokoh.',a:'Tidak Sesuai'},{x:'Sejarah bersifat edukatif karena membantu memahami kesalahan masa lalu agar tidak terulang.',a:'Sesuai'},{x:'Sejarah tidak memiliki nilai praktis bagi kehidupan manusia.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Tidak Sesuai, 3 Sesuai, 4 Tidak Sesuai.'},
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Urutan tahap penelitian',s:'Dalam penelitian sejarah, tahap-tahap yang harus dilalui memiliki urutan logis: heuristik (pengumpulan sumber), kritik sumber (uji keaslian & kredibilitas), interpretasi (penafsiran fakta), dan historiografi (penulisan narasi). Tanpa melalui tahap-tahap ini secara berurutan, penelitian sejarah akan kehilangan validitasnya.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Heuristik harus dilakukan sebelum kritik sumber.',a:'Sesuai'},{x:'Interpretasi dilakukan setelah kritik sumber selesai.',a:'Sesuai'},{x:'Historiografi dapat dilakukan tanpa melalui kritik sumber.',a:'Tidak Sesuai'},{x:'Kritik ekstern & intern merupakan bagian dari tahap kritik sumber.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
@@ -475,7 +462,7 @@ const Q1=[
 ];
 
 /* ============================================================
-   Q2 — PENELITIAN SEJARAH (contoh; pola sama untuk tema lain)
+   Q2 — PENELITIAN SEJARAH
    12 PG + 6 MCMA + 4 KATEGORI
    ============================================================ */
 const Q2=[
@@ -491,14 +478,12 @@ const Q2=[
 {t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu paleografi',s:'Seorang peneliti menemukan prasasti abad ke-9 M dalam kondisi aus. Sebagian aksaranya pudar dan sulit dibaca. Untuk membaca dan memahami isi prasasti, peneliti memerlukan bantuan ahli paleografi.',q:'Berdasarkan stimulus tersebut, ilmu bantu yang paling berperan untuk membaca prasasti tersebut adalah ....',o:['Numismatik','Paleografi','Ikonografi','Genealogi','Sigillografi'],a:1,e:'Paleografi = ilmu tentang aksara kuno.'},
 {t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu sigillografi',s:'Sigillografi adalah ilmu bantu sejarah yang mempelajari segel atau stempel yang digunakan pada dokumen resmi. Pada masa kerajaan kuno, segel digunakan untuk memverifikasi keaslian dokumen, menunjukkan kekuasaan raja, atau menandai perjanjian penting.',q:'Berdasarkan stimulus tersebut, ilmu bantu sejarah yang mempelajari segel & stempel untuk memverifikasi dokumen resmi disebut ....',o:['Numismatik','Sigillografi','Epigrafi','Paleografi','Ikonografi'],a:1,e:'Sigillografi = ilmu tentang segel & stempel.'},
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Sejarah lisan',s:'Sejarah lisan (oral history) adalah metode pengumpulan data sejarah melalui wawancara langsung dengan pelaku atau saksi peristiwa. Metode ini berguna ketika sumber tertulis tidak tersedia. Namun, ingatan manusia bersifat selektif dan dapat berubah seiring waktu.',q:'Berdasarkan stimulus tersebut, metode yang digunakan sejarawan dengan mewawancarai pelaku sejarah secara langsung dikenal sebagai ....',o:['Sejarah lisan (oral history)','Heuristik tertulis','Kritik ekstern','Historiografi','Arkeologi'],a:0,e:'Oral history = metode sejarah lisan.'},
-/* MCMA 6 */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Ilmu bantu relevan',s:'Seorang peneliti menemukan prasasti abad ke-9 M dari batu andesit dengan aksara aus dan cap kerajaan yang memudar.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai ilmu bantu yang relevan? (Pilih lebih dari satu)',o:['Epigrafi membantu mengkaji tulisan pada prasasti.','Paleografi membantu membaca aksara kuno.','Numismatik mempelajari mata uang kuno.','Ikonografi mempelajari makna gambar & simbol pada relief.','Genealogi mempelajari silsilah keluarga.'],a:[0,1,3,4],e:'A, B, D, E relevan dengan konteks prasasti. Numismatik tidak disebut dalam stimulus.'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Sumber & kritik ekstern',s:'Seorang peneliti mewawancarai veteran Pertempuran Surabaya 1945. Ia juga memeriksa cap dan tanda tangan pada dokumen kuno di arsip nasional.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai sumber yang diperoleh? (Pilih lebih dari satu)',o:['Wawancara veteran termasuk sumber primer lisan.','Pemeriksaan cap pada dokumen merupakan kritik ekstern.','Wawancara veteran termasuk sumber sekunder.','Dokumen kuno dengan cap asli dapat menjadi sumber primer.','Wawancara tidak dapat dijadikan sumber sejarah.'],a:[0,1,3],e:'A benar (primer lisan), B benar (uji cap = kritik ekstern), D benar (dokumen asli = primer). C & E salah.'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Klasifikasi sumber tertulis',s:'Seorang peneliti mengumpulkan sumber untuk meneliti Majapahit: (1) kitab Negarakertagama; (2) terjemahan Negarakertagama oleh sejarawan modern; (3) prasasti dari masa Majapahit; (4) artikel jurnal tentang Majapahit.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai jenis sumber? (Pilih lebih dari satu)',o:['Kitab Negarakertagama dapat dikategorikan sumber primer.','Terjemahan Negarakertagama termasuk sumber sekunder.','Prasasti dari masa Majapahit termasuk sumber primer.','Artikel jurnal tentang Majapahit termasuk sumber sekunder.','Semua sumber tersebut adalah sumber primer.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah.'},
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Kritik sumber',s:'Seorang sejarawan menemukan kronik yang ditulis untuk memuji raja. Kronik menceritakan kemenangan besar raja, tetapi tidak menyebutkan kekalahan.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai kritik sumber? (Pilih lebih dari satu)',o:['Kritik intern perlu dilakukan karena kronik berpotensi bias.','Kritik ekstern perlu dilakukan untuk menguji keaslian fisik kronik.','Kronik tersebut tidak dapat digunakan sama sekali.','Sejarawan perlu membandingkan kronik dengan sumber lain.','Kritik sumber hanya dilakukan pada sumber sekunder.'],a:[0,1,3],e:'A, B, D benar. C salah, E salah.'},
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Langkah heuristik',s:'Heuristik adalah tahap pengumpulan sumber. Sebelum mengumpulkan sumber, peneliti harus menentukan topik, membatasi ruang lingkup, dan merumuskan pertanyaan penelitian.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai heuristik? (Pilih lebih dari satu)',o:['Heuristik adalah tahap pengumpulan sumber.','Sebelum heuristik, peneliti perlu menentukan topik & batasan penelitian.','Heuristik dilakukan setelah interpretasi.','Heuristik membantu menentukan sumber yang relevan.','Heuristik tidak perlu dilakukan dalam penelitian sejarah.'],a:[0,1,3],e:'A, B, D benar. C salah (heuristik sebelum interpretasi). E salah.'},
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Validitas sumber',s:'Seorang peneliti menggunakan tiga sumber untuk meneliti peristiwa yang sama: sumber A (prasasti dari masa peristiwa), sumber B (kronik 200 tahun setelah peristiwa), dan sumber C (wawancara dengan ahli waris pelaku).',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai validitas sumber? (Pilih lebih dari satu)',o:['Sumber A merupakan sumber primer.','Sumber B merupakan sumber sekunder.','Sumber C dapat dikategorikan sumber primer tidak langsung.','Semua sumber otomatis valid tanpa kritik.','Sumber A harus dikritik ekstern & intern.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (semua perlu kritik).'},
-/* KATEGORI 4 */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Urutan tahap penelitian',s:'Heuristik dilakukan untuk mengumpulkan sumber, kemudian kritik sumber untuk menguji keaslian dan kredibilitasnya. Setelah sumber teruji, dilakukan interpretasi untuk menafsirkan fakta. Tahap terakhir adalah historiografi, yaitu penulisan narasi sejarah.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Heuristik harus dilakukan sebelum kritik sumber.',a:'Sesuai'},{x:'Interpretasi dilakukan setelah kritik sumber selesai.',a:'Sesuai'},{x:'Historiografi dapat dilakukan tanpa melalui kritik sumber.',a:'Tidak Sesuai'},{x:'Kritik ekstern & intern merupakan bagian dari tahap kritik sumber.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Pentingnya ilmu bantu',s:'Seorang sejarawan meneliti prasasti kuno tanpa menguasai epigrafi dan paleografi. Ia hanya mengandalkan terjemahan yang sudah ada, tanpa memeriksa keaslian aksara dan konteks penulisannya. Akibatnya, ia berisiko salah menafsirkan isi prasasti.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Tanpa penguasaan epigrafi & paleografi, sejarawan berisiko salah tafsir.',a:'Sesuai'},{x:'Ilmu bantu sangat penting untuk akurasi penelitian sejarah.',a:'Sesuai'},{x:'Sejarawan tidak perlu ilmu bantu karena bisa menggunakan terjemahan.',a:'Tidak Sesuai'},{x:'Epigrafi & paleografi membantu memahami aksara & konteks tulisan kuno.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Sumber primer & sekunder',s:'Sumber primer adalah sumber yang dihasilkan pada masa peristiwa terjadi. Sumber sekunder adalah sumber yang dibuat setelah peristiwa oleh orang yang tidak terlibat langsung. Keduanya perlu dikritik sebelum digunakan.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Prasasti dari masa peristiwa termasuk sumber primer.',a:'Sesuai'},{x:'Buku teks sejarah terbitan 2020 termasuk sumber sekunder.',a:'Sesuai'},{x:'Semua sumber sekunder tidak dapat digunakan dalam penelitian.',a:'Tidak Sesuai'},{x:'Sumber primer tetap perlu dikritik ekstern & intern.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
@@ -506,7 +491,7 @@ const Q2=[
 ];
 
 /* ============================================================
-   MAPPING
+   MAPPING (tema → bank soal)
    ============================================================ */
 const QUESTIONS={1:Q1,2:Q2,3:Q1,4:Q2,5:Q1,6:Q2,7:Q1,8:Q2,9:Q1,10:Q2,11:Q1,12:Q2,13:Q1,14:Q2};
 
@@ -556,9 +541,7 @@ function startTestWithIdentity(){
   if(qs.length===0){alert('Bank soal tema ini belum tersedia.');return;}
   currentChapter=chapterId;currentQ=0;userAnswers={};revealed={};
   const ch=CHAPTERS.find(c=>c.id===chapterId);
-  /* acak soal */
   displayedQuestions=shuffle([...qs]);
-  /* set aksen tema */
   document.body.style.setProperty('--accent',ch.accent);
   document.body.style.setProperty('--accent2',ch.accent2);
   document.body.style.setProperty('--accent-soft',ch.accent+'22');
@@ -597,7 +580,6 @@ function renderQuestion(){
       div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
     area.appendChild(optsEl);
   }else if(q.t==='MCMA'){
-    /* kartu berhuruf A–E dengan KOTAK CENTANG + ikon ✓ */
     const checksEl=document.createElement('div');checksEl.className='checks';
     const labels=['A','B','C','D','E'];
     q.o.forEach((opt,i)=>{
