@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#0a0a14"/>
+<title>TKA Literasi Sejarah · Fase E–F · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--primary:#F4C430;--primary-light:#FFE47A;--gold:#FFD700;--emerald:#10B981;--rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;--card-alt:#252540;--text:#f5f2ec;--text-light:#c5c5dc;--text-muted:#8d8da8;--line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);--radius:18px;--radius-sm:12px;--header-h:64px}
+body.light{--bg:#f8f6f0;--card:#fff;--card-alt:#f0ece0;--text:#1a1a2e;--text-light:#4a4a5e;--text-muted:#7a7a8e;--line:rgba(184,134,11,.18);--line-soft:rgba(184,134,11,.08)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(244,196,48,.07),transparent 55%),radial-gradient(circle at 85% 80%,rgba(139,92,246,.08),transparent 55%)}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+#loader{position:fixed;inset:0;z-index:9999;background:rgba(10,10,20,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s;padding:20px;text-align:center}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-orb{width:100px;height:100px;border-radius:50%;background:conic-gradient(from 0deg,var(--primary),var(--sky),var(--gold),var(--emerald),var(--primary));animation:spin 2.5s linear infinite;display:flex;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(244,196,48,.4);position:relative}
+.loader-orb::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--bg)}
+.loader-orb i{position:relative;z-index:1;font-size:2rem;color:var(--primary)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-title{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:900;margin-top:24px;letter-spacing:2px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-muted);font-size:.85rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(244,196,48,.1);border-radius:10px;margin-top:24px;overflow:hidden}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px}
+body.light .hdr{background:rgba(255,255,255,.94)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:clamp(.95rem,2vw,1.1rem);color:var(--primary-light);cursor:pointer;flex-shrink:0}
+.brand .dot{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;font-size:1rem;box-shadow:0 6px 18px rgba(244,196,48,.4)}
+.hdr-center{flex:1;display:flex;justify-content:center}
+.timer{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(244,196,48,.12),rgba(139,92,246,.08));border:1px solid var(--line);padding:8px 18px;border-radius:40px;font-weight:800;font-size:.9rem;color:var(--primary-light);letter-spacing:1px}
+.timer.warn{background:linear-gradient(135deg,rgba(251,113,133,.18),rgba(251,113,133,.08));border-color:var(--rose);color:var(--rose)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary-light);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#0a0a14;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(244,196,48,.08);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(244,196,48,.6)}
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{text-align:center;padding:36px 0 20px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(244,196,48,.14),rgba(139,92,246,.1));border:1px solid var(--line);padding:7px 20px;border-radius:40px;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-light);margin-bottom:18px}
+.hero-title{font-size:clamp(1.8rem,5.5vw,3.4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px}
+.hero-title .gold{background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 5s ease infinite}
+.hero-sub{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text-light);max-width:680px;margin:0 auto 20px;line-height:1.75}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+.stat-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:16px 24px;min-width:130px;text-align:center;transition:all .3s}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--primary)}
+.stat-card .val{font-size:1.5rem;font-weight:900;color:var(--primary-light);line-height:1}
+.stat-card .lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:6px}
+.section-h{margin-bottom:20px}
+.section-h h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.section-h h3 i{color:var(--primary)}
+.section-h p{color:var(--text-muted);font-size:.85rem;margin-bottom:16px}
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
+.chapter-card{background:linear-gradient(145deg,var(--card),var(--card-alt));border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--sky),var(--emerald))}
+.chapter-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,.5);border-color:var(--primary)}
+.chapter-card .ch-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;font-weight:900;font-size:.82rem;margin-bottom:10px}
+.chapter-card h4{font-size:.94rem;margin-bottom:6px;line-height:1.3}
+.chapter-card p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
+.chapter-card .ch-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:.7rem;font-weight:700;color:var(--primary-light)}
+.chapter-card .ch-meta .cnt{color:var(--emerald)}
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem)}
+.test-hdr .test-sub{font-size:.8rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light)}
+.chip i{color:var(--primary)}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(244,196,48,.12);color:var(--primary-light);border-color:rgba(244,196,48,.3)}
+.badge.MCMA{background:rgba(139,92,246,.12);color:#c4b5fd;border-color:rgba(139,92,246,.3)}
+.badge.KATEGORI{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
+.badge.lv{background:var(--card-alt);color:var(--text-muted);border-color:var(--line)}
+.badge.df{background:rgba(16,185,129,.1);color:#6ee7b7;border-color:rgba(16,185,129,.3)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;padding:5px 16px;border-radius:30px;font-size:.75rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(244,196,48,.3)}
+.q-stim{background:rgba(244,196,48,.04);border-left:4px solid var(--gold);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.88rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--primary-light);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.94rem;line-height:1.7;margin-bottom:16px;font-weight:600}
+.q-hint{font-size:.76rem;color:var(--text-muted);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.06);border-radius:8px;border-left:3px solid var(--sky)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;background:var(--card-alt);border:1.5px solid var(--line-soft);border-radius:10px;padding:12px 15px;cursor:pointer;transition:all .25s}
+.opt:hover{background:rgba(244,196,48,.06);border-color:var(--primary);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--bg);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:var(--primary-light)}
+.opt .txt{flex:1;font-size:.87rem;color:var(--text-light);line-height:1.6}
+.opt.sel{background:rgba(244,196,48,.1);border-color:var(--primary)}
+.opt.sel .lbl{background:var(--primary);color:#0a0a14;border-color:var(--primary)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.opt.wrong{background:rgba(251,113,133,.1);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#fff;border-color:var(--rose)}
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--primary-light);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--primary);color:var(--primary-light)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
+.expl{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.84rem;color:var(--text-light);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:#6ee7b7;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.76rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.2)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.8rem;color:var(--text-muted);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;box-shadow:0 8px 22px rgba(244,196,48,.35)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(244,196,48,.5)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:rgba(244,196,48,.08);border-color:var(--primary);color:var(--primary-light)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#fff;box-shadow:0 8px 22px rgba(16,185,129,.35)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,185,129,.5)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#fff;box-shadow:0 8px 22px rgba(56,189,248,.35)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.5)}
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--primary);color:var(--primary-light);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(16,185,129,.15);border-color:var(--emerald);color:#6ee7b7}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--primary),var(--gold));border-color:var(--primary);color:#0a0a14;box-shadow:0 0 12px rgba(244,196,48,.5);transform:scale(1.1)}
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:#6ee7b7;line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:#6ee7b7}
+.rs.red .v{color:var(--rose)}
+.rs.gold .v{color:var(--primary-light)}
+.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary-light)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary-light);font-size:.68rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+.hidden{display:none!important}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{display:none}.chapter-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}.opt{padding:10px 12px;gap:10px}.opt .lbl{width:24px;height:24px;font-size:.7rem}.opt .txt{font-size:.83rem}}
+@media(max-width:480px){.chapter-grid{grid-template-columns:1fr}.btn{padding:9px 16px;font-size:.78rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+<div class="loader-orb"><i class="fas fa-scroll"></i></div>
+<div class="loader-title">TKA LITERASI SEJARAH</div>
+<div class="loader-sub">14 Bab · 280 Soal Bergaya TKA · Fase E–F</div>
+<div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+<div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+<div class="brand" onclick="goHome()"><span class="dot"><i class="fas fa-landmark"></i></span><span>TKA SEJARAH</span></div>
+<div class="hdr-center"><div class="timer" id="timerBox"><i class="fas fa-stopwatch"></i><span id="timerDisp">00:00</span></div></div>
+<div style="display:flex;gap:6px"><button class="icon-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<section id="home" class="section active">
+<div class="hero">
+<div class="hero-badge"><i class="fas fa-crown"></i> TKA Premium · Literasi Sejarah</div>
+<h1 class="hero-title">Tes Kemampuan Akademik<br><span class="gold">Literasi Sejarah SMA</span></h1>
+<p class="hero-sub">Bank soal bergaya TKA lintas bab Fase E &amp; F dengan stimulus autentik, tiga bentuk soal (PG, MCMA, PG Kompleks Kategori), pembahasan mendalam, dan level kognitif <strong>Knowing–Applying–Reasoning</strong>.</p>
+<div class="hero-stats">
+<div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Bab Materi</div></div>
+<div class="stat-card"><div class="val" id="statQ">280</div><div class="lbl">Soal Bergaya TKA</div></div>
+<div class="stat-card"><div class="val">3</div><div class="lbl">Bentuk Soal</div></div>
+<div class="stat-card"><div class="val">3</div><div class="lbl">Level Kognitif</div></div>
+</div>
+</div>
+<div class="section-h">
+<h3><i class="fas fa-book-open"></i> Pilih Bab Materi</h3>
+<p>Setiap bab berisi 20 soal bergaya TKA dengan stimulus autentik, pembahasan, dan indikator kemampuan. Urut kronologis &amp; fase sesuai CP.</p>
+</div>
+<div class="chapter-grid" id="chapterGrid"></div>
+</section>
+
+<section id="test" class="section">
+<div class="test-hdr">
+<div><h2 id="testTitle">Bab 1</h2><div class="test-sub" id="testSub">Soal 1 dari 20</div></div>
+<div class="info">
+<span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">20</span></span>
+<span class="chip"><i class="fas fa-clock"></i> <span id="testTimer">00:00</span></span>
+<button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.75rem"><i class="fas fa-arrow-left"></i> Kembali</button>
+</div>
+</div>
+<div class="qcard" id="qcard">
+<div class="q-meta" id="qMeta"></div>
+<div class="q-num" id="qNum">Soal 1</div>
+<div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+<div class="q-text" id="qText"></div>
+<div class="q-hint" id="qHint" style="display:none"></div>
+<div id="qArea"></div>
+<div class="expl hidden" id="qExpl"></div>
+</div>
+<div class="qmap" id="qmap"></div>
+<div class="q-nav">
+<button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+<span class="pos" id="qPos">1 / 20</span>
+<button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+<button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+<button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+</div>
+</section>
+
+<section id="result" class="section">
+<div class="result-hero">
+<div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+<h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+<p style="color:var(--text-muted);font-size:.9rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+</div>
+<div class="result-stats">
+<div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+<div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+<div class="rs gold"><div class="v" id="rsTotal">20</div><div class="l">Total</div></div>
+<div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+</div>
+<div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+<div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+<div style="text-align:center;margin-top:20px">
+<button class="btn btn-primary" onclick="goHome()"><i class="fas fa-home"></i> Kembali ke Beranda</button>
+<button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi</button>
+</div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   CHAPTERS — 14 bab kronologis, Fase E (1-8) & F (9-14)
+   ============================================================ */
+const CHAPTERS=[
+{id:1,fase:'E',title:'Memahami Prinsip Ilmu Sejarah',desc:'Hakikat, sumber, ruang lingkup, & kegunaan sejarah.'},
+{id:2,fase:'E',title:'Penelitian Sejarah',desc:'Heuristik, kritik, interpretasi, historiografi, & ilmu bantu.'},
+{id:3,fase:'E',title:'Masa Praaksara di Indonesia',desc:'Fosil, artefak, migrasi, ras, periodisasi, & kebudayaan praaksara.'},
+{id:4,fase:'E',title:'Kerajaan Hindu-Buddha',desc:'Kutai, Tarumanegara, Sriwijaya, Mataram Kuno, Majapahit.'},
+{id:5,fase:'E',title:'Perkembangan Kerajaan Islam',desc:'Teori masuk, jalur rempah, Walisongo, & kerajaan Islam.'},
+{id:6,fase:'E',title:'Kolonialisme & Imperialisme',desc:'Kedatangan Eropa, VOC, sistem kolonial, & dampaknya.'},
+{id:7,fase:'E',title:'Pergerakan Nasional',desc:'Budi Utomo, Sarekat Islam, Sumpah Pemuda, & pers.'},
+{id:8,fase:'E',title:'Perlawanan terhadap Penjajahan',desc:'Pattimura, Diponegoro, Imam Bonjol, Antasari, & sintesis.'},
+{id:9,fase:'F',title:'Pendudukan Jepang',desc:'Kedatangan Jepang, romusha, organisasi, & perlawanan.'},
+{id:10,fase:'F',title:'Proklamasi Kemerdekaan',desc:'Rengasdengklok, teks proklamasi, & pemerintahan awal.'},
+{id:11,fase:'F',title:'Mempertahankan Kemerdekaan',desc:'Perjuangan bersenjata & diplomasi 1945–1949.'},
+{id:12,fase:'F',title:'Pemerintahan Sukarno',desc:'Demokrasi Liberal, Demokrasi Terpimpin, & G30S 1965.'},
+{id:13,fase:'F',title:'Orde Baru',desc:'Stabilisasi, pembangunan, politik, & Reformasi 1998.'},
+{id:14,fase:'F',title:'Reformasi 1998 & Demokrasi',desc:'Krisis, Trisakti, Amandemen UUD, & demokratisasi.'}
+];
+
+/* ============================================================
+   Q1 — PRINSIP ILMU SEJARAH (20 soal)
+   ============================================================ */
+const Q1=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Ciri ilmu sejarah',s:'"Sejarah adalah ilmu yang mempelajari peristiwa masa lampau beserta makna dan keterkaitannya dengan masa kini." — R. Moh. Ali',q:'Kata kunci yang paling menegaskan bahwa sejarah bukan sekadar catatan masa lalu adalah ....',o:['"mempelajari peristiwa"','"beserta makna dan keterkaitannya"','"masa lampau"','"ilmu yang mempelajari"','"catatan masa lalu"'],a:1,e:'Frasa "beserta makna dan keterkaitannya" menegaskan sejarah = pemaknaan + hubungan dengan masa kini.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Makna etimologis',s:null,q:'Kata "sejarah" dari bahasa Arab "syajaratun" bermakna pohon. Makna filosofis paling tepat adalah ....',o:['Sejarah hanya mencatat peristiwa besar','Sejarah bersifat statis','Sejarah memiliki akar, cabang, & keterkaitan antar generasi','Sejarah hanya milik bangsawan','Sejarah tidak berhubungan dengan masa kini'],a:2,e:'Analogi pohon: akar = masa lalu, cabang = perkembangan, keterkaitan antar generasi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kontribusi Herodotus',s:'Herodotus menulis "Historia" berdasarkan kesaksian & penyelidikan langsung terhadap Perang Yunani-Persia.',q:'Kontribusi utama Herodotus bagi ilmu sejarah adalah ....',o:['Menulis sejarah dengan bahasa puitis','Menggunakan metode penyelidikan & kesaksian','Hanya mencatat peristiwa politik','Menolak semua mitos tanpa bukti','Menciptakan sistem penanggalan'],a:1,e:'Herodotus = Bapak Sejarah karena metode penyelidikan (historia) & kesaksian langsung.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Beda praaksara & prasejarah',s:null,q:'Pernyataan yang paling tepat membedakan "praaksara" dan "prasejarah" adalah ....',o:['Keduanya sama','Praaksara menekankan belum ada tulisan; prasejarah menekankan sebelum sejarah tercatat','Praaksara lebih tua','Prasejarah hanya untuk Eropa','Praaksara hanya untuk Indonesia'],a:1,e:'Praaksara = belum mengenal aksara. Prasejarah = sebelum sejarah tercatat.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kegunaan sejarah',s:'"Histories make men wise." — Francis Bacon',q:'Makna kalimat tersebut dalam konteks kegunaan sejarah adalah ....',o:['Sejarah membuat orang kaya','Sejarah membuat orang bijaksana','Sejarah membuat orang terkenal','Sejarah membuat orang berkuasa','Sejarah membuat orang pandai berperang'],a:1,e:'"Makes men wise" = membuat manusia bijaksana.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Konsep manusia-ruang-waktu',s:null,q:'Konsep "manusia, ruang, dan waktu" dalam sejarah paling tepat dijelaskan sebagai ....',o:['Tiga tokoh sejarah','Tiga unsur fundamental yang membentuk peristiwa sejarah','Tiga jenis sumber','Tiga metode penelitian','Tiga periode sejarah'],a:1,e:'Tiga unsur fundamental: siapa (manusia), di mana (ruang), kapan (waktu).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Menafsirkan prasasti',s:'Raja Purnawarman dari Tarumanegara memerintahkan penggalian Sungai Gomati & Candrabhaga untuk irigasi, lalu memberi hadiah 1.000 sapi kepada rakyat. (Prasasti Tugu, abad ke-5 M)',q:'Aspek kehidupan yang paling menonjol dari stimulus tersebut adalah ....',o:['aspek militer','aspek ekonomi & kesejahteraan rakyat','aspek keagamaan','aspek seni','aspek politik dinasti'],a:1,e:'Irigasi + hadiah sapi = perhatian pada pertanian & kesejahteraan rakyat (ekonomi).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Sejarah sebagai perubahan',s:null,q:'Definisi sejarah menurut R. Moh. Ali yang menekankan "jumlah perubahan-perubahan" paling relevan dengan konsep ....',o:['Sejarah sebagai kisah','Sejarah sebagai ilmu','Sejarah sebagai perubahan & dinamika','Sejarah sebagai seni','Sejarah sebagai mitos'],a:2,e:'"Jumlah perubahan" = sejarah sebagai dinamika.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Implikasi kutipan Carr',s:'"Sejarah adalah dialog antara masa kini dan masa lampau." — E.H. Carr',q:'Implikasi paling tepat dari pernyataan tersebut adalah ....',o:['Sejarah hanya milik masa lalu','Sejarawan bebas menafsirkan tanpa bukti','Tafsir sejarah dipengaruhi konteks masa kini','Sejarah tidak perlu bukti','Sejarah adalah fiksi'],a:2,e:'Carr: tafsir sejarah dipengaruhi konteks masa kini sejarawan.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Sejarah sebagai seni',s:null,q:'Dimensi hakikat sejarah yang menekankan bahwa penulisan sejarah membutuhkan imajinasi & kreativitas adalah ....',o:['Sejarah sebagai peristiwa','Sejarah sebagai kisah','Sejarah sebagai seni','Sejarah sebagai ilmu','Sejarah sebagai mitos'],a:2,e:'Sejarah sebagai seni: butuh imajinasi & kreativitas.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Rekonstruksi informasi',s:'Prasasti Yupa dari Kutai (abad ke-4 M) menyebutkan Raja Mulawarman menyumbang 20.000 ekor sapi untuk kaum Brahmana.',q:'Informasi yang dapat direkonstruksi dari stimulus tersebut adalah ....',o:['Sistem politik modern','Keberadaan kaum Brahmana & praktik keagamaan','Sistem pendidikan formal','Teknologi pertanian modern','Hubungan diplomatik dengan Tiongkok'],a:1,e:'Penyebutan Brahmana & sumbangan sapi = keberadaan kaum Brahmana & praktik keagamaan Hindu.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Cara berpikir diakronik',s:null,q:'Cara berpikir yang memandang peristiwa sejarah secara vertikal & berurutan disebut ....',o:['Sinkronik','Diakronik','Kronologis terbalik','Deskriptif','Anakronistik'],a:1,e:'Diakronik = memanjang dalam waktu (kronologis).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Pendekatan sinkronik',s:'Sebuah penelitian mengkaji kondisi sosial-ekonomi-politik Indonesia pada 1945 menjelang Proklamasi.',q:'Pendekatan yang paling sesuai dengan kajian tersebut adalah ....',o:['Diakronik','Sinkronik','Kronologis murni','Anakronistik','Spekulatif'],a:1,e:'Sinkronik: mengkaji kondisi menyeluruh pada satu periode (1945).'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Sumber primer',s:null,q:'Pernyataan yang paling tepat tentang sumber primer adalah ....',o:['Dibuat setelah peristiwa oleh sejarawan','Berasal dari masa/pelaku/saksi langsung peristiwa','Selalu berupa tulisan resmi','Hanya berupa artefak','Selalu benar tanpa perlu kritik'],a:1,e:'Sumber primer = dari masa/pelaku/saksi langsung. Tetap perlu dikritik.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Anakronisme',s:'Seorang penulis menyebut "Soekarno menggunakan ponsel untuk memantau proklamasi" dalam buku sejarah.',q:'Kesalahan dalam penulisan tersebut termasuk ....',o:['Heuristik','Anakronisme','Kritik ekstern','Interpretasi','Historiografi'],a:1,e:'Anakronisme = kesalahan menempatkan benda/teknologi di luar konteks zamannya.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Peristiwa vs kisah',s:null,q:'Perbedaan antara "sejarah sebagai peristiwa" dan "sejarah sebagai kisah" terletak pada ....',o:['Peristiwa adalah rekonstruksi; kisah adalah fakta','Peristiwa adalah kejadian nyata; kisah adalah rekonstruksi/tulisan tentang peristiwa','Keduanya sama','Kisah lebih akurat','Peristiwa tidak perlu bukti'],a:1,e:'Peristiwa = kejadian objektif. Kisah = rekonstruksi subjektif-interpretatif.'},
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Kualitas sumber',s:'Seorang peneliti menemukan tiga sumber tentang peristiwa yang sama: (1) prasasti abad ke-9 M, (2) kronik yang ditulis 200 tahun setelah peristiwa, dan (3) foto dokumentasi yang diambil saat peristiwa berlangsung.',q:'Manakah pernyataan yang TEPAT mengenai kualitas sumber-sumber tersebut? (Pilih lebih dari satu)',o:['Prasasti merupakan sumber primer karena dibuat pada masa peristiwa.','Kronik merupakan sumber sekunder karena ditulis jauh setelah peristiwa.','Foto dokumentasi tidak dapat dikategorikan sebagai sumber sejarah.','Ketiga sumber harus dikritik secara ekstern & intern sebelum digunakan.','Kronik selalu lebih akurat daripada prasasti.'],a:[0,1,3],e:'A, B, D benar. C salah (foto = sumber primer visual). E salah (kronik tidak otomatis lebih akurat).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Klasifikasi sumber',s:'Seorang siswa meneliti Pertempuran Surabaya 1945. Ia mengumpulkan: (1) wawancara veteran, (2) buku teks terbitan 2020, (3) foto dokumentasi pertempuran, dan (4) artikel jurnal sejarah.',q:'Manakah pernyataan yang TEPAT mengenai jenis sumber tersebut? (Pilih lebih dari satu)',o:['Wawancara veteran termasuk sumber primer karena berasal dari saksi langsung.','Buku teks terbitan 2020 termasuk sumber sekunder.','Foto dokumentasi pertempuran termasuk sumber primer karena dihasilkan pada masa peristiwa.','Artikel jurnal selalu termasuk sumber primer.','Buku teks & artikel jurnal tidak dapat digunakan dalam penelitian sejarah.'],a:[0,1,2],e:'A, B, C benar. D salah (bisa primer atau sekunder). E salah (sangat berguna).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Diakronik & sinkronik',s:'Dua sejarawan mengkaji Proklamasi 1945. Sejarawan A meneliti urutan peristiwa dari Rengasdengklok hingga pembacaan teks. Sejarawan B meneliti kondisi sosial-politik Indonesia Agustus 1945 secara menyeluruh.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Sejarawan A menggunakan pendekatan diakronik karena mengkaji peristiwa secara kronologis & berurutan.',a:'Sesuai'},{x:'Sejarawan B menggunakan pendekatan sinkronik karena mengkaji kondisi sosial-politik pada satu periode secara menyeluruh.',a:'Sesuai'},{x:'Pendekatan Sejarawan A & B tidak dapat digabungkan dalam satu penelitian.',a:'Tidak Sesuai'},{x:'Diakronik menekankan kronologi; sinkronik menekankan analisis struktur pada suatu masa.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (bisa digabung), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kegunaan sejarah',s:'"Histories make men wise." — Francis Bacon',q:'Berikan penilaian Sesuai atau Tidak Sesuai terkait kegunaan sejarah.',st:[{x:'Belajar sejarah membuat seseorang mampu mengambil pelajaran dari masa lalu untuk bertindak bijak di masa kini.',a:'Sesuai'},{x:'Sejarah hanya berguna untuk menghafal tahun dan nama tokoh.',a:'Tidak Sesuai'},{x:'Sejarah bersifat edukatif karena membantu memahami kesalahan masa lalu agar tidak terulang.',a:'Sesuai'},{x:'Sejarah tidak memiliki nilai praktis bagi kehidupan manusia.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Tidak Sesuai, 3 Sesuai, 4 Tidak Sesuai.'}
+];
+
+/* ============================================================
+   Q2 — PENELITIAN SEJARAH (20 soal)
+   ============================================================ */
+const Q2=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Urutan tahap penelitian',s:'Seorang peneliti mengumpulkan sumber, menguji keasliannya, menafsirkan, lalu menulis narasi sejarah.',q:'Urutan tahap penelitian sejarah yang dilakukan adalah ....',o:['Kritik → Heuristik → Interpretasi → Historiografi','Heuristik → Kritik → Interpretasi → Historiografi','Interpretasi → Heuristik → Kritik → Historiografi','Historiografi → Heuristik → Kritik → Interpretasi','Heuristik → Interpretasi → Kritik → Historiografi'],a:1,e:'Urutan baku: Heuristik → Kritik → Interpretasi → Historiografi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian heuristik',s:null,q:'Tahap pertama dalam penelitian sejarah yang bertujuan mengumpulkan sumber disebut ....',o:['kritik','heuristik','interpretasi','historiografi','verifikasi'],a:1,e:'Heuristik = pengumpulan sumber.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kritik ekstern',s:null,q:'Kritik ekstern bertujuan untuk menguji ....',o:['kebenaran isi sumber','keaslian fisik sumber','relevansi topik','kredibilitas penulis','nilai estetika'],a:1,e:'Kritik ekstern = uji keaslian fisik.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kritik intern',s:null,q:'Kritik intern bertujuan untuk menguji ....',o:['keaslian fisik sumber','kebenaran & kredibilitas isi sumber','usia kertas','tanda tangan','warna tinta'],a:1,e:'Kritik intern = uji kebenaran & kredibilitas isi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian interpretasi',s:null,q:'Tahap interpretasi dalam penelitian sejarah bertujuan untuk ....',o:['mengumpulkan sumber','menafsirkan fakta & menemukan makna','menulis narasi','menguji keaslian','membandingkan sumber'],a:1,e:'Interpretasi = penafsiran fakta untuk menemukan makna.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian historiografi',s:null,q:'Historiografi dalam penelitian sejarah berarti ....',o:['pengumpulan sumber','penulisan sejarah','pengujian sumber','penafsiran fakta','perbandingan sumber'],a:1,e:'Historiografi = penulisan narasi sejarah.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Menghadapi sumber berbeda',s:'Seorang peneliti menemukan dua versi naskah Proklamasi dengan perbedaan kecil pada ejaan.',q:'Langkah paling tepat adalah ....',o:['memilih versi paling populer','membandingkan keduanya dengan sumber lain & menganalisis konteks','membuang keduanya','menganggap keduanya salah','menyalin versi terbaru'],a:1,e:'Prinsip kritik: bandingkan dengan sumber lain & analisis konteks.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu epigrafi',s:null,q:'Ilmu bantu sejarah yang mempelajari tulisan kuno pada prasasti disebut ....',o:['Numismatik','Epigrafi','Paleografi','Ikonografi','Genealogi'],a:1,e:'Epigrafi = ilmu tentang tulisan pada prasasti.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu numismatik',s:null,q:'Ilmu bantu sejarah yang mempelajari mata uang kuno disebut ....',o:['Numismatik','Epigrafi','Paleografi','Ikonografi','Sigillografi'],a:0,e:'Numismatik = ilmu tentang mata uang kuno.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu paleografi',s:'Sebuah prasasti dari abad ke-9 M ditemukan dalam kondisi aus; sebagian aksaranya sulit dibaca.',q:'Ilmu bantu yang paling berperan untuk membaca prasasti tersebut adalah ....',o:['Numismatik','Paleografi','Ikonografi','Genealogi','Sigillografi'],a:1,e:'Paleografi = ilmu tentang aksara kuno.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu sigillografi',s:null,q:'Ilmu bantu sejarah yang mempelajari segel & stempel untuk memverifikasi dokumen resmi disebut ....',o:['Numismatik','Sigillografi','Epigrafi','Paleografi','Ikonografi'],a:1,e:'Sigillografi = ilmu tentang segel & stempel.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu ikonografi',s:null,q:'Ilmu bantu sejarah yang mempelajari makna gambar & simbol pada relief candi disebut ....',o:['Numismatik','Ikonografi','Epigrafi','Paleografi','Genealogi'],a:1,e:'Ikonografi = ilmu tentang makna gambar & simbol.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu genealogi',s:'Seorang siswa meneliti silsilah keluarganya hingga 3 generasi ke atas.',q:'Ilmu bantu yang paling relevan digunakan adalah ....',o:['Numismatik','Genealogi','Epigrafi','Paleografi','Ikonografi'],a:1,e:'Genealogi = ilmu tentang silsilah keluarga.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Langkah awal heuristik',s:null,q:'Langkah pertama dalam heuristik adalah ....',o:['Menulis narasi','Menentukan topik & batasan penelitian','Menguji keaslian sumber','Menafsirkan fakta','Membandingkan sumber'],a:1,e:'Heuristik dimulai dengan menentukan topik & batasan penelitian.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Sejarah lisan',s:'Sejarawan mewawancarai pelaku sejarah secara langsung untuk memperoleh informasi.',q:'Metode tersebut dikenal sebagai ....',o:['Sejarah lisan (oral history)','Heuristik tertulis','Kritik ekstern','Historiografi','Arkeologi'],a:0,e:'Oral history = metode sejarah lisan.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Historiografi tradisional',s:'Historiografi tradisional (seperti babad & kronik) sering mencampur fakta & mitos serta berpusat pada raja.',q:'Kritik utama terhadap historiografi tradisional adalah ....',o:['tidak menggunakan bahasa daerah','bersifat istana-sentris & mencampur mitos','tidak mencatat peristiwa','terlalu banyak data statistik','mengabaikan raja'],a:1,e:'Historiografi tradisional = istana-sentris & mencampur mitos.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Ilmu bantu relevan',s:'Seorang peneliti menemukan prasasti abad ke-9 M yang aksaranya sudah aus & sulit dibaca.',q:'Manakah pernyataan yang TEPAT mengenai ilmu bantu yang relevan? (Pilih lebih dari satu)',o:['Epigrafi membantu mengkaji tulisan pada prasasti.','Paleografi membantu membaca aksara kuno.','Numismatik mempelajari mata uang kuno.','Ikonografi mempelajari makna gambar & simbol pada relief.','Genealogi mempelajari silsilah keluarga.'],a:[0,1,3,4],e:'A, B, D, E relevan dengan konteks prasasti. Numismatik tidak disebut dalam stimulus.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Sumber & kritik ekstern',s:'Seorang peneliti mewawancarai veteran Pertempuran Surabaya & memeriksa cap pada dokumen kuno.',q:'Manakah pernyataan yang TEPAT mengenai sumber yang diperoleh? (Pilih lebih dari satu)',o:['Wawancara veteran termasuk sumber primer lisan.','Pemeriksaan cap pada dokumen merupakan kritik ekstern.','Wawancara veteran termasuk sumber sekunder.','Dokumen kuno dengan cap asli dapat menjadi sumber primer.','Wawancara tidak dapat dijadikan sumber sejarah.'],a:[0,1,3],e:'A benar (primer lisan), B benar (uji cap = kritik ekstern), D benar (dokumen asli = primer). C & E salah.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Urutan tahap penelitian',s:'Perhatikan pernyataan tentang tahap penelitian sejarah berikut.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Heuristik harus dilakukan sebelum kritik sumber.',a:'Sesuai'},{x:'Interpretasi dilakukan setelah kritik sumber selesai.',a:'Sesuai'},{x:'Historiografi dapat dilakukan tanpa melalui kritik sumber.',a:'Tidak Sesuai'},{x:'Kritik ekstern & intern merupakan bagian dari tahap kritik sumber.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Pentingnya ilmu bantu',s:'Seorang sejarawan meneliti prasasti kuno, tetapi tidak menguasai epigrafi & paleografi.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Tanpa penguasaan epigrafi & paleografi, sejarawan berisiko salah tafsir.',a:'Sesuai'},{x:'Ilmu bantu sangat penting untuk akurasi penelitian sejarah.',a:'Sesuai'},{x:'Sejarawan tidak perlu ilmu bantu karena bisa menggunakan terjemahan.',a:'Tidak Sesuai'},{x:'Epigrafi & paleografi membantu memahami aksara & konteks tulisan kuno.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'}
+];
+
+/* ============================================================
+   Q3 — MASA PRAAKSARA (20 soal)
+   ============================================================ */
+const Q3=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Makna praaksara',s:'Istilah "praaksara" berasal dari kata "pra" dan "aksara".',q:'Makna harfiah istilah praaksara adalah ....',o:['sebelum sejarah','sebelum tulisan','setelah tulisan','masa berburu','sebelum manusia'],a:1,e:'Pra = sebelum; aksara = tulisan. Praaksara = sebelum mengenal tulisan.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian fosil',s:null,q:'Sisa makhluk hidup yang membatu dan menjadi sumber utama rekonstruksi masa praaksara disebut ....',o:['artefak','fosil','ecofact','situs','lukisan gua'],a:1,e:'Fosil = sisa makhluk hidup yang membatu.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian artefak',s:null,q:'Benda buatan manusia yang menjadi sumber sejarah praaksara disebut ....',o:['fosil','artefak','ecofact','situs','lukisan gua'],a:1,e:'Artefak = benda buatan manusia (kapak batu, tembikar, dll).'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Situs Sangiran',s:null,q:'Situs praaksara di Jawa Tengah yang ditetapkan UNESCO sebagai Warisan Budaya Dunia adalah ....',o:['Trinil','Sangiran','Liang Bua','Leang-Leang','Gunung Padang'],a:1,e:'Sangiran = Warisan Budaya Dunia UNESCO (1996).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Klasifikasi sumber',s:'Seorang arkeolog menemukan tiga benda di lapisan tanah: (1) tengkorak manusia purba yang membatu, (2) kapak batu yang dipangkas kasar, dan (3) sisa biji-bijian yang terawetkan.',q:'Secara berurutan, jenis sumber sejarah yang ditemukan adalah ....',o:['fosil, artefak, ecofact','artefak, fosil, ecofact','ecofact, artefak, fosil','fosil, ecofact, artefak','situs, artefak, fosil'],a:0,e:'Tengkorak membatu = fosil. Kapak batu = artefak. Biji-bijian = ecofact.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak Paparan Sunda',s:'Pada masa Pleistosen, permukaan air laut turun hingga ±100 meter karena air terperangkap sebagai es di kutub. Akibatnya, wilayah Indonesia bagian barat menyatu dengan daratan Asia (Paparan Sunda).',q:'Konsekuensi paling penting dari peristiwa tersebut bagi persebaran manusia purba adalah ....',o:['manusia purba tidak bisa bermigrasi','manusia purba dapat bermigrasi lewat jalur darat dari Asia ke Nusantara','manusia purba terisolasi di kepulauan','Nusantara terpisah dari Asia','migrasi hanya terjadi lewat laut'],a:1,e:'Paparan Sunda memungkinkan migrasi darat dari Asia ke Nusantara.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Ciri Paleolitikum',s:null,q:'Ciri kehidupan Paleolitikum adalah ....',o:['menetap di desa','nomaden dan berburu-meramu','bercocok tanam','membuat logam','membangun candi'],a:1,e:'Paleolitikum = nomaden & berburu-meramu.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Revolusi Neolitikum',s:'Revolusi Neolitikum menandai peralihan dari food gathering ke food producing.',q:'Dampak utama Revolusi Neolitikum bagi kehidupan manusia adalah ....',o:['manusia kembali nomaden','manusia mulai menetap & mengembangkan pertanian','manusia berhenti berburu','manusia mulai membuat logam','manusia meninggalkan gua'],a:1,e:'Revolusi Neolitikum = manusia menetap & mengembangkan pertanian.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Kepercayaan animisme',s:null,q:'Kepercayaan bahwa segala sesuatu memiliki roh disebut ....',o:['Dinamisme','Animisme','Totemisme','Monoteisme','Politeisme'],a:1,e:'Animisme = kepercayaan bahwa segala sesuatu memiliki roh.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Sifat dinamis interpretasi',s:'Interpretasi tentang masa praaksara Indonesia dapat berubah seiring temuan baru. Fosil Pithecanthropus erectus dahulu dianggap genus tersendiri, kini diklasifikasikan sebagai Homo erectus. Homo floresiensis juga masih menjadi perdebatan.',q:'Kesimpulan paling tepat dari pernyataan tersebut adalah ....',o:['sejarah praaksara tidak dapat dipercaya','sejarah praaksara bersifat final & tidak berubah','sejarah praaksara adalah ilmu yang dinamis — interpretasi berubah seiring bukti baru','klasifikasi manusia purba tidak penting','temuan baru tidak mempengaruhi interpretasi'],a:2,e:'Perubahan klasifikasi & perdebatan Homo floresiensis menunjukkan sejarah praaksara = ilmu yang hidup.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Peran Sungai Katingan',s:'Sungai Katingan di Kalimantan Tengah mengalir dari Pegunungan Müller hingga bermuara di Laut Jawa. Sungai ini telah menjadi jalur penghubung antara pedalaman Kalimantan dan pesisir selatan sejak ribuan tahun lalu.',q:'Berdasarkan pernyataan tersebut, peran hipotetis Sungai Katingan dalam persebaran manusia purba di Kalimantan Tengah adalah ....',o:['sebagai pusat pemerintahan kerajaan kuno','sebagai jalur alami migrasi manusia & hewan dari pesisir ke pedalaman','sebagai lokasi pembuatan candi Hindu','sebagai pusat perdagangan logam','sebagai situs lukisan gua tertua di dunia'],a:1,e:'Sungai = "jalan raya alam" untuk migrasi manusia & hewan dari pesisir ke pedalaman.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Ras & etnis modern',s:'Keberagaman etnis di Indonesia adalah hasil akumulasi migrasi praaksara. Tiga ras utama: Australomelanesid, Mongolid (Austronesia), dan Melanesoid.',q:'Manakah pernyataan yang TEPAT mengenai hubungan ras praaksara dengan etnis modern Indonesia? (Pilih lebih dari satu)',o:['Suku Jawa, Sunda, dan Bugis termasuk keturunan ras Mongolid (Austronesia).','Suku-suku di Papua dan Melanesia termasuk keturunan ras Australomelanesid.','Seluruh etnis di Indonesia berasal dari satu ras tunggal.','Ras Melanesoid merupakan percampuran Australomelanesid dan Mongolid.','Ras Mongolid datang ke Nusantara pada gelombang migrasi paling awal.'],a:[0,1,3],e:'A benar (Mongolid = Austronesia). B benar (Papua/Melanesia = Australomelanesid). D benar (Melanesoid = percampuran). C salah (tiga ras). E salah (Mongolid gelombang terakhir).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peninggalan budaya',s:'Peninggalan budaya praaksara: menhir, dolmen, sarkofagus, waruga, nekara, kapak persegi, kapak lonjong, lukisan gua.',q:'Manakah pasangan yang TEPAT antara peninggalan & keterangannya? (Pilih lebih dari satu)',o:['Menhir — tugu batu untuk pemujaan leluhur.','Dolmen — meja batu sebagai tempat sesaji.','Sarkofagus — peti jenazah dari batu.','Nekara — drum perunggu dari kebudayaan Dong Son.','Waruga — kubur rumah kecil khas Minahasa.'],a:[0,1,2,3,4],e:'Semua pasangan TEPAT.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Periodisasi zaman batu',s:'Periodisasi zaman batu: Paleolitikum, Mesolitikum, Neolitikum, Megalitikum, Perundagian.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Paleolitikum ditandai oleh alat batu yang masih kasar dan pola hidup nomaden.',a:'Sesuai'},{x:'Neolitikum ditandai oleh alat batu yang sudah diasah dan dipoles serta pola hidup menetap.',a:'Sesuai'},{x:'Megalitikum ditandai oleh kemampuan membuat alat dari logam.',a:'Tidak Sesuai'},{x:'Revolusi Neolitikum menandai peralihan dari food gathering ke food producing.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (Megalitikum = batu besar; logam = Perundagian), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Kepercayaan & warisan',s:'Perhatikan pernyataan tentang kepercayaan & warisan budaya praaksara.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Animisme adalah kepercayaan bahwa segala sesuatu memiliki roh.',a:'Sesuai'},{x:'Dinamisme adalah kepercayaan bahwa benda tertentu memiliki kekuatan gaib.',a:'Sesuai'},{x:'Totemisme adalah kepercayaan bahwa manusia tidak memiliki hubungan dengan hewan atau tumbuhan tertentu.',a:'Tidak Sesuai'},{x:'Upacara Tiwah Dayak Ngaju merupakan warisan tradisi penghormatan leluhur dari masa praaksara.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (totemisme justru meyakini hubungan khusus), 4 Sesuai.'}
+];
+
+/* ============================================================
+   Q4 — KERAJAAN HINDU-BUDDHA (20 soal)
+   ============================================================ */
+const Q4=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kerajaan Hindu tertua',s:null,q:'Kerajaan Hindu tertua di Indonesia yang buktinya berupa 7 prasasti Yupa adalah ....',o:['Tarumanegara','Kutai','Sriwijaya','Mataram Kuno','Kalingga'],a:1,e:'Kutai (abad ke-4 M) di Kalimantan Timur — kerajaan Hindu tertua, dibuktikan 7 prasasti Yupa.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Prasasti Tarumanegara',s:null,q:'Prasasti peninggalan Tarumanegara yang menceritakan penggalian Sungai Gomati & Candrabhaga adalah ....',o:['Ciaruteun','Kebon Kopi','Tugu','Jambu','Muara Cianten'],a:2,e:'Prasasti Tugu menceritakan penggalian Sungai Gomati & Candrabhaga oleh Purnawarman.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pendiri Singasari',s:null,q:'Pendiri Kerajaan Singasari adalah ....',o:['Ken Arok','Kertanegara','Jayakatwang','Dapunta Hyang','Raden Wijaya'],a:0,e:'Ken Arok mendirikan Singasari pada 1222 M setelah mengalahkan Kediri.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Patih Majapahit',s:null,q:'Patih Majapahit yang mengucapkan Sumpah Palapa adalah ....',o:['Hayam Wuruk','Gajah Mada','Mpu Prapanca','Raden Wijaya','Nambi'],a:1,e:'Gajah Mada — Sumpah Palapa: tidak akan menikmati palapa sebelum Nusantara bersatu.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Penulis Sutasoma',s:null,q:'Kitab Sutasoma yang memuat semboyan "Bhinneka Tunggal Ika" ditulis oleh ....',o:['Mpu Prapanca','Mpu Tantular','Mpu Sedah','Mpu Kanwa','Mpu Dharmaja'],a:1,e:'Mpu Tantular menulis Sutasoma yang memuat semboyan Bhinneka Tunggal Ika.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Makna prasasti Ciaruteun',s:'Prasasti Ciaruteun dari Tarumanegara menyebutkan jejak kaki Raja Purnawarman yang disamakan dengan jejak kaki Dewa Wisnu.',q:'Makna dari isi prasasti tersebut adalah ....',o:['Raja dianggap setara dewa (dewaraja)','Raja adalah manusia biasa','Raja menolak agama Hindu','Raja ingin membangun candi','Raja menaklukkan kerajaan lain'],a:0,e:'Penyamaan raja dengan Wisnu = konsep dewaraja (raja penjelmaan dewa).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Faktor kejayaan Sriwijaya',s:'Sriwijaya menguasai jalur perdagangan Selat Malaka & menjadi pusat pendidikan Buddha di Asia Tenggara.',q:'Faktor utama kejayaan Sriwijaya adalah ....',o:['kekuatan militer darat','penguasaan jalur maritim strategis','pertanian yang maju','aliansi dengan Tiongkok','peninggalan candi besar'],a:1,e:'Sriwijaya = kerajaan maritim; kejayaannya dari penguasaan Selat Malaka.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan Ekspedisi Pamalayu',s:'Ekspedisi Pamalayu (1275 M) dikirim oleh Kertanegara dari Singasari ke Sumatera.',q:'Tujuan utama ekspedisi tersebut adalah ....',o:['menyebarkan agama Buddha','memperluas pengaruh Singasari ke Sumatera','menyerang Sriwijaya','mencari rempah-rempah','membuka jalur dagang'],a:1,e:'Ekspedisi Pamalayu = memperluas pengaruh Singasari ke Sumatera (Melayu).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Penulis Negarakertagama',s:'Kitab Negarakertagama ditulis pada 1365 M.',q:'Kitab tersebut menceritakan ....',o:['Sejarah Sriwijaya','Sejarah Majapahit & wilayah kekuasaannya','Sejarah Singasari','Sejarah Kediri','Sejarah Mataram Kuno'],a:1,e:'Negarakertagama (Mpu Prapanca) menceritakan Majapahit & wilayah kekuasaannya.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Raja Majapahit puncak kejayaan',s:null,q:'Raja Majapahit yang memerintah pada masa kejayaan & didampingi Gajah Mada adalah ....',o:['Raden Wijaya','Hayam Wuruk','Kertanegara','Tribhuwana Tunggadewi','Jayakatwang'],a:1,e:'Hayam Wuruk memerintah pada puncak kejayaan Majapahit, didampingi Gajah Mada.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Makna Sumpah Palapa',s:'Sumpah Palapa Gajah Mada menyatakan tidak akan menikmati palapa sebelum Nusantara bersatu.',q:'Makna historis Sumpah Palapa bagi Majapahit adalah ....',o:['menandai awal keruntuhan Majapahit','menjadi landasan ideologis ekspansi wilayah & persatuan Nusantara','menunjukkan kelemahan militer','menolak ekspansi','membubarkan kerajaan'],a:1,e:'Sumpah Palapa = landasan ideologis ekspansi & cita-cita persatuan Nusantara.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor keruntuhan Majapahit',s:'Setelah Hayam Wuruk & Gajah Mada wafat, Majapahit dilanda perang saudara (Perang Paregreg) & melemah.',q:'Kesimpulan paling tepat dari pernyataan tersebut adalah ....',o:['Majapahit runtuh karena serangan asing semata','kepemimpinan kuat & stabilitas politik merupakan faktor vital kejayaan kerajaan','perang saudara memperkuat Majapahit','Majapahit tidak pernah berkonflik internal','Gajah Mada penyebab keruntuhan'],a:1,e:'Melemahnya kepemimpinan pasca-Hayam Wuruk & Gajah Mada + perang saudara = faktor utama keruntuhan.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dua dinasti Mataram Kuno',s:'Dinasti Sanjaya di Mataram Kuno bercorak Hindu-Siwa, sedangkan Dinasti Syailendra bercorak Buddha Mahayana.',q:'Kesimpulan yang tepat dari pernyataan tersebut adalah ....',o:['Mataram Kuno hanya bercorak Hindu','Mataram Kuno memiliki dua dinasti dengan corak keagamaan berbeda','Kedua dinasti bermusuhan total','Tidak ada toleransi','Hanya ada satu dinasti'],a:1,e:'Mataram Kuno punya dua dinasti berbeda corak — menunjukkan toleransi beragama.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peninggalan Mataram Kuno',s:'Mataram Kuno diperintah oleh dua dinasti: Sanjaya (Hindu-Siwa) & Syailendra (Buddha Mahayana).',q:'Manakah pernyataan yang TEPAT mengenai Mataram Kuno? (Pilih lebih dari satu)',o:['Candi Borobudur dibangun oleh Dinasti Syailendra.','Candi Prambanan dibangun oleh Rakai Pikatan.','Mataram Kuno hanya bercorak Hindu.','Dinasti Sanjaya bercorak Buddha Mahayana.','Mataram Kuno terletak di Jawa Tengah.'],a:[0,1,4],e:'A benar (Borobudur = Syailendra), B benar (Prambanan = Rakai Pikatan), E benar (Jawa Tengah). C salah (dua corak). D salah (Sanjaya = Hindu-Siwa).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Prasasti & kitab',s:'Peninggalan Hindu-Buddha berupa prasasti & kitab: Yupa, Ciaruteun, Tugu, Negarakertagama, Sutasoma, Bharatayuddha.',q:'Manakah pasangan yang TEPAT antara peninggalan & keterangannya? (Pilih lebih dari satu)',o:['Yupa — peninggalan Kutai.','Ciaruteun — peninggalan Tarumanegara.','Negarakertagama — ditulis Mpu Prapanca.','Sutasoma — ditulis Mpu Sedah.','Bharatayuddha — dari masa Kediri.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (Sutasoma ditulis Mpu Tantular; Mpu Sedah menulis Bharatayuddha).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peninggalan & corak',s:'Perhatikan pernyataan tentang kerajaan Hindu-Buddha berikut.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Candi Borobudur merupakan peninggalan Dinasti Syailendra yang bercorak Buddha Mahayana.',a:'Sesuai'},{x:'Prasasti Yupa merupakan peninggalan Kerajaan Kutai.',a:'Sesuai'},{x:'Kitab Negarakertagama ditulis oleh Mpu Tantular pada masa Majapahit.',a:'Tidak Sesuai'},{x:'Kerajaan Sriwijaya merupakan kerajaan maritim yang menguasai Selat Malaka.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (ditulis Mpu Prapanca; Mpu Tantular menulis Sutasoma), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Peran kerajaan Hindu-Buddha',s:'Perhatikan pernyataan tentang peran kerajaan Hindu-Buddha di Nusantara.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Kerajaan Kutai merupakan kerajaan Hindu tertua di Indonesia.',a:'Sesuai'},{x:'Sriwijaya berperan sebagai pusat pendidikan Buddha di Asia Tenggara.',a:'Sesuai'},{x:'Majapahit tidak pernah mengirim ekspedisi ke luar Jawa.',a:'Tidak Sesuai'},{x:'Kertanegara dari Singasari mengirim Ekspedisi Pamalayu ke Sumatera.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (Ekspedisi Pamalayu), 4 Sesuai.'}
+];
+
+// ============ PART 1 ENDS HERE — Part 2 continues from this point ============
+// Di Notepad: setelah menempel Part 1, LANGSUNG tempel Part 2 di bawah baris ini
+// (JANGAN tambahkan </script></body></html> — biarkan Part 2 yang menutup)
+/* ============================================================
+   Q5 — KERAJAAN ISLAM (20 soal)
+   ============================================================ */
+const Q5=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kerajaan Islam pertama',s:null,q:'Kerajaan Islam pertama di Nusantara adalah ....',o:['Demak','Samudera Pasai','Aceh','Malaka','Banten'],a:1,e:'Samudera Pasai (abad ke-13 M) = kerajaan Islam pertama.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Strategi dakwah Walisongo',s:'Sunan Kalijaga berdakwah melalui wayang kulit & tembang "Ilir-Ilir".',q:'Strategi dakwah yang digunakan Sunan Kalijaga menunjukkan ....',o:['pendekatan kekerasan','pendekatan budaya & akomodatif terhadap tradisi lokal','penolakan budaya lokal','pendekatan militer','pendekatan politik'],a:1,e:'Sunan Kalijaga = pendekatan budaya.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Ulama sufi Nusantara',s:null,q:'Ulama sufi pertama Nusantara yang menulis syair dalam bahasa Melayu adalah ....',o:['Hamzah Fansuri','Nuruddin ar-Raniri','Abdurrauf Singkil','Syekh Nawawi','Syekh Yusuf'],a:0,e:'Hamzah Fansuri = ulama sufi pertama penulis syair Melayu.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Kelemahan Teori Gujarat',s:'Teori Gujarat menyatakan Islam masuk Nusantara dari India pada abad ke-13 M, didukung batu nisan Sultan Malik as-Saleh (1297 M).',q:'Kelemahan utama teori Gujarat adalah ....',o:['tidak ada bukti arkeologis','madzhab Nusantara (Syafi\'i) berbeda dengan Gujarat (Hanafi)','tidak didukung sumber sejarah','bertentangan dengan teori Mekkah','tidak diakui sejarawan'],a:1,e:'Gujarat Hanafi; Nusantara Syafi\'i — pengaruh Arab/Mesir lebih kuat.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Peran Samudera Pasai',s:'Pendiri Samudera Pasai = Sultan Malik as-Saleh (Marah Silu), memerintah 1267–1297 M.',q:'Peran penting Samudera Pasai bagi penyebaran Islam adalah ....',o:['pusat perdagangan rempah & penyebaran Islam pertama','pusat pendidikan Hindu','pusat militer','pusat kebudayaan Buddha','pusat perdagangan Tiongkok'],a:0,e:'Samudera Pasai = pusat perdagangan rempah & penyebaran Islam pertama.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Makna perlawanan Fatahillah',s:'Fatahillah merebut Sunda Kelapa dari Portugis pada 1527 & mengganti nama menjadi Jayakarta.',q:'Makna penting peristiwa tersebut bagi penyebaran Islam adalah ....',o:['Portugis menguasai Jawa','Islam semakin kuat di Jawa Barat & Portugis terhalang','Belanda datang','Demak runtuh','tidak ada dampak'],a:1,e:'Kemenangan Fatahillah memperkuat Islam & menghalangi Portugis.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan serangan Sultan Agung',s:'Sultan Agung dari Mataram menyerang VOC di Batavia pada 1628 & 1629.',q:'Tujuan utama serangan tersebut adalah ....',o:['menguasai jalur rempah','mengusir VOC dari Batavia','menaklukkan Banten','membuka jalur dagang','menyebarkan Islam'],a:1,e:'Sultan Agung menyerang VOC untuk mengusir mereka dari Batavia.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Perjanjian Giyanti',s:null,q:'Perjanjian Giyanti (1755) membagi Mataram Islam menjadi ....',o:['Demak & Cirebon','Yogyakarta & Surakarta','Banten & Cirebon','Gowa & Tallo','Ternate & Tidore'],a:1,e:'Giyanti = Yogyakarta & Surakarta.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Polemik intelektual',s:'Nuruddin ar-Raniri menolak ajaran Wahdatul Wujud Hamzah Fansuri & menganggapnya sesat.',q:'Polemik antara keduanya menunjukkan ....',o:['tidak ada dinamika intelektual','adanya dinamika & perdebatan intelektual dalam Islam Nusantara','Islam Nusantara statis','tidak ada ulama besar','keduanya bersahabat'],a:1,e:'Polemik ar-Raniri vs Hamzah Fansuri = dinamika intelektual Islam Nusantara.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Nilai keteladanan Syekh Yusuf',s:'Ulama dari Gowa diasingkan ke Afrika Selatan & dihormati sebagai Sheikh Yusuf of Macassar adalah Syekh Yusuf al-Makassari.',q:'Nilai keteladanan utama dari kisah tersebut adalah ....',o:['kekayaan','keteguhan iman & perjuangan meski diasingkan','kepandaian berdagang','kekuasaan','ketenaran'],a:1,e:'Syekh Yusuf = keteguhan iman & perjuangan meski diasingkan.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor keruntuhan Demak',s:'Setelah Sultan Trenggana wafat (1546), Demak dilanda perebutan kekuasaan antar keluarga.',q:'Kesimpulan paling tepat dari pernyataan tersebut adalah ....',o:['Demak runtuh karena serangan Portugis','perebutan kekuasaan internal menjadi faktor utama keruntuhan Demak','Demak tidak pernah berkonflik','Demak runtuh karena bencana alam','Demak dijajah Belanda'],a:1,e:'Perebutan kekuasaan pasca-Sultan Trenggana melemahkan Demak.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peran Walisongo',s:'Walisongo berdakwah di Jawa pada abad ke-15–16 M dengan berbagai strategi.',q:'Manakah pernyataan yang TEPAT mengenai Walisongo? (Pilih lebih dari satu)',o:['Sunan Ampel mendirikan Pesantren Ampeldenta.','Sunan Kalijaga berdakwah melalui wayang & tembang.','Sunan Giri mendirikan Pesantren Giri Kedaton.','Sunan Bonang menolak budaya lokal.','Walisongo hanya berdakwah di Sumatera.'],a:[0,1,2],e:'A, B, C benar. D salah (akomodatif). E salah (di Jawa).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Kerajaan Islam & peran',s:'Kerajaan Islam Nusantara: Samudera Pasai, Demak, Aceh, Banten, Mataram Islam, Ternate-Tidore.',q:'Manakah pernyataan yang TEPAT mengenai kerajaan Islam tersebut? (Pilih lebih dari satu)',o:['Samudera Pasai merupakan kerajaan Islam pertama.','Demak didirikan oleh Raden Patah.','Aceh mencapai kejayaan di bawah Sultan Iskandar Muda.','Banten didirikan oleh Sultan Agung.','Ternate & Tidore merupakan kerajaan Islam kaya rempah di Maluku.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (Banten = Maulana Hasanuddin; Sultan Agung = Mataram).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Teori & peran kerajaan Islam',s:'Perhatikan pernyataan tentang masuknya Islam ke Nusantara.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Teori Mekkah menyatakan Islam masuk Nusantara langsung dari Arab pada abad ke-7 M.',a:'Sesuai'},{x:'Teori Gujarat didukung oleh batu nisan Sultan Malik as-Saleh.',a:'Sesuai'},{x:'Kerajaan Demak merupakan kerajaan Islam pertama di Nusantara.',a:'Tidak Sesuai'},{x:'Walisongo berperan besar dalam penyebaran Islam di Jawa.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (pertama = Samudera Pasai), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Ulama & kerajaan Islam',s:'Perhatikan pernyataan tentang ulama & kerajaan Islam Nusantara.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Hamzah Fansuri adalah ulama sufi pertama Nusantara yang menulis syair Melayu.',a:'Sesuai'},{x:'Nuruddin ar-Raniri menolak ajaran Wahdatul Wujud Hamzah Fansuri.',a:'Sesuai'},{x:'Syekh Yusuf al-Makassari diasingkan ke Afrika Selatan.',a:'Sesuai'},{x:'Sunan Kalijaga berdakwah dengan menolak budaya lokal.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai, 4 Tidak Sesuai (akomodatif budaya).'}
+];
+
+/* ============================================================
+   Q6 — KOLONIALISME (20 soal)
+   ============================================================ */
+const Q6=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Dampak Konstantinopel',s:'Jatuhnya Konstantinopel (1453) ke Turki Usmani menutup jalur darat Eropa-Asia.',q:'Dampak utama peristiwa tersebut bagi bangsa Eropa adalah ....',o:['berhenti berdagang','mencari jalur laut langsung ke sumber rempah','menyerang Turki','membuka jalur darat baru','menjalin aliansi dengan Turki'],a:1,e:'Konstantinopel = pemicu penjelajahan laut Eropa.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Semboyan 3G',s:null,q:'Semboyan "3G" yang mendorong penjelajahan Eropa adalah ....',o:['Gold, Glory, Gospel','Good, Great, God','Gold, Government, Gospel','Glory, Gold, Government','Good, Great, Glory'],a:0,e:'3G = Gold, Glory, Gospel.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Portugis di Malaka',s:null,q:'Bangsa Eropa pertama yang menguasai Malaka pada 1511 adalah ....',o:['Spanyol','Portugis','Belanda','Inggris','Prancis'],a:1,e:'Portugis (Afonso de Albuquerque) menguasai Malaka 1511.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kerja paksa Belanda',s:null,q:'Sistem kerja paksa masa kolonial Belanda disebut ....',o:['Romusha','Rodi','Autarki','Seikerei','Kinrohoshi'],a:1,e:'Rodi = Belanda. Romusha = Jepang.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Adu domba',s:null,q:'Strategi "adu domba" Belanda untuk memecah belah kekuatan lokal disebut ....',o:['Pax Neerlandica','Devide et Impera','Cultuurstelsel','Poenale Sanctie','Ethische Politiek'],a:1,e:'Devide et Impera = adu domba.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan VOC',s:'VOC didirikan pada 20 Maret 1602 oleh pemerintah Belanda dengan hak istimewa (Oktroi).',q:'Tujuan utama pembentukan VOC adalah ....',o:['menyebarkan agama Kristen','memonopoli perdagangan rempah','membangun sekolah','memerangi Portugis di Eropa','memajukan pertanian Nusantara'],a:1,e:'VOC = memonopoli perdagangan rempah.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak Tanam Paksa',s:'Aturan Tanam Paksa mewajibkan rakyat menyediakan 1/5 tanah untuk tanaman ekspor.',q:'Dampak paling mengerikan dari kebijakan tersebut bagi rakyat adalah ....',o:['rakyat menjadi kaya','kelaparan & kematian massal','lahan pertanian bertambah','pendidikan maju','infrastruktur berkembang'],a:1,e:'Tanam Paksa = kelaparan & kematian massal.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan Jalan Raya Pos',s:'Herman Willem Daendels membangun Jalan Raya Pos (Anyer–Panarukan) 1808–1811.',q:'Tujuan utama pembangunan jalan tersebut bagi Belanda adalah ....',o:['memajukan ekonomi rakyat','mempercepat mobilitas militer & administrasi kolonial','membuka jalur wisata','menghubungkan kerajaan lokal','meningkatkan perdagangan rakyat'],a:1,e:'Jalan Raya Pos = mobilitas militer & administrasi kolonial.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Trilogi Politik Etis',s:null,q:'Trilogi Politik Etis Van Deventer meliputi ....',o:['Irigasi, Monopoli, Militer','Irigasi, Transmigrasi, Edukasi','Edukasi, Pajak, Benteng','Transmigrasi, Militer, Monopoli','Monopoli, Edukasi, Militer'],a:1,e:'Trilogi Politik Etis = Irigasi, Transmigrasi, Edukasi.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak Politik Etis',s:'Politik Etis yang awalnya bertujuan "membalas budi" justru melahirkan kaum terpelajar yang menyadari ketidakadilan kolonial.',q:'Fenomena tersebut menunjukkan bahwa ....',o:['Politik Etis gagal total','Politik Etis menjadi bumerang bagi Belanda','Politik Etis menguntungkan Belanda','Politik Etis tidak berpengaruh','Politik Etis dihentikan'],a:1,e:'Politik Etis = bumerang: pendidikan melahirkan kesadaran nasional.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kebangkrutan VOC',s:'VOC dibubarkan pada 31 Desember 1799.',q:'Faktor utama kebangkrutan VOC adalah ....',o:['terlalu banyak untung','korupsi & biaya perang membengkak','kehilangan hak Oktroi','Inggris memonopoli dagang','rakyat Nusantara bersatu'],a:1,e:'VOC bangkrut karena korupsi, biaya perang, & salah kelola.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Poenale Sanctie',s:'Poenale Sanctie adalah hukuman berat bagi pekerja yang melanggar kontrak di perkebunan kolonial.',q:'Dampak kebijakan tersebut bagi rakyat adalah ....',o:['rakyat sejahtera','rakyat mengalami penindasan & kehilangan kebebasan','rakyat mendapat upah tinggi','rakyat bebas berdagang','rakyat mendapat pendidikan'],a:1,e:'Poenale Sanctie = penindasan & hilangnya kebebasan.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Kebijakan kolonial',s:'Belanda menerapkan Tanam Paksa, Politik Etis, & sistem sewa tanah.',q:'Manakah pernyataan yang TEPAT mengenai kebijakan kolonial tersebut? (Pilih lebih dari satu)',o:['Tanam Paksa diperkenalkan Van den Bosch.','Politik Etis meliputi irigasi, transmigrasi, & edukasi.','Sistem Sewa Tanah diperkenalkan Raffles.','Politik Etis sepenuhnya menguntungkan rakyat.','Tanam Paksa bertujuan menyejahterakan rakyat.'],a:[0,1,2],e:'A, B, C benar. D salah (melahirkan pergerakan). E salah (menindas).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'VOC & dampaknya',s:'VOC didirikan 1602 dengan hak Oktroi & dibubarkan 1799.',q:'Manakah pernyataan yang TEPAT mengenai VOC? (Pilih lebih dari satu)',o:['VOC didirikan pada 20 Maret 1602.','VOC memiliki hak Oktroi dari pemerintah Belanda.','VOC dibubarkan pada 31 Desember 1799.','VOC didirikan untuk menyebarkan agama Kristen.','VOC tidak pernah melakukan monopoli perdagangan.'],a:[0,1,2],e:'A, B, C benar. D salah (monopoli dagang). E salah (memonopoli).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Dampak kolonialisme',s:'Perhatikan pernyataan tentang dampak kolonialisme Belanda.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Tanam Paksa menyebabkan kelaparan & kematian massal rakyat.',a:'Sesuai'},{x:'Politik Etis melahirkan kaum terpelajar yang menjadi pelopor pergerakan nasional.',a:'Sesuai'},{x:'VOC dibubarkan karena mengalami keuntungan besar.',a:'Tidak Sesuai'},{x:'Devide et Impera adalah strategi memecah belah kekuatan lokal.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (bangkrut), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Politik kolonial',s:'Perhatikan pernyataan tentang kebijakan kolonial Belanda & dampaknya.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Sistem Sewa Tanah (Landrent) diperkenalkan Thomas Stamford Raffles.',a:'Sesuai'},{x:'Politik Etis membuka sekolah untuk pribumi meski aksesnya terbatas.',a:'Sesuai'},{x:'Jalan Raya Pos dibangun untuk memajukan ekonomi rakyat pribumi.',a:'Tidak Sesuai'},{x:'Pax Neerlandica bertujuan memantapkan kekuasaan Belanda di Nusantara.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (mobilitas militer), 4 Sesuai.'}
+];
+
+/* ============================================================
+   Q7 — PERGERAKAN NASIONAL (20 soal)
+   ============================================================ */
+const Q7=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Peran Budi Utomo',s:'Budi Utomo didirikan pada 20 Mei 1908 oleh Dr. Soetomo & mahasiswa STOVIA.',q:'Peran Budi Utomo bagi kebangkitan nasional adalah ....',o:['organisasi modern pertama di Indonesia','organisasi militer','organisasi agama','organisasi dagang','organisasi petani'],a:0,e:'Budi Utomo = organisasi modern pertama, awal kebangkitan nasional.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tokoh Sarekat Islam',s:null,q:'Tokoh yang mengubah nama SDI menjadi SI adalah ....',o:['Haji Samanhudi','HOS Tjokroaminoto','Semaun','Alimin','Kartosuwiryo'],a:1,e:'HOS Tjokroaminoto mengubah SDI menjadi SI.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Makna Sumpah Pemuda',s:'Sumpah Pemuda terjadi pada 28 Oktober 1928 dalam Kongres Pemuda II.',q:'Makna utama Sumpah Pemuda adalah ....',o:['menegaskan persatuan nusa, bangsa, & bahasa Indonesia','membentuk partai politik','mengusir Belanda','membentuk tentara','meminta kemerdekaan'],a:0,e:'Sumpah Pemuda = persatuan: satu nusa, satu bangsa, satu bahasa.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Bapak Pers Nasional',s:null,q:'Bapak Pers Nasional Indonesia adalah ....',o:['HOS Tjokroaminoto','RM Tirto Adhi Soerjo','Ki Hajar Dewantara','Abdul Rivai','Semaun'],a:1,e:'RM Tirto Adhi Soerjo = Bapak Pers Nasional.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak Politik Etis',s:'Politik Etis yang awalnya bertujuan "membalas budi" justru melahirkan kaum terpelajar yang menyadari ketidakadilan kolonial.',q:'Fenomena tersebut menunjukkan bahwa ....',o:['Politik Etis gagal total','Politik Etis menjadi bumerang bagi Belanda','Politik Etis menguntungkan Belanda','Politik Etis tidak berpengaruh','Politik Etis dihentikan'],a:1,e:'Politik Etis = bumerang bagi Belanda.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Keunikan Indische Partij',s:'Indische Partij didirikan pada 25 Desember 1912 oleh Tiga Serangkai.',q:'Keunikan Indische Partij dibanding organisasi lain adalah ....',o:['bersifat kedaerahan','partai politik pertama yang bersifat nasional & non-kedaerahan','hanya untuk orang Jawa','hanya untuk bangsawan','bersifat militer'],a:1,e:'Indische Partij = partai politik pertama nasional & non-kedaerahan.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Peran pers nasional',s:'RM Tirto Adhi Soerjo mendirikan Medan Prijaji (1907) sebagai pers nasional pertama.',q:'Peran pers tersebut bagi pergerakan nasional adalah ....',o:['menyebarkan gagasan nasionalisme & menyadarkan rakyat','menghibur rakyat','mengkritik rakyat','membantu Belanda','menyebarkan agama'],a:0,e:'Pers nasional = menyebarkan gagasan nasionalisme.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Strategi PNI',s:'PNI didirikan oleh Soekarno pada 4 Juli 1927 untuk mencapai kemerdekaan Indonesia.',q:'Strategi perjuangan PNI yang membedakannya adalah ....',o:['bersifat kedaerahan','bersifat nasional & non-kooperatif terhadap Belanda','bekerja sama dengan Belanda','hanya untuk bangsawan','bersifat militer'],a:1,e:'PNI = nasional & non-kooperatif.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Asal PKI',s:null,q:'Partai Komunis Indonesia (PKI) lahir dari organisasi ....',o:['Sarekat Islam','Indische Sociaal Democratische Vereeniging (ISDV)','Budi Utomo','PNI','Muhammadiyah'],a:1,e:'PKI lahir dari ISDV.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Perlawanan kedaerahan vs nasional',s:'Perlawanan kedaerahan abad 19 bersifat lokal, sedangkan pergerakan nasional abad 20 bersifat nasional.',q:'Perbedaan mendasar tersebut menunjukkan ....',o:['tidak ada perbedaan','pentingnya persatuan nasional untuk mencapai kemerdekaan','perlawanan kedaerahan lebih efektif','pergerakan nasional tidak penting','Belanda lebih kuat'],a:1,e:'Perbedaan tersebut menunjukkan pentingnya persatuan nasional.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Semboyan Taman Siswa',s:null,q:'Taman Siswa didirikan oleh Ki Hajar Dewantara pada 1922 dengan semboyan ....',o:['Bhinneka Tunggal Ika','Ing Ngarsa Sung Tuladha, Ing Madya Mangun Karsa, Tut Wuri Handayani','Rawe-rawe rantas','Merdeka atau mati','Indie voor Indiërs'],a:1,e:'Semboyan Taman Siswa = Ing Ngarsa Sung Tuladha, Ing Madya Mangun Karsa, Tut Wuri Handayani.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Organisasi pergerakan',s:'Organisasi pergerakan nasional: Budi Utomo, Sarekat Islam, Indische Partij, PNI, Muhammadiyah.',q:'Manakah pernyataan yang TEPAT mengenai organisasi tersebut? (Pilih lebih dari satu)',o:['Budi Utomo didirikan 20 Mei 1908.','Sarekat Islam awalnya bernama Sarekat Dagang Islam.','Indische Partij didirikan oleh Tiga Serangkai.','PNI didirikan Mohammad Hatta.','Muhammadiyah didirikan KH Ahmad Dahlan.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (PNI = Soekarno).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh & peran',s:'Tokoh pergerakan nasional: Soekarno, Hatta, Tjokroaminoto, Ki Hajar Dewantara, Tirto Adhi Soerjo.',q:'Manakah pasangan yang TEPAT antara tokoh & perannya? (Pilih lebih dari satu)',o:['Soekarno — pendiri PNI.','Hatta — ketua Perhimpunan Indonesia.','Tjokroaminoto — mengubah SDI menjadi SI.','Ki Hajar Dewantara — pendiri Taman Siswa.','Tirto Adhi Soerjo — pendiri Budi Utomo.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah (Tirto = Bapak Pers Nasional).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peristiwa pergerakan',s:'Perhatikan pernyataan tentang pergerakan nasional.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Budi Utomo didirikan pada 20 Mei 1908.',a:'Sesuai'},{x:'Sumpah Pemuda terjadi pada 28 Oktober 1928.',a:'Sesuai'},{x:'PNI didirikan oleh Mohammad Hatta.',a:'Tidak Sesuai'},{x:'Indische Partij didirikan oleh Tiga Serangkai.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (Soekarno), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Organisasi & semboyan',s:'Perhatikan pernyataan tentang organisasi pergerakan nasional.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Indische Partij memiliki semboyan "Indie voor Indiërs".',a:'Sesuai'},{x:'Sumpah Pemuda dirumuskan dalam Kongres Pemuda II (1928).',a:'Sesuai'},{x:'Taman Siswa didirikan oleh KH Ahmad Dahlan.',a:'Tidak Sesuai'},{x:'Muhammadiyah bertujuan memurnikan ajaran Islam & memajukan pendidikan.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (Ki Hajar Dewantara), 4 Sesuai.'}
+];
+
+/* ============================================================
+   Q8 — PERLAWANAN TERHADAP PENJAJAHAN (20 soal)
+   ============================================================ */
+const Q8=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Latar Pattimura',s:'Kapitan Pattimura memimpin perlawanan rakyat Maluku pada 1817 terhadap monopoli rempah Belanda.',q:'Latar belakang utama perlawanan tersebut adalah ....',o:['persaingan dagang antar kerajaan','monopoli rempah & penindasan rakyat Maluku','perebutan kekuasaan antar raja','pengaruh agama dari luar','kekecewaan terhadap pajak sekolah'],a:1,e:'Pattimura melawan monopoli rempah & penindasan Belanda (1817).'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Nama asli Pattimura',s:null,q:'Nama asli Kapitan Pattimura adalah ....',o:['Thomas Matulessy','Ahmad Dahlan','Hasanuddin','Pattimura','Matulesi'],a:0,e:'Thomas Matulessy = Kapitan Pattimura.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Nama asli Imam Bonjol',s:null,q:'Nama asli Tuanku Imam Bonjol adalah ....',o:['Muhammad Syahab','Tuanku Nan Renceh','Muhammad Syahab (Petobo)','Tuanku Rao','Tuanku Tambusai'],a:2,e:'Nama asli Imam Bonjol = Muhammad Syahab (Petobo).'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Sultan Hasanuddin',s:'Sultan Hasanuddin dijuluki "Ayam Jantan dari Timur" karena keberanian & kegigihannya melawan VOC.',q:'Perlawanan Sultan Hasanuddin terjadi di kerajaan ....',o:['Gowa-Tallo','Ternate','Tidore','Banten','Mataram'],a:0,e:'Sultan Hasanuddin memimpin Gowa-Tallo melawan VOC.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Strategi Diponegoro',s:'Pangeran Diponegoro memimpin Perang Jawa (1825–1830) melawan Belanda.',q:'Strategi perang Pangeran Diponegoro yang paling terkenal adalah ....',o:['perang terbuka','perang gerilya','perang laut','perang kilat','perang benteng'],a:1,e:'Diponegoro = perang gerilya.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Benteng Stelsel',s:'Strategi Benteng Stelsel yang diterapkan Belanda bertujuan mempersempit ruang gerak Diponegoro.',q:'Dampak strategi tersebut bagi perlawanan Diponegoro adalah ....',o:['perlawanan semakin kuat','ruang gerak Diponegoro terbatas','Diponegoro menang','Belanda mundur','perang berakhir damai'],a:1,e:'Benteng Stelsel membatasi ruang gerak Diponegoro.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Latar Perang Banjar',s:'Pangeran Antasari memimpin Perang Banjar (1859–1905) melawan Belanda.',q:'Latar belakang Perang Banjar adalah ....',o:['persaingan dagang antar kerajaan','campur tangan Belanda dalam urusan Kesultanan Banjar','perebutan kekuasaan antar raja','pengaruh agama dari luar','kekecewaan terhadap pajak sekolah'],a:1,e:'Perang Banjar = perlawanan terhadap campur tangan Belanda.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemimpin Perang Banjar',s:null,q:'Pemimpin Perang Banjar yang bergelar Panembahan Amiruddin Khalifatul Mukminin adalah ....',o:['Sultan Suriansyah','Pangeran Antasari','Pangeran Hidayatullah','Demang Lehman','Gusti Matsaid'],a:1,e:'Pangeran Antasari = Panembahan Amiruddin Khalifatul Mukminin.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Perubahan Perang Padri',s:'Perang Padri fase kedua (1821–1838) adalah perang melawan Belanda.',q:'Penyebab perubahan Perang Padri dari perang saudara menjadi perang melawan Belanda adalah ....',o:['Kaum Adat ingin berkuasa','Kaum Adat meminta bantuan Belanda','Belanda menyerang Bonjol','Kaum Padri kalah','Adanya perjanjian damai'],a:1,e:'Kaum Adat meminta bantuan Belanda → perang melawan Belanda.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor kegagalan kedaerahan',s:'Perlawanan kedaerahan abad 19 sering gagal dipatahkan Belanda.',q:'Faktor utama kegagalan perlawanan tersebut adalah ....',o:['kurangnya jumlah prajurit','tidak ada persatuan & koordinasi antar daerah','tidak memiliki pemimpin','tidak menguasai medan perang','kurang dana'],a:1,e:'Faktor utama: tidak ada persatuan & koordinasi.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak Devide et Impera',s:'Politik adu domba Belanda untuk memecah belah kekuatan lokal disebut Devide et Impera.',q:'Dampak strategi tersebut bagi perlawanan rakyat adalah ....',o:['perlawanan semakin kuat','kekuatan rakyat terpecah belah','Belanda kalah','rakyat bersatu','tidak ada dampak'],a:1,e:'Devide et Impera = kekuatan rakyat terpecah belah.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Nilai perjuangan',s:'Kemerdekaan Indonesia bukan hadiah, tetapi hasil perjuangan panjang para pahlawan.',q:'Pelajaran utama dari pernyataan tersebut adalah ....',o:['kemerdekaan tidak perlu diperjuangkan','kemerdekaan adalah hasil pengorbanan & harus dijaga','kemerdekaan adalah hadiah penjajah','perjuangan pahlawan tidak penting','Belanda adalah sahabat Indonesia'],a:1,e:'Kemerdekaan = hasil pengorbanan → wajib dijaga.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh & perlawanan',s:'Perlawanan kedaerahan abad 19 dipimpin berbagai tokoh di berbagai daerah.',q:'Manakah pernyataan yang TEPAT mengenai tokoh & perlawanannya? (Pilih lebih dari satu)',o:['Pattimura memimpin perlawanan rakyat Maluku.','Sultan Hasanuddin memimpin perlawanan Gowa-Tallo.','Pangeran Antasari memimpin Perang Banjar.','Tuanku Imam Bonjol memimpin Perang Padri.','Cut Nyak Dien memimpin perlawanan di Jawa Tengah.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah (Cut Nyak Dien = Aceh).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Perang & latar',s:'Perang kedaerahan: Perang Jawa, Perang Padri, Perang Banjar, Perang Aceh, Perang Maluku.',q:'Manakah pasangan yang TEPAT antara perang & latar belakangnya? (Pilih lebih dari satu)',o:['Perang Jawa — Diponegoro.','Perang Padri — konflik kaum Adat & kaum Padri.','Perang Banjar — campur tangan Belanda di Kesultanan Banjar.','Perang Aceh — monopoli rempah di Maluku.','Perang Maluku — Pattimura melawan monopoli rempah.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (Perang Aceh di Aceh).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Perlawanan penjajahan',s:'Perhatikan pernyataan tentang perlawanan terhadap penjajahan.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Pattimura memimpin perlawanan rakyat Maluku pada 1817.',a:'Sesuai'},{x:'Pangeran Diponegoro memimpin Perang Jawa (1825–1830).',a:'Sesuai'},{x:'Perlawanan kedaerahan abad 19 bersifat nasional.',a:'Tidak Sesuai'},{x:'Sumpah Pemuda 28 Oktober 1928 menandai lahirnya kesadaran nasional.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (lokal), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Tokoh & strategi',s:'Perhatikan pernyataan tentang tokoh & strategi perlawanan.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Pangeran Diponegoro menggunakan strategi perang gerilya.',a:'Sesuai'},{x:'Benteng Stelsel adalah strategi Belanda untuk mempersempit ruang gerak Diponegoro.',a:'Sesuai'},{x:'Sultan Baabullah berhasil mengusir Portugis dari Maluku pada 1575.',a:'Sesuai'},{x:'Cut Nyak Dien memimpin perlawanan di Jawa Tengah.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai, 4 Tidak Sesuai (Aceh).'}
+];
+
+/* ============================================================
+   Q9 — PENDUDUKAN JEPANG (20 soal)
+   ============================================================ */
+const Q9=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Alasan Tarakan',s:'Jepang mendarat pertama kali di Tarakan (Kalimantan Timur) pada 11 Januari 1942.',q:'Alasan utama Jepang mengincar Tarakan adalah ....',o:['pusat pemerintahan Belanda','kaya minyak bumi','pusat pendidikan','kota pelabuhan besar','lokasi strategis pangkalan udara'],a:1,e:'Tarakan = sumber minyak bumi vital.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Menyerahnya Belanda',s:'Belanda menyerah tanpa syarat kepada Jepang di Kalijati, Subang, 8 Maret 1942.',q:'Peristiwa tersebut menandai ....',o:['awal pendudukan Jepang di Indonesia','akhir pendudukan Jepang','kemerdekaan Indonesia','Perang Dunia II dimulai','Belanda kembali berkuasa'],a:0,e:'8 Maret 1942 = awal pendudukan Jepang.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kerja paksa Jepang',s:null,q:'Sistem kerja paksa masa pendudukan Jepang disebut ....',o:['Rodi','Romusha','Autarki','Seikerei','Kinrohoshi'],a:1,e:'Romusha = kerja paksa Jepang.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Organisasi militer Jepang',s:null,q:'Organisasi militer bentukan Jepang yang menjadi cikal bakal TNI adalah ....',o:['PUTERA','PETA','Seinendan','Keibodan','Fujinkai'],a:1,e:'PETA = cikal bakal TNI.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak romusha',s:'Romusha menelan korban ratusan ribu jiwa rakyat Indonesia.',q:'Mengapa romusha disebut kejahatan kemanusiaan?',o:['karena mempekerjakan banyak orang','karena menimbulkan korban ratusan ribu jiwa tanpa upah layak','karena menggunakan teknologi modern','karena melibatkan orang asing','karena dilakukan di luar negeri'],a:1,e:'Romusha = kerja paksa tanpa upah layak → ratusan ribu korban.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan autarki',s:'Jepang menerapkan sistem ekonomi autarki di Indonesia.',q:'Tujuan sistem autarki adalah ....',o:['membuka perdagangan bebas','setiap wilayah memenuhi kebutuhan sendiri untuk perang','meningkatkan ekspor','membantu rakyat','mengembangkan industri'],a:1,e:'Autarki = setiap wilayah memenuhi kebutuhan sendiri.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tanggal PETA Blitar',s:null,q:'Pemberontakan PETA di Blitar terjadi pada ....',o:['1942','1943','1944','14 Februari 1945','17 Agustus 1945'],a:3,e:'PETA Blitar (Supriyadi) = 14 Februari 1945.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan BPUPKI',s:'BPUPKI dibentuk pada 1 Maret 1945 & diketuai Dr. KRT Radjiman Wedyodiningrat.',q:'Tujuan pembentukan BPUPKI oleh Jepang adalah ....',o:['mempersiapkan kemerdekaan Indonesia','menarik simpati rakyat & menyelidiki hal penting untuk kemerdekaan','membentuk tentara','mengumpulkan pajak','mengawasi rakyat'],a:1,e:'BPUPKI = menarik simpati & menyelidiki hal penting untuk kemerdekaan.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak positif Jepang',s:'Pendudukan Jepang membawa dampak positif di bidang militer bagi Indonesia.',q:'Dampak positif tersebut adalah ....',o:['rakyat menjadi kaya','pemuda Indonesia mendapat pelatihan militer','Indonesia merdeka langsung','Belanda membantu Indonesia','ekonomi maju pesat'],a:1,e:'Dampak positif: pelatihan militer (PETA/Heiho).'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak Seikerei',s:'Seikerei adalah kewajiban membungkuk ke arah matahari terbit (Kaisar Jepang).',q:'Dampak kebijakan tersebut bagi umat Islam Indonesia adalah ....',o:['mendapat dukungan penuh','menimbulkan penolakan karena bertentangan dengan ajaran Islam','menjadi tradisi','tidak ada dampak','mendukung Jepang'],a:1,e:'Seikerei ditolak umat Islam karena bertentangan dengan tauhid.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak bahasa Indonesia',s:'Jepang melarang penggunaan bahasa Belanda & mendorong penggunaan bahasa Indonesia.',q:'Dampak positif kebijakan tersebut bagi Indonesia adalah ....',o:['Bahasa Belanda semakin kuat','Bahasa Indonesia semakin berkembang sebagai bahasa persatuan','Bahasa daerah hilang','Rakyat buta huruf','Tidak ada dampak'],a:1,e:'Dampak positif: bahasa Indonesia berkembang sebagai bahasa persatuan.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Organisasi Jepang',s:'Jepang membentuk PUTERA, PETA, Seinendan, Keibodan, Fujinkai.',q:'Manakah pernyataan yang TEPAT mengenai organisasi tersebut? (Pilih lebih dari satu)',o:['PUTERA dipimpin Empat Serangkai.','PETA adalah organisasi militer.','Seinendan = semi-militer pemuda 14–22 tahun.','Fujinkai = organisasi laki-laki dewasa.','Keibodan = organisasi perempuan.'],a:[0,1,2],e:'A, B, C benar. D salah (Fujinkai = perempuan). E salah (Keibodan = pembantu polisi).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Perlawanan Jepang',s:'Perlawanan terhadap Jepang: Singaparna, Indramayu, Aceh (Cot Plieng), PETA Blitar, gerakan bawah tanah.',q:'Manakah pasangan yang TEPAT antara perlawanan & tokohnya? (Pilih lebih dari satu)',o:['Singaparna — KH Zainal Mustafa.','PETA Blitar — Supriyadi.','Aceh (Cot Plieng) — Tengku Abdul Jalil.','Indramayu — Sutan Sjahrir.','Gerakan bawah tanah — Sutan Sjahrir.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (Indramayu = perlawanan petani).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Dampak Jepang',s:'Perhatikan pernyataan tentang dampak pendudukan Jepang.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Romusha adalah sistem kerja paksa yang menimbulkan korban jiwa besar.',a:'Sesuai'},{x:'PETA merupakan organisasi militer bentukan Jepang yang menjadi cikal bakal TNI.',a:'Sesuai'},{x:'Jepang melarang penggunaan bahasa Indonesia.',a:'Tidak Sesuai'},{x:'BPUPKI dibentuk Jepang untuk mempersiapkan kemerdekaan Indonesia.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (justru mendorong), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Organisasi & perlawanan',s:'Perhatikan pernyataan tentang organisasi & perlawanan pada masa Jepang.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Seinendan adalah organisasi semi-militer untuk pemuda usia 14–22 tahun.',a:'Sesuai'},{x:'Pemberontakan PETA di Blitar dipimpin oleh Supriyadi.',a:'Sesuai'},{x:'Seikerei adalah kewajiban membungkuk ke arah matahari terbit.',a:'Sesuai'},{x:'Fujinkai adalah organisasi militer untuk laki-laki dewasa.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai, 4 Tidak Sesuai (Fujinkai = perempuan).'}
+];
+
+/* ============================================================
+   Q10 — PROKLAMASI KEMERDEKAAN (20 soal)
+   ============================================================ */
+const Q10=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Dampak bom atom',s:'Bom atom Hiroshima 6 Agustus 1945, Nagasaki 9 Agustus 1945.',q:'Dampak peristiwa tersebut bagi Indonesia adalah ....',o:['Indonesia dijajah Jepang','terjadi kekosongan kekuasaan (vacuum of power)','Belanda kembali berkuasa','Indonesia membantu Jepang','Sekutu menyerang Indonesia'],a:1,e:'Bom atom → vacuum of power → peluang proklamasi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Menyerahnya Jepang',s:null,q:'Jepang secara resmi menyerah kepada Sekutu pada tanggal ....',o:['6 Agustus 1945','9 Agustus 1945','14 Agustus 1945','15 Agustus 1945','17 Agustus 1945'],a:3,e:'Jepang menyerah 15 Agustus 1945.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tanggal Rengasdengklok',s:null,q:'Peristiwa Rengasdengklok terjadi pada tanggal ....',o:['14 Agustus 1945','15 Agustus 1945','16 Agustus 1945','17 Agustus 1945','18 Agustus 1945'],a:2,e:'Rengasdengklok = 16 Agustus 1945.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengetik teks',s:null,q:'Pengetik teks Proklamasi adalah ....',o:['Chaerul Saleh','Sayuti Melik','Sukarni','B.M. Diah','Latief Hendraningrat'],a:1,e:'Sayuti Melik mengetik teks Proklamasi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengibar Bendera',s:null,q:'Pengibar Bendera Pusaka pada 17 Agustus 1945 adalah ....',o:['Soekarno & Hatta','Latief Hendraningrat & S. Suhud','Sayuti Melik & Sukarni','Chaerul Saleh & Wikana','Ahmad Soebardjo & B.M. Diah'],a:1,e:'Latief Hendraningrat & S. Suhud = pengibar.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan Rengasdengklok',s:'Golongan muda "menculik" Sukarno-Hatta ke Rengasdengklok untuk mendesak proklamasi segera.',q:'Tujuan utama peristiwa tersebut adalah ....',o:['melindungi Soekarno-Hatta dari Sekutu','mendesak Soekarno-Hatta segera memproklamasikan kemerdekaan','menyusun UUD','menyerang Jepang','membentuk pemerintahan'],a:1,e:'Rengasdengklok = mendesak proklamasi segera.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tokoh golongan muda',s:null,q:'Tokoh golongan muda yang mendesak proklamasi segera adalah ....',o:['Ahmad Soebardjo','Sukarni, Chaerul Saleh, Wikana','Soekarno, Hatta','Ki Hajar Dewantara','KH Mas Mansur'],a:1,e:'Golongan muda: Sukarni, Chaerul Saleh, Wikana, dll.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Lokasi perumusan',s:null,q:'Teks Proklamasi dirumuskan di rumah ....',o:['Soekarno','Hatta','Laksamana Maeda','Ahmad Soebardjo','Sayuti Melik'],a:2,e:'Teks Proklamasi dirumuskan di rumah Laksamana Maeda.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Makna PPKI 18 Agustus',s:'Sidang PPKI 18 Agustus 1945 menetapkan Soekarno & Hatta sebagai Presiden & Wakil Presiden RI.',q:'Makna penting sidang tersebut adalah ....',o:['membentuk pemerintahan pertama NKRI','mengakhiri perang','membentuk tentara','menyusun UUD baru','mengadakan pemilu'],a:0,e:'PPKI 18 Agustus 1945 = membentuk pemerintahan pertama NKRI.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Makna proklamasi',s:'Proklamasi Kemerdekaan 17 Agustus 1945 dibacakan oleh Soekarno didampingi Hatta.',q:'Makna proklamasi bagi rakyat Indonesia adalah ....',o:['awal penjajahan baru','puncak perjuangan & lahirnya negara merdeka','akhir perjuangan','Belanda kembali','tidak ada makna'],a:1,e:'Proklamasi = puncak perjuangan & lahirnya negara merdeka.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Peran Ahmad Soebardjo',s:'Teks Proklamasi disusun di rumah Laksamana Maeda oleh Soekarno, Hatta, & Ahmad Soebardjo.',q:'Peran Ahmad Soebardjo dalam peristiwa tersebut adalah ....',o:['Mengetik teks','Menjembatani golongan tua & muda serta menyusun konsep','Mengibarkan bendera','Membaca teks','Menjahit bendera'],a:1,e:'Ahmad Soebardjo = penjembatan golongan tua-muda & penyusun konsep.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Peran golongan tua & muda',s:'Golongan muda mendesak proklamasi segera, sedangkan golongan tua ingin menunggu kepastian dari Jepang.',q:'Kesimpulan paling tepat dari perbedaan pandangan tersebut adalah ....',o:['golongan muda salah total','kedua golongan memiliki strategi berbeda tetapi tujuan sama: kemerdekaan Indonesia','golongan tua tidak ingin merdeka','golongan muda ingin dijajah','tidak ada perbedaan'],a:1,e:'Perbedaan strategi, tujuan sama: kemerdekaan.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh & peran Proklamasi',s:'Peristiwa Proklamasi 17 Agustus 1945 melibatkan banyak tokoh.',q:'Manakah pernyataan yang TEPAT mengenai tokoh & perannya? (Pilih lebih dari satu)',o:['Soekarno membacakan teks Proklamasi.','Hatta mendampingi Soekarno saat pembacaan.','Fatmawati menjahit Bendera Pusaka.','Sayuti Melik membacakan teks Proklamasi.','Latief Hendraningrat & S. Suhud mengibarkan Bendera Pusaka.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (Sayuti Melik mengetik).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peristiwa sekitar Proklamasi',s:'Peristiwa sekitar Proklamasi: bom atom, menyerahnya Jepang, Rengasdengklok, perumusan teks, pembacaan, PPKI.',q:'Manakah pernyataan yang TEPAT mengenai peristiwa tersebut? (Pilih lebih dari satu)',o:['Bom atom Hiroshima dijatuhkan pada 6 Agustus 1945.','Jepang menyerah kepada Sekutu pada 15 Agustus 1945.','Peristiwa Rengasdengklok terjadi pada 16 Agustus 1945.','Proklamasi dibacakan di Istana Merdeka.','UUD 1945 disahkan pada sidang PPKI 18 Agustus 1945.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (Jl. Pegangsaan Timur 56).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peristiwa sekitar Proklamasi',s:'Perhatikan pernyataan tentang peristiwa sekitar Proklamasi.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Peristiwa Rengasdengklok terjadi pada 16 Agustus 1945.',a:'Sesuai'},{x:'Teks Proklamasi dirumuskan di rumah Laksamana Maeda.',a:'Sesuai'},{x:'Proklamasi dibacakan di Istana Merdeka.',a:'Tidak Sesuai'},{x:'UUD 1945 disahkan pada sidang PPKI 18 Agustus 1945.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (Pegangsaan Timur 56), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Makna & penyebaran',s:'Perhatikan pernyataan tentang makna & penyebaran Proklamasi.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Proklamasi menandai lahirnya negara Indonesia yang merdeka.',a:'Sesuai'},{x:'Berita proklamasi disebarkan melalui radio, surat kabar, & utusan.',a:'Sesuai'},{x:'Yusuf Ronodipuro adalah salah satu tokoh yang menyebarkan berita proklamasi melalui radio.',a:'Sesuai'},{x:'Proklamasi berarti perjuangan bangsa Indonesia telah selesai.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai, 4 Tidak Sesuai (perjuangan mempertahankan masih panjang).'}
+];
+
+/* ============================================================
+   Q11 — MEMPERTAHANKAN KEMERDEKAAN (20 soal)
+   ============================================================ */
+const Q11=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Peristiwa 10 November',s:'Pertempuran 10 November 1945 di Surabaya dipicu kematian Brigadir Jenderal Mallaby & ultimatum Sekutu.',q:'Pertempuran tersebut diperingati sebagai ....',o:['Hari Kartini','Hari Pahlawan','Hari Kemerdekaan','Hari Juang Kartika','Hari Sumpah Pemuda'],a:1,e:'10 November = Hari Pahlawan.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tokoh Surabaya',s:null,q:'Tokoh yang membakar semangat rakyat Surabaya melalui pidatonya adalah ....',o:['Bung Tomo','Soekarno','Hatta','Jenderal Soedirman','Sri Sultan HB IX'],a:0,e:'Bung Tomo = pembakar semangat Surabaya.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Agresi Militer I',s:null,q:'Agresi Militer Belanda I terjadi pada tanggal ....',o:['21 Juli 1947','19 Desember 1948','1 Maret 1949','10 November 1945','23 Maret 1946'],a:0,e:'Agresi I = 21 Juli 1947; Agresi II = 19 Desember 1948.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Lokasi KMB',s:null,q:'Konferensi Meja Bundar (KMB) dilaksanakan di kota ....',o:['Jakarta','Amsterdam','Den Haag','New York','Paris'],a:2,e:'KMB di Den Haag, Belanda.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Bandung Lautan Api',s:'Rakyat Bandung membumihanguskan kota mereka sendiri agar tidak dikuasai Sekutu/Belanda.',q:'Nilai keteladanan dari peristiwa tersebut adalah ....',o:['rela berkorban demi kemerdekaan','ketakutan pada Sekutu','keinginan berkuasa','ketidakpedulian','kerjasama dengan Belanda'],a:0,e:'Bandung Lautan Api = rela berkorban.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak Serangan Umum',s:'Serangan Umum 1 Maret 1949 bertujuan membuktikan kepada dunia bahwa TNI masih kuat.',q:'Dampak serangan tersebut bagi diplomasi Indonesia adalah ....',o:['Indonesia kalah','memperkuat posisi diplomasi di PBB','Belanda menyerah','tidak ada dampak','Indonesia mundur'],a:1,e:'Serangan Umum 1 Maret 1949 = memperkuat posisi diplomasi di PBB.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Kelemahan Linggarjati',s:'Perjanjian Linggarjati (1946) mengakui RI secara de facto atas Jawa, Madura, & Sumatera.',q:'Kelemahan perjanjian tersebut bagi Indonesia adalah ....',o:['wilayah RI dipersempit & Belanda melanggar','Indonesia mendapat wilayah baru','Belanda menyerah','Indonesia merdeka penuh','tidak ada kelemahan'],a:0,e:'Linggarjati = wilayah RI dipersempit & Belanda melanggar.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Makna KMB',s:'KMB menghasilkan penyerahan kedaulatan Belanda kepada RIS pada 27 Desember 1949.',q:'Makna peristiwa tersebut bagi Indonesia adalah ....',o:['Indonesia merdeka penuh','pengakuan kedaulatan Indonesia oleh Belanda','Indonesia dijajah kembali','Belanda berkuasa','tidak ada dampak'],a:1,e:'KMB 27 Desember 1949 = pengakuan kedaulatan Indonesia.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan NICA',s:'Pertempuran Medan Area (1945–1946) dipicu kedatangan Sekutu & NICA yang diboncengi Belanda.',q:'Tujuan utama kedatangan NICA ke Indonesia adalah ....',o:['membantu Indonesia','menegakkan kembali kekuasaan Belanda','mengusir Jepang','membantu Sekutu','menyebarkan agama'],a:1,e:'NICA = menegakkan kembali kekuasaan Belanda.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Makna puputan',s:'Puputan Margarana di Bali dipimpin Letkol I Gusti Ngurah Rai pada 1946.',q:'Makna "puputan" dalam perlawanan tersebut adalah ....',o:['menyerah','bertempur sampai titik darah penghabisan','mundur','berunding','membantu Belanda'],a:1,e:'Puputan = bertempur sampai titik darah penghabisan.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Peran UNCI',s:'PBB membentuk UNCI (United Nations Commission for Indonesia) untuk membantu menyelesaikan konflik Indonesia-Belanda.',q:'Peran UNCI bagi Indonesia adalah ....',o:['memperkuat Belanda','menjadi penengah & mendukung terselenggaranya KMB','mengusir Belanda','membantu militer Belanda','mengakhiri perang dunia'],a:1,e:'UNCI = penengah & memfasilitasi KMB.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Strategi diplomasi vs bersenjata',s:'Indonesia memadukan perjuangan bersenjata & diplomasi dalam mempertahankan kemerdekaan.',q:'Kesimpulan paling tepat dari strategi tersebut adalah ....',o:['keduanya saling bertentangan','keduanya saling melengkapi untuk memperkuat posisi Indonesia','hanya diplomasi yang efektif','hanya bersenjata yang efektif','tidak ada strategi'],a:1,e:'Bersenjata & diplomasi saling melengkapi.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Perjanjian & isi',s:'Indonesia & Belanda menandatangani Linggarjati, Renville, Roem-Royen, KMB.',q:'Manakah pernyataan yang TEPAT mengenai perjanjian tersebut? (Pilih lebih dari satu)',o:['Linggarjati mengakui RI secara de facto atas Jawa, Madura, & Sumatera.','Renville mengakui garis Van Mook sebagai batas wilayah.','Roem-Royen menghasilkan penghentian tembak-menembak & RI kembali ke Yogyakarta.','KMB menghasilkan penyerahan kedaulatan pada 27 Desember 1949.','Linggarjati mengakui kemerdekaan penuh Indonesia.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah (hanya de facto).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peristiwa & lokasi',s:'Peristiwa perlawanan: Pertempuran Surabaya, Bandung Lautan Api, Palagan Ambarawa, Serangan Umum 1 Maret, Puputan Margarana.',q:'Manakah pasangan yang TEPAT antara peristiwa & lokasinya? (Pilih lebih dari satu)',o:['Pertempuran 10 November — Surabaya.','Bandung Lautan Api — Bandung.','Palagan Ambarawa — Ambarawa.','Serangan Umum 1 Maret — Yogyakarta.','Puputan Margarana — Bali.'],a:[0,1,2,3,4],e:'Semua pasangan TEPAT.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peristiwa mempertahankan',s:'Perhatikan pernyataan tentang perjuangan mempertahankan kemerdekaan.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Pertempuran 10 November 1945 terjadi di Surabaya.',a:'Sesuai'},{x:'Serangan Umum 1 Maret 1949 terjadi di Yogyakarta.',a:'Sesuai'},{x:'KMB dilaksanakan di Jakarta.',a:'Tidak Sesuai'},{x:'Agresi Militer Belanda II berhasil menduduki Yogyakarta pada 19 Desember 1948.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (Den Haag), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Diplomasi Indonesia',s:'Perhatikan pernyataan tentang diplomasi Indonesia.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Perjanjian Linggarjati ditandatangani pada 1946.',a:'Sesuai'},{x:'Perjanjian Renville menguntungkan Indonesia secara militer.',a:'Tidak Sesuai'},{x:'Perjanjian Roem-Royen membuka jalan menuju KMB.',a:'Sesuai'},{x:'KMB menghasilkan pengakuan kedaulatan Indonesia oleh Belanda.',a:'Sesuai'}],e:'1 Sesuai, 2 Tidak Sesuai (mempersempit wilayah), 3 Sesuai, 4 Sesuai.'}
+];
+
+/* ============================================================
+   Q12 — PEMERINTAHAN SUKARNO (20 soal)
+   ============================================================ */
+const Q12=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Ciri Demokrasi Liberal',s:'Demokrasi Liberal (1950–1959) menerapkan sistem parlementer di mana kabinet bertanggung jawab kepada DPR.',q:'Ciri utama sistem parlementer tersebut adalah ....',o:['presiden sebagai kepala pemerintahan','kabinet dipimpin perdana menteri & bertanggung jawab kepada DPR','kekuasaan terpusat pada presiden','tidak ada partai politik','pemilu tidak pernah diadakan'],a:1,e:'Parlementer: kabinet dipimpin PM & bertanggung jawab kepada DPR.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pemilu 1955',s:null,q:'Pemilu 1955 diselenggarakan pada masa kabinet ....',o:['Natsir','Sukiman','Burhanuddin Harahap','Djuanda','Wilopo'],a:2,e:'Pemilu 1955 pada masa Kabinet Burhanuddin Harahap.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Isi Dekrit 5 Juli',s:null,q:'Dekrit Presiden 5 Juli 1959 berisi ....',o:['pembentukan RIS','pembubaran Konstituante & kembali ke UUD 1945','pembentukan kabinet baru','pemilu ulang','pembubaran PKI'],a:1,e:'Dekrit 5 Juli 1959 = bubarkan Konstituante & kembali ke UUD 1945.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Konsep Nasakom',s:null,q:'Konsep Nasakom menggabungkan ....',o:['Nasionalis, Sosialis, Komunis','Nasionalis, Agama, Komunis','Nasionalis, Agama, Sosialis','Nasionalis, Militer, Komunis','Agama, Militer, Komunis'],a:1,e:'Nasakom = Nasionalis, Agama, Komunis.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemilu 1955 demokratis',s:'Pemilu 1955 dianggap sebagai pemilu paling demokratis dalam sejarah Indonesia.',q:'Alasan utama pemilu tersebut dianggap demokratis adalah ....',o:['diikuti satu partai','rakyat bebas memilih tanpa tekanan','presiden yang memilih','hanya ada dua calon','tidak ada kampanye'],a:1,e:'Pemilu 1955 demokratis = rakyat bebas memilih tanpa tekanan.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak gagal Konstituante',s:'Konstituante gagal menyusun UUD baru karena perbedaan pendapat tentang dasar negara.',q:'Dampak kegagalan tersebut adalah ....',o:['Demokrasi Liberal semakin kuat','Dekrit Presiden 5 Juli 1959','pemilu ulang','Belanda kembali','tidak ada dampak'],a:1,e:'Kegagalan Konstituante → Dekrit 5 Juli 1959 → Demokrasi Terpimpin.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Hasil Trikora',s:'Trikora (19 Desember 1961) bertujuan merebut Irian Barat dari Belanda.',q:'Hasil akhir dari Trikora adalah ....',o:['Irian Barat tetap dikuasai Belanda','Irian Barat kembali ke Indonesia melalui Perjanjian New York','Irian Barat dikuasai PBB','Irian Barat merdeka','tidak ada hasil'],a:1,e:'Irian Barat kembali ke Indonesia via Perjanjian New York (1962).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak konfrontasi Malaysia',s:'Konfrontasi Malaysia (1963–1966) dilancarkan Sukarno karena menganggap Malaysia boneka Inggris.',q:'Dampak konfrontasi tersebut bagi Indonesia adalah ....',o:['ekonomi terpuruk & isolasi internasional','Indonesia menjadi kaya','Indonesia mendapat wilayah baru','Belanda kembali','tidak ada dampak'],a:0,e:'Konfrontasi = ekonomi terpuruk & isolasi internasional.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tanggal G30S',s:null,q:'Peristiwa G30S terjadi pada tanggal ....',o:['17 Agustus 1965','30 September 1965','1 Maret 1966','5 Juli 1959','11 Maret 1966'],a:1,e:'G30S = 30 September 1965.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Isi Tritura',s:null,q:'Tritura berisi tuntutan ....',o:['bubarkan Konstituante','bubarkan PKI, bersihkan kabinet, turunkan harga','kembali ke UUD 1945','ganyang Malaysia','dukung Sukarno'],a:1,e:'Tritura = bubarkan PKI, bersihkan kabinet, turunkan harga.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Makna Supersemar',s:'Supersemar (11 Maret 1966) memberikan mandat kepada Soeharto untuk menjaga stabilitas.',q:'Makna penting Supersemar adalah ....',o:['awal transisi kekuasaan dari Sukarno ke Soeharto','akhir pemerintahan Soeharto','kemerdekaan Indonesia','pembentukan RIS','pemilu pertama'],a:0,e:'Supersemar = awal transisi kekuasaan.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak Demokrasi Terpimpin',s:'Demokrasi Terpimpin memperkuat kekuasaan presiden & melemahkan lembaga legislatif.',q:'Kesimpulan paling tepat dari pernyataan tersebut adalah ....',o:['Demokrasi Terpimpin memperkuat demokrasi','Demokrasi Terpimpin cenderung otoriter & melemahkan checks and balances','Demokrasi Terpimpin memperkuat parlemen','tidak ada dampak','Demokrasi Terpimpin mengakhiri pemerintahan'],a:1,e:'Demokrasi Terpimpin cenderung otoriter.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Kebijakan Demokrasi Terpimpin',s:'Demokrasi Terpimpin (1959–1966) menerapkan Nasakom, Manipol USDEK, & politik mercusuar.',q:'Manakah pernyataan yang TEPAT mengenai Demokrasi Terpimpin? (Pilih lebih dari satu)',o:['Nasakom menggabungkan Nasionalis, Agama, & Komunis.','Kekuasaan terpusat pada presiden.','Manipol USDEK menjadi pedoman Demokrasi Terpimpin.','Demokrasi Terpimpin menerapkan sistem parlementer.','DPR hasil Pemilu 1955 dibubarkan & diganti DPR-GR.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (presidensial terpusat).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peristiwa 1950–1966',s:'Peristiwa era Sukarno: Pemilu 1955, Dekrit 5 Juli 1959, Trikora, G30S, Supersemar.',q:'Manakah pasangan yang TEPAT antara peristiwa & tahunnya? (Pilih lebih dari satu)',o:['Pemilu pertama — 1955.','Dekrit Presiden — 5 Juli 1959.','Trikora — 19 Desember 1961.','G30S — 30 September 1965.','Supersemar — 12 Maret 1967.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah (Supersemar = 11 Maret 1966).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peristiwa pemerintahan Sukarno',s:'Perhatikan pernyataan tentang pemerintahan Sukarno.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Pemilu 1955 dianggap pemilu paling demokratis dalam sejarah Indonesia.',a:'Sesuai'},{x:'Dekrit Presiden 5 Juli 1959 menandai berakhirnya Demokrasi Liberal.',a:'Sesuai'},{x:'G30S terjadi pada 30 September 1965.',a:'Sesuai'},{x:'Supersemar diberikan kepada Sukarno.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai, 4 Tidak Sesuai (Soeharto).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Kebijakan luar negeri',s:'Perhatikan pernyataan tentang kebijakan luar negeri pada masa Sukarno.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Trikora bertujuan merebut Irian Barat dari Belanda.',a:'Sesuai'},{x:'Konfrontasi Malaysia dilancarkan karena Malaysia dianggap boneka Inggris.',a:'Sesuai'},{x:'Indonesia menjadi anggota PBB pada masa Demokrasi Terpimpin.',a:'Sesuai'},{x:'Konfrontasi Malaysia memperkuat ekonomi Indonesia.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai (masuk PBB 1950, keluar 1965, kembali 1966), 4 Tidak Sesuai.'}
+];
+
+/* ============================================================
+   Q13 — ORDE BARU (20 soal)
+   ============================================================ */
+const Q13=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Istilah Orde Baru',s:'Istilah "Orde Baru" pertama kali digunakan oleh mahasiswa demonstran 1966.',q:'Latar belakang munculnya istilah tersebut adalah ....',o:['ingin mempertahankan Sukarno','ingin membedakan pemerintahan Soeharto dari Orde Lama','ingin membentuk partai baru','ingin mengadakan pemilu','ingin melawan Belanda'],a:1,e:'Istilah "Orde Baru" membedakan Soeharto dari Orde Lama.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Isi Tritura',s:null,q:'Tritura berisi tuntutan ....',o:['bubarkan Konstituante','bubarkan PKI, bersihkan kabinet, turunkan harga','kembali ke UUD 1945','ganyang Malaysia','dukung Sukarno'],a:1,e:'Tritura = bubarkan PKI, bersihkan kabinet, turunkan harga.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tanggal Supersemar',s:null,q:'Supersemar ditandatangani pada tanggal ....',o:['30 September 1965','11 Maret 1966','12 Maret 1967','27 Maret 1968','1 Maret 1966'],a:1,e:'Supersemar = 11 Maret 1966.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Fusi partai 1973',s:null,q:'Fusi partai politik pada 1973 menghasilkan tiga partai, yaitu ....',o:['PNI, Masyumi, NU','PPP, Golkar, PDI','PKI, Golkar, PDI','PNI, PPP, PDI','NU, Golkar, PDI'],a:1,e:'Fusi 1973 = PPP, Golkar, PDI.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dwifungsi ABRI',s:'Dwifungsi ABRI memberi militer peran ganda dalam pertahanan & politik.',q:'Dampak Dwifungsi ABRI bagi demokrasi Indonesia adalah ....',o:['demokrasi semakin kuat','militer memiliki pengaruh besar dalam politik','partai politik bebas','pemilu bebas','kekuasaan sipil dominan'],a:1,e:'Dwifungsi ABRI = militer berpengaruh besar dalam politik.'},
+{t:'PG',l:'Applying',d:'Kemenangan Golkar',s:'Golkar selalu menang dalam Pemilu masa Orde Baru.',q:'Faktor utama kemenangan Golkar adalah ....',o:['kompetisi politik yang sehat','dukungan militer, birokrasi, & kontrol media','partai oposisi kuat','pemilu bebas','rakyat bebas memilih'],a:1,e:'Golkar menang karena dukungan militer, birokrasi, kontrol media.'},
+{t:'PG',l:'Applying',d:'Swasembada beras',s:'Swasembada beras tercapai pada tahun 1984.',q:'Makna pencapaian tersebut bagi Indonesia adalah ....',o:['Indonesia menjadi negara industri','Indonesia mampu memenuhi kebutuhan pangan sendiri','Indonesia mengekspor beras','Indonesia menjadi negara maju','tidak ada makna'],a:1,e:'Swasembada beras 1984 = mampu memenuhi kebutuhan pangan sendiri.'},
+{t:'PG',l:'Applying',d:'Krisis moneter 1997',s:'Krisis Moneter 1997 dimulai di Thailand & menyebar ke Indonesia.',q:'Dampak krisis tersebut bagi Indonesia adalah ....',o:['ekonomi maju','rupiah anjlok & krisis multidimensi','Indonesia menjadi kaya','Belanda kembali','tidak ada dampak'],a:1,e:'Krisis 1997 = rupiah anjlok & krisis multidimensi.'},
+{t:'PG',l:'Applying',d:'Tragedi Trisakti',s:'Tragedi Trisakti terjadi pada 12 Mei 1998 & menewaskan empat mahasiswa.',q:'Dampak peristiwa tersebut bagi Reformasi adalah ....',o:['memperlambat Reformasi','mempercepat jatuhnya Soeharto','tidak ada dampak','memperkuat Soeharto','menghentikan Reformasi'],a:1,e:'Tragedi Trisakti = mempercepat jatuhnya Soeharto.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kritik Trilogi',s:'Trilogi Pembangunan Orde Baru meliputi stabilitas nasional, pertumbuhan ekonomi, & pemerataan pembangunan.',q:'Kritik utama terhadap pelaksanaan trilogi tersebut adalah ....',o:['pemerataan berhasil sempurna','pertumbuhan ekonomi tinggi tetapi pemerataan tidak tercapai & kesenjangan melebar','stabilitas tidak tercapai','tidak ada pertumbuhan','semua berhasil'],a:1,e:'Pertumbuhan tinggi, tetapi pemerataan gagal & kesenjangan melebar.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak KKN',s:'Orde Baru dikenal dengan praktik KKN yang merajalela.',q:'Dampak KKN bagi kehidupan berbangsa adalah ....',o:['meningkatkan kepercayaan publik','melemahkan demokrasi & merugikan rakyat','memperkuat hukum','meningkatkan investasi','memperbaiki ekonomi'],a:1,e:'KKN = melemahkan demokrasi & merugikan rakyat.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'NKK/BKK',s:'Normalisasi Kehidupan Kampus/Badan Koordinasi Kemahasiswaan (NKK/BKK) diberlakukan pada 1978.',q:'Tujuan kebijakan tersebut bagi pemerintah Orde Baru adalah ....',o:['meningkatkan aktivisme mahasiswa','membatasi aktivitas politik mahasiswa di kampus','membuka kebebasan akademik','memperkuat demokrasi','mendukung oposisi'],a:1,e:'NKK/BKK = membatasi aktivitas politik mahasiswa.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Kebijakan Orde Baru',s:'Orde Baru menerapkan fusi partai, asas tunggal Pancasila, Repelita, & Dwifungsi ABRI.',q:'Manakah pernyataan yang TEPAT mengenai kebijakan Orde Baru? (Pilih lebih dari satu)',o:['Fusi partai 1973 menghasilkan PPP, Golkar, & PDI.','Asas Tunggal Pancasila diberlakukan pada 1985.','Repelita I dilaksanakan 1969–1974.','Dwifungsi ABRI memperkuat demokrasi sipil.','Golkar selalu menang pemilu karena kompetisi sehat.'],a:[0,1,2],e:'A, B, C benar. D salah (melemahkan demokrasi). E salah (dukungan militer & birokrasi).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Akhir Orde Baru',s:'Peristiwa akhir Orde Baru: Krisis Moneter 1997, Tragedi Trisakti 12 Mei 1998, Kerusuhan Mei 1998, mundurnya Soeharto 21 Mei 1998.',q:'Manakah pernyataan yang TEPAT mengenai peristiwa tersebut? (Pilih lebih dari satu)',o:['Krisis Moneter 1997 dimulai di Thailand.','Tragedi Trisakti terjadi pada 12 Mei 1998.','Soeharto mundur pada 21 Mei 1998.','Soeharto digantikan oleh Megawati Soekarnoputri.','B.J. Habibie menggantikan Soeharto sebagai presiden.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (pengganti = B.J. Habibie).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peristiwa Orde Baru',s:'Perhatikan pernyataan tentang Orde Baru.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Supersemar ditandatangani pada 11 Maret 1966.',a:'Sesuai'},{x:'Fusi partai 1973 menghasilkan PPP, Golkar, & PDI.',a:'Sesuai'},{x:'Soeharto mundur pada 21 Mei 1998.',a:'Sesuai'},{x:'Orde Baru dikenal dengan praktik KKN yang merajalela.',a:'Sesuai'}],e:'Semua pernyataan Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Dampak pembangunan',s:'Perhatikan pernyataan tentang dampak pembangunan Orde Baru.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Swasembada beras tercapai pada 1984.',a:'Sesuai'},{x:'Pembangunan Orde Baru terkonsentrasi di Jawa & kota-kota besar.',a:'Sesuai'},{x:'Pemerataan pembangunan berhasil sempurna di seluruh Indonesia.',a:'Tidak Sesuai'},{x:'Krisis Moneter 1997 menyebabkan rupiah anjlok & krisis multidimensi.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (kesenjangan melebar), 4 Sesuai.'}
+];
+
+/* ============================================================
+   Q14 — REFORMASI 1998 & DEMOKRASI (20 soal)
+   ============================================================ */
+const Q14=[
+{t:'PG',l:'Knowing',d:'Mudah',i:'Krisis moneter',s:'Krisis Moneter 1997 dimulai di Thailand & menyebar ke Indonesia.',q:'Dampak krisis tersebut bagi Indonesia adalah ....',o:['ekonomi maju','rupiah anjlok & krisis multidimensi','Indonesia menjadi kaya','Belanda kembali','tidak ada dampak'],a:1,e:'Krisis 1997 = rupiah anjlok & krisis multidimensi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tragedi Trisakti',s:null,q:'Tragedi Trisakti terjadi pada tanggal ....',o:['12 Mei 1998','13 Mei 1998','21 Mei 1998','18 Mei 1998','11 Maret 1998'],a:0,e:'Tragedi Trisakti = 12 Mei 1998.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Mundurnya Soeharto',s:'Soeharto menyatakan mundur sebagai Presiden RI pada 21 Mei 1998.',q:'Makna penting peristiwa tersebut adalah ....',o:['awal Reformasi & berakhirnya Orde Baru','akhir Reformasi','kemerdekaan Indonesia','pembentukan RIS','pemilu pertama'],a:0,e:'Mundurnya Soeharto 21 Mei 1998 = awal Reformasi & berakhirnya Orde Baru.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengganti Soeharto',s:null,q:'Setelah Soeharto mundur, yang menggantikannya sebagai presiden adalah ....',o:['Megawati Soekarnoputri','B.J. Habibie','Abdurrahman Wahid','Susilo Bambang Yudhoyono','Joko Widodo'],a:1,e:'Pengganti Soeharto = B.J. Habibie.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan Amandemen',s:'Amandemen UUD 1945 dilakukan sebanyak empat kali (1999–2002).',q:'Tujuan utama Amandemen UUD 1945 adalah ....',o:['memperkuat kekuasaan presiden','membatasi kekuasaan presiden & memperkuat demokrasi','mengganti UUD','membubarkan MPR','mengembalikan Orde Baru'],a:1,e:'Amandemen = membatasi kekuasaan presiden & memperkuat demokrasi.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak kebebasan pers',s:'UU No. 40/1999 tentang Pers menjamin kebebasan pers di Indonesia.',q:'Dampak kebebasan pers bagi demokrasi adalah ....',o:['pers menjadi alat pemerintah','pers menjadi pengawas pemerintah (watchdog)','pers dibungkam','pers dilarang','pers dikuasai militer'],a:1,e:'Kebebasan pers = pers menjadi watchdog pemerintah.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan otonomi daerah',s:'Otonomi daerah memberikan kewenangan lebih luas kepada daerah.',q:'Tujuan utama otonomi daerah adalah ....',o:['memperkuat pusat','mempercepat pembangunan & pelayanan publik di daerah','membubarkan daerah','mengembalikan Orde Baru','memperkuat militer'],a:1,e:'Otonomi daerah = mempercepat pembangunan & pelayanan publik di daerah.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemilu 1999',s:null,q:'Pemilu 1999 diikuti oleh berapa partai politik?',o:['3 partai','10 partai','24 partai','48 partai','50 partai'],a:3,e:'Pemilu 1999 diikuti 48 partai politik.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Tantangan otonomi',s:'Otonomi daerah & desentralisasi fiskal memberikan kewenangan lebih besar kepada daerah.',q:'Tantangan utama pelaksanaan otonomi daerah adalah ....',o:['tidak ada tantangan','kesiapan SDM & potensi korupsi di daerah','daerah menolak otonomi','pusat tidak setuju','masyarakat tidak peduli'],a:1,e:'Tantangan: kesiapan SDM & potensi korupsi di daerah.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kebebasan berpendapat',s:'Kebebasan berpendapat & demonstrasi dijamin oleh UUD 1945 hasil amandemen.',q:'Makna kebebasan tersebut bagi demokrasi adalah ....',o:['anarki','partisipasi rakyat dalam mengawasi pemerintah','kekacauan','pembatasan hak','penindasan'],a:1,e:'Kebebasan berpendapat = partisipasi rakyat mengawasi pemerintah.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Tujuan KPK',s:'KPK (Komisi Pemberantasan Korupsi) dibentuk pada 2002 berdasarkan UU No. 30/2002.',q:'Tujuan utama pembentukan KPK adalah ....',o:['memperkuat korupsi','memberantas korupsi secara efektif & independen','melindungi pelaku korupsi','mengawasi pers','membantu presiden'],a:1,e:'KPK = memberantas korupsi secara efektif & independen.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Hasil Amandemen',s:'Amandemen UUD 1945 (1999–2002) membawa perubahan besar dalam sistem ketatanegaraan.',q:'Manakah pernyataan yang TEPAT mengenai hasil Amandemen UUD 1945? (Pilih lebih dari satu)',o:['Pemilihan presiden dilakukan secara langsung.','Dibentuk Mahkamah Konstitusi (MK) & DPD.','Kekuasaan presiden dibatasi dua periode.','Amandemen memperkuat kekuasaan presiden tanpa batas.','Amandemen menghapus DPR.'],a:[0,1,2],e:'A, B, C benar. D salah (membatasi). E salah (DPR tetap ada).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Peristiwa Reformasi',s:'Peristiwa Reformasi: Krisis Moneter 1997, Tragedi Trisakti 12 Mei 1998, Kerusuhan Mei 1998, mundurnya Soeharto 21 Mei 1998, Pemilu 1999.',q:'Manakah pernyataan yang TEPAT mengenai peristiwa Reformasi? (Pilih lebih dari satu)',o:['Krisis Moneter 1997 dimulai di Thailand.','Tragedi Trisakti menewaskan empat mahasiswa.','Soeharto mundur pada 21 Mei 1998.','Pemilu 1999 diikuti 48 partai politik.','Amandemen UUD 1945 dilakukan sebanyak dua kali.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah (empat kali: 1999, 2000, 2001, 2002).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Peristiwa Reformasi',s:'Perhatikan pernyataan tentang Reformasi 1998.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Tragedi Trisakti terjadi pada 12 Mei 1998.',a:'Sesuai'},{x:'Soeharto mundur pada 21 Mei 1998 & digantikan B.J. Habibie.',a:'Sesuai'},{x:'Amandemen UUD 1945 dilakukan sebanyak empat kali (1999–2002).',a:'Sesuai'},{x:'Pemilu 1999 diikuti oleh 3 partai politik.',a:'Tidak Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Sesuai, 4 Tidak Sesuai (48 partai).'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Demokratisasi Indonesia',s:'Perhatikan pernyataan tentang demokratisasi pasca-Reformasi.',q:'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Pemilihan presiden secara langsung pertama kali dilaksanakan pada 2004.',a:'Sesuai'},{x:'Kebebasan pers dijamin oleh UU No. 40/1999.',a:'Sesuai'},{x:'Otonomi daerah bertujuan memusatkan kekuasaan di Jakarta.',a:'Tidak Sesuai'},{x:'KPK dibentuk pada 2002 untuk memberantas korupsi.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (memperluas kewenangan daerah), 4 Sesuai.'}
+];
+
+/* ============================================================
+   MAPPING — 14 bab ke array soal
+   ============================================================ */
+const QUESTIONS={
+1:Q1, 2:Q2, 3:Q3, 4:Q4, 5:Q5, 6:Q6, 7:Q7,
+8:Q8, 9:Q9, 10:Q10, 11:Q11, 12:Q12, 13:Q13, 14:Q14
+};
+
+/* ============================================================
+   STATE & LOGIC
+   ============================================================ */
+let currentChapter=1;
+let currentQ=0;
+let userAnswers={};
+let revealed={};
+let timerInterval=null;
+let secondsElapsed=0;
+
+/* LOADER */
+(function(){
+const bar=document.getElementById('lbar');
+const pct=document.getElementById('lpct');
+let p=0;
+const int=setInterval(()=>{
+p+=Math.random()*18+5;
+if(p>=100){p=100;clearInterval(int);}
+bar.style.width=p+'%';
+pct.textContent=Math.round(p)+'%';
+if(p>=100){
+setTimeout(()=>{
+document.getElementById('loader').classList.add('hide');
+setTimeout(()=>document.getElementById('loader').style.display='none',600);
+},300);
+}
+},180);
+})();
+
+/* THEME */
+function toggleTheme(){
+document.body.classList.toggle('light');
+const btn=document.getElementById('themeBtn');
+btn.innerHTML=document.body.classList.contains('light')?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
+}
+
+/* RENDER CHAPTER GRID */
+function renderChapters(){
+const grid=document.getElementById('chapterGrid');
+grid.innerHTML='';
+CHAPTERS.forEach(ch=>{
+const totalQ=(QUESTIONS[ch.id]||[]).length;
+const card=document.createElement('div');
+card.className='chapter-card';
+card.onclick=()=>startTest(ch.id);
+card.innerHTML=`
+<div class="ch-num">${ch.fase}</div>
+<h4>${ch.title}</h4>
+<p>${ch.desc}</p>
+<div class="ch-meta"><span>Bab ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${totalQ} Soal</span></div>
+`;
+grid.appendChild(card);
+});
+document.getElementById('statCh').textContent=CHAPTERS.length;
+let total=0;
+CHAPTERS.forEach(c=>total+=(QUESTIONS[c.id]||[]).length);
+document.getElementById('statQ').textContent=total;
+}
+
+/* NAVIGATION */
+function showSection(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+stopTimer();
+showSection('home');
+document.getElementById('progressThumb').style.width='0%';
+document.getElementById('timerDisp').textContent='00:00';
+document.getElementById('timerBox').classList.remove('warn');
+}
+function startTest(chapterId){
+const qs=QUESTIONS[chapterId]||[];
+if(qs.length===0){alert('Bank soal bab ini belum tersedia.');return;}
+currentChapter=chapterId;
+currentQ=0;
+userAnswers={};
+revealed={};
+const ch=CHAPTERS.find(c=>c.id===chapterId);
+document.getElementById('testTitle').textContent=`Bab ${ch.id} · ${ch.title}`;
+document.getElementById('testSub').textContent=`Fase ${ch.fase} · Soal 1 dari ${qs.length}`;
+document.getElementById('totCount').textContent=qs.length;
+showSection('test');
+renderQuestion();
+renderQMap();
+startTimer();
+updateProgress();
+}
+function retryTest(){startTest(currentChapter);}
+
+/* TIMER */
+function startTimer(){
+stopTimer();
+secondsElapsed=0;
+updateTimerDisplay();
+timerInterval=setInterval(()=>{
+secondsElapsed++;
+updateTimerDisplay();
+if(secondsElapsed>=90*60){
+document.getElementById('timerBox').classList.add('warn');
+if(secondsElapsed>=90*60)finishTest();
+}
+},1000);
+}
+function stopTimer(){
+if(timerInterval)clearInterval(timerInterval);
+timerInterval=null;
+}
+function updateTimerDisplay(){
+const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
+const s=String(secondsElapsed%60).padStart(2,'0');
+document.getElementById('timerDisp').textContent=`${m}:${s}`;
+document.getElementById('testTimer').textContent=`${m}:${s}`;
+}
+
+/* TYPE LABEL */
+function typeLabel(t){
+if(t==='PG')return'Pilihan Ganda';
+if(t==='MCMA')return'PG Kompleks (MCMA)';
+if(t==='KATEGORI')return'PG Kompleks Kategori';
+return t;
+}
+
+/* RENDER QUESTION */
+function renderQuestion(){
+const qs=QUESTIONS[currentChapter];
+if(!qs||!qs[currentQ])return;
+const q=qs[currentQ];
+const total=qs.length;
+document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+
+const meta=document.getElementById('qMeta');
+meta.innerHTML=`
+<span class="badge ${q.t}">${typeLabel(q.t)}</span>
+<span class="badge lv">${q.l}</span>
+<span class="badge df">${q.d}</span>
+`;
+
+const stimEl=document.getElementById('qStim');
+if(q.s){
+stimEl.style.display='block';
+document.getElementById('qStimTxt').textContent=q.s;
+}else{
+stimEl.style.display='none';
+}
+
+document.getElementById('qText').textContent=q.q;
+
+const hintEl=document.getElementById('qHint');
+if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban yang benar.';}
+else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian pada setiap pernyataan.';}
+else{hintEl.style.display='none';}
+
+const area=document.getElementById('qArea');
+area.innerHTML='';
+
+if(q.t==='PG'||q.t==='MCMA'){
+const optsEl=document.createElement('div');
+optsEl.className='opts';
+const labels=['A','B','C','D','E'];
+q.o.forEach((opt,i)=>{
+const div=document.createElement('div');
+div.className='opt';
+const ua=userAnswers[currentQ];
+if(q.t==='PG'&&ua===i)div.classList.add('sel');
+if(q.t==='MCMA'&&Array.isArray(ua)&&ua.includes(i))div.classList.add('sel');
+if(revealed[currentQ]){
+const correct=q.t==='PG'?[q.a]:q.a;
+if(correct.includes(i))div.classList.add('correct');
+else if((q.t==='PG'&&ua===i)||(q.t==='MCMA'&&Array.isArray(ua)&&ua.includes(i)))div.classList.add('wrong');
+}
+div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+div.onclick=()=>selectOption(i,q.t);
+optsEl.appendChild(div);
+});
+area.appendChild(optsEl);
+}else if(q.t==='KATEGORI'){
+const wrap=document.createElement('div');
+wrap.className='kat-wrap';
+let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+q.st.forEach((s,i)=>{
+const ua=userAnswers[currentQ]||{};
+const val=ua[i]||'';
+html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td>
+<div class="kat-actions">
+<button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button>
+<button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button>
+</div>
+</td></tr>`;
+});
+html+='</tbody></table>';
+wrap.innerHTML=html;
+area.appendChild(wrap);
+}
+
+const expEl=document.getElementById('qExpl');
+if(revealed[currentQ]){
+expEl.classList.remove('hidden');
+expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+}else{
+expEl.classList.add('hidden');
+expEl.innerHTML='';
+}
+
+document.getElementById('prevBtn').disabled=currentQ===0;
+const isLast=currentQ===total-1;
+document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+
+/* SELECT OPTION */
+function selectOption(idx,type){
+if(revealed[currentQ])return;
+if(type==='PG'){
+userAnswers[currentQ]=idx;
+}else if(type==='MCMA'){
+let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];
+const pos=arr.indexOf(idx);
+if(pos>=0)arr.splice(pos,1);
+else arr.push(idx);
+userAnswers[currentQ]=arr;
+}
+renderQuestion();
+renderQMap();
+updateProgress();
+}
+
+/* SET KATEGORI */
+function setKategori(idx,cat){
+if(revealed[currentQ])return;
+if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+userAnswers[currentQ][idx]=cat;
+renderQuestion();
+renderQMap();
+updateProgress();
+}
+
+/* REVEAL */
+function revealQ(){
+revealed[currentQ]=true;
+renderQuestion();
+}
+
+/* NAV */
+function prevQ(){
+if(currentQ>0){currentQ--;renderQuestion();renderQMap();}
+}
+function nextQ(){
+const total=QUESTIONS[currentChapter].length;
+if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}
+}
+
+/* Q MAP */
+function renderQMap(){
+const map=document.getElementById('qmap');
+map.innerHTML='';
+const total=QUESTIONS[currentChapter].length;
+for(let i=0;i<total;i++){
+const btn=document.createElement('button');
+btn.className='qmap-btn';
+btn.textContent=i+1;
+const ua=userAnswers[i];
+let answered=false;
+if(ua!==undefined){
+if(Array.isArray(ua))answered=ua.length>0;
+else if(typeof ua==='object')answered=Object.keys(ua).length===(QUESTIONS[currentChapter][i].st?QUESTIONS[currentChapter][i].st.length:0);
+else answered=true;
+}
+if(answered)btn.classList.add('ans');
+if(i===currentQ)btn.classList.add('cur');
+btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+map.appendChild(btn);
+}
+}
+
+/* PROGRESS */
+function updateProgress(){
+const total=QUESTIONS[currentChapter].length;
+let answered=0;
+for(let i=0;i<total;i++){
+const ua=userAnswers[i];
+if(ua===undefined)continue;
+if(Array.isArray(ua)){if(ua.length>0)answered++;}
+else if(typeof ua==='object'){
+const stCount=QUESTIONS[currentChapter][i].st?QUESTIONS[currentChapter][i].st.length:0;
+if(Object.keys(ua).length===stCount)answered++;
+}else answered++;
+}
+document.getElementById('ansCount').textContent=answered;
+document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+
+/* CHECK */
+function isCorrect(q,ua){
+if(ua===undefined||ua===null)return false;
+if(q.t==='PG')return ua===q.a;
+if(q.t==='MCMA'){
+if(!Array.isArray(ua))return false;
+const correct=[...q.a].sort().join(',');
+const user=[...ua].sort().join(',');
+return correct===user;
+}
+if(q.t==='KATEGORI'){
+if(typeof ua!=='object')return false;
+for(let i=0;i<q.st.length;i++){
+if(ua[i]!==q.st[i].a)return false;
+}
+return true;
+}
+return false;
+}
+
+/* FINISH */
+function finishTest(){
+stopTimer();
+const qs=QUESTIONS[currentChapter];
+const total=qs.length;
+let correct=0;
+const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+
+qs.forEach((q,i)=>{
+const ua=userAnswers[i];
+const isC=isCorrect(q,ua);
+if(isC)correct++;
+levelStats[q.l].total++;
+if(isC)levelStats[q.l].correct++;
+typeStats[q.t].total++;
+if(isC)typeStats[q.t].correct++;
+});
+
+const answered=Object.keys(userAnswers).length;
+const wrong=answered-correct;
+const score=Math.round((correct/total)*100);
+document.getElementById('finalScore').textContent=score;
+document.getElementById('rsCorrect').textContent=correct;
+document.getElementById('rsWrong').textContent=wrong;
+document.getElementById('rsTotal').textContent=total;
+const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
+const s=String(secondsElapsed%60).padStart(2,'0');
+document.getElementById('rsTime').textContent=`${m}:${s}`;
+const title=score>=80?'Luar Biasa!':score>=60?'Cukup Baik':'Perlu Belajar Lagi';
+document.getElementById('resultTitle').textContent=title;
+document.getElementById('resultSub').textContent=`Skor kamu ${score} dari 100. ${score>=80?'Pemahamanmu sangat baik!':score>=60?'Terus tingkatkan pemahamanmu.':'Jangan menyerah, ulangi & pelajari kembali materi.'}`;
+const circle=document.getElementById('resultScore');
+const color=score>=80?'var(--emerald)':score>=60?'var(--primary)':'var(--rose)';
+circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+
+const recapLv=document.getElementById('recapLv');
+recapLv.innerHTML='';
+['Knowing','Applying','Reasoning'].forEach(lv=>{
+const st=levelStats[lv];
+const pct=st.total?Math.round((st.correct/st.total)*100):0;
+recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+});
+
+const recapType=document.getElementById('recapType');
+recapType.innerHTML='';
+['PG','MCMA','KATEGORI'].forEach(tp=>{
+const st=typeStats[tp];
+const pct=st.total?Math.round((st.correct/st.total)*100):0;
+recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+});
+
+showSection('result');
+}
+
+/* KEYBOARD */
+document.addEventListener('keydown',(e)=>{
+if(!document.getElementById('test').classList.contains('active'))return;
+const tag=(e.target.tagName||'').toLowerCase();
+if(tag==='input'||tag==='textarea')return;
+if(e.key==='ArrowRight')nextQ();
+else if(e.key==='ArrowLeft')prevQ();
+});
+
+/* SCROLL HEADER */
+window.addEventListener('scroll',()=>{
+const h=document.querySelector('.hdr');
+if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.35)';
+else h.style.boxShadow='none';
+});
+
+/* INIT */
+renderChapters();
+</script>
+</body>
+</html>
