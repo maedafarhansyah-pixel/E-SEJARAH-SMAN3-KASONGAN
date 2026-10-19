@@ -10,150 +10,512 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--primary:#F4C430;--primary-light:#FFE47A;--gold:#FFD700;--emerald:#10B981;--rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;--card-alt:#252540;--text:#f5f2ec;--text-light:#c5c5dc;--text-muted:#8d8da8;--line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);--radius:18px;--radius-sm:12px;--header-h:64px}
-body.light{--bg:#f8f6f0;--card:#fff;--card-alt:#f0ece0;--text:#1a1a2e;--text-light:#4a4a5e;--text-muted:#7a7a8e;--line:rgba(184,134,11,.18);--line-soft:rgba(184,134,11,.08)}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(244,196,48,.07),transparent 55%),radial-gradient(circle at 85% 80%,rgba(139,92,246,.08),transparent 55%)}
+:root{
+  --primary:#B8860B;
+  --primary-light:#DAA520;
+  --gold:#FFD700;
+  --emerald:#10B981;
+  --rose:#FB7185;
+  --sky:#38BDF8;
+  --violet:#8B5CF6;
+  --bg:#0a0a14;
+  --card:#1a1a2e;
+  --card-alt:#252540;
+  --text:#f5f2ec;
+  --text-light:#c5c5dc;
+  --text-muted:#8d8da8;
+  --line:rgba(244,196,48,.14);
+  --line-soft:rgba(244,196,48,.07);
+  --radius:18px;
+  --radius-sm:12px;
+  --header-h:64px;
+}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  min-height:100vh;
+  overflow-x:hidden;
+  background-image:radial-gradient(circle at 15% 12%,rgba(184,134,11,.08),transparent 55%),
+                   radial-gradient(circle at 85% 80%,rgba(139,92,246,.07),transparent 55%);
+}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
-/* ============ LOADER (3D MGE) ============ */
-#loader{position:fixed;inset:0;z-index:9999;background:rgba(10,10,20,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s;padding:20px;text-align:center;perspective:800px}
+/* ============ LOADER (3D MGE dengan Lingkaran Berputar) ============ */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:radial-gradient(circle at 50% 45%,#14142a 0%,#0a0a14 65%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .6s,visibility .6s;padding:20px;text-align:center;
+}
 
-.loader-3d-wrap{position:relative;display:inline-block;margin-bottom:8px;transform-style:preserve-3d}
-.loader-3d-text{font-size:clamp(4.5rem,16vw,8rem);font-weight:900;letter-spacing:6px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 35%,var(--primary-light) 60%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;position:relative;animation:mgeFloat 3.2s ease-in-out infinite,mgeShimmer 4s ease infinite;filter:drop-shadow(1px 1px 0 #8b6914) drop-shadow(2px 2px 0 #7a5d10) drop-shadow(3px 3px 0 #6a510d) drop-shadow(4px 4px 0 #5a450a) drop-shadow(5px 5px 0 #4a3807) drop-shadow(6px 6px 0 #3a2c05) drop-shadow(8px 8px 18px rgba(0,0,0,.65)) drop-shadow(0 0 40px rgba(244,196,48,.35));transform-style:preserve-3d}
-.loader-3d-sub{margin-top:10px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.4));opacity:.9;animation:mgeSubIn .8s ease .3s both}
-@keyframes mgeFloat{0%,100%{transform:translateY(0) rotateX(0deg) rotateY(0deg)}25%{transform:translateY(-8px) rotateX(6deg) rotateY(-2deg)}50%{transform:translateY(-4px) rotateX(0deg) rotateY(0deg)}75%{transform:translateY(-10px) rotateX(-4deg) rotateY(2deg)}}
+/* Container untuk semua lingkaran — diperkecil */
+.loader-3d-wrap{
+  position:relative;
+  width:240px;
+  height:240px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;
+}
+
+/* Lingkaran dalam berisi tulisan MGE, border gradient berputar */
+.loader-circle{
+  position:relative;
+  width:140px;height:140px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  z-index:5;
+}
+.loader-circle::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,
+    var(--primary) 0deg,
+    var(--gold) 90deg,
+    var(--sky) 180deg,
+    var(--violet) 270deg,
+    var(--primary) 360deg);
+  animation:ringSpin 3s linear infinite;
+  filter:
+    drop-shadow(0 0 14px rgba(255,215,0,.55))
+    drop-shadow(0 0 26px rgba(184,134,11,.4));
+  z-index:-2;
+}
+.loader-circle::after{
+  content:'';position:absolute;inset:4px;border-radius:50%;
+  background:#0a0a14;
+  box-shadow:inset 0 0 24px rgba(184,134,11,.16);
+  z-index:-1;
+}
+
+/* Tulisan MGE — efek 3D ekstrusi berlapis */
+.loader-3d-text{
+  font-size:clamp(1.8rem,4.5vw,2.6rem);
+  font-weight:900;letter-spacing:3px;line-height:1;
+  background:linear-gradient(135deg,
+    var(--primary) 0%,
+    var(--gold) 30%,
+    #fff8dc 50%,
+    var(--gold) 70%,
+    var(--primary-light) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200% auto;
+  animation:mgeShimmer 3s ease infinite;
+  filter:
+    drop-shadow(1px 1px 0 #a3740c)
+    drop-shadow(2px 2px 0 #8b6914)
+    drop-shadow(3px 3px 0 #7a5d10)
+    drop-shadow(4px 4px 0 #6a510d)
+    drop-shadow(5px 5px 0 #5a450a)
+    drop-shadow(6px 6px 0 #4a3807)
+    drop-shadow(7px 7px 0 #3a2c05)
+    drop-shadow(8px 8px 0 #2a1f03)
+    drop-shadow(9px 9px 10px rgba(0,0,0,.6))
+    drop-shadow(0 0 22px rgba(255,215,0,.65));
+  transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);
+  position:relative;z-index:6;
+}
+
+/* 3 Lingkaran luar dengan warna berbeda — ukuran lebih rapat */
+.loader-ring{
+  position:absolute;border-radius:50%;
+  border:2px solid transparent;pointer-events:none;
+}
+.ring-1{
+  inset:-8px;
+  border-top-color:var(--sky);
+  border-right-color:var(--sky);
+  animation:ringSpin 3.5s linear infinite;
+  box-shadow:
+    0 0 16px rgba(56,189,248,.35),
+    inset 0 0 12px rgba(56,189,248,.15);
+}
+.ring-2{
+  inset:-17px;
+  border-bottom-color:var(--violet);
+  border-left-color:var(--violet);
+  animation:ringSpin 5s linear infinite reverse;
+  box-shadow:
+    0 0 18px rgba(139,92,246,.35),
+    inset 0 0 14px rgba(139,92,246,.15);
+}
+.ring-3{
+  inset:-26px;
+  border-top-color:var(--rose);
+  border-right-color:var(--rose);
+  animation:ringSpin 7s linear infinite;
+  box-shadow:
+    0 0 20px rgba(251,113,133,.35),
+    inset 0 0 15px rgba(251,113,133,.12);
+}
+
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.9;transform:translateY(0) scale(1)}}
 
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite}
+.loader-3d-sub{
+  margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;
+  animation:mgeSubIn .8s ease .3s both;
+}
+@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
+
+.loader-title{
+  font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;
+  background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200% auto;animation:shimmer 3s ease infinite;
+}
 @keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
 .loader-sub{color:var(--text-muted);font-size:.85rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(244,196,48,.1);border-radius:10px;margin-top:24px;overflow:hidden}
+.loader-track{
+  width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);
+  border-radius:10px;margin-top:24px;overflow:hidden;
+}
 .loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
 .loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 
 /* ============ HEADER ============ */
-.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px}
-body.light .hdr{background:rgba(255,255,255,.94)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:clamp(.95rem,2vw,1.1rem);color:var(--primary-light);cursor:pointer;flex-shrink:0}
-.brand .dot{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;font-size:1rem;box-shadow:0 6px 18px rgba(244,196,48,.4)}
+.hdr{
+  position:fixed;top:0;left:0;right:0;height:var(--header-h);
+  background:rgba(10,10,20,.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line-soft);z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(12px,3vw,28px);gap:10px;
+}
 .hdr-center{flex:1;display:flex;justify-content:center}
-.timer{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(244,196,48,.12),rgba(139,92,246,.08));border:1px solid var(--line);padding:8px 18px;border-radius:40px;font-weight:800;font-size:.9rem;color:var(--primary-light);letter-spacing:1px}
+.timer{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));
+  border:1px solid var(--line);padding:8px 18px;border-radius:40px;
+  font-weight:800;font-size:.9rem;color:var(--primary-light);letter-spacing:1px
+}
 .timer.warn{background:linear-gradient(135deg,rgba(251,113,133,.18),rgba(251,113,133,.08));border-color:var(--rose);color:var(--rose)}
-.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary-light);cursor:pointer;display:grid;place-items:center;transition:all .3s}
-.icon-btn:hover{background:var(--primary);color:#0a0a14;border-color:var(--primary)}
-.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(244,196,48,.08);z-index:999}
-.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(244,196,48,.6)}
+.icon-btn{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card);color:var(--primary);cursor:pointer;display:grid;place-items:center;transition:all .3s
+}
+.icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(184,134,11,.08);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(184,134,11,.4)}
+
+/* ============ MAIN ============ */
 .main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
 .section{display:none;animation:fadeUp .5s ease forwards}
 .section.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
 .hero{text-align:center;padding:36px 0 20px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(244,196,48,.14),rgba(139,92,246,.1));border:1px solid var(--line);padding:7px 20px;border-radius:40px;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-light);margin-bottom:18px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(184,134,11,.14),rgba(139,92,246,.08));
+  border:1px solid var(--line);padding:7px 20px;border-radius:40px;
+  font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--primary);margin-bottom:18px
+}
+
+/* === EFEK DAHSYAT UNTUK JUDUL === */
 .hero-title{font-size:clamp(1.8rem,5.5vw,3.4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px}
-.hero-title .gold{background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 5s ease infinite}
+
+/* Baris 1: Tes Kemampuan Akademik — gradien warna-warni animasi */
+.hero-title .title-top{
+  display:block;
+  background:linear-gradient(135deg,var(--violet) 0%,var(--sky) 30%,var(--primary) 60%,var(--gold) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  background-size:300% auto;
+  animation:titleTopShimmer 6s ease infinite;
+  filter:drop-shadow(0 2px 8px rgba(139,92,246,.25));
+}
+@keyframes titleTopShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* Baris 2: Literasi Sejarah SMA — emas + coral/rose mencolok, glow ringkas */
+.hero-title .title-gold{
+  display:block;
+  background:linear-gradient(135deg,
+    #FF8A00 0%, #FFD700 12%, #FFF6C2 24%,
+    #FF3D71 38%, #FF7A45 48%,
+    #FFD700 62%, #FFE066 72%,
+    #FF2E63 84%, #FFD700 94%, #FFB300 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  background-size:300% auto;
+  animation:goldShimmer 4.5s ease infinite;
+  filter:
+    drop-shadow(0 1px 0 #8b6914)
+    drop-shadow(0 2px 0 #6a510d)
+    drop-shadow(0 3px 0 #3a2c05)
+    drop-shadow(0 4px 10px rgba(184,134,11,.35))
+    drop-shadow(0 0 18px rgba(255,215,0,.45))
+    drop-shadow(0 0 32px rgba(255,61,113,.25));
+  transform:perspective(600px) rotateX(1.5deg);
+}
+@keyframes goldShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
 .hero-sub{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text-light);max-width:680px;margin:0 auto 20px;line-height:1.75}
 .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
-.stat-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:16px 24px;min-width:130px;text-align:center;transition:all .3s}
-.stat-card:hover{transform:translateY(-4px);border-color:var(--primary)}
-.stat-card .val{font-size:1.5rem;font-weight:900;color:var(--primary-light);line-height:1}
+.stat-card{
+  background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);
+  padding:16px 24px;min-width:130px;text-align:center;transition:all .3s;
+  box-shadow:0 2px 10px rgba(0,0,0,.15)
+}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 8px 25px rgba(184,134,11,.18)}
+.stat-card .val{font-size:1.5rem;font-weight:900;color:var(--primary);line-height:1}
 .stat-card .lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:6px}
+
+/* SECTION HEADER */
 .section-h{margin-bottom:20px}
 .section-h h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .section-h h3 i{color:var(--primary)}
 .section-h p{color:var(--text-muted);font-size:.85rem;margin-bottom:16px}
+
+/* THEME GRID */
 .chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
-.chapter-card{background:linear-gradient(145deg,var(--card),var(--card-alt));border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.chapter-card{
+  background:linear-gradient(145deg,var(--card),var(--card-alt));
+  border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;cursor:pointer;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.2)
+}
 .chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--sky),var(--emerald))}
-.chapter-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,.5);border-color:var(--primary)}
-.chapter-card .ch-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;font-weight:900;font-size:.82rem;margin-bottom:10px}
+.chapter-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,.35);border-color:var(--primary)}
+.chapter-card .ch-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--primary),var(--gold));color:#fff;
+  font-weight:900;font-size:.82rem;margin-bottom:10px
+}
 .chapter-card h4{font-size:.94rem;margin-bottom:6px;line-height:1.3}
 .chapter-card p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
-.chapter-card .ch-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:.7rem;font-weight:700;color:var(--primary-light)}
+.chapter-card .ch-meta{
+  display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;
+  border-top:1px solid var(--line-soft);font-size:.7rem;font-weight:700;color:var(--primary)
+}
 .chapter-card .ch-meta .cnt{color:var(--emerald)}
-.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+
+/* TEST HEADER */
+.test-hdr{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;
+  margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)
+}
 .test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem)}
 .test-hdr .test-sub{font-size:.8rem;color:var(--text-muted);margin-top:4px}
 .test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light)}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;background:var(--card);
+  border:1px solid var(--line);padding:6px 13px;border-radius:30px;
+  font-size:.72rem;font-weight:700;color:var(--text-light)
+}
 .chip i{color:var(--primary)}
-.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.timer-inline{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));
+  border:1px solid var(--line);padding:6px 16px;border-radius:40px;
+  font-weight:800;font-size:.85rem;color:var(--primary);letter-spacing:1px
+}
+
+/* QUESTION CARD */
+.qcard{
+  background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);
+  padding:clamp(18px,3vw,28px);margin-bottom:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,.25)
+}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
-.badge.PG{background:rgba(244,196,48,.12);color:var(--primary-light);border-color:rgba(244,196,48,.3)}
-.badge.MCMA{background:rgba(139,92,246,.12);color:#c4b5fd;border-color:rgba(139,92,246,.3)}
-.badge.KATEGORI{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
+.badge{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;
+  font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid
+}
+.badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
+.badge.MCMA{background:rgba(139,92,246,.15);color:#a78bfa;border-color:rgba(139,92,246,.35)}
+.badge.KATEGORI{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.35)}
 .badge.lv{background:var(--card-alt);color:var(--text-muted);border-color:var(--line)}
-.badge.df{background:rgba(16,185,129,.1);color:#6ee7b7;border-color:rgba(16,185,129,.3)}
-.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;padding:5px 16px;border-radius:30px;font-size:.75rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(244,196,48,.3)}
-.q-stim{background:rgba(244,196,48,.04);border-left:4px solid var(--gold);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.88rem;color:var(--text-light);line-height:1.8;font-style:italic}
-.q-stim .stim-title{font-weight:800;color:var(--primary-light);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.badge.df{background:rgba(16,185,129,.1);color:var(--emerald);border-color:rgba(16,185,129,.3)}
+.q-num{
+  display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--primary),var(--gold));
+  color:#fff;padding:5px 16px;border-radius:30px;font-size:.75rem;font-weight:900;
+  margin-bottom:12px;box-shadow:0 4px 14px rgba(184,134,11,.35)
+}
+.q-stim{
+  background:rgba(184,134,11,.06);border-left:4px solid var(--gold);border-radius:10px;
+  padding:14px 18px;margin-bottom:16px;font-size:.88rem;color:var(--text-light);
+  line-height:1.8;font-style:italic
+}
+.q-stim .stim-title{
+  font-weight:800;color:var(--primary);font-size:.7rem;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal
+}
 .q-text{font-size:.94rem;line-height:1.7;margin-bottom:16px;font-weight:600}
-.q-hint{font-size:.76rem;color:var(--text-muted);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.06);border-radius:8px;border-left:3px solid var(--sky)}
+.q-hint{
+  font-size:.76rem;color:var(--text-muted);font-style:italic;margin-bottom:12px;
+  padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)
+}
+
+/* OPTIONS */
 .opts{display:flex;flex-direction:column;gap:8px}
-.opt{display:flex;align-items:flex-start;gap:12px;background:var(--card-alt);border:1.5px solid var(--line-soft);border-radius:10px;padding:12px 15px;cursor:pointer;transition:all .25s}
-.opt:hover{background:rgba(244,196,48,.06);border-color:var(--primary);transform:translateX(3px)}
-.opt .lbl{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--bg);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:var(--primary-light)}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;background:var(--card-alt);
+  border:1.5px solid var(--line-soft);border-radius:10px;padding:12px 15px;
+  cursor:pointer;transition:all .25s
+}
+.opt:hover{background:rgba(184,134,11,.08);border-color:var(--primary);transform:translateX(3px)}
+.opt .lbl{
+  flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--bg);
+  border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.75rem;color:var(--primary)
+}
 .opt .txt{flex:1;font-size:.87rem;color:var(--text-light);line-height:1.6}
-.opt.sel{background:rgba(244,196,48,.1);border-color:var(--primary)}
-.opt.sel .lbl{background:var(--primary);color:#0a0a14;border-color:var(--primary)}
+.opt.sel{background:rgba(184,134,11,.12);border-color:var(--primary)}
+.opt.sel .lbl{background:var(--primary);color:#fff;border-color:var(--primary)}
 .opt.sel .txt{color:var(--text)}
 .opt.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
 .opt.correct .lbl{background:var(--emerald);color:#fff;border-color:var(--emerald)}
-.opt.wrong{background:rgba(251,113,133,.1);border-color:var(--rose)}
+.opt.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
 .opt.wrong .lbl{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+/* KATEGORI TABLE */
 .kat-wrap{overflow-x:auto;margin-bottom:16px}
 .kat-table{width:100%;border-collapse:collapse;font-size:.84rem}
 .kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
-.kat-table th{background:var(--card-alt);color:var(--primary-light);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table th{background:var(--card-alt);color:var(--primary);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px}
 .kat-table td{color:var(--text-light)}
 .kat-actions{display:flex;gap:6px;flex-wrap:wrap}
-.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
-.kat-btn:hover{border-color:var(--primary);color:var(--primary-light)}
+.kat-btn{
+  padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);
+  color:var(--text-muted);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit
+}
+.kat-btn:hover{border-color:var(--primary);color:var(--primary)}
 .kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
 .kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
-.expl{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.84rem;color:var(--text-light);line-height:1.75;animation:fadeUp .3s ease}
-.expl .expl-title{font-weight:800;color:#6ee7b7;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
-.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.76rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.2)}
+
+/* EXPLANATION */
+.expl{
+  background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);
+  border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;
+  margin-top:14px;font-size:.84rem;color:var(--text-light);line-height:1.75;animation:fadeUp .3s ease
+}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.76rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.25)}
+
+/* NAVIGATION */
 .q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
 .q-nav .pos{font-size:.8rem;color:var(--text-muted);font-weight:600}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;
+  font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none
+}
 .btn:disabled{opacity:.35;cursor:not-allowed}
-.btn-primary{background:linear-gradient(135deg,var(--primary),var(--gold));color:#0a0a14;box-shadow:0 8px 22px rgba(244,196,48,.35)}
-.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(244,196,48,.5)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--gold));color:#fff;box-shadow:0 8px 22px rgba(184,134,11,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(184,134,11,.4)}
 .btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
-.btn-ghost:hover:not(:disabled){background:rgba(244,196,48,.08);border-color:var(--primary);color:var(--primary-light)}
-.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#fff;box-shadow:0 8px 22px rgba(16,185,129,.35)}
-.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,185,129,.5)}
-.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#fff;box-shadow:0 8px 22px rgba(56,189,248,.35)}
-.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.5)}
+.btn-ghost:hover:not(:disabled){background:rgba(184,134,11,.08);border-color:var(--primary);color:var(--primary)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#fff;box-shadow:0 8px 22px rgba(16,185,129,.3)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,185,129,.4)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#fff;box-shadow:0 8px 22px rgba(56,189,248,.3)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.4)}
+
+/* QMAP */
 .qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
-.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.qmap-btn:hover{border-color:var(--primary);color:var(--primary-light);transform:scale(1.08)}
-.qmap-btn.ans{background:rgba(16,185,129,.15);border-color:var(--emerald);color:#6ee7b7}
-.qmap-btn.cur{background:linear-gradient(135deg,var(--primary),var(--gold));border-color:var(--primary);color:#0a0a14;box-shadow:0 0 12px rgba(244,196,48,.5);transform:scale(1.1)}
+.qmap-btn{
+  width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);
+  background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.7rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s
+}
+.qmap-btn:hover{border-color:var(--primary);color:var(--primary);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(16,185,129,.18);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--primary),var(--gold));border-color:var(--primary);color:#fff;box-shadow:0 0 12px rgba(184,134,11,.4);transform:scale(1.1)}
+
+/* RESULT */
 .result-hero{text-align:center;padding:30px 0 20px}
-.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score{
+  width:160px;height:160px;border-radius:50%;
+  background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin:0 auto 20px;position:relative;transition:background 1s
+}
 .result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
-.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:#6ee7b7;line-height:1}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
 .result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
 .result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
 .rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
 .rs .v{font-size:1.4rem;font-weight:900;line-height:1}
 .rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
-.rs.green .v{color:#6ee7b7}
+.rs.green .v{color:var(--emerald)}
 .rs.red .v{color:var(--rose)}
-.rs.gold .v{color:var(--primary-light)}
+.rs.gold .v{color:var(--primary)}
 .rs.blue .v{color:var(--sky)}
 .recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
-.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary-light)}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
 .recap-table{width:100%;border-collapse:collapse;font-size:.8rem}
 .recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
-.recap-table th{background:var(--card-alt);color:var(--primary-light);font-size:.68rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table th{background:var(--card-alt);color:var(--primary);font-size:.68rem;text-transform:uppercase;letter-spacing:.8px}
 .recap-table td{color:var(--text-light)}
+
+/* IDENTITY FORM */
+.identity-form{
+  max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);
+  border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.25)
+}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary)}
+.identity-form p{font-size:.82rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.78rem;font-weight:700;color:var(--text-light);margin-bottom:6px}
+.form-group input{
+  width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);
+  background:var(--bg);color:var(--text);font-family:inherit;font-size:.85rem;transition:border .3s
+}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(184,134,11,.15)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.8rem}
+
+/* PRIVACY NOTICE */
+.privacy-notice{
+  margin-top:20px;padding:14px 16px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(184,134,11,.08));
+  border:1.5px solid rgba(251,113,133,.4);
+  font-size:.78rem;color:var(--text-light);line-height:1.65;
+  display:flex;gap:10px;align-items:flex-start;
+  animation:privacyPulse 3s ease-in-out infinite;
+}
+@keyframes privacyPulse{
+  0%,100%{border-color:rgba(251,113,133,.4);box-shadow:0 0 0 0 rgba(251,113,133,.15)}
+  50%{border-color:rgba(251,113,133,.65);box-shadow:0 0 0 4px rgba(251,113,133,.1)}
+}
+.privacy-notice .privacy-icon{
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;
+  box-shadow:0 2px 8px rgba(251,113,133,.4);
+}
+.privacy-notice strong{color:var(--rose);font-weight:800}
+
 .hidden{display:none!important}
-@media(max-width:768px){:root{--header-h:58px}.hdr-center{display:none}.chapter-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}.opt{padding:10px 12px;gap:10px}.opt .lbl{width:24px;height:24px;font-size:.7rem}.opt .txt{font-size:.83rem}}
-@media(max-width:480px){.chapter-grid{grid-template-columns:1fr}.btn{padding:9px 16px;font-size:.78rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  :root{--header-h:58px}
+  .hdr-center{display:none}
+  .chapter-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .opt{padding:10px 12px;gap:10px}
+  .opt .lbl{width:24px;height:24px;font-size:.7rem}
+  .opt .txt{font-size:.83rem}
+  .loader-3d-wrap{width:200px;height:200px}
+  .loader-circle{width:120px;height:120px}
+}
+@media(max-width:480px){
+  .chapter-grid{grid-template-columns:1fr}
+  .btn{padding:9px 16px;font-size:.78rem}
+  .q-nav{flex-direction:column}
+  .q-nav .btn{width:100%;justify-content:center}
+  .loader-3d-wrap{width:180px;height:180px}
+  .loader-circle{width:105px;height:105px}
+  .ring-1{inset:-7px}
+  .ring-2{inset:-14px}
+  .ring-3{inset:-22px}
+}
+
+/* SCROLLBAR */
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
@@ -163,97 +525,162 @@ body.light .hdr{background:rgba(255,255,255,.94)}
 
 <div id="loader">
   <div class="loader-3d-wrap">
-    <div class="loader-3d-text">MGE</div>
-    <div class="loader-3d-sub">Maeda Game Edu</div>
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle">
+      <div class="loader-3d-text">MGE</div>
+    </div>
   </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
   <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">14 Bab · 280 Soal Bergaya TKA · Fase E–F</div>
+  <div class="loader-sub">14 Tema · 280 Soal Bergaya TKA · Fase E–F</div>
   <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
   <div class="loader-pct" id="lpct">0%</div>
 </div>
 
 <header class="hdr">
-<div class="brand" onclick="goHome()"><span class="dot"><i class="fas fa-landmark"></i></span><span>TKA SEJARAH</span></div>
-<div class="hdr-center"><div class="timer" id="timerBox"><i class="fas fa-stopwatch"></i><span id="timerDisp">00:00</span></div></div>
-<div style="display:flex;gap:6px"><button class="icon-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></div>
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goHome()"><i class="fas fa-home"></i></button>
+  </div>
+  <div class="hdr-center"></div>
+  <div style="display:flex;gap:6px"></div>
 </header>
 
 <div class="progress"><div class="thumb" id="progressThumb"></div></div>
 
 <main class="main">
 
+<!-- HOME SECTION -->
 <section id="home" class="section active">
-<div class="hero">
-<div class="hero-badge"><i class="fas fa-crown"></i> TKA Premium · Literasi Sejarah</div>
-<h1 class="hero-title">Tes Kemampuan Akademik<br><span class="gold">Literasi Sejarah SMA</span></h1>
-<p class="hero-sub">Bank soal bergaya TKA lintas bab Fase E &amp; F dengan stimulus autentik, tiga bentuk soal (PG, MCMA, PG Kompleks Kategori), pembahasan mendalam, dan level kognitif <strong>Knowing–Applying–Reasoning</strong>.</p>
-<div class="hero-stats">
-<div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Bab Materi</div></div>
-<div class="stat-card"><div class="val" id="statQ">280</div><div class="lbl">Soal Bergaya TKA</div></div>
-<div class="stat-card"><div class="val">3</div><div class="lbl">Bentuk Soal</div></div>
-<div class="stat-card"><div class="val">3</div><div class="lbl">Level Kognitif</div></div>
-</div>
-</div>
-<div class="section-h">
-<h3><i class="fas fa-book-open"></i> Pilih Bab Materi</h3>
-<p>Setiap bab berisi 20 soal bergaya TKA dengan stimulus autentik, pembahasan, dan indikator kemampuan. Urut kronologis &amp; fase sesuai CP.</p>
-</div>
-<div class="chapter-grid" id="chapterGrid"></div>
+  <div class="hero">
+    <div class="hero-badge"><i class="fas fa-crown"></i> TKA Premium · Literasi Sejarah</div>
+    <h1 class="hero-title">
+      <span class="title-top">Tes Kemampuan Akademik</span>
+      <span class="title-gold">Literasi Sejarah SMA</span>
+    </h1>
+    <p class="hero-sub">Bank soal bergaya TKA lintas tema Fase E &amp; F dengan stimulus autentik, tiga bentuk soal (PG, MCMA, PG Kompleks Kategori), pembahasan mendalam, dan level kognitif <strong>Knowing–Applying–Reasoning</strong>.</p>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Tema Materi</div></div>
+      <div class="stat-card"><div class="val" id="statQ">280</div><div class="lbl">Soal Bergaya TKA</div></div>
+      <div class="stat-card"><div class="val">3</div><div class="lbl">Bentuk Soal</div></div>
+      <div class="stat-card"><div class="val">3</div><div class="lbl">Level Kognitif</div></div>
+    </div>
+  </div>
+  <div class="section-h">
+    <h3><i class="fas fa-book-open"></i> Pilih Tema Materi</h3>
+    <p>Setiap tema berisi 20 soal bergaya TKA dengan stimulus autentik, pembahasan, dan indikator kemampuan. Urut kronologis &amp; fase sesuai CP.</p>
+  </div>
+  <div class="chapter-grid" id="chapterGrid"></div>
 </section>
 
+<!-- IDENTITY SECTION -->
+<section id="identity" class="section">
+  <div style="text-align:center;padding:20px 0 10px">
+     <h2 style="font-size:1.4rem;color:var(--primary)">Identitas Siswa</h2>
+     <p style="color:var(--text-muted);font-size:.85rem">Isi data diri sebelum memulai tes</p>
+  </div>
+  <div class="identity-form">
+     <h2>Formulir Peserta</h2>
+     <p>Data akan digunakan untuk laporan hasil</p>
+     <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+     </div>
+     <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+     </div>
+     <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: XI IPS 1" required>
+     </div>
+     <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-ghost" onclick="goHome()" style="flex:1;justify-content:center"><i class="fas fa-arrow-left"></i> Kembali</button>
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:2;justify-content:center"><i class="fas fa-play"></i> Mulai Tes</button>
+     </div>
+
+     <!-- PEMBERITAHUAN PRIVASI -->
+     <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+           <strong>Pemberitahuan Penting:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil pengerjaan. Semua data hanya diproses di browser perangkat Anda dan hilang saat halaman ditutup. Untuk melihat nilai siswa, Bapak/Ibu Guru dapat meminta siswa <strong>mengambil screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+     </div>
+  </div>
+</section>
+
+<!-- TEST SECTION -->
 <section id="test" class="section">
-<div class="test-hdr">
-<div><h2 id="testTitle">Bab 1</h2><div class="test-sub" id="testSub">Soal 1 dari 20</div></div>
-<div class="info">
-<span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">20</span></span>
-<span class="chip"><i class="fas fa-clock"></i> <span id="testTimer">00:00</span></span>
-<button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.75rem"><i class="fas fa-arrow-left"></i> Kembali</button>
-</div>
-</div>
-<div class="qcard" id="qcard">
-<div class="q-meta" id="qMeta"></div>
-<div class="q-num" id="qNum">Soal 1</div>
-<div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
-<div class="q-text" id="qText"></div>
-<div class="q-hint" id="qHint" style="display:none"></div>
-<div id="qArea"></div>
-<div class="expl hidden" id="qExpl"></div>
-</div>
-<div class="qmap" id="qmap"></div>
-<div class="q-nav">
-<button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-<span class="pos" id="qPos">1 / 20</span>
-<button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
-<button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-<button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
-</div>
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Tema 1</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 20</div>
+    </div>
+    <div class="info">
+      <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">20</span></span>
+      <button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.75rem"><i class="fas fa-arrow-left"></i> Kembali</button>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 20</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
 </section>
 
+<!-- RESULT SECTION -->
 <section id="result" class="section">
-<div class="result-hero">
-<div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
-<h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
-<p style="color:var(--text-muted);font-size:.9rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
-</div>
-<div class="result-stats">
-<div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
-<div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
-<div class="rs gold"><div class="v" id="rsTotal">20</div><div class="l">Total</div></div>
-<div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
-</div>
-<div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
-<div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
-<div style="text-align:center;margin-top:20px">
-<button class="btn btn-primary" onclick="goHome()"><i class="fas fa-home"></i> Kembali ke Beranda</button>
-<button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi</button>
-</div>
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.9rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">20</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+
+  <!-- PEMBERITAHUAN PRIVASI DI HASIL -->
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+     <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+     <div>
+        <strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian. Data akan hilang jika halaman ditutup atau di-refresh.
+     </div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goHome()"><i class="fas fa-home"></i> Kembali ke Beranda</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi</button>
+  </div>
 </section>
 
 </main>
 
 <script>
 /* ============================================================
-   CHAPTERS — 14 bab kronologis, Fase E (1-8) & F (9-14)
+   CHAPTERS — 14 tema kronologis, Fase E (1-8) & F (9-14)
    ============================================================ */
 const CHAPTERS=[
 {id:1,fase:'E',title:'Memahami Prinsip Ilmu Sejarah',desc:'Hakikat, sumber, ruang lingkup, & kegunaan sejarah.'},
@@ -585,11 +1012,11 @@ const Q14=[
 ];
 
 /* ============================================================
-   MAPPING — 14 bab ke array soal
+   MAPPING — 14 tema ke array soal
    ============================================================ */
 const QUESTIONS={
-1:Q1, 2:Q2, 3:Q3, 4:Q4, 5:Q5, 6:Q6, 7:Q7,
-8:Q8, 9:Q9, 10:Q10, 11:Q11, 12:Q12, 13:Q13, 14:Q14
+  1:Q1, 2:Q2, 3:Q3, 4:Q4, 5:Q5, 6:Q6, 7:Q7,
+  8:Q8, 9:Q9, 10:Q10, 11:Q11, 12:Q12, 13:Q13, 14:Q14
 };
 
 /* ============================================================
@@ -602,381 +1029,432 @@ let revealed={};
 let timerInterval=null;
 let secondsElapsed=0;
 
+// Identity state
+let siswaName = '';
+let siswaSchool = '';
+let siswaClass = '';
+
+// Pending chapter to start after identity input
+let pendingChapterId = null;
+
 /* LOADER */
 (function(){
-const bar=document.getElementById('lbar');
-const pct=document.getElementById('lpct');
-let p=0;
-const int=setInterval(()=>{
-p+=Math.random()*18+5;
-if(p>=100){p=100;clearInterval(int);}
-bar.style.width=p+'%';
-pct.textContent=Math.round(p)+'%';
-if(p>=100){
-setTimeout(()=>{
-document.getElementById('loader').classList.add('hide');
-setTimeout(()=>document.getElementById('loader').style.display='none',600);
-},300);
-}
-},180);
+  const bar=document.getElementById('lbar');
+  const pct=document.getElementById('lpct');
+  let p=0;
+  const int=setInterval(()=>{
+    p+=Math.random()*18+5;
+    if(p>=100){p=100;clearInterval(int);}
+    bar.style.width=p+'%';
+    pct.textContent=Math.round(p)+'%';
+    if(p>=100){
+      setTimeout(()=>{
+        document.getElementById('loader').style.opacity='0';
+        document.getElementById('loader').style.visibility='hidden';
+        setTimeout(()=>document.getElementById('loader').style.display='none',650);
+      },350);
+    }
+  },180);
 })();
-
-/* THEME */
-function toggleTheme(){
-document.body.classList.toggle('light');
-const btn=document.getElementById('themeBtn');
-btn.innerHTML=document.body.classList.contains('light')?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
-}
 
 /* RENDER CHAPTER GRID */
 function renderChapters(){
-const grid=document.getElementById('chapterGrid');
-grid.innerHTML='';
-CHAPTERS.forEach(ch=>{
-const totalQ=(QUESTIONS[ch.id]||[]).length;
-const card=document.createElement('div');
-card.className='chapter-card';
-card.onclick=()=>startTest(ch.id);
-card.innerHTML=`
-<div class="ch-num">${ch.fase}</div>
-<h4>${ch.title}</h4>
-<p>${ch.desc}</p>
-<div class="ch-meta"><span>Bab ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${totalQ} Soal</span></div>
-`;
-grid.appendChild(card);
-});
-document.getElementById('statCh').textContent=CHAPTERS.length;
-let total=0;
-CHAPTERS.forEach(c=>total+=(QUESTIONS[c.id]||[]).length);
-document.getElementById('statQ').textContent=total;
+  const grid=document.getElementById('chapterGrid');
+  grid.innerHTML='';
+  CHAPTERS.forEach(ch=>{
+    const totalQ=(QUESTIONS[ch.id]||[]).length;
+    const card=document.createElement('div');
+    card.className='chapter-card';
+    card.onclick=()=>startTest(ch.id);
+    card.innerHTML=`
+      <div class="ch-num">${ch.fase}</div>
+      <h4>${ch.title}</h4>
+      <p>${ch.desc}</p>
+      <div class="ch-meta"><span>Tema ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${totalQ} Soal</span></div>
+    `;
+    grid.appendChild(card);
+  });
+  document.getElementById('statCh').textContent=CHAPTERS.length;
+  let total=0;
+  CHAPTERS.forEach(c=>total+=(QUESTIONS[c.id]||[]).length);
+  document.getElementById('statQ').textContent=total;
 }
 
 /* NAVIGATION */
 function showSection(id){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 function goHome(){
-stopTimer();
-showSection('home');
-document.getElementById('progressThumb').style.width='0%';
-document.getElementById('timerDisp').textContent='00:00';
-document.getElementById('timerBox').classList.remove('warn');
+  stopTimer();
+  showSection('home');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  document.getElementById('testTimerBox').classList.remove('warn');
 }
+
+/* START TEST -> show identity form first */
 function startTest(chapterId){
-const qs=QUESTIONS[chapterId]||[];
-if(qs.length===0){alert('Bank soal bab ini belum tersedia.');return;}
-currentChapter=chapterId;
-currentQ=0;
-userAnswers={};
-revealed={};
-const ch=CHAPTERS.find(c=>c.id===chapterId);
-document.getElementById('testTitle').textContent=`Bab ${ch.id} · ${ch.title}`;
-document.getElementById('testSub').textContent=`Fase ${ch.fase} · Soal 1 dari ${qs.length}`;
-document.getElementById('totCount').textContent=qs.length;
-showSection('test');
-renderQuestion();
-renderQMap();
-startTimer();
-updateProgress();
+  pendingChapterId = chapterId;
+  document.getElementById('inpName').value = siswaName;
+  document.getElementById('inpSchool').value = siswaSchool;
+  document.getElementById('inpClass').value = siswaClass;
+  showSection('identity');
 }
-function retryTest(){startTest(currentChapter);}
+
+function startTestWithIdentity(){
+  const name = document.getElementById('inpName').value.trim();
+  const school = document.getElementById('inpSchool').value.trim();
+  const cls = document.getElementById('inpClass').value.trim();
+  if(!name || !school || !cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName = name;
+  siswaSchool = school;
+  siswaClass = cls;
+  document.getElementById('hdrName').textContent = siswaName;
+  document.getElementById('hdrSchool').textContent = siswaSchool;
+  document.getElementById('hdrClass').textContent = siswaClass;
+
+  const chapterId = pendingChapterId;
+  const qs=QUESTIONS[chapterId]||[];
+  if(qs.length===0){alert('Bank soal tema ini belum tersedia.');return;}
+  currentChapter=chapterId;
+  currentQ=0;
+  userAnswers={};
+  revealed={};
+  const ch=CHAPTERS.find(c=>c.id===chapterId);
+  document.getElementById('testTitle').textContent=`Tema ${ch.id} · ${ch.title}`;
+  document.getElementById('testSub').textContent=`Fase ${ch.fase} · Soal 1 dari ${qs.length}`;
+  document.getElementById('totCount').textContent=qs.length;
+  showSection('test');
+  renderQuestion();
+  renderQMap();
+  startTimer();
+  updateProgress();
+}
+
+function retryTest(){
+  startTest(currentChapter);
+}
 
 /* TIMER */
 function startTimer(){
-stopTimer();
-secondsElapsed=0;
-updateTimerDisplay();
-timerInterval=setInterval(()=>{
-secondsElapsed++;
-updateTimerDisplay();
-if(secondsElapsed>=90*60){
-document.getElementById('timerBox').classList.add('warn');
-if(secondsElapsed>=90*60)finishTest();
-}
-},1000);
+  stopTimer();
+  secondsElapsed=0;
+  updateTimerDisplay();
+  timerInterval=setInterval(()=>{
+    secondsElapsed++;
+    updateTimerDisplay();
+    if(secondsElapsed>=90*60){
+      document.getElementById('testTimerBox').classList.add('warn');
+      if(secondsElapsed>=90*60)finishTest();
+    }
+  },1000);
 }
 function stopTimer(){
-if(timerInterval)clearInterval(timerInterval);
-timerInterval=null;
+  if(timerInterval)clearInterval(timerInterval);
+  timerInterval=null;
 }
 function updateTimerDisplay(){
-const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
-const s=String(secondsElapsed%60).padStart(2,'0');
-document.getElementById('timerDisp').textContent=`${m}:${s}`;
-document.getElementById('testTimer').textContent=`${m}:${s}`;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
+  const s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('testTimer').textContent=`${m}:${s}`;
 }
 
 /* TYPE LABEL */
 function typeLabel(t){
-if(t==='PG')return'Pilihan Ganda';
-if(t==='MCMA')return'PG Kompleks (MCMA)';
-if(t==='KATEGORI')return'PG Kompleks Kategori';
-return t;
+  if(t==='PG')return'Pilihan Ganda';
+  if(t==='MCMA')return'PG Kompleks (MCMA)';
+  if(t==='KATEGORI')return'PG Kompleks Kategori';
+  return t;
 }
 
 /* RENDER QUESTION */
 function renderQuestion(){
-const qs=QUESTIONS[currentChapter];
-if(!qs||!qs[currentQ])return;
-const q=qs[currentQ];
-const total=qs.length;
-document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
-document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
-document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  const qs=QUESTIONS[currentChapter];
+  if(!qs||!qs[currentQ])return;
+  const q=qs[currentQ];
+  const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
 
-const meta=document.getElementById('qMeta');
-meta.innerHTML=`
-<span class="badge ${q.t}">${typeLabel(q.t)}</span>
-<span class="badge lv">${q.l}</span>
-<span class="badge df">${q.d}</span>
-`;
+  const meta=document.getElementById('qMeta');
+  meta.innerHTML=`
+    <span class="badge ${q.t}">${typeLabel(q.t)}</span>
+    <span class="badge lv">${q.l}</span>
+    <span class="badge df">${q.d}</span>
+  `;
 
-const stimEl=document.getElementById('qStim');
-if(q.s){
-stimEl.style.display='block';
-document.getElementById('qStimTxt').textContent=q.s;
-}else{
-stimEl.style.display='none';
-}
+  const stimEl=document.getElementById('qStim');
+  if(q.s){
+    stimEl.style.display='block';
+    document.getElementById('qStimTxt').textContent=q.s;
+  }else{
+    stimEl.style.display='none';
+  }
 
-document.getElementById('qText').textContent=q.q;
+  document.getElementById('qText').textContent=q.q;
 
-const hintEl=document.getElementById('qHint');
-if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban yang benar.';}
-else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian pada setiap pernyataan.';}
-else{hintEl.style.display='none';}
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban yang benar.';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
 
-const area=document.getElementById('qArea');
-area.innerHTML='';
+  const area=document.getElementById('qArea');
+  area.innerHTML='';
 
-if(q.t==='PG'||q.t==='MCMA'){
-const optsEl=document.createElement('div');
-optsEl.className='opts';
-const labels=['A','B','C','D','E'];
-q.o.forEach((opt,i)=>{
-const div=document.createElement('div');
-div.className='opt';
-const ua=userAnswers[currentQ];
-if(q.t==='PG'&&ua===i)div.classList.add('sel');
-if(q.t==='MCMA'&&Array.isArray(ua)&&ua.includes(i))div.classList.add('sel');
-if(revealed[currentQ]){
-const correct=q.t==='PG'?[q.a]:q.a;
-if(correct.includes(i))div.classList.add('correct');
-else if((q.t==='PG'&&ua===i)||(q.t==='MCMA'&&Array.isArray(ua)&&ua.includes(i)))div.classList.add('wrong');
-}
-div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
-div.onclick=()=>selectOption(i,q.t);
-optsEl.appendChild(div);
-});
-area.appendChild(optsEl);
-}else if(q.t==='KATEGORI'){
-const wrap=document.createElement('div');
-wrap.className='kat-wrap';
-let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
-q.st.forEach((s,i)=>{
-const ua=userAnswers[currentQ]||{};
-const val=ua[i]||'';
-html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td>
-<div class="kat-actions">
-<button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button>
-<button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button>
-</div>
-</td></tr>`;
-});
-html+='</tbody></table>';
-wrap.innerHTML=html;
-area.appendChild(wrap);
-}
+  if(q.t==='PG'||q.t==='MCMA'){
+    const optsEl=document.createElement('div');
+    optsEl.className='opts';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');
+      div.className='opt';
+      const ua=userAnswers[currentQ];
+      if(q.t==='PG'&&ua===i)div.classList.add('sel');
+      if(q.t==='MCMA'&&Array.isArray(ua)&&ua.includes(i))div.classList.add('sel');
+      if(revealed[currentQ]){
+        const correct=q.t==='PG'?[q.a]:q.a;
+        if(correct.includes(i))div.classList.add('correct');
+        else if((q.t==='PG'&&ua===i)||(q.t==='MCMA'&&Array.isArray(ua)&&ua.includes(i)))div.classList.add('wrong');
+      }
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      optsEl.appendChild(div);
+    });
+    area.appendChild(optsEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');
+    wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{
+      const ua=userAnswers[currentQ]||{};
+      const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td>
+        <div class="kat-actions">
+          <button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button>
+          <button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button>
+        </div>
+      </td></tr>`;
+    });
+    html+='</tbody></table>';
+    wrap.innerHTML=html;
+    area.appendChild(wrap);
+  }
 
-const expEl=document.getElementById('qExpl');
-if(revealed[currentQ]){
-expEl.classList.remove('hidden');
-expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
-}else{
-expEl.classList.add('hidden');
-expEl.innerHTML='';
-}
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{
+    expEl.classList.add('hidden');
+    expEl.innerHTML='';
+  }
 
-document.getElementById('prevBtn').disabled=currentQ===0;
-const isLast=currentQ===total-1;
-document.getElementById('nextBtn').classList.toggle('hidden',isLast);
-document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
-document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
 }
 
 /* SELECT OPTION */
 function selectOption(idx,type){
-if(revealed[currentQ])return;
-if(type==='PG'){
-userAnswers[currentQ]=idx;
-}else if(type==='MCMA'){
-let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];
-const pos=arr.indexOf(idx);
-if(pos>=0)arr.splice(pos,1);
-else arr.push(idx);
-userAnswers[currentQ]=arr;
-}
-renderQuestion();
-renderQMap();
-updateProgress();
+  if(revealed[currentQ])return;
+  if(type==='PG'){
+    userAnswers[currentQ]=idx;
+  }else if(type==='MCMA'){
+    let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];
+    const pos=arr.indexOf(idx);
+    if(pos>=0)arr.splice(pos,1);
+    else arr.push(idx);
+    userAnswers[currentQ]=arr;
+  }
+  renderQuestion();
+  renderQMap();
+  updateProgress();
 }
 
 /* SET KATEGORI */
 function setKategori(idx,cat){
-if(revealed[currentQ])return;
-if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
-userAnswers[currentQ][idx]=cat;
-renderQuestion();
-renderQMap();
-updateProgress();
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;
+  renderQuestion();
+  renderQMap();
+  updateProgress();
 }
 
 /* REVEAL */
 function revealQ(){
-revealed[currentQ]=true;
-renderQuestion();
+  revealed[currentQ]=true;
+  renderQuestion();
 }
 
 /* NAV */
 function prevQ(){
-if(currentQ>0){currentQ--;renderQuestion();renderQMap();}
+  if(currentQ>0){currentQ--;renderQuestion();renderQMap();}
 }
 function nextQ(){
-const total=QUESTIONS[currentChapter].length;
-if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}
+  const total=QUESTIONS[currentChapter].length;
+  if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}
 }
 
 /* Q MAP */
 function renderQMap(){
-const map=document.getElementById('qmap');
-map.innerHTML='';
-const total=QUESTIONS[currentChapter].length;
-for(let i=0;i<total;i++){
-const btn=document.createElement('button');
-btn.className='qmap-btn';
-btn.textContent=i+1;
-const ua=userAnswers[i];
-let answered=false;
-if(ua!==undefined){
-if(Array.isArray(ua))answered=ua.length>0;
-else if(typeof ua==='object')answered=Object.keys(ua).length===(QUESTIONS[currentChapter][i].st?QUESTIONS[currentChapter][i].st.length:0);
-else answered=true;
-}
-if(answered)btn.classList.add('ans');
-if(i===currentQ)btn.classList.add('cur');
-btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
-map.appendChild(btn);
-}
+  const map=document.getElementById('qmap');
+  map.innerHTML='';
+  const total=QUESTIONS[currentChapter].length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');
+    btn.className='qmap-btn';
+    btn.textContent=i+1;
+    const ua=userAnswers[i];
+    let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object')answered=Object.keys(ua).length===(QUESTIONS[currentChapter][i].st?QUESTIONS[currentChapter][i].st.length:0);
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
 }
 
 /* PROGRESS */
 function updateProgress(){
-const total=QUESTIONS[currentChapter].length;
-let answered=0;
-for(let i=0;i<total;i++){
-const ua=userAnswers[i];
-if(ua===undefined)continue;
-if(Array.isArray(ua)){if(ua.length>0)answered++;}
-else if(typeof ua==='object'){
-const stCount=QUESTIONS[currentChapter][i].st?QUESTIONS[currentChapter][i].st.length:0;
-if(Object.keys(ua).length===stCount)answered++;
-}else answered++;
-}
-document.getElementById('ansCount').textContent=answered;
-document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+  const total=QUESTIONS[currentChapter].length;
+  let answered=0;
+  for(let i=0;i<total;i++){
+    const ua=userAnswers[i];
+    if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){
+      const stCount=QUESTIONS[currentChapter][i].st?QUESTIONS[currentChapter][i].st.length:0;
+      if(Object.keys(ua).length===stCount)answered++;
+    }else answered++;
+  }
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
 }
 
 /* CHECK */
 function isCorrect(q,ua){
-if(ua===undefined||ua===null)return false;
-if(q.t==='PG')return ua===q.a;
-if(q.t==='MCMA'){
-if(!Array.isArray(ua))return false;
-const correct=[...q.a].sort().join(',');
-const user=[...ua].sort().join(',');
-return correct===user;
-}
-if(q.t==='KATEGORI'){
-if(typeof ua!=='object')return false;
-for(let i=0;i<q.st.length;i++){
-if(ua[i]!==q.st[i].a)return false;
-}
-return true;
-}
-return false;
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){
+    if(!Array.isArray(ua))return false;
+    const correct=[...q.a].sort().join(',');
+    const user=[...ua].sort().join(',');
+    return correct===user;
+  }
+  if(q.t==='KATEGORI'){
+    if(typeof ua!=='object')return false;
+    for(let i=0;i<q.st.length;i++){
+      if(ua[i]!==q.st[i].a)return false;
+    }
+    return true;
+  }
+  return false;
 }
 
 /* FINISH */
 function finishTest(){
-stopTimer();
-const qs=QUESTIONS[currentChapter];
-const total=qs.length;
-let correct=0;
-const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
-const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  stopTimer();
+  const qs=QUESTIONS[currentChapter];
+  const total=qs.length;
+  let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
 
-qs.forEach((q,i)=>{
-const ua=userAnswers[i];
-const isC=isCorrect(q,ua);
-if(isC)correct++;
-levelStats[q.l].total++;
-if(isC)levelStats[q.l].correct++;
-typeStats[q.t].total++;
-if(isC)typeStats[q.t].correct++;
-});
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];
+    const isC=isCorrect(q,ua);
+    if(isC)correct++;
+    levelStats[q.l].total++;
+    if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;
+    if(isC)typeStats[q.t].correct++;
+  });
 
-const answered=Object.keys(userAnswers).length;
-const wrong=answered-correct;
-const score=Math.round((correct/total)*100);
-document.getElementById('finalScore').textContent=score;
-document.getElementById('rsCorrect').textContent=correct;
-document.getElementById('rsWrong').textContent=wrong;
-document.getElementById('rsTotal').textContent=total;
-const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
-const s=String(secondsElapsed%60).padStart(2,'0');
-document.getElementById('rsTime').textContent=`${m}:${s}`;
-const title=score>=80?'Luar Biasa!':score>=60?'Cukup Baik':'Perlu Belajar Lagi';
-document.getElementById('resultTitle').textContent=title;
-document.getElementById('resultSub').textContent=`Skor kamu ${score} dari 100. ${score>=80?'Pemahamanmu sangat baik!':score>=60?'Terus tingkatkan pemahamanmu.':'Jangan menyerah, ulangi & pelajari kembali materi.'}`;
-const circle=document.getElementById('resultScore');
-const color=score>=80?'var(--emerald)':score>=60?'var(--primary)':'var(--rose)';
-circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const answered=Object.keys(userAnswers).length;
+  const wrong=answered-correct;
+  const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0');
+  const s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
 
-const recapLv=document.getElementById('recapLv');
-recapLv.innerHTML='';
-['Knowing','Applying','Reasoning'].forEach(lv=>{
-const st=levelStats[lv];
-const pct=st.total?Math.round((st.correct/st.total)*100):0;
-recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
-});
+  document.getElementById('resultIdentity').innerHTML = `
+    <span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>
+  `;
 
-const recapType=document.getElementById('recapType');
-recapType.innerHTML='';
-['PG','MCMA','KATEGORI'].forEach(tp=>{
-const st=typeStats[tp];
-const pct=st.total?Math.round((st.correct/st.total)*100):0;
-recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
-});
+  let title = '';
+  let sub = '';
+  if(score >= 85){
+    title = 'Sangat Baik (A)';
+    sub = `Selamat ${siswaName}! Kamu mendapatkan nilai ${score}. Pemahamanmu sangat luar biasa.`;
+  } else if(score >= 70){
+    title = 'Baik (B)';
+    sub = `Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;
+  } else if(score >= 55){
+    title = 'Cukup (C)';
+    sub = `${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;
+  } else {
+    title = 'Perlu Belajar (D)';
+    sub = `Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi dan coba lagi.`;
+  }
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent = sub;
 
-showSection('result');
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+
+  const recapLv=document.getElementById('recapLv');
+  recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];
+    const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+
+  const recapType=document.getElementById('recapType');
+  recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];
+    const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+
+  showSection('result');
 }
 
 /* KEYBOARD */
 document.addEventListener('keydown',(e)=>{
-if(!document.getElementById('test').classList.contains('active'))return;
-const tag=(e.target.tagName||'').toLowerCase();
-if(tag==='input'||tag==='textarea')return;
-if(e.key==='ArrowRight')nextQ();
-else if(e.key==='ArrowLeft')prevQ();
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
 });
 
 /* SCROLL HEADER */
 window.addEventListener('scroll',()=>{
-const h=document.querySelector('.hdr');
-if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.35)';
-else h.style.boxShadow='none';
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';
+  else h.style.boxShadow='none';
 });
 
 /* INIT */
