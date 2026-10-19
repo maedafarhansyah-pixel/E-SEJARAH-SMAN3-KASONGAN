@@ -58,7 +58,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .section.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-/* HERO — disederhanakan */
+/* HERO */
 .hero{text-align:center;padding:28px 0 16px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:7px 18px;border-radius:40px;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
 .hero-title{font-size:clamp(1.8rem,5vw,3.1rem);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:16px}
@@ -266,7 +266,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   </div>
   <div class="loader-3d-sub">Maeda Game Edu</div>
   <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">14 Tema · 308 Soal Bergaya TKA · Fase E–F</div>
+  <div class="loader-sub">14 Tema · 22 Soal per Tema · Fase E–F</div>
   <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
   <div class="loader-pct" id="lpct">0%</div>
 </div>
@@ -291,10 +291,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="title-top">Tes Kemampuan Akademik</span>
       <span class="title-gold">Literasi Sejarah SMA</span>
     </h1>
-    <p class="hero-sub">Bank soal bergaya TKA dengan stimulus autentik, tiga bentuk soal, dan pembahasan mendalam untuk Fase E–F.</p>
+    <p class="hero-sub">Latihan bergaya TKA dengan stimulus autentik, tiga bentuk soal, dan pembahasan tiap soal. Disesuaikan untuk Fase E–F.</p>
     <div class="hero-stats">
       <div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Tema Materi</div></div>
-      <div class="stat-card"><div class="val" id="statQ">308</div><div class="lbl">Soal Bergaya TKA</div></div>
+      <div class="stat-card"><div class="val">22</div><div class="lbl">Soal per Tema</div></div>
       <div class="stat-card"><div class="val">3</div><div class="lbl">Bentuk Soal</div></div>
     </div>
   </div>
@@ -523,8 +523,8 @@ function renderChapters(){
       <div class="ch-meta"><span>Tema ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${totalQ} Soal</span></div>`;
     grid.appendChild(card);
   });
+  /* hanya update jumlah tema (statQ sudah statis 22 di HTML) */
   document.getElementById('statCh').textContent=CHAPTERS.length;
-  let total=0;CHAPTERS.forEach(c=>total+=(QUESTIONS[c.id]||[]).length);document.getElementById('statQ').textContent=total;
 }
 
 /* NAVIGATION */
