@@ -10,20 +10,17 @@
 <style>
 :root{
     color-scheme: dark;
-
     --navy-950:#03060f;
     --navy-900:#050b1a;
     --navy-800:#08122a;
     --navy-700:#0d1b3a;
     --navy-600:#122550;
-
     --blue-600:#1e3a8a;
     --blue-500:#2e4ba8;
     --blue-400:#4a6bc7;
     --blue-300:#7d9be0;
     --blue-200:#a9c2f0;
     --blue-100:#dbe7f7;
-
     --sky:#0ea5e9;
     --sky-light:#38bdf8;
     --sky-soft:#7dd3fc;
@@ -43,25 +40,20 @@
     --amber-light:#fcd34d;
     --emerald:#10b981;
     --emerald-light:#6ee7b7;
-
     --ink:#eaf2ff;
     --ink-soft:#c3d6f2;
     --muted:#8ea3c4;
     --muted-dim:#6b7fa3;
-
     --glass-1:rgba(15,26,48,.92);
     --glass-2:rgba(11,20,38,.94);
     --glass-3:rgba(16,28,52,.92);
     --stroke-soft:rgba(125,211,252,.14);
     --stroke-mid:rgba(125,211,252,.26);
-
     --shadow:0 28px 60px -24px rgba(0,0,0,.85);
     --radius:24px;
 }
-
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-
 body{
     margin:0;
     min-height:100vh;
@@ -77,9 +69,7 @@ body{
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
 }
-
 body.loading{overflow:hidden;}
-
 ::-webkit-scrollbar{width:11px;height:11px;}
 ::-webkit-scrollbar-track{background:#050b18;}
 ::-webkit-scrollbar-thumb{
@@ -111,7 +101,6 @@ body.loading{overflow:hidden;}
     overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
-
 #loader::before {
     content: "";
     position: absolute;
@@ -132,18 +121,15 @@ body.loading{overflow:hidden;}
     pointer-events: none;
     opacity: 0.9;
 }
-
 @keyframes starDrift {
     0% { background-position: 0% 0%; }
     100% { background-position: 200% 200%; }
 }
-
 #loader.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
-
 .loader-ring-container {
     position: relative;
     width: 130px;
@@ -151,7 +137,6 @@ body.loading{overflow:hidden;}
     display: grid;
     place-items: center;
 }
-
 .loader-ring-container::before {
     content: "";
     position: absolute;
@@ -170,11 +155,9 @@ body.loading{overflow:hidden;}
     opacity: 0.85;
     z-index: 0;
 }
-
 @keyframes rotateHalo {
     to { transform: rotate(360deg); }
 }
-
 .loader-ring-container::after {
     content: "";
     position: absolute;
@@ -184,7 +167,6 @@ body.loading{overflow:hidden;}
     animation: spinRing 8s linear infinite reverse;
     z-index: 1;
 }
-
 .loader-ring {
     position: relative;
     width: 120px;
@@ -202,7 +184,6 @@ body.loading{overflow:hidden;}
     animation: spinRing 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     z-index: 2;
 }
-
 .loader-ring::after {
     content: '';
     position: absolute;
@@ -214,7 +195,6 @@ body.loading{overflow:hidden;}
     box-shadow: 0 0 14px rgba(30, 58, 138, 0.55);
     animation: spinRing 0.8s linear infinite reverse;
 }
-
 .loader-ring::before {
     content: '⛵';
     position: absolute;
@@ -228,28 +208,18 @@ body.loading{overflow:hidden;}
     animation: pulseGlow 1.5s ease-in-out infinite alternate;
     z-index: 3;
 }
-
-@keyframes spinRing {
-    to { transform: rotate(360deg); }
-}
-
+@keyframes spinRing { to { transform: rotate(360deg); } }
 @keyframes pulseGlow {
     0% { transform: scale(0.8); opacity: 0.6; }
     100% { transform: scale(1.18); opacity: 1; }
 }
-
 .loader-title {
     font-size: clamp(2.2rem, 5.5vw, 3.4rem);
     font-weight: 900;
     margin-top: 24px;
     background: linear-gradient(
         135deg,
-        #bae6fd 0%,
-        #38bdf8 20%,
-        #0ea5e9 40%,
-        #6366f1 60%,
-        #1e3a8a 80%,
-        #7d9be0 100%
+        #bae6fd 0%, #38bdf8 20%, #0ea5e9 40%, #6366f1 60%, #1e3a8a 80%, #7d9be0 100%
     );
     background-size: 300% 300%;
     -webkit-background-clip: text;
@@ -258,17 +228,14 @@ body.loading{overflow:hidden;}
     color: transparent;
     animation: gradientMove 3s ease-in-out infinite;
     letter-spacing: 3px;
-    filter:
-        drop-shadow(0 0 18px rgba(14, 165, 233, 0.55))
-        drop-shadow(0 0 36px rgba(99, 102, 241, 0.35));
+    filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.55))
+            drop-shadow(0 0 36px rgba(99, 102, 241, 0.35));
     z-index: 2;
 }
-
 @keyframes gradientMove {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
-
 .loader-sub {
     color: rgba(186, 230, 253, 0.55);
     font-size: 0.9rem;
@@ -278,7 +245,6 @@ body.loading{overflow:hidden;}
     text-shadow: 0 0 18px rgba(14, 165, 233, 0.35);
     z-index: 2;
 }
-
 .loader-bar-track {
     width: clamp(200px, 40vw, 400px);
     height: 7px;
@@ -288,38 +254,23 @@ body.loading{overflow:hidden;}
     margin-top: 24px;
     overflow: hidden;
     position: relative;
-    box-shadow:
-        0 0 18px rgba(14, 165, 233, 0.18),
-        inset 0 0 12px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 18px rgba(14, 165, 233, 0.18), inset 0 0 12px rgba(0, 0, 0, 0.35);
     z-index: 2;
 }
-
 .loader-bar {
     height: 100%;
     width: 0%;
     border-radius: 12px;
-    background: linear-gradient(
-        90deg,
-        #0ea5e9,
-        #6366f1,
-        #38bdf8,
-        #7d9be0,
-        #1e3a8a,
-        #0ea5e9
-    );
+    background: linear-gradient(90deg, #0ea5e9, #6366f1, #38bdf8, #7d9be0, #1e3a8a, #0ea5e9);
     background-size: 300% 100%;
     animation: barShine 2s linear infinite;
     transition: width 0.3s ease;
-    box-shadow:
-        0 0 22px rgba(14, 165, 233, 0.75),
-        0 0 44px rgba(99, 102, 241, 0.45);
+    box-shadow: 0 0 22px rgba(14, 165, 233, 0.75), 0 0 44px rgba(99, 102, 241, 0.45);
 }
-
 @keyframes barShine {
     0% { background-position: 0% 0%; }
     100% { background-position: 300% 0%; }
 }
-
 .loader-percent {
     color: rgba(186, 230, 253, 0.55);
     font-size: 0.72rem;
@@ -329,16 +280,12 @@ body.loading{overflow:hidden;}
     text-shadow: 0 0 14px rgba(14, 165, 233, 0.45);
     z-index: 2;
 }
-
 .loader-percent span {
     color: #38bdf8;
     font-weight: 900;
     font-size: 0.85rem;
-    text-shadow:
-        0 0 12px rgba(56, 189, 248, 0.9),
-        0 0 28px rgba(14, 165, 233, 0.6);
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 28px rgba(14, 165, 233, 0.6);
 }
-
 body.loading .header::before,
 body.loading .header *,
 body.loading .container *,
@@ -367,13 +314,11 @@ body.loading .bg-decor *{
 .blob.b2{width:300px;height:300px;background:#6366f1;top:35%;right:-100px;animation-delay:-4s;}
 .blob.b3{width:340px;height:340px;background:#1e3a8a;bottom:-120px;left:18%;animation-delay:-8s;}
 .blob.b4{width:220px;height:220px;background:#06b6d4;top:12%;right:22%;opacity:.20;animation-delay:-6s;}
-
 @keyframes float{
     0%,100%{transform:translate3d(0,0,0) scale(1);}
     33%{transform:translate3d(30px,-35px,0) scale(1.08);}
     66%{transform:translate3d(-25px,25px,0) scale(.95);}
 }
-
 .bg-decor::after{
     content:"";
     position:absolute;
@@ -404,23 +349,16 @@ body.loading .bg-decor *{
         0 34px 80px -34px rgba(0,0,0,.95),
         inset 0 -1px 0 rgba(125,211,252,.16);
 }
-
 .header::after{
     content:"";
     position:absolute;
     left:0;right:0;bottom:0;
     height:2px;
-    background:linear-gradient(90deg,
-        transparent,
-        rgba(56,189,248,.55),
-        rgba(99,102,241,.65),
-        rgba(103,232,249,.55),
-        transparent);
+    background:linear-gradient(90deg, transparent, rgba(56,189,248,.55), rgba(99,102,241,.65), rgba(103,232,249,.55), transparent);
     background-size:200% 100%;
     animation:lineSlide 6s linear infinite;
     opacity:.85;
 }
-
 .header::before{
     content:"";
     position:absolute;
@@ -434,7 +372,6 @@ body.loading .bg-decor *{
     0%{left:-60%;}
     55%,100%{left:130%;}
 }
-
 .header h1{
     position:relative;
     margin:0 0 14px;
@@ -445,25 +382,14 @@ body.loading .bg-decor *{
     text-transform:uppercase;
     animation:fadeUp .8s .15s both;
 }
-
 .header h1 .grad{
     position:relative;
     display:inline-block;
     padding:6px 4px;
     background:linear-gradient(
         100deg,
-        #ffffff 0%,
-        #bae6fd 8%,
-        #38bdf8 18%,
-        #22d3ee 28%,
-        #67e8f9 36%,
-        #a5b4fc 46%,
-        #c4b5fd 56%,
-        #fde68a 66%,
-        #fbbf24 74%,
-        #7dd3fc 84%,
-        #e0f2fe 92%,
-        #ffffff 100%
+        #ffffff 0%, #bae6fd 8%, #38bdf8 18%, #22d3ee 28%, #67e8f9 36%, #a5b4fc 46%,
+        #c4b5fd 56%, #fde68a 66%, #fbbf24 74%, #7dd3fc 84%, #e0f2fe 92%, #ffffff 100%
     );
     background-size:300% 100%;
     -webkit-background-clip:text;
@@ -478,7 +404,6 @@ body.loading .bg-decor *{
         drop-shadow(0 0 34px rgba(99,102,241,.60))
         drop-shadow(0 0 60px rgba(251,191,36,.30));
 }
-
 .header h1 .grad::before{
     content:attr(data-text);
     position:absolute;
@@ -488,13 +413,8 @@ body.loading .bg-decor *{
     justify-content:center;
     background:linear-gradient(
         100deg,
-        transparent 0%,
-        transparent 38%,
-        rgba(255,255,255,.95) 48%,
-        rgba(255,255,255,1) 50%,
-        rgba(255,255,255,.95) 52%,
-        transparent 62%,
-        transparent 100%
+        transparent 0%, transparent 38%, rgba(255,255,255,.95) 48%, rgba(255,255,255,1) 50%,
+        rgba(255,255,255,.95) 52%, transparent 62%, transparent 100%
     );
     background-size:220% 100%;
     -webkit-background-clip:text;
@@ -505,7 +425,6 @@ body.loading .bg-decor *{
     pointer-events:none;
     filter:drop-shadow(0 0 18px rgba(255,255,255,.9));
 }
-
 .header h1 .grad::after{
     content:"";
     position:absolute;
@@ -523,29 +442,19 @@ body.loading .bg-decor *{
     animation:glowPulse 4.2s ease-in-out infinite;
     pointer-events:none;
 }
-
 @keyframes premiumShine{
     0%   { background-position:0% 50%; }
     100% { background-position:300% 50%; }
 }
-
 @keyframes shimmerSweep{
     0%, 55%   { background-position:220% 0; opacity:0; }
     60%       { opacity:.95; }
     100%      { background-position:-120% 0; opacity:0; }
 }
-
 @keyframes glowPulse{
-    0%,100%{
-        opacity:.55;
-        transform:scale(1);
-    }
-    50%{
-        opacity:1;
-        transform:scale(1.08);
-    }
+    0%,100%{ opacity:.55; transform:scale(1); }
+    50%{ opacity:1; transform:scale(1.08); }
 }
-
 .header h1 .sub{
     position:relative;
     display:block;
@@ -567,7 +476,6 @@ body.loading .bg-decor *{
     0%,100%{filter:drop-shadow(0 0 12px rgba(56,189,248,.85)) drop-shadow(0 0 26px rgba(30,58,138,.70));}
     50%{filter:drop-shadow(0 0 22px rgba(56,189,248,1)) drop-shadow(0 0 44px rgba(99,102,241,.90));}
 }
-
 .header h1 .sub::after{
     content:"";
     display:block;
@@ -584,7 +492,6 @@ body.loading .bg-decor *{
     0%{background-position:0% 0;}
     100%{background-position:200% 0;}
 }
-
 .header p{
     position:relative;
     margin:0 auto;
@@ -594,7 +501,6 @@ body.loading .bg-decor *{
     color:rgba(198,216,242,.88);
     animation:fadeUp .8s .25s both;
 }
-
 .header .teacher{
     position:relative;
     display:inline-block;
@@ -630,7 +536,6 @@ body.loading .bg-decor *{
     color:rgba(158,190,228,.75);
     letter-spacing:.08em;
 }
-
 .header .chips{
     position:relative;
     display:flex;
@@ -662,7 +567,6 @@ body.loading .bg-decor *{
 .chips i:nth-child(2){border-color:rgba(165,180,252,.50);}
 .chips i:nth-child(3){border-color:rgba(103,232,249,.50);}
 .chips i:nth-child(4){border-color:rgba(251,191,36,.50);}
-
 @keyframes fadeUp{
     from{opacity:0;transform:translateY(24px);}
     to{opacity:1;transform:translateY(0);}
@@ -676,7 +580,6 @@ body.loading .bg-decor *{
     margin:-56px auto 0;
     padding:0 20px 20px;
 }
-
 .section-label{
     position:relative;
     z-index:2;
@@ -700,7 +603,6 @@ body.loading .bg-decor *{
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
 }
-
 .section-label.fase-f span{
     background:rgba(251,191,36,.10);
     border-color:rgba(251,191,36,.32);
@@ -708,7 +610,6 @@ body.loading .bg-decor *{
         0 6px 20px -12px rgba(251,191,36,.85),
         inset 0 1px 0 rgba(255,255,255,.08);
 }
-
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
@@ -728,33 +629,24 @@ body.loading .bg-decor *{
     padding:28px 24px 22px;
     overflow:hidden;
     isolation:isolate;
-
     background:
         linear-gradient(90deg,
-            #38bdf8 0%,
-            #22d3ee 22%,
-            #6366f1 52%,
-            #a5b4fc 78%,
-            #67e8f9 100%)
+            #38bdf8 0%, #22d3ee 22%, #6366f1 52%, #a5b4fc 78%, #67e8f9 100%)
             top / 100% 4px no-repeat,
-        radial-gradient(ellipse 260px 220px at 100% 0%,
-            rgba(56,189,248,.18), transparent 68%),
-        radial-gradient(ellipse 220px 180px at 0% 100%,
-            rgba(99,102,241,.16), transparent 70%),
+        radial-gradient(ellipse 260px 220px at 100% 0%, rgba(56,189,248,.18), transparent 68%),
+        radial-gradient(ellipse 220px 180px at 0% 100%, rgba(99,102,241,.16), transparent 70%),
         linear-gradient(145deg,
             rgba(17,30,55,.94) 0%,
             rgba(12,22,42,.96) 25%,
             rgba(10,18,36,.97) 55%,
             rgba(14,25,48,.95) 80%,
             rgba(18,32,58,.94) 100%);
-
     box-shadow:
         0 28px 56px -24px rgba(0,0,0,.90),
         0 14px 32px -18px rgba(14,165,233,.28),
         0 4px 12px -6px rgba(0,0,0,.55),
         inset 0 1.5px 0 rgba(125,211,252,.16),
         inset 0 -1.5px 0 rgba(0,0,0,.55);
-
     backdrop-filter:blur(20px) saturate(160%);
     -webkit-backdrop-filter:blur(20px) saturate(160%);
     transition:
@@ -763,12 +655,10 @@ body.loading .bg-decor *{
         filter .55s cubic-bezier(.2,.8,.2,1);
     animation:cardIn .9s both;
 }
-
 @keyframes cardIn{
     from{opacity:0;transform:translateY(38px) scale(.97);}
     to{opacity:1;transform:translateY(0) scale(1);}
 }
-
 .card::before{
     content:"";
     position:absolute;
@@ -796,12 +686,10 @@ body.loading .bg-decor *{
     animation:borderShift 7s ease-in-out infinite;
     z-index:2;
 }
-
 @keyframes borderShift{
     0%,100%{ background-position:0% 0%; }
     50%    { background-position:100% 100%; }
 }
-
 .card::after{
     content:"";
     position:absolute;
@@ -821,7 +709,6 @@ body.loading .bg-decor *{
     mix-blend-mode:screen;
     z-index:3;
 }
-
 .card-link{
     color:inherit;
     text-decoration:none;
@@ -849,7 +736,6 @@ body.loading .bg-decor *{
     transform:translateY(-4px) scale(.998);
     transition-duration:.15s;
 }
-
 .badge{
     position:absolute;
     top:18px;
@@ -862,9 +748,7 @@ body.loading .bg-decor *{
     padding:5px 12px;
     border-radius:999px;
     color:#bfe3ff;
-    background:linear-gradient(135deg,
-        rgba(56,189,248,.16),
-        rgba(99,102,241,.16));
+    background:linear-gradient(135deg, rgba(56,189,248,.16), rgba(99,102,241,.16));
     border:1px solid rgba(56,189,248,.42);
     box-shadow:
         0 4px 14px -4px rgba(14,165,233,.60),
@@ -872,7 +756,6 @@ body.loading .bg-decor *{
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
 }
-
 .card .ico{
     position:relative;
     display:grid;
@@ -883,10 +766,7 @@ body.loading .bg-decor *{
     font-size:27px;
     border-radius:16px;
     margin-bottom:16px;
-    background:linear-gradient(135deg,
-        #1e3a8a 0%,
-        #2e4ba8 45%,
-        #0ea5e9 100%);
+    background:linear-gradient(135deg, #1e3a8a 0%, #2e4ba8 45%, #0ea5e9 100%);
     box-shadow:
         0 16px 30px -12px rgba(14,165,233,.75),
         0 8px 18px -8px rgba(30,58,138,.90),
@@ -903,7 +783,6 @@ body.loading .bg-decor *{
         inset 0 1.5px 0 rgba(255,255,255,.38),
         inset 0 -1.5px 0 rgba(0,0,0,.45);
 }
-
 .card h3{
     position:relative;
     margin:0 0 10px;
@@ -916,7 +795,6 @@ body.loading .bg-decor *{
     z-index:4;
     text-shadow:0 2px 14px rgba(0,0,0,.65);
 }
-
 .card .desc{
     position:relative;
     margin:0 0 20px;
@@ -936,7 +814,6 @@ body.loading .bg-decor *{
 .card .desc .hl-amber{color:#fcd34d;font-weight:700;}
 .card .desc .hl-gold{color:#fde047;font-weight:700;}
 .card .desc .hl-emerald{color:#6ee7b7;font-weight:700;}
-
 .mini-btn{
     position:relative;
     margin-top:auto;
@@ -1004,7 +881,6 @@ body.loading .bg-decor *{
     cursor:not-allowed;
     color:#cbd5e1;
 }
-
 .card-link:hover .mini-btn{
     transform:translateY(-3px);
     background-position:100% 0;
@@ -1014,7 +890,6 @@ body.loading .bg-decor *{
         inset 0 1px 0 rgba(255,255,255,.34),
         inset 0 -1px 0 rgba(0,0,0,.40);
 }
-
 .mini-btn::after{
     content:"";
     position:absolute;
@@ -1025,7 +900,6 @@ body.loading .bg-decor *{
     transition:left .7s ease;
 }
 .card-link:hover .mini-btn::after{left:130%;}
-
 .mini-btn .play{
     display:grid;
     place-items:center;
@@ -1064,10 +938,7 @@ body.loading .bg-decor *{
     filter:grayscale(.30);
 }
 .card.disabled::before{
-    background:linear-gradient(145deg,
-        rgba(100,116,139,.55),
-        rgba(71,85,105,.45),
-        rgba(100,116,139,.55));
+    background:linear-gradient(145deg, rgba(100,116,139,.55), rgba(71,85,105,.45), rgba(100,116,139,.55));
     animation:none;
     opacity:.6;
 }
@@ -1115,30 +986,22 @@ body.loading .bg-decor *{
     overflow:hidden;
     margin-top:4px;
     animation:cardIn .9s both;
-
     background:
         linear-gradient(90deg,
-            #38bdf8 0%,
-            #6366f1 45%,
-            #a5b4fc 75%,
-            #67e8f9 100%)
+            #38bdf8 0%, #6366f1 45%, #a5b4fc 75%, #67e8f9 100%)
             top / 100% 4px no-repeat,
-        radial-gradient(ellipse 340px 240px at 100% 100%,
-            rgba(99,102,241,.22), transparent 72%),
-        radial-gradient(ellipse 260px 200px at 0% 0%,
-            rgba(56,189,248,.16), transparent 72%),
+        radial-gradient(ellipse 340px 240px at 100% 100%, rgba(99,102,241,.22), transparent 72%),
+        radial-gradient(ellipse 260px 200px at 0% 0%, rgba(56,189,248,.16), transparent 72%),
         linear-gradient(135deg,
             rgba(17,30,55,.95) 0%,
             rgba(12,22,42,.96) 45%,
             rgba(16,28,52,.95) 100%);
-
     border:1.5px solid rgba(125,211,252,.28);
     box-shadow:
         0 30px 66px -28px rgba(0,0,0,.95),
         0 14px 30px -16px rgba(14,165,233,.35),
         inset 0 1.5px 0 rgba(125,211,252,.18),
         inset 0 -1.5px 0 rgba(0,0,0,.55);
-
     backdrop-filter:blur(18px) saturate(160%);
     -webkit-backdrop-filter:blur(18px) saturate(160%);
 }
@@ -1197,9 +1060,7 @@ body.loading .bg-decor *{
     font-weight:700;
     border-radius:999px;
     color:#bfe3ff;
-    background:linear-gradient(135deg,
-        rgba(56,189,248,.16),
-        rgba(99,102,241,.16));
+    background:linear-gradient(135deg, rgba(56,189,248,.16), rgba(99,102,241,.16));
     border:1px solid rgba(56,189,248,.42);
     box-shadow:
         0 4px 14px -4px rgba(14,165,233,.60),
@@ -1246,7 +1107,6 @@ body.loading .bg-decor *{
 @media (max-width:900px){
     .grid{grid-template-columns:repeat(2, minmax(0,1fr));}
 }
-
 @media (max-width:600px){
     .header{padding:60px 18px 84px;border-radius:0 0 32px 32px;}
     .container{margin-top:-46px;padding:0 16px 12px;}
@@ -1261,7 +1121,6 @@ body.loading .bg-decor *{
     .header .teacher{padding:9px 18px;font-size:12px;}
     .header .teacher .nip{font-size:10.5px;}
 }
-
 @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{
         animation-duration:.001ms !important;
@@ -1278,10 +1137,8 @@ body.loading .bg-decor *{
     <div class="loader-ring-container">
         <div class="loader-ring"></div>
     </div>
-
     <div class="loader-title">E-SEJARAH</div>
     <div class="loader-sub">SMAN 3 KASONGAN</div>
-
     <div class="loader-bar-track">
         <div class="loader-bar" id="loaderBar"></div>
     </div>
@@ -1301,12 +1158,10 @@ body.loading .bg-decor *{
         <span class="grad" data-text="⛵ E-Sejarah">⛵ E-Sejarah</span>
         <span class="sub">SMAN 3 Kasongan</span>
     </h1>
-
     <p class="teacher">
         Guru Pengampu: <b>SYAHRANI, S.Pd</b>
         <span class="nip">NIP. 197512172005011016</span>
     </p>
-
     <p>
         Telusuri jejak peradaban Nusantara &amp; perjuangan bangsa melalui materi interaktif —
         dari pengantar ilmu sejarah, kejayaan Hindu-Buddha &amp; Islam, kolonialisme,
@@ -1321,6 +1176,102 @@ body.loading .bg-decor *{
 </header>
 
 <main class="container">
+
+    <!-- ============================================================
+         ⭐ LATIHAN LITERASI TKA SEJARAH — HIGHLIGHTED
+         ============================================================ -->
+    <div class="section-label" style="margin-top:0;">
+        <span>📝 Latihan Literasi TKA Sejarah — Uji Kemampuanmu!</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr;margin-bottom:34px;">
+        <a class="card card-link"
+           href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Latihan Literasi TKA Sejarah (tab baru)"
+           style="background:
+                linear-gradient(90deg,
+                    #fbbf24 0%,
+                    #f59e0b 25%,
+                    #fde68a 50%,
+                    #f59e0b 75%,
+                    #fbbf24 100%) top / 100% 5px no-repeat,
+                radial-gradient(ellipse 380px 280px at 100% 0%,
+                    rgba(251,191,36,.26), transparent 68%),
+                radial-gradient(ellipse 320px 240px at 0% 100%,
+                    rgba(245,158,11,.20), transparent 70%),
+                linear-gradient(145deg,
+                    rgba(28,22,10,.96) 0%,
+                    rgba(20,15,5,.97) 40%,
+                    rgba(30,24,12,.96) 100%);
+            border:1.5px solid rgba(251,191,36,.45);
+            box-shadow:
+                0 32px 70px -28px rgba(0,0,0,.95),
+                0 16px 40px -16px rgba(251,191,36,.45),
+                inset 0 1.5px 0 rgba(253,230,138,.22),
+                inset 0 -1.5px 0 rgba(0,0,0,.55);">
+
+            <span class="badge"
+                  style="color:#fde68a;
+                         border-color:rgba(251,191,36,.72);
+                         background:linear-gradient(135deg,
+                             rgba(251,191,36,.24),
+                             rgba(245,158,11,.24));
+                         box-shadow:
+                             0 4px 16px -4px rgba(251,191,36,.75),
+                             inset 0 1px 0 rgba(255,255,255,.16);">
+                ⭐ Khusus
+            </span>
+
+            <span class="ico"
+                  style="background:linear-gradient(135deg,
+                             #92400e 0%,
+                             #f59e0b 55%,
+                             #fde047 100%);
+                         box-shadow:
+                             0 16px 34px -12px rgba(251,191,36,.90),
+                             0 8px 20px -8px rgba(245,158,11,.90),
+                             inset 0 1.5px 0 rgba(255,255,255,.34),
+                             inset 0 -1.5px 0 rgba(0,0,0,.45);">
+                📝
+            </span>
+
+            <h3 style="color:#fff7e6;
+                       text-shadow:
+                           0 2px 14px rgba(0,0,0,.70),
+                           0 0 24px rgba(251,191,36,.35);">
+                Latihan Literasi TKA Sejarah
+            </h3>
+
+            <p class="desc"
+               style="color:#e8d9b8;
+                      max-width:820px;
+                      font-size:13.8px;">
+                Uji <b style="color:#fde68a;">pemahaman &amp; penalaran sejarah</b>
+                dengan <b style="color:#fcd34d;">280 soal bergaya TKA</b> —
+                mencakup <b style="color:#fbbf24;">14 bab</b> dari
+                <b style="color:#fde68a;">Fase E</b> hingga
+                <b style="color:#fde68a;">Fase F</b>. Tiga bentuk soal
+                (<i>PG · MCMA · PG Kompleks Kategori</i>),
+                level kognitif <i>Knowing–Applying–Reasoning</i>,
+                dan pembahasan mendalam untuk setiap butir soal.
+            </p>
+
+            <span class="mini-btn gold"
+                  style="background:linear-gradient(120deg,
+                             #92400e 0%,
+                             #f59e0b 45%,
+                             #fde047 100%);
+                         box-shadow:
+                             0 18px 36px -14px rgba(251,191,36,.95),
+                             0 8px 20px -10px rgba(245,158,11,.80),
+                             inset 0 1.5px 0 rgba(255,255,255,.32),
+                             inset 0 -1px 0 rgba(0,0,0,.35);
+                         max-width:340px;">
+                <span class="play">▶</span> Mulai Latihan TKA
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+    </div>
 
     <!-- ============================================================
          FASE E — KELAS X
@@ -1346,7 +1297,7 @@ body.loading .bg-decor *{
             </span>
         </a>
 
-        <!-- ⚡ PENGUATAN BAB 1 — PETUALANGAN 3D INTERAKTIF -->
+        <!-- ⚡ PENGUATAN BAB 1 -->
         <a class="card card-link"
            href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/3dpengantarilmusejarah.html"
            target="_blank" rel="noopener noreferrer"
@@ -1543,11 +1494,11 @@ body.loading .bg-decor *{
 
     </div>
 
-    <!-- ===== MATERI LANJUTAN & SEGERA HADIR ===== -->
+    <!-- ===== MATERI LANJUTAN ===== -->
     <div class="section-label"><span>🚧 Fase F — Kelas XI · Lanjutan &amp; Pengembangan</span></div>
     <div class="grid">
 
-        <!-- MATERI 11 — AKTIF -->
+        <!-- MATERI 11 -->
         <a class="card card-link"
            href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/mempertahankankemerdekaan.html"
            target="_blank" rel="noopener noreferrer"
@@ -1565,7 +1516,7 @@ body.loading .bg-decor *{
             </span>
         </a>
 
-        <!-- MATERI 12 — AKTIF -->
+        <!-- MATERI 12 -->
         <a class="card card-link"
            href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/pemerintahansoekarno.html"
            target="_blank" rel="noopener noreferrer"
@@ -1582,7 +1533,7 @@ body.loading .bg-decor *{
             </span>
         </a>
 
-        <!-- MATERI 13 — AKTIF (BARU) -->
+        <!-- MATERI 13 -->
         <a class="card card-link"
            href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/pemerintahansoeharto.html"
            target="_blank" rel="noopener noreferrer"
@@ -1601,7 +1552,7 @@ body.loading .bg-decor *{
             </span>
         </a>
 
-        <!-- MATERI 14 — AKTIF (BARU) -->
+        <!-- MATERI 14 -->
         <a class="card card-link"
            href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/reformasi1998.html"
            target="_blank" rel="noopener noreferrer"
@@ -1655,22 +1606,18 @@ body.loading .bg-decor *{
     var pctEl  = document.getElementById('loaderPct');
     var barEl  = document.getElementById('loaderBar');
     var DURATION = 2000;
-
     var startTime = null;
     var finished  = false;
 
     function easeOutCubic(t) {
         return 1 - Math.pow(1 - t, 3);
     }
-
     function step(now) {
         if (startTime === null) startTime = now;
         var t = Math.min((now - startTime) / DURATION, 1);
         var p = Math.round(easeOutCubic(t) * 100);
-
         pctEl.textContent = p;
         if (barEl) barEl.style.width = p + '%';
-
         if (t < 1) {
             requestAnimationFrame(step);
         } else if (!finished) {
@@ -1678,12 +1625,10 @@ body.loading .bg-decor *{
             hideLoader();
         }
     }
-
     function hideLoader() {
         setTimeout(function () {
             loader.classList.add('hidden');
             document.body.classList.remove('loading');
-
             setTimeout(function () {
                 if (loader && loader.parentNode) {
                     loader.parentNode.removeChild(loader);
@@ -1691,7 +1636,6 @@ body.loading .bg-decor *{
             }, 850);
         }, 200);
     }
-
     if (document.readyState === 'complete') {
         requestAnimationFrame(step);
     } else {
@@ -1700,7 +1644,6 @@ body.loading .bg-decor *{
         });
         requestAnimationFrame(step);
     }
-
     setTimeout(function () {
         if (!finished) {
             finished = true;
