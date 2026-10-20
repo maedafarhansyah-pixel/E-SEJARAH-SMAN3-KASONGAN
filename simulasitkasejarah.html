@@ -30,7 +30,6 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a0a14;box-shadow:inset 0 0 24px rgba(184,134,11,.16);z-index:-1;}
 .loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fff8dc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #a3740c) drop-shadow(2px 2px 0 #8b6914) drop-shadow(3px 3px 0 #7a5d10) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 0 #4a3807) drop-shadow(7px 7px 0 #3a2c05) drop-shadow(8px 8px 0 #2a1f03) drop-shadow(9px 9px 10px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
 .loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-/* Ring dibuat lebih rapat mengelilingi teks MGE */
 .ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35),inset 0 0 12px rgba(56,189,248,.15);}
 .ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35),inset 0 0 14px rgba(139,92,246,.15);}
 .ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(251,113,133,.35),inset 0 0 15px rgba(251,113,133,.12);}
@@ -90,6 +89,65 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .chapter-card .ch-meta .cnt{color:var(--primary-light)}
 .chapter-card .ch-badges{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
 .chapter-card .mini-badge{font-size:.58rem;padding:2px 7px;border-radius:20px;font-weight:700;letter-spacing:.4px;border:1px solid rgba(184,134,11,.4);color:#B8860B}
+
+/* ===== KOTAK LINK (Tema 2–14) ===== */
+.chapter-link-box{
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(145deg,var(--card),var(--card-alt));
+  border:1.5px dashed rgba(184,134,11,.45);
+  border-radius:var(--radius-sm);
+  padding:16px 16px;
+  cursor:pointer;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+}
+.chapter-link-box::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 100% 0%,rgba(56,189,248,.08),transparent 55%);
+  pointer-events:none;opacity:0;transition:opacity .35s;
+}
+.chapter-link-box:hover{
+  transform:translateY(-4px);
+  border-color:var(--primary);
+  border-style:solid;
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+}
+.chapter-link-box:hover::after{opacity:1}
+.chapter-link-box .link-icon{
+  flex-shrink:0;
+  width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.15rem;
+  box-shadow:0 4px 12px rgba(184,134,11,.35);
+  transition:transform .35s;
+}
+.chapter-link-box:hover .link-icon{transform:rotate(-8deg) scale(1.06)}
+.chapter-link-box .link-info{flex:1;min-width:0}
+.chapter-link-box .link-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.6rem;font-weight:800;letter-spacing:1px;
+  padding:2px 9px;border-radius:20px;
+  background:rgba(56,189,248,.15);color:var(--sky);
+  border:1px solid rgba(56,189,248,.35);
+  text-transform:uppercase;margin-bottom:5px;
+}
+.chapter-link-box h4{font-size:.94rem;margin-bottom:4px;line-height:1.3;color:var(--text)}
+.chapter-link-box p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
+.chapter-link-box .link-arrow{
+  flex-shrink:0;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(184,134,11,.12);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;transition:all .3s;
+}
+.chapter-link-box:hover .link-arrow{
+  background:var(--primary);color:#fff;
+  transform:rotate(-15deg) scale(1.1);
+}
 
 /* TEST HEADER */
 .test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
@@ -235,7 +293,6 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   .opt .txt,.check .txt{font-size:.86rem}
   .loader-3d-wrap{width:200px;height:200px}
   .loader-circle{width:120px;height:120px}
-  /* Ring ikut menyesuaikan ukuran lingkaran */
   .ring-1{inset:36px}
   .ring-2{inset:28px}
   .ring-3{inset:20px}
@@ -271,7 +328,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   </div>
   <div class="loader-3d-sub">Maeda Game Edu</div>
   <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">14 Tema · 22 Soal per Tema · Fase E–F</div>
+  <div class="loader-sub">14 Tema · Fase E–F · SMAN 3 Kasongan</div>
   <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
   <div class="loader-pct" id="lpct">0%</div>
 </div>
@@ -299,13 +356,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <p class="hero-sub">Latihan bergaya TKA dengan stimulus autentik, tiga bentuk soal, dan pembahasan tiap soal. Disesuaikan untuk Fase E–F.</p>
     <div class="hero-stats">
       <div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Tema Materi</div></div>
-      <div class="stat-card"><div class="val">22</div><div class="lbl">Soal per Tema</div></div>
-      <div class="stat-card"><div class="val">3</div><div class="lbl">Bentuk Soal</div></div>
+      <div class="stat-card"><div class="val">22</div><div class="lbl">Soal (Tema 1)</div></div>
+      <div class="stat-card"><div class="val">13</div><div class="lbl">Tautan Tema</div></div>
     </div>
   </div>
   <div class="section-h">
     <h3><i class="fas fa-book-open"></i> Pilih Tema Materi</h3>
-    <p>Setiap tema berisi 22 soal: 12 PG, 6 MCMA (centang), dan 4 Kategori. Soal diacak setiap tema dibuka.</p>
+    <p><strong>Tema 1</strong> tersedia dengan 22 soal: 12 PG, 6 MCMA, dan 4 Kategori. <strong>Tema 2–14</strong> ditampilkan sebagai kotak tautan (link) — klik untuk membuka halaman terkait.</p>
   </div>
   <div class="chapter-grid" id="chapterGrid"></div>
 </section>
@@ -413,7 +470,8 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
 <script>
 /* ============================================================
-   CHAPTERS — warna aksen disederhanakan (semua emas)
+   CHAPTERS — daftar tema
+   Tema 1 punya soal; Tema 2–14 berupa kotak tautan (link)
    ============================================================ */
 const CHAPTERS=[
 {id:1,fase:'E',title:'Memahami Prinsip Ilmu Sejarah',desc:'Hakikat, sumber, ruang lingkup, & kegunaan sejarah.'},
@@ -433,12 +491,32 @@ const CHAPTERS=[
 ];
 
 /* ============================================================
+   KOTAK LINK — isi URL untuk Tema 2–14 di sini
+   Ganti '#' dengan alamat tautan yang diinginkan.
+   ============================================================ */
+const CHAPTER_LINKS={
+  2:'#',
+  3:'#',
+  4:'#',
+  5:'#',
+  6:'#',
+  7:'#',
+  8:'#',
+  9:'#',
+  10:'#',
+  11:'#',
+  12:'#',
+  13:'#',
+  14:'#'
+};
+
+/* ============================================================
    UTIL SHUFFLE
    ============================================================ */
 function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 
 /* ============================================================
-   Q1 — PRINSIP ILMU SEJARAH
+   BANK SOAL TEMA 1 — PRINSIP ILMU SEJARAH
    12 PG + 6 MCMA + 4 KATEGORI
    ============================================================ */
 const Q1=[
@@ -467,38 +545,10 @@ const Q1=[
 ];
 
 /* ============================================================
-   Q2 — PENELITIAN SEJARAH
-   12 PG + 6 MCMA + 4 KATEGORI
-   ============================================================ */
-const Q2=[
-{t:'PG',l:'Knowing',d:'Mudah',i:'Urutan tahap penelitian',s:'Dalam penelitian sejarah, terdapat empat tahap utama: heuristik (pengumpulan sumber), kritik sumber (kritik ekstern & intern), interpretasi (penafsiran fakta), dan historiografi (penulisan narasi).',q:'Berdasarkan stimulus tersebut, urutan tahap penelitian sejarah yang benar adalah ....',o:['Kritik → Heuristik → Interpretasi → Historiografi','Heuristik → Kritik → Interpretasi → Historiografi','Interpretasi → Heuristik → Kritik → Historiografi','Historiografi → Heuristik → Kritik → Interpretasi','Heuristik → Interpretasi → Kritik → Historiografi'],a:1,e:'Urutan baku: Heuristik → Kritik → Interpretasi → Historiografi.'},
-{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian heuristik',s:'Heuristik berasal dari kata Yunani "heuriskein" yang berarti menemukan. Dalam penelitian sejarah, heuristik adalah tahap pertama yang bertujuan mengumpulkan sumber-sumber sejarah yang relevan.',q:'Berdasarkan stimulus tersebut, tahap pertama dalam penelitian sejarah yang bertujuan mengumpulkan sumber disebut ....',o:['kritik','heuristik','interpretasi','historiografi','verifikasi'],a:1,e:'Heuristik = pengumpulan sumber.'},
-{t:'PG',l:'Knowing',d:'Mudah',i:'Kritik ekstern',s:'Kritik ekstern adalah tahap pengujian terhadap keaslian fisik sumber sejarah. Sejarawan perlu memeriksa bahan, usia, tanda tangan, cap, dan ciri-ciri fisik lainnya untuk memastikan bahwa sumber tersebut benar-benar berasal dari masa yang diklaim.',q:'Berdasarkan stimulus tersebut, kritik ekstern bertujuan untuk menguji ....',o:['kebenaran isi sumber','keaslian fisik sumber','relevansi topik','kredibilitas penulis','nilai estetika'],a:1,e:'Kritik ekstern = uji keaslian fisik.'},
-{t:'PG',l:'Knowing',d:'Mudah',i:'Kritik intern',s:'Setelah keaslian fisik sumber teruji melalui kritik ekstern, sejarawan melakukan kritik intern untuk menguji kebenaran dan kredibilitas isi sumber. Kritik intern menanyakan apakah informasi yang disampaikan sumber tersebut dapat dipercaya.',q:'Berdasarkan stimulus tersebut, kritik intern bertujuan untuk menguji ....',o:['keaslian fisik sumber','kebenaran & kredibilitas isi sumber','usia kertas','tanda tangan','warna tinta'],a:1,e:'Kritik intern = uji kebenaran & kredibilitas isi.'},
-{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian interpretasi',s:'Interpretasi adalah tahap penafsiran fakta-fakta sejarah yang telah melalui kritik sumber. Pada tahap ini, sejarawan berusaha menemukan makna di balik peristiwa dan menghubungkan satu fakta dengan fakta lainnya.',q:'Berdasarkan stimulus tersebut, tahap interpretasi dalam penelitian sejarah bertujuan untuk ....',o:['mengumpulkan sumber','menafsirkan fakta & menemukan makna','menulis narasi','menguji keaslian','membandingkan sumber'],a:1,e:'Interpretasi = penafsiran fakta untuk menemukan makna.'},
-{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian historiografi',s:'Historiografi adalah tahap terakhir dalam penelitian sejarah. Pada tahap ini, sejarawan menuangkan hasil penelitiannya ke dalam bentuk tulisan atau narasi sejarah yang sistematis dan dapat dipertanggungjawabkan secara ilmiah.',q:'Berdasarkan stimulus tersebut, historiografi dalam penelitian sejarah berarti ....',o:['pengumpulan sumber','penulisan sejarah','pengujian sumber','penafsiran fakta','perbandingan sumber'],a:1,e:'Historiografi = penulisan narasi sejarah.'},
-{t:'PG',l:'Applying',d:'Sedang',i:'Menghadapi sumber berbeda',s:'Seorang peneliti menemukan dua versi naskah Proklamasi: naskah asli tulisan Soekarno dan naskah ketikan Sayuti Melik. Keduanya memiliki perbedaan kecil pada ejaan dan tanda baca.',q:'Berdasarkan stimulus tersebut, langkah paling tepat yang harus dilakukan peneliti adalah ....',o:['memilih versi paling populer','membandingkan keduanya dengan sumber lain & menganalisis konteks','membuang keduanya','menganggap keduanya salah','menyalin versi terbaru'],a:1,e:'Prinsip kritik: bandingkan dengan sumber lain & analisis konteks.'},
-{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu epigrafi',s:'Epigrafi adalah ilmu bantu sejarah yang mempelajari tulisan-tulisan kuno pada prasasti, batu, logam, atau bahan keras lainnya. Ahli epigrafi tidak hanya membaca aksara kuno, tetapi juga menganalisis gaya bahasa, konteks penulisan, dan makna budaya.',q:'Berdasarkan stimulus tersebut, ilmu bantu sejarah yang mempelajari tulisan kuno pada prasasti disebut ....',o:['Numismatik','Epigrafi','Paleografi','Ikonografi','Genealogi'],a:1,e:'Epigrafi = ilmu tentang tulisan pada prasasti.'},
-{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu numismatik',s:'Numismatik adalah ilmu bantu sejarah yang mempelajari mata uang kuno, termasuk asal-usul, bahan, teknik pembuatan, dan nilai tukarnya. Melalui analisis mata uang, sejarawan dapat memperoleh informasi tentang sistem ekonomi dan hubungan perdagangan.',q:'Berdasarkan stimulus tersebut, ilmu bantu sejarah yang mempelajari mata uang kuno disebut ....',o:['Numismatik','Epigrafi','Paleografi','Ikonografi','Sigillografi'],a:0,e:'Numismatik = ilmu tentang mata uang kuno.'},
-{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu paleografi',s:'Seorang peneliti menemukan prasasti abad ke-9 M dalam kondisi aus. Sebagian aksaranya pudar dan sulit dibaca. Untuk membaca dan memahami isi prasasti, peneliti memerlukan bantuan ahli paleografi.',q:'Berdasarkan stimulus tersebut, ilmu bantu yang paling berperan untuk membaca prasasti tersebut adalah ....',o:['Numismatik','Paleografi','Ikonografi','Genealogi','Sigillografi'],a:1,e:'Paleografi = ilmu tentang aksara kuno.'},
-{t:'PG',l:'Applying',d:'Sedang',i:'Ilmu bantu sigillografi',s:'Sigillografi adalah ilmu bantu sejarah yang mempelajari segel atau stempel yang digunakan pada dokumen resmi. Pada masa kerajaan kuno, segel digunakan untuk memverifikasi keaslian dokumen, menunjukkan kekuasaan raja, atau menandai perjanjian penting.',q:'Berdasarkan stimulus tersebut, ilmu bantu sejarah yang mempelajari segel & stempel untuk memverifikasi dokumen resmi disebut ....',o:['Numismatik','Sigillografi','Epigrafi','Paleografi','Ikonografi'],a:1,e:'Sigillografi = ilmu tentang segel & stempel.'},
-{t:'PG',l:'Reasoning',d:'Sulit',i:'Sejarah lisan',s:'Sejarah lisan (oral history) adalah metode pengumpulan data sejarah melalui wawancara langsung dengan pelaku atau saksi peristiwa. Metode ini berguna ketika sumber tertulis tidak tersedia. Namun, ingatan manusia bersifat selektif dan dapat berubah seiring waktu.',q:'Berdasarkan stimulus tersebut, metode yang digunakan sejarawan dengan mewawancarai pelaku sejarah secara langsung dikenal sebagai ....',o:['Sejarah lisan (oral history)','Heuristik tertulis','Kritik ekstern','Historiografi','Arkeologi'],a:0,e:'Oral history = metode sejarah lisan.'},
-{t:'MCMA',l:'Applying',d:'Sedang',i:'Ilmu bantu relevan',s:'Seorang peneliti menemukan prasasti abad ke-9 M dari batu andesit dengan aksara aus dan cap kerajaan yang memudar.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai ilmu bantu yang relevan? (Pilih lebih dari satu)',o:['Epigrafi membantu mengkaji tulisan pada prasasti.','Paleografi membantu membaca aksara kuno.','Numismatik mempelajari mata uang kuno.','Ikonografi mempelajari makna gambar & simbol pada relief.','Genealogi mempelajari silsilah keluarga.'],a:[0,1,3,4],e:'A, B, D, E relevan dengan konteks prasasti. Numismatik tidak disebut dalam stimulus.'},
-{t:'MCMA',l:'Applying',d:'Sedang',i:'Sumber & kritik ekstern',s:'Seorang peneliti mewawancarai veteran Pertempuran Surabaya 1945. Ia juga memeriksa cap dan tanda tangan pada dokumen kuno di arsip nasional.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai sumber yang diperoleh? (Pilih lebih dari satu)',o:['Wawancara veteran termasuk sumber primer lisan.','Pemeriksaan cap pada dokumen merupakan kritik ekstern.','Wawancara veteran termasuk sumber sekunder.','Dokumen kuno dengan cap asli dapat menjadi sumber primer.','Wawancara tidak dapat dijadikan sumber sejarah.'],a:[0,1,3],e:'A benar (primer lisan), B benar (uji cap = kritik ekstern), D benar (dokumen asli = primer). C & E salah.'},
-{t:'MCMA',l:'Applying',d:'Sedang',i:'Klasifikasi sumber tertulis',s:'Seorang peneliti mengumpulkan sumber untuk meneliti Majapahit: (1) kitab Negarakertagama; (2) terjemahan Negarakertagama oleh sejarawan modern; (3) prasasti dari masa Majapahit; (4) artikel jurnal tentang Majapahit.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai jenis sumber? (Pilih lebih dari satu)',o:['Kitab Negarakertagama dapat dikategorikan sumber primer.','Terjemahan Negarakertagama termasuk sumber sekunder.','Prasasti dari masa Majapahit termasuk sumber primer.','Artikel jurnal tentang Majapahit termasuk sumber sekunder.','Semua sumber tersebut adalah sumber primer.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah.'},
-{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Kritik sumber',s:'Seorang sejarawan menemukan kronik yang ditulis untuk memuji raja. Kronik menceritakan kemenangan besar raja, tetapi tidak menyebutkan kekalahan.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai kritik sumber? (Pilih lebih dari satu)',o:['Kritik intern perlu dilakukan karena kronik berpotensi bias.','Kritik ekstern perlu dilakukan untuk menguji keaslian fisik kronik.','Kronik tersebut tidak dapat digunakan sama sekali.','Sejarawan perlu membandingkan kronik dengan sumber lain.','Kritik sumber hanya dilakukan pada sumber sekunder.'],a:[0,1,3],e:'A, B, D benar. C salah, E salah.'},
-{t:'MCMA',l:'Applying',d:'Sedang',i:'Langkah heuristik',s:'Heuristik adalah tahap pengumpulan sumber. Sebelum mengumpulkan sumber, peneliti harus menentukan topik, membatasi ruang lingkup, dan merumuskan pertanyaan penelitian.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai heuristik? (Pilih lebih dari satu)',o:['Heuristik adalah tahap pengumpulan sumber.','Sebelum heuristik, peneliti perlu menentukan topik & batasan penelitian.','Heuristik dilakukan setelah interpretasi.','Heuristik membantu menentukan sumber yang relevan.','Heuristik tidak perlu dilakukan dalam penelitian sejarah.'],a:[0,1,3],e:'A, B, D benar. C salah (heuristik sebelum interpretasi). E salah.'},
-{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Validitas sumber',s:'Seorang peneliti menggunakan tiga sumber untuk meneliti peristiwa yang sama: sumber A (prasasti dari masa peristiwa), sumber B (kronik 200 tahun setelah peristiwa), dan sumber C (wawancara dengan ahli waris pelaku).',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai validitas sumber? (Pilih lebih dari satu)',o:['Sumber A merupakan sumber primer.','Sumber B merupakan sumber sekunder.','Sumber C dapat dikategorikan sumber primer tidak langsung.','Semua sumber otomatis valid tanpa kritik.','Sumber A harus dikritik ekstern & intern.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah (semua perlu kritik).'},
-{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Urutan tahap penelitian',s:'Heuristik dilakukan untuk mengumpulkan sumber, kemudian kritik sumber untuk menguji keaslian dan kredibilitasnya. Setelah sumber teruji, dilakukan interpretasi untuk menafsirkan fakta. Tahap terakhir adalah historiografi, yaitu penulisan narasi sejarah.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Heuristik harus dilakukan sebelum kritik sumber.',a:'Sesuai'},{x:'Interpretasi dilakukan setelah kritik sumber selesai.',a:'Sesuai'},{x:'Historiografi dapat dilakukan tanpa melalui kritik sumber.',a:'Tidak Sesuai'},{x:'Kritik ekstern & intern merupakan bagian dari tahap kritik sumber.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
-{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Pentingnya ilmu bantu',s:'Seorang sejarawan meneliti prasasti kuno tanpa menguasai epigrafi dan paleografi. Ia hanya mengandalkan terjemahan yang sudah ada, tanpa memeriksa keaslian aksara dan konteks penulisannya. Akibatnya, ia berisiko salah menafsirkan isi prasasti.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Tanpa penguasaan epigrafi & paleografi, sejarawan berisiko salah tafsir.',a:'Sesuai'},{x:'Ilmu bantu sangat penting untuk akurasi penelitian sejarah.',a:'Sesuai'},{x:'Sejarawan tidak perlu ilmu bantu karena bisa menggunakan terjemahan.',a:'Tidak Sesuai'},{x:'Epigrafi & paleografi membantu memahami aksara & konteks tulisan kuno.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
-{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Sumber primer & sekunder',s:'Sumber primer adalah sumber yang dihasilkan pada masa peristiwa terjadi. Sumber sekunder adalah sumber yang dibuat setelah peristiwa oleh orang yang tidak terlibat langsung. Keduanya perlu dikritik sebelum digunakan.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Prasasti dari masa peristiwa termasuk sumber primer.',a:'Sesuai'},{x:'Buku teks sejarah terbitan 2020 termasuk sumber sekunder.',a:'Sesuai'},{x:'Semua sumber sekunder tidak dapat digunakan dalam penelitian.',a:'Tidak Sesuai'},{x:'Sumber primer tetap perlu dikritik ekstern & intern.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'},
-{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Metode sejarah lisan',s:'Sejarah lisan adalah metode pengumpulan data melalui wawancara langsung dengan pelaku atau saksi peristiwa. Metode ini berguna ketika sumber tertulis terbatas. Namun, ingatan manusia bersifat selektif dan dapat berubah seiring waktu.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Sejarah lisan berguna saat sumber tertulis terbatas.',a:'Sesuai'},{x:'Hasil wawancara perlu diverifikasi dengan sumber lain.',a:'Sesuai'},{x:'Ingatan manusia selalu akurat tanpa perlu verifikasi.',a:'Tidak Sesuai'},{x:'Sejarah lisan termasuk metode pengumpulan data sejarah.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai, 4 Sesuai.'}
-];
-
-/* ============================================================
    MAPPING (tema → bank soal)
+   Hanya Tema 1 yang memiliki soal; Tema 2–14 = kotak link.
    ============================================================ */
-const QUESTIONS={1:Q1,2:Q2,3:Q1,4:Q2,5:Q1,6:Q2,7:Q1,8:Q2,9:Q1,10:Q2,11:Q1,12:Q2,13:Q1,14:Q2};
+const QUESTIONS={1:Q1};
 
 /* STATE */
 let currentChapter=1,currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
@@ -509,22 +559,46 @@ let displayedQuestions=[];
 /* LOADER */
 (function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>document.getElementById('loader').style.display='none',650);},350);}},180);})();
 
-/* RENDER CHAPTER GRID — warna disederhanakan */
+/* RENDER CHAPTER GRID
+   - Tema dengan soal → chapter-card (buka tes)
+   - Tema tanpa soal → chapter-link-box (tautan eksternal)
+*/
 function renderChapters(){
   const grid=document.getElementById('chapterGrid');grid.innerHTML='';
   CHAPTERS.forEach(ch=>{
     const totalQ=(QUESTIONS[ch.id]||[]).length;
-    const card=document.createElement('div');
-    card.className='chapter-card';
-    card.onclick=()=>startTest(ch.id);
-    card.innerHTML=`<div class="ch-num">${ch.fase}</div><h4>${ch.title}</h4><p>${ch.desc}</p>
-      <div class="ch-badges">
-        <span class="mini-badge">12 PG</span>
-        <span class="mini-badge">6 MCMA</span>
-        <span class="mini-badge">4 KATEGORI</span>
-      </div>
-      <div class="ch-meta"><span>Tema ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${totalQ} Soal</span></div>`;
-    grid.appendChild(card);
+    if(totalQ>0){
+      /* --- Kartu tes (Tema 1) --- */
+      const card=document.createElement('div');
+      card.className='chapter-card';
+      card.onclick=()=>startTest(ch.id);
+      card.innerHTML=`<div class="ch-num">${ch.fase}</div><h4>${ch.title}</h4><p>${ch.desc}</p>
+        <div class="ch-badges">
+          <span class="mini-badge">12 PG</span>
+          <span class="mini-badge">6 MCMA</span>
+          <span class="mini-badge">4 KATEGORI</span>
+        </div>
+        <div class="ch-meta"><span>Tema ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${totalQ} Soal</span></div>`;
+      grid.appendChild(card);
+    }else{
+      /* --- Kotak link (Tema 2–14) --- */
+      const href=CHAPTER_LINKS[ch.id]||'#';
+      const box=document.createElement('a');
+      box.className='chapter-link-box';
+      box.href=href;
+      box.target='_blank';
+      box.rel='noopener';
+      if(href==='#'){box.addEventListener('click',e=>e.preventDefault());}
+      box.innerHTML=`
+        <div class="link-icon"><i class="fas fa-link"></i></div>
+        <div class="link-info">
+          <span class="link-badge"><i class="fas fa-external-link-alt"></i> Tautan · Fase ${ch.fase}</span>
+          <h4>Tema ${ch.id} · ${ch.title}</h4>
+          <p>${ch.desc}</p>
+        </div>
+        <div class="link-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>`;
+      grid.appendChild(box);
+    }
   });
   document.getElementById('statCh').textContent=CHAPTERS.length;
 }
@@ -532,7 +606,15 @@ function renderChapters(){
 /* NAVIGATION */
 function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function goHome(){stopTimer();showSection('home');document.getElementById('progressThumb').style.width='0%';document.getElementById('testTimer').textContent='00:00';document.getElementById('testTimerBox').classList.remove('warn');document.body.style.setProperty('--accent','#B8860B');document.body.style.setProperty('--accent2','#DAA520');}
-function startTest(chapterId){pendingChapterId=chapterId;document.getElementById('inpName').value=siswaName;document.getElementById('inpSchool').value=siswaSchool;document.getElementById('inpClass').value=siswaClass;showSection('identity');}
+function startTest(chapterId){
+  const qs=QUESTIONS[chapterId]||[];
+  if(qs.length===0){return;} /* Tema link tidak membuka form */
+  pendingChapterId=chapterId;
+  document.getElementById('inpName').value=siswaName;
+  document.getElementById('inpSchool').value=siswaSchool;
+  document.getElementById('inpClass').value=siswaClass;
+  showSection('identity');
+}
 
 function startTestWithIdentity(){
   const name=document.getElementById('inpName').value.trim(),school=document.getElementById('inpSchool').value.trim(),cls=document.getElementById('inpClass').value.trim();
@@ -544,9 +626,6 @@ function startTestWithIdentity(){
   currentChapter=chapterId;currentQ=0;userAnswers={};revealed={};
   const ch=CHAPTERS.find(c=>c.id===chapterId);
   displayedQuestions=shuffle([...qs]);
-  document.body.style.setProperty('--accent',ch.accent);
-  document.body.style.setProperty('--accent2',ch.accent2);
-  document.body.style.setProperty('--accent-soft',ch.accent+'22');
   document.getElementById('testTitle').textContent=`Tema ${ch.id} · ${ch.title}`;
   document.getElementById('testSub').textContent=`Fase ${ch.fase} · Soal 1 dari ${displayedQuestions.length}`;
   document.getElementById('totCount').textContent=displayedQuestions.length;
