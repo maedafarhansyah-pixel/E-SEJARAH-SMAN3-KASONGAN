@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#0a0a14"/>
+<title>TKA Literasi Sejarah · Penelitian Sejarah · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --primary:#B8860B;--primary-light:#DAA520;--gold:#FFD700;--emerald:#10B981;
+  --rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;
+  --card-alt:#252540;--text:#faf8f3;--text-light:#dcdcec;--text-muted:#adadc5;
+  --line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);
+  --radius:18px;--radius-sm:12px;--header-h:64px;
+  --accent:#B8860B;--accent2:#DAA520;--accent-soft:rgba(184,134,11,.12);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;
+  background-image:radial-gradient(circle at 15% 12%,rgba(184,134,11,.08),transparent 55%),radial-gradient(circle at 85% 80%,rgba(139,92,246,.07),transparent 55%);}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+
+#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#14142a 0%,#0a0a14 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
+.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
+.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--sky) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,215,0,.55)) drop-shadow(0 0 26px rgba(184,134,11,.4));z-index:-2;}
+.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a0a14;box-shadow:inset 0 0 24px rgba(184,134,11,.16);z-index:-1;}
+.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fff8dc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #a3740c) drop-shadow(2px 2px 0 #8b6914) drop-shadow(3px 3px 0 #7a5d10) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 0 #4a3807) drop-shadow(7px 7px 0 #3a2c05) drop-shadow(8px 8px 0 #2a1f03) drop-shadow(9px 9px 10px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
+.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
+.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35),inset 0 0 12px rgba(56,189,248,.15);}
+.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35),inset 0 0 14px rgba(139,92,246,.15);}
+.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(251,113,133,.35),inset 0 0 15px rgba(251,113,133,.12);}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
+@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
+.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);border-radius:10px;margin-top:24px;overflow:hidden;}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
+.hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary);text-transform:uppercase;gap:8px;align-items:center}
+.hdr-center i{color:var(--gold)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(184,134,11,.08);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(184,134,11,.4)}
+
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
+.chip i{color:var(--primary)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px}
+
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
+.badge.MCMA{background:rgba(139,92,246,.15);color:#a78bfa;border-color:rgba(139,92,246,.35)}
+.badge.KATEGORI{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.35)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
+.badge.df{background:rgba(16,185,129,.1);color:var(--emerald);border-color:rgba(16,185,129,.3)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(184,134,11,.35)}
+.q-stim{background:rgba(184,134,11,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--accent);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)}
+
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--accent);transition:all .2s}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.sel .lbl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.opt.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(139,92,246,.18);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.check:hover{background:rgba(139,92,246,.08);border-color:var(--violet);transform:translateX(3px)}
+.check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(139,92,246,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
+.check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:var(--violet);padding-top:4px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check.sel{background:rgba(139,92,246,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
+.check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
+.check.sel .txt{color:var(--text)}
+.check.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.check.correct .box{background:var(--emerald);border-color:var(--emerald);border-style:solid}
+.check.correct .clbl{color:var(--emerald)}
+.check.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
+.check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
+.check.wrong .clbl{color:var(--rose)}
+
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+.expl{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.25)}
+
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 22px rgba(184,134,11,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(184,134,11,.4)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#fff;box-shadow:0 8px 22px rgba(16,185,129,.3)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,185,129,.4)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#fff;box-shadow:0 8px 22px rgba(56,189,248,.3)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.4)}
+
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(16,185,129,.18);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#fff;box-shadow:0 0 12px rgba(184,134,11,.4);transform:scale(1.1)}
+
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:var(--emerald)}
+.rs.red .v{color:var(--rose)}
+.rs.gold .v{color:var(--primary)}
+.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+
+.identity-wrap{max-width:560px;margin:0 auto;padding:20px 0 10px}
+.identity-hero{text-align:center;margin-bottom:24px}
+.identity-hero .badge-top{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.15),rgba(139,92,246,.1));border:1px solid rgba(184,134,11,.4);padding:7px 18px;border-radius:40px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.identity-hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px}
+.identity-hero h1 .grad{background:linear-gradient(135deg,#DAA520 0%,#FFD700 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.identity-hero p{color:var(--text-light);font-size:.92rem;line-height:1.7;max-width:480px;margin:0 auto}
+.identity-hero .info-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.identity-hero .info-chips .ic{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:6px}
+.identity-hero .info-chips .ic i{color:var(--primary)}
+
+.identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary)}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(184,134,11,.15)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
+
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(184,134,11,.08));border:1.5px solid rgba(251,113,133,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+@keyframes privacyPulse{0%,100%{border-color:rgba(251,113,133,.4);box-shadow:0 0 0 0 rgba(251,113,133,.15)}50%{border-color:rgba(251,113,133,.65);box-shadow:0 0 0 4px rgba(251,113,133,.1)}}
+.privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
+.privacy-notice strong{color:var(--rose);font-weight:800;}
+
+.hidden{display:none!important}
+
+@media(max-width:768px){
+  :root{--header-h:58px}
+  .hdr-center{font-size:.7rem;letter-spacing:.5px}
+  .opt,.check{padding:10px 12px;gap:10px}
+  .opt .lbl{width:25px;height:25px;font-size:.72rem}
+  .check .box{width:23px;height:23px}
+  .check .clbl{width:18px;font-size:.72rem}
+  .opt .txt,.check .txt{font-size:.86rem}
+  .loader-3d-wrap{width:200px;height:200px}
+  .loader-circle{width:120px;height:120px}
+  .ring-1{inset:36px}
+  .ring-2{inset:28px}
+  .ring-3{inset:20px}
+}
+@media(max-width:480px){
+  .btn{padding:9px 16px;font-size:.8rem}
+  .q-nav{flex-direction:column}
+  .q-nav .btn{width:100%;justify-content:center}
+  .loader-3d-wrap{width:180px;height:180px}
+  .loader-circle{width:105px;height:105px}
+  .ring-1{inset:34px}
+  .ring-2{inset:26px}
+  .ring-3{inset:18px}
+  .hdr-center{display:none}
+}
+
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-3d-wrap">
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle">
+      <div class="loader-3d-text">MGE</div>
+    </div>
+  </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
+  <div class="loader-title">TKA LITERASI SEJARAH</div>
+  <div class="loader-sub">Tema: Penelitian Sejarah · Fase E</div>
+  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+  <div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
+  </div>
+  <div class="hdr-center"><i class="fas fa-scroll"></i> Penelitian Sejarah · 22 Soal</div>
+  <div style="display:flex;gap:6px"></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<!-- ============================================ -->
+<!-- SECTION IDENTITAS (LANGSUNG TAMPIL) -->
+<!-- ============================================ -->
+<section id="identity" class="section active">
+  <div class="identity-wrap">
+    <div class="identity-hero">
+      <div class="badge-top"><i class="fas fa-crown"></i> TKA Literasi Sejarah</div>
+      <h1>
+        <span class="grad">Identitas Peserta</span>
+      </h1>
+      <p>Isi data diri untuk memulai tes <strong>22 soal Penelitian Sejarah</strong>: Heuristik, Kritik, Interpretasi, Historiografi, Ilmu Bantu &amp; Kritik Digital.</p>
+      <div class="info-chips">
+        <span class="ic"><i class="fas fa-list-ol"></i> 22 Soal</span>
+        <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
+        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+      </div>
+    </div>
+    <div class="identity-form">
+      <h2>Formulir Peserta</h2>
+      <p>Data akan digunakan untuk laporan hasil</p>
+      <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+      </div>
+      <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+      </div>
+      <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (22 Soal)</button>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <strong>Pemberitahuan:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil. Semua data hanya diproses di browser dan hilang saat halaman ditutup. Untuk laporan nilai, silakan <strong>screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION TES -->
+<!-- ============================================ -->
+<section id="test" class="section">
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Penelitian Sejarah</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 22</div>
+    </div>
+    <div class="info">
+      <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">22</span></span>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 22</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION HASIL -->
+<!-- ============================================ -->
+<section id="result" class="section">
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">22</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+    <div>
+      <strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian. Data akan hilang jika halaman ditutup atau di-refresh.
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   BANK SOAL — PENELITIAN SEJARAH (22 SOAL)
+   12 PG + 6 MCMA + 4 KATEGORI
+   ============================================================ */
+const Q1=[
+/* ---------- PG (12 SOAL) ---------- */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian penelitian sejarah',s:'Penelitian sejarah adalah proses ilmiah untuk menemukan dan menafsirkan fakta-fakta masa lalu. Berbeda dengan cerita atau legenda, penelitian sejarah menggunakan metode terstruktur dan bukti yang dapat dipertanggungjawabkan. Kuntowijoyo menyebut sejarah sebagai ilmu yang rekonstruktif — ia tidak mengulang masa lalu, tetapi membangun kembali masa lalu berdasarkan sisa-sisa yang ditinggalkan.',q:'Berdasarkan stimulus tersebut, pernyataan yang paling tepat tentang penelitian sejarah adalah ....',o:['Penelitian sejarah hanya mengandalkan cerita rakyat','Penelitian sejarah menggunakan metode terstruktur dan bukti yang dapat dipertanggungjawabkan','Penelitian sejarah bertujuan mengulang masa lalu','Penelitian sejarah tidak memerlukan sumber','Penelitian sejarah sama persis dengan legenda'],a:1,e:'Penelitian sejarah = proses ilmiah dengan metode terstruktur & bukti yang dapat dipertanggungjawabkan. Berbeda dari legenda yang diterima apa adanya.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Sejarah vs legenda',s:'Legenda dan mitos tidak selalu salah. Banyak legenda menyimpan jejak sejarah yang dapat diuji — misalnya cerita tentang banjir besar atau perpindahan kampung. Tugas sejarawan adalah mengujinya, bukan langsung menolak atau menerima. Dalam penelitian sejarah, sikap yang diperlukan adalah skeptis, kritis, dan terbuka pada revisi.',q:'Berdasarkan stimulus tersebut, sikap yang paling tepat seorang sejarawan terhadap legenda adalah ....',o:['Langsung menolak karena tidak ilmiah','Langsung menerima karena sudah turun-temurun','Mengujinya dengan bukti dan sumber yang dapat diverifikasi','Mengabaikannya sepenuhnya','Menganggapnya sama persis dengan sejarah'],a:2,e:'Sejarawan menguji legenda dengan bukti — tidak langsung menolak/menerima. Sikap: skeptis, kritis, terbuka pada revisi.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tahap heuristik',s:'Heuristik (dari bahasa Yunani heuriskein = menemukan) adalah tahap pencarian dan pengumpulan sumber yang relevan dengan topik penelitian. Ini adalah langkah pertama dan paling krusial dalam penelitian sejarah. Tanpa sumber, tidak ada sejarah yang dapat direkonstruksi.',q:'Berdasarkan stimulus tersebut, tahap pertama dalam penelitian sejarah yang bertujuan mencari dan mengumpulkan sumber disebut ....',o:['Kritik','Heuristik','Interpretasi','Historiografi','Verifikasi'],a:1,e:'Heuristik = tahap pencarian & pengumpulan sumber (dari heuriskein = menemukan). Ini langkah pertama metode sejarah.'},
+{t:'PG',l:'Knowing',d:'Mudah',i:'Sumber primer vs sekunder',s:'Sumber sejarah diklasifikasikan berdasarkan kedekatannya dengan peristiwa. Sumber primer dibuat pada saat peristiwa terjadi atau oleh pelaku/saksi langsung, sedangkan sumber sekunder dibuat setelah peristiwa oleh orang yang tidak terlibat langsung.',q:'Berdasarkan stimulus tersebut, pernyataan yang paling tepat adalah ....',o:['Foto pernikahan orang tua adalah sumber sekunder','Buku teks sejarah adalah sumber primer','Naskah Proklamasi adalah sumber primer','Biografi tokoh adalah sumber primer','Artikel Wikipedia adalah sumber primer'],a:2,e:'Naskah Proklamasi = sumber primer (dibuat saat peristiwa). Buku teks, biografi, Wikipedia = sekunder. Foto pernikahan orang tua = primer (dibuat saat peristiwa).'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Langkah kerja heuristik',s:'Langkah kerja heuristik meliputi: (1) menentukan topik & batasan, (2) menyusun daftar pertanyaan, (3) melacak sumber, (4) mencatat & mendokumentasikan, dan (5) menyusun katalog sumber. Topik yang baik adalah topik yang sempit, spesifik, dan terjangkau.',q:'Berdasarkan stimulus tersebut, langkah pertama yang harus dilakukan dalam heuristik adalah ....',o:['Langsung mencari sumber di arsip','Menentukan topik & batasan yang sempit, spesifik, dan terjangkau','Membuat katalog sumber','Menyusun historiografi','Melakukan kritik intern'],a:1,e:'Langkah 1 heuristik: menentukan topik & batasan (sempit, spesifik, terjangkau). Baru setelah itu melacak sumber.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Transkrip wawancara',s:'Setelah wawancara, transkrip adalah langkah wajib — mengubah rekaman menjadi teks. Dengarkan ulang hasil rekaman dengan saksama, tulis ulang isi wawancara dalam bentuk teks dengan bahasa asli narasumber, beri tanda waktu untuk bagian penting, dan cantumkan identitas narasumber.',q:'Berdasarkan stimulus tersebut, kegiatan mengubah rekaman wawancara menjadi teks tertulis disebut ....',o:['Heuristik','Katalogisasi','Transkrip','Interpretasi','Kritik'],a:2,e:'Transkrip = mengubah rekaman wawancara menjadi teks tertulis. Ini langkah wajib setelah wawancara.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Kritik ekstern',s:'Kritik ekstern adalah pengujian keaslian fisik sumber. Pertanyaan kuncinya: "Apakah sumber ini asli?" Aspek yang diperiksa meliputi bahan (kertas/tinta sesuai zaman?), usia dokumen (kapan dibuat?), penulis (benar-benar orang yang disebutkan?), dan tanda tangan/segul.',q:'Berdasarkan stimulus tersebut, memeriksa apakah tanda tangan pada ijazah asli atau palsu termasuk ....',o:['Kritik intern','Kritik ekstern','Heuristik','Historiografi','Interpretasi'],a:1,e:'Kritik ekstern = pengujian keaslian fisik (tanda tangan, bahan, usia). Kritik intern = pengujian kredibilitas isi.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Kritik intern',s:'Kritik intern adalah pengujian kredibilitas isi sumber. Pertanyaan kuncinya: "Apakah isi sumber ini dapat dipercaya?" Aspek yang diperiksa: kesesuaian dengan fakta lain, bias penulis, konsistensi, dan kompetensi penulis.',q:'Berdasarkan stimulus tersebut, ketika dua teman bercerita berbeda tentang suatu kejadian dan kita membandingkan untuk menentukan mana yang lebih benar, kita melakukan ....',o:['Heuristik','Kritik intern','Historiografi','Kritik ekstern','Interpretasi'],a:1,e:'Kritik intern = pengujian kredibilitas isi sumber. Membandingkan dua versi cerita = kritik intern.'},
+{t:'PG',l:'Applying',d:'Sedang',i:'Paleografi',s:'Paleografi adalah ilmu tentang tulisan kuno. Ilmu ini membantu membaca dan memahami naskah atau prasasti yang menggunakan aksara kuno (Pallawa, Kawi, Melayu Kuno, Jawa Kuno). Paleografi dipakai pada tahap heuristik dan kritik internal.',q:'Berdasarkan stimulus tersebut, ilmu yang membantu membaca naskah atau prasasti beraksara kuno disebut ....',o:['Epigrafi','Numismatik','Paleografi','Genealogi','Ikonografi'],a:2,e:'Paleografi = ilmu tentang tulisan kuno. Epigrafi = prasasti. Numismatik = mata uang kuno. Genealogi = silsilah.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Numismatik',s:'Numismatik adalah ilmu tentang mata uang kuno. Ilmu ini membantu menentukan usia, sistem ekonomi, jalur perdagangan, dan kekuasaan politik suatu peradaban berdasarkan temuan koin. Contoh: koin emas dirham dari Samudera Pasai dan koin Go Gobog dari Majapahit.',q:'Berdasarkan stimulus tersebut, implikasi paling penting dari temuan koin emas dirham di Samudera Pasai adalah ....',o:['Samudera Pasai tidak memiliki sistem ekonomi','Numismatik dapat membantu menentukan usia & sistem ekonomi peradaban','Koin hanya digunakan sebagai perhiasan','Koin Majapahit lebih tua dari Samudera Pasai','Numismatik tidak berguna untuk sejarah'],a:1,e:'Numismatik membantu menentukan usia, sistem ekonomi, jalur perdagangan. Koin dirham Samudera Pasai = bukti sistem ekonomi & kekuasaan politik.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Jenis historiografi',s:'Historiografi modern menggunakan pendekatan kritis-analitis dan multidisipliner (sosiologi, antropologi, ekonomi). Historiografi ini tidak hanya menekankan aspek politik, tetapi juga sosial, budaya, dan ekonomi. Memberi ruang pada sejarah lokal, sejarah perempuan, dan kelompok marginal.',q:'Berdasarkan stimulus tersebut, historiografi yang memberi ruang pada sejarah lokal dan kelompok marginal adalah historiografi ....',o:['Tradisional','Kolonial','Nasional','Modern','Kuno'],a:3,e:'Historiografi modern = kritis-analitis, multidisipliner, memberi ruang sejarah lokal & marginal. Tradisional = istana-sentris. Kolonial = Neerlando-sentris. Nasional = Indonesia-sentris.'},
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kritik sumber digital',s:'Di era digital, informasi sejarah dapat dengan mudah disebarkan, tetapi juga mudah dipalsukan. Untuk memverifikasi foto yang diklaim sebagai "bukti sejarah tahun 1890", sejarawan perlu memeriksa metadata, mencari sumber asli dengan reverse image search, dan memeriksa konsistensi visual.',q:'Berdasarkan stimulus tersebut, langkah paling tepat untuk memverifikasi foto yang diklaim sebagai bukti sejarah tahun 1890 adalah ....',o:['Langsung mempercayainya karena ada di internet','Membagikannya ke media sosial','Memeriksa metadata, mencari sumber asli, dan memeriksa konsistensi visual','Mengabaikannya karena tidak mungkin benar','Menanyakan pada teman'],a:2,e:'Verifikasi foto: cek metadata, reverse image search, konsistensi visual. Ini bagian dari kritik sumber digital.'},
+
+/* ---------- MCMA (6 SOAL) ---------- */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Klasifikasi sumber',s:'Seorang siswa menemukan beberapa sumber untuk penelitian tentang sejarah sekolahnya: (1) foto upacara pembukaan sekolah tahun 1990; (2) buku sejarah pendidikan yang ditulis tahun 2010; (3) wawancara dengan kepala sekolah pertama; (4) artikel majalah tentang sekolah; dan (5) bangunan sekolah asli.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai jenis sumber? (Pilih lebih dari satu)',o:['Foto upacara pembukaan tahun 1990 adalah sumber primer.','Buku sejarah pendidikan tahun 2010 adalah sumber sekunder.','Wawancara dengan kepala sekolah pertama adalah sumber primer.','Bangunan sekolah asli adalah sumber primer.','Semua sumber tersebut adalah sumber sekunder.'],a:[0,1,2,3],e:'A, B, C, D benar. Foto (1990) = primer; buku (2010) = sekunder; wawancara = primer; bangunan = primer (benda). E salah — tidak semua sekunder.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Ciri sumber primer',s:'Sumber primer memiliki ciri-ciri khusus yang membedakannya dari sumber sekunder. Sumber primer dibuat pada saat peristiwa terjadi atau oleh pelaku/saksi langsung. Sumber ini bersifat autentik, asli, dan tidak melalui interpretasi orang lain.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai sumber primer? (Pilih lebih dari satu)',o:['Dibuat pada saat peristiwa terjadi.','Dibuat oleh pelaku atau saksi langsung.','Bersifat autentik dan asli.','Selalu berupa dokumen tertulis.','Tidak melalui interpretasi orang lain.'],a:[0,1,2,4],e:'A, B, C, E benar. D salah — sumber primer bisa lisan, benda, visual (foto, bangunan, rekaman).'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Teknik wawancara',s:'Wawancara adalah teknik utama dalam pengumpulan sumber lisan. Untuk hasil maksimal dan etis, wawancara harus dilakukan dengan: menyusun pertanyaan (terbuka & tertutup), meminta izin merekam, sopan dan hormat, tidak memotong pembicaraan, dan membuat transkrip setelah wawancara.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai teknik wawancara sejarah? (Pilih lebih dari satu)',o:['Menyusun pertanyaan terbuka dan tertutup sebelum wawancara.','Merekam wawancara tanpa izin narasumber.','Bersikap sopan dan hormat kepada narasumber.','Tidak memotong pembicaraan narasumber.','Membuat transkrip setelah wawancara.'],a:[0,2,3,4],e:'A, C, D, E benar. B salah — harus minta izin dulu sebelum merekam.'},
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Ilmu bantu sejarah',s:'Ilmu bantu sejarah adalah disiplin-disiplin yang membantu sejarawan dalam mengumpulkan, memverifikasi, dan menafsirkan sumber. Beberapa di antaranya: paleografi (tulisan kuno), epigrafi (prasasti), numismatik (mata uang kuno), ikonografi (gambar/simbol), kronologi (urutan waktu), sigillografi (segel), dan genealogi (silsilah).',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai ilmu bantu sejarah? (Pilih lebih dari satu)',o:['Paleografi membantu membaca tulisan kuno.','Epigrafi mempelajari prasasti.','Numismatik mempelajari mata uang kuno.','Genealogi mempelajari silsilah keluarga.','Ilmu bantu sejarah adalah tahap tersendiri dalam metode sejarah.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah — ilmu bantu adalah ALAT yang dipakai pada tahap heuristik, kritik, dan interpretasi. BUKAN tahap tersendiri.'},
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Kritik sumber digital',s:'Di era digital, kritik sumber mencakup verifikasi informasi daring. Hoaks sejarah adalah informasi sejarah palsu yang disebarkan sengaja. AI generatif dapat menghasilkan konten yang terlihat nyata tetapi palsu. Manipulasi foto/video dapat dideteksi dengan memeriksa metadata, reverse image search, dan konsistensi visual.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai kritik sumber digital? (Pilih lebih dari satu)',o:['Hoaks sejarah harus diverifikasi dengan sumber kredibel.','AI generatif selalu akurat dalam menghasilkan informasi sejarah.','Metadata file dapat membantu verifikasi keaslian foto.','Reverse image search dapat melacak asal gambar.','Informasi dari media sosial selalu kredibel.'],a:[0,2,3],e:'A, C, D benar. B salah — AI bisa berhalusinasi. E salah — medsos belum tentu kredibel, harus diverifikasi.'},
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Jenis historiografi',s:'Historiografi memiliki beberapa jenis: (1) Tradisional — istana-sentris, bercampur mitos; (2) Kolonial — Neerlando-sentris, sudut pandang penjajah; (3) Nasional — Indonesia-sentris, menekankan perjuangan; (4) Modern — kritis-analitis, multidisipliner.',q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT mengenai jenis historiografi? (Pilih lebih dari satu)',o:['Historiografi tradisional bercorak istana-sentris.','Historiografi kolonial ditulis dari sudut pandang penjajah.','Historiografi nasional menekankan perjuangan bangsa.','Historiografi modern bersifat kritis-analitis.','Semua historiografi memiliki sudut pandang yang sama.'],a:[0,1,2,3],e:'A, B, C, D benar. E salah — sudut pandang masing-masing jenis berbeda.'},
+
+/* ---------- KATEGORI (4 SOAL) ---------- */
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Empat tahapan metode sejarah',s:'Metode penelitian sejarah terdiri dari empat tahapan: (1) Heuristik — mencari dan mengumpulkan sumber; (2) Kritik — memverifikasi keaslian dan kredibilitas sumber; (3) Interpretasi — menafsirkan fakta dan menemukan makna; (4) Historiografi — menulis narasi sejarah yang sistematis.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Heuristik adalah tahap mencari dan mengumpulkan sumber.',a:'Sesuai'},{x:'Kritik adalah tahap menulis narasi sejarah.',a:'Tidak Sesuai'},{x:'Interpretasi adalah tahap menafsirkan fakta dan menemukan makna.',a:'Sesuai'},{x:'Historiografi adalah tahap akhir penulisan sejarah.',a:'Sesuai'}],e:'1 Sesuai, 2 Tidak Sesuai (kritik = verifikasi; menulis = historiografi), 3 Sesuai, 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Ilmu bantu & fungsinya',s:'Ilmu bantu sejarah memiliki fungsi berbeda-beda: paleografi untuk tulisan kuno, epigrafi untuk prasasti, numismatik untuk mata uang kuno, ikonografi untuk gambar/simbol, genealogi untuk silsilah, dan sigillografi untuk segel/stempel.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Paleografi membantu membaca naskah beraksara kuno.',a:'Sesuai'},{x:'Epigrafi mempelajari prasasti.',a:'Sesuai'},{x:'Numismatik mempelajari silsilah keluarga.',a:'Tidak Sesuai'},{x:'Sigillografi membantu verifikasi keaslian dokumen resmi.',a:'Sesuai'}],e:'1 Sesuai, 2 Sesuai, 3 Tidak Sesuai (numismatik = mata uang; silsilah = genealogi), 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Kritik sumber digital',s:'Kritik sumber digital mencakup verifikasi terhadap hoaks sejarah, konten AI, dan manipulasi foto/video. Langkah verifikasi meliputi: memeriksa sumber asli, membandingkan dengan sumber kredibel, memeriksa metadata, dan melakukan reverse image search.',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Hoaks sejarah harus diverifikasi dengan sumber kredibel.',a:'Sesuai'},{x:'Konten AI selalu akurat dan dapat dipercaya.',a:'Tidak Sesuai'},{x:'Metadata file membantu verifikasi keaslian foto.',a:'Sesuai'},{x:'Reverse image search dapat melacak asal gambar.',a:'Sesuai'}],e:'1 Sesuai, 2 Tidak Sesuai (AI bisa berhalusinasi), 3 Sesuai, 4 Sesuai.'},
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Jenis historiografi',s:'Historiografi tradisional bercorak istana-sentris (Babad Tanah Jawi). Historiografi kolonial ditulis dari sudut pandang penjajah (Neerlando-sentris). Historiografi nasional menekankan perjuangan bangsa (Sejarah Nasional Indonesia). Historiografi modern bersifat kritis-analitis dan multidisipliner (karya Kuntowijoyo).',q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',st:[{x:'Babad Tanah Jawi adalah contoh historiografi tradisional.',a:'Sesuai'},{x:'Historiografi kolonial ditulis dari sudut pandang pribumi.',a:'Tidak Sesuai'},{x:'Sejarah Nasional Indonesia adalah contoh historiografi nasional.',a:'Sesuai'},{x:'Historiografi modern menggunakan pendekatan multidisipliner.',a:'Sesuai'}],e:'1 Sesuai, 2 Tidak Sesuai (kolonial = sudut pandang penjajah), 3 Sesuai, 4 Sesuai.'}
+];
+
+/* ============================================================
+   STATE — Langsung ke soal, tanpa pilih tema
+   ============================================================ */
+let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let siswaName='',siswaSchool='',siswaClass='';
+let displayedQuestions=[];
+
+/* LOADER */
+(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>document.getElementById('loader').style.display='none',650);},350);}},180);})();
+
+/* NAVIGASI */
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goIdentity(){
+  stopTimer();
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  // Reset jawaban
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
+
+/* START TEST — Langsung dari Form Identitas */
+function startTestWithIdentity(){
+  const name=document.getElementById('inpName').value.trim();
+  const school=document.getElementById('inpSchool').value.trim();
+  const cls=document.getElementById('inpClass').value.trim();
+  if(!name||!school||!cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName=name;siswaSchool=school;siswaClass=cls;
+  document.getElementById('hdrName').textContent=siswaName;
+  document.getElementById('hdrSchool').textContent=siswaSchool;
+  document.getElementById('hdrClass').textContent=siswaClass;
+
+  // Reset & acak soal
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q1]);
+
+  document.getElementById('testTitle').textContent='Penelitian Sejarah';
+  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+
+  showSection('test');
+  renderQuestion();
+  renderQMap();
+  startTimer();
+  updateProgress();
+}
+
+function retryTest(){
+  // Reset lalu kembali ke soal (identitas sudah terisi)
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q1]);
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();
+  renderQMap();
+  startTimer();
+  updateProgress();
+}
+
+/* TIMER */
+function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+
+/* UTIL */
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+/* RENDER SOAL */
+function renderQuestion(){
+  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
+  const stimEl=document.getElementById('qStim');
+  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
+  document.getElementById('qText').textContent=q.q;
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
+  const area=document.getElementById('qArea');area.innerHTML='';
+
+  if(q.t==='PG'){
+    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
+      if(ua===i)div.classList.add('sel');
+      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+    area.appendChild(optsEl);
+  }else if(q.t==='MCMA'){
+    const checksEl=document.createElement('div');checksEl.className='checks';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');div.className='check';
+      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
+      const checked=uaArr.includes(i);
+      if(checked)div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect=q.a.includes(i);
+        if(isCorrect)div.classList.add('correct');
+        else if(checked)div.classList.add('wrong');
+      }
+      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
+      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      checksEl.appendChild(div);
+    });
+    area.appendChild(checksEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  }
+
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+
+function selectOption(idx,type){
+  if(revealed[currentQ])return;
+  if(type==='PG'){userAnswers[currentQ]=idx;}
+  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  renderQuestion();renderQMap();updateProgress();
+}
+
+function setKategori(idx,cat){
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+}
+
+function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
+function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+
+function renderQMap(){
+  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
+    const ua=userAnswers[i];let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
+}
+
+function updateProgress(){
+  const total=displayedQuestions.length;let answered=0;
+  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
+    else answered++;}
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+
+function isCorrect(q,ua){
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
+  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+  return false;
+}
+
+function finishTest(){
+  stopTimer();
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
+  document.getElementById('resultIdentity').innerHTML=`
+    <span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
+  let title='',sub='';
+  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Penelitian Sejarah sangat luar biasa.`;}
+  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
+  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
+  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Penelitian Sejarah dan coba lagi.`;}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultSub').textContent=sub;
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  showSection('result');
+}
+
+/* KEYBOARD SHORTCUT */
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
+window.addEventListener('scroll',()=>{
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';
+  else h.style.boxShadow='none';
+});
+</script>
+</body>
+</html>
