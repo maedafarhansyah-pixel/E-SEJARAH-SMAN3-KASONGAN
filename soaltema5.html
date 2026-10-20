@@ -30,8 +30,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
 .chip i{color:var(--primary)}
-.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px}
-.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px;transition:all .3s}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent);position:relative;transition:opacity .3s}
+.qcard.locked{opacity:.55;pointer-events:none}
+.qcard.locked::after{content:'🔒 Waktu Habis — Soal Terkunci';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,.94);color:#fff;padding:12px 26px;border-radius:30px;font-weight:800;font-size:.9rem;z-index:10;pointer-events:none;box-shadow:0 8px 24px rgba(239,68,68,.55);white-space:nowrap;text-align:center}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
 .badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
@@ -104,13 +106,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .result-hero{text-align:center;padding:30px 0 20px}
 .result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
 .result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
-.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1;transition:color .6s}
 .result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:720px}
 .rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
 .rs .v{font-size:1.4rem;font-weight:900;line-height:1}
-.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
-.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--primary)}.rs.blue .v{color:var(--sky)}
+.rs .l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);margin-top:4px;line-height:1.3}
+.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--gold)}.rs.blue .v{color:var(--sky)}
 .recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
 .recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
 .recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
@@ -139,6 +141,9 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
+.toast{position:fixed;top:calc(var(--header-h) + 20px);left:50%;transform:translateX(-50%) translateY(-80px);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:13px 26px;border-radius:40px;font-weight:700;font-size:.88rem;box-shadow:0 12px 36px rgba(0,0,0,.45);z-index:2000;transition:transform .45s cubic-bezier(.2,.9,.3,1.2),opacity .35s;opacity:0;pointer-events:none;max-width:90vw;text-align:center;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast.warning{background:linear-gradient(135deg,#F59E0B,#EF4444);}
 @media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
 @media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
@@ -157,6 +162,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 </header>
 
 <div class="progress"><div class="thumb" id="progressThumb"></div></div>
+<div id="toast" class="toast"></div>
 
 <main class="main">
 
@@ -169,7 +175,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <div class="info-chips">
         <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
         <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
-        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+        <span class="ic"><i class="fas fa-clock"></i> 90 Menit</span>
       </div>
     </div>
     <div class="identity-form">
@@ -210,7 +216,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
-      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">90:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
     </div>
   </div>
@@ -239,11 +245,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
     <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
     <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+    <div id="resultLevel" style="margin-top:10px;font-weight:800;font-size:.9rem"></div>
   </div>
   <div class="result-stats">
     <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
     <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
-    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs gold"><div class="v" id="rsUnanswered">0</div><div class="l">Belum Terjawab</div></div>
+    <div class="rs blue"><div class="v" id="rsTotal">30</div><div class="l">Total Soal</div></div>
     <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
   </div>
   <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
@@ -252,9 +260,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <div class="privacy-icon"><i class="fas fa-camera"></i></div>
     <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
   </div>
-  <div style="text-align:center;margin-top:20px">
+  <div style="text-align:center;margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <a href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html" class="btn btn-info"><i class="fas fa-home"></i> Beranda</a>
     <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
-    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+    <button class="btn btn-ghost" onclick="retryTest()"><i class="fas fa-redo"></i> Ulangi Tes</button>
   </div>
 </section>
 
@@ -483,8 +492,6 @@ o:['Isinya hanya membahas tasawuf tanpa menyentuh aspek sejarah sama sekali',
 a:1,
 e:'Bustan as-Salatin = ensiklopedia Islam Melayu pertama. Isinya lintas ilmu: sejarah, fikih, tasawuf, etika. Ditulis atas permintaan sultan — menunjukkan istana Aceh mendukung pengembangan ilmu. Membuktikan kematangan intelektual Islam Nusantara abad ke-17.'},
 
-/* ============ MCMA (7 SOAL) — POLA BERAGAM ============ */
-
 /* Q19 — Pola: [0,2,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Teori & bukti pendukung',
 s:'Empat teori masuknya Islam memiliki bukti pendukung berbeda. Teori Gujarat (Snouck Hurgronje) mendasarkan diri pada batu nisan Malik as-Saleh (1297 M) yang bercorak Gujarat — tetapi dikritik karena perbedaan madzhab (Gujarat Hanafi, Nusantara Syafi\'i). Teori Mekkah (Buya Hamka) mendasarkan diri pada Berita Cina 674 M tentang Barus & kesamaan madzhab Syafi\'i — tetapi belum ada bukti arkeologis abad ke-7. Teori Persia (Hoesein Djajadiningrat) mendasarkan diri pada tradisi Tabot & peringatan 10 Muharram — tetapi mayoritas Muslim Nusantara adalah Sunni. Teori Tiongkok (Sumanto Al Qurtuby) mendasarkan diri pada peran Cheng Ho & arsitektur masjid Tionghoa — tetapi Cheng Ho lebih berperan sebagai katalis. Keempat teori ini sebenarnya saling melengkapi.',
@@ -569,8 +576,6 @@ o:['Sultanah Safiatuddin memerintah Aceh selama 35 tahun.',
 a:[0,1,3,4],
 e:'A, B, D, E benar. C salah — Sultanah Aceh justru MEMIMPIN masa kejayaan intelektual & ekonomi. Keberadaan Sultanah adalah bukti historis bahwa kepemimpinan perempuan pernah diakui dalam tradisi Islam Nusantara.'},
 
-/* ============ KATEGORI (5 SOAL) — POLA BERAGAM ============ */
-
 /* Q26 — Pola: [S, TS, S, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi Islamisasi',
 s:'Islamisasi Nusantara berlangsung bertahap selama berabad-abad. Abad ke-7 M: menurut Berita Cina Dinasti Tang (674 M), sudah ada pemukiman Arab Muslim di Barus — meskipun bukti arkeologisnya belum ditemukan. Abad ke-13 M: berdirinya Samudera Pasai — kerajaan Islam pertama di Nusantara, didirikan oleh Sultan Malik as-Saleh. Abad ke-15 M: era Walisongo di Jawa, berdirinya Demak (1475 M), dan berkembangnya pesantren. Abad ke-16 M: kebangkitan Aceh Darussalam, Banten, dan Mataram Islam — serta masuknya Islam ke Sulawesi (Gowa-Tallo 1605 M) dan Maluku. Abad ke-17 M: puncak kejayaan Aceh di bawah Iskandar Muda, masa kejayaan intelektual, dan munculnya kerajaan-kerajaan Islam di Kalimantan.',
@@ -629,215 +634,541 @@ e:'1 Sesuai — transisi damai. 2 Tidak Sesuai — Islam BERAKULTURASI, tidak me
 ];
 
 /* ============================================================
-   STATE
+   STATE & TIMER
    ============================================================ */
-let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
-let siswaName='',siswaSchool='',siswaClass='';
-let displayedQuestions=[];
+const TOTAL_TIME = 90 * 60; // 90 menit = 5400 detik
+let currentQ = 0;
+let userAnswers = {};
+let revealed = {};
+let displayedQuestions = [];
+let siswaName = '', siswaSchool = '', siswaClass = '';
+let timeRemaining = TOTAL_TIME;
+let timerInterval = null;
+let testLocked = false;
+let resultShown = false;
+let notified = {15:false, 10:false, 5:false};
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function showToast(msg, warning){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.className = 'toast show' + (warning ? ' warning' : '');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.classList.remove('show'); }, 4500);
+}
+
+function resetTimerBox(){
+  const box = document.getElementById('testTimerBox');
+  if(!box) return;
+  box.style.color = 'var(--primary)';
+  box.style.borderColor = 'var(--line)';
+  box.style.background = 'linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06))';
+}
+
 function goIdentity(){
   stopTimer();
+  testLocked = false;
+  resultShown = false;
+  timeRemaining = TOTAL_TIME;
   showSection('identity');
-  document.getElementById('progressThumb').style.width='0%';
-  document.getElementById('testTimer').textContent='00:00';
-  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+  document.getElementById('progressThumb').style.width = '0%';
+  document.getElementById('testTimer').textContent = '90:00';
+  resetTimerBox();
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.remove('locked');
+  currentQ = 0; userAnswers = {}; revealed = {}; displayedQuestions = [];
 }
+
 function startTestWithIdentity(){
-  const name=document.getElementById('inpName').value.trim();
-  const school=document.getElementById('inpSchool').value.trim();
-  const cls=document.getElementById('inpClass').value.trim();
-  if(!name||!school||!cls){
+  const name = document.getElementById('inpName').value.trim();
+  const school = document.getElementById('inpSchool').value.trim();
+  const cls = document.getElementById('inpClass').value.trim();
+  if(!name || !school || !cls){
     alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
     return;
   }
-  siswaName=name;siswaSchool=school;siswaClass=cls;
-  document.getElementById('hdrName').textContent=siswaName;
-  document.getElementById('hdrSchool').textContent=siswaSchool;
-  document.getElementById('hdrClass').textContent=siswaClass;
-  currentQ=0;userAnswers={};revealed={};
-  displayedQuestions=shuffle([...Q5]);
-  document.getElementById('testTitle').textContent='Masa Kerajaan Islam';
-  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
-  document.getElementById('totCount').textContent=displayedQuestions.length;
+  siswaName = name; siswaSchool = school; siswaClass = cls;
+  document.getElementById('hdrName').textContent = siswaName;
+  document.getElementById('hdrSchool').textContent = siswaSchool;
+  document.getElementById('hdrClass').textContent = siswaClass;
+
+  currentQ = 0; userAnswers = {}; revealed = {};
+  testLocked = false; resultShown = false;
+  displayedQuestions = shuffle([...Q5]);
+
+  document.getElementById('testTitle').textContent = 'Masa Kerajaan Islam';
+  document.getElementById('testSub').textContent = `Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent = displayedQuestions.length;
+
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.remove('locked');
+
   showSection('test');
-  renderQuestion();renderQMap();startTimer();updateProgress();
+  renderQuestion();
+  renderQMap();
+  startTimer();
+  updateProgress();
 }
+
 function retryTest(){
-  currentQ=0;userAnswers={};revealed={};
-  displayedQuestions=shuffle([...Q5]);
-  document.getElementById('totCount').textContent=displayedQuestions.length;
+  currentQ = 0; userAnswers = {}; revealed = {};
+  testLocked = false; resultShown = false;
+  displayedQuestions = shuffle([...Q5]);
+  document.getElementById('totCount').textContent = displayedQuestions.length;
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.remove('locked');
   showSection('test');
-  renderQuestion();renderQMap();startTimer();updateProgress();
+  renderQuestion();
+  renderQMap();
+  startTimer();
+  updateProgress();
 }
-function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
-function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
-function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
-function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
-function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+function startTimer(){
+  stopTimer();
+  timeRemaining = TOTAL_TIME;
+  notified = {15:false, 10:false, 5:false};
+  testLocked = false;
+  updateTimerDisplay();
+  timerInterval = setInterval(tickTimer, 1000);
+}
+
+function stopTimer(){
+  if(timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function updateTimerDisplay(){
+  const el = document.getElementById('testTimer');
+  const box = document.getElementById('testTimerBox');
+  if(!el || !box) return;
+  const m = String(Math.floor(timeRemaining / 60)).padStart(2,'0');
+  const s = String(timeRemaining % 60).padStart(2,'0');
+  el.textContent = `${m}:${s}`;
+  if(timeRemaining <= 300){
+    box.style.color = '#EF4444';
+    box.style.borderColor = 'rgba(239,68,68,.55)';
+    box.style.background = 'rgba(239,68,68,.12)';
+  } else if(timeRemaining <= 600){
+    box.style.color = '#FBBF24';
+    box.style.borderColor = 'rgba(251,191,36,.55)';
+    box.style.background = 'rgba(251,191,36,.1)';
+  } else {
+    resetTimerBox();
+  }
+}
+
+function tickTimer(){
+  timeRemaining--;
+  updateTimerDisplay();
+
+  if(timeRemaining === 15*60 && !notified[15]){
+    notified[15] = true;
+    showToast('⏰ Waktu tersisa 15 menit!', false);
+  }
+  if(timeRemaining === 10*60 && !notified[10]){
+    notified[10] = true;
+    showToast('⏰ Waktu tersisa 10 menit!', true);
+  }
+  if(timeRemaining === 5*60 && !notified[5]){
+    notified[5] = true;
+    showToast('⏰ Waktu tersisa 5 menit! Segera selesaikan jawabanmu.', true);
+  }
+
+  if(timeRemaining <= 0){
+    stopTimer();
+    testLocked = true;
+    showToast('⏰ Waktu habis! Jawaban telah dikunci.', true);
+    const qc = document.getElementById('qcard');
+    if(qc) qc.classList.add('locked');
+    setTimeout(() => {
+      if(!resultShown) finishTest(true);
+    }, 1600);
+  }
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function typeLabel(t){
+  if(t==='PG') return 'Pilihan Ganda';
+  if(t==='MCMA') return 'PG Kompleks (MCMA)';
+  if(t==='KATEGORI') return 'PG Kompleks Kategori';
+  return t;
+}
 
 function renderQuestion(){
-  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
-  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
-  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
-  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
-  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
-  const stimEl=document.getElementById('qStim');
-  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
-  document.getElementById('qText').textContent=q.q;
-  const hintEl=document.getElementById('qHint');
-  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
-  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
-  else{hintEl.style.display='none';}
-  const area=document.getElementById('qArea');area.innerHTML='';
-  if(q.t==='PG'){
-    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
-    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
-      if(ua===i)div.classList.add('sel');
-      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
-      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
-    area.appendChild(optsEl);
-  }else if(q.t==='MCMA'){
-    const checksEl=document.createElement('div');checksEl.className='checks';
-    const labels=['A','B','C','D','E'];
+  const qs = displayedQuestions;
+  if(!qs || !qs[currentQ]) return;
+  const q = qs[currentQ];
+  const total = qs.length;
+
+  document.getElementById('qNum').innerHTML = `Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent = `${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent = `Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML =
+    `<span class="badge ${q.t}">${typeLabel(q.t)}</span>
+     <span class="badge lv">${q.l}</span>
+     <span class="badge df">${q.d}</span>`;
+
+  const stimEl = document.getElementById('qStim');
+  if(q.s){
+    stimEl.style.display = 'block';
+    document.getElementById('qStimTxt').textContent = q.s;
+  } else {
+    stimEl.style.display = 'none';
+  }
+
+  document.getElementById('qText').textContent = q.q;
+
+  const hintEl = document.getElementById('qHint');
+  if(q.t === 'MCMA'){
+    hintEl.style.display = 'block';
+    hintEl.textContent = 'Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';
+  } else if(q.t === 'KATEGORI'){
+    hintEl.style.display = 'block';
+    hintEl.textContent = 'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';
+  } else {
+    hintEl.style.display = 'none';
+  }
+
+  const area = document.getElementById('qArea');
+  area.innerHTML = '';
+
+  if(q.t === 'PG'){
+    const optsEl = document.createElement('div');
+    optsEl.className = 'opts';
+    const labels = ['A','B','C','D','E'];
     q.o.forEach((opt,i)=>{
-      const div=document.createElement('div');div.className='check';
-      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
-      const checked=uaArr.includes(i);
-      if(checked)div.classList.add('sel');
+      const div = document.createElement('div');
+      div.className = 'opt';
+      const ua = userAnswers[currentQ];
+      if(ua === i) div.classList.add('sel');
       if(revealed[currentQ]){
-        const isCorrect=q.a.includes(i);
-        if(isCorrect)div.classList.add('correct');
-        else if(checked)div.classList.add('wrong');
+        if(i === q.a) div.classList.add('correct');
+        else if(ua === i) div.classList.add('wrong');
       }
-      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
-      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
-      div.onclick=()=>selectOption(i,q.t);
+      div.innerHTML = `<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick = () => selectOption(i, q.t);
+      optsEl.appendChild(div);
+    });
+    area.appendChild(optsEl);
+  } else if(q.t === 'MCMA'){
+    const checksEl = document.createElement('div');
+    checksEl.className = 'checks';
+    const labels = ['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div = document.createElement('div');
+      div.className = 'check';
+      const ua = userAnswers[currentQ];
+      const uaArr = Array.isArray(ua) ? ua : [];
+      const checked = uaArr.includes(i);
+      if(checked) div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect = q.a.includes(i);
+        if(isCorrect) div.classList.add('correct');
+        else if(checked) div.classList.add('wrong');
+      }
+      const showCheck = checked || (revealed[currentQ] && q.a.includes(i));
+      div.innerHTML = `<span class="box">${showCheck ? '<i class="fas fa-check"></i>' : ''}</span>
+                       <span class="clbl">${labels[i]}</span>
+                       <span class="txt">${opt}</span>`;
+      div.onclick = () => selectOption(i, q.t);
       checksEl.appendChild(div);
     });
     area.appendChild(checksEl);
-  }else if(q.t==='KATEGORI'){
-    const wrap=document.createElement('div');wrap.className='kat-wrap';
-    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
-    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
-      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
-    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  } else if(q.t === 'KATEGORI'){
+    const wrap = document.createElement('div');
+    wrap.className = 'kat-wrap';
+    let html = '<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{
+      const ua = userAnswers[currentQ] || {};
+      const val = ua[i] || '';
+      html += `<tr>
+        <td><strong>${i+1}</strong></td>
+        <td>${s.x}</td>
+        <td>
+          <div class="kat-actions">
+            <button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button>
+            <button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button>
+          </div>
+        </td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+    wrap.innerHTML = html;
+    area.appendChild(wrap);
   }
-  const expEl=document.getElementById('qExpl');
+
+  const expEl = document.getElementById('qExpl');
   if(revealed[currentQ]){
     expEl.classList.remove('hidden');
-    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
-  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
-  document.getElementById('prevBtn').disabled=currentQ===0;
-  const isLast=currentQ===total-1;
-  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
-  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
-  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+    expEl.innerHTML = `<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}
+      <div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  } else {
+    expEl.classList.add('hidden');
+    expEl.innerHTML = '';
+  }
+
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  const isLast = currentQ === total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden', isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden', !isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden', !!revealed[currentQ]);
+
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.toggle('locked', testLocked);
 }
-function selectOption(idx,type){
-  if(revealed[currentQ])return;
-  if(type==='PG'){userAnswers[currentQ]=idx;}
-  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
-  renderQuestion();renderQMap();updateProgress();
+
+function selectOption(idx, type){
+  if(testLocked || revealed[currentQ]) return;
+  if(type === 'PG'){
+    userAnswers[currentQ] = idx;
+  } else if(type === 'MCMA'){
+    let arr = Array.isArray(userAnswers[currentQ]) ? [...userAnswers[currentQ]] : [];
+    const pos = arr.indexOf(idx);
+    if(pos >= 0) arr.splice(pos,1);
+    else arr.push(idx);
+    userAnswers[currentQ] = arr;
+  }
+  renderQuestion(); renderQMap(); updateProgress();
 }
-function setKategori(idx,cat){
-  if(revealed[currentQ])return;
-  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
-  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+
+function setKategori(idx, cat){
+  if(testLocked || revealed[currentQ]) return;
+  if(!userAnswers[currentQ] || typeof userAnswers[currentQ] !== 'object'){
+    userAnswers[currentQ] = {};
+  }
+  userAnswers[currentQ][idx] = cat;
+  renderQuestion(); renderQMap(); updateProgress();
 }
-function revealQ(){revealed[currentQ]=true;renderQuestion();}
-function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
-function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+
+function revealQ(){
+  if(testLocked) return;
+  revealed[currentQ] = true;
+  renderQuestion();
+}
+
+function prevQ(){
+  if(testLocked) return;
+  if(currentQ > 0){ currentQ--; renderQuestion(); renderQMap(); }
+}
+
+function nextQ(){
+  if(testLocked) return;
+  const total = displayedQuestions.length;
+  if(currentQ < total-1){ currentQ++; renderQuestion(); renderQMap(); }
+}
+
+function isAnswered(i, q){
+  const ua = userAnswers[i];
+  if(ua === undefined || ua === null) return false;
+  if(q.t === 'MCMA') return Array.isArray(ua) && ua.length > 0;
+  if(q.t === 'KATEGORI') return typeof ua === 'object' && Object.keys(ua).length > 0;
+  return true;
+}
+
+function countAnswered(){
+  let c = 0;
+  displayedQuestions.forEach((q,i)=>{ if(isAnswered(i,q)) c++; });
+  return c;
+}
+
 function renderQMap(){
-  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  const map = document.getElementById('qmap');
+  map.innerHTML = '';
+  const total = displayedQuestions.length;
   for(let i=0;i<total;i++){
-    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
-    const ua=userAnswers[i];let answered=false;
-    if(ua!==undefined){
-      if(Array.isArray(ua))answered=ua.length>0;
-      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
-      else answered=true;
+    const btn = document.createElement('button');
+    btn.className = 'qmap-btn';
+    btn.textContent = i+1;
+    const ua = userAnswers[i];
+    let answered = false;
+    if(ua !== undefined){
+      if(Array.isArray(ua)) answered = ua.length > 0;
+      else if(typeof ua === 'object'){
+        const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
+        answered = Object.keys(ua).length === stCount;
+      }
+      else answered = true;
     }
-    if(answered)btn.classList.add('ans');
-    if(i===currentQ)btn.classList.add('cur');
-    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    if(answered) btn.classList.add('ans');
+    if(i === currentQ) btn.classList.add('cur');
+    btn.onclick = () => {
+      if(testLocked) return;
+      currentQ = i; renderQuestion(); renderQMap();
+    };
     map.appendChild(btn);
   }
 }
+
 function updateProgress(){
-  const total=displayedQuestions.length;let answered=0;
-  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
-    if(Array.isArray(ua)){if(ua.length>0)answered++;}
-    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
-    else answered++;}
-  document.getElementById('ansCount').textContent=answered;
-  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+  const total = displayedQuestions.length;
+  let answered = 0;
+  for(let i=0;i<total;i++){
+    const ua = userAnswers[i];
+    if(ua === undefined) continue;
+    if(Array.isArray(ua)){ if(ua.length > 0) answered++; }
+    else if(typeof ua === 'object'){
+      const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
+      if(Object.keys(ua).length === stCount) answered++;
+    }
+    else answered++;
+  }
+  document.getElementById('ansCount').textContent = answered;
+  document.getElementById('progressThumb').style.width = ((answered/total)*100) + '%';
 }
-function isCorrect(q,ua){
-  if(ua===undefined||ua===null)return false;
-  if(q.t==='PG')return ua===q.a;
-  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
-  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+
+function isCorrect(q, ua){
+  if(ua === undefined || ua === null) return false;
+  if(q.t === 'PG') return ua === q.a;
+  if(q.t === 'MCMA'){
+    if(!Array.isArray(ua)) return false;
+    const c = [...q.a].sort().join(',');
+    const u = [...ua].sort().join(',');
+    return c === u;
+  }
+  if(q.t === 'KATEGORI'){
+    if(typeof ua !== 'object') return false;
+    for(let i=0;i<q.st.length;i++){
+      if(ua[i] !== q.st[i].a) return false;
+    }
+    return true;
+  }
   return false;
 }
-function finishTest(){
+
+function finishTest(auto){
+  if(resultShown) return;
+
+  if(!auto && !testLocked){
+    const answeredNow = countAnswered();
+    const totalNow = displayedQuestions.length;
+    const unansweredNow = totalNow - answeredNow;
+    const msg = unansweredNow > 0
+      ? `Masih ada ${unansweredNow} soal belum terjawab. Yakin ingin menyelesaikan tes?`
+      : 'Yakin ingin menyelesaikan tes?';
+    if(!confirm(msg)) return;
+  }
+
+  resultShown = true;
+  testLocked = true;
   stopTimer();
-  const qs=displayedQuestions;const total=qs.length;let correct=0;
-  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
-  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+
+  const qs = displayedQuestions;
+  const total = qs.length;
+  let correct = 0;
+  const levelStats = {Knowing:{total:0,correct:0}, Applying:{total:0,correct:0}, Reasoning:{total:0,correct:0}};
+  const typeStats = {PG:{total:0,correct:0}, MCMA:{total:0,correct:0}, KATEGORI:{total:0,correct:0}};
+
   qs.forEach((q,i)=>{
-    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
-    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
-    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+    const ua = userAnswers[i];
+    const isC = isCorrect(q, ua);
+    if(isC) correct++;
+    levelStats[q.l].total++; if(isC) levelStats[q.l].correct++;
+    typeStats[q.t].total++; if(isC) typeStats[q.t].correct++;
   });
-  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
-  document.getElementById('finalScore').textContent=score;
-  document.getElementById('rsCorrect').textContent=correct;
-  document.getElementById('rsWrong').textContent=wrong;
-  document.getElementById('rsTotal').textContent=total;
-  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
-  document.getElementById('rsTime').textContent=`${m}:${s}`;
-  document.getElementById('resultIdentity').innerHTML=`
+
+  const answered = countAnswered();
+  const unanswered = total - answered;
+  const wrong = answered - correct;
+  const score = Math.round((correct / total) * 100);
+
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('rsCorrect').textContent = correct;
+  document.getElementById('rsWrong').textContent = wrong;
+  document.getElementById('rsUnanswered').textContent = unanswered;
+  document.getElementById('rsTotal').textContent = total;
+
+  const elapsed = TOTAL_TIME - timeRemaining;
+  const em = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const es = String(elapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent = `${em}:${es}`;
+
+  document.getElementById('resultIdentity').innerHTML = `
     <span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>
     <span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>
     <span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
-  let title='',sub='';
-  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Masa Kerajaan Islam sangat luar biasa.`;}
-  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
-  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
-  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Masa Kerajaan Islam dan coba lagi.`;}
-  document.getElementById('resultTitle').textContent=title;
-  document.getElementById('resultSub').textContent=sub;
-  const circle=document.getElementById('resultScore');
-  const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
-  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
-  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+
+  /* ==== WARNA SKOR: MERAH / KUNING / HIJAU ==== */
+  let scoreColor, scoreLabel;
+  if(score >= 70){ scoreColor = '#10B981'; scoreLabel = 'Tinggi'; }
+  else if(score >= 55){ scoreColor = '#FBBF24'; scoreLabel = 'Sedang'; }
+  else { scoreColor = '#EF4444'; scoreLabel = 'Rendah'; }
+
+  const circle = document.getElementById('resultScore');
+  circle.style.background = `conic-gradient(${scoreColor} 0%, ${scoreColor} ${score}%, var(--card-alt) ${score}%)`;
+  const sv = document.getElementById('finalScore');
+  sv.style.color = scoreColor;
+
+  const levelEl = document.getElementById('resultLevel');
+  if(levelEl){
+    levelEl.textContent = `Kategori Nilai: ${scoreLabel} (${score})`;
+    levelEl.style.color = scoreColor;
+  }
+
+  /* ==== JUDUL & PESAN POSITIF SESUAI JUMLAH DIJAWAB ==== */
+  let title = '', positive = '';
+  if(score >= 85){
+    title = 'Sangat Baik (A)';
+    positive = `Luar biasa, ${siswaName}! 🌟 Kamu menjawab ${answered} dari ${total} soal dan berhasil benar ${correct} soal. Pemahamanmu tentang Masa Kerajaan Islam sangat mengagumkan. Pertahankan semangat belajarmu!`;
+  } else if(score >= 70){
+    title = 'Baik (B)';
+    positive = `Hebat, ${siswaName}! 💪 Kamu sudah menjawab ${answered} soal dengan ${correct} jawaban benar. Sedikit lagi menuju sempurna — teruslah belajar dan jangan ragu bertanya!`;
+  } else if(score >= 55){
+    title = 'Cukup (C)';
+    positive = `Bagus, ${siswaName}! 📚 Kamu sudah menjawab ${answered} soal dan memperoleh ${correct} jawaban benar. Jangan berhenti di sini, tingkatkan lagi pemahamanmu tentang materi Kerajaan Islam!`;
+  } else {
+    title = 'Perlu Belajar (D)';
+    positive = `Jangan menyerah, ${siswaName}! 🌱 Kamu sudah mencoba menjawab ${answered} soal dan mendapat ${correct} jawaban benar. Kegigihan akan membuahkan hasil — teruslah belajar dan coba lagi!`;
+  }
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent = positive;
+
+  /* ==== REKAP LEVEL ==== */
+  const recapLv = document.getElementById('recapLv');
+  recapLv.innerHTML = '';
   ['Knowing','Applying','Reasoning'].forEach(lv=>{
-    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
-    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+    const st = levelStats[lv];
+    const pct = st.total ? Math.round((st.correct/st.total)*100) : 0;
+    recapLv.innerHTML += `<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
   });
-  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+
+  /* ==== REKAP BENTUK ==== */
+  const recapType = document.getElementById('recapType');
+  recapType.innerHTML = '';
   ['PG','MCMA','KATEGORI'].forEach(tp=>{
-    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
-    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+    const st = typeStats[tp];
+    const pct = st.total ? Math.round((st.correct/st.total)*100) : 0;
+    recapType.innerHTML += `<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
   });
+
   showSection('result');
 }
+
 document.addEventListener('keydown',(e)=>{
-  if(!document.getElementById('test').classList.contains('active'))return;
-  const tag=(e.target.tagName||'').toLowerCase();
-  if(tag==='input'||tag==='textarea')return;
-  if(e.key==='ArrowRight')nextQ();
-  else if(e.key==='ArrowLeft')prevQ();
+  if(!document.getElementById('test').classList.contains('active')) return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if(tag === 'input' || tag === 'textarea') return;
+  if(e.key === 'ArrowRight') nextQ();
+  else if(e.key === 'ArrowLeft') prevQ();
 });
+
 window.addEventListener('scroll',()=>{
-  const h=document.querySelector('.hdr');
-  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';
-  else h.style.boxShadow='none';
+  const h = document.querySelector('.hdr');
+  if(window.scrollY > 20) h.style.boxShadow = '0 6px 30px rgba(0,0,0,.4)';
+  else h.style.boxShadow = 'none';
 });
 </script>
 </body>
