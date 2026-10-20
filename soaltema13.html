@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#0a0a14"/>
+<title>TKA Literasi Sejarah · Pemerintahan Soeharto (Orde Baru) · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--primary:#B8860B;--primary-light:#DAA520;--gold:#FFD700;--emerald:#10B981;--rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;--card-alt:#252540;--text:#faf8f3;--text-light:#dcdcec;--text-muted:#adadc5;--line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#B8860B;--accent2:#DAA520;--accent-soft:rgba(184,134,11,.12);}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(184,134,11,.08),transparent 55%),radial-gradient(circle at 85% 80%,rgba(251,113,133,.07),transparent 55%);}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#14142a 0%,#0a0a14 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
+.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
+.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--rose) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,215,0,.55)) drop-shadow(0 0 26px rgba(184,134,11,.4));z-index:-2;}
+.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a0a14;box-shadow:inset 0 0 24px rgba(184,134,11,.16);z-index:-1;}
+.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fff8dc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #a3740c) drop-shadow(2px 2px 0 #8b6914) drop-shadow(3px 3px 0 #7a5d10) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 0 #4a3807) drop-shadow(7px 7px 0 #3a2c05) drop-shadow(8px 8px 0 #2a1f03) drop-shadow(9px 9px 10px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
+.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
+.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
+.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35);}
+.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(251,113,133,.35);}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;}
+.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);border-radius:10px;margin-top:24px;overflow:hidden;}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
+.hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary);text-transform:uppercase;gap:8px;align-items:center}
+.hdr-center i{color:var(--gold)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(184,134,11,.08);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(184,134,11,.4)}
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
+.chip i{color:var(--primary)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
+.badge.MCMA{background:rgba(139,92,246,.15);color:#a78bfa;border-color:rgba(139,92,246,.35)}
+.badge.KATEGORI{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.35)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
+.badge.df{background:rgba(16,185,129,.1);color:var(--emerald);border-color:rgba(16,185,129,.3)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(184,134,11,.35)}
+.q-stim{background:rgba(184,134,11,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--accent);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--accent);transition:all .2s}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.sel .lbl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.opt.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#fff;border-color:var(--rose)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(139,92,246,.18);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.check:hover{background:rgba(139,92,246,.08);border-color:var(--violet);transform:translateX(3px)}
+.check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(139,92,246,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
+.check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:var(--violet);padding-top:4px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check.sel{background:rgba(139,92,246,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
+.check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
+.check.sel .txt{color:var(--text)}
+.check.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.check.correct .box{background:var(--emerald);border-color:var(--emerald);border-style:solid}
+.check.correct .clbl{color:var(--emerald)}
+.check.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
+.check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
+.check.wrong .clbl{color:var(--rose)}
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
+.expl{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.25)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 22px rgba(184,134,11,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(184,134,11,.4)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#fff;box-shadow:0 8px 22px rgba(16,185,129,.3)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,185,129,.4)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#fff;box-shadow:0 8px 22px rgba(56,189,248,.3)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.4)}
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(16,185,129,.18);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#fff;box-shadow:0 0 12px rgba(184,134,11,.4);transform:scale(1.1)}
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--primary)}.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+.identity-wrap{max-width:560px;margin:0 auto;padding:20px 0 10px}
+.identity-hero{text-align:center;margin-bottom:24px}
+.identity-hero .badge-top{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.15),rgba(251,113,133,.1));border:1px solid rgba(184,134,11,.4);padding:7px 18px;border-radius:40px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.identity-hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px}
+.identity-hero h1 .grad{background:linear-gradient(135deg,#DAA520 0%,#FFD700 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.identity-hero p{color:var(--text-light);font-size:.92rem;line-height:1.7;max-width:520px;margin:0 auto}
+.identity-hero .info-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.identity-hero .info-chips .ic{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:6px}
+.identity-hero .info-chips .ic i{color:var(--primary)}
+.identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary)}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(184,134,11,.15)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(184,134,11,.08));border:1.5px solid rgba(251,113,133,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+@keyframes privacyPulse{0%,100%{border-color:rgba(251,113,133,.4);box-shadow:0 0 0 0 rgba(251,113,133,.15)}50%{border-color:rgba(251,113,133,.65);box-shadow:0 0 0 4px rgba(251,113,133,.1)}}
+.privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
+.privacy-notice strong{color:var(--rose);font-weight:800;}
+.hidden{display:none!important}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-3d-wrap">
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle"><div class="loader-3d-text">MGE</div></div>
+  </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
+  <div class="loader-title">TKA LITERASI SEJARAH</div>
+  <div class="loader-sub">Pemerintahan Soeharto (Orde Baru) · 30 Soal</div>
+  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+  <div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
+  </div>
+  <div class="hdr-center"><i class="fas fa-landmark"></i> Pemerintahan Soeharto · 30 Soal</div>
+  <div style="display:flex;gap:6px"></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<!-- IDENTITY -->
+<section id="identity" class="section active">
+  <div class="identity-wrap">
+    <div class="identity-hero">
+      <div class="badge-top"><i class="fas fa-crown"></i> TKA Literasi Sejarah</div>
+      <h1><span class="grad">Identitas Peserta</span></h1>
+      <p>Isi data diri untuk memulai tes <strong>30 soal Pemerintahan Soeharto (Orde Baru)</strong>: latar belakang &amp; peralihan, stabilisasi &amp; Dwifungsi ABRI, Repelita &amp; pembangunan, Pemilu &amp; Golkar, Krisis Moneter 1997, hingga Reformasi 1998.</p>
+      <div class="info-chips">
+        <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
+        <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
+        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+      </div>
+    </div>
+    <div class="identity-form">
+      <h2>Formulir Peserta</h2>
+      <p>Data digunakan untuk laporan hasil</p>
+      <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+      </div>
+      <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+      </div>
+      <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <strong>Pemberitahuan:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil. Semua data hanya diproses di browser dan hilang saat halaman ditutup. Untuk laporan nilai, silakan <strong>screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST -->
+<section id="test" class="section">
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Pemerintahan Soeharto</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 30</div>
+    </div>
+    <div class="info">
+      <span class="chip"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 30</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="section">
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+    <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   BANK SOAL — PEMERINTAHAN SOEHARTO / ORDE BARU (30 SOAL UNIK)
+   18 PG + 7 MCMA + 5 KATEGORI
+   Kunci PG: A=4, B=4, C=4, D=3, E=3
+   Level: Knowing=5, Applying=11, Reasoning=14
+   ============================================================ */
+const Q6=[
+
+/* ============ PG (18 SOAL) ============ */
+
+/* Q1 — Kunci: A */
+{t:'PG',l:'Applying',d:'Sedang',i:'Latar belakang Orde Baru',
+s:'Pada akhir 1965 hingga awal 1966, Indonesia berada dalam kondisi kritis. Inflasi mencapai 600–1000%, harga sembako melambung, dan kepercayaan rakyat terhadap pemerintah menurun drastis. Peristiwa G30S 1965 telah menghancurkan legitimasi politik Presiden Sukarno. Dalam kondisi seperti ini, muncul tuntutan dari berbagai kalangan — terutama mahasiswa — agar dibentuk tatanan pemerintahan baru yang mampu membawa stabilitas dan pembangunan. Istilah "Orde Baru" mulai digunakan untuk menggambarkan tatanan yang ingin dibangun, berbeda dari "Orde Lama" yang dianggap gagal.',
+q:'Berdasarkan stimulus tersebut, faktor utama yang melatarbelakangi munculnya Orde Baru adalah ...',
+o:['Krisis multidimensional (ekonomi, politik, kepercayaan) yang melanda Indonesia setelah G30S 1965',
+ 'Keinginan Presiden Sukarno sendiri untuk mengubah nama sistem pemerintahannya',
+ 'Perintah dari Perserikatan Bangsa-Bangsa agar Indonesia mengganti pemerintahannya',
+ 'Kemenangan militer Indonesia dalam konfrontasi melawan Malaysia',
+ 'Desakan dari pemerintah Belanda yang ingin mengembalikan pengaruhnya di Indonesia'],
+a:0,
+e:'Orde Baru muncul karena krisis multidimensional pasca-G30S 1965: inflasi 600–1000%, krisis politik, dan krisis kepercayaan rakyat. Bukan karena keinginan Sukarno, PBB, Belanda, atau kemenangan militer.'},
+
+/* Q2 — Kunci: B */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Isi Tritura',
+s:'Pada Januari 1966, ribuan mahasiswa dan pelajar turun ke jalan di Jakarta dan berbagai kota. Mereka menyerukan tiga tuntutan utama yang kemudian dikenal sebagai Tritura (Tri Tuntutan Rakyat). Aksi ini dipicu oleh kekecewaan terhadap kondisi politik dan ekonomi yang memburuk. Secara khusus, mereka menuntut agar kekuatan politik yang dianggap bertanggung jawab atas peristiwa 1965 dibubarkan, agar kabinet dibersihkan dari unsur-unsur yang terkait, dan agar harga kebutuhan pokok diturunkan. Aksi ini mendapat dukungan luas dari masyarakat dan militer, sehingga tidak bisa dibendung oleh pemerintah.',
+q:'Berdasarkan stimulus tersebut, isi Tritura yang paling tepat adalah ...',
+o:['Bubarkan Konstituante, kembali ke UUD 1945, dan dukung Sukarno',
+ 'Bubarkan PKI, bersihkan kabinet dari unsur PKI, dan turunkan harga sembako',
+ 'Dukung Sukarno, bubarkan DPR, dan naikkan harga sembako',
+ 'Ganyang Malaysia, bubarkan MPRS, dan pertahankan PKI',
+ 'Bubarkan ABRI, bentuk pemerintahan baru, dan kembalikan Irian Barat'],
+a:1,
+e:'Tritura berisi tiga tuntutan: (1) Bubarkan PKI, (2) Bersihkan kabinet dari unsur PKI, (3) Turunkan harga sembako. Aksi Januari 1966 ini menjadi pemicu utama transisi Orde Lama → Orde Baru.'},
+
+/* Q3 — Kunci: C */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tanggal Supersemar',
+s:'Supersemar (Surat Perintah Sebelas Maret) adalah dokumen yang menjadi titik awal transisi kekuasaan dari Soekarno kepada Soeharto. Surat ini ditandatangani oleh Presiden Soekarno dan memberikan mandat kepada Letjen Soeharto untuk mengambil langkah-langkah yang dianggap perlu guna menjaga keamanan dan ketertiban. Dengan mandat ini, Soeharto kemudian membubarkan PKI, membersihkan kabinet, dan mengambil alih kekuasaan secara bertahap. Surat ini ditandatangani dalam situasi yang sangat genting, ketika negara dalam kondisi terancam dan Ibu Kota Jakarta diliputi ketegangan setelah peristiwa G30S.',
+q:'Berdasarkan stimulus tersebut, Supersemar ditandatangani pada tanggal ...',
+o:['1 Oktober 1965','12 Maret 1966','11 Maret 1966','12 Maret 1967','27 Maret 1968'],
+a:2,
+e:'Supersemar ditandatangani 11 Maret 1966. Bukan 1 Oktober 1965 (G30S), bukan 12 Maret 1966 (pembubaran PKI), bukan 12 Maret 1967 (MPRS cabut mandat), bukan 27 Maret 1968 (pelantikan Soeharto).'},
+
+/* Q4 — Kunci: D */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kontroversi Supersemar',
+s:'Supersemar menuai kontroversi hingga kini. Pertama, tidak ada salinan asli Supersemar yang tersisa — hanya beberapa versi salinan yang beredar. Kedua, isinya dianggap ambigu: "mengambil langkah-langkah yang dianggap perlu" bisa ditafsirkan sangat luas, dari sekadar menjaga keamanan hingga membubarkan lembaga negara. Ketiga, mandat yang awalnya dimaksudkan sementara berubah menjadi pengambilalihan kekuasaan permanen setelah MPRS mencabut mandat Sukarno pada 12 Maret 1967. Berbagai sejarawan masih memperdebatkan keaslian, isi, dan maksud sebenarnya dari Supersemar.',
+q:'Berdasarkan stimulus tersebut, mengapa Supersemar dianggap sebagai dokumen yang kontroversial?',
+o:['Karena Supersemar ditandatangani oleh pejabat Belanda sebagai pihak yang berwenang',
+ 'Karena Supersemar tidak pernah diakui oleh MPRS sebagai dokumen resmi',
+ 'Karena tidak ada saksi mata yang melihat proses penandatanganan Supersemar',
+ 'Karena keasliannya diragukan, isinya multitafsir, dan mandat yang awalnya sementara berubah menjadi pengambilalihan kekuasaan permanen',
+ 'Karena Supersemar dibuat oleh Soeharto sendiri tanpa sepengetahuan Presiden Sukarno'],
+a:3,
+e:'Tiga alasan kontroversi Supersemar: (1) keaslian diragukan — tidak ada salinan asli; (2) isi multitafsir — "langkah-langkah yang dianggap perlu"; (3) mandat sementara jadi permanen setelah MPRS cabut mandat Sukarno 1967.'},
+
+/* Q5 — Kunci: E */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dualisme kepemimpinan',
+s:'Setelah Supersemar 11 Maret 1966, Indonesia memasuki periode yang disebut "dualisme kepemimpinan". Pada satu sisi, Sukarno masih menjabat sebagai presiden secara formal. Namun di sisi lain, Soeharto memegang mandat Supersemar yang memberinya kekuasaan besar untuk mengambil langkah-langkah penting. Kondisi ini menciptakan ketidakpastian politik: siapa sebenarnya yang memegang kekuasaan tertinggi? Dualisme ini berlangsung hingga 12 Maret 1967, ketika MPRS secara resmi mencabut mandat Sukarno sebagai presiden.',
+q:'Berdasarkan stimulus tersebut, yang dimaksud dengan "dualisme kepemimpinan" pada periode 1966–1967 adalah ...',
+o:['Dua orang presiden memerintah Indonesia secara bersama-sama',
+ 'Dua kabinet berjalan bersamaan di Jakarta dan Yogyakarta',
+ 'Soekarno dan Soeharto menandatangani perjanjian pembagian kekuasaan',
+ 'Dua parlemen bekerja secara paralel dengan kewenangan yang sama',
+ 'Sukarno masih presiden secara formal, tetapi Soeharto memegang mandat Supersemar yang memberi kekuasaan besar'],
+a:4,
+e:'Dualisme kepemimpinan = Sukarno masih presiden formal, tetapi Soeharto memegang mandat Supersemar (kekuasaan riil untuk ambil langkah). Berlangsung hingga MPRS cabut mandat Sukarno 12 Maret 1967.'},
+
+/* Q6 — Kunci: A */
+{t:'PG',l:'Applying',d:'Sedang',i:'Dwifungsi ABRI',
+s:'Dwifungsi ABRI adalah doktrin yang memberi Angkatan Bersenjata Republik Indonesia dua peran sekaligus. Pertama, sebagai kekuatan pertahanan dan keamanan negara. Kedua, sebagai kekuatan sosial-politik yang ikut menentukan arah kebijakan negara. Melalui doktrin ini, ABRI menempatkan wakil-wakilnya di DPR/MPR, pemerintahan daerah, dan berbagai lembaga negara. Doktrin ini menjadi salah satu pilar utama stabilitas politik Orde Baru, tetapi juga dikritik sebagai bentuk dominasi militer dalam politik yang melanggar prinsip demokrasi.',
+q:'Berdasarkan stimulus tersebut, Dwifungsi ABRI berarti ...',
+o:['ABRI berperan ganda: sebagai kekuatan pertahanan-keamanan sekaligus kekuatan sosial-politik',
+ 'ABRI hanya berperan sebagai kekuatan militer tanpa peran politik sama sekali',
+ 'ABRI hanya berperan sebagai kekuatan politik tanpa peran militer',
+ 'ABRI berperan sebagai pengawas pemilu dan penegak hukum',
+ 'ABRI berperan sebagai penasihat presiden dalam bidang ekonomi'],
+a:0,
+e:'Dwifungsi ABRI = dua peran: (1) pertahanan-keamanan, (2) sosial-politik. Konsekuensi: ABRI menempatkan wakil di DPR/MPR & pemerintahan. Dikritik karena melanggar prinsip demokrasi.'},
+
+/* Q7 — Kunci: B */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Asas Tunggal Pancasila',
+s:'Asas Tunggal Pancasila adalah kebijakan Orde Baru yang mewajibkan semua partai politik dan organisasi masyarakat menjadikan Pancasila sebagai asas tunggal. Kebijakan ini diatur melalui UU No. 3 Tahun 1985 tentang Partai Politik dan Golkar serta UU No. 8 Tahun 1985 tentang Organisasi Kemasyarakatan. Tujuannya adalah mencegah munculnya ideologi lain yang dianggap mengancam stabilitas nasional. Namun, kebijakan ini menuai kritik karena dianggap mengekang kebebasan berorganisasi dan memaksakan ideologi negara pada semua pihak, termasuk organisasi keagamaan.',
+q:'Berdasarkan stimulus tersebut, Asas Tunggal Pancasila diberlakukan pada tahun ...',
+o:['1973','1985','1974','1991','1998'],
+a:1,
+e:'Asas Tunggal Pancasila diatur UU No. 3/1985 (Parpol & Golkar) & UU No. 8/1985 (Ormas). Bukan 1973 (fusi partai), 1974 (Malari), 1991 (Santa Cruz), atau 1998 (Reformasi).'},
+
+/* Q8 — Kunci: C */
+{t:'PG',l:'Applying',d:'Sedang',i:'Fusi partai 1973',
+s:'Pada tahun 1973, Orde Baru menerapkan kebijakan fusi (penyederhanaan) partai politik. Melalui kebijakan ini, partai-partai yang ada dipaksa bergabung menjadi tiga kekuatan politik utama. Partai-partai Islam dilebur menjadi PPP (Partai Persatuan Pembangunan). Partai-partai nasionalis dan Kristen dilebur menjadi PDI (Partai Demokrasi Indonesia). Sementara Golkar — yang bukan partai dalam arti tradisional — menjadi kekuatan politik pemerintah. Tujuan kebijakan ini adalah memudahkan kontrol politik dan memastikan Golkar selalu menang dalam Pemilu.',
+q:'Berdasarkan stimulus tersebut, fusi partai pada tahun 1973 menghasilkan tiga kekuatan politik, yaitu ...',
+o:['PNI, Masyumi, dan NU','PKI, Golkar, dan PDI','PPP, Golkar, dan PDI','PNI, PPP, dan PDI','NU, Golkar, dan Masyumi'],
+a:2,
+e:'Fusi 1973: PPP (fusi partai Islam), Golkar (partai pemerintah), PDI (fusi partai nasionalis & Kristen). Tujuan: memudahkan kontrol politik & memastikan Golkar menang.'},
+
+/* Q9 — Kunci: D */
+{t:'PG',l:'Applying',d:'Sedang',i:'SIUPP & kontrol pers',
+s:'Untuk mengontrol pers, Orde Baru menerapkan sistem SIUPP (Surat Izin Usaha Penerbitan Pers). Setiap penerbitan pers — surat kabar, majalah, tabloid — wajib memiliki SIUPP untuk beroperasi. Jika suatu media dianggap terlalu kritis terhadap pemerintah, SIUPP-nya bisa dicabut, yang berarti media tersebut harus berhenti terbit. Kebijakan ini diterapkan untuk menjaga stabilitas dan mencegah penyebaran berita yang dianggap mengganggu ketertiban. Pada tahun 1994, tiga media besar — Majalah Tempo, Editor, dan Detik — dibredel karena dianggap melanggar ketentuan SIUPP.',
+q:'Berdasarkan stimulus tersebut, fungsi utama SIUPP pada masa Orde Baru adalah ...',
+o:['Memberikan subsidi kepada media massa agar bisa beroperasi dengan murah',
+ 'Meningkatkan kualitas jurnalisme Indonesia agar setara dengan media internasional',
+ 'Melindungi media massa dari tekanan pihak asing yang ingin menguasai Indonesia',
+ 'Mengontrol pers dengan cara mencabut izin media yang dianggap terlalu kritis terhadap pemerintah',
+ 'Memastikan bahwa semua media massa memiliki kualitas cetak yang sama'],
+a:3,
+e:'SIUPP berfungsi mengontrol pers. Media yang terlalu kritis bisa dicabut izinnya. Contoh: Tempo, Editor, Detik dibredel 1994. Bukan untuk subsidi, kualitas, atau melindungi dari asing.'},
+
+/* Q10 — Kunci: E */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Peristiwa Santa Cruz',
+s:'Peristiwa Santa Cruz terjadi pada 12 November 1991 di Dili, Timor Timur. Saat itu, aparat keamanan melepaskan tembakan ke arah demonstran yang sedang menggelar aksi di pemakaman Santa Cruz. Peristiwa ini menimbulkan korban jiwa dan mengundang kecaman internasional. Berbagai organisasi HAM menyebut peristiwa ini sebagai salah satu pelanggaran HAM berat pada masa Orde Baru. Pemerintah Indonesia saat itu membentuk Komisi Penyelidik Nasional (KPN) untuk menyelidiki peristiwa ini, tetapi banyak pihak menilai penyelidikan tersebut tidak transparan.',
+q:'Berdasarkan stimulus tersebut, Peristiwa Santa Cruz pada 12 November 1991 terjadi di ...',
+o:['Jakarta','Aceh','Tanjung Priok','Bandung','Dili, Timor Timur'],
+a:4,
+e:'Peristiwa Santa Cruz (12 November 1991) terjadi di Dili, Timor Timur. Aparat menembak demonstran di pemakaman Santa Cruz. Bukan Jakarta (Tanjung Priok 1984), bukan Aceh, bukan Bandung.'},
+
+/* Q11 — Kunci: A */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Petisi 50',
+s:'Petisi 50 adalah sebuah pernyataan kritis yang ditandatangani oleh 50 tokoh nasional pada 5 Mei 1980. Isinya menolak penggunaan Pancasila sebagai alat politik untuk kepentingan kekuasaan dan mengkritik kebijakan Orde Baru yang dianggap menyimpang dari demokrasi. Tokoh-tokoh yang menandatangani Petisi 50 antara lain mantan panglima ABRI, tokoh-tokoh partai, dan intelektual. Akibatnya, mereka dilarang bepergian ke luar negeri, dicabut hak-hak sipilnya, dan sebagian ditahan atau diintimidasi. Peristiwa ini menunjukkan bahwa Orde Baru tidak memberi ruang bagi kritik, bahkan dari tokoh-tokoh yang memiliki legitimasi kuat.',
+q:'Berdasarkan stimulus tersebut, pelajaran yang paling penting dari peristiwa Petisi 50 adalah ...',
+o:['Orde Baru menindak kritik terhadap pemerintah, bahkan jika disampaikan oleh tokoh nasional yang memiliki legitimasi',
+ 'Petisi 50 adalah bentuk dukungan tokoh nasional terhadap kebijakan Orde Baru',
+ 'Orde Baru selalu menghargai perbedaan pendapat dan kritik dari kalangan mana pun',
+ 'Petisi 50 ditandatangani oleh 50 mahasiswa yang menuntut reformasi',
+ 'Petisi 50 tidak memiliki dampak apa pun terhadap kehidupan politik tokoh-tokoh yang menandatanganinya'],
+a:0,
+e:'Petisi 50 (5 Mei 1980) ditandatangani 50 tokoh nasional (mantan Panglima ABRI, tokoh partai, intelektual). Akibatnya mereka dilarang ke luar negeri & dicabut hak sipil. Pelajaran: Orde Baru menindak kritik bahkan dari tokoh berlegitimasi.'},
+
+/* Q12 — Kunci: B */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Periode Repelita IV',
+s:'Repelita (Rencana Pembangunan Lima Tahun) adalah program pembangunan ekonomi Orde Baru yang dirancang oleh Bappenas. Repelita berlangsung dalam enam periode: Repelita I (1969–1974), Repelita II (1974–1979), Repelita III (1979–1984), Repelita IV (1984–1989), Repelita V (1989–1994), dan Repelita VI (1994–1998). Setiap Repelita memiliki fokus yang berbeda. Repelita IV, misalnya, berfokus pada pengembangan industri dan teknologi setelah keberhasilan swasembada beras pada 1984.',
+q:'Berdasarkan stimulus tersebut, Repelita IV dilaksanakan pada periode ...',
+o:['1969–1974','1984–1989','1974–1979','1979–1984','1994–1998'],
+a:1,
+e:'Repelita IV (1984–1989) fokus pada industri & teknologi setelah swasembada beras 1984. Bukan 1969–1974 (Repelita I), 1974–1979 (II), 1979–1984 (III), 1994–1998 (VI).'},
+
+/* Q13 — Kunci: C */
+{t:'PG',l:'Applying',d:'Sedang',i:'Trilogi Pembangunan',
+s:'Trilogi Pembangunan adalah pedoman pembangunan Orde Baru yang terdiri dari tiga komponen: pemerataan pembangunan, pertumbuhan ekonomi tinggi, dan stabilitas nasional. Ketiganya diharapkan berjalan seimbang sehingga tercipta kesejahteraan yang berkeadilan. Namun, dalam praktiknya, pertumbuhan ekonomi lebih diprioritaskan daripada pemerataan. Akibatnya, kesenjangan kaya-miskin melebar, dan sebagian besar kekayaan negara dikuasai oleh segelintir orang yang dekat dengan kekuasaan. Trilogi Pembangunan akhirnya menjadi simbol janji Orde Baru yang tidak sepenuhnya ditepati.',
+q:'Berdasarkan stimulus tersebut, tiga komponen Trilogi Pembangunan Orde Baru adalah ...',
+o:['Pertumbuhan, Stabilitas, Keamanan','Pemerataan, Keadilan, Kemakmuran','Pemerataan, Pertumbuhan, Stabilitas','Stabilitas, Keamanan, Keadilan','Pertumbuhan, Pemerataan, Keadilan'],
+a:2,
+e:'Trilogi Pembangunan = Pemerataan + Pertumbuhan + Stabilitas. Dalam praktik, pertumbuhan lebih diprioritaskan dari pemerataan → kesenjangan melebar.'},
+
+/* Q14 — Kunci: D */
+{t:'PG',l:'Applying',d:'Sedang',i:'Swasembada beras 1984',
+s:'Salah satu pencapaian terbesar Orde Baru di bidang pertanian adalah swasembada beras pada tahun 1984. Keberhasilan ini dicapai melalui Revolusi Hijau — program modernisasi pertanian yang memperkenalkan bibit unggul, pupuk kimia, pestisida, dan sistem irigasi modern. Petani didorong untuk meningkatkan produktivitas lahan dengan cara menanam varietas padi yang lebih cepat panen. FAO bahkan memberikan penghargaan kepada Indonesia atas pencapaian tersebut. Namun, di balik keberhasilan ini, muncul kritik tentang ketergantungan pada pupuk kimia dan kerusakan lingkungan.',
+q:'Berdasarkan stimulus tersebut, Indonesia berhasil mencapai swasembada beras pada tahun ...',
+o:['1970','1974','1980','1984','1989'],
+a:3,
+e:'Swasembada beras tercapai 1984 melalui Revolusi Hijau. FAO memberi penghargaan. Kritik: ketergantungan pupuk kimia & kerusakan lingkungan.'},
+
+/* Q15 — Kunci: E */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor pertumbuhan ekonomi',
+s:'Selama tiga dekade Orde Baru, pertumbuhan ekonomi Indonesia rata-rata mencapai 7% per tahun. Inflasi turun dari 600–1000% (1966) menjadi sekitar 10% (1969). Pendapatan per kapita naik dari sekitar USD 70 (1966) menjadi USD 1.100 (1996). Keberhasilan ini didukung oleh beberapa faktor: bantuan luar negeri melalui IGGI (Inter-Governmental Group on Indonesia), penanaman modal asing (UU PMA 1967 & UU PMDN 1968), dan eksploitasi sumber daya alam — terutama minyak bumi. Namun, di balik pertumbuhan tinggi, tersimpan masalah struktural: ketergantungan utang, KKN, dan kesenjangan.',
+q:'Berdasarkan stimulus tersebut, salah satu faktor pendukung keberhasilan pertumbuhan ekonomi Orde Baru adalah ...',
+o:['Embargo ekonomi yang diterapkan oleh negara-negara Barat',
+ 'Penurunan investasi asing secara drastis',
+ 'Berhentinya bantuan luar negeri setelah tahun 1966',
+ 'Penghapusan sektor pertanian sebagai prioritas pembangunan',
+ 'Bantuan luar negeri melalui IGGI, penanaman modal asing, dan eksploitasi sumber daya alam'],
+a:4,
+e:'Faktor pendukung: bantuan IGGI, UU PMA/PMDN (1967/1968), eksploitasi SDA (minyak). Bukan embargo, penurunan investasi, berhentinya bantuan, atau penghapusan pertanian.'},
+
+/* Q16 — Kunci: A */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kesenjangan pembangunan',
+s:'Meskipun Orde Baru berhasil mencapai pertumbuhan ekonomi tinggi, keberhasilan itu tidak merata. Kesenjangan kaya-miskin melebar, dan sebagian besar kekayaan negara dikuasai oleh sekelompok kecil orang yang memiliki kedekatan dengan kekuasaan. Muncul konglomerat-konglomerat yang menguasai berbagai sektor ekonomi. Pembangunan terpusat di Jawa dan kota-kota besar, sementara daerah-daerah di luar Jawa tertinggal. Petani dan buruh tetap hidup dalam kemiskinan. Ketidakadilan ini menjadi salah satu akar kekecewaan rakyat yang meledak pada 1998.',
+q:'Berdasarkan stimulus tersebut, masalah utama pembangunan ekonomi Orde Baru adalah ...',
+o:['Pertumbuhan ekonomi tinggi tidak dibarengi pemerataan, sehingga kesenjangan kaya-miskin melebar',
+ 'Pertumbuhan ekonomi terlalu rendah sehingga tidak mampu mengatasi kemiskinan',
+ 'Pembangunan terlalu merata sehingga tidak ada persaingan ekonomi yang sehat',
+ 'Tidak ada konglomerat yang muncul pada masa Orde Baru',
+ 'Petani dan buruh menjadi kelompok paling sejahtera pada masa Orde Baru'],
+a:0,
+e:'Masalah utama: pertumbuhan tinggi tanpa pemerataan. Kesenjangan melebar, konglomerat menguasai ekonomi, pembangunan terpusat di Jawa, petani-buruh tetap miskin. Bukan karena pertumbuhan rendah.'},
+
+/* Q17 — Kunci: B */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor kemenangan Golkar',
+s:'Golkar (Golongan Karya) selalu menang dalam enam Pemilu Orde Baru: 1971 (62,8%), 1977 (62,1%), 1982 (64,3%), 1987 (73,1%), 1992 (68,1%), dan 1997 (74,5%). Kemenangan ini bukan karena dukungan rakyat yang tulus, melainkan karena beberapa faktor. Pertama, dukungan militer dan birokrasi: pegawai negeri wajib memilih Golkar, dan ABRI secara terbuka mendukungnya. Kedua, kontrol media massa: hanya berita positif tentang Golkar yang ditampilkan. Ketiga, dana besar dari pengusaha dan pemerintah. Keempat, intimidasi terhadap pemilih. Kelima, pembatasan ruang gerak partai oposisi (PPP dan PDI).',
+q:'Berdasarkan stimulus tersebut, faktor utama yang menyebabkan Golkar selalu menang dalam Pemilu Orde Baru adalah ...',
+o:['Kompetisi politik yang sehat dan bebas',
+ 'Dukungan militer, birokrasi, kontrol media massa, dana besar, dan intimidasi terhadap pemilih',
+ 'Program partai Golkar yang sangat populer di masyarakat',
+ 'Dukungan penuh dari PBB dan masyarakat internasional',
+ 'Suara rakyat yang bebas tanpa tekanan dari pihak mana pun'],
+a:1,
+e:'Faktor kemenangan Golkar: dukungan militer & birokrasi (PNS wajib Golkar), kontrol media, dana besar, intimidasi, pembatasan oposisi. Bukan kompetisi sehat atau dukungan internasional.'},
+
+/* Q18 — Kunci: C */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Pemilu Orde Baru tidak demokratis',
+s:'Pemilu Orde Baru diadakan secara rutin setiap lima tahun, tetapi tidak bisa disebut demokratis. Ada beberapa alasan: (1) tidak ada kebebasan memilih yang sesungguhnya, (2) ada tekanan dan intimidasi terhadap pemilih, (3) media massa dikontrol dan hanya menampilkan berita positif Golkar, (4) partai oposisi (PPP dan PDI) dibatasi ruang geraknya, (5) birokrasi tidak netral — pegawai negeri wajib memilih Golkar, dan (6) militer secara terbuka mendukung Golkar. Akibatnya, meskipun Pemilu diadakan rutin, hasilnya sudah bisa diprediksi sebelumnya.',
+q:'Berdasarkan stimulus tersebut, mengapa Pemilu Orde Baru dianggap tidak demokratis?',
+o:['Karena Pemilu Orde Baru tidak pernah diadakan sama sekali',
+ 'Karena Pemilu Orde Baru hanya diikuti oleh satu partai politik saja',
+ 'Karena ada tekanan, intimidasi, kontrol media, dan pembatasan partai oposisi sehingga hasilnya sudah bisa diprediksi',
+ 'Karena hasil Pemilu Orde Baru selalu berubah-ubah dan tidak bisa diprediksi',
+ 'Karena Pemilu Orde Baru tidak diawasi oleh PBB sebagai lembaga internasional'],
+a:2,
+e:'Pemilu Orde Baru tidak demokratis karena: tekanan, intimidasi, kontrol media, pembatasan oposisi, birokrasi tidak netral, militer mendukung Golkar. Hasil sudah bisa diprediksi.'},
+
+/* ============ MCMA (7 SOAL) — POLA BERAGAM ============ */
+
+/* Q19 — Pola: [0,2,3] */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Faktor munculnya Orde Baru',
+s:'Orde Baru muncul sebagai respons terhadap krisis multidimensional setelah G30S 1965. Faktor-faktor pendorongnya: (1) Krisis ekonomi dengan inflasi 600–1000%; (2) Krisis politik akibat G30S dan konflik PKI–TNI AD; (3) Aksi Tritura oleh mahasiswa yang menuntut perubahan; (4) Dukungan militer terhadap Soeharto; (5) Krisis kepercayaan rakyat terhadap pemerintahan Sukarno. Kombinasi faktor-faktor ini menciptakan momentum bagi transisi kekuasaan dari Orde Lama ke Orde Baru.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Krisis ekonomi dan politik 1965 menjadi faktor pendorong munculnya Orde Baru.',
+ 'Orde Baru muncul tanpa tekanan atau tuntutan dari rakyat.',
+ 'Tritura oleh mahasiswa menjadi pemicu utama perubahan kekuasaan.',
+ 'Dukungan militer mempercepat proses peralihan kekuasaan.',
+ 'Belanda terlibat langsung dalam proses peralihan kekuasaan 1966.'],
+a:[0,2,3],
+e:'A, C, D benar. B salah — Orde Baru muncul dari tekanan rakyat (Tritura). E salah — Belanda tidak terlibat dalam transisi 1966.'},
+
+/* Q20 — Pola: [1,3] */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Supersemar & Tritura',
+s:'Supersemar (11 Maret 1966) dan Tritura (Januari 1966) adalah dua peristiwa penting dalam transisi kekuasaan dari Sukarno ke Soeharto. Supersemar memberi mandat kepada Soeharto untuk mengambil langkah-langkah menjaga keamanan & ketertiban. Tritura berisi tuntutan pembubaran PKI, pembersihan kabinet, dan penurunan harga sembako. Keduanya menjadi pemicu utama berakhirnya kekuasaan Sukarno dan dimulainya Orde Baru.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Supersemar ditandatangani pada 12 Maret 1967.',
+ 'Supersemar memberikan mandat kepada Letjen Soeharto.',
+ 'Tritura berisi tuntutan untuk mendukung Sukarno.',
+ 'Tritura menuntut pembubaran PKI.',
+ 'Tritura menuntut pengangkatan Soeharto sebagai presiden.'],
+a:[1,3],
+e:'B, D benar. A salah — Supersemar 11 Maret 1966. C salah — Tritura menuntut perubahan, bukan dukung Sukarno. E salah — Tritura tidak menuntut pengangkatan Soeharto.'},
+
+/* Q21 — Pola: [0,1,2] */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Kebijakan stabilisasi Orde Baru',
+s:'Orde Baru menerapkan berbagai kebijakan untuk menstabilkan politik & keamanan. Kebijakan-kebijakan ini berhasil menciptakan stabilitas, tetapi juga membatasi kebebasan sipil. Di antaranya: (1) Dwifungsi ABRI memberi militer peran ganda di pertahanan & politik; (2) Asas Tunggal Pancasila mewajibkan semua ormas & partai berasaskan Pancasila (UU 1985); (3) Fusi partai 1973 menyederhanakan partai menjadi PPP, Golkar, PDI; (4) Kontrol pers melalui SIUPP; (5) Pembatasan kebebasan sipil lainnya.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Dwifungsi ABRI memberi militer peran sosial-politik.',
+ 'Asas Tunggal Pancasila diatur melalui UU pada 1985.',
+ 'Fusi partai 1973 menyederhanakan partai menjadi tiga.',
+ 'Orde Baru menjamin kebebasan pers sepenuhnya tanpa kontrol.',
+ 'Pemilu Orde Baru diikuti oleh lebih dari 10 partai politik.'],
+a:[0,1,2],
+e:'A, B, C benar. D salah — pers dikontrol melalui SIUPP. E salah — setelah fusi 1973 hanya ada 3 partai.'},
+
+/* Q22 — Pola: [2,3,4] */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Dampak pembangunan Orde Baru',
+s:'Pembangunan ekonomi Orde Baru membawa dampak positif & negatif. Positif: pertumbuhan ekonomi rata-rata 7% per tahun, swasembada beras pada 1984, infrastruktur berkembang, pendapatan per kapita naik. Negatif: kesenjangan kaya-miskin melebar, KKN sistemik, konglomerasi ekonomi, kerusakan lingkungan, dan ketergantungan utang luar negeri. Pembangunan terpusat di Jawa & kota-kota besar, sementara daerah tertinggal.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Pembangunan Orde Baru merata di seluruh wilayah Indonesia.',
+ 'Tidak ada kesenjangan ekonomi pada masa Orde Baru.',
+ 'Swasembada beras tercapai pada tahun 1984.',
+ 'KKN menjadi sistemik pada masa Orde Baru.',
+ 'Kesenjangan kaya-miskin melebar pada masa Orde Baru.'],
+a:[2,3,4],
+e:'C, D, E benar. A salah — pembangunan tidak merata. B salah — kesenjangan justru melebar.'},
+
+/* Q23 — Pola: [0,3] */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Faktor kemenangan Golkar',
+s:'Golkar selalu menang dalam enam Pemilu Orde Baru (1971–1997) dengan margin besar. Kemenangan ini didukung oleh: (1) Dukungan militer & birokrasi — pegawai negeri wajib memilih Golkar; (2) Kontrol media massa — hanya berita positif Golkar; (3) Dana besar dari pengusaha & pemerintah; (4) Intimidasi terhadap pemilih; (5) Pembatasan ruang gerak PPP & PDI. Tidak ada kompetisi politik yang sehat.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Dukungan militer & birokrasi memperkuat posisi Golkar dalam Pemilu.',
+ 'Golkar menang karena kompetisi politik yang sehat & bebas.',
+ 'PPP & PDI memiliki akses media yang sama dengan Golkar.',
+ 'Intimidasi terhadap pemilih terjadi pada masa Orde Baru.',
+ 'Golkar tidak pernah menang dalam Pemilu Orde Baru.'],
+a:[0,3],
+e:'A, D benar. B salah — kompetisi tidak sehat. C salah — akses PPP & PDI terbatas. E salah — Golkar menang 6 kali.'},
+
+/* Q24 — Pola: [1,2,4] */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Persoalan Orde Baru',
+s:'Meskipun berhasil menciptakan stabilitas & pertumbuhan ekonomi, Orde Baru menyimpan berbagai persoalan serius. Persoalan politik: otoritarianisme, KKN, pelanggaran HAM (Tanjung Priok 1984, Santa Cruz 1991, Penculikan Aktivis 1997–1998), pembatasan kebebasan sipil. Persoalan ekonomi: kesenjangan kaya-miskin, utang luar negeri menumpuk, konglomerasi, kerusakan lingkungan. Persoalan sosial: disintegrasi (Aceh, Papua, Timor Timur), ketidakadilan hukum, kekecewaan rakyat.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Orde Baru sepenuhnya bersih dari praktik KKN.',
+ 'Pelanggaran HAM terjadi di berbagai daerah pada masa Orde Baru.',
+ 'Kesenjangan kaya-miskin melebar pada masa Orde Baru.',
+ 'Utang luar negeri Indonesia lunas sepenuhnya pada tahun 1996.',
+ 'Ketergantungan pada utang luar negeri sangat tinggi pada masa Orde Baru.'],
+a:[1,2,4],
+e:'B, C, E benar. A salah — KKN justru sistemik. D salah — utang luar negeri menumpuk, tidak lunas 1996.'},
+
+/* Q25 — Pola: [0,1,3,4] */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Krisis Moneter 1997',
+s:'Krisis Moneter 1997–1998 adalah krisis multidimensi. Dimulai di Thailand (Juli 1997) dan menyebar ke Indonesia. Rupiah anjlok dari Rp2.400 menjadi Rp17.000 per dolar AS (Januari 1998). Pemerintah meminta bantuan IMF, tetapi syaratnya (reformasi ekonomi, penghapusan subsidi, penutupan 16 bank) justru memperburuk krisis. Dampaknya: perusahaan bangkrut, PHK massal, harga sembako melambung, kerusuhan sosial (Mei 1998), dan krisis politik yang berujung pada Reformasi 1998.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Krisis Moneter 1997 dimulai di Thailand pada Juli 1997.',
+ 'Rupiah anjlok dari Rp2.400 ke Rp17.000 per dolar AS pada Januari 1998.',
+ 'Krisis Moneter 1997 tidak berdampak pada rakyat kecil.',
+ 'IMF memberikan bantuan dengan syarat reformasi ekonomi.',
+ 'Krisis Moneter 1997 memicu kerusuhan sosial & krisis politik.'],
+a:[0,1,3,4],
+e:'A, B, D, E benar. C salah — krisis sangat berdampak pada rakyat kecil (PHK massal, harga sembako melambung, kemiskinan).'},
+
+/* ============ KATEGORI (5 SOAL) — POLA BERAGAM ============ */
+
+/* Q26 — Pola: [S, TS, S, TS] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Kronologi Orde Baru',
+s:'Kronologi peristiwa penting Orde Baru: 30 September 1965 (G30S), Januari 1966 (Tritura), 11 Maret 1966 (Supersemar), 12 Maret 1966 (PKI dibubarkan), 12 Maret 1967 (MPRS cabut mandat Sukarno), 27 Maret 1968 (Soeharto dilantik presiden), 1971 (Pemilu pertama Orde Baru), 1973 (fusi partai), 1985 (Asas Tunggal), 1997 (Krisis Moneter), 21 Mei 1998 (Soeharto mundur).',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'G30S terjadi sebelum Supersemar ditandatangani.',a:'Sesuai'},
+ {x:'Soeharto dilantik sebagai presiden sebelum MPRS mencabut mandat Sukarno.',a:'Tidak Sesuai'},
+ {x:'Pemilu pertama Orde Baru (1971) terjadi sebelum fusi partai 1973.',a:'Sesuai'},
+ {x:'Krisis Moneter 1997 terjadi setelah Soeharto mundur pada 1998.',a:'Tidak Sesuai'}],
+e:'1 Sesuai (G30S 1965 < Supersemar 1966). 2 Tidak Sesuai (Soeharto dilantik 1968, MPRS cabut mandat 1967). 3 Sesuai (1971 < 1973). 4 Tidak Sesuai (Krisis 1997 < Soeharto mundur 1998).'},
+
+/* Q27 — Pola: [S, S, TS, TS] */
+{t:'KATEGORI',l:'Applying',d:'Sedang',i:'Kebijakan Orde Baru',
+s:'Orde Baru menerapkan berbagai kebijakan untuk mengontrol politik & masyarakat. Dwifungsi ABRI memberi militer peran ganda di pertahanan & politik. Asas Tunggal Pancasila diatur UU No. 3/1985 & UU No. 8/1985. Fusi partai 1973 menyederhanakan partai menjadi PPP, Golkar, PDI. Pers dikontrol melalui SIUPP — pers kritis bisa dicabut izinnya. Pemilu diadakan rutin tetapi hanya tiga partai yang berpartisipasi.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Dwifungsi ABRI memberi militer peran ganda di pertahanan & politik.',a:'Sesuai'},
+ {x:'Asas Tunggal Pancasila diatur melalui UU No. 3/1985 & UU No. 8/1985.',a:'Sesuai'},
+ {x:'Orde Baru menjamin kebebasan pers sepenuhnya tanpa kontrol.',a:'Tidak Sesuai'},
+ {x:'Pemilu Orde Baru diikuti oleh lebih dari 10 partai politik.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — pers dikontrol SIUPP. 4 Tidak Sesuai — hanya 3 partai setelah fusi 1973.'},
+
+/* Q28 — Pola: [S, TS, S, TS] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Ekonomi Orde Baru',
+s:'Ekonomi Orde Baru: (1) Inflasi 1966 mencapai 600–1000%; (2) Melalui Repelita, inflasi turun menjadi 10% (1969); (3) Pertumbuhan ekonomi rata-rata 7% per tahun hingga 1996; (4) Swasembada beras tercapai 1984; (5) Pendapatan per kapita naik dari USD 70 (1966) menjadi USD 1.100 (1996); (6) Krisis Moneter 1997 menghancurkan ekonomi — rupiah anjlok, PHK massal, kemiskinan meningkat.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Inflasi Indonesia pada 1966 mencapai 600–1000%.',a:'Sesuai'},
+ {x:'Swasembada beras tercapai pada tahun 1970.',a:'Tidak Sesuai'},
+ {x:'Pertumbuhan ekonomi rata-rata 7% per tahun hingga 1996.',a:'Sesuai'},
+ {x:'Krisis Moneter 1997 tidak berdampak pada ekonomi Indonesia.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — swasembada 1984, bukan 1970. 3 Sesuai. 4 Tidak Sesuai — krisis 1997 sangat berdampak.'},
+
+/* Q29 — Pola: [S, TS, S, TS] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Krisis & Reformasi 1998',
+s:'Krisis & Reformasi 1998: (1) 12 Mei 1998 — Tragedi Trisakti, 4 mahasiswa tewas; (2) 13–15 Mei 1998 — Kerusuhan Mei di Jakarta & beberapa kota; (3) 18 Mei 1998 — Mahasiswa menduduki DPR/MPR; (4) 21 Mei 1998 — Soeharto mundur; (5) B.J. Habibie dilantik sebagai presiden. Pengunduran diri Soeharto menandai berakhirnya Orde Baru & dimulainya Reformasi.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Tragedi Trisakti terjadi pada 12 Mei 1998.',a:'Sesuai'},
+ {x:'Soeharto mundur sebelum Tragedi Trisakti terjadi.',a:'Tidak Sesuai'},
+ {x:'Kerusuhan Mei 1998 terjadi di Jakarta & beberapa kota.',a:'Sesuai'},
+ {x:'B.J. Habibie dilantik sebagai presiden sebelum 21 Mei 1998.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — Soeharto mundur 21 Mei, setelah Trisakti 12 Mei. 3 Sesuai. 4 Tidak Sesuai — Habibie dilantik 21 Mei 1998 setelah Soeharto mundur.'},
+
+/* Q30 — Pola: [S, TS, S, S] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Warisan Orde Baru',
+s:'Warisan Orde Baru masih terasa hingga kini. Positif: infrastruktur (jalan, jembatan, bandara), sistem pendidikan, swasembada beras, dan pertumbuhan ekonomi. Negatif: mentalitas priyayi, KKN, kesenjangan sosial, pelanggaran HAM yang belum tuntas, ketergantungan utang. Beberapa kasus pelanggaran HAM masa Orde Baru masih dalam proses penyelesaian. Reformasi 1998 berusaha memperbaiki warisan negatif ini, tetapi tantangannya masih besar.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Orde Baru meninggalkan warisan pembangunan infrastruktur.',a:'Sesuai'},
+ {x:'Orde Baru sepenuhnya berhasil mewujudkan keadilan sosial.',a:'Tidak Sesuai'},
+ {x:'KKN menjadi warisan negatif Orde Baru yang masih terasa hingga kini.',a:'Sesuai'},
+ {x:'Pelanggaran HAM masa Orde Baru belum sepenuhnya terselesaikan hingga kini.',a:'Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — keadilan sosial belum terwujud. 3 Sesuai. 4 Sesuai — banyak kasus HAM belum tuntas.'}
+
+];
+
+/* ============================================================
+   STATE & LOGIC
+   ============================================================ */
+let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let siswaName='',siswaSchool='',siswaClass='';
+let displayedQuestions=[];
+
+(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goIdentity(){
+  stopTimer();
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
+function startTestWithIdentity(){
+  const name=document.getElementById('inpName').value.trim();
+  const school=document.getElementById('inpSchool').value.trim();
+  const cls=document.getElementById('inpClass').value.trim();
+  if(!name||!school||!cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName=name;siswaSchool=school;siswaClass=cls;
+  document.getElementById('hdrName').textContent=siswaName;
+  document.getElementById('hdrSchool').textContent=siswaSchool;
+  document.getElementById('hdrClass').textContent=siswaClass;
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q6]);
+  document.getElementById('testTitle').textContent='Pemerintahan Soeharto';
+  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function retryTest(){
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q6]);
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+function renderQuestion(){
+  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
+  const stimEl=document.getElementById('qStim');
+  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
+  document.getElementById('qText').textContent=q.q;
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
+  const area=document.getElementById('qArea');area.innerHTML='';
+  if(q.t==='PG'){
+    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
+      if(ua===i)div.classList.add('sel');
+      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+    area.appendChild(optsEl);
+  }else if(q.t==='MCMA'){
+    const checksEl=document.createElement('div');checksEl.className='checks';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');div.className='check';
+      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
+      const checked=uaArr.includes(i);
+      if(checked)div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect=q.a.includes(i);
+        if(isCorrect)div.classList.add('correct');
+        else if(checked)div.classList.add('wrong');
+      }
+      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
+      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      checksEl.appendChild(div);
+    });
+    area.appendChild(checksEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  }
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+function selectOption(idx,type){
+  if(revealed[currentQ])return;
+  if(type==='PG'){userAnswers[currentQ]=idx;}
+  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  renderQuestion();renderQMap();updateProgress();
+}
+function setKategori(idx,cat){
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+}
+function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
+function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+function renderQMap(){
+  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
+    const ua=userAnswers[i];let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
+}
+function updateProgress(){
+  const total=displayedQuestions.length;let answered=0;
+  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
+    else answered++;}
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+function isCorrect(q,ua){
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
+  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+  return false;
+}
+function finishTest(){
+  stopTimer();
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
+  document.getElementById('resultIdentity').innerHTML=`
+    <span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
+  let title='',sub='';
+  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Pemerintahan Soeharto sangat luar biasa.`;}
+  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
+  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
+  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Pemerintahan Soeharto dan coba lagi.`;}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultSub').textContent=sub;
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  showSection('result');
+}
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
+window.addEventListener('scroll',()=>{
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';
+  else h.style.boxShadow='none';
+});
+</script>
+</body>
+</html>
