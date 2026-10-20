@@ -12,7 +12,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
   --primary:#B8860B;--primary-light:#DAA520;--gold:#FFD700;--emerald:#10B981;
-  --rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;
+  --rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--amber:#F59E0B;--bg:#0a0a14;--card:#1a1a2e;
   --card-alt:#252540;--text:#faf8f3;--text-light:#dcdcec;--text-muted:#adadc5;
   --line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);
   --radius:18px;--radius-sm:12px;--header-h:64px;
@@ -21,30 +21,6 @@
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;
   background-image:radial-gradient(circle at 15% 12%,rgba(184,134,11,.08),transparent 55%),radial-gradient(circle at 85% 80%,rgba(139,92,246,.07),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
-
-/* LOADER */
-#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#14142a 0%,#0a0a14 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
-.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
-.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--sky) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,215,0,.55)) drop-shadow(0 0 26px rgba(184,134,11,.4));z-index:-2;}
-.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a0a14;box-shadow:inset 0 0 24px rgba(184,134,11,.16);z-index:-1;}
-.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;
-  background:linear-gradient(135deg,#00E5FF 0%,#A855F7 50%,#FFD700 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;
-  filter:drop-shadow(2px 2px 0 rgba(0,0,0,.55)) drop-shadow(4px 4px 0 rgba(0,0,0,.3)) drop-shadow(0 0 22px rgba(168,85,247,.6));position:relative;z-index:6;}
-.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35),inset 0 0 12px rgba(56,189,248,.15);}
-.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35),inset 0 0 14px rgba(139,92,246,.15);}
-.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(251,113,133,.35),inset 0 0 15px rgba(251,113,133,.12);}
-@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
-@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);border-radius:10px;margin-top:24px;overflow:hidden;}
-.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
-.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 
 /* HEADER */
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
@@ -157,11 +133,11 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
 /* RESULT */
 .result-hero{text-align:center;padding:30px 0 20px}
-.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score{width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--card-alt) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
 .result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
-.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sv{position:relative;z-index:1;font-size:2.6rem;font-weight:900;line-height:1;transition:color .6s}
 .result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:760px}
 .rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
 .rs .v{font-size:1.4rem;font-weight:900;line-height:1}
 .rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
@@ -169,6 +145,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .rs.red .v{color:var(--rose)}
 .rs.gold .v{color:var(--primary)}
 .rs.blue .v{color:var(--sky)}
+.rs.amber .v{color:var(--amber)}
 .recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
 .recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
 .recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
@@ -192,6 +169,12 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 
+/* TOAST */
+.toast{position:fixed;top:calc(var(--header-h) + 14px);left:50%;transform:translateX(-50%) translateY(-24px);background:linear-gradient(135deg,#F59E0B,#DC2626);color:#fff;padding:14px 26px;border-radius:14px;box-shadow:0 14px 40px rgba(220,38,38,.5);z-index:2000;font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:10px;max-width:calc(100vw - 30px);text-align:left;line-height:1.4;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast i{font-size:1.1rem;animation:toastPulse 1s ease-in-out infinite;}
+@keyframes toastPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
 .hidden{display:none!important}
 
 /* RESPONSIVE */
@@ -203,21 +186,11 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   .check .box{width:23px;height:23px}
   .check .clbl{width:18px;font-size:.72rem}
   .opt .txt,.check .txt{font-size:.86rem}
-  .loader-3d-wrap{width:200px;height:200px}
-  .loader-circle{width:120px;height:120px}
-  .ring-1{inset:36px}
-  .ring-2{inset:28px}
-  .ring-3{inset:20px}
 }
 @media(max-width:480px){
   .btn{padding:9px 16px;font-size:.8rem}
   .q-nav{flex-direction:column}
   .q-nav .btn{width:100%;justify-content:center}
-  .loader-3d-wrap{width:180px;height:180px}
-  .loader-circle{width:105px;height:105px}
-  .ring-1{inset:34px}
-  .ring-2{inset:26px}
-  .ring-3{inset:18px}
 }
 
 /* SCROLLBAR */
@@ -228,21 +201,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 </head>
 <body>
 
-<div id="loader">
-  <div class="loader-3d-wrap">
-    <div class="loader-ring ring-1"></div>
-    <div class="loader-ring ring-2"></div>
-    <div class="loader-ring ring-3"></div>
-    <div class="loader-circle">
-      <div class="loader-3d-text">MGE</div>
-    </div>
-  </div>
-  <div class="loader-3d-sub">Maeda Game Edu</div>
-  <div class="loader-title">TEMA 1 · PRINSIP SEJARAH</div>
-  <div class="loader-sub">Memuat bank soal · 22 soal siap dikerjakan</div>
-  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
-  <div class="loader-pct" id="lpct">0%</div>
-</div>
+<div class="toast" id="toast"></div>
 
 <header class="hdr">
   <div style="display:flex;gap:6px;align-items:center">
@@ -265,7 +224,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
        <i class="fas fa-crown"></i> Tema 1 · Fase E
      </div>
      <h2 style="font-size:1.4rem;color:var(--primary)">Identitas Siswa</h2>
-     <p style="color:var(--text-muted);font-size:.88rem">Isi data diri sebelum memulai tes</p>
+     <p style="color:var(--text-muted);font-size:.88rem">Isi data diri sebelum memulai tes · Waktu 70 menit</p>
   </div>
   <div class="identity-form">
      <h2>Formulir Peserta</h2>
@@ -283,7 +242,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
         <input type="text" id="inpClass" placeholder="Contoh: XI IPS 1" required>
      </div>
      <div style="display:flex;gap:10px;margin-top:20px">
-        <button class="btn btn-ghost" onclick="goHome()" style="flex:1;justify-content:center"><i class="fas fa-arrow-left"></i> Kembali</button>
+        <button class="btn btn-ghost" onclick="goHome()" style="flex:1;justify-content:center"><i class="fas fa-home"></i> Beranda</button>
         <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:2;justify-content:center"><i class="fas fa-play"></i> Mulai Tes</button>
      </div>
      <div class="privacy-notice">
@@ -306,9 +265,9 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
-      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-hourglass-half"></i> <span id="testTimer">70:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">22</span></span>
-      <button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.78rem"><i class="fas fa-arrow-left"></i> Beranda</button>
+      <button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.78rem"><i class="fas fa-home"></i> Beranda</button>
     </div>
   </div>
   <div class="qcard" id="qcard">
@@ -336,11 +295,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
     <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
     <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <p id="resultEncourage" style="margin-top:10px;font-size:.92rem;color:var(--text-light);font-weight:600;max-width:640px;margin-left:auto;margin-right:auto"></p>
     <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
   </div>
   <div class="result-stats">
     <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
     <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs amber"><div class="v" id="rsUnanswered">0</div><div class="l">Belum</div></div>
     <div class="rs gold"><div class="v" id="rsTotal">22</div><div class="l">Total</div></div>
     <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
   </div>
@@ -364,9 +325,15 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
 <script>
 /* ============================================================
-   HOME URL — arahkan ke halaman utama
+   HOME URL — arahkan ke halaman utama SIMULASI TKA
    ============================================================ */
-const HOME_URL='https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/';
+const HOME_URL='https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html';
+
+/* ============================================================
+   KONFIGURASI WAKTU
+   ============================================================ */
+const TOTAL_TIME=70*60;                 // 70 menit dalam detik
+const WARN_AT=[15*60,10*60,5*60];       // notifikasi pada sisa waktu (detik)
 
 /* ============================================================
    UTIL SHUFFLE
@@ -405,20 +372,30 @@ const Q1=[
 /* ============================================================
    STATE
    ============================================================ */
-let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let currentQ=0,userAnswers={},revealed={},timerInterval=null;
+let secondsLeft=TOTAL_TIME;
+let warnedAt={};
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
-
-/* ============================================================
-   LOADER
-   ============================================================ */
-(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
+let isLocked=false;
 
 /* ============================================================
    NAVIGATION
    ============================================================ */
 function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function goHome(){stopTimer();window.location.href=HOME_URL;}
+
+/* ============================================================
+   TOAST NOTIFIKASI
+   ============================================================ */
+let toastTimeout=null;
+function showToast(msg,icon){
+  const t=document.getElementById('toast');
+  t.innerHTML=`<i class="fas ${icon||'fa-bell'}"></i><span>${msg}</span>`;
+  t.classList.add('show');
+  if(toastTimeout)clearTimeout(toastTimeout);
+  toastTimeout=setTimeout(()=>{t.classList.remove('show');},4500);
+}
 
 /* ============================================================
    START TEST
@@ -430,7 +407,7 @@ function startTestWithIdentity(){
   document.getElementById('hdrName').textContent=siswaName;
   document.getElementById('hdrSchool').textContent=siswaSchool;
   document.getElementById('hdrClass').textContent=siswaClass;
-  currentQ=0;userAnswers={};revealed={};
+  currentQ=0;userAnswers={};revealed={};warnedAt={};isLocked=false;
   displayedQuestions=shuffle([...Q1]);
   document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
   document.getElementById('totCount').textContent=displayedQuestions.length;
@@ -439,11 +416,46 @@ function startTestWithIdentity(){
 function retryTest(){stopTimer();showSection('identity');}
 
 /* ============================================================
-   TIMER
+   TIMER COUNTDOWN 70 MENIT
    ============================================================ */
-function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();if(secondsElapsed>=90*60){document.getElementById('testTimerBox').classList.add('warn');if(secondsElapsed>=90*60)finishTest();}},1000);}
+function startTimer(){
+  stopTimer();
+  secondsLeft=TOTAL_TIME;
+  warnedAt={};
+  updateTimerDisplay();
+  document.getElementById('testTimerBox').classList.remove('warn');
+  timerInterval=setInterval(()=>{
+    secondsLeft--;
+    updateTimerDisplay();
+    WARN_AT.forEach(w=>{
+      if(secondsLeft===w && !warnedAt[w]){
+        warnedAt[w]=true;
+        const menit=w/60;
+        showToast(`⏰ Sisa waktu ${menit} menit lagi! Segera periksa jawabanmu.`,'fa-hourglass-half');
+        document.getElementById('testTimerBox').classList.add('warn');
+      }
+    });
+    if(secondsLeft<=0){
+      clearInterval(timerInterval);timerInterval=null;
+      timeUp();
+    }
+  },1000);
+}
 function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
-function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function updateTimerDisplay(){
+  const m=String(Math.floor(Math.max(0,secondsLeft)/60)).padStart(2,'0');
+  const s=String(Math.max(0,secondsLeft)%60).padStart(2,'0');
+  document.getElementById('testTimer').textContent=`${m}:${s}`;
+}
+
+/* Waktu habis → kunci & tampilkan hasil */
+function timeUp(){
+  if(isLocked)return;
+  isLocked=true;
+  showToast('⏰ Waktu habis! Jawaban dikunci & hasil ditampilkan.','fa-lock');
+  for(let i=0;i<displayedQuestions.length;i++)revealed[i]=true;
+  setTimeout(()=>{finishTest(true);},900);
+}
 
 function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
 
@@ -469,7 +481,9 @@ function renderQuestion(){
     q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
       if(ua===i)div.classList.add('sel');
       if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
-      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      if(!isLocked)div.onclick=()=>selectOption(i,q.t);
+      optsEl.appendChild(div);});
     area.appendChild(optsEl);
   }else if(q.t==='MCMA'){
     const checksEl=document.createElement('div');checksEl.className='checks';
@@ -486,7 +500,7 @@ function renderQuestion(){
       }
       const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
       div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
-      div.onclick=()=>selectOption(i,q.t);
+      if(!isLocked)div.onclick=()=>selectOption(i,q.t);
       checksEl.appendChild(div);
     });
     area.appendChild(checksEl);
@@ -494,7 +508,8 @@ function renderQuestion(){
     const wrap=document.createElement('div');wrap.className='kat-wrap';
     let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
     q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
-      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+      const dis=isLocked?'disabled':'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button ${dis} class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button ${dis} class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
     html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
   }
 
@@ -510,19 +525,19 @@ function renderQuestion(){
 }
 
 function selectOption(idx,type){
-  if(revealed[currentQ])return;
+  if(isLocked||revealed[currentQ])return;
   if(type==='PG'){userAnswers[currentQ]=idx;}
   else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
   renderQuestion();renderQMap();updateProgress();
 }
 
 function setKategori(idx,cat){
-  if(revealed[currentQ])return;
+  if(isLocked||revealed[currentQ])return;
   if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
   userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
 }
 
-function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function revealQ(){if(isLocked)return;revealed[currentQ]=true;renderQuestion();}
 function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
 function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
 
@@ -543,6 +558,7 @@ function updateProgress(){
     else answered++;}
   document.getElementById('ansCount').textContent=answered;
   document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+  return answered;
 }
 
 function isCorrect(q,ua){
@@ -553,42 +569,96 @@ function isCorrect(q,ua){
   return false;
 }
 
+/* Hitung jumlah soal yang dijawab (partial atau penuh) */
+function countAnswered(){
+  let answered=0;
+  for(let i=0;i<displayedQuestions.length;i++){
+    const ua=userAnswers[i];
+    if(ua===undefined||ua===null)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){if(Object.keys(ua).length>0)answered++;}
+    else answered++;
+  }
+  return answered;
+}
+
 /* ============================================================
    FINISH TEST — hitung skor & tampilkan hasil
    ============================================================ */
-function finishTest(){
-  stopTimer();const qs=displayedQuestions;const total=qs.length;let correct=0;
+function finishTest(fromTimeout){
+  if(!fromTimeout && !confirm('Yakin ingin menyelesaikan tes? Pastikan semua jawaban sudah diperiksa.'))return;
+  stopTimer();
+  isLocked=true;
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
   const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
   const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
-  qs.forEach((q,i)=>{const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;});
-  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);
+    if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=countAnswered();
+  const unanswered=total-answered;
+  const wrong=answered-correct;
+  const score=Math.round((correct/total)*100);
+
   document.getElementById('finalScore').textContent=score;
   document.getElementById('rsCorrect').textContent=correct;
   document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsUnanswered').textContent=unanswered;
   document.getElementById('rsTotal').textContent=total;
-  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+
+  const usedSec=TOTAL_TIME-Math.max(0,secondsLeft);
+  const m=String(Math.floor(usedSec/60)).padStart(2,'0'),s=String(usedSec%60).padStart(2,'0');
   document.getElementById('rsTime').textContent=`${m}:${s}`;
-  document.getElementById('resultIdentity').innerHTML=`<span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span><span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span><span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
-  let title='',sub='';
-  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Kamu mendapatkan nilai ${score}. Pemahamanmu sangat luar biasa.`;}
-  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
-  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
-  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi dan coba lagi.`;}
+
+  document.getElementById('resultIdentity').innerHTML=
+    `<span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>`+
+    `<span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>`+
+    `<span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
+
+  let colorVar,title,sub;
+  if(score>=80){colorVar='var(--emerald)';title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu luar biasa!`;}
+  else if(score>=60){colorVar='var(--amber)';title='Cukup Baik (B/C)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan & tingkatkan.`;}
+  else{colorVar='var(--rose)';title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi dan coba lagi.`;}
+
   document.getElementById('resultTitle').textContent=title;
   document.getElementById('resultSub').textContent=sub;
-  const circle=document.getElementById('resultScore');const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
-  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+
+  const sv=document.getElementById('finalScore');
+  sv.style.color=colorVar;
+  const circle=document.getElementById('resultScore');
+  circle.style.background=`conic-gradient(${colorVar} 0%, ${colorVar} ${score}%, var(--card-alt) ${score}%)`;
+
+  let encourage='';
+  const pctAnswered=(answered/total)*100;
+  if(answered===total){encourage=`🌟 Luar biasa! Kamu berhasil menjawab semua ${total} soal.`;}
+  else if(pctAnswered>=75){encourage=`👏 Hebat! Kamu menjawab ${answered} dari ${total} soal. Sedikit lagi sempurna!`;}
+  else if(pctAnswered>=50){encourage=`💪 Bagus! Kamu sudah menjawab ${answered} dari ${total} soal. Terus tingkatkan!`;}
+  else if(answered>0){encourage=`✨ Kamu sudah menjawab ${answered} soal. Ayo lebih teliti & fokus di percobaan berikutnya!`;}
+  else{encourage=`📚 Belum ada soal yang dijawab. Yuk coba lagi dengan semangat!`;}
+  document.getElementById('resultEncourage').textContent=encourage;
+
   const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
   ['Knowing','Applying','Reasoning'].forEach(lv=>{const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;});
+
   const recapType=document.getElementById('recapType');recapType.innerHTML='';
   ['PG','MCMA','KATEGORI'].forEach(tp=>{const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;});
+
   showSection('result');
 }
 
 /* ============================================================
    KEYBOARD
    ============================================================ */
-document.addEventListener('keydown',(e)=>{if(!document.getElementById('test').classList.contains('active'))return;const tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;if(e.key==='ArrowRight')nextQ();else if(e.key==='ArrowLeft')prevQ();});
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
 window.addEventListener('scroll',()=>{const h=document.querySelector('.hdr');if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';else h.style.boxShadow='none';});
 </script>
 </body>
