@@ -13,26 +13,6 @@
 :root{--primary:#5DADE2;--primary-light:#AED6F1;--gold:#85C1E9;--emerald:#48C9B0;--rose:#EC7063;--sky:#38BDF8;--violet:#7B9FE8;--bg:#0a1420;--card:#152a3d;--card-alt:#1a3450;--text:#eaf4fc;--text-light:#a8c4dc;--text-muted:#7593ab;--line:rgba(174,214,241,.14);--line-soft:rgba(174,214,241,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#5DADE2;--accent2:#48C9B0;--accent-soft:rgba(93,173,226,.12);}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(93,173,226,.10),transparent 55%),radial-gradient(circle at 85% 80%,rgba(72,201,176,.08),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
-#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#0f1e2e 0%,#0a1420 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
-.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
-.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--emerald) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(174,214,241,.55)) drop-shadow(0 0 26px rgba(93,173,226,.4));z-index:-2;}
-.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a1420;box-shadow:inset 0 0 24px rgba(93,173,226,.16);z-index:-1;}
-.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#eaf4fc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #2874A6) drop-shadow(2px 2px 0 #1f5d85) drop-shadow(3px 3px 0 #184a6a) drop-shadow(4px 4px 0 #113750) drop-shadow(5px 5px 0 #0a2438) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(174,214,241,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
-.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
-.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35);}
-.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(236,112,99,.35);}
-@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(93,173,226,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
-@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(93,173,226,.18);border-radius:10px;margin-top:24px;overflow:hidden;}
-.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
-.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,20,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
 .hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
 .hdr-center i{color:var(--gold)}
@@ -159,30 +139,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(236,112,99,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
-@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
-@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
 </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="loader-3d-wrap">
-    <div class="loader-ring ring-1"></div>
-    <div class="loader-ring ring-2"></div>
-    <div class="loader-ring ring-3"></div>
-    <div class="loader-circle">
-      <div class="loader-3d-text">MGE</div>
-    </div>
-  </div>
-  <div class="loader-3d-sub">Maeda Game Edu</div>
-  <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">Tema 8: Perlawanan terhadap Penjajahan · 30 Soal</div>
-  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
-  <div class="loader-pct" id="lpct">0%</div>
-</div>
 
 <header class="hdr">
   <div style="display:flex;gap:6px;align-items:center">
@@ -300,14 +264,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 /* ============================================================
    BANK SOAL — PERLAWANAN TERHADAP PENJAJAHAN (30 SOAL UNIK)
    18 PG + 7 MCMA + 5 KATEGORI
-   Kunci PG: A=4, B=4, C=4, D=3, E=3
-   Level: Knowing=5, Applying=11, Reasoning=14
    ============================================================ */
 const Q8=[
 
-/* ============ PG (18 SOAL) ============ */
-
-/* Q1 — Kunci: B (Applying) — Sultan Agung */
+/* Q1 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Kegagalan Sultan Agung',
 s:'Sultan Agung (1613–1645) dari Mataram Islam menyerang Batavia dua kali — pada 1628 dan 1629. Serangan pertama mengerahkan sekitar 10.000 tentara, serangan kedua sekitar 14.000 tentara. Namun, kedua serangan tersebut gagal. Ada beberapa penyebab: pasokan logistik dari Mataram ke Batavia sangat jauh dan mudah diputus, tentara Mataram terserang wabah penyakit (malaria & kolera) di daerah rawa sekitar Batavia, benteng pertahanan VOC sangat kuat, dan armada laut Mataram kalah dari kapal-kapal Belanda. Meskipun gagal, Sultan Agung tetap dikenang sebagai raja besar yang berani melawan VOC.',
 q:'Berdasarkan stimulus tersebut, penyebab utama kegagalan serangan Sultan Agung ke Batavia adalah ....',
@@ -319,7 +279,7 @@ o:['Pasukan Mataram kalah jumlah dibanding pasukan VOC',
 a:1,
 e:'Penyebab kegagalan Sultan Agung: (1) logistik jauh & mudah diputus, (2) wabah penyakit di rawa Batavia, (3) benteng VOC kuat, (4) armada laut kalah. Bukan karena kalah jumlah, menyerah, atau dibeli Belanda.'},
 
-/* Q2 — Kunci: A (Knowing) — Nama asli Pattimura */
+/* Q2 — Kunci: A */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Nama asli Pattimura',
 s:'Kapitan Pattimura adalah pahlawan nasional dari Saparua, Maluku. Nama aslinya adalah Thomas Matulessy. Ia juga dikenal dengan nama Ahmad Matulessy setelah masuk Islam. Pada 16 Mei 1817, ia memimpin rakyat Maluku menyerang Benteng Duurstede di Saparua sebagai protes terhadap monopoli rempah & penindasan VOC/Belanda. Perlawanan ini berhasil menewaskan Residen Van den Berg. Namun, pada November 1817 ia ditangkap, dan pada 16 Desember 1817 ia dihukum gantung di Ambon. Pada 1973, ia ditetapkan sebagai Pahlawan Nasional Indonesia.',
 q:'Berdasarkan stimulus tersebut, nama asli Kapitan Pattimura adalah ....',
@@ -327,7 +287,7 @@ o:['Thomas Matulessy','Tuanku Imam Bonjol','Sultan Hasanuddin','Pangeran Diponeg
 a:0,
 e:'Thomas Matulessy = nama asli Kapitan Pattimura. Tuanku Imam Bonjol = Perang Padri. Sultan Hasanuddin = Gowa-Tallo. Diponegoro = Perang Jawa. Antasari = Perang Banjar.'},
 
-/* Q3 — Kunci: C (Applying) — Julukan Sultan Hasanuddin */
+/* Q3 — Kunci: C */
 {t:'PG',l:'Applying',d:'Sedang',i:'Julukan Ayam Jantan dari Timur',
 s:'Sultan Hasanuddin (1631–1670) berkuasa di Gowa-Tallo pada 1653–1669. Ia memimpin Perang Makassar (1666–1669) melawan VOC. Dalam perang tersebut, ia menunjukkan keberanian & kecerdasan strategi yang luar biasa — menggunakan armada laut tangguh, benteng-benteng pertahanan, dan taktik gerilya. VOC sendiri yang memberinya julukan "Ayam Jantan dari Timur" (De Haantjes van het Oosten) sebagai bentuk pengakuan atas keberaniannya. Namun, pada 1667, ia dipaksa menandatangani Perjanjian Bongaya yang membatasi kedaulatan Gowa-Tallo. Ia wafat pada 1670.',
 q:'Berdasarkan stimulus tersebut, julukan "Ayam Jantan dari Timur" diberikan VOC kepada Sultan Hasanuddin karena ....',
@@ -339,7 +299,7 @@ o:['Kekayaan Gowa-Tallo dari rempah-rempah',
 a:2,
 e:'Julukan "Ayam Jantan dari Timur" = pengakuan VOC atas keberanian & kegigihan Sultan Hasanuddin. Bukan karena kekayaan, armada terbesar, aliansi, atau kemenangan.'},
 
-/* Q4 — Kunci: D (Reasoning) — Perang Padri fase 1 vs 2 */
+/* Q4 — Kunci: D */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Penyebab perubahan Perang Padri',
 s:'Perang Padri (1803–1838) di Sumatera Barat terjadi dalam dua fase. Fase pertama (1803–1821) adalah perang saudara antara Kaum Padri (ulama pembaharu yang ingin memurnikan ajaran Islam) dengan Kaum Adat (bangsawan tradisional yang mempertahankan adat). Fase kedua (1821–1838) berubah menjadi perang melawan Belanda. Perubahan ini terjadi karena Kaum Adat yang terdesak meminta bantuan kepada Belanda. Belanda kemudian masuk & memihak Kaum Adat. Namun, setelah Kaum Padri terdesak, Belanda justru menguasai Sumatera Barat & menjadikannya wilayah kolonial. Tuanku Imam Bonjol memimpin perlawanan hingga akhirnya ditangkap pada 1832.',
 q:'Berdasarkan stimulus tersebut, penyebab utama perubahan Perang Padri dari perang saudara menjadi perang melawan Belanda adalah ....',
@@ -351,7 +311,7 @@ o:['Kaum Padri menyerang Belanda lebih dulu',
 a:3,
 e:'Kaum Adat yang terdesak meminta bantuan Belanda → Belanda masuk & memihak Kaum Adat → perang berubah menjadi perang melawan Belanda. Ini pelajaran: perpecahan internal dimanfaatkan penjajah.'},
 
-/* Q5 — Kunci: E (Applying) — Pemicu Perang Jawa */
+/* Q5 — Kunci: E */
 {t:'PG',l:'Applying',d:'Sedang',i:'Pemicu Perang Jawa',
 s:'Perang Jawa (1825–1830) adalah perang terbesar yang dihadapi Belanda di Jawa. Pemicu langsungnya adalah pemasangan patok jalan oleh Belanda di tanah milik Pangeran Diponegoro di Tegalrejo, Yogyakarta. Pangeran Diponegoro menganggap tindakan itu sebagai penghinaan terhadap martabatnya & rakyat. Selain itu, ada faktor lain: campur tangan Belanda dalam urusan Keraton Yogyakarta, pajak tanah yang memberatkan rakyat, serta kekecewaan terhadap sikap Sultan Hamengkubuwono V yang dianggap lemah terhadap Belanda. Perang berlangsung 5 tahun dengan korban besar di kedua pihak.',
 q:'Berdasarkan stimulus tersebut, pemicu langsung Perang Jawa (1825–1830) adalah ....',
@@ -363,7 +323,7 @@ o:['Pajak tanah yang terlalu tinggi bagi rakyat',
 a:4,
 e:'Pemicu LANGSUNG = pemasangan patok jalan di Tegalrejo. Faktor lain (pajak, campur tangan Belanda, kekecewaan) adalah penyebab tidak langsung. Ini membedakan "pemicu" vs "penyebab".'},
 
-/* Q6 — Kunci: A (Reasoning) — Pangeran Antasari */
+/* Q6 — Kunci: A */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Gelar Pangeran Antasari',
 s:'Pangeran Antasari (1797–1862) adalah pemimpin Perang Banjar (1859–1905). Setelah beberapa tokoh perlawanan ditangkap Belanda, ia diangkat sebagai pemimpin tertinggi dengan gelar "Panembahan Amiruddin Khalifatul Mukminin" — gelar yang menegaskan posisinya sebagai pemimpin agama & negara. Perlawanan rakyat Banjar terus berlangsung meski ia wafat pada 1862. Perjuangan dilanjutkan oleh putra-putranya, terutama Pangeran Muhammad Seman, hingga 1905. Perang Banjar menjadi salah satu perang terlama di Kalimantan melawan Belanda.',
 q:'Berdasarkan stimulus tersebut, gelar yang diberikan kepada Pangeran Antasari sebagai pemimpin tertinggi Perang Banjar adalah ....',
@@ -375,7 +335,7 @@ o:['Panembahan Amiruddin Khalifatul Mukminin',
 a:0,
 e:'Gelar Pangeran Antasari = Panembahan Amiruddin Khalifatul Mukminin (pemimpin agama & negara). Sultan Banjar = gelar raja. Ayam Jantan dari Timur = Hasanuddin. Pangeran Hidayatullah = tokoh lain Perang Banjar.'},
 
-/* Q7 — Kunci: B (Knowing) — Benteng Stelsel */
+/* Q7 — Kunci: B */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Strategi Benteng Stelsel',
 s:'Untuk menghadapi Perang Jawa (1825–1830), Belanda di bawah Jenderal de Kock menerapkan strategi yang disebut "Benteng Stelsel". Inti strategi ini adalah membangun banyak benteng di titik-titik strategis — seperti Semarang, Yogyakarta, Magelang, dan lainnya. Tujuan utamanya: mempersempit ruang gerak pasukan Pangeran Diponegoro yang menggunakan taktik gerilya. Dengan benteng-benteng tersebut, pasukan Belanda dapat bergerak cepat & memutus jalur logistik Diponegoro. Strategi ini berhasil melemahkan perlawanan Diponegoro secara bertahap.',
 q:'Berdasarkan stimulus tersebut, strategi Belanda membangun banyak benteng di titik strategis untuk mempersempit ruang gerak Pangeran Diponegoro disebut ....',
@@ -383,7 +343,7 @@ o:['Devide et Impera','Benteng Stelsel','Hongi Tochten','Pax Neerlandica','Conti
 a:1,
 e:'Benteng Stelsel = strategi Belanda (Jenderal de Kock) membangun benteng di titik strategis untuk mempersempit ruang gerak Diponegoro. Berbeda dengan Devide et Impera (adu domba), Hongi Tochten (patroli rempah).'},
 
-/* Q8 — Kunci: C (Applying) — Devide et Impera */
+/* Q8 — Kunci: C */
 {t:'PG',l:'Applying',d:'Sedang',i:'Devide et Impera',
 s:'Belanda menerapkan politik "Devide et Impera" (adu domba) dalam menghadapi perlawanan rakyat Nusantara. Contoh nyata: (1) memanfaatkan konflik internal Keraton Yogyakarta pada masa Diponegoro; (2) memanfaatkan perpecahan Kaum Padri & Kaum Adat di Sumatera Barat; (3) memecah belah kerajaan-kerajaan kecil di Maluku; (4) memihak salah satu pihak dalam konflik internal untuk kemudian menguasai keduanya. Politik ini sangat efektif melemahkan perlawanan rakyat karena kekuatan lawan terpecah dari dalam. Inilah sebabnya perlawanan kedaerahan sering gagal meski semangat juang rakyat tinggi.',
 q:'Berdasarkan stimulus tersebut, politik "adu domba" Belanda untuk memecah belah kekuatan lokal disebut ....',
@@ -391,7 +351,7 @@ o:['Pax Neerlandica','Cultuurstelsel','Devide et Impera','Poenale Sanctie','Ethi
 a:2,
 e:'Devide et Impera = politik adu domba. Pax Neerlandica = kebijakan damai. Cultuurstelsel = tanam paksa. Poenale Sanctie = hukuman fisik. Ethische Politiek = politik etis.'},
 
-/* Q9 — Kunci: D (Reasoning) — Sultan Baabullah */
+/* Q9 — Kunci: D */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Perlawanan Sultan Baabullah',
 s:'Sultan Baabullah (1570–1583) dari Ternate memimpin perlawanan besar terhadap Portugis. Perlawanan ini dipicu oleh pembunuhan ayahnya, Sultan Hairun, oleh Portugis pada 1570 — meskipun sebelumnya sudah ada perjanjian damai. Sultan Baabullah bersumpah membalas kematian ayahnya. Dengan dukungan rakyat Ternate & sekutu-sekutunya, ia berhasil mengepung benteng Portugis. Pada 1575, Portugis akhirnya menyerah & terusir dari Ternate. Ini adalah salah satu kemenangan besar rakyat Nusantara atas kekuatan Eropa pada abad ke-16.',
 q:'Berdasarkan stimulus tersebut, faktor utama yang mendorong Sultan Baabullah memimpin perlawanan terhadap Portugis adalah ....',
@@ -403,7 +363,7 @@ o:['Ingin menguasai perdagangan rempah sendiri',
 a:3,
 e:'Pemicu utama = pembunuhan Sultan Hairun oleh Portugis (1570). Ini pelanggaran perjanjian damai. Sultan Baabullah bersumpah membalas & berhasil mengusir Portugis dari Ternate pada 1575.'},
 
-/* Q10 — Kunci: E (Knowing) — Cut Nyak Dien */
+/* Q10 — Kunci: E */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Perlawanan Cut Nyak Dien',
 s:'Cut Nyak Dien (1848–1908) adalah pahlawan perempuan dari Aceh. Setelah suaminya Teuku Umar gugur pada 1899, ia melanjutkan perlawanan gerilya melawan Belanda meski usianya sudah lanjut & matanya mulai buta. Ia memimpin pasukan dengan gigih di pedalaman Aceh. Pada 1905, ia ditangkap oleh Belanda & diasingkan ke Sumedang, Jawa Barat. Ia wafat pada 1908 di Sumedang. Cut Nyak Dien ditetapkan sebagai Pahlawan Nasional Indonesia. Kisahnya menjadi bukti bahwa perempuan juga berperan besar dalam perjuangan melawan penjajah.',
 q:'Berdasarkan stimulus tersebut, pahlawan perempuan dari Aceh yang melanjutkan perlawanan setelah suaminya gugur & memimpin gerilya meski buta adalah ....',
@@ -411,7 +371,7 @@ o:['R.A. Kartini','Cut Meutia','Christina Martha Tiahahu','Ratu Sima','Cut Nyak 
 a:4,
 e:'Cut Nyak Dien = melanjutkan perang Aceh setelah Teuku Umar gugur (1899), memimpin gerilya meski buta, ditangkap 1905, wafat 1908. Berbeda dengan Cut Meutia (juga pahlawan Aceh) & R.A. Kartini (emansipasi).'},
 
-/* Q11 — Kunci: A (Applying) — Strategi gerilya */
+/* Q11 — Kunci: A */
 {t:'PG',l:'Applying',d:'Sedang',i:'Strategi gerilya Diponegoro',
 s:'Pangeran Diponegoro menggunakan strategi perang gerilya dalam Perang Jawa (1825–1830). Ciri utama strategi ini: serangan mendadak terhadap posisi Belanda, kemudian menghilang ke hutan/pegunungan sebelum Belanda sempat membalas. Diponegoro memanfaatkan medan pegunungan & hutan yang ia kuasai, serta mendapat dukungan penuh dari rakyat pedesaan & ulama. Belanda kewalahan karena tidak bisa menangkap Diponegoro secara langsung, meski telah mengerahkan 20.000 tentara & biaya perang 20 juta gulden.',
 q:'Berdasarkan stimulus tersebut, strategi perang yang digunakan Pangeran Diponegoro dengan serangan mendadak & memanfaatkan medan adalah ....',
@@ -419,7 +379,7 @@ o:['Gerilya','Benteng Stelsel','Devide et Impera','Blokade laut','Perang terbuka
 a:0,
 e:'Gerilya = strategi serangan mendadak & menghilang, memanfaatkan medan + dukungan rakyat. Ini yang membuat Belanda kewalahan meski memiliki 20.000 tentara.'},
 
-/* Q12 — Kunci: B (Reasoning) — Faktor kegagalan */
+/* Q12 — Kunci: B */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor kegagalan perlawanan kedaerahan',
 s:'Perlawanan rakyat Nusantara abad 17–19 sering berakhir dengan kegagalan. Ada beberapa faktor utama: (1) bersifat kedaerahan — hanya terbatas di satu wilayah, tidak ada koordinasi antar daerah; (2) kalah teknologi senjata — rakyat menggunakan senjata tradisional, Belanda modern; (3) politik adu domba Belanda memanfaatkan perpecahan internal; (4) ketergantungan pada pemimpin kharismatik — jika pemimpin gugur, perlawanan melemah; (5) blokade ekonomi & logistik oleh Belanda. Faktor-faktor ini kemudian disadari oleh generasi berikutnya, yang melahirkan Pergerakan Nasional abad ke-20 dengan strategi berbeda.',
 q:'Berdasarkan stimulus tersebut, faktor utama yang menyebabkan perlawanan kedaerahan mudah dipatahkan Belanda adalah ....',
@@ -431,7 +391,7 @@ o:['Rakyat tidak memiliki semangat juang',
 a:1,
 e:'Faktor utama: bersifat kedaerahan & tidak ada koordinasi → Belanda mudah mematahkan satu per satu dengan Devide et Impera. Bukan karena rakyat tidak berjuang atau pemimpin berkhianat.'},
 
-/* Q13 — Kunci: C (Knowing) — Perjanjian Bongaya */
+/* Q13 — Kunci: C */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Tahun Perjanjian Bongaya',
 s:'Perjanjian Bongaya ditandatangani pada 1667. Perjanjian ini mengakhiri Perang Makassar (1666–1669) antara VOC dengan Kesultanan Gowa-Tallo. Sultan Hasanuddin dipaksa menandatangani perjanjian yang sangat merugikan. Isinya: (1) Gowa-Tallo harus mengakui monopoli VOC; (2) menyerahkan benteng-benteng kepada VOC; (3) membayar biaya perang; (4) tidak boleh berdagang dengan pihak lain selain VOC. Perjanjian ini menandai berakhirnya kejayaan Gowa-Tallo sebagai kerajaan maritim.',
 q:'Berdasarkan stimulus tersebut, Perjanjian Bongaya ditandatangani pada tahun ....',
@@ -439,7 +399,7 @@ o:['1665','1666','1667','1668','1669'],
 a:2,
 e:'Perjanjian Bongaya = 1667. Mengakhiri Perang Makassar (1666–1669). Sultan Hasanuddin dipaksa menandatangani. Isinya sangat merugikan Gowa-Tallo.'},
 
-/* Q14 — Kunci: D (Reasoning) — Perang Banjar */
+/* Q14 — Kunci: D */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Lama Perang Banjar',
 s:'Perang Banjar (1859–1905) adalah perlawanan rakyat Kalimantan Selatan terhadap Belanda. Perang ini dipicu oleh campur tangan Belanda dalam urusan Kesultanan Banjar & monopoli perdagangan lada & batu bara. Pangeran Antasari memimpin sejak 1859. Ketika ia wafat pada 1862, perjuangan tidak berhenti — putra-putranya melanjutkan, terutama Pangeran Muhammad Seman. Perang berlangsung hampir setengah abad (46 tahun). Ini menjadikan Perang Banjar salah satu perang terlama di Kalimantan.',
 q:'Berdasarkan stimulus tersebut, Perang Banjar berlangsung lama (1859–1905) karena ....',
@@ -451,7 +411,7 @@ o:['Belanda tidak serius menghadapi perlawanan',
 a:3,
 e:'Perang Banjar berlangsung lama karena perjuangan DILANJUTKAN oleh generasi berikutnya (terutama Pangeran Muhammad Seman) setelah Pangeran Antasari wafat 1862. Ini semangat pantang menyerah.'},
 
-/* Q15 — Kunci: E (Applying) — Kaum Padri vs Adat */
+/* Q15 — Kunci: E */
 {t:'PG',l:'Applying',d:'Sedang',i:'Perang Padri fase 1',
 s:'Perang Padri fase pertama (1803–1821) adalah perang saudara di Sumatera Barat. Pihak yang bertikai: Kaum Padri (kelompok ulama pembaharu yang ingin memurnikan ajaran Islam dari praktik yang dianggap tidak sesuai syariat) vs Kaum Adat (kelompok bangsawan tradisional yang mempertahankan adat Minangkabau). Isu utama: pemurnian ajaran Islam vs pelestarian tradisi adat. Perang ini melemahkan kedua pihak & membuka jalan bagi Belanda untuk ikut campur dalam fase kedua.',
 q:'Berdasarkan stimulus tersebut, Perang Padri fase pertama (1803–1821) adalah perang antara ....',
@@ -463,7 +423,7 @@ o:['Rakyat Minangkabau melawan Belanda',
 a:4,
 e:'Fase 1 (1803–1821) = perang saudara Kaum Padri vs Kaum Adat (isu: pemurnian Islam vs adat). Fase 2 (1821–1838) = perang melawan Belanda setelah Kaum Adat minta bantuan Belanda.'},
 
-/* Q16 — Kunci: A (Reasoning) — Benteng Duurstede */
+/* Q16 — Kunci: A */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Penyerangan Benteng Duurstede',
 s:'Pada 16 Mei 1817, Kapitan Pattimura memimpin penyerangan terhadap Benteng Duurstede di Saparua, Maluku. Penyerangan ini merupakan puncak dari kekecewaan rakyat Maluku terhadap kebijakan monopoli rempah & penyerahan wajib kepada Belanda. Dalam penyerangan tersebut, Residen Van den Berg tewas. Benteng berhasil dikuasai rakyat. Kemenangan ini membangkitkan semangat perlawanan rakyat Maluku di berbagai negeri — seperti Haria, Porto, dan Nusalaut. Namun, Belanda kemudian mengirim pasukan besar & berhasil menangkap Pattimura pada November 1817.',
 q:'Berdasarkan stimulus tersebut, Benteng Belanda yang berhasil direbut Kapitan Pattimura pada 1817 adalah ....',
@@ -471,7 +431,7 @@ o:['Benteng Duurstede','Benteng Somba Opu','Benteng Rotterdam','Benteng Vredebur
 a:0,
 e:'Benteng Duurstede (Saparua, Maluku) = direbut Pattimura 16 Mei 1817. Somba Opu = Gowa. Rotterdam = Makassar. Vredeburg = Yogyakarta. Bonjol = Sumatera Barat.'},
 
-/* Q17 — Kunci: B (Applying) — Masa kekuasaan Hasanuddin */
+/* Q17 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Masa kekuasaan Sultan Hasanuddin',
 s:'Sultan Hasanuddin berkuasa di Kesultanan Gowa-Tallo pada 1653–1669. Selama masa kekuasaannya, ia menghadapi tekanan besar dari VOC yang ingin memonopoli perdagangan rempah. Puncaknya adalah Perang Makassar (1666–1669). Meskipun pada akhirnya kalah & dipaksa menandatangani Perjanjian Bongaya (1667), Sultan Hasanuddin tetap dikenang sebagai pahlawan yang berani melawan ketidakadilan. Ia mengundurkan diri pada 1669 & wafat pada 1670. Namanya diabadikan sebagai nama universitas & jalan di Indonesia.',
 q:'Berdasarkan stimulus tersebut, Sultan Hasanuddin berkuasa di Kesultanan Gowa-Tallo pada tahun ....',
@@ -479,7 +439,7 @@ o:['1570–1583','1653–1669','1666–1669','1667–1670','1631–1670'],
 a:1,
 e:'Masa kekuasaan Sultan Hasanuddin = 1653–1669. Perang Makassar = 1666–1669 (bagian dari masa kekuasaannya). Perjanjian Bongaya = 1667. Ia wafat 1670.'},
 
-/* Q18 — Kunci: C (Knowing) — Penangkapan Diponegoro */
+/* Q18 — Kunci: C */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Penangkapan Diponegoro',
 s:'Pada 28 Maret 1830, Pangeran Diponegoro ditangkap secara curang oleh Belanda dalam Perundingan Magelang. Jenderal de Kock mengundang Diponegoro untuk berunding, tetapi ternyata telah menyiapkan pasukan untuk menangkapnya. Diponegoro kemudian diasingkan ke Manado, lalu dipindahkan ke Makassar. Ia wafat pada 8 Januari 1855 di Makassar. Peristiwa penangkapan ini menjadi simbol kecurangan penjajah & keteguhan Pangeran Diponegoro dalam mempertahankan prinsip keadilan.',
 q:'Berdasarkan stimulus tersebut, Pangeran Diponegoro ditangkap secara curang pada tahun ....',
@@ -487,9 +447,7 @@ o:['1825','1828','1830','1832','1855'],
 a:2,
 e:'Penangkapan Diponegoro = 28 Maret 1830 (Perundingan Magelang). 1825 = awal Perang Jawa. 1855 = wafat. Jadi jawabannya 1830.'},
 
-/* ============ MCMA (7 SOAL) ============ */
-
-/* Q19 — Pola: [0,2,3] — Perlawanan kedaerahan */
+/* Q19 — MCMA: [0,2,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Ciri perlawanan kedaerahan',
 s:'Perlawanan rakyat Nusantara abad 17–19 memiliki ciri-ciri khas. Bersifat kedaerahan — hanya terbatas di satu wilayah & dipimpin raja/bangsawan lokal. Menggunakan senjata tradisional (bambu runcing, keris, tombak, parang) karena belum ada teknologi senjata modern. Tidak ada koordinasi antar daerah — setiap perlawanan berjalan sendiri-sendiri. Mudah diadu domba oleh Belanda melalui politik Devide et Impera. Dipimpin tokoh kharismatik, sehingga jika tokoh gugur, perlawanan melemah. Sementara itu, perlawanan modern abad ke-20 bersifat nasional, terorganisir, & menggunakan media cetak.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perlawanan kedaerahan? (Pilih lebih dari satu)',
@@ -501,7 +459,7 @@ o:['Bersifat lokal & dipimpin raja/bangsawan daerah.',
 a:[0,2,3],
 e:'A, C, D benar. B salah — TIDAK ada koordinasi antar daerah. E salah — masih menggunakan senjata tradisional.'},
 
-/* Q20 — Pola: [1,3] — Tokoh & wilayah */
+/* Q20 — MCMA: [1,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh & wilayah perlawanan',
 s:'Tokoh perlawanan & wilayahnya: Kapitan Pattimura dari Maluku (Saparua); Sultan Hasanuddin dari Gowa-Tallo (Sulawesi Selatan); Pangeran Diponegoro dari Yogyakarta (Jawa); Tuanku Imam Bonjol dari Sumatera Barat; Pangeran Antasari dari Kalimantan Selatan; Sultan Baabullah dari Ternate (Maluku Utara); Cut Nyak Dien dari Aceh; Sultan Agung dari Mataram (Jawa Tengah). Setiap tokoh memimpin perlawanan di wilayahnya masing-masing melawan VOC/Belanda.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang tokoh & wilayah perlawanan? (Pilih lebih dari satu)',
@@ -513,7 +471,7 @@ o:['Kapitan Pattimura memimpin perlawanan di Jawa.',
 a:[1,3],
 e:'B, D benar. A salah — Pattimura di Maluku. C salah — Antasari di Kalimantan. E salah — Diponegoro di Jawa.'},
 
-/* Q21 — Pola: [0,1,2] — Perang Padri */
+/* Q21 — MCMA: [0,1,2] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Perang Padri',
 s:'Perang Padri (1803–1838) adalah perang di Sumatera Barat yang dipimpin Tuanku Imam Bonjol. Fase pertama (1803–1821): perang saudara antara Kaum Padri (ulama pembaharu) & Kaum Adat (bangsawan tradisional). Fase kedua (1821–1838): perang melawan Belanda setelah Kaum Adat meminta bantuan Belanda. Benteng pertahanan utama Kaum Padri = Benteng Bonjol. Setelah pengepungan panjang, Tuanku Imam Bonjol ditangkap pada 1832 & diasingkan. Perang berakhir dengan kekalahan Kaum Padri.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perang Padri? (Pilih lebih dari satu)',
@@ -525,7 +483,7 @@ o:['Fase pertama adalah perang saudara Kaum Padri vs Kaum Adat.',
 a:[0,1,2],
 e:'A, B, C benar. D salah — berlangsung 35 tahun (1803–1838). E salah — terjadi di Sumatera Barat, bukan Jawa.'},
 
-/* Q22 — Pola: [2,3,4] — Perang Jawa */
+/* Q22 — MCMA: [2,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perang Jawa',
 s:'Perang Jawa (1825–1830) adalah perang terbesar yang dihadapi Belanda di Jawa. Dipimpin Pangeran Diponegoro. Pemicu: pemasangan patok jalan di Tegalrejo. Strategi Diponegoro: gerilya, serangan mendadak, memanfaatkan medan & dukungan rakyat. Belanda membalas dengan Benteng Stelsel. Perang menelan korban: 15.000–20.000 tentara Belanda & 200.000+ rakyat Jawa. Kas Belanda terkuras habis (20 juta gulden). Diponegoro akhirnya ditangkap secara curang pada 1830 & diasingkan ke Manado lalu Makassar.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perang Jawa? (Pilih lebih dari satu)',
@@ -537,7 +495,7 @@ o:['Berlangsung tahun 1666–1669.',
 a:[2,3,4],
 e:'C, D, E benar. A salah — Perang Makassar (1666–1669). B salah — terjadi di Jawa, bukan Sumatera.'},
 
-/* Q23 — Pola: [0,3] — Perang Banjar */
+/* Q23 — MCMA: [0,3] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perang Banjar',
 s:'Perang Banjar (1859–1905) adalah perlawanan rakyat Kalimantan Selatan terhadap Belanda. Dipicu campur tangan Belanda dalam urusan Kesultanan Banjar & monopoli perdagangan lada & batu bara. Pangeran Antasari memimpin sejak 1859 hingga wafat 1862. Perjuangan dilanjutkan oleh putranya, Pangeran Muhammad Seman. Perang berlangsung hampir setengah abad. Tokoh-tokoh lain: Pangeran Hidayatullah, Demang Lehman, Gusti Matsaid. Ini salah satu perang terlama di Kalimantan.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perang Banjar? (Pilih lebih dari satu)',
@@ -549,7 +507,7 @@ o:['Pangeran Antasari adalah pemimpin utama Perang Banjar.',
 a:[0,3],
 e:'A, D benar. B salah — terjadi di Kalimantan. C salah — berlangsung 46 tahun. E salah — Perang Jawa 1825–1830, Perang Banjar 1859–1905.'},
 
-/* Q24 — Pola: [1,2,4] — Strategi Belanda */
+/* Q24 — MCMA: [1,2,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Strategi Belanda',
 s:'Belanda memiliki berbagai strategi untuk menghadapi perlawanan rakyat Nusantara. Devide et Impera — politik adu domba memanfaatkan perpecahan internal. Benteng Stelsel — membangun benteng di titik strategis (diterapkan pada Perang Jawa). Hongi Tochten — patroli armada untuk monopoli rempah di Maluku. Blokade ekonomi — memutus jalur logistik rakyat. Namun, Belanda TIDAK pernah menggunakan strategi gerilya — itu justru strategi Diponegoro. Belanda juga tidak selalu menang dalam perang terbuka.',
 q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN strategi Belanda dalam menghadapi perlawanan? (Pilih lebih dari satu)',
@@ -561,7 +519,7 @@ o:['Menggunakan strategi gerilya seperti Diponegoro.',
 a:[1,2,4],
 e:'B, C, E benar. A salah — gerilya justru strategi Diponegoro. D salah — Belanda juga menang di beberapa perang terbuka.'},
 
-/* Q25 — Pola: [0,1,3,4] — Faktor kegagalan */
+/* Q25 — MCMA: [0,1,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Faktor kegagalan perlawanan',
 s:'Perlawanan kedaerahan abad 17–19 sering gagal karena beberapa faktor. (1) Bersifat kedaerahan & tidak terkoordinasi. (2) Kalah teknologi senjata. (3) Politik adu domba Belanda. (4) Ketergantungan pada pemimpin kharismatik. (5) Blokade ekonomi & logistik. Sebaliknya, persatuan nasional & organisasi modern adalah faktor keberhasilan pergerakan abad ke-20. Memahami faktor kegagalan ini menjadi pelajaran berharga bagi generasi penerus.',
 q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN faktor kegagalan perlawanan kedaerahan? (Pilih lebih dari satu)',
@@ -573,9 +531,7 @@ o:['Bersifat kedaerahan & tidak ada koordinasi.',
 a:[0,1,3,4],
 e:'A, B, D, E benar. C salah — justru persatuan nasional adalah faktor KEBERHASILAN pergerakan abad ke-20.'},
 
-/* ============ KATEGORI (5 SOAL) ============ */
-
-/* Q26 — Pola: [S, TS, S, S] — Kronologi */
+/* Q26 — KATEGORI: [S, TS, S, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi perlawanan',
 s:'Kronologi perlawanan rakyat Nusantara: Sultan Baabullah mengusir Portugis dari Ternate (1575); Sultan Agung menyerang Batavia (1628–1629); Sultan Hasanuddin & Perang Makassar (1666–1669); Kapitan Pattimura memimpin Maluku (1817); Perang Jawa / Diponegoro (1825–1830); Perang Banjar / Antasari (1859–1905); Perang Aceh (1873–1904). Urutan ini menunjukkan bahwa perlawanan berlangsung bergelombang dari abad ke-16 hingga awal abad ke-20.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -586,7 +542,7 @@ st:[
  {x:'Perang Aceh terjadi setelah Perang Jawa.',a:'Sesuai'}],
 e:'1 Sesuai (1575 < 1628). 2 Tidak Sesuai (1825 > 1817). 3 Sesuai (46 tahun vs 5 tahun). 4 Sesuai (1873 > 1825).'},
 
-/* Q27 — Pola: [TS, S, S, S] — Tokoh & wilayah */
+/* Q27 — KATEGORI: [TS, S, S, S] */
 {t:'KATEGORI',l:'Applying',d:'Sedang',i:'Tokoh & wilayah',
 s:'Tokoh perlawanan & wilayahnya: Pattimura (Maluku), Sultan Hasanuddin (Gowa-Tallo, Sulawesi Selatan), Tuanku Imam Bonjol (Sumatera Barat), Pangeran Diponegoro (Jawa/Yogyakarta), Pangeran Antasari (Kalimantan Selatan), Cut Nyak Dien (Aceh), Sultan Baabullah (Ternate/Maluku Utara). Setiap tokoh memimpin perlawanan di wilayahnya melawan penjajah Belanda/Portugis.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -595,9 +551,9 @@ st:[
  {x:'Sultan Hasanuddin dijuluki "Ayam Jantan dari Timur".',a:'Sesuai'},
  {x:'Tuanku Imam Bonjol memimpin Perang Padri di Sumatera Barat.',a:'Sesuai'},
  {x:'Pangeran Antasari memimpin Perang Banjar di Kalimantan Selatan.',a:'Sesuai'}],
-e:'1 Tidak Sesuai — Pattimura di MALuku, bukan Jawa. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
+e:'1 Tidak Sesuai — Pattimura di MALUKU, bukan Jawa. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
 
-/* Q28 — Pola: [S, S, TS, S] — Strategi perang */
+/* Q28 — KATEGORI: [S, S, TS, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Strategi perang',
 s:'Strategi perang yang digunakan dalam berbagai perlawanan: Diponegoro → gerilya; Belanda → Benteng Stelsel; Belanda → Devide et Impera; Hasanuddin → armada laut & benteng; Pattimura → serangan mendadak ke benteng; Sultan Agung → serangan besar-besaran (gagal). Perlawanan kedaerahan umumnya menggunakan strategi bersenjata, sedangkan pergerakan abad ke-20 menggunakan diplomasi & organisasi.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -608,7 +564,7 @@ st:[
  {x:'Sultan Hasanuddin menggunakan armada laut dalam Perang Makassar.',a:'Sesuai'}],
 e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Devide et Impera = MEMECAH BELAH, bukan menyatukan. 4 Sesuai.'},
 
-/* Q29 — Pola: [TS, S, S, TS] — Faktor & analisis */
+/* Q29 — KATEGORI: [TS, S, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Faktor & analisis',
 s:'Perlawanan kedaerahan abad 17–19 TIDAK selalu berhasil mengusir Belanda — banyak yang gagal. Faktor kegagalan: bersifat lokal & tidak terkoordinasi, kalah teknologi senjata, politik adu domba, ketergantungan pada pemimpin. Sebaliknya, persatuan nasional & organisasi modern menjadi kunci keberhasilan Pergerakan Nasional abad ke-20. Perlawanan kedaerahan memberi pelajaran berharga bagi generasi berikutnya.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -619,7 +575,7 @@ st:[
  {x:'Persatuan nasional tidak diperlukan dalam perjuangan.',a:'Tidak Sesuai'}],
 e:'1 Tidak Sesuai — banyak perlawanan kedaerahan yang GAGAL. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — persatuan nasional SANGAT diperlukan (kunci keberhasilan abad ke-20).'},
 
-/* Q30 — Pola: [S, TS, S, TS] — Nilai kepahlawanan */
+/* Q30 — KATEGORI: [S, TS, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Nilai kepahlawanan',
 s:'Nilai-nilai yang bisa diteladani dari para pahlawan: rela berkorban, cinta tanah air, pantang menyerah, persatuan & kesatuan, berani melawan ketidakadilan. Para pahlawan berjuang untuk kepentingan bangsa & rakyat, bukan kepentingan pribadi. Pengorbanan mereka menjadi dasar kemerdekaan Indonesia. Generasi muda perlu meneladani nilai-nilai ini untuk mengisi kemerdekaan & menjaga persatuan bangsa.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -638,8 +594,6 @@ e:'1 Sesuai. 2 Tidak Sesuai — mereka berjuang untuk BANGSA & RAKYAT. 3 Sesuai.
 let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
-
-(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
