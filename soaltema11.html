@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#0b1a1f"/>
+<title>TKA Literasi Sejarah · Mempertahankan Kemerdekaan · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--primary:#0E7C7B;--primary-light:#2AA5A3;--gold:#E6A817;--emerald:#2E8B57;--rose:#C45A5A;--sky:#3A8FB7;--violet:#7B68AE;--bg:#0b1a1f;--card:#182b33;--card-alt:#1f3540;--text:#eaf4f4;--text-light:#b8cdd0;--text-muted:#7a9a9e;--line:rgba(234,244,244,.14);--line-soft:rgba(234,244,244,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#0E7C7B;--accent2:#1B4F72;--accent-soft:rgba(14,124,123,.12);}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(14,124,123,.10),transparent 55%),radial-gradient(circle at 85% 80%,rgba(230,168,23,.08),transparent 55%);}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#122228 0%,#0b1a1f 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
+.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
+.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--sky) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(230,168,23,.55)) drop-shadow(0 0 26px rgba(14,124,123,.4));z-index:-2;}
+.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0b1a1f;box-shadow:inset 0 0 24px rgba(14,124,123,.16);z-index:-1;}
+.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#eaf4f4 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #0A5C5B) drop-shadow(2px 2px 0 #094f4e) drop-shadow(3px 3px 0 #074342) drop-shadow(4px 4px 0 #063736) drop-shadow(5px 5px 0 #042a2a) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(230,168,23,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
+.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
+.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(58,143,183,.35);}
+.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(123,104,174,.35);}
+.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(196,90,90,.35);}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(14,124,123,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
+@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
+.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(14,124,123,.18);border-radius:10px;margin-top:24px;overflow:hidden;}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--sky));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(11,26,31,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
+.hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
+.hdr-center i{color:var(--gold)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary-light);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#eaf4f4;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(14,124,123,.10);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(14,124,123,.5)}
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
+.chip i{color:var(--primary-light)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(14,124,123,.14),rgba(230,168,23,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary-light);letter-spacing:1px}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.35);border-top:3px solid var(--accent)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(14,124,123,.12);color:var(--primary-light);border-color:rgba(14,124,123,.28)}
+.badge.MCMA{background:rgba(123,104,174,.15);color:#a78bfa;border-color:rgba(123,104,174,.35)}
+.badge.KATEGORI{background:rgba(58,143,183,.15);color:var(--sky);border-color:rgba(58,143,183,.35)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
+.badge.df{background:rgba(46,139,87,.12);color:var(--emerald);border-color:rgba(46,139,87,.28)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#eaf4f4;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(14,124,123,.4)}
+.q-stim{background:rgba(14,124,123,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--primary-light);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(58,143,183,.08);border-radius:8px;border-left:3px solid var(--sky)}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--primary-light);transition:all .2s}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.sel .lbl{background:var(--accent);color:#eaf4f4;border-color:var(--accent)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(46,139,87,.15);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#eaf4f4;border-color:var(--emerald)}
+.opt.wrong{background:rgba(196,90,90,.14);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#eaf4f4;border-color:var(--rose)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(123,104,174,.18);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.check:hover{background:rgba(123,104,174,.08);border-color:var(--violet);transform:translateX(3px)}
+.check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(123,104,174,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
+.check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:#a78bfa;padding-top:4px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check.sel{background:rgba(123,104,174,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
+.check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
+.check.sel .txt{color:var(--text)}
+.check.correct{background:rgba(46,139,87,.15);border-color:var(--emerald)}
+.check.correct .box{background:var(--emerald);border-color:var(--emerald);border-style:solid}
+.check.correct .clbl{color:var(--emerald)}
+.check.wrong{background:rgba(196,90,90,.14);border-color:var(--rose)}
+.check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
+.check.wrong .clbl{color:var(--rose)}
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--primary);color:var(--primary-light)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#eaf4f4;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#eaf4f4;border-color:var(--rose)}
+.expl{background:rgba(46,139,87,.1);border:1px solid rgba(46,139,87,.22);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(46,139,87,.25)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#eaf4f4;box-shadow:0 8px 22px rgba(14,124,123,.35)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(14,124,123,.45)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:var(--accent-soft);border-color:var(--primary);color:var(--primary-light)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#1e6b3f);color:#eaf4f4;box-shadow:0 8px 22px rgba(46,139,87,.35)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(46,139,87,.45)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#2a6a8a);color:#eaf4f4;box-shadow:0 8px 22px rgba(58,143,183,.35)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(58,143,183,.45)}
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--primary);color:var(--primary-light);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(46,139,87,.18);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#eaf4f4;box-shadow:0 0 12px rgba(14,124,123,.5);transform:scale(1.1)}
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--gold)}.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary-light)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary-light);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+.identity-wrap{max-width:560px;margin:0 auto;padding:20px 0 10px}
+.identity-hero{text-align:center;margin-bottom:24px}
+.identity-hero .badge-top{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(14,124,123,.18),rgba(230,168,23,.12));border:1px solid rgba(14,124,123,.45);padding:7px 18px;border-radius:40px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--primary-light);margin-bottom:14px}
+.identity-hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px}
+.identity-hero h1 .grad{background:linear-gradient(135deg,#2AA5A3 0%,#E6A817 50%,#0E7C7B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.identity-hero p{color:var(--text-light);font-size:.92rem;line-height:1.7;max-width:520px;margin:0 auto}
+.identity-hero .info-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.identity-hero .info-chips .ic{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:6px}
+.identity-hero .info-chips .ic i{color:var(--gold)}
+.identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary-light)}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(14,124,123,.18)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(196,90,90,.10),rgba(14,124,123,.08));border:1.5px solid rgba(196,90,90,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+@keyframes privacyPulse{0%,100%{border-color:rgba(196,90,90,.4);box-shadow:0 0 0 0 rgba(196,90,90,.15)}50%{border-color:rgba(196,90,90,.65);box-shadow:0 0 0 4px rgba(196,90,90,.1)}}
+.privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#a43b3b);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(196,90,90,.4);}
+.privacy-notice strong{color:var(--rose);font-weight:800;}
+.hidden{display:none!important}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-3d-wrap">
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle">
+      <div class="loader-3d-text">MGE</div>
+    </div>
+  </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
+  <div class="loader-title">TKA LITERASI SEJARAH</div>
+  <div class="loader-sub">Tema 11: Mempertahankan Kemerdekaan · 30 Soal</div>
+  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+  <div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
+  </div>
+  <div class="hdr-center"><i class="fas fa-shield-alt"></i> Mempertahankan Kemerdekaan · 30 Soal</div>
+  <div style="display:flex;gap:6px"></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<section id="identity" class="section active">
+  <div class="identity-wrap">
+    <div class="identity-hero">
+      <div class="badge-top"><i class="fas fa-crown"></i> TKA Literasi Sejarah · Tema 11</div>
+      <h1><span class="grad">Identitas Peserta</span></h1>
+      <p>Isi data diri untuk memulai tes <strong>30 soal Mempertahankan Kemerdekaan</strong>: Sekutu &amp; NICA, perjuangan bersenjata, diplomasi, PDRI, perang gerilya, &amp; pengakuan kedaulatan.</p>
+      <div class="info-chips">
+        <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
+        <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
+        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+      </div>
+    </div>
+    <div class="identity-form">
+      <h2>Formulir Peserta</h2>
+      <p>Data akan digunakan untuk laporan hasil</p>
+      <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+      </div>
+      <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+      </div>
+      <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <strong>Pemberitahuan:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil. Semua data hanya diproses di browser dan hilang saat halaman ditutup. Untuk laporan nilai, silakan <strong>screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="test" class="section">
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Mempertahankan Kemerdekaan</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 30</div>
+    </div>
+    <div class="info">
+      <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 30</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
+</section>
+
+<section id="result" class="section">
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+    <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   BANK SOAL — MEMPERTAHANKAN KEMERDEKAAN (30 SOAL UNIK)
+   18 PG + 7 MCMA + 5 KATEGORI
+   Kunci PG: A=4, B=4, C=4, D=3, E=3
+   Level: Knowing=5, Applying=10, Reasoning=15
+   ============================================================ */
+const Q11=[
+
+/* ============ PG (18 SOAL) ============ */
+
+/* Q1 — Kunci: A (Knowing) — Tujuan AFNEI */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tugas resmi AFNEI',
+s:'Pada September 1945, pasukan Sekutu yang tergabung dalam AFNEI (Allied Forces Netherlands East Indies) mulai memasuki Indonesia. Pasukan ini dipimpin oleh Letnan Jenderal Sir Philip Christison dan bertugas di berbagai kota besar seperti Jakarta, Surabaya, Semarang, Bandung, dan Medan. Secara resmi, AFNEI memiliki empat tugas utama: melucuti tentara Jepang, membebaskan tawanan perang Sekutu, memulihkan keamanan dan ketertiban, serta menyerahkan kekuasaan kepada pemerintah sipil yang sah. Namun, dalam praktiknya, AFNEI membawa NICA (pemerintahan sipil Belanda) yang segera menduduki wilayah Indonesia dan mempersenjatai kembali KNIL. Hal ini memicu kemarahan rakyat Indonesia yang baru saja memproklamasikan kemerdekaan.',
+q:'Berdasarkan stimulus tersebut, tugas resmi AFNEI di Indonesia adalah ....',
+o:['Melucuti tentara Jepang & membebaskan tawanan perang Sekutu',
+ 'Mengembalikan kekuasaan Belanda di Indonesia',
+ 'Membantu NICA menduduki wilayah Indonesia',
+ 'Memerangi pasukan Republik Indonesia',
+ 'Membentuk pemerintahan baru untuk Indonesia'],
+a:0,
+e:'Tugas resmi AFNEI: melucuti tentara Jepang, membebaskan tawanan perang, memulihkan keamanan, & menyerahkan kekuasaan ke pemerintah sipil yang sah. Tugas lain (B, C, D, E) bukan tugas resmi — meski dalam praktiknya NICA memang ikut datang.'},
+
+/* Q2 — Kunci: B (Knowing) — NICA */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian NICA',
+s:'NICA (Netherlands Indies Civil Administration) adalah pemerintahan sipil Belanda yang dibentuk untuk mengambil alih kembali kekuasaan kolonial di Indonesia setelah Jepang menyerah kepada Sekutu. NICA datang ke Indonesia bersama pasukan Sekutu dan segera menduduki kota-kota besar. Tugasnya: membebaskan tahanan Belanda, mempersenjatai kembali KNIL (tentara kolonial Belanda), dan memulihkan pemerintahan kolonial Hindia Belanda. Kedatangan NICA dianggap rakyat Indonesia sebagai kembalinya penjajahan — karena itu memicu perlawanan bersenjata di berbagai daerah.',
+q:'Berdasarkan stimulus tersebut, peran NICA di Indonesia pasca kemerdekaan adalah ....',
+o:['Membantu Indonesia mempertahankan kemerdekaan',
+ 'Mengambil alih kembali kekuasaan kolonial Belanda',
+ 'Menyebarkan berita proklamasi ke seluruh dunia',
+ 'Melucuti tentara Jepang di seluruh Nusantara',
+ 'Menjadi penengah antara RI dan Sekutu'],
+a:1,
+e:'NICA = pemerintahan sipil Belanda yang bertugas mengembalikan kekuasaan kolonial. Bukan membantu Indonesia, bukan penengah, bukan melucuti Jepang (itu tugas AFNEI).'},
+
+/* Q3 — Kunci: C (Applying) — Pemicu Pertempuran Surabaya */
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemicu Pertempuran Surabaya',
+s:'Pertempuran Surabaya (10 November 1945) merupakan salah satu pertempuran terbesar dalam sejarah perjuangan kemerdekaan Indonesia. Pemicunya adalah tewasnya Brigadir Jenderal Mallaby (pimpinan pasukan Sekutu di Surabaya) dalam bentrokan di Gedung Internatio pada 30 Oktober 1945. Sekutu mengeluarkan ultimatum agar rakyat Surabaya menyerahkan senjata dan menghentikan perlawanan. Rakyat Surabaya menolak. Bung Tomo melalui siaran radio membakar semangat juang rakyat untuk melawan Sekutu hingga titik darah penghabisan. Pertempuran berlangsung sengit selama tiga minggu.',
+q:'Berdasarkan stimulus tersebut, pemicu langsung Pertempuran Surabaya adalah ....',
+o:['Insiden Hotel Yamato 19 September 1945',
+ 'Serangan tentara Jepang terhadap Surabaya',
+ 'Tewasnya Brigadir Mallaby & ultimatum Sekutu',
+ 'Agresi Militer Belanda I tahun 1947',
+ 'Pelanggaran Perjanjian Linggarjati'],
+a:2,
+e:'Pemicu LANGSUNG = tewasnya Brigadir Mallaby (30 Okt 1945) & ultimatum Sekutu. Insiden Hotel Yamato (A) adalah peristiwa sebelumnya. Agresi Militer I (D) baru 1947.'},
+
+/* Q4 — Kunci: D (Applying) — Bandung Lautan Api */
+{t:'PG',l:'Applying',d:'Sedang',i:'Tujuan Bandung Lautan Api',
+s:'Bandung Lautan Api terjadi pada 23 Maret 1946. Peristiwa ini dipicu oleh ultimatum Sekutu agar rakyat Bandung menyerahkan senjata dan meninggalkan kota. Rakyat dan pejuang menolak memenuhi ultimatum tersebut. Sebagai gantinya, mereka memilih membumihanguskan (membakar) kota Bandung Selatan agar tidak dikuasai dan dimanfaatkan oleh Sekutu/NICA. Rakyat kemudian mengungsi dan bergerilya ke luar kota. Peristiwa ini dipimpin oleh tokoh-tokoh seperti Kolonel A.H. Nasution. Muhammad Toha gugur setelah meledakkan gudang amunisi Sekutu di Dayeuhkolot.',
+q:'Berdasarkan stimulus tersebut, alasan rakyat Bandung membumihanguskan kota mereka sendiri adalah ....',
+o:['Karena mendapat perintah dari pemerintah pusat',
+ 'Karena terjadi bencana alam yang melanda kota',
+ 'Karena terjadi kesalahan strategi militer',
+ 'Agar kota tidak dikuasai & dimanfaatkan oleh Sekutu/NICA',
+ 'Karena takut diserang oleh tentara Jepang'],
+a:3,
+e:'Alasan utama: agar kota tidak dikuasai & dimanfaatkan Sekutu/NICA. Rakyat memilih membumihanguskan daripada menyerah. Bukan karena perintah pusat, bencana alam, kesalahan strategi, atau takut Jepang.'},
+
+/* Q5 — Kunci: E (Applying) — Puputan Margarana */
+{t:'PG',l:'Applying',d:'Sedang',i:'Tokoh Puputan Margarana',
+s:'Puputan Margarana terjadi pada 20 November 1946 di desa Margarana, Bali. Perlawanan ini dipimpin oleh I Gusti Ngurah Rai, seorang pejuang dari Bali yang memimpin pasukan Ciung Wanara. Pemicunya adalah keinginan Belanda menguasai kembali Bali setelah Jepang menyerah. Dalam pertempuran yang tidak seimbang ini, seluruh pasukan Indonesia gugur, termasuk I Gusti Ngurah Rai sendiri. Istilah "puputan" berasal dari tradisi Bali yang berarti bertempur sampai mati untuk mempertahankan harga diri. Peristiwa ini menjadi simbol perlawanan rakyat Bali terhadap penjajahan.',
+q:'Berdasarkan stimulus tersebut, tokoh yang memimpin Puputan Margarana di Bali adalah ....',
+o:['Bung Tomo','Jenderal Sudirman','Muhammad Toha','Sultan Hamengku Buwono IX','I Gusti Ngurah Rai'],
+a:4,
+e:'I Gusti Ngurah Rai = pemimpin Puputan Margarana (Bali, 20 Nov 1946). Bung Tomo = Surabaya. Sudirman = gerilya. Muhammad Toha = Bandung. Sultan HB IX = Yogyakarta.'},
+
+/* Q6 — Kunci: A (Knowing) — Palagan Ambarawa */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tokoh Palagan Ambarawa',
+s:'Palagan Ambarawa (Oktober–Desember 1945) merupakan pertempuran antara TKR (Tentara Keamanan Rakyat) dengan pasukan Sekutu di Ambarawa, Jawa Tengah. Pemicunya adalah tindakan Sekutu yang membebaskan dan mempersenjatai interniran Belanda. Puncak pertempuran terjadi pada 12 Desember 1945, ketika Jenderal Sudirman memimpin langsung penyerangan besar-besaran dengan strategi gerilya. Pasukan Indonesia berhasil mengepung Sekutu dari segala arah. Akhirnya, pada 15 Desember 1945, Sekutu mundur dari Ambarawa. Tanggal 15 Desember kemudian diperingati sebagai Hari Juang Kartika (Hari TNI-AD).',
+q:'Berdasarkan stimulus tersebut, tokoh yang memimpin langsung Palagan Ambarawa pada Desember 1945 adalah ....',
+o:['Jenderal Sudirman','Bung Tomo','I Gusti Ngurah Rai','Muhammad Toha','Sjafruddin Prawiranegara'],
+a:0,
+e:'Jenderal Sudirman = pemimpin Palagan Ambarawa (Des 1945). Kemenangan ini diperingati sebagai Hari Juang Kartika (15 Desember).'},
+
+/* Q7 — Kunci: B (Applying) — Isi Linggarjati */
+{t:'PG',l:'Applying',d:'Sedang',i:'Isi Perjanjian Linggarjati',
+s:'Perjanjian Linggarjati ditandatangani pada 25 Maret 1947 setelah perundingan di Linggarjati, Kuningan, Jawa Barat. Perundingan ini difasilitasi oleh Lord Killearn dari Inggris. Delegasi Indonesia dipimpin Sutan Sjahrir, delegasi Belanda dipimpin Schermerhorn. Isi pokoknya: (1) Belanda mengakui secara de facto Republik Indonesia atas Jawa, Madura, dan Sumatera; (2) akan dibentuk RIS (Republik Indonesia Serikat); (3) akan dibentuk Uni Indonesia-Belanda dengan Ratu Belanda sebagai kepala uni. Perjanjian ini ditentang oleh sebagian tokoh karena dianggap terlalu menguntungkan Belanda. Belanda kemudian melanggarnya dengan Agresi Militer I (1947).',
+q:'Berdasarkan stimulus tersebut, isi utama Perjanjian Linggarjati adalah ....',
+o:['Belanda menyerahkan kedaulatan penuh kepada Indonesia',
+ 'Pengakuan de facto RI atas Jawa, Madura, & Sumatera',
+ 'Pembentukan negara federal tanpa campur tangan Belanda',
+ 'Penghentian tembak-menembak antara RI & Belanda',
+ 'Penyerahan Irian Barat kepada Indonesia'],
+a:1,
+e:'Isi utama Linggarjati = pengakuan de facto RI atas Jawa, Madura, Sumatera + rencana RIS & Uni Indonesia-Belanda. Belanda belum menyerahkan kedaulatan penuh (itu baru di KMB 1949).'},
+
+/* Q8 — Kunci: C (Reasoning) — Kerugian Renville */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kerugian Perjanjian Renville',
+s:'Perjanjian Renville ditandatangani pada 17 Januari 1948 di atas kapal USS Renville. Perjanjian ini dipicu oleh Agresi Militer Belanda I (Juli 1947) yang membuat Indonesia mengadukan Belanda ke PBB. Mediasi dilakukan oleh Komisi Tiga Negara (KTN) yang terdiri dari Australia, Belgia, dan Amerika Serikat. Isi pokoknya: (1) penghentian tembak-menembak; (2) garis Van Mook ditetapkan sebagai batas wilayah RI-Belanda; (3) RI harus menarik pasukannya dari daerah kantong (enclave) yang berada di wilayah Belanda. Renville sangat merugikan Indonesia karena wilayah RI menjadi sempit, terkurung, dan akses ke laut terputus. Belanda justru melanggar dengan Agresi Militer II (Desember 1948).',
+q:'Berdasarkan stimulus tersebut, alasan utama Perjanjian Renville sangat merugikan Indonesia adalah ....',
+o:['Indonesia harus membayar ganti rugi perang kepada Belanda',
+ 'Indonesia harus menyerahkan seluruh senjatanya kepada Belanda',
+ 'Garis Van Mook mempersempit & mengurung wilayah RI',
+ 'Indonesia harus bergabung dengan Uni Soviet',
+ 'Indonesia kehilangan Presiden & Wakil Presiden'],
+a:2,
+e:'Kerugian utama Renville = garis Van Mook mempersempit & mengurung wilayah RI → militer & ekonomi terhambat. Bukan ganti rugi, penyerahan senjata, gabung Soviet, atau kehilangan presiden.'},
+
+/* Q9 — Kunci: D (Applying) — Nama operasi Agresi II */
+{t:'PG',l:'Applying',d:'Sedang',i:'Nama operasi Agresi Militer II',
+s:'Pada 19 Desember 1948, Belanda melancarkan Agresi Militer II dengan nama operasi "Operatie Kraai" (Operasi Gagak). Sasaran utamanya adalah Yogyakarta, yang saat itu menjadi ibu kota Republik Indonesia. Dalam serangan ini, Belanda berhasil menduduki Yogyakarta dan menangkap Presiden Soekarno, Wakil Presiden Mohammad Hatta, serta sejumlah pemimpin lainnya. Mereka kemudian diasingkan ke Bangka. Belanda mengklaim bahwa RI sudah hancur dan tidak ada lagi. Namun, Indonesia merespons dengan membentuk PDRI (Pemerintahan Darurat Republik Indonesia) di Bukittinggi dan melancarkan perang gerilya di bawah Jenderal Sudirman.',
+q:'Berdasarkan stimulus tersebut, nama operasi militer Belanda dalam Agresi Militer II adalah ....',
+o:['Operatie Product','Operatie Barbarossa','Operatie Market Garden','Operatie Kraai','Operatie Sea Lion'],
+a:3,
+e:'Agresi Militer II = Operatie Kraai (Operasi Gagak). Agresi Militer I = Operatie Product. Barbarossa, Market Garden, Sea Lion = operasi Jerman/sekutu di Eropa.'},
+
+/* Q10 — Kunci: E (Knowing) — Tokoh PDRI */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tokoh pemimpin PDRI',
+s:'PDRI (Pemerintahan Darurat Republik Indonesia) dibentuk pada 22 Desember 1948 di Bukittinggi, Sumatera Barat. PDRI dipimpin oleh Sjafruddin Prawiranegara, seorang ekonom & politikus yang dipercaya memimpin pemerintahan darurat. Tujuan PDRI: menjaga keberlangsungan pemerintahan Republik Indonesia setelah Presiden Soekarno dan Wakil Presiden Mohammad Hatta ditangkap oleh Belanda dalam Agresi Militer II. PDRI berhasil menjaga eksistensi RI di mata dunia internasional, meneruskan perjuangan diplomasi, dan mengoordinasikan perjuangan gerilya. Setelah pemimpin utama bebas, Sjafruddin menyerahkan kembali mandat kepada Soekarno-Hatta pada 13 Juli 1949.',
+q:'Berdasarkan stimulus tersebut, tokoh yang memimpin PDRI adalah ....',
+o:['Soekarno','Mohammad Hatta','Jenderal Sudirman','Sultan Hamengku Buwono IX','Sjafruddin Prawiranegara'],
+a:4,
+e:'Sjafruddin Prawiranegara = Ketua PDRI. Soekarno & Hatta = ditangkap & diasingkan ke Bangka. Sudirman = gerilya. Sultan HB IX = mendukung RI dari Yogyakarta.'},
+
+/* Q11 — Kunci: A (Reasoning) — Tujuan Serangan Umum 1 Maret */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Tujuan Serangan Umum 1 Maret',
+s:'Serangan Umum 1 Maret 1949 dilancarkan oleh TNI dan rakyat terhadap Yogyakarta yang saat itu diduduki Belanda. Serangan ini dipimpin oleh Letnan Kolonel Soeharto (yang kelak menjadi Presiden RI ke-2). Serangan berhasil menduduki Yogyakarta selama 6 jam. Tujuan utamanya BUKAN untuk merebut Yogyakarta secara permanen — karena kekuatan TNI memang tidak memungkinkan. Tujuan sebenarnya adalah membuktikan kepada dunia internasional bahwa Republik Indonesia masih ada dan masih memiliki kekuatan untuk melawan. Serangan ini mematahkan klaim Belanda bahwa RI telah hancur. Dampaknya: posisi Indonesia dalam perundingan Roem-Royen dan KMB semakin kuat.',
+q:'Berdasarkan stimulus tersebut, tujuan utama Serangan Umum 1 Maret 1949 adalah ....',
+o:['Membuktikan kepada dunia bahwa RI masih eksis & memiliki kekuatan',
+ 'Merebut Yogyakarta dari Belanda secara permanen',
+ 'Menangkap pemimpin Belanda di Yogyakarta',
+ 'Membalas Agresi Militer Belanda II secara langsung',
+ 'Mempersiapkan perang besar melawan Belanda'],
+a:0,
+e:'Tujuan utama = membuktikan kepada dunia bahwa RI masih eksis & memiliki kekuatan. Ini bukan tentang merebut permanen (hanya 6 jam), tetapi tentang pesan diplomatik ke dunia internasional.'},
+
+/* Q12 — Kunci: B (Applying) — Isi Roem-Royen */
+{t:'PG',l:'Applying',d:'Sedang',i:'Isi Perjanjian Roem-Royen',
+s:'Perjanjian Roem-Royen ditandatangani pada 7 Mei 1949 antara Indonesia dan Belanda. Delegasi Indonesia dipimpin oleh Mohammad Roem, delegasi Belanda dipimpin oleh Van Royen. Perjanjian ini menjadi titik terang setelah Agresi Militer Belanda II dan tekanan internasional yang semakin kuat. Isi pokoknya: (1) Belanda setuju mengembalikan pemerintahan RI ke Yogyakarta; (2) Indonesia setuju menghentikan perang gerilya; (3) akan diadakan Konferensi Meja Bundar (KMB) di Den Haag; (4) kedua pihak akan bekerja sama menciptakan perdamaian. Perjanjian ini membuka jalan bagi pengakuan kedaulatan Indonesia pada 27 Desember 1949.',
+q:'Berdasarkan stimulus tersebut, isi utama Perjanjian Roem-Royen adalah ....',
+o:['Belanda menyerahkan kedaulatan kepada RIS',
+ 'Belanda mengembalikan pemerintahan RI ke Yogyakarta',
+ 'Pembagian wilayah RI menjadi 8 provinsi',
+ 'Pembentukan RIS sebagai negara federal',
+ 'Penyelesaian masalah Irian Barat'],
+a:1,
+e:'Isi utama Roem-Royen = Belanda mengembalikan pemerintahan RI ke Yogyakarta & Indonesia menghentikan perang gerilya. Kedaulatan & RIS = hasil KMB (bukan Roem-Royen).'},
+
+/* Q13 — Kunci: C (Reasoning) — Hasil KMB */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Hasil Konferensi Meja Bundar',
+s:'Konferensi Meja Bundar (KMB) dilaksanakan pada 23 Agustus hingga 2 November 1949 di Den Haag, Belanda. Delegasi Indonesia dipimpin oleh Mohammad Hatta. Perundingan ini merupakan puncak diplomasi Indonesia setelah melalui berbagai perundingan yang didahului oleh konflik bersenjata dan agresi militer. Hasil KMB: (1) Belanda menyerahkan kedaulatan kepada Republik Indonesia Serikat (RIS); (2) dibentuk RIS yang berbentuk federasi; (3) masalah Irian Barat ditunda penyelesaiannya; (4) RIS harus menanggung utang kolonial Belanda; (5) dibentuk Uni Indonesia-Belanda. Pengakuan kedaulatan resmi terjadi pada 27 Desember 1949.',
+q:'Berdasarkan stimulus tersebut, hasil utama Konferensi Meja Bundar (KMB) adalah ....',
+o:['Belanda mengakui Irian Barat sebagai bagian Indonesia',
+ 'Indonesia bebas dari segala utang kolonial Belanda',
+ 'Pengakuan kedaulatan Belanda kepada Republik Indonesia Serikat',
+ 'Belanda tetap berkuasa di Indonesia dengan sistem federal',
+ 'Pembentukan negara kesatuan Republik Indonesia'],
+a:2,
+e:'Hasil utama KMB = pengakuan kedaulatan Belanda kepada RIS (27 Desember 1949). Irian Barat DITUNDA (bukan diakui langsung). Utang kolonial DITANGGUNG RIS. Bentuk negara RIS (federal, bukan kesatuan).'},
+
+/* Q14 — Kunci: E (Reasoning) — Perang gerilya */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor keberhasilan perang gerilya',
+s:'Setelah Agresi Militer Belanda II (Desember 1948), Jenderal Sudirman memimpin perang gerilya dari hutan ke hutan meski dalam keadaan sakit parah (paru-paru). Strategi gerilya dipilih karena tidak memungkinkan bagi pasukan Indonesia untuk menghadapi Belanda secara frontal. Dalam perang gerilya, tidak ada markas tetap dan tidak ada garis depan yang jelas. Rakyat memberikan dukungan penuh: menyediakan makanan, obat-obatan, menjadi kurir, dan memberikan informasi tentang posisi musuh. Lumbung-lumbung padi disembunyikan dari Belanda. Perang gerilya berhasil menjaga eksistensi militer RI hingga akhirnya Belanda dipaksa berunding melalui Roem-Royen dan KMB.',
+q:'Berdasarkan stimulus tersebut, faktor utama keberhasilan perang gerilya dalam mempertahankan eksistensi RI adalah ....',
+o:['Karena Belanda mundur secara sukarela dari Indonesia',
+ 'Karena mendapat bantuan militer dari PBB',
+ 'Karena menggunakan senjata modern dari luar negeri',
+ 'Karena jumlah pasukan Indonesia jauh lebih besar',
+ 'Karena dukungan rakyat & strategi gerilya yang tepat'],
+a:4,
+e:'Faktor utama = dukungan rakyat (logistik, informasi, tempat persembunyian) + strategi gerilya (serangan mendadak, tidak ada markas tetap). Bukan karena bantuan PBB, senjata modern, atau jumlah pasukan.'},
+
+/* Q15 — Kunci: A (Applying) — Medan Area */
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemicu Pertempuran Medan Area',
+s:'Pertempuran Medan Area berlangsung antara TKR (Tentara Keamanan Rakyat) dengan pasukan Sekutu dan NICA di Medan, Sumatera Utara, pada 1945–1946. Pemicunya adalah provokasi NICA yang menduduki gedung-gedung penting dan menangkap pejuang Republik. Rakyat Medan bertahan di wilayah yang kemudian disebut "Medan Area" — sebuah daerah yang dinyatakan sebagai kekuasaan Republik Indonesia. Tokoh penting dalam pertempuran ini adalah Letnan Kolonel Achmad Tahir. Pertempuran Medan Area menjadi salah satu peristiwa penting dalam mempertahankan kemerdekaan di Sumatera.',
+q:'Berdasarkan stimulus tersebut, pemicu Pertempuran Medan Area adalah ....',
+o:['Provokasi NICA & pendudukan gedung-gedung penting',
+ 'Agresi Militer Belanda I tahun 1947',
+ 'Insiden Hotel Yamato di Surabaya',
+ 'Pelanggaran Perjanjian Linggarjati',
+ 'Ultimatum Sekutu di Bandung'],
+a:0,
+e:'Pemicu Medan Area = provokasi NICA & pendudukan gedung penting, serta penangkapan pejuang Republik. Bukan Agresi Militer I (1947), bukan Insiden Hotel Yamato (Surabaya), bukan ultimatum Bandung.'},
+
+/* Q16 — Kunci: B (Reasoning) — Hubungan PDRI & kedaulatan */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Peran PDRI dalam diplomasi',
+s:'Rangkaian peristiwa pasca proklamasi: Agresi Militer Belanda II (Desember 1948) → Presiden & Wakil Presiden ditangkap → PDRI dibentuk di Bukittinggi → Perang gerilya & Serangan Umum 1 Maret 1949 → Tekanan internasional terhadap Belanda meningkat → Perjanjian Roem-Royen (Mei 1949) → Konferensi Meja Bundar (Agustus–November 1949) → Pengakuan Kedaulatan (27 Desember 1949). Setiap peristiwa saling berkaitan satu sama lain. PDRI, meskipun bersifat darurat, berhasil menjaga keberlangsungan pemerintahan RI dan komunikasi diplomasi dengan dunia internasional.',
+q:'Berdasarkan stimulus tersebut, hubungan yang paling tepat antara PDRI dengan pengakuan kedaulatan adalah ....',
+o:['PDRI menyebabkan Belanda memenangkan perang',
+ 'PDRI menjaga eksistensi RI yang kemudian memperkuat posisi diplomasi Indonesia',
+ 'PDRI membubarkan Republik Indonesia',
+ 'PDRI memicu pecahnya Perang Dunia III',
+ 'PDRI tidak berdampak apa pun bagi diplomasi'],
+a:1,
+e:'PDRI menjaga eksistensi RI → memperkuat posisi diplomasi → Roem-Royen → KMB → pengakuan kedaulatan. PDRI mencegah Belanda mengklaim RI sudah hancur.'},
+
+/* Q17 — Kunci: C (Reasoning) — Perjuangan seluruh rakyat */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Perjuangan seluruh rakyat',
+s:'Perang gerilya yang dipimpin Jenderal Sudirman berhasil karena dukungan rakyat. Rakyat menyediakan makanan, obat-obatan, menjadi kurir, dan memberikan informasi tentang posisi musuh. Lumbung padi disembunyikan dari Belanda. Bahkan di daerah-daerah pendudukan, rakyat tetap membantu pejuang Republik secara sembunyi-sembunyi. Sementara itu, PDRI di bawah Sjafruddin Prawiranegara menjaga komunikasi perjuangan ke dunia internasional. Kombinasi perjuangan bersenjata dan dukungan rakyat inilah yang membuat Belanda tidak pernah benar-benar bisa menguasai Indonesia.',
+q:'Berdasarkan stimulus tersebut, kesimpulan yang paling tepat tentang perjuangan mempertahankan kemerdekaan adalah ....',
+o:['Mempertahankan kemerdekaan hanyalah tugas tentara',
+ 'Mempertahankan kemerdekaan hanyalah tugas pemerintah',
+ 'Mempertahankan kemerdekaan adalah perjuangan seluruh rakyat, bukan hanya tentara',
+ 'Mempertahankan kemerdekaan tidak melibatkan rakyat biasa',
+ 'Mempertahankan kemerdekaan hanya melalui jalur diplomasi'],
+a:2,
+e:'Kesimpulan: mempertahankan kemerdekaan = perjuangan SELURUH RAKYAT (tentara, pemerintah, rakyat). Bukan hanya tentara, pemerintah, atau jalur diplomasi saja.'},
+
+/* Q18 — Kunci: D (Reasoning) — Pelajaran utama */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Pelajaran dari perjuangan',
+s:'Perjuangan mempertahankan kemerdekaan (1945–1949) menggunakan dua jalur utama: perjuangan bersenjata (Surabaya, Ambarawa, Bandung, Medan, Bali) dan diplomasi (Linggarjati, Renville, Roem-Royen, KMB). Kedua jalur ini saling melengkapi. Serangan Umum 1 Maret 1949 misalnya, berhasil memperkuat posisi diplomasi Indonesia di PBB — meskipun secara militer hanya menduduki Yogyakarta selama 6 jam. Sebaliknya, diplomasi tanpa kekuatan militer juga bisa dikhianati, seperti yang terjadi pada Perjanjian Linggarjati dan Renville. Karena itu, perjuangan bersenjata dan diplomasi tidak bisa dipisahkan.',
+q:'Berdasarkan stimulus tersebut, pelajaran utama dari perjuangan mempertahankan kemerdekaan adalah ....',
+o:['Perjuangan bersenjata lebih penting daripada diplomasi',
+ 'Diplomasi lebih penting daripada perjuangan bersenjata',
+ 'Rakyat tidak berperan penting dalam perjuangan',
+ 'Diplomasi & perjuangan bersenjata saling melengkapi',
+ 'Belanda selalu menang dalam setiap perundingan'],
+a:3,
+e:'Pelajaran utama = diplomasi & perjuangan bersenjata SALING MELENGKAPI. Serangan Umum 1 Maret memperkuat diplomasi; Renville/Linggarjati menunjukkan diplomasi tanpa kekuatan bisa dikhianati.'},
+
+/* ============ MCMA (7 SOAL) ============ */
+
+/* Q19 — Pola: [0,2,3] — Tugas & peran Sekutu */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Tugas & peran Sekutu',
+s:'AFNEI (Allied Forces Netherlands East Indies) datang ke Indonesia pada September 1945 di bawah pimpinan Letjen Sir Philip Christison. Tugas resmi AFNEI: (1) melucuti tentara Jepang; (2) membebaskan tawanan perang Sekutu; (3) memulihkan keamanan & ketertiban; (4) menyerahkan kekuasaan kepada pemerintah sipil yang sah. Namun dalam praktiknya, AFNEI membawa NICA (pemerintahan sipil Belanda) yang segera menduduki wilayah Indonesia. Belanda yang saat itu masih lemah pasca Perang Dunia II, menumpang pada Sekutu untuk kembali menguasai Indonesia. Rakyat Indonesia pun mencurigai kedatangan Sekutu karena hal ini.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang AFNEI? (Pilih lebih dari satu)',
+o:['AFNEI bertugas melucuti tentara Jepang.',
+ 'AFNEI hanya membawa misi kemanusiaan tanpa kepentingan politik.',
+ 'AFNEI membawa NICA di belakang mereka.',
+ 'AFNEI bertugas membebaskan tawanan perang Sekutu.',
+ 'AFNEI membantu Indonesia mempertahankan kemerdekaan.'],
+a:[0,2,3],
+e:'A, C, D benar. B salah — AFNEI membawa kepentingan politik (NICA). E salah — AFNEI justru mendukung kembalinya kekuasaan Belanda.'},
+
+/* Q20 — Pola: [1,3] — Perjuangan bersenjata */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Perjuangan bersenjata',
+s:'Perjuangan bersenjata di berbagai daerah: (1) Pertempuran Surabaya (10 November 1945) — dipicu tewasnya Brigadir Mallaby, dengan Bung Tomo membakar semangat rakyat; (2) Palagan Ambarawa (Desember 1945) — dipimpin Jenderal Sudirman; (3) Bandung Lautan Api (23 Maret 1946) — dipicu ultimatum Sekutu, dengan Muhammad Toha gugur; (4) Puputan Margarana di Bali (20 November 1946) — dipimpin I Gusti Ngurah Rai; (5) Pertempuran Medan Area (1945–1946) — dipicu provokasi NICA.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perjuangan bersenjata? (Pilih lebih dari satu)',
+o:['Pertempuran Surabaya dipimpin oleh Jenderal Sudirman.',
+ 'Bandung Lautan Api dipicu oleh ultimatum Sekutu.',
+ 'Puputan Margarana dipimpin oleh Bung Tomo.',
+ 'Palagan Ambarawa dipimpin oleh Jenderal Sudirman.',
+ 'Medan Area dipicu oleh Perjanjian Linggarjati.'],
+a:[1,3],
+e:'B, D benar. A salah — Surabaya = Bung Tomo. C salah — Puputan = I Gusti Ngurah Rai. E salah — Medan Area dipicu provokasi NICA (bukan Linggarjati).'},
+
+/* Q21 — Pola: [0,1,2] — Perjanjian diplomasi */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Perjanjian diplomasi',
+s:'Perjanjian diplomasi Indonesia selama mempertahankan kemerdekaan: (1) Linggarjati (1946) — mengakui de facto RI atas Jawa, Madura, Sumatera; (2) Renville (1948) — garis Van Mook, merugikan Indonesia; (3) Roem-Royen (1949) — penghentian tembak-menembak, RI kembali ke Yogyakarta; (4) KMB (1949) — pengakuan kedaulatan Belanda kepada RIS. Selain itu, Serangan Umum 1 Maret 1949 memperkuat posisi diplomasi Indonesia di PBB.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perjanjian diplomasi? (Pilih lebih dari satu)',
+o:['Perjanjian Linggarjati mengakui RI secara de facto.',
+ 'Perjanjian Renville merugikan Indonesia karena garis Van Mook.',
+ 'Perjanjian Roem-Royen menghasilkan penghentian tembak-menembak.',
+ 'KMB gagal menghasilkan pengakuan kedaulatan.',
+ 'Perjanjian Renville ditandatangani di Linggarjati.'],
+a:[0,1,2],
+e:'A, B, C benar. D salah — KMB justru BERHASIL menghasilkan pengakuan kedaulatan. E salah — Renville di atas kapal USS Renville, bukan di Linggarjati.'},
+
+/* Q22 — Pola: [2,3,4] — PDRI & gerilya */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'PDRI & perang gerilya',
+s:'Setelah Agresi Militer II (Desember 1948), Soekarno-Hatta ditangkap dan diasingkan ke Bangka. PDRI dibentuk 22 Desember 1948 di Bukittinggi, dipimpin Sjafruddin Prawiranegara. PDRI bertujuan menjaga eksistensi RI. Sementara itu, Jenderal Sudirman memimpin perang gerilya dari hutan ke hutan meski dalam keadaan sakit. Serangan Umum 1 Maret 1949 berhasil merebut Yogyakarta selama 6 jam — membuktikan kepada dunia bahwa RI masih ada. Rakyat mendukung perjuangan dengan logistik dan informasi.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['PDRI dibentuk di Jakarta.',
+ 'Agresi Militer II menguntungkan Indonesia.',
+ 'PDRI dipimpin oleh Sjafruddin Prawiranegara.',
+ 'Jenderal Sudirman memimpin perang gerilya.',
+ 'Serangan Umum 1 Maret 1949 berhasil merebut Yogyakarta selama 6 jam.'],
+a:[2,3,4],
+e:'C, D, E benar. A salah — PDRI di Bukittinggi. B salah — Agresi Militer II merugikan Indonesia.'},
+
+/* Q23 — Pola: [0,3] — Tokoh & peran */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh & peran',
+s:'Tokoh & peran dalam mempertahankan kemerdekaan: (1) Bung Tomo — membakar semangat rakyat Surabaya melalui radio; (2) Jenderal Sudirman — perang gerilya; (3) Sjafruddin Prawiranegara — memimpin PDRI; (4) I Gusti Ngurah Rai — Puputan Margarana; (5) Mohammad Hatta — memimpin delegasi KMB; (6) Muhammad Toha — meledakkan gudang amunisi Sekutu di Bandung; (7) Letkol Soeharto — Serangan Umum 1 Maret 1949.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang tokoh & perannya? (Pilih lebih dari satu)',
+o:['Bung Tomo membakar semangat rakyat Surabaya.',
+ 'I Gusti Ngurah Rai memimpin PDRI.',
+ 'Mohammad Hatta memimpin perang gerilya.',
+ 'Sjafruddin Prawiranegara memimpin PDRI.',
+ 'Muhammad Toha memimpin delegasi KMB.'],
+a:[0,3],
+e:'A, D benar. B salah — I Gusti Ngurah Rai = Puputan Margarana. C salah — Hatta = delegasi KMB. E salah — Muhammad Toha = Bandung Lautan Api.'},
+
+/* Q24 — Pola: [1,2,4] — Dampak agresi militer */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak agresi militer',
+s:'Agresi Militer Belanda I (21 Juli 1947 — Operatie Product) melanggar Perjanjian Linggarjati. Indonesia mengadukan Belanda ke PBB, dan terbentuk Komisi Tiga Negara (KTN). Agresi Militer Belanda II (19 Desember 1948 — Operatie Kraai) menyerang Yogyakarta dan menangkap pemimpin RI. Indonesia merespons dengan PDRI & perang gerilya. Tekanan internasional yang meningkat memaksa Belanda berunding. Hasilnya: Perjanjian Roem-Royen dan Konferensi Meja Bundar (KMB) yang menghasilkan pengakuan kedaulatan.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang dampak agresi militer? (Pilih lebih dari satu)',
+o:['Agresi Militer I tidak melanggar perjanjian apa pun.',
+ 'Agresi Militer I melanggar Perjanjian Linggarjati.',
+ 'Agresi Militer II memicu pembentukan PDRI.',
+ 'Agresi Militer II mengakhiri eksistensi RI.',
+ 'Tekanan internasional memaksa Belanda berunding.'],
+a:[1,2,4],
+e:'B, C, E benar. A salah — Agresi I MELANGGAR Linggarjati. D salah — RI TIDAK berakhir; PDRI & gerilya menjaga eksistensi RI.'},
+
+/* Q25 — Pola: [0,1,3,4] — Nilai perjuangan */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Nilai perjuangan',
+s:'Nilai-nilai dari perjuangan mempertahankan kemerdekaan: (1) rela berkorban untuk bangsa & negara; (2) cinta tanah air & pantang menyerah; (3) persatuan & gotong royong antara rakyat, tentara, dan pemerintah; (4) diplomasi dan perjuangan bersenjata saling melengkapi; (5) keberanian mengambil risiko. Mempertahankan kemerdekaan bukan hanya tugas tentara, tetapi seluruh rakyat. Perjuangan memerlukan pengorbanan besar — harta, tenaga, bahkan nyawa.',
+q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN nilai yang dapat diteladani dari perjuangan mempertahankan kemerdekaan? (Pilih lebih dari satu)',
+o:['Rela berkorban untuk bangsa & negara.',
+ 'Cinta tanah air & pantang menyerah.',
+ 'Mengutamakan kepentingan pribadi di atas bangsa.',
+ 'Persatuan & gotong royong seluruh rakyat.',
+ 'Diplomasi & perjuangan bersenjata saling melengkapi.'],
+a:[0,1,3,4],
+e:'A, B, D, E benar. C salah — justru yang harus dihindari, bukan diteladani. Perjuangan menuntut pengorbanan, bukan kepentingan pribadi.'},
+
+/* ============ KATEGORI (5 SOAL) ============ */
+
+/* Q26 — Pola: [S, TS, S, S] — Kronologi */
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi peristiwa',
+s:'Kronologi mempertahankan kemerdekaan: Proklamasi 17 Agustus 1945 → Pertempuran Surabaya 10 November 1945 → Palagan Ambarawa Desember 1945 → Bandung Lautan Api 23 Maret 1946 → Linggarjati 25 Maret 1947 → Agresi Militer I 21 Juli 1947 → Renville 17 Januari 1948 → Agresi Militer II 19 Desember 1948 → PDRI 22 Desember 1948 → Serangan Umum 1 Maret 1949 → Roem-Royen 7 Mei 1949 → KMB Agustus–November 1949 → Pengakuan Kedaulatan 27 Desember 1949.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Pertempuran Surabaya terjadi sebelum Palagan Ambarawa.',a:'Sesuai'},
+ {x:'Agresi Militer II terjadi sebelum Perjanjian Renville.',a:'Tidak Sesuai'},
+ {x:'PDRI dibentuk setelah Agresi Militer II.',a:'Sesuai'},
+ {x:'Pengakuan kedaulatan terjadi setelah Konferensi Meja Bundar.',a:'Sesuai'}],
+e:'1 Sesuai (Nov 1945 < Des 1945). 2 Tidak Sesuai (Renville Jan 1948 < Agresi II Des 1948). 3 Sesuai (22 Des 1948 > 19 Des 1948). 4 Sesuai (27 Des 1949 > Nov 1949).'},
+
+/* Q27 — Pola: [TS, S, S, S] — Tokoh & peran */
+{t:'KATEGORI',l:'Applying',d:'Sedang',i:'Tokoh & peran',
+s:'Tokoh & peran: Bung Tomo — membakar semangat Surabaya; Jenderal Sudirman — perang gerilya; Sjafruddin Prawiranegara — Ketua PDRI; I Gusti Ngurah Rai — Puputan Margarana; Mohammad Hatta — delegasi KMB; Muhammad Toha — Bandung Lautan Api; Letkol Soeharto — Serangan Umum 1 Maret 1949; Sultan Hamengku Buwono IX — mendukung RI dari Yogyakarta.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Bung Tomo memimpin PDRI.',a:'Tidak Sesuai'},
+ {x:'Jenderal Sudirman memimpin perang gerilya.',a:'Sesuai'},
+ {x:'I Gusti Ngurah Rai memimpin Puputan Margarana.',a:'Sesuai'},
+ {x:'Mohammad Hatta memimpin delegasi KMB.',a:'Sesuai'}],
+e:'1 Tidak Sesuai — PDRI = Sjafruddin Prawiranegara. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
+
+/* Q28 — Pola: [S, S, TS, S] — Lokasi peristiwa */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Lokasi peristiwa',
+s:'Lokasi peristiwa: Pertempuran Surabaya (Jawa Timur) — 10 Nov 1945; Palagan Ambarawa (Jawa Tengah) — Des 1945; Bandung Lautan Api (Jawa Barat) — 23 Mar 1946; Puputan Margarana (Bali) — 20 Nov 1946; PDRI (Bukittinggi, Sumatera Barat) — 22 Des 1948; Serangan Umum 1 Maret 1949 (Yogyakarta); KMB (Den Haag, Belanda) — Agustus–November 1949.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Pertempuran Surabaya terjadi di Jawa Timur.',a:'Sesuai'},
+ {x:'PDRI dibentuk di Bukittinggi.',a:'Sesuai'},
+ {x:'Bandung Lautan Api terjadi di Jawa Timur.',a:'Tidak Sesuai'},
+ {x:'Konferensi Meja Bundar dilaksanakan di Den Haag.',a:'Sesuai'}],
+e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Bandung Lautan Api di JAWA BARAT. 4 Sesuai.'},
+
+/* Q29 — Pola: [TS, S, S, TS] — Faktor keberhasilan */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Faktor keberhasilan',
+s:'Faktor keberhasilan mempertahankan kemerdekaan: (1) persatuan rakyat & TNI; (2) dukungan rakyat pada perang gerilya; (3) diplomasi yang kuat; (4) tekanan internasional; (5) PDRI yang menjaga eksistensi pemerintahan RI. Sebaliknya, perpecahan internal dan kekurangan senjata bisa melemahkan perjuangan. Kemerdekaan Indonesia bukan hadiah, tetapi hasil perjuangan seluruh rakyat dengan berbagai cara.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Kemerdekaan Indonesia diperoleh tanpa perjuangan.',a:'Tidak Sesuai'},
+ {x:'Dukungan rakyat berperan penting dalam perang gerilya.',a:'Sesuai'},
+ {x:'Diplomasi memperkuat posisi Indonesia di dunia internasional.',a:'Sesuai'},
+ {x:'PDRI justru memperlemah posisi Indonesia.',a:'Tidak Sesuai'}],
+e:'1 Tidak Sesuai — kemerdekaan diperoleh dengan perjuangan berat. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — PDRI MEMPERKUAT posisi Indonesia dengan menjaga eksistensi RI.'},
+
+/* Q30 — Pola: [S, TS, S, TS] — Pelajaran */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Pelajaran dari perjuangan',
+s:'Pelajaran dari perjuangan mempertahankan kemerdekaan: (1) perjuangan bersenjata & diplomasi saling melengkapi; (2) rakyat berperan besar dalam perjuangan; (3) pemimpin yang berani mengambil risiko; (4) persatuan adalah kunci. Mempertahankan kemerdekaan bukan hanya tugas tentara, tetapi seluruh rakyat. Diplomasi tanpa kekuatan militer bisa dikhianati — seperti yang terjadi pada Perjanjian Linggarjati dan Renville.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Diplomasi & perjuangan bersenjata saling melengkapi.',a:'Sesuai'},
+ {x:'Hanya tentara yang berperan dalam mempertahankan kemerdekaan.',a:'Tidak Sesuai'},
+ {x:'Persatuan rakyat & pemimpin adalah kunci keberhasilan.',a:'Sesuai'},
+ {x:'Diplomasi tanpa kekuatan militer selalu berhasil.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — seluruh rakyat berperan (tentara, pemerintah, rakyat). 3 Sesuai. 4 Tidak Sesuai — Linggarjati & Renville menunjukkan diplomasi tanpa kekuatan bisa DIKHANATI.'}
+
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let siswaName='',siswaSchool='',siswaClass='';
+let displayedQuestions=[];
+
+(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goIdentity(){
+  stopTimer();
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
+function startTestWithIdentity(){
+  const name=document.getElementById('inpName').value.trim();
+  const school=document.getElementById('inpSchool').value.trim();
+  const cls=document.getElementById('inpClass').value.trim();
+  if(!name||!school||!cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName=name;siswaSchool=school;siswaClass=cls;
+  document.getElementById('hdrName').textContent=siswaName;
+  document.getElementById('hdrSchool').textContent=siswaSchool;
+  document.getElementById('hdrClass').textContent=siswaClass;
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q11]);
+  document.getElementById('testTitle').textContent='Mempertahankan Kemerdekaan';
+  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function retryTest(){
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q11]);
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+function renderQuestion(){
+  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
+  const stimEl=document.getElementById('qStim');
+  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
+  document.getElementById('qText').textContent=q.q;
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
+  const area=document.getElementById('qArea');area.innerHTML='';
+  if(q.t==='PG'){
+    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
+      if(ua===i)div.classList.add('sel');
+      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+    area.appendChild(optsEl);
+  }else if(q.t==='MCMA'){
+    const checksEl=document.createElement('div');checksEl.className='checks';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');div.className='check';
+      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
+      const checked=uaArr.includes(i);
+      if(checked)div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect=q.a.includes(i);
+        if(isCorrect)div.classList.add('correct');
+        else if(checked)div.classList.add('wrong');
+      }
+      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
+      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      checksEl.appendChild(div);
+    });
+    area.appendChild(checksEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  }
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+function selectOption(idx,type){
+  if(revealed[currentQ])return;
+  if(type==='PG'){userAnswers[currentQ]=idx;}
+  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  renderQuestion();renderQMap();updateProgress();
+}
+function setKategori(idx,cat){
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+}
+function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
+function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+function renderQMap(){
+  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
+    const ua=userAnswers[i];let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
+}
+function updateProgress(){
+  const total=displayedQuestions.length;let answered=0;
+  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
+    else answered++;}
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+function isCorrect(q,ua){
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
+  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+  return false;
+}
+function finishTest(){
+  stopTimer();
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
+  document.getElementById('resultIdentity').innerHTML=`
+    <span><i class="fas fa-user" style="color:var(--primary-light)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary-light)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary-light)"></i> ${siswaClass}</span>`;
+  let title='',sub='';
+  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Mempertahankan Kemerdekaan sangat luar biasa.`;}
+  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
+  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
+  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Mempertahankan Kemerdekaan dan coba lagi.`;}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultSub').textContent=sub;
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary-light)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  showSection('result');
+}
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
+window.addEventListener('scroll',()=>{
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.5)';
+  else h.style.boxShadow='none';
+});
+</script>
+</body>
+</html>
