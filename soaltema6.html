@@ -534,9 +534,9 @@ e:'1 Sesuai. 2 Tidak Sesuai — banyak warisan (positif & negatif). 3 Sesuai. 4 
 ];
 
 /* ============================================================
-   STATE & TIMER
+   STATE & TIMER — 90 MENIT
    ============================================================ */
-const TOTAL_TIME = 90 * 60; // 90 menit = 5400 detik
+const TOTAL_TIME = 90 * 60;
 let currentQ = 0;
 let userAnswers = {};
 let revealed = {};
@@ -885,6 +885,7 @@ function countAnswered(){
   return c;
 }
 
+/* ✅ FIX 1: renderQMap — KATEGORI dianggap terjawab bila minimal 1 pernyataan diisi */
 function renderQMap(){
   const map = document.getElementById('qmap');
   map.innerHTML = '';
@@ -897,10 +898,7 @@ function renderQMap(){
     let answered = false;
     if(ua !== undefined){
       if(Array.isArray(ua)) answered = ua.length > 0;
-      else if(typeof ua === 'object'){
-        const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
-        answered = Object.keys(ua).length === stCount;
-      }
+      else if(typeof ua === 'object') answered = Object.keys(ua).length > 0;
       else answered = true;
     }
     if(answered) btn.classList.add('ans');
@@ -913,6 +911,7 @@ function renderQMap(){
   }
 }
 
+/* ✅ FIX 2: updateProgress — konsisten dengan isAnswered */
 function updateProgress(){
   const total = displayedQuestions.length;
   let answered = 0;
@@ -920,10 +919,7 @@ function updateProgress(){
     const ua = userAnswers[i];
     if(ua === undefined) continue;
     if(Array.isArray(ua)){ if(ua.length > 0) answered++; }
-    else if(typeof ua === 'object'){
-      const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
-      if(Object.keys(ua).length === stCount) answered++;
-    }
+    else if(typeof ua === 'object'){ if(Object.keys(ua).length > 0) answered++; }
     else answered++;
   }
   document.getElementById('ansCount').textContent = answered;
