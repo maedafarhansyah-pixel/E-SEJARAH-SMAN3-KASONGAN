@@ -13,26 +13,6 @@
 :root{--primary:#F4C430;--primary-light:#FFE47A;--gold:#FFD700;--emerald:#F39C12;--rose:#E74C3C;--sky:#F7DC6F;--violet:#D68910;--bg:#141008;--card:#241e0e;--card-alt:#2e2712;--text:#fdf9e8;--text-light:#d4c99a;--text-muted:#9a8e5e;--line:rgba(255,228,122,.14);--line-soft:rgba(255,228,122,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#F4C430;--accent2:#E67E22;--accent-soft:rgba(244,196,48,.12);}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(244,196,48,.10),transparent 55%),radial-gradient(circle at 85% 80%,rgba(230,126,34,.08),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
-#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#1c1709 0%,#141008 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
-.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
-.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--accent2) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,228,122,.55)) drop-shadow(0 0 26px rgba(244,196,48,.4));z-index:-2;}
-.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#141008;box-shadow:inset 0 0 24px rgba(244,196,48,.16);z-index:-1;}
-.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fdf9e8 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #B8860B) drop-shadow(2px 2px 0 #a3740c) drop-shadow(3px 3px 0 #8b6914) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
-.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(247,220,111,.35);}
-.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(214,137,16,.35);}
-.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(231,76,60,.35);}
-@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--accent2),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(214,137,16,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
-@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(244,196,48,.18);border-radius:10px;margin-top:24px;overflow:hidden;}
-.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--accent2));transition:width .3s;border-radius:10px}
-.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(20,16,8,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
 .hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
 .hdr-center i{color:var(--gold)}
@@ -159,30 +139,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(231,76,60,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
-@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
-@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
 </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="loader-3d-wrap">
-    <div class="loader-ring ring-1"></div>
-    <div class="loader-ring ring-2"></div>
-    <div class="loader-ring ring-3"></div>
-    <div class="loader-circle">
-      <div class="loader-3d-text">MGE</div>
-    </div>
-  </div>
-  <div class="loader-3d-sub">Maeda Game Edu</div>
-  <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">Tema 9: Pendudukan Jepang · 30 Soal</div>
-  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
-  <div class="loader-pct" id="lpct">0%</div>
-</div>
 
 <header class="hdr">
   <div style="display:flex;gap:6px;align-items:center">
@@ -300,14 +264,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 /* ============================================================
    BANK SOAL — PENDUDUKAN JEPANG (30 SOAL UNIK)
    18 PG + 7 MCMA + 5 KATEGORI
-   Kunci PG: A=4, B=4, C=4, D=3, E=3
-   Level: Knowing=4, Applying=11, Reasoning=15
    ============================================================ */
 const Q9=[
 
-/* ============ PG (18 SOAL) ============ */
-
-/* Q1 — Kunci: B (Applying) — Tarakan */
+/* Q1 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Alasan Jepang mengincar Tarakan',
 s:'Pada 11 Januari 1942, tentara Jepang mendarat di Tarakan, Kalimantan Timur. Tarakan dipilih sebagai target pertama bukan karena pusat pemerintahan atau pendidikan, melainkan karena wilayah ini kaya akan minyak bumi. Minyak sangat dibutuhkan Jepang sebagai bahan bakar armada perang dalam Perang Pasifik. Setelah Tarakan jatuh, Jepang bergerak cepat ke Balikpapan &amp; Pontianak (Januari–Februari 1942), lalu ke Palembang (14 Februari 1942) yang juga kaya minyak. Strategi Jepang jelas: rebut sumber daya energi terlebih dahulu, baru kemudian pusat pemerintahan di Jawa.',
 q:'Berdasarkan stimulus tersebut, alasan utama Jepang menjadikan Tarakan sebagai target pertama pendudukan adalah ....',
@@ -319,7 +279,7 @@ o:['Tarakan adalah pusat pemerintahan Belanda',
 a:1,
 e:'Tarakan = target pertama karena kaya minyak bumi (bahan bakar armada perang). Bukan karena pusat pemerintahan, pendidikan, pelabuhan dagang, atau pangkalan militer.'},
 
-/* Q2 — Kunci: A (Knowing) — Tanggal kapitulasi */
+/* Q2 — Kunci: A */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Tanggal kapitulasi Belanda',
 s:'Setelah beberapa minggu bertempur, Belanda akhirnya menyerah kepada Jepang. Kapitulasi ditandatangani pada 8 Maret 1942 di Kalijati, Subang, Jawa Barat. Jenderal Ter Poorten mewakili Belanda menyerah tanpa syarat kepada Jenderal Hitoshi Imamura dari Jepang. Peristiwa ini menandai berakhirnya kekuasaan kolonial Belanda di Indonesia yang telah berlangsung lebih dari tiga abad. Sejak saat itu, Indonesia resmi berada di bawah pendudukan militer Jepang hingga 1945. Tanggal 8 Maret 1942 menjadi tonggak awal masa pendudukan Jepang di Indonesia.',
 q:'Berdasarkan stimulus tersebut, kapitulasi Belanda kepada Jepang ditandatangani pada tanggal ....',
@@ -327,7 +287,7 @@ o:['8 Maret 1942','11 Januari 1942','1 Maret 1942','14 Februari 1942','17 Agustu
 a:0,
 e:'Kapitulasi Belanda = 8 Maret 1942 di Kalijati, Subang. 11 Januari = Tarakan (awal pendudukan). 17 Agustus 1945 = Proklamasi Kemerdekaan.'},
 
-/* Q3 — Kunci: C (Reasoning) — Sambutan awal rakyat */
+/* Q3 — Kunci: C */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Alasan sambutan awal rakyat',
 s:'Ketika Jepang datang pada 1942, banyak rakyat Indonesia yang awalnya menyambut baik kedatangan mereka. Ada beberapa alasan: (1) Jepang mempropagandakan diri sebagai "saudara tua" yang akan membebaskan Asia dari penjajahan Barat; (2) slogan "Asia untuk Bangsa Asia" dan "Nippon Cahaya Asia" sangat menarik simpati; (3) Jepang membebaskan tokoh-tokoh nasionalis yang dipenjara Belanda, seperti Soekarno &amp; Hatta; (4) Jepang mengizinkan penggunaan bahasa Indonesia dan mengibarkan bendera Merah Putih (meski kemudian dilarang). Rakyat mengira Jepang akan memberi kemerdekaan. Namun, setelah Jepang terbukti lebih kejam dari Belanda (romusha, seikerei, penindasan), sikap rakyat berubah menjadi perlawanan.',
 q:'Berdasarkan stimulus tersebut, alasan utama rakyat Indonesia awalnya menyambut baik kedatangan Jepang adalah ....',
@@ -339,7 +299,7 @@ o:['Jepang memberi bantuan ekonomi langsung kepada rakyat',
 a:2,
 e:'Alasan utama: propaganda Jepang sebagai "pembebas Asia" dari penjajahan Barat. Slogan "saudara tua" &amp; "Nippon Cahaya Asia" sangat efektif menarik simpati. Kemudian rakyat kecewa setelah Jepang terbukti lebih kejam.'},
 
-/* Q4 — Kunci: D (Applying) — Pembagian wilayah militer */
+/* Q4 — Kunci: D */
 {t:'PG',l:'Applying',d:'Sedang',i:'Pembagian wilayah militer',
 s:'Untuk memudahkan kontrol, Jepang membagi Indonesia menjadi tiga wilayah pemerintahan militer. Pertama, wilayah Angkatan Darat XVI (Rikugun) berpusat di Jakarta — mencakup Jawa &amp; Madura. Kedua, wilayah Angkatan Darat XXV (Rikugun) berpusat di Bukittinggi — mencakup Sumatera. Ketiga, wilayah Angkatan Laut (Kaigun) berpusat di Makassar — mencakup Kalimantan, Sulawesi, Nusa Tenggara, &amp; Maluku. Pembagian ini tidak hanya administratif, tetapi juga mencerminkan perbedaan perlakuan: wilayah Rikugun umumnya lebih keras, sedangkan wilayah Kaigun relatif lebih lunak terhadap rakyat.',
 q:'Berdasarkan stimulus tersebut, wilayah Indonesia bagian timur (Kalimantan, Sulawesi, Maluku) berada di bawah kekuasaan ....',
@@ -351,7 +311,7 @@ o:['Angkatan Darat XVI (Rikugun) di Jakarta',
 a:3,
 e:'Wilayah timur (Kalimantan, Sulawesi, Nusa Tenggara, Maluku) = Kaigun (Angkatan Laut) berpusat di Makassar. Jawa &amp; Madura = Rikugun XVI Jakarta. Sumatera = Rikugun XXV Bukittinggi.'},
 
-/* Q5 — Kunci: E (Reasoning) — Rikugun vs Kaigun */
+/* Q5 — Kunci: E */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Perbedaan Rikugun &amp; Kaigun',
 s:'Wilayah pendudukan Jepang di Indonesia terbagi antara Rikugun (Angkatan Darat) &amp; Kaigun (Angkatan Laut). Perbedaan ini bukan sekadar administratif, tetapi berdampak pada kehidupan rakyat. Di wilayah Rikugun (Jawa, Madura, Sumatera), pemerintahan militer lebih keras &amp; disiplin — rakyat dipaksa kerja romusha, hasil bumi dirampas, dan pengawasan sangat ketat. Di wilayah Kaigun (Kalimantan, Sulawesi, Maluku, Nusa Tenggara), pemerintahan relatif lebih lunak — budaya lokal sedikit lebih dihormati, dan rakyat tidak sepenuhnya diperlakukan sebagai "tenaga kerja paksa". Perbedaan ini menjelaskan mengapa corak perlawanan rakyat di berbagai daerah juga berbeda.',
 q:'Berdasarkan stimulus tersebut, pernyataan yang paling tepat tentang perbedaan Rikugun dan Kaigun adalah ....',
@@ -363,7 +323,7 @@ o:['Rikugun &amp; Kaigun memiliki perlakuan yang sama terhadap rakyat',
 a:4,
 e:'Rikugun (Angkatan Darat) = lebih keras &amp; disiplin. Kaigun (Angkatan Laut) = relatif lebih lunak &amp; menghormati budaya lokal. Perbedaan ini berdampak pada corak perlawanan rakyat di masing-masing wilayah.'},
 
-/* Q6 — Kunci: A (Knowing) — Pengertian romusha */
+/* Q6 — Kunci: A */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian romusha',
 s:'Romusha adalah sistem kerja paksa yang diterapkan Jepang di Indonesia pada 1942–1945. Rakyat — dari petani, buruh, hingga pegawai — dipaksa bekerja tanpa upah layak untuk membangun infrastruktur perang: benteng, jalan, jembatan, lapangan udara, dan jalur kereta. Kondisi kerja sangat memprihatinkan: tanpa makanan cukup, tanpa obat, dan tanpa perlindungan. Banyak romusha yang meninggal karena kelaparan, penyakit, atau kelelahan. Proyek terkenal antara lain Jalur Kereta Muo–Bangkok (Thailand-Burma) &amp; Jalur Kereta Saketi–Bayah (Banten Selatan). Diperkirakan 200.000–500.000 jiwa meninggal akibat sistem ini.',
 q:'Berdasarkan stimulus tersebut, sistem kerja paksa yang diterapkan Jepang di Indonesia pada 1942–1945 disebut ....',
@@ -371,7 +331,7 @@ o:['Romusha','Rodi','Cultuurstelsel','Poenale Sanctie','Autarki'],
 a:0,
 e:'Romusha = kerja paksa masa Jepang. Rodi = kerja paksa masa Belanda. Cultuurstelsel = tanam paksa. Poenale Sanctie = hukuman fisik untuk kuli kontrak. Autarki = sistem ekonomi swasembada.'},
 
-/* Q7 — Kunci: B (Applying) — Jalur kereta Saketi-Bayah */
+/* Q7 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Jalur kereta Saketi-Bayah',
 s:'Salah satu proyek romusha paling terkenal di Indonesia adalah pembangunan Jalur Kereta Saketi–Bayah di Banten Selatan. Jalur ini dibangun pada 1942–1945 dengan tujuan strategis: menghubungkan daerah pedalaman Banten dengan pantai selatan Jawa, sebagai jalur logistik &amp; pertahanan Jepang menghadapi Sekutu. Ribuan romusha dikerahkan untuk proyek ini. Kondisi kerja sangat berat: medan pegunungan, hutan lebat, dan cuaca ekstrem. Ribuan romusha meninggal selama pembangunan. Hingga kini, jalur ini menjadi saksi bisu kekejaman sistem romusha di Indonesia.',
 q:'Berdasarkan stimulus tersebut, salah satu proyek romusha paling terkenal di Indonesia adalah pembangunan jalur kereta ....',
@@ -379,7 +339,7 @@ o:['Jakarta–Bandung','Saketi–Bayah','Semarang–Solo','Surabaya–Malang','M
 a:1,
 e:'Jalur Kereta Saketi–Bayah (Banten Selatan) = proyek romusha paling terkenal di Indonesia. Tujuan: jalur logistik &amp; pertahanan Jepang. Ribuan romusha meninggal selama pembangunan.'},
 
-/* Q8 — Kunci: C (Reasoning) — Dampak romusha */
+/* Q8 — Kunci: C */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Romusha sebagai kejahatan kemanusiaan',
 s:'Sistem romusha menimbulkan dampak yang sangat mengerikan. Pertama, korban jiwa sangat besar — diperkirakan 200.000–500.000 orang meninggal, baik di dalam maupun di luar negeri. Kedua, keluarga kehilangan tulang punggung — banyak istri &amp; anak menjadi yatim piatu. Ketiga, sawah &amp; ladang terlantar karena tenaga kerja dirampas, menyebabkan kelaparan meluas. Keempat, wabah penyakit merebak karena sanitasi buruk &amp; kekurangan gizi. Kelima, trauma psikologis mendalam bagi rakyat yang selamat. Inilah sebabnya sistem romusha dikategorikan sebagai kejahatan kemanusiaan yang tidak bisa dilupakan.',
 q:'Berdasarkan stimulus tersebut, alasan utama sistem romusha dikategorikan sebagai kejahatan kemanusiaan adalah ....',
@@ -391,7 +351,7 @@ o:['Karena menggunakan banyak tenaga kerja',
 a:2,
 e:'Romusha = kejahatan kemanusiaan karena: korban 200.000–500.000 jiwa, tanpa upah layak, tanpa makanan cukup, tanpa obat, dan trauma mendalam. Bukan karena jumlah pekerja atau teknologi.'},
 
-/* Q9 — Kunci: D (Applying) — PUTERA & Empat Serangkai */
+/* Q9 — Kunci: D */
 {t:'PG',l:'Applying',d:'Sedang',i:'PUTERA &amp; Empat Serangkai',
 s:'PUTERA (Pusat Tenaga Rakyat) adalah organisasi sosial-politik yang dibentuk Jepang pada 1943. Tujuan awal Jepang: mengerahkan rakyat Indonesia untuk mendukung perang Jepang. Namun, Jepang menyerahkan kepemimpinan PUTERA kepada Empat Serangkai: Soekarno, Mohammad Hatta, Ki Hajar Dewantara, &amp; KH Mas Mansur. Keempat tokoh ini justru memanfaatkan PUTERA sebagai alat perjuangan terselubung — menyebarkan ide nasionalisme &amp; mempersiapkan kemerdekaan. Jepang menyadari hal ini kemudian membubarkan PUTERA pada 1944, tetapi sudah terlambat: benih kesadaran nasional sudah tersebar luas.',
 q:'Berdasarkan stimulus tersebut, organisasi PUTERA dipimpin oleh ....',
@@ -403,7 +363,7 @@ o:['Sutan Sjahrir &amp; Amir Sjarifuddin',
 a:3,
 e:'PUTERA = dipimpin Empat Serangkai (Soekarno, Hatta, Ki Hajar, Mas Mansur). Meski dibentuk Jepang, PUTERA justru dimanfaatkan sebagai alat perjuangan terselubung. Dibubarkan 1944.'},
 
-/* Q10 — Kunci: E (Knowing) — PETA cikal bakal TNI */
+/* Q10 — Kunci: E */
 {t:'PG',l:'Knowing',d:'Mudah',i:'PETA cikal bakal TNI',
 s:'PETA (Pembela Tanah Air) adalah organisasi militer bentukan Jepang pada 3 Oktober 1943. Tujuan awal Jepang: menyiapkan pasukan cadangan untuk menghadapi Sekutu. Namun, PETA justru menjadi cikal bakal TNI (Tentara Nasional Indonesia). Para pemuda Indonesia dilatih militer secara intensif: taktik perang, penggunaan senjata, dan kepemimpinan. Setelah Indonesia merdeka (1945), banyak mantan anggota PETA yang menjadi perwira TNI. Bahkan, pemberontakan PETA di Blitar (14 Februari 1945) di bawah Supriyadi menjadi salah satu perlawanan pertama terhadap Jepang. PETA menjadi bukti bahwa organisasi bentukan Jepang bisa berbalik menjadi alat perjuangan bangsa.',
 q:'Berdasarkan stimulus tersebut, organisasi militer bentukan Jepang yang menjadi cikal bakal TNI adalah ....',
@@ -411,7 +371,7 @@ o:['PUTERA','Seinendan','Keibodan','Fujinkai','PETA'],
 a:4,
 e:'PETA (Pembela Tanah Air) = cikal bakal TNI. Dibentuk 3 Oktober 1943. Banyak mantan PETA menjadi perwira TNI. Pemberontakan PETA Blitar (1945) juga menjadi perlawanan awal terhadap Jepang.'},
 
-/* Q11 — Kunci: A (Reasoning) — Dua sisi organisasi */
+/* Q11 — Kunci: A */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Dua sisi organisasi Jepang',
 s:'Organisasi bentukan Jepang (PUTERA, PETA, Seinendan, Keibodan, Fujinkai, Hizbullah, Sempo) memiliki dua sisi yang bertolak belakang. Sisi gelap: organisasi ini dibentuk untuk mengerahkan rakyat Indonesia mendukung perang Jepang. Rakyat dilatih militer untuk menjadi pasukan cadangan Jepang, dan dipaksa bekerja keras tanpa upah layak. Sisi terang: justru melalui organisasi inilah rakyat Indonesia memperoleh pelatihan militer, kepemimpinan, organisasi, dan kesadaran nasional. Ketika Jepang menyerah kepada Sekutu (15 Agustus 1945), banyak pemuda yang terlatih di organisasi ini justru menjadi motor penggerak proklamasi kemerdekaan. Inilah paradoks pendudukan Jepang.',
 q:'Berdasarkan stimulus tersebut, kesimpulan paling tepat tentang organisasi bentukan Jepang adalah ....',
@@ -423,7 +383,7 @@ o:['Organisasi bentukan Jepang justru menjadi alat perjuangan bangsa Indonesia',
 a:0,
 e:'Paradoks: organisasi dibentuk untuk Jepang, tetapi justru menjadi alat perjuangan bangsa. Rakyat memperoleh pelatihan militer &amp; kesadaran nasional. Ketika Jepang menyerah, pemuda terlatih menjadi motor proklamasi.'},
 
-/* Q12 — Kunci: B (Applying) — Seinendan usia */
+/* Q12 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Seinendan usia pemuda',
 s:'Seinendan adalah organisasi semi-militer bentukan Jepang pada 1943. Organisasi ini diperuntukkan bagi pemuda berusia 14–22 tahun. Tujuan awal: melatih pemuda sebagai barisan cadangan untuk pertahanan Jepang. Pelatihan mencakup latihan fisik, baris-berbaris, penggunaan senjata sederhana, dan disiplin militer. Meski dibentuk Jepang, Seinendan justru melahirkan banyak pemuda terlatih yang kemudian bergabung dengan badan perjuangan kemerdekaan. Banyak tokoh pemuda Indonesia yang pernah menjadi anggota Seinendan. Bersama PETA, Seinendan menjadi salah satu organisasi yang paling berdampak bagi persiapan kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, organisasi semi-militer bentukan Jepang untuk pemuda usia 14–22 tahun disebut ....',
@@ -431,7 +391,7 @@ o:['Keibodan','Seinendan','PETA','Fujinkai','Hizbullah'],
 a:1,
 e:'Seinendan = pemuda usia 14–22 tahun. Keibodan = pembantu polisi usia 20–35. PETA = militer. Fujinkai = perempuan. Hizbullah = pemuda Islam (1944).'},
 
-/* Q13 — Kunci: C (Knowing) — Fujinkai */
+/* Q13 — Kunci: C */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Fujinkai organisasi perempuan',
 s:'Fujinkai adalah organisasi bentukan Jepang pada 1943 yang khusus diperuntukkan bagi perempuan Indonesia. Tujuan awal Jepang: melatih perempuan dalam keterampilan rumah tangga, dapur umum, dan kegiatan sosial untuk mendukung perang. Pelatihan mencakup menjahit, memasak, kesehatan dasar, dan baris-berbaris sederhana. Meski dibentuk untuk kepentingan Jepang, Fujinkai justru memberi dampak positif: perempuan Indonesia mulai menyadari peran mereka di ruang publik. Banyak tokoh perempuan yang kemudian terlibat dalam perjuangan kemerdekaan berasal dari Fujinkai. Ini menjadi cikal bakal tumbuhnya kesadaran gender di Indonesia.',
 q:'Berdasarkan stimulus tersebut, organisasi bentukan Jepang yang khusus diperuntukkan bagi perempuan Indonesia adalah ....',
@@ -439,7 +399,7 @@ o:['Seinendan','Keibodan','Fujinkai','PETA','Hizbullah'],
 a:2,
 e:'Fujinkai = organisasi perempuan. Tujuan awal: melatih keterampilan rumah tangga &amp; dapur umum untuk Jepang. Dampak: kesadaran perempuan di ruang publik mulai tumbuh.'},
 
-/* Q14 — Kunci: D (Reasoning) — Mempercepat kemerdekaan */
+/* Q14 — Kunci: D */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Jepang mempercepat kemerdekaan',
 s:'Meskipun pendudukan Jepang mendatangkan penderitaan luar biasa, banyak sejarawan menilai bahwa pendudukan ini justru mempercepat kemerdekaan Indonesia. Argumennya: (1) Jepang melatih pemuda Indonesia secara militer melalui PETA &amp; Seinendan; (2) Jepang memberi pengalaman berorganisasi melalui PUTERA, Fujinkai, dll.; (3) Jepang membebaskan tokoh nasionalis dari penjara Belanda, seperti Soekarno &amp; Hatta; (4) Jepang membubarkan kekuasaan Belanda secara total, menciptakan kekosongan kekuasaan; (5) Ketika Jepang menyerah kepada Sekutu (15 Agustus 1945), kekosongan kekuasaan ini dimanfaatkan untuk memproklamasikan kemerdekaan (17 Agustus 1945). Inilah paradoks sejarah: penjajah justru mempercepat lahirnya bangsa merdeka.',
 q:'Berdasarkan stimulus tersebut, argumen utama bahwa pendudukan Jepang mempercepat kemerdekaan Indonesia adalah ....',
@@ -451,7 +411,7 @@ o:['Jepang memberi hadiah kemerdekaan kepada Indonesia',
 a:3,
 e:'Argumen utama: (1) melatih pemuda militer (PETA, Seinendan), (2) pengalaman berorganisasi (PUTERA, Fujinkai), (3) membebaskan tokoh nasionalis, (4) menciptakan kekosongan kekuasaan → dimanfaatkan untuk proklamasi 17 Agustus 1945.'},
 
-/* Q15 — Kunci: E (Applying) — Perlawanan Singaparna */
+/* Q15 — Kunci: E */
 {t:'PG',l:'Applying',d:'Sedang',i:'Perlawanan Singaparna',
 s:'Perlawanan Singaparna terjadi pada Februari 1944 di Tasikmalaya, Jawa Barat. Perlawanan ini dipimpin oleh KH Zainal Mustafa, ulama Pesantren Sukamanah. Pemicu utamanya adalah paksaan Jepang terhadap rakyat untuk melakukan seikerei — membungkukkan badan ke arah matahari terbit sebagai penghormatan kepada Kaisar Jepang. Bagi umat Islam, seikerei bertentangan dengan ajaran tauhid karena menyembah selain Allah. KH Zainal Mustafa menolak seikerei &amp; menggerakkan rakyat untuk melawan. Jepang menanggapinya dengan kekerasan: KH Zainal Mustafa ditangkap &amp; dihukum mati pada 1944. Ia kemudian ditetapkan sebagai Pahlawan Nasional pada 1972.',
 q:'Berdasarkan stimulus tersebut, pemicu utama Perlawanan Singaparna pada 1944 adalah ....',
@@ -463,7 +423,7 @@ o:['Pajak tanah yang terlalu tinggi',
 a:4,
 e:'Perlawanan Singaparna (KH Zainal Mustafa) = pemicu utamanya paksaan seikerei. Seikerei = membungkuk ke arah matahari terbit, bertentangan dengan tauhid Islam. Bukan pajak, takhta, hasil bumi, atau wajib militer.'},
 
-/* Q16 — Kunci: A (Reasoning) — Pemberontakan PETA Blitar */
+/* Q16 — Kunci: A */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Pemberontakan PETA Blitar',
 s:'Pemberontakan PETA Blitar terjadi pada 14 Februari 1945. Pemberontakan ini dipimpin oleh Supriyadi, seorang komandan pleton PETA (Pembela Tanah Air) di Blitar, Jawa Timur. Latar belakangnya: kekecewaan prajurit PETA terhadap perlakuan Jepang yang diskriminatif &amp; kondisi hidup yang memprihatinkan. Pemberontakan ini direncanakan secara rahasia, tetapi bocor ke Jepang. Jepang menanggapinya dengan kekerasan: banyak prajurit PETA ditangkap &amp; dihukum. Supriyadi sendiri hilang setelah pemberontakan — tidak diketahui nasibnya hingga kini. Meskipun gagal, pemberontakan ini menjadi simbol perlawanan pertama prajurit PETA terhadap Jepang &amp; menginspirasi perjuangan kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, tokoh yang memimpin Pemberontakan PETA di Blitar pada 14 Februari 1945 adalah ....',
@@ -471,7 +431,7 @@ o:['Supriyadi','KH Zainal Mustafa','Tengku Abdul Jalil','Sutan Sjahrir','Amir Sj
 a:0,
 e:'Pemberontakan PETA Blitar (14 Februari 1945) dipimpin Supriyadi. KH Zainal Mustafa = Singaparna. Tengku Abdul Jalil = Aceh. Sjahrir &amp; Amir = gerakan bawah tanah.'},
 
-/* Q17 — Kunci: B (Applying) — Tengku Abdul Jalil */
+/* Q17 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Perlawanan Aceh Cot Plieng',
 s:'Perlawanan Aceh (Cot Plieng) terjadi pada November 1942. Perlawanan ini dipimpin oleh Tengku Abdul Jalil, seorang ulama dari Cot Plieng, Aceh. Pemicu utamanya sama dengan Singaparna: paksaan seikerei &amp; penyerahan hasil bumi kepada Jepang. Tengku Abdul Jalil menolak seikerei &amp; menggerakkan rakyat untuk melawan. Perlawanan ini berlangsung sengit — Jepang mengerahkan pasukan besar untuk menumpasnya. Dalam pertempuran, Tengku Abdul Jalil gugur sebagai syuhada. Ia kemudian ditetapkan sebagai Pahlawan Nasional Indonesia. Perlawanan Aceh menunjukkan bahwa rakyat Aceh — seperti di masa Belanda — tetap gigih melawan penindasan.',
 q:'Berdasarkan stimulus tersebut, tokoh yang memimpin perlawanan rakyat Aceh (Cot Plieng) pada November 1942 adalah ....',
@@ -479,7 +439,7 @@ o:['Supriyadi','Tengku Abdul Jalil','KH Zainal Mustafa','Cut Nyak Dien','Teuku U
 a:1,
 e:'Tengku Abdul Jalil = pemimpin perlawanan Aceh (Cot Plieng) 1942. Cut Nyak Dien &amp; Teuku Umar = pahlawan Aceh melawan Belanda (bukan Jepang).'},
 
-/* Q18 — Kunci: C (Reasoning) — Gerakan bawah tanah */
+/* Q18 — Kunci: C */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Gerakan bawah tanah Sjahrir',
 s:'Selain perlawanan bersenjata, muncul pula gerakan bawah tanah di masa pendudukan Jepang. Gerakan ini beroperasi secara rahasia &amp; strategis, dipelopori oleh Sutan Sjahrir &amp; kelompok kecilnya. Tujuan gerakan: (1) menghimpun kekuatan nasional secara rahasia, (2) menyebarkan semangat merdeka, (3) mempersiapkan rencana kemerdekaan setelah Jepang menyerah, (4) menjaga komunikasi antar tokoh. Metode yang digunakan: mendengarkan radio Sekutu secara diam-diam, menyebarkan berita kemerdekaan, menyusun rencana pasca-Jepang, &amp; menghimpun pemuda nasionalis. Ketika Jepang menyerah pada 15 Agustus 1945, gerakan bawah tanah inilah yang mendorong percepatan proklamasi 17 Agustus 1945.',
 q:'Berdasarkan stimulus tersebut, tokoh utama gerakan bawah tanah pada masa pendudukan Jepang adalah ....',
@@ -487,9 +447,7 @@ o:['Soekarno','Hatta','Sutan Sjahrir','Tan Malaka','Supriyadi'],
 a:2,
 e:'Sutan Sjahrir = tokoh utama gerakan bawah tanah. Berbeda dengan Soekarno-Hatta yang bekerja sama dengan Jepang (kooperatif), Sjahrir memilih jalur non-kooperatif &amp; rahasia.'},
 
-/* ============ MCMA (7 SOAL) ============ */
-
-/* Q19 — Pola: [0,2,3] — Alasan Jepang ke Indonesia */
+/* Q19 — MCMA: [0,2,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Alasan Jepang ke Indonesia',
 s:'Kedatangan Jepang ke Indonesia pada 1942 didorong oleh beberapa faktor. Faktor ekonomi: Jepang membutuhkan sumber daya alam seperti minyak bumi, karet, timah, dan rempah untuk kebutuhan industri &amp; perang. Faktor politik: Jepang ingin menguasai Asia Tenggara sebagai bagian dari ambisi "Lingkungan Kemakmuran Bersama Asia Timur Raya". Faktor strategis: Indonesia berada di jalur penting untuk menguasai jalur pelayaran Asia-Pasifik. Faktor ideologis: propaganda "Asia untuk Bangsa Asia" untuk membebaskan wilayah dari penjajahan Barat. Jepang tidak datang ke Indonesia untuk menyebarkan agama atau sekadar membangun sekolah.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang alasan Jepang datang ke Indonesia? (Pilih lebih dari satu)',
@@ -501,7 +459,7 @@ o:['Jepang membutuhkan sumber daya alam untuk industri &amp; perang.',
 a:[0,2,3],
 e:'A, C, D benar. B salah — bukan menyebarkan Shinto. E salah — bukan hanya membangun sekolah, tetapi eksploitasi sumber daya.'},
 
-/* Q20 — Pola: [1,3] — Organisasi bentukan Jepang */
+/* Q20 — MCMA: [1,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Organisasi bentukan Jepang',
 s:'Jepang membentuk berbagai organisasi di Indonesia: PUTERA (1943) untuk mengerahkan rakyat; PETA (1943) untuk pasukan cadangan militer; Seinendan (1943) untuk pemuda 14–22 tahun; Keibodan (1943) untuk pembantu polisi usia 20–35; Fujinkai (1943) untuk perempuan; Hizbullah (1944) untuk pemuda Islam; Sempo (1943) untuk korps pelajar. Masing-masing memiliki tujuan awal untuk mendukung Jepang, tetapi kemudian banyak yang berbalik menjadi alat perjuangan bangsa.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang organisasi bentukan Jepang? (Pilih lebih dari satu)',
@@ -513,7 +471,7 @@ o:['PETA adalah organisasi untuk perempuan Indonesia.',
 a:[1,3],
 e:'B, D benar. A salah — PETA = militer, bukan perempuan. C salah — Fujinkai = perempuan. E salah — Hizbullah = pemuda Islam (bukan pelajar). Pelajar = Sempo.'},
 
-/* Q21 — Pola: [0,1,2] — Romusha */
+/* Q21 — MCMA: [0,1,2] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Romusha',
 s:'Romusha adalah sistem kerja paksa masa pendudukan Jepang (1942–1945). Rakyat Indonesia — petani, buruh, hingga pegawai — dipaksa bekerja tanpa upah layak untuk membangun infrastruktur perang: benteng, jalan, jembatan, lapangan udara, &amp; jalur kereta. Kondisi kerja sangat memprihatinkan: tanpa makanan cukup, tanpa obat, tanpa perlindungan. Proyek terkenal antara lain Jalur Kereta Muo–Bangkok (Thailand-Burma) &amp; Jalur Kereta Saketi–Bayah (Banten Selatan). Diperkirakan 200.000–500.000 jiwa meninggal akibat sistem ini. Romusha dikategorikan sebagai kejahatan kemanusiaan yang tidak bisa dilupakan.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang romusha? (Pilih lebih dari satu)',
@@ -525,7 +483,7 @@ o:['Romusha adalah kerja paksa masa pendudukan Jepang.',
 a:[0,1,2],
 e:'A, B, C benar. D salah — romusha diterapkan di seluruh Indonesia &amp; bahkan ke luar negeri. E salah — romusha tanpa upah layak.'},
 
-/* Q22 — Pola: [2,3,4] — Dampak pendudukan Jepang */
+/* Q22 — MCMA: [2,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak pendudukan Jepang',
 s:'Pendudukan Jepang meninggalkan dampak multidimensional bagi Indonesia. Dampak negatif: romusha menelan ratusan ribu korban, kelaparan &amp; wabah penyakit merebak, ekonomi hancur, kesenian lokal dibatasi. Dampak positif tak sengaja: pemuda terlatih militer (PETA, Seinendan), pengalaman berorganisasi (PUTERA, Fujinkai), kesadaran nasional tumbuh, bahasa Indonesia diperkuat sebagai lingua franca, dan lahirnya kekosongan kekuasaan yang memungkinkan proklamasi kemerdekaan 17 Agustus 1945.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang dampak pendudukan Jepang? (Pilih lebih dari satu)',
@@ -537,7 +495,7 @@ o:['Pendudukan Jepang hanya meninggalkan dampak negatif tanpa dampak positif.',
 a:[2,3,4],
 e:'C, D, E benar. A salah — ada dampak positif tak sengaja (militer, organisasi). B salah — justru rakyat menderita &amp; miskin.'},
 
-/* Q23 — Pola: [0,3] — Perlawanan bersenjata */
+/* Q23 — MCMA: [0,3] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perlawanan bersenjata',
 s:'Perlawanan bersenjata terhadap Jepang di berbagai daerah: Singaparna (Februari 1944) dipimpin KH Zainal Mustafa, dipicu seikerei; Pemberontakan PETA Blitar (14 Februari 1945) dipimpin Supriyadi, karena kekecewaan prajurit PETA; Perlawanan Indramayu (1944) dipicu penyerahan padi yang menindas; Perlawanan Aceh Cot Plieng (November 1942) dipimpin Tengku Abdul Jalil, dipicu seikerei &amp; penyerahan hasil bumi; Perlawanan di Irian (1944) dipimpin oleh rakyat setempat. Semua perlawanan bersenjata ini akhirnya ditumpas Jepang dengan kekerasan, tetapi semangatnya menginspirasi perjuangan berikutnya.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perlawanan bersenjata terhadap Jepang? (Pilih lebih dari satu)',
@@ -549,7 +507,7 @@ o:['Perlawanan Singaparna dipimpin KH Zainal Mustafa.',
 a:[0,3],
 e:'A, D benar. B salah — PETA Blitar = Supriyadi. C salah — Indramayu dipicu penyerahan padi (bukan pajak tanah). E salah — Cut Nyak Dien = pahlawan melawan Belanda (bukan Jepang).'},
 
-/* Q24 — Pola: [1,2,4] — Gerakan bawah tanah */
+/* Q24 — MCMA: [1,2,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Gerakan bawah tanah',
 s:'Gerakan bawah tanah pada masa pendudukan Jepang dipelopori oleh Sutan Sjahrir &amp; kelompok kecilnya. Tokoh lain: Amir Sjarifuddin, Achmad Soebardjo, &amp; anggota Kelompok Menteng 31. Tujuan gerakan: menghimpun kekuatan nasional secara rahasia, menyebarkan semangat merdeka, mempersiapkan rencana kemerdekaan setelah Jepang menyerah, &amp; menjaga komunikasi antar tokoh. Metode: mendengarkan radio Sekutu secara diam-diam, menyebarkan berita kemerdekaan, menyusun rencana pasca-Jepang, &amp; menghimpun pemuda nasionalis. Berbeda dengan Soekarno-Hatta yang memilih jalur kooperatif dengan Jepang, Sjahrir memilih jalur non-kooperatif &amp; rahasia.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang gerakan bawah tanah? (Pilih lebih dari satu)',
@@ -561,7 +519,7 @@ o:['Gerakan bawah tanah dipelopori oleh Soekarno &amp; Hatta.',
 a:[1,2,4],
 e:'B, C, E benar. A salah — Soekarno-Hatta memilih jalur kooperatif. D salah — tujuan gerakan bukan sekadar dana, tetapi persiapan kemerdekaan.'},
 
-/* Q25 — Pola: [0,1,3,4] — Dampak positif vs negatif */
+/* Q25 — MCMA: [0,1,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak positif vs negatif',
 s:'Pendudukan Jepang memiliki dampak positif &amp; negatif. Dampak positif tak sengaja: pemuda terlatih militer (PETA, Seinendan) yang menjadi cikal bakal TNI; pengalaman berorganisasi (PUTERA, Fujinkai); bahasa Indonesia diperkuat sebagai lingua franca; kesadaran perempuan meningkat; kesadaran nasional tumbuh. Dampak negatif: korban romusha ratusan ribu jiwa; kelaparan &amp; wabah penyakit meluas; ekonomi hancur; kesenian lokal dibatasi; banyak keluarga kehilangan tulang punggung; pendidikan terhambat. Memahami dua sisi ini penting agar kita tidak terjebak pada narasi hitam-putih.',
 q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN dampak positif (tak sengaja) pendudukan Jepang? (Pilih lebih dari satu)',
@@ -573,9 +531,7 @@ o:['Pemuda Indonesia terlatih militer melalui PETA &amp; Seinendan.',
 a:[0,1,3,4],
 e:'A, B, D, E benar. C salah — justru rakyat menderita &amp; miskin. Ini menegaskan bahwa dampak positif Jepang bersifat tak sengaja, bukan tujuan awal.'},
 
-/* ============ KATEGORI (5 SOAL) ============ */
-
-/* Q26 — Pola: [S, TS, S, S] — Kronologi */
+/* Q26 — KATEGORI: [S, TS, S, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi pendudukan Jepang',
 s:'Kronologi pendudukan Jepang: 11 Januari 1942 — Jepang mendarat di Tarakan; 14 Februari 1942 — Palembang jatuh; 1 Maret 1942 — Jepang mendarat di Jawa; 8 Maret 1942 — Belanda menyerah di Kalijati; 1943 — pembentukan PUTERA, PETA, Seinendan; Februari 1944 — Perlawanan Singaparna; 14 Februari 1945 — Pemberontakan PETA Blitar; 15 Agustus 1945 — Jepang menyerah kepada Sekutu; 17 Agustus 1945 — Proklamasi Kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -586,7 +542,7 @@ st:[
  {x:'Proklamasi Kemerdekaan terjadi setelah Jepang menyerah kepada Sekutu.',a:'Sesuai'}],
 e:'1 Sesuai (11 Jan < 8 Maret 1942). 2 Tidak Sesuai (kapitulasi 8 Maret > pendaratan Tarakan 11 Jan). 3 Sesuai (Singaparna Feb 1944 > PETA 1943). 4 Sesuai (17 Agustus 1945 > 15 Agustus 1945).'},
 
-/* Q27 — Pola: [TS, S, S, S] — Tokoh & peristiwa */
+/* Q27 — KATEGORI: [TS, S, S, S] */
 {t:'KATEGORI',l:'Applying',d:'Sedang',i:'Tokoh &amp; peristiwa',
 s:'Tokoh &amp; peristiwa: KH Zainal Mustafa → Perlawanan Singaparna (1944); Supriyadi → Pemberontakan PETA Blitar (1945); Tengku Abdul Jalil → Perlawanan Aceh Cot Plieng (1942); Sutan Sjahrir → gerakan bawah tanah; Soekarno &amp; Hatta → memimpin PUTERA (kooperatif); Empat Serangkai = Soekarno, Hatta, Ki Hajar Dewantara, KH Mas Mansur.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -597,7 +553,7 @@ st:[
  {x:'Sutan Sjahrir mempelopori gerakan bawah tanah pada masa pendudukan Jepang.',a:'Sesuai'}],
 e:'1 Tidak Sesuai — KH Zainal Mustafa = Singaparna. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
 
-/* Q28 — Pola: [S, S, TS, S] — Organisasi & tujuan */
+/* Q28 — KATEGORI: [S, S, TS, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Organisasi &amp; tujuan',
 s:'Organisasi bentukan Jepang &amp; tujuan awal: PUTERA (1943) — mengerahkan rakyat untuk mendukung Jepang; PETA (1943) — menyiapkan pasukan cadangan militer; Seinendan (1943) — barisan pemuda cadangan; Keibodan (1943) — pembantu polisi; Fujinkai (1943) — mobilisasi perempuan; Hizbullah (1944) — barisan pemuda Islam. Semua organisasi ini dibentuk untuk kepentingan perang Jepang, meskipun kemudian dimanfaatkan oleh pemuda Indonesia untuk mempersiapkan kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -608,7 +564,7 @@ st:[
  {x:'Seinendan adalah barisan pemuda usia 14–22 tahun.',a:'Sesuai'}],
 e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Fujinkai = PEREMPUAN (bukan pemuda Islam). Pemuda Islam = Hizbullah. 4 Sesuai.'},
 
-/* Q29 — Pola: [TS, S, S, TS] — Dampak & analisis */
+/* Q29 — KATEGORI: [TS, S, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Dampak &amp; analisis',
 s:'Dampak pendudukan Jepang bersifat kompleks. Negatif: romusha menelan 200.000–500.000 korban jiwa, kelaparan &amp; wabah penyakit meluas, ekonomi hancur. Positif (tak sengaja): pemuda terlatih militer (PETA, Seinendan), pengalaman berorganisasi (PUTERA, Fujinkai), bahasa Indonesia diperkuat, kesadaran nasional tumbuh. Pendudukan Jepang TIDAK mempercepat kemerdekaan karena kebaikan hati Jepang — tetapi karena kekosongan kekuasaan pasca-Jepang menyerah &amp; persiapan yang dilakukan pemuda Indonesia selama pendudukan.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -619,7 +575,7 @@ st:[
  {x:'Kemerdekaan Indonesia terjadi karena kebaikan hati Jepang.',a:'Tidak Sesuai'}],
 e:'1 Tidak Sesuai — romusha korban 200.000–500.000 jiwa = kejahatan kemanusiaan. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — kemerdekaan terjadi karena kekosongan kekuasaan &amp; persiapan pemuda, bukan kebaikan Jepang.'},
 
-/* Q30 — Pola: [S, TS, S, TS] — Nilai kepahlawanan */
+/* Q30 — KATEGORI: [S, TS, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Nilai kepahlawanan',
 s:'Nilai yang bisa diteladani dari masa pendudukan Jepang: keberanian melawan penindasan (KH Zainal Mustafa, Tengku Abdul Jalil), kesetiaan pada prinsip (Supriyadi), visi strategis (Sjahrir dengan gerakan bawah tanah), dan semangat rela berkorban (para romusha yang bertahan). Nilai-nilai ini relevan bagi generasi muda saat ini: berani melawan ketidakadilan, setia pada kebenaran, dan berkontribusi positif bagi bangsa. Penderitaan masa lalu bukan untuk diratapi, tetapi untuk dijadikan pelajaran.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -638,8 +594,6 @@ e:'1 Sesuai. 2 Tidak Sesuai — justru WAJIB dipelajari agar tidak terulang. 3 S
 let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
-
-(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
