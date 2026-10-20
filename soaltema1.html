@@ -101,7 +101,8 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .kat-table td{color:var(--text-light)}
 .kat-actions{display:flex;gap:6px;flex-wrap:wrap}
 .kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
-.kat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.kat-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.kat-btn:disabled{cursor:not-allowed;opacity:.5}
 .kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
 .kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
 
@@ -285,7 +286,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <span class="pos" id="qPos">1 / 22</span>
     <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
     <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest(false)"><i class="fas fa-flag-checkered"></i> Selesai</button>
   </div>
 </section>
 
@@ -315,9 +316,9 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
      </div>
   </div>
 
-  <div style="text-align:center;margin-top:20px">
+  <div style="text-align:center;margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
     <button class="btn btn-primary" onclick="goHome()"><i class="fas fa-home"></i> Kembali ke Beranda</button>
-    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi</button>
+    <button class="btn btn-ghost" onclick="retryTest()"><i class="fas fa-redo"></i> Ulangi</button>
   </div>
 </section>
 
@@ -402,7 +403,7 @@ function showToast(msg,icon){
    ============================================================ */
 function startTestWithIdentity(){
   const name=document.getElementById('inpName').value.trim(),school=document.getElementById('inpSchool').value.trim(),cls=document.getElementById('inpClass').value.trim();
-  if(!name||!school||!cls){alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');return;}
+  if(!name||!school||!cls){showToast('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.','fa-exclamation-triangle');return;}
   siswaName=name;siswaSchool=school;siswaClass=cls;
   document.getElementById('hdrName').textContent=siswaName;
   document.getElementById('hdrSchool').textContent=siswaSchool;
@@ -544,7 +545,7 @@ function selectOption(idx,type){
   renderQuestion();renderQMap();updateProgress();
 }
 
-/* FIX 1: KATEGORI toggle — klik kategori sama = hapus jawaban */
+/* KATEGORI toggle — klik kategori sama = hapus jawaban */
 function setKategori(idx,cat){
   if(isLocked||revealed[currentQ])return;
   if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
@@ -593,7 +594,7 @@ function isCorrect(q,ua){
   return false;
 }
 
-/* FIX 2: countAnswered disamakan dengan updateProgress — KATEGORI harus LENGKAP */
+/* countAnswered — KATEGORI harus LENGKAP */
 function countAnswered(){
   let answered=0;
   for(let i=0;i<displayedQuestions.length;i++){
@@ -645,6 +646,7 @@ function finishTest(fromTimeout){
     `<span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>`+
     `<span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
 
+  /* Warna skor: hijau (≥80), kuning (60–79), merah (<60) */
   let colorVar,title,sub;
   if(score>=80){colorVar='var(--emerald)';title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu luar biasa!`;}
   else if(score>=60){colorVar='var(--amber)';title='Cukup Baik (B/C)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan & tingkatkan.`;}
