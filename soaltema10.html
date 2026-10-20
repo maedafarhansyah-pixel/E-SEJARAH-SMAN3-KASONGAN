@@ -177,7 +177,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <div class="info-chips">
         <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
         <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
-        <span class="ic"><i class="fas fa-clock"></i> 70 Menit</span>
+        <span class="ic"><i class="fas fa-clock"></i> 90 Menit</span>
       </div>
     </div>
     <div class="identity-form">
@@ -219,7 +219,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
-      <span class="timer-inline" id="testTimerBox"><i class="fas fa-hourglass-half"></i> <span id="testTimer">70:00</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-hourglass-half"></i> <span id="testTimer">90:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
     </div>
   </div>
@@ -281,14 +281,12 @@ const HOME_URL='https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN
 /* ============================================================
    KONFIGURASI WAKTU
    ============================================================ */
-const TOTAL_TIME=70*60;                 // 70 menit dalam detik
+const TOTAL_TIME=90*60;                 // 90 menit dalam detik
 const WARN_AT=[15*60,10*60,5*60];       // notifikasi pada sisa waktu (detik)
 
 /* ============================================================
    BANK SOAL — PROKLAMASI KEMERDEKAAN (30 SOAL UNIK)
-   18 PG + 7 MCMA + 5 KATEGORI
-   Kunci PG: A=4, B=4, C=4, D=3, E=3
-   Level: Knowing=4, Applying=11, Reasoning=15
+   ... (soal sama seperti aslinya) ...
    ============================================================ */
 const Q10=[
 
@@ -630,7 +628,7 @@ function goIdentity(){
   isLocked=false;
   showSection('identity');
   document.getElementById('progressThumb').style.width='0%';
-  document.getElementById('testTimer').textContent='70:00';
+  document.getElementById('testTimer').textContent='90:00';
   document.getElementById('testTimerBox').classList.remove('warn');
   currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
 }
@@ -676,7 +674,7 @@ function retryTest(){
 }
 
 /* ============================================================
-   TIMER COUNTDOWN 70 MENIT
+   TIMER COUNTDOWN 90 MENIT
    ============================================================ */
 function startTimer(){
   stopTimer();
