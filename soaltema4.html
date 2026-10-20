@@ -33,7 +33,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px;transition:all .3s}
 .qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent);position:relative;transition:opacity .3s}
 .qcard.locked{opacity:.55;pointer-events:none}
-.qcard.locked::after{content:'🔒 Waktu Habis — Soal Terkunci';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,.94);color:#fff;padding:12px 26px;border-radius:30px;font-weight:800;font-size:.9rem;z-index:10;pointer-events:none;box-shadow:0 8px 24px rgba(239,68,68,.55);white-space:nowrap}
+.qcard.locked::after{content:'🔒 Waktu Habis — Soal Terkunci';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,.94);color:#fff;padding:12px 26px;border-radius:30px;font-weight:800;font-size:.9rem;z-index:10;pointer-events:none;box-shadow:0 8px 24px rgba(239,68,68,.55);white-space:nowrap;text-align:center}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
 .badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
@@ -108,7 +108,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
 .result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1;transition:color .6s}
 .result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:700px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:720px}
 .rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
 .rs .v{font-size:1.4rem;font-weight:900;line-height:1}
 .rs .l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);margin-top:4px;line-height:1.3}
@@ -632,9 +632,9 @@ e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — interpretasi tentang "siapa paling ber
 ];
 
 /* ============================================================
-   STATE & TIMER
+   STATE & TIMER — 90 MENIT
    ============================================================ */
-const TOTAL_TIME = 90 * 60; // 90 menit = 5400 detik
+const TOTAL_TIME = 90 * 60;
 let currentQ = 0;
 let userAnswers = {};
 let revealed = {};
@@ -983,6 +983,7 @@ function countAnswered(){
   return c;
 }
 
+/* ✅ FIX 1: KATEGORI dianggap terjawab bila minimal 1 pernyataan diisi */
 function renderQMap(){
   const map = document.getElementById('qmap');
   map.innerHTML = '';
@@ -995,10 +996,7 @@ function renderQMap(){
     let answered = false;
     if(ua !== undefined){
       if(Array.isArray(ua)) answered = ua.length > 0;
-      else if(typeof ua === 'object'){
-        const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
-        answered = Object.keys(ua).length === stCount;
-      }
+      else if(typeof ua === 'object') answered = Object.keys(ua).length > 0;
       else answered = true;
     }
     if(answered) btn.classList.add('ans');
@@ -1011,6 +1009,7 @@ function renderQMap(){
   }
 }
 
+/* ✅ FIX 2: Konsisten dengan isAnswered */
 function updateProgress(){
   const total = displayedQuestions.length;
   let answered = 0;
@@ -1018,10 +1017,7 @@ function updateProgress(){
     const ua = userAnswers[i];
     if(ua === undefined) continue;
     if(Array.isArray(ua)){ if(ua.length > 0) answered++; }
-    else if(typeof ua === 'object'){
-      const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
-      if(Object.keys(ua).length === stCount) answered++;
-    }
+    else if(typeof ua === 'object'){ if(Object.keys(ua).length > 0) answered++; }
     else answered++;
   }
   document.getElementById('ansCount').textContent = answered;
@@ -1101,9 +1097,9 @@ function finishTest(auto){
 
   /* ==== WARNA SKOR: MERAH / KUNING / HIJAU ==== */
   let scoreColor, scoreLabel;
-  if(score >= 70){ scoreColor = '#10B981'; scoreLabel = 'Tinggi'; }       // HIJAU
-  else if(score >= 55){ scoreColor = '#FBBF24'; scoreLabel = 'Sedang'; }  // KUNING
-  else { scoreColor = '#EF4444'; scoreLabel = 'Rendah'; }                 // MERAH
+  if(score >= 70){ scoreColor = '#10B981'; scoreLabel = 'Tinggi'; }
+  else if(score >= 55){ scoreColor = '#FBBF24'; scoreLabel = 'Sedang'; }
+  else { scoreColor = '#EF4444'; scoreLabel = 'Rendah'; }
 
   const circle = document.getElementById('resultScore');
   circle.style.background = `conic-gradient(${scoreColor} 0%, ${scoreColor} ${score}%, var(--card-alt) ${score}%)`;
