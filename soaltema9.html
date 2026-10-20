@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#141008"/>
+<title>TKA Literasi Sejarah · Pendudukan Jepang · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--primary:#F4C430;--primary-light:#FFE47A;--gold:#FFD700;--emerald:#F39C12;--rose:#E74C3C;--sky:#F7DC6F;--violet:#D68910;--bg:#141008;--card:#241e0e;--card-alt:#2e2712;--text:#fdf9e8;--text-light:#d4c99a;--text-muted:#9a8e5e;--line:rgba(255,228,122,.14);--line-soft:rgba(255,228,122,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#F4C430;--accent2:#E67E22;--accent-soft:rgba(244,196,48,.12);}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(244,196,48,.10),transparent 55%),radial-gradient(circle at 85% 80%,rgba(230,126,34,.08),transparent 55%);}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#1c1709 0%,#141008 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
+.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
+.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--accent2) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,228,122,.55)) drop-shadow(0 0 26px rgba(244,196,48,.4));z-index:-2;}
+.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#141008;box-shadow:inset 0 0 24px rgba(244,196,48,.16);z-index:-1;}
+.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fdf9e8 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #B8860B) drop-shadow(2px 2px 0 #a3740c) drop-shadow(3px 3px 0 #8b6914) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
+.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
+.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(247,220,111,.35);}
+.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(214,137,16,.35);}
+.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(231,76,60,.35);}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--accent2),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(214,137,16,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
+@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
+.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(244,196,48,.18);border-radius:10px;margin-top:24px;overflow:hidden;}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--accent2));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(20,16,8,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
+.hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
+.hdr-center i{color:var(--gold)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary-light);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#141008;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(244,196,48,.10);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(244,196,48,.5)}
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
+.chip i{color:var(--primary-light)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(244,196,48,.14),rgba(230,126,34,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary-light);letter-spacing:1px}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.35);border-top:3px solid var(--accent)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(244,196,48,.12);color:var(--primary-light);border-color:rgba(244,196,48,.28)}
+.badge.MCMA{background:rgba(214,137,16,.15);color:#E8B852;border-color:rgba(214,137,16,.35)}
+.badge.KATEGORI{background:rgba(247,220,111,.15);color:var(--sky);border-color:rgba(247,220,111,.35)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
+.badge.df{background:rgba(230,126,34,.12);color:var(--emerald);border-color:rgba(230,126,34,.28)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#141008;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(244,196,48,.4)}
+.q-stim{background:rgba(244,196,48,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--primary-light);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(247,220,111,.08);border-radius:8px;border-left:3px solid var(--sky)}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--primary-light);transition:all .2s}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.sel .lbl{background:var(--accent);color:#141008;border-color:var(--accent)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(230,126,34,.15);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#141008;border-color:var(--emerald)}
+.opt.wrong{background:rgba(231,76,60,.14);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#141008;border-color:var(--rose)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(214,137,16,.2);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.check:hover{background:rgba(214,137,16,.10);border-color:var(--violet);transform:translateX(3px)}
+.check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(214,137,16,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
+.check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:#E8B852;padding-top:4px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check.sel{background:rgba(214,137,16,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
+.check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
+.check.sel .txt{color:var(--text)}
+.check.correct{background:rgba(230,126,34,.15);border-color:var(--emerald)}
+.check.correct .box{background:var(--emerald);border-color:var(--emerald);border-style:solid}
+.check.correct .clbl{color:var(--emerald)}
+.check.wrong{background:rgba(231,76,60,.14);border-color:var(--rose)}
+.check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
+.check.wrong .clbl{color:var(--rose)}
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--primary);color:var(--primary-light)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#141008;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#141008;border-color:var(--rose)}
+.expl{background:rgba(230,126,34,.1);border:1px solid rgba(230,126,34,.22);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(230,126,34,.25)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#141008;box-shadow:0 8px 22px rgba(244,196,48,.35)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(244,196,48,.45)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:var(--accent-soft);border-color:var(--primary);color:var(--primary-light)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#B9770E);color:#141008;box-shadow:0 8px 22px rgba(230,126,34,.35)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(230,126,34,.45)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#D4AC0D);color:#141008;box-shadow:0 8px 22px rgba(247,220,111,.35)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(247,220,111,.45)}
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--primary);color:var(--primary-light);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(230,126,34,.2);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#141008;box-shadow:0 0 12px rgba(244,196,48,.5);transform:scale(1.1)}
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--gold)}.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary-light)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary-light);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+.identity-wrap{max-width:560px;margin:0 auto;padding:20px 0 10px}
+.identity-hero{text-align:center;margin-bottom:24px}
+.identity-hero .badge-top{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(244,196,48,.18),rgba(230,126,34,.12));border:1px solid rgba(244,196,48,.45);padding:7px 18px;border-radius:40px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--primary-light);margin-bottom:14px}
+.identity-hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px}
+.identity-hero h1 .grad{background:linear-gradient(135deg,#FFE47A 0%,#FFD700 50%,#F4C430 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.identity-hero p{color:var(--text-light);font-size:.92rem;line-height:1.7;max-width:520px;margin:0 auto}
+.identity-hero .info-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.identity-hero .info-chips .ic{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:6px}
+.identity-hero .info-chips .ic i{color:var(--gold)}
+.identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary-light)}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(244,196,48,.18)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(231,76,60,.10),rgba(244,196,48,.08));border:1.5px solid rgba(231,76,60,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+@keyframes privacyPulse{0%,100%{border-color:rgba(231,76,60,.4);box-shadow:0 0 0 0 rgba(231,76,60,.15)}50%{border-color:rgba(231,76,60,.65);box-shadow:0 0 0 4px rgba(231,76,60,.1)}}
+.privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(231,76,60,.4);}
+.privacy-notice strong{color:var(--rose);font-weight:800;}
+.hidden{display:none!important}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-3d-wrap">
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle">
+      <div class="loader-3d-text">MGE</div>
+    </div>
+  </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
+  <div class="loader-title">TKA LITERASI SEJARAH</div>
+  <div class="loader-sub">Tema 9: Pendudukan Jepang · 30 Soal</div>
+  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+  <div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
+  </div>
+  <div class="hdr-center"><i class="fas fa-sun"></i> Pendudukan Jepang · 30 Soal</div>
+  <div style="display:flex;gap:6px"></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<section id="identity" class="section active">
+  <div class="identity-wrap">
+    <div class="identity-hero">
+      <div class="badge-top"><i class="fas fa-crown"></i> TKA Literasi Sejarah · Tema 9</div>
+      <h1><span class="grad">Identitas Peserta</span></h1>
+      <p>Isi data diri untuk memulai tes <strong>30 soal Pendudukan Jepang</strong>: kedatangan, pemerintahan militer, romusha, organisasi bentukan Jepang, dampak pendudukan, &amp; perlawanan rakyat.</p>
+      <div class="info-chips">
+        <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
+        <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
+        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+      </div>
+    </div>
+    <div class="identity-form">
+      <h2>Formulir Peserta</h2>
+      <p>Data akan digunakan untuk laporan hasil</p>
+      <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+      </div>
+      <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+      </div>
+      <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <strong>Pemberitahuan:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil. Semua data hanya diproses di browser dan hilang saat halaman ditutup. Untuk laporan nilai, silakan <strong>screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="test" class="section">
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Pendudukan Jepang</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 30</div>
+    </div>
+    <div class="info">
+      <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 30</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
+</section>
+
+<section id="result" class="section">
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+    <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   BANK SOAL — PENDUDUKAN JEPANG (30 SOAL UNIK)
+   18 PG + 7 MCMA + 5 KATEGORI
+   Kunci PG: A=4, B=4, C=4, D=3, E=3
+   Level: Knowing=4, Applying=11, Reasoning=15
+   ============================================================ */
+const Q9=[
+
+/* ============ PG (18 SOAL) ============ */
+
+/* Q1 — Kunci: B (Applying) — Tarakan */
+{t:'PG',l:'Applying',d:'Sedang',i:'Alasan Jepang mengincar Tarakan',
+s:'Pada 11 Januari 1942, tentara Jepang mendarat di Tarakan, Kalimantan Timur. Tarakan dipilih sebagai target pertama bukan karena pusat pemerintahan atau pendidikan, melainkan karena wilayah ini kaya akan minyak bumi. Minyak sangat dibutuhkan Jepang sebagai bahan bakar armada perang dalam Perang Pasifik. Setelah Tarakan jatuh, Jepang bergerak cepat ke Balikpapan &amp; Pontianak (Januari–Februari 1942), lalu ke Palembang (14 Februari 1942) yang juga kaya minyak. Strategi Jepang jelas: rebut sumber daya energi terlebih dahulu, baru kemudian pusat pemerintahan di Jawa.',
+q:'Berdasarkan stimulus tersebut, alasan utama Jepang menjadikan Tarakan sebagai target pertama pendudukan adalah ....',
+o:['Tarakan adalah pusat pemerintahan Belanda',
+ 'Tarakan kaya akan minyak bumi sebagai bahan bakar perang',
+ 'Tarakan memiliki banyak sekolah &amp; universitas',
+ 'Tarakan adalah pelabuhan dagang internasional',
+ 'Tarakan memiliki pangkalan militer terbesar di Asia'],
+a:1,
+e:'Tarakan = target pertama karena kaya minyak bumi (bahan bakar armada perang). Bukan karena pusat pemerintahan, pendidikan, pelabuhan dagang, atau pangkalan militer.'},
+
+/* Q2 — Kunci: A (Knowing) — Tanggal kapitulasi */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tanggal kapitulasi Belanda',
+s:'Setelah beberapa minggu bertempur, Belanda akhirnya menyerah kepada Jepang. Kapitulasi ditandatangani pada 8 Maret 1942 di Kalijati, Subang, Jawa Barat. Jenderal Ter Poorten mewakili Belanda menyerah tanpa syarat kepada Jenderal Hitoshi Imamura dari Jepang. Peristiwa ini menandai berakhirnya kekuasaan kolonial Belanda di Indonesia yang telah berlangsung lebih dari tiga abad. Sejak saat itu, Indonesia resmi berada di bawah pendudukan militer Jepang hingga 1945. Tanggal 8 Maret 1942 menjadi tonggak awal masa pendudukan Jepang di Indonesia.',
+q:'Berdasarkan stimulus tersebut, kapitulasi Belanda kepada Jepang ditandatangani pada tanggal ....',
+o:['8 Maret 1942','11 Januari 1942','1 Maret 1942','14 Februari 1942','17 Agustus 1945'],
+a:0,
+e:'Kapitulasi Belanda = 8 Maret 1942 di Kalijati, Subang. 11 Januari = Tarakan (awal pendudukan). 17 Agustus 1945 = Proklamasi Kemerdekaan.'},
+
+/* Q3 — Kunci: C (Reasoning) — Sambutan awal rakyat */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Alasan sambutan awal rakyat',
+s:'Ketika Jepang datang pada 1942, banyak rakyat Indonesia yang awalnya menyambut baik kedatangan mereka. Ada beberapa alasan: (1) Jepang mempropagandakan diri sebagai "saudara tua" yang akan membebaskan Asia dari penjajahan Barat; (2) slogan "Asia untuk Bangsa Asia" dan "Nippon Cahaya Asia" sangat menarik simpati; (3) Jepang membebaskan tokoh-tokoh nasionalis yang dipenjara Belanda, seperti Soekarno &amp; Hatta; (4) Jepang mengizinkan penggunaan bahasa Indonesia dan mengibarkan bendera Merah Putih (meski kemudian dilarang). Rakyat mengira Jepang akan memberi kemerdekaan. Namun, setelah Jepang terbukti lebih kejam dari Belanda (romusha, seikerei, penindasan), sikap rakyat berubah menjadi perlawanan.',
+q:'Berdasarkan stimulus tersebut, alasan utama rakyat Indonesia awalnya menyambut baik kedatangan Jepang adalah ....',
+o:['Jepang memberi bantuan ekonomi langsung kepada rakyat',
+ 'Jepang membebaskan seluruh tahanan politik tanpa syarat',
+ 'Jepang dipropagandakan sebagai pembebas dari penjajahan Barat',
+ 'Jepang memberi kemerdekaan penuh kepada Indonesia',
+ 'Jepang menandatangani perjanjian persahabatan dengan tokoh nasional'],
+a:2,
+e:'Alasan utama: propaganda Jepang sebagai "pembebas Asia" dari penjajahan Barat. Slogan "saudara tua" &amp; "Nippon Cahaya Asia" sangat efektif menarik simpati. Kemudian rakyat kecewa setelah Jepang terbukti lebih kejam.'},
+
+/* Q4 — Kunci: D (Applying) — Pembagian wilayah militer */
+{t:'PG',l:'Applying',d:'Sedang',i:'Pembagian wilayah militer',
+s:'Untuk memudahkan kontrol, Jepang membagi Indonesia menjadi tiga wilayah pemerintahan militer. Pertama, wilayah Angkatan Darat XVI (Rikugun) berpusat di Jakarta — mencakup Jawa &amp; Madura. Kedua, wilayah Angkatan Darat XXV (Rikugun) berpusat di Bukittinggi — mencakup Sumatera. Ketiga, wilayah Angkatan Laut (Kaigun) berpusat di Makassar — mencakup Kalimantan, Sulawesi, Nusa Tenggara, &amp; Maluku. Pembagian ini tidak hanya administratif, tetapi juga mencerminkan perbedaan perlakuan: wilayah Rikugun umumnya lebih keras, sedangkan wilayah Kaigun relatif lebih lunak terhadap rakyat.',
+q:'Berdasarkan stimulus tersebut, wilayah Indonesia bagian timur (Kalimantan, Sulawesi, Maluku) berada di bawah kekuasaan ....',
+o:['Angkatan Darat XVI (Rikugun) di Jakarta',
+ 'Angkatan Darat XXV (Rikugun) di Bukittinggi',
+ 'Pemerintahan sipil Belanda',
+ 'Angkatan Laut (Kaigun) di Makassar',
+ 'Pemerintahan langsung dari Tokyo'],
+a:3,
+e:'Wilayah timur (Kalimantan, Sulawesi, Nusa Tenggara, Maluku) = Kaigun (Angkatan Laut) berpusat di Makassar. Jawa &amp; Madura = Rikugun XVI Jakarta. Sumatera = Rikugun XXV Bukittinggi.'},
+
+/* Q5 — Kunci: E (Reasoning) — Rikugun vs Kaigun */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Perbedaan Rikugun &amp; Kaigun',
+s:'Wilayah pendudukan Jepang di Indonesia terbagi antara Rikugun (Angkatan Darat) &amp; Kaigun (Angkatan Laut). Perbedaan ini bukan sekadar administratif, tetapi berdampak pada kehidupan rakyat. Di wilayah Rikugun (Jawa, Madura, Sumatera), pemerintahan militer lebih keras &amp; disiplin — rakyat dipaksa kerja romusha, hasil bumi dirampas, dan pengawasan sangat ketat. Di wilayah Kaigun (Kalimantan, Sulawesi, Maluku, Nusa Tenggara), pemerintahan relatif lebih lunak — budaya lokal sedikit lebih dihormati, dan rakyat tidak sepenuhnya diperlakukan sebagai "tenaga kerja paksa". Perbedaan ini menjelaskan mengapa corak perlawanan rakyat di berbagai daerah juga berbeda.',
+q:'Berdasarkan stimulus tersebut, pernyataan yang paling tepat tentang perbedaan Rikugun dan Kaigun adalah ....',
+o:['Rikugun &amp; Kaigun memiliki perlakuan yang sama terhadap rakyat',
+ 'Kaigun lebih kejam daripada Rikugun dalam mengerahkan romusha',
+ 'Rikugun &amp; Kaigun hanya berbeda pada nama, bukan perlakuan',
+ 'Kaigun tidak pernah terlibat dalam pendudukan Indonesia',
+ 'Rikugun umumnya lebih keras, sedangkan Kaigun relatif lebih lunak'],
+a:4,
+e:'Rikugun (Angkatan Darat) = lebih keras &amp; disiplin. Kaigun (Angkatan Laut) = relatif lebih lunak &amp; menghormati budaya lokal. Perbedaan ini berdampak pada corak perlawanan rakyat di masing-masing wilayah.'},
+
+/* Q6 — Kunci: A (Knowing) — Pengertian romusha */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Pengertian romusha',
+s:'Romusha adalah sistem kerja paksa yang diterapkan Jepang di Indonesia pada 1942–1945. Rakyat — dari petani, buruh, hingga pegawai — dipaksa bekerja tanpa upah layak untuk membangun infrastruktur perang: benteng, jalan, jembatan, lapangan udara, dan jalur kereta. Kondisi kerja sangat memprihatinkan: tanpa makanan cukup, tanpa obat, dan tanpa perlindungan. Banyak romusha yang meninggal karena kelaparan, penyakit, atau kelelahan. Proyek terkenal antara lain Jalur Kereta Muo–Bangkok (Thailand-Burma) &amp; Jalur Kereta Saketi–Bayah (Banten Selatan). Diperkirakan 200.000–500.000 jiwa meninggal akibat sistem ini.',
+q:'Berdasarkan stimulus tersebut, sistem kerja paksa yang diterapkan Jepang di Indonesia pada 1942–1945 disebut ....',
+o:['Romusha','Rodi','Cultuurstelsel','Poenale Sanctie','Autarki'],
+a:0,
+e:'Romusha = kerja paksa masa Jepang. Rodi = kerja paksa masa Belanda. Cultuurstelsel = tanam paksa. Poenale Sanctie = hukuman fisik untuk kuli kontrak. Autarki = sistem ekonomi swasembada.'},
+
+/* Q7 — Kunci: B (Applying) — Jalur kereta Saketi-Bayah */
+{t:'PG',l:'Applying',d:'Sedang',i:'Jalur kereta Saketi-Bayah',
+s:'Salah satu proyek romusha paling terkenal di Indonesia adalah pembangunan Jalur Kereta Saketi–Bayah di Banten Selatan. Jalur ini dibangun pada 1942–1945 dengan tujuan strategis: menghubungkan daerah pedalaman Banten dengan pantai selatan Jawa, sebagai jalur logistik &amp; pertahanan Jepang menghadapi Sekutu. Ribuan romusha dikerahkan untuk proyek ini. Kondisi kerja sangat berat: medan pegunungan, hutan lebat, dan cuaca ekstrem. Ribuan romusha meninggal selama pembangunan. Hingga kini, jalur ini menjadi saksi bisu kekejaman sistem romusha di Indonesia.',
+q:'Berdasarkan stimulus tersebut, salah satu proyek romusha paling terkenal di Indonesia adalah pembangunan jalur kereta ....',
+o:['Jakarta–Bandung','Saketi–Bayah','Semarang–Solo','Surabaya–Malang','Medan–Aceh'],
+a:1,
+e:'Jalur Kereta Saketi–Bayah (Banten Selatan) = proyek romusha paling terkenal di Indonesia. Tujuan: jalur logistik &amp; pertahanan Jepang. Ribuan romusha meninggal selama pembangunan.'},
+
+/* Q8 — Kunci: C (Reasoning) — Dampak romusha */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Romusha sebagai kejahatan kemanusiaan',
+s:'Sistem romusha menimbulkan dampak yang sangat mengerikan. Pertama, korban jiwa sangat besar — diperkirakan 200.000–500.000 orang meninggal, baik di dalam maupun di luar negeri. Kedua, keluarga kehilangan tulang punggung — banyak istri &amp; anak menjadi yatim piatu. Ketiga, sawah &amp; ladang terlantar karena tenaga kerja dirampas, menyebabkan kelaparan meluas. Keempat, wabah penyakit merebak karena sanitasi buruk &amp; kekurangan gizi. Kelima, trauma psikologis mendalam bagi rakyat yang selamat. Inilah sebabnya sistem romusha dikategorikan sebagai kejahatan kemanusiaan yang tidak bisa dilupakan.',
+q:'Berdasarkan stimulus tersebut, alasan utama sistem romusha dikategorikan sebagai kejahatan kemanusiaan adalah ....',
+o:['Karena menggunakan banyak tenaga kerja',
+ 'Karena dilakukan di luar negeri',
+ 'Karena menimbulkan korban ratusan ribu jiwa tanpa upah &amp; makanan layak',
+ 'Karena melibatkan orang asing',
+ 'Karena menggunakan teknologi modern'],
+a:2,
+e:'Romusha = kejahatan kemanusiaan karena: korban 200.000–500.000 jiwa, tanpa upah layak, tanpa makanan cukup, tanpa obat, dan trauma mendalam. Bukan karena jumlah pekerja atau teknologi.'},
+
+/* Q9 — Kunci: D (Applying) — PUTERA & Empat Serangkai */
+{t:'PG',l:'Applying',d:'Sedang',i:'PUTERA &amp; Empat Serangkai',
+s:'PUTERA (Pusat Tenaga Rakyat) adalah organisasi sosial-politik yang dibentuk Jepang pada 1943. Tujuan awal Jepang: mengerahkan rakyat Indonesia untuk mendukung perang Jepang. Namun, Jepang menyerahkan kepemimpinan PUTERA kepada Empat Serangkai: Soekarno, Mohammad Hatta, Ki Hajar Dewantara, &amp; KH Mas Mansur. Keempat tokoh ini justru memanfaatkan PUTERA sebagai alat perjuangan terselubung — menyebarkan ide nasionalisme &amp; mempersiapkan kemerdekaan. Jepang menyadari hal ini kemudian membubarkan PUTERA pada 1944, tetapi sudah terlambat: benih kesadaran nasional sudah tersebar luas.',
+q:'Berdasarkan stimulus tersebut, organisasi PUTERA dipimpin oleh ....',
+o:['Sutan Sjahrir &amp; Amir Sjarifuddin',
+ 'Supriyadi &amp; rekan-rekan PETA',
+ 'KH Zainal Mustafa &amp; Tengku Abdul Jalil',
+ 'Empat Serangkai: Soekarno, Hatta, Ki Hajar, Mas Mansur',
+ 'Tan Malaka &amp; Semaun'],
+a:3,
+e:'PUTERA = dipimpin Empat Serangkai (Soekarno, Hatta, Ki Hajar, Mas Mansur). Meski dibentuk Jepang, PUTERA justru dimanfaatkan sebagai alat perjuangan terselubung. Dibubarkan 1944.'},
+
+/* Q10 — Kunci: E (Knowing) — PETA cikal bakal TNI */
+{t:'PG',l:'Knowing',d:'Mudah',i:'PETA cikal bakal TNI',
+s:'PETA (Pembela Tanah Air) adalah organisasi militer bentukan Jepang pada 3 Oktober 1943. Tujuan awal Jepang: menyiapkan pasukan cadangan untuk menghadapi Sekutu. Namun, PETA justru menjadi cikal bakal TNI (Tentara Nasional Indonesia). Para pemuda Indonesia dilatih militer secara intensif: taktik perang, penggunaan senjata, dan kepemimpinan. Setelah Indonesia merdeka (1945), banyak mantan anggota PETA yang menjadi perwira TNI. Bahkan, pemberontakan PETA di Blitar (14 Februari 1945) di bawah Supriyadi menjadi salah satu perlawanan pertama terhadap Jepang. PETA menjadi bukti bahwa organisasi bentukan Jepang bisa berbalik menjadi alat perjuangan bangsa.',
+q:'Berdasarkan stimulus tersebut, organisasi militer bentukan Jepang yang menjadi cikal bakal TNI adalah ....',
+o:['PUTERA','Seinendan','Keibodan','Fujinkai','PETA'],
+a:4,
+e:'PETA (Pembela Tanah Air) = cikal bakal TNI. Dibentuk 3 Oktober 1943. Banyak mantan PETA menjadi perwira TNI. Pemberontakan PETA Blitar (1945) juga menjadi perlawanan awal terhadap Jepang.'},
+
+/* Q11 — Kunci: A (Reasoning) — Dua sisi organisasi */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Dua sisi organisasi Jepang',
+s:'Organisasi bentukan Jepang (PUTERA, PETA, Seinendan, Keibodan, Fujinkai, Hizbullah, Sempo) memiliki dua sisi yang bertolak belakang. Sisi gelap: organisasi ini dibentuk untuk mengerahkan rakyat Indonesia mendukung perang Jepang. Rakyat dilatih militer untuk menjadi pasukan cadangan Jepang, dan dipaksa bekerja keras tanpa upah layak. Sisi terang: justru melalui organisasi inilah rakyat Indonesia memperoleh pelatihan militer, kepemimpinan, organisasi, dan kesadaran nasional. Ketika Jepang menyerah kepada Sekutu (15 Agustus 1945), banyak pemuda yang terlatih di organisasi ini justru menjadi motor penggerak proklamasi kemerdekaan. Inilah paradoks pendudukan Jepang.',
+q:'Berdasarkan stimulus tersebut, kesimpulan paling tepat tentang organisasi bentukan Jepang adalah ....',
+o:['Organisasi bentukan Jepang justru menjadi alat perjuangan bangsa Indonesia',
+ 'Organisasi bentukan Jepang hanya merugikan rakyat Indonesia',
+ 'Organisasi bentukan Jepang tidak berdampak apa pun bagi Indonesia',
+ 'Organisasi bentukan Jepang hanya menguntungkan Jepang',
+ 'Organisasi bentukan Jepang tidak pernah diikuti rakyat Indonesia'],
+a:0,
+e:'Paradoks: organisasi dibentuk untuk Jepang, tetapi justru menjadi alat perjuangan bangsa. Rakyat memperoleh pelatihan militer &amp; kesadaran nasional. Ketika Jepang menyerah, pemuda terlatih menjadi motor proklamasi.'},
+
+/* Q12 — Kunci: B (Applying) — Seinendan usia */
+{t:'PG',l:'Applying',d:'Sedang',i:'Seinendan usia pemuda',
+s:'Seinendan adalah organisasi semi-militer bentukan Jepang pada 1943. Organisasi ini diperuntukkan bagi pemuda berusia 14–22 tahun. Tujuan awal: melatih pemuda sebagai barisan cadangan untuk pertahanan Jepang. Pelatihan mencakup latihan fisik, baris-berbaris, penggunaan senjata sederhana, dan disiplin militer. Meski dibentuk Jepang, Seinendan justru melahirkan banyak pemuda terlatih yang kemudian bergabung dengan badan perjuangan kemerdekaan. Banyak tokoh pemuda Indonesia yang pernah menjadi anggota Seinendan. Bersama PETA, Seinendan menjadi salah satu organisasi yang paling berdampak bagi persiapan kemerdekaan.',
+q:'Berdasarkan stimulus tersebut, organisasi semi-militer bentukan Jepang untuk pemuda usia 14–22 tahun disebut ....',
+o:['Keibodan','Seinendan','PETA','Fujinkai','Hizbullah'],
+a:1,
+e:'Seinendan = pemuda usia 14–22 tahun. Keibodan = pembantu polisi usia 20–35. PETA = militer. Fujinkai = perempuan. Hizbullah = pemuda Islam (1944).'},
+
+/* Q13 — Kunci: C (Knowing) — Fujinkai */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Fujinkai organisasi perempuan',
+s:'Fujinkai adalah organisasi bentukan Jepang pada 1943 yang khusus diperuntukkan bagi perempuan Indonesia. Tujuan awal Jepang: melatih perempuan dalam keterampilan rumah tangga, dapur umum, dan kegiatan sosial untuk mendukung perang. Pelatihan mencakup menjahit, memasak, kesehatan dasar, dan baris-berbaris sederhana. Meski dibentuk untuk kepentingan Jepang, Fujinkai justru memberi dampak positif: perempuan Indonesia mulai menyadari peran mereka di ruang publik. Banyak tokoh perempuan yang kemudian terlibat dalam perjuangan kemerdekaan berasal dari Fujinkai. Ini menjadi cikal bakal tumbuhnya kesadaran gender di Indonesia.',
+q:'Berdasarkan stimulus tersebut, organisasi bentukan Jepang yang khusus diperuntukkan bagi perempuan Indonesia adalah ....',
+o:['Seinendan','Keibodan','Fujinkai','PETA','Hizbullah'],
+a:2,
+e:'Fujinkai = organisasi perempuan. Tujuan awal: melatih keterampilan rumah tangga &amp; dapur umum untuk Jepang. Dampak: kesadaran perempuan di ruang publik mulai tumbuh.'},
+
+/* Q14 — Kunci: D (Reasoning) — Mempercepat kemerdekaan */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Jepang mempercepat kemerdekaan',
+s:'Meskipun pendudukan Jepang mendatangkan penderitaan luar biasa, banyak sejarawan menilai bahwa pendudukan ini justru mempercepat kemerdekaan Indonesia. Argumennya: (1) Jepang melatih pemuda Indonesia secara militer melalui PETA &amp; Seinendan; (2) Jepang memberi pengalaman berorganisasi melalui PUTERA, Fujinkai, dll.; (3) Jepang membebaskan tokoh nasionalis dari penjara Belanda, seperti Soekarno &amp; Hatta; (4) Jepang membubarkan kekuasaan Belanda secara total, menciptakan kekosongan kekuasaan; (5) Ketika Jepang menyerah kepada Sekutu (15 Agustus 1945), kekosongan kekuasaan ini dimanfaatkan untuk memproklamasikan kemerdekaan (17 Agustus 1945). Inilah paradoks sejarah: penjajah justru mempercepat lahirnya bangsa merdeka.',
+q:'Berdasarkan stimulus tersebut, argumen utama bahwa pendudukan Jepang mempercepat kemerdekaan Indonesia adalah ....',
+o:['Jepang memberi hadiah kemerdekaan kepada Indonesia',
+ 'Jepang mengajarkan bahasa Jepang kepada rakyat',
+ 'Jepang membangun banyak sekolah modern',
+ 'Jepang melatih pemuda secara militer &amp; menciptakan kekosongan kekuasaan',
+ 'Jepang membantu perekonomian rakyat'],
+a:3,
+e:'Argumen utama: (1) melatih pemuda militer (PETA, Seinendan), (2) pengalaman berorganisasi (PUTERA, Fujinkai), (3) membebaskan tokoh nasionalis, (4) menciptakan kekosongan kekuasaan → dimanfaatkan untuk proklamasi 17 Agustus 1945.'},
+
+/* Q15 — Kunci: E (Applying) — Perlawanan Singaparna */
+{t:'PG',l:'Applying',d:'Sedang',i:'Perlawanan Singaparna',
+s:'Perlawanan Singaparna terjadi pada Februari 1944 di Tasikmalaya, Jawa Barat. Perlawanan ini dipimpin oleh KH Zainal Mustafa, ulama Pesantren Sukamanah. Pemicu utamanya adalah paksaan Jepang terhadap rakyat untuk melakukan seikerei — membungkukkan badan ke arah matahari terbit sebagai penghormatan kepada Kaisar Jepang. Bagi umat Islam, seikerei bertentangan dengan ajaran tauhid karena menyembah selain Allah. KH Zainal Mustafa menolak seikerei &amp; menggerakkan rakyat untuk melawan. Jepang menanggapinya dengan kekerasan: KH Zainal Mustafa ditangkap &amp; dihukum mati pada 1944. Ia kemudian ditetapkan sebagai Pahlawan Nasional pada 1972.',
+q:'Berdasarkan stimulus tersebut, pemicu utama Perlawanan Singaparna pada 1944 adalah ....',
+o:['Pajak tanah yang terlalu tinggi',
+ 'Perebutan takhta kerajaan',
+ 'Penyerahan hasil bumi secara paksa',
+ 'Wajib militer bagi pemuda',
+ 'Paksaan seikerei yang bertentangan dengan ajaran Islam'],
+a:4,
+e:'Perlawanan Singaparna (KH Zainal Mustafa) = pemicu utamanya paksaan seikerei. Seikerei = membungkuk ke arah matahari terbit, bertentangan dengan tauhid Islam. Bukan pajak, takhta, hasil bumi, atau wajib militer.'},
+
+/* Q16 — Kunci: A (Reasoning) — Pemberontakan PETA Blitar */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Pemberontakan PETA Blitar',
+s:'Pemberontakan PETA Blitar terjadi pada 14 Februari 1945. Pemberontakan ini dipimpin oleh Supriyadi, seorang komandan pleton PETA (Pembela Tanah Air) di Blitar, Jawa Timur. Latar belakangnya: kekecewaan prajurit PETA terhadap perlakuan Jepang yang diskriminatif &amp; kondisi hidup yang memprihatinkan. Pemberontakan ini direncanakan secara rahasia, tetapi bocor ke Jepang. Jepang menanggapinya dengan kekerasan: banyak prajurit PETA ditangkap &amp; dihukum. Supriyadi sendiri hilang setelah pemberontakan — tidak diketahui nasibnya hingga kini. Meskipun gagal, pemberontakan ini menjadi simbol perlawanan pertama prajurit PETA terhadap Jepang &amp; menginspirasi perjuangan kemerdekaan.',
+q:'Berdasarkan stimulus tersebut, tokoh yang memimpin Pemberontakan PETA di Blitar pada 14 Februari 1945 adalah ....',
+o:['Supriyadi','KH Zainal Mustafa','Tengku Abdul Jalil','Sutan Sjahrir','Amir Sjarifuddin'],
+a:0,
+e:'Pemberontakan PETA Blitar (14 Februari 1945) dipimpin Supriyadi. KH Zainal Mustafa = Singaparna. Tengku Abdul Jalil = Aceh. Sjahrir &amp; Amir = gerakan bawah tanah.'},
+
+/* Q17 — Kunci: B (Applying) — Tengku Abdul Jalil */
+{t:'PG',l:'Applying',d:'Sedang',i:'Perlawanan Aceh Cot Plieng',
+s:'Perlawanan Aceh (Cot Plieng) terjadi pada November 1942. Perlawanan ini dipimpin oleh Tengku Abdul Jalil, seorang ulama dari Cot Plieng, Aceh. Pemicu utamanya sama dengan Singaparna: paksaan seikerei &amp; penyerahan hasil bumi kepada Jepang. Tengku Abdul Jalil menolak seikerei &amp; menggerakkan rakyat untuk melawan. Perlawanan ini berlangsung sengit — Jepang mengerahkan pasukan besar untuk menumpasnya. Dalam pertempuran, Tengku Abdul Jalil gugur sebagai syuhada. Ia kemudian ditetapkan sebagai Pahlawan Nasional Indonesia. Perlawanan Aceh menunjukkan bahwa rakyat Aceh — seperti di masa Belanda — tetap gigih melawan penindasan.',
+q:'Berdasarkan stimulus tersebut, tokoh yang memimpin perlawanan rakyat Aceh (Cot Plieng) pada November 1942 adalah ....',
+o:['Supriyadi','Tengku Abdul Jalil','KH Zainal Mustafa','Cut Nyak Dien','Teuku Umar'],
+a:1,
+e:'Tengku Abdul Jalil = pemimpin perlawanan Aceh (Cot Plieng) 1942. Cut Nyak Dien &amp; Teuku Umar = pahlawan Aceh melawan Belanda (bukan Jepang).'},
+
+/* Q18 — Kunci: C (Reasoning) — Gerakan bawah tanah */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Gerakan bawah tanah Sjahrir',
+s:'Selain perlawanan bersenjata, muncul pula gerakan bawah tanah di masa pendudukan Jepang. Gerakan ini beroperasi secara rahasia &amp; strategis, dipelopori oleh Sutan Sjahrir &amp; kelompok kecilnya. Tujuan gerakan: (1) menghimpun kekuatan nasional secara rahasia, (2) menyebarkan semangat merdeka, (3) mempersiapkan rencana kemerdekaan setelah Jepang menyerah, (4) menjaga komunikasi antar tokoh. Metode yang digunakan: mendengarkan radio Sekutu secara diam-diam, menyebarkan berita kemerdekaan, menyusun rencana pasca-Jepang, &amp; menghimpun pemuda nasionalis. Ketika Jepang menyerah pada 15 Agustus 1945, gerakan bawah tanah inilah yang mendorong percepatan proklamasi 17 Agustus 1945.',
+q:'Berdasarkan stimulus tersebut, tokoh utama gerakan bawah tanah pada masa pendudukan Jepang adalah ....',
+o:['Soekarno','Hatta','Sutan Sjahrir','Tan Malaka','Supriyadi'],
+a:2,
+e:'Sutan Sjahrir = tokoh utama gerakan bawah tanah. Berbeda dengan Soekarno-Hatta yang bekerja sama dengan Jepang (kooperatif), Sjahrir memilih jalur non-kooperatif &amp; rahasia.'},
+
+/* ============ MCMA (7 SOAL) ============ */
+
+/* Q19 — Pola: [0,2,3] — Alasan Jepang ke Indonesia */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Alasan Jepang ke Indonesia',
+s:'Kedatangan Jepang ke Indonesia pada 1942 didorong oleh beberapa faktor. Faktor ekonomi: Jepang membutuhkan sumber daya alam seperti minyak bumi, karet, timah, dan rempah untuk kebutuhan industri &amp; perang. Faktor politik: Jepang ingin menguasai Asia Tenggara sebagai bagian dari ambisi "Lingkungan Kemakmuran Bersama Asia Timur Raya". Faktor strategis: Indonesia berada di jalur penting untuk menguasai jalur pelayaran Asia-Pasifik. Faktor ideologis: propaganda "Asia untuk Bangsa Asia" untuk membebaskan wilayah dari penjajahan Barat. Jepang tidak datang ke Indonesia untuk menyebarkan agama atau sekadar membangun sekolah.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang alasan Jepang datang ke Indonesia? (Pilih lebih dari satu)',
+o:['Jepang membutuhkan sumber daya alam untuk industri &amp; perang.',
+ 'Jepang ingin menyebarkan agama Shinto ke seluruh Nusantara.',
+ 'Jepang ingin menguasai jalur strategis Asia-Pasifik.',
+ 'Jepang mempropagandakan "Asia untuk Bangsa Asia".',
+ 'Jepang hanya ingin membangun sekolah modern di Indonesia.'],
+a:[0,2,3],
+e:'A, C, D benar. B salah — bukan menyebarkan Shinto. E salah — bukan hanya membangun sekolah, tetapi eksploitasi sumber daya.'},
+
+/* Q20 — Pola: [1,3] — Organisasi bentukan Jepang */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Organisasi bentukan Jepang',
+s:'Jepang membentuk berbagai organisasi di Indonesia: PUTERA (1943) untuk mengerahkan rakyat; PETA (1943) untuk pasukan cadangan militer; Seinendan (1943) untuk pemuda 14–22 tahun; Keibodan (1943) untuk pembantu polisi usia 20–35; Fujinkai (1943) untuk perempuan; Hizbullah (1944) untuk pemuda Islam; Sempo (1943) untuk korps pelajar. Masing-masing memiliki tujuan awal untuk mendukung Jepang, tetapi kemudian banyak yang berbalik menjadi alat perjuangan bangsa.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang organisasi bentukan Jepang? (Pilih lebih dari satu)',
+o:['PETA adalah organisasi untuk perempuan Indonesia.',
+ 'Keibodan adalah barisan pembantu polisi usia 20–35 tahun.',
+ 'Fujinkai adalah organisasi militer untuk pemuda.',
+ 'Seinendan adalah organisasi untuk pemuda usia 14–22 tahun.',
+ 'Hizbullah adalah organisasi untuk pelajar sekolah.'],
+a:[1,3],
+e:'B, D benar. A salah — PETA = militer, bukan perempuan. C salah — Fujinkai = perempuan. E salah — Hizbullah = pemuda Islam (bukan pelajar). Pelajar = Sempo.'},
+
+/* Q21 — Pola: [0,1,2] — Romusha */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Romusha',
+s:'Romusha adalah sistem kerja paksa masa pendudukan Jepang (1942–1945). Rakyat Indonesia — petani, buruh, hingga pegawai — dipaksa bekerja tanpa upah layak untuk membangun infrastruktur perang: benteng, jalan, jembatan, lapangan udara, &amp; jalur kereta. Kondisi kerja sangat memprihatinkan: tanpa makanan cukup, tanpa obat, tanpa perlindungan. Proyek terkenal antara lain Jalur Kereta Muo–Bangkok (Thailand-Burma) &amp; Jalur Kereta Saketi–Bayah (Banten Selatan). Diperkirakan 200.000–500.000 jiwa meninggal akibat sistem ini. Romusha dikategorikan sebagai kejahatan kemanusiaan yang tidak bisa dilupakan.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang romusha? (Pilih lebih dari satu)',
+o:['Romusha adalah kerja paksa masa pendudukan Jepang.',
+ 'Romusha dikategorikan sebagai kejahatan kemanusiaan.',
+ 'Romusha menelan korban ratusan ribu jiwa.',
+ 'Romusha hanya diterapkan di Pulau Jawa saja.',
+ 'Romusha memberikan upah yang sangat tinggi kepada rakyat.'],
+a:[0,1,2],
+e:'A, B, C benar. D salah — romusha diterapkan di seluruh Indonesia &amp; bahkan ke luar negeri. E salah — romusha tanpa upah layak.'},
+
+/* Q22 — Pola: [2,3,4] — Dampak pendudukan Jepang */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak pendudukan Jepang',
+s:'Pendudukan Jepang meninggalkan dampak multidimensional bagi Indonesia. Dampak negatif: romusha menelan ratusan ribu korban, kelaparan &amp; wabah penyakit merebak, ekonomi hancur, kesenian lokal dibatasi. Dampak positif tak sengaja: pemuda terlatih militer (PETA, Seinendan), pengalaman berorganisasi (PUTERA, Fujinkai), kesadaran nasional tumbuh, bahasa Indonesia diperkuat sebagai lingua franca, dan lahirnya kekosongan kekuasaan yang memungkinkan proklamasi kemerdekaan 17 Agustus 1945.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang dampak pendudukan Jepang? (Pilih lebih dari satu)',
+o:['Pendudukan Jepang hanya meninggalkan dampak negatif tanpa dampak positif.',
+ 'Pendudukan Jepang membuat rakyat Indonesia menjadi kaya raya.',
+ 'Pendudukan Jepang melatih pemuda Indonesia secara militer.',
+ 'Pendudukan Jepang memperkuat bahasa Indonesia sebagai lingua franca.',
+ 'Pendudukan Jepang menciptakan kekosongan kekuasaan yang memungkinkan proklamasi kemerdekaan.'],
+a:[2,3,4],
+e:'C, D, E benar. A salah — ada dampak positif tak sengaja (militer, organisasi). B salah — justru rakyat menderita &amp; miskin.'},
+
+/* Q23 — Pola: [0,3] — Perlawanan bersenjata */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perlawanan bersenjata',
+s:'Perlawanan bersenjata terhadap Jepang di berbagai daerah: Singaparna (Februari 1944) dipimpin KH Zainal Mustafa, dipicu seikerei; Pemberontakan PETA Blitar (14 Februari 1945) dipimpin Supriyadi, karena kekecewaan prajurit PETA; Perlawanan Indramayu (1944) dipicu penyerahan padi yang menindas; Perlawanan Aceh Cot Plieng (November 1942) dipimpin Tengku Abdul Jalil, dipicu seikerei &amp; penyerahan hasil bumi; Perlawanan di Irian (1944) dipimpin oleh rakyat setempat. Semua perlawanan bersenjata ini akhirnya ditumpas Jepang dengan kekerasan, tetapi semangatnya menginspirasi perjuangan berikutnya.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perlawanan bersenjata terhadap Jepang? (Pilih lebih dari satu)',
+o:['Perlawanan Singaparna dipimpin KH Zainal Mustafa.',
+ 'Pemberontakan PETA Blitar dipimpin oleh Soekarno.',
+ 'Perlawanan Indramayu dipicu oleh pajak tanah.',
+ 'Pemberontakan PETA Blitar dipimpin Supriyadi.',
+ 'Perlawanan Aceh Cot Plieng dipimpin oleh Cut Nyak Dien.'],
+a:[0,3],
+e:'A, D benar. B salah — PETA Blitar = Supriyadi. C salah — Indramayu dipicu penyerahan padi (bukan pajak tanah). E salah — Cut Nyak Dien = pahlawan melawan Belanda (bukan Jepang).'},
+
+/* Q24 — Pola: [1,2,4] — Gerakan bawah tanah */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Gerakan bawah tanah',
+s:'Gerakan bawah tanah pada masa pendudukan Jepang dipelopori oleh Sutan Sjahrir &amp; kelompok kecilnya. Tokoh lain: Amir Sjarifuddin, Achmad Soebardjo, &amp; anggota Kelompok Menteng 31. Tujuan gerakan: menghimpun kekuatan nasional secara rahasia, menyebarkan semangat merdeka, mempersiapkan rencana kemerdekaan setelah Jepang menyerah, &amp; menjaga komunikasi antar tokoh. Metode: mendengarkan radio Sekutu secara diam-diam, menyebarkan berita kemerdekaan, menyusun rencana pasca-Jepang, &amp; menghimpun pemuda nasionalis. Berbeda dengan Soekarno-Hatta yang memilih jalur kooperatif dengan Jepang, Sjahrir memilih jalur non-kooperatif &amp; rahasia.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang gerakan bawah tanah? (Pilih lebih dari satu)',
+o:['Gerakan bawah tanah dipelopori oleh Soekarno &amp; Hatta.',
+ 'Gerakan bawah tanah dipelopori oleh Sutan Sjahrir.',
+ 'Gerakan bawah tanah bersifat non-kooperatif terhadap Jepang.',
+ 'Gerakan bawah tanah hanya bertujuan mengumpulkan dana.',
+ 'Gerakan bawah tanah mempersiapkan rencana kemerdekaan pasca-Jepang.'],
+a:[1,2,4],
+e:'B, C, E benar. A salah — Soekarno-Hatta memilih jalur kooperatif. D salah — tujuan gerakan bukan sekadar dana, tetapi persiapan kemerdekaan.'},
+
+/* Q25 — Pola: [0,1,3,4] — Dampak positif vs negatif */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak positif vs negatif',
+s:'Pendudukan Jepang memiliki dampak positif &amp; negatif. Dampak positif tak sengaja: pemuda terlatih militer (PETA, Seinendan) yang menjadi cikal bakal TNI; pengalaman berorganisasi (PUTERA, Fujinkai); bahasa Indonesia diperkuat sebagai lingua franca; kesadaran perempuan meningkat; kesadaran nasional tumbuh. Dampak negatif: korban romusha ratusan ribu jiwa; kelaparan &amp; wabah penyakit meluas; ekonomi hancur; kesenian lokal dibatasi; banyak keluarga kehilangan tulang punggung; pendidikan terhambat. Memahami dua sisi ini penting agar kita tidak terjebak pada narasi hitam-putih.',
+q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN dampak positif (tak sengaja) pendudukan Jepang? (Pilih lebih dari satu)',
+o:['Pemuda Indonesia terlatih militer melalui PETA &amp; Seinendan.',
+ 'Bahasa Indonesia diperkuat sebagai lingua franca.',
+ 'Rakyat Indonesia menjadi kaya raya.',
+ 'Kesadaran perempuan meningkat melalui Fujinkai.',
+ 'Kesadaran nasional tumbuh &amp; mempersiapkan kemerdekaan.'],
+a:[0,1,3,4],
+e:'A, B, D, E benar. C salah — justru rakyat menderita &amp; miskin. Ini menegaskan bahwa dampak positif Jepang bersifat tak sengaja, bukan tujuan awal.'},
+
+/* ============ KATEGORI (5 SOAL) ============ */
+
+/* Q26 — Pola: [S, TS, S, S] — Kronologi */
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi pendudukan Jepang',
+s:'Kronologi pendudukan Jepang: 11 Januari 1942 — Jepang mendarat di Tarakan; 14 Februari 1942 — Palembang jatuh; 1 Maret 1942 — Jepang mendarat di Jawa; 8 Maret 1942 — Belanda menyerah di Kalijati; 1943 — pembentukan PUTERA, PETA, Seinendan; Februari 1944 — Perlawanan Singaparna; 14 Februari 1945 — Pemberontakan PETA Blitar; 15 Agustus 1945 — Jepang menyerah kepada Sekutu; 17 Agustus 1945 — Proklamasi Kemerdekaan.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Jepang mendarat di Tarakan sebelum Belanda menyerah di Kalijati.',a:'Sesuai'},
+ {x:'Belanda menyerah kepada Jepang sebelum Jepang mendarat di Tarakan.',a:'Tidak Sesuai'},
+ {x:'Perlawanan Singaparna terjadi setelah pembentukan PETA.',a:'Sesuai'},
+ {x:'Proklamasi Kemerdekaan terjadi setelah Jepang menyerah kepada Sekutu.',a:'Sesuai'}],
+e:'1 Sesuai (11 Jan < 8 Maret 1942). 2 Tidak Sesuai (kapitulasi 8 Maret > pendaratan Tarakan 11 Jan). 3 Sesuai (Singaparna Feb 1944 > PETA 1943). 4 Sesuai (17 Agustus 1945 > 15 Agustus 1945).'},
+
+/* Q27 — Pola: [TS, S, S, S] — Tokoh & peristiwa */
+{t:'KATEGORI',l:'Applying',d:'Sedang',i:'Tokoh &amp; peristiwa',
+s:'Tokoh &amp; peristiwa: KH Zainal Mustafa → Perlawanan Singaparna (1944); Supriyadi → Pemberontakan PETA Blitar (1945); Tengku Abdul Jalil → Perlawanan Aceh Cot Plieng (1942); Sutan Sjahrir → gerakan bawah tanah; Soekarno &amp; Hatta → memimpin PUTERA (kooperatif); Empat Serangkai = Soekarno, Hatta, Ki Hajar Dewantara, KH Mas Mansur.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'KH Zainal Mustafa memimpin Pemberontakan PETA di Blitar.',a:'Tidak Sesuai'},
+ {x:'Supriyadi memimpin Pemberontakan PETA di Blitar pada 1945.',a:'Sesuai'},
+ {x:'Tengku Abdul Jalil memimpin perlawanan rakyat Aceh (Cot Plieng).',a:'Sesuai'},
+ {x:'Sutan Sjahrir mempelopori gerakan bawah tanah pada masa pendudukan Jepang.',a:'Sesuai'}],
+e:'1 Tidak Sesuai — KH Zainal Mustafa = Singaparna. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
+
+/* Q28 — Pola: [S, S, TS, S] — Organisasi & tujuan */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Organisasi &amp; tujuan',
+s:'Organisasi bentukan Jepang &amp; tujuan awal: PUTERA (1943) — mengerahkan rakyat untuk mendukung Jepang; PETA (1943) — menyiapkan pasukan cadangan militer; Seinendan (1943) — barisan pemuda cadangan; Keibodan (1943) — pembantu polisi; Fujinkai (1943) — mobilisasi perempuan; Hizbullah (1944) — barisan pemuda Islam. Semua organisasi ini dibentuk untuk kepentingan perang Jepang, meskipun kemudian dimanfaatkan oleh pemuda Indonesia untuk mempersiapkan kemerdekaan.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'PUTERA dibentuk untuk mengerahkan rakyat mendukung Jepang.',a:'Sesuai'},
+ {x:'PETA adalah organisasi militer bentukan Jepang.',a:'Sesuai'},
+ {x:'Fujinkai adalah organisasi bentukan Jepang untuk pemuda Islam.',a:'Tidak Sesuai'},
+ {x:'Seinendan adalah barisan pemuda usia 14–22 tahun.',a:'Sesuai'}],
+e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Fujinkai = PEREMPUAN (bukan pemuda Islam). Pemuda Islam = Hizbullah. 4 Sesuai.'},
+
+/* Q29 — Pola: [TS, S, S, TS] — Dampak & analisis */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Dampak &amp; analisis',
+s:'Dampak pendudukan Jepang bersifat kompleks. Negatif: romusha menelan 200.000–500.000 korban jiwa, kelaparan &amp; wabah penyakit meluas, ekonomi hancur. Positif (tak sengaja): pemuda terlatih militer (PETA, Seinendan), pengalaman berorganisasi (PUTERA, Fujinkai), bahasa Indonesia diperkuat, kesadaran nasional tumbuh. Pendudukan Jepang TIDAK mempercepat kemerdekaan karena kebaikan hati Jepang — tetapi karena kekosongan kekuasaan pasca-Jepang menyerah &amp; persiapan yang dilakukan pemuda Indonesia selama pendudukan.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Romusha hanya menelan korban sedikit sehingga tidak dianggap kejahatan kemanusiaan.',a:'Tidak Sesuai'},
+ {x:'Pendudukan Jepang memberi pengalaman berorganisasi bagi rakyat Indonesia.',a:'Sesuai'},
+ {x:'Bahasa Indonesia diperkuat sebagai lingua franca pada masa pendudukan Jepang.',a:'Sesuai'},
+ {x:'Kemerdekaan Indonesia terjadi karena kebaikan hati Jepang.',a:'Tidak Sesuai'}],
+e:'1 Tidak Sesuai — romusha korban 200.000–500.000 jiwa = kejahatan kemanusiaan. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — kemerdekaan terjadi karena kekosongan kekuasaan &amp; persiapan pemuda, bukan kebaikan Jepang.'},
+
+/* Q30 — Pola: [S, TS, S, TS] — Nilai kepahlawanan */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Nilai kepahlawanan',
+s:'Nilai yang bisa diteladani dari masa pendudukan Jepang: keberanian melawan penindasan (KH Zainal Mustafa, Tengku Abdul Jalil), kesetiaan pada prinsip (Supriyadi), visi strategis (Sjahrir dengan gerakan bawah tanah), dan semangat rela berkorban (para romusha yang bertahan). Nilai-nilai ini relevan bagi generasi muda saat ini: berani melawan ketidakadilan, setia pada kebenaran, dan berkontribusi positif bagi bangsa. Penderitaan masa lalu bukan untuk diratapi, tetapi untuk dijadikan pelajaran.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Keberanian melawan penindasan adalah nilai yang bisa diteladani dari para pejuang anti-Jepang.',a:'Sesuai'},
+ {x:'Penderitaan masa pendudukan Jepang tidak perlu dipelajari karena hanya menyakitkan.',a:'Tidak Sesuai'},
+ {x:'Visi strategis Sjahrir dalam gerakan bawah tanah adalah contoh pemikiran cerdas.',a:'Sesuai'},
+ {x:'Generasi muda tidak perlu belajar dari sejarah pendudukan Jepang.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — justru WAJIB dipelajari agar tidak terulang. 3 Sesuai. 4 Tidak Sesuai — generasi muda WAJIB belajar sejarah agar bisa mengambil pelajaran.'}
+
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let siswaName='',siswaSchool='',siswaClass='';
+let displayedQuestions=[];
+
+(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goIdentity(){
+  stopTimer();
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
+function startTestWithIdentity(){
+  const name=document.getElementById('inpName').value.trim();
+  const school=document.getElementById('inpSchool').value.trim();
+  const cls=document.getElementById('inpClass').value.trim();
+  if(!name||!school||!cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName=name;siswaSchool=school;siswaClass=cls;
+  document.getElementById('hdrName').textContent=siswaName;
+  document.getElementById('hdrSchool').textContent=siswaSchool;
+  document.getElementById('hdrClass').textContent=siswaClass;
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q9]);
+  document.getElementById('testTitle').textContent='Pendudukan Jepang';
+  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function retryTest(){
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q9]);
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+function renderQuestion(){
+  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
+  const stimEl=document.getElementById('qStim');
+  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
+  document.getElementById('qText').textContent=q.q;
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
+  const area=document.getElementById('qArea');area.innerHTML='';
+  if(q.t==='PG'){
+    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
+      if(ua===i)div.classList.add('sel');
+      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+    area.appendChild(optsEl);
+  }else if(q.t==='MCMA'){
+    const checksEl=document.createElement('div');checksEl.className='checks';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');div.className='check';
+      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
+      const checked=uaArr.includes(i);
+      if(checked)div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect=q.a.includes(i);
+        if(isCorrect)div.classList.add('correct');
+        else if(checked)div.classList.add('wrong');
+      }
+      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
+      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      checksEl.appendChild(div);
+    });
+    area.appendChild(checksEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  }
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+function selectOption(idx,type){
+  if(revealed[currentQ])return;
+  if(type==='PG'){userAnswers[currentQ]=idx;}
+  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  renderQuestion();renderQMap();updateProgress();
+}
+function setKategori(idx,cat){
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+}
+function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
+function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+function renderQMap(){
+  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
+    const ua=userAnswers[i];let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
+}
+function updateProgress(){
+  const total=displayedQuestions.length;let answered=0;
+  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
+    else answered++;}
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+function isCorrect(q,ua){
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
+  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+  return false;
+}
+function finishTest(){
+  stopTimer();
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
+  document.getElementById('resultIdentity').innerHTML=`
+    <span><i class="fas fa-user" style="color:var(--primary-light)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary-light)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary-light)"></i> ${siswaClass}</span>`;
+  let title='',sub='';
+  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Pendudukan Jepang sangat luar biasa.`;}
+  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
+  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
+  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Pendudukan Jepang dan coba lagi.`;}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultSub').textContent=sub;
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary-light)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  showSection('result');
+}
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
+window.addEventListener('scroll',()=>{
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.5)';
+  else h.style.boxShadow='none';
+});
+</script>
+</body>
+</html>
