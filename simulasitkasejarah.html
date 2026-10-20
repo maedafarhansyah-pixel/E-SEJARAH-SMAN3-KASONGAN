@@ -361,13 +361,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <p class="hero-sub">Latihan bergaya TKA dengan stimulus autentik, tiga bentuk soal, dan pembahasan tiap soal. Disesuaikan untuk Fase E–F.</p>
     <div class="hero-stats">
       <div class="stat-card"><div class="val" id="statCh">14</div><div class="lbl">Tema Materi</div></div>
-      <div class="stat-card"><div class="val">22</div><div class="lbl">Soal per Tema</div></div>
+      <div class="stat-card"><div class="val" id="statQ1">22</div><div class="lbl">Soal Tema 1–3</div></div>
+      <div class="stat-card"><div class="val" id="statQ2">30</div><div class="lbl">Soal Tema 4–14</div></div>
       <div class="stat-card"><div class="val">14</div><div class="lbl">Tema Tersedia</div></div>
     </div>
   </div>
   <div class="section-h">
     <h3><i class="fas fa-book-open"></i> Pilih Tema Materi</h3>
-    <p><strong>Semua tema (1–14)</strong> tersedia dengan 22 soal: 12 PG, 6 MCMA, dan 4 Kategori per tema. Klik kartu untuk membuka halaman soal tema tersebut.</p>
+    <p><strong>Tema 1–3</strong> berisi 22 soal (12 PG, 6 MCMA, 4 Kategori) dan <strong>Tema 4–14</strong> berisi 30 soal (16 PG, 8 MCMA, 6 Kategori). Klik kartu untuk membuka halaman soal tema tersebut.</p>
   </div>
   <div class="chapter-grid" id="chapterGrid"></div>
 </section>
@@ -411,14 +412,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   <div class="test-hdr">
     <div>
       <h2 id="testTitle">Tema 1</h2>
-      <div class="test-sub" id="testSub">Soal 1 dari 22</div>
+      <div class="test-sub" id="testSub">Soal 1</div>
     </div>
     <div class="info">
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
       <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
-      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">22</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">—</span></span>
       <button class="btn btn-ghost" onclick="goHome()" style="padding:7px 14px;font-size:.78rem"><i class="fas fa-arrow-left"></i> Kembali</button>
     </div>
   </div>
@@ -515,6 +516,27 @@ const CHAPTER_LINKS={
 };
 
 /* ============================================================
+   JUMLAH SOAL PER TEMA — Tema 1–3: 22 soal, Tema 4–14: 30 soal
+   ============================================================ */
+const CHAPTER_SOAL_COUNT = {
+  1: 22, 2: 22, 3: 22,
+  4: 30, 5: 30, 6: 30, 7: 30, 8: 30, 9: 30,
+  10: 30, 11: 30, 12: 30, 13: 30, 14: 30
+};
+
+/* ============================================================
+   DISTRIBUSI BENTUK SOAL PER TEMA
+   Tema 1–3 (22): 12 PG, 6 MCMA, 4 KATEGORI
+   Tema 4–14 (30): 16 PG, 8 MCMA, 6 KATEGORI
+   ============================================================ */
+function getQuestionDistribution(chapterId){
+  if(chapterId <= 3){
+    return { PG: 12, MCMA: 6, KATEGORI: 4, total: 22 };
+  }
+  return { PG: 16, MCMA: 8, KATEGORI: 6, total: 30 };
+}
+
+/* ============================================================
    UTIL SHUFFLE
    ============================================================ */
 function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
@@ -539,6 +561,7 @@ let displayedQuestions=[];
    - Tema dengan soal internal → kartu biasa → form identitas
    - Tema dengan URL eksternal → kartu biasa → buka tab baru
    - Tema tanpa soal & tanpa URL → kotak "Segera Hadir"
+   Badge & jumlah soal kini dinamis sesuai tema.
    ============================================================ */
 function renderChapters(){
   const grid=document.getElementById('chapterGrid');grid.innerHTML='';
@@ -547,6 +570,8 @@ function renderChapters(){
     const linkUrl=CHAPTER_LINKS[ch.id]||'';
     const hasInternal=totalQ>0;
     const hasExternal=linkUrl && linkUrl!=='#';
+    const dist=getQuestionDistribution(ch.id);
+    const targetCount=CHAPTER_SOAL_COUNT[ch.id]||dist.total;
 
     if(hasInternal || hasExternal){
       const card=document.createElement('div');
@@ -556,11 +581,11 @@ function renderChapters(){
         : ()=>window.open(linkUrl,'_blank','noopener');
       card.innerHTML=`<div class="ch-num">${ch.fase}</div><h4>${ch.title}</h4><p>${ch.desc}</p>
         <div class="ch-badges">
-          <span class="mini-badge">12 PG</span>
-          <span class="mini-badge">6 MCMA</span>
-          <span class="mini-badge">4 KATEGORI</span>
+          <span class="mini-badge">${dist.PG} PG</span>
+          <span class="mini-badge">${dist.MCMA} MCMA</span>
+          <span class="mini-badge">${dist.KATEGORI} KATEGORI</span>
         </div>
-        <div class="ch-meta"><span>Tema ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> 22 Soal</span></div>`;
+        <div class="ch-meta"><span>Tema ${ch.id}</span><span class="cnt"><i class="fas fa-list-ol"></i> ${targetCount} Soal</span></div>`;
       grid.appendChild(card);
     } else {
       const box=document.createElement('div');
