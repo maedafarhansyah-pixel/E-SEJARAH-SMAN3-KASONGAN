@@ -30,8 +30,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
 .chip i{color:var(--primary)}
-.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px}
-.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px;transition:all .3s}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent);position:relative;transition:opacity .3s}
+.qcard.locked{opacity:.55;pointer-events:none}
+.qcard.locked::after{content:'🔒 Waktu Habis — Soal Terkunci';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,.94);color:#fff;padding:12px 26px;border-radius:30px;font-weight:800;font-size:.9rem;z-index:10;pointer-events:none;box-shadow:0 8px 24px rgba(239,68,68,.55);white-space:nowrap}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
 .badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
@@ -104,15 +106,15 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .result-hero{text-align:center;padding:30px 0 20px}
 .result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
 .result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
-.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1;transition:color .6s}
 .result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:700px}
 .rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
 .rs .v{font-size:1.4rem;font-weight:900;line-height:1}
-.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs .l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);margin-top:4px;line-height:1.3}
 .rs.green .v{color:var(--emerald)}
 .rs.red .v{color:var(--rose)}
-.rs.gold .v{color:var(--primary)}
+.rs.gold .v{color:var(--gold)}
 .rs.blue .v{color:var(--sky)}
 .recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
 .recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
@@ -142,6 +144,9 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
+.toast{position:fixed;top:calc(var(--header-h) + 20px);left:50%;transform:translateX(-50%) translateY(-80px);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:13px 26px;border-radius:40px;font-weight:700;font-size:.88rem;box-shadow:0 12px 36px rgba(0,0,0,.45);z-index:2000;transition:transform .45s cubic-bezier(.2,.9,.3,1.2),opacity .35s;opacity:0;pointer-events:none;max-width:90vw;text-align:center;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast.warning{background:linear-gradient(135deg,#F59E0B,#EF4444);}
 @media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
 @media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
@@ -160,6 +165,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 </header>
 
 <div class="progress"><div class="thumb" id="progressThumb"></div></div>
+<div id="toast" class="toast"></div>
 
 <main class="main">
 
@@ -172,7 +178,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <div class="info-chips">
         <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
         <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
-        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+        <span class="ic"><i class="fas fa-clock"></i> 90 Menit</span>
       </div>
     </div>
     <div class="identity-form">
@@ -213,7 +219,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
-      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">90:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
     </div>
   </div>
@@ -242,11 +248,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
     <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
     <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+    <div id="resultLevel" style="margin-top:10px;font-weight:800;font-size:.9rem"></div>
   </div>
   <div class="result-stats">
     <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
     <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
-    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs gold"><div class="v" id="rsUnanswered">0</div><div class="l">Belum Terjawab</div></div>
+    <div class="rs blue"><div class="v" id="rsTotal">30</div><div class="l">Total Soal</div></div>
     <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
   </div>
   <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
@@ -255,9 +263,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <div class="privacy-icon"><i class="fas fa-camera"></i></div>
     <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
   </div>
-  <div style="text-align:center;margin-top:20px">
+  <div style="text-align:center;margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <a href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html" class="btn btn-info"><i class="fas fa-home"></i> Beranda</a>
     <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
-    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+    <button class="btn btn-ghost" onclick="retryTest()"><i class="fas fa-redo"></i> Ulangi Tes</button>
   </div>
 </section>
 
@@ -265,14 +274,11 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
 <script>
 /* ============================================================
-   BANK SOAL — MASA HINDU-BUDDHA (30 SOAL UNIK)
-   18 PG + 7 MCMA + 5 KATEGORI
+   BANK SOAL — MASA HINDU-BUDDHA (30 SOAL)
    ============================================================ */
 const Q4=[
 
-/* ============ PG (18 SOAL) ============ */
-
-/* 1. TEORI BRAHMANA — KELEMAHAN */
+/* 1 */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Kelemahan Teori Brahmana',
 s:'J.C. van Leur mengemukakan Teori Brahmana untuk menjelaskan masuknya pengaruh Hindu-Buddha ke Nusantara. Menurut teori ini, kaum Brahmana diundang oleh penguasa lokal Nusantara karena kepandaian mereka membaca kitab suci Veda dan menguasai bahasa Sanskerta. Bukti yang mendukung teori ini adalah penggunaan aksara Pallawa dan bahasa Sanskerta pada prasasti-prasasti awal di Nusantara. Akan tetapi, banyak sejarawan kemudian menyoroti kelemahan mendasar dari teori ini: kaum Brahmana dianggap tidak memiliki ambisi maupun kekuatan politik untuk mendirikan kerajaan baru di wilayah yang jauh dari tanah asalnya.',
 q:'Berdasarkan stimulus tersebut, kritik utama terhadap Teori Brahmana terletak pada ....',
@@ -284,7 +290,7 @@ o:['Kemampuan kaum Brahmana membaca kitab suci Veda yang diragukan',
 a:1,
 e:'Kritik utama: Brahmana hanya berperan sebagai rohaniwan, bukan pemegang kekuatan politik. Padahal untuk mendirikan kerajaan dibutuhkan legitimasi politik, bukan hanya otoritas keagamaan. Inilah yang mendorong lahirnya teori-teori alternatif seperti Ksatria, Waisya, dan Arus Balik.'},
 
-/* 2. KUTAI — KUDUNGGA NAMA LOKAL */
+/* 2 */
 {t:'PG',l:'Applying',d:'Sedang',i:'Makna nama Kudungga',
 s:'Prasasti Yupa peninggalan Kerajaan Kutai menyebut silsilah tiga raja: Kudungga, Aswawarman, dan Mulawarman. Menariknya, nama "Kudungga" merupakan nama asli Nusantara, bukan nama Sanskerta. Sementara anaknya, Aswawarman, disebut sebagai "vamsakarta" (pendiri dinasti) dengan nama yang berbau Sanskerta. Cucunya, Mulawarman, melakukan upacara kurban 20.000 ekor sapi untuk kaum Brahmana.',
 q:'Dari perbedaan pola nama pada silsilah tersebut, kesimpulan paling tepat mengenai posisi Kudungga adalah ....',
@@ -296,7 +302,7 @@ o:['Kudungga adalah raja pertama Kutai yang masih mempertahankan identitas lokal
 a:0,
 e:'Nama Kudungga = nama asli Nusantara → raja pertama yang belum terkontaminasi budaya India. Aswawarman disebut "vamsakarta" (pendiri dinasti) karena dialah yang pertama memakai nama Sanskerta dan menegaskan identitas Hindu. Ini bukti proses akulturasi yang berlangsung bertahap.'},
 
-/* 3. TARUMANEGARA — CIARUTEUN */
+/* 3 */
 {t:'PG',l:'Applying',d:'Sedang',i:'Konsep dewaraja',
 s:'Prasasti Ciaruteun peninggalan Kerajaan Tarumanegara memuat gambar sepasang telapak kaki Raja Purnawarman yang disamakan dengan telapak kaki Dewa Wisnu. Prasasti ini juga memuat pujian terhadap Purnawarman sebagai raja yang gagah berani dan bijaksana. Letak prasasti berada di tepi Sungai Ciaruteun, Bogor, Jawa Barat.',
 q:'Penyamaan telapak kaki Raja Purnawarman dengan telapak kaki Dewa Wisnu dalam Prasasti Ciaruteun menunjukkan adanya konsep ....',
@@ -308,7 +314,7 @@ o:['Demokrasi langsung yang dipraktikkan pada masa Tarumanegara',
 a:1,
 e:'Konsep dewaraja (raja-dewa) adalah legitimasi politik yang khas Hindu-Buddha: raja dianggap penjelmaan dewa di bumi. Dengan menyamakan telapak kaki Purnawarman dengan Wisnu, raja mengklaim otoritas ilahi atas kekuasaannya.'},
 
-/* 4. SRIWIJAYA — KEDUKAN BUKIT */
+/* 4 */
 {t:'PG',l:'Applying',d:'Sedang',i:'Prasasti Kedukan Bukit',
 s:'Prasasti Kedukan Bukit berangka tahun 605 Saka (683 M) ditemukan di tepi Sungai Tatang, dekat Palembang. Prasasti ini menceritakan bahwa Dapunta Hyang Sri Jayanasa berangkat dari Minanga Tamwan membawa 20.000 tentara di atas 312 perahu, kemudian menaklukkan beberapa daerah dan akhirnya mendirikan Sriwijaya. Prasasti ini juga menyebut bahwa Dapunta Hyang datang "membawa kesenangan" dan "membuat kedatuan".',
 q:'Berdasarkan isi Prasasti Kedukan Bukit, kesimpulan yang paling tepat tentang Dapunta Hyang adalah ....',
@@ -320,7 +326,7 @@ o:['Dapunta Hyang adalah raja yang hanya mementingkan ritual keagamaan',
 a:1,
 e:'Prasasti Kedukan Bukit = bukti ekspedisi militer Dapunta Hyang dengan 20.000 tentara & 312 perahu, yang berujung pendirian Sriwijaya. Ini menunjukkan bahwa Sriwijaya lahir dari ekspansi militer, bukan sekadar aktivitas dagang.'},
 
-/* 5. MELAYU KUNO — BAHASA */
+/* 5 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Warisan bahasa Melayu Kuno',
 s:'Prasasti-prasasti peninggalan Sriwijaya seperti Kedukan Bukit, Talang Tuo, dan Karang Berahi tidak ditulis dalam bahasa Sanskerta murni, melainkan dalam Bahasa Melayu Kuno. Bahasa ini merupakan nenek moyang langsung Bahasa Indonesia. Contoh kata yang masih bertahan hingga kini: "wulan" (bulan), "parwanda" (perahu), "sawah", dan "wihara" (biara). Hal ini berbeda dengan prasasti Kutai dan Tarumanegara yang justru ditulis dalam bahasa Sanskerta murni.',
 q:'Perbedaan bahasa prasasti Sriwijaya dan prasasti Kutai-Tarumanegara mengisyaratkan bahwa ....',
@@ -332,7 +338,7 @@ o:['Sriwijaya menolak pengaruh India secara total',
 a:1,
 e:'Prasasti Sriwijaya menggunakan Melayu Kuno = adaptasi budaya India dengan bahasa lokal. Artinya, Sriwijaya tidak menelan pengaruh India secara pasif, melainkan melakukan lokalisasi bahasa. Ini yang membuat Melayu Kuno bertahan dan menjadi cikal-bakal Bahasa Indonesia.'},
 
-/* 6. KALINGGA — I-TSING */
+/* 6 */
 {t:'PG',l:'Applying',d:'Sedang',i:'Catatan I-Tsing tentang Ho-ling',
 s:'Biksu Tiongkok I-Tsing dalam catatan perjalanannya menyebutkan adanya negeri bernama "Ho-ling" di Jawa yang menganut agama Buddha dan diperintah oleh seorang ratu yang sangat adil. Ia menulis bahwa hukuman di Ho-ling sangat tegas: bahkan seorang pangeran pun dihukum jika melanggar aturan. Catatan ini menjadi salah satu sumber utama tentang Kerajaan Kalingga, selain prasasti-prasasti lokal.',
 q:'Nilai historis paling penting dari catatan I-Tsing tentang Ho-ling adalah ....',
@@ -344,7 +350,7 @@ o:['Menjadi salah satu sumber eksternal yang menguatkan keberadaan dan karakter 
 a:0,
 e:'I-Tsing adalah sumber eksternal (asing) yang menguatkan keberadaan Kalingga. Dalam metode sejarah, sumber eksternal (luar negeri) berfungsi sebagai pembanding — jika isinya cocok dengan sumber lokal, kredibilitasnya tinggi. I-Tsing menegaskan: Kalingga = kerajaan Buddha, dipimpin ratu adil (Ratu Sima).'},
 
-/* 7. MATARAM KUNO — PERNIKAHAN POLITIK */
+/* 7 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Pernikahan Rakai Pikatan–Pramodhawardhani',
 s:'Rakai Pikatan dari Dinasti Sanjaya (Hindu) menikah dengan Pramodhawardhani dari Dinasti Syailendra (Buddha). Pernikahan ini menyatukan dua dinasti yang berbeda agama di bawah satu kekuasaan. Setelah pernikahan tersebut, kedua dinasti hidup berdampingan: Rakai Pikatan membangun Candi Prambanan (Hindu), sementara candi-candi Buddha seperti Borobudur dan Mendut tetap dihormati.',
 q:'Interpretasi paling tepat dari pernikahan Rakai Pikatan dan Pramodhawardhani adalah ....',
@@ -356,7 +362,7 @@ o:['Pernikahan tersebut merupakan bentuk penaklukan Syailendra atas Sanjaya',
 a:2,
 e:'Pernikahan Rakai Pikatan & Pramodhawardhani = simbol toleransi Hindu-Buddha. Kedua dinasti tetap memeluk agamanya masing-masing, dan keduanya saling mendukung pembangunan candi. Inilah bukti historis bahwa kerukunan beragama pernah dipraktikkan di Nusantara.'},
 
-/* 8. BOROBUDUR — TRILOKA */
+/* 8 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Filosofi Borobudur',
 s:'Candi Borobudur terdiri dari tiga tingkatan yang melambangkan kosmologi Buddha: Kamadhatu (dunia nafsu), Rupadhatu (dunia bentuk), dan Arupadhatu (dunia tanpa bentuk). Pada tingkat Kamadhatu terdapat relief Karmawibhangga yang menggambarkan hukum sebab-akibat dan kehidupan penuh nafsu. Pada Rupadhatu terdapat relief Lalitavistara dan Jataka. Pada Arupadhatu, tidak ada relief — hanya stupa-stupa kosong tanpa hiasan.',
 q:'Mengapa tingkat Arupadhatu pada Borobudur dibuat tanpa relief dan hiasan?',
@@ -368,7 +374,7 @@ o:['Karena pembangunannya belum selesai',
 a:2,
 e:'Arupadhatu = dunia tanpa bentuk (arupa = tanpa bentuk). Di sini tidak ada relief karena segala wujud, nafsu, dan ilusi sudah dilampaui. Ini melambangkan pencapaian pencerahan (nirwana). Tingkat yang makin tinggi = makin abstrak dan spiritual.'},
 
-/* 9. KEDIRI — BHARATAYUDDHA */
+/* 9 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Adaptasi Bharatayuddha',
 s:'Kakawin Bharatayuddha ditulis oleh Mpu Sedah dan diselesaikan oleh Mpu Panuluh pada masa Raja Jayabaya (1157 M). Karya ini diadaptasi dari epos Mahabharata India, khususnya kisah perang antara Pandawa dan Kurawa. Namun, Mpu Sedah dan Panuluh tidak sekadar menerjemahkan — mereka menyesuaikan nama tokoh, latar, dan detail cerita dengan konteks Jawa, sehingga karya ini terasa sebagai karya asli Nusantara, bukan salinan.',
 q:'Fakta bahwa Kakawin Bharatayuddha bukan sekadar terjemahan menunjukkan ....',
@@ -380,7 +386,7 @@ o:['Pujangga Nusantara tidak menguasai bahasa Sanskerta',
 a:1,
 e:'Pujangga Nusantara tidak hanya MENYALIN, tetapi MENGADAPTASI. Proses ini disebut lokalisasi sastra — menyesuaikan karya India dengan konteks lokal. Ini bukti kematangan budaya Nusantara: bukan sekadar peniru, tetapi pencipta.'},
 
-/* 10. SINGASARI — KEN AROK PARARATON */
+/* 10 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Ken Arok dalam Pararaton',
 s:'Kitab Pararaton mencatat kisah Ken Arok, pendiri Kerajaan Singasari. Ia digambarkan sebagai anak petani yang berambisi menjadi raja. Melalui serangkaian intrik politik, ia berhasil membunuh Tunggul Ametung (penguasa Tumapel) dan menikahi istrinya, Ken Dedes, lalu mengalahkan Kerajaan Kediri pada 1222 M. Namun, Pararaton juga mencatat bahwa Ken Arok dibunuh oleh Anusapati, anak Tunggul Ametung, sebagai balas dendam.',
 q:'Nilai historiografis paling menonjol dari Kitab Pararaton adalah ....',
@@ -392,7 +398,7 @@ o:['Menyajikan kisah yang sepenuhnya objektif tanpa bias',
 a:1,
 e:'Pararaton menampilkan Ken Arok sebagai manusia kompleks: berambisi, penuh intrik, dan berakhir tragis karena balas dendam. Ini ciri historiografi yang lebih realistis dibandingkan babad yang cenderung memitoskan raja. Nilai pentingnya: memberi kita gambaran sejarah yang lebih hidup dan manusiawi.'},
 
-/* 11. SINGASARI — PAMALAYU */
+/* 11 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Ekspedisi Pamalayu',
 s:'Pada tahun 1275 M, Raja Kertanegara dari Singasari mengirim Ekspedisi Pamalayu ke Sumatera. Tujuan ekspedisi ini bukan sekadar penaklukan militer, tetapi juga untuk membangun aliansi dengan Kerajaan Melayu Dharmasraya guna menghadapi ancaman pasukan Mongol (Yuan) yang sedang ekspansi ke Asia Tenggara. Sebagai simbol persahabatan, Kertanegara mengirim Arca Amoghapasa ke Dharmasraya.',
 q:'Tujuan strategis utama Ekspedisi Pamalayu yang paling tepat adalah ....',
@@ -404,7 +410,7 @@ o:['Menguasai jalur perdagangan rempah-rempah di Selat Malaka',
 a:1,
 e:'Ekspedisi Pamalayu = DIPLOMASI PERTAHANAN, bukan sekadar penaklukan. Ancaman utama saat itu adalah Kubilai Khan (Mongol). Kertanegara membangun aliansi dengan Dharmasraya dan mengirim Arca Amoghapasa sebagai simbol persahabatan. Ini menunjukkan visi geopolitik Kertanegara yang maju.'},
 
-/* 12. MAJAPAHIT — PERANG BUBAT */
+/* 12 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Pelajaran Perang Bubat',
 s:'Perang Bubat (1357 M) terjadi ketika rombongan Kerajaan Sunda datang ke Majapahit untuk pernikahan Dyah Pitaloka dengan Hayam Wuruk. Namun, Patih Gajah Mada menuntut agar pernikahan tersebut dijadikan simbol pengakuan kekuasaan Majapahit atas Sunda — dengan kata lain, Dyah Pitaloka diserahkan sebagai "upeti", bukan sebagai calon ratu yang setara. Raja Sunda menolak. Pertempuran pun meletus dan menewaskan seluruh rombongan Sunda, termasuk Dyah Pitaloka yang memilih bunuh diri.',
 q:'Pelajaran diplomasi paling berharga dari tragedi Perang Bubat adalah ....',
@@ -416,7 +422,7 @@ o:['Bahwa kekuatan militer selalu lebih efektif daripada diplomasi',
 a:1,
 e:'Akar tragedi = Gajah Mada memperlakukan pernikahan sebagai simbol TAKLUK, bukan persekutuan setara. Raja Sunda merasa martabatnya diinjak. Pelajarannya: diplomasi yang berhasil membutuhkan kesetaraan dan saling menghormati.'},
 
-/* 13. MAJAPAHIT — MAKNA PALAPA */
+/* 13 */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Arti kata palapa',
 s:'Sumpah Palapa yang diucapkan Gajah Mada berbunyi: "Sira Gajah Mada pepatih amungkubumi tan ayun amukti palapa, sira Gajah Mada: lamun huwus kalah Nusantara ingsun amukti palapa..." Kata "palapa" dalam konteks ini merujuk pada kenikmatan duniawi atau rempah-rempah. Jadi, Sumpah Palapa berarti Gajah Mada bersumpah TIDAK akan menikmati kenikmatan duniawi sebelum Nusantara bersatu.',
 q:'Dengan memahami arti kata "palapa", makna Sumpah Palapa yang paling tepat adalah ....',
@@ -428,7 +434,7 @@ o:['Gajah Mada bersumpah tidak akan makan rempah-rempah sampai Majapahit jaya',
 a:1,
 e:'"Palapa" = kenikmatan duniawi / rempah-rempah. Jadi Sumpah Palapa bukan tentang makan rempah, tetapi bersumpah menahan diri dari segala kenikmatan pribadi sampai cita-cita besar tercapai: menyatukan Nusantara.'},
 
-/* 14. MAJAPAHIT — NEGARAKERTAGAMA */
+/* 14 */
 {t:'PG',l:'Applying',d:'Sedang',i:'Fungsi Negarakertagama',
 s:'Kakawin Negarakertagama ditulis oleh Mpu Prapanca pada tahun 1365 M. Karya ini mencatat perjalanan Hayam Wuruk mengelilingi wilayah Majapahit, silsilah raja-raja, upacara-upacara kerajaan, serta daftar wilayah yang mengakui kekuasaan Majapahit. Sebagian besar isi Negarakertagama adalah pujian terhadap raja, tetapi di dalamnya tersimpan informasi geografis dan politik yang sangat berharga.',
 q:'Sebagai sumber sejarah, nilai tertinggi Negarakertagama terletak pada ....',
@@ -440,7 +446,7 @@ o:['Gaya bahasanya yang indah sebagai karya sastra',
 a:1,
 e:'Negarakertagama = sumber primer utama Majapahit. Meski berbentuk pujian, isinya merekam daftar wilayah, struktur pemerintahan, ritual, dan silsilah yang tidak ditemukan di sumber lain. Nilai tertingginya = rekaman informasi faktual di balik bentuk sastranya.'},
 
-/* 15. MPU TANTULAR — BHINNEKA TUNGGAL IKA */
+/* 15 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Makna asli Bhinneka Tunggal Ika',
 s:'Frasa "Bhinneka Tunggal Ika" berasal dari Kakawin Sutasoma karya Mpu Tantular (abad ke-14 M). Dalam konteks aslinya, frasa ini merujuk pada kerukunan antara pemeluk agama Siwa dan Buddha di Majapahit. Kalimat lengkapnya: "Bhinneka Tunggal Ika tan hana dharma mangrwa" — "berbeda-beda tetapi satu, tidak ada kebenaran yang mendua."',
 q:'Perbedaan konteks asli dan konteks modern frasa "Bhinneka Tunggal Ika" menunjukkan bahwa ....',
@@ -452,7 +458,7 @@ o:['Frasa tersebut salah dikutip oleh para pendiri bangsa',
 a:1,
 e:'Konteks asli: toleransi Hindu-Buddha. Konteks modern: persatuan dalam keberagaman (suku, agama, ras, bahasa). Inti nilainya SAMA: persatuan dalam perbedaan. Pemaknaan yang meluas seperti ini wajar dalam sejarah — bukan penyimpangan, melainkan aktualisasi nilai.'},
 
-/* 16. AKULTURASI — MASJID DEMAK */
+/* 16 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Arsitektur Masjid Demak',
 s:'Masjid Agung Demak (akhir abad ke-15 M) memiliki atap tumpang tiga lapis yang menyerupai struktur candi Hindu-Buddha. Gapuranya juga bergaya klasik Jawa. Di dalamnya terdapat "Pintu Bledeg" yang konon dibuat oleh Ki Ageng Selo, dan ukiran-ukiran bermotif tumbuhan yang juga ditemukan di candi-candi sebelumnya. Masjid ini dibangun oleh Wali Songo sebagai pusat dakwah Islam di Jawa.',
 q:'Kesimpulan yang paling tepat tentang Masjid Agung Demak adalah ....',
@@ -464,7 +470,7 @@ o:['Masjid tersebut adalah masjid Hindu yang dialihfungsikan menjadi masjid Isla
 a:1,
 e:'Masjid Demak = bukti akulturasi. Atap tumpang (pengaruh candi), gapura klasik Jawa, ukiran tumbuhan → semua elemen Hindu-Buddha diadopsi ke dalam arsitektur Islam. Bukan penghapusan, tetapi keberlanjutan. Ini menunjukkan dakwah Islam di Nusantara bersifat akomodatif terhadap budaya lokal.'},
 
-/* 17. KALENDER — SOMA */
+/* 17 */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Nama hari dari Sanskerta',
 s:'Nama-nama hari dalam bahasa Indonesia — Senin, Selasa, Rabu, Kamis, Jumat, Sabtu, Minggu — sebagian besar diserap dari bahasa Sanskerta melalui tradisi Hindu-Buddha. Nama-nama aslinya dalam Sanskerta adalah Soma, Mangala, Budha, Brihaspati, Sukra, Sani, dan Aditya. Sistem tujuh hari ini berasal dari tradisi India yang kemudian menyebar ke seluruh Nusantara.',
 q:'Berdasarkan pola serapan tersebut, hari "Senin" dalam bahasa Sanskerta disebut ....',
@@ -472,7 +478,7 @@ o:['Aditya','Sani','Soma','Budha','Mangala'],
 a:2,
 e:'Senin = Soma (dewa bulan dalam mitologi Hindu). Selasa = Mangala, Rabu = Budha, Kamis = Brihaspati, Jumat = Sukra, Sabtu = Sani, Minggu = Aditya (matahari).'},
 
-/* 18. BALI — PURA BESAKIH */
+/* 18 */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Keberlanjutan Hindu di Bali',
 s:'Ketika kerajaan-kerajaan Islam bangkit di Jawa dan Sumatera, Bali tetap mempertahankan tradisi Hindu. Pura Besakih di lereng Gunung Agung disebut sebagai "Mother Temple" (Pura Induk) dan memiliki tiga kompleks utama yang melambangkan Trimurti: Brahma, Wisnu, dan Siwa. Sistem irigasi tradisional Bali — Subak — juga merupakan warisan budaya yang dipengaruhi konsep Hindu tentang keselarasan alam.',
 q:'Keberlanjutan tradisi Hindu di Bali hingga kini menunjukkan bahwa ....',
@@ -484,9 +490,7 @@ o:['Bali menolak segala pengaruh luar',
 a:2,
 e:'Bali = contoh keberlanjutan budaya. Meskipun di sekitarnya bangkit kerajaan Islam, Bali tetap mempertahankan Hindu. Ini bukti bahwa akulturasi bukan berarti penghapusan — sebuah tradisi bisa terus hidup selama masyarakatnya merawatnya.'},
 
-/* ============ MCMA (7 SOAL) ============ */
-
-/* 19. MCMA — TEORI & KELEMAHAN */
+/* 19 */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Empat teori masuk Hindu-Buddha',
 s:'Empat teori utama masuknya Hindu-Buddha ke Nusantara: (1) Teori Ksatria — dibawa bangsawan India yang datang dan mendirikan kerajaan; didukung C.C. Berg dan Mookerji. (2) Teori Brahmana — dibawa kaum rohaniwan yang diundang penguasa lokal; didukung J.C. van Leur. (3) Teori Waisya — dibawa pedagang India yang singgah; didukung N.J. Krom. (4) Teori Arus Balik — dibawa orang Nusantara yang belajar ke India lalu kembali; didukung F.D.K. Bosch. Setiap teori memiliki bukti dan kelemahan masing-masing.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai teori-teori tersebut? (Pilih lebih dari satu)',
@@ -498,7 +502,7 @@ o:['Teori Ksatria menekankan peran bangsawan India dalam pendirian kerajaan.',
 a:[0,1,2,3],
 e:'A, B, C, D benar. E salah — setiap teori menekankan kelompok berbeda (Ksatria, Brahmana, Waisya, atau orang Nusantara sendiri). Keempatnya saling melengkapi, bukan saling menggantikan.'},
 
-/* 20. MCMA — ISI PRASASTI YUPA */
+/* 20 */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Analisis isi Prasasti Yupa',
 s:'Prasasti Yupa (7 buah) peninggalan Kerajaan Kutai memuat beberapa informasi penting: (1) silsilah Raja Kudungga → Aswawarman → Mulawarman; (2) penyebutan Aswawarman sebagai "vamsakarta" (pendiri dinasti); (3) upacara kurban 20.000 ekor sapi oleh Mulawarman untuk kaum Brahmana; (4) pemberian tanah dan hadiah lain kepada Brahmana; (5) pujian terhadap kemuliaan Mulawarman. Prasasti ditulis dalam bahasa Sanskerta dan aksara Pallawa.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai isi Prasasti Yupa? (Pilih lebih dari satu)',
@@ -510,7 +514,7 @@ o:['Prasasti Yupa mencatat silsilah tiga raja Kutai: Kudungga, Aswawarman, dan M
 a:[0,1,2],
 e:'A, B, C benar. D salah — Yupa memakai bahasa Sanskerta, bukan Melayu Kuno. E salah — Kutai beraliran Hindu (Siwa), bukan Buddha.'},
 
-/* 21. MCMA — PRASASTI TARUMANEGARA */
+/* 21 */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Analisis 5 prasasti Tarumanegara',
 s:'Tarumanegara meninggalkan beberapa prasasti penting: (1) Prasasti Ciaruteun — telapak kaki Purnawarman disamakan dengan Wisnu; (2) Prasasti Kebon Kopi — gambar telapak kaki gajah Airawata; (3) Prasasti Tugu — penggalian Sungai Gomati & Candrabhaga; (4) Prasasti Jambu — pujian atas keperkasaan Purnawarman; (5) Prasasti Muara Cianten — memuat gambar sulur-suluran. Semua prasasti ini menegaskan bahwa Tarumanegara adalah kerajaan Hindu beraliran Wisnu.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai prasasti-prasasti Tarumanegara? (Pilih lebih dari satu)',
@@ -522,7 +526,7 @@ o:['Prasasti Ciaruteun memuat telapak kaki Purnawarman yang disamakan dengan Wis
 a:[0,1,2,3],
 e:'A, B, C, D benar. E salah — prasasti Tarumanegara ditulis dalam bahasa Sanskerta & aksara Pallawa, bukan Melayu Kuno. Melayu Kuno adalah ciri khas prasasti Sriwijaya.'},
 
-/* 22. MCMA — KEMUNDURAN SRIWIJAYA */
+/* 22 */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Faktor kemunduran Sriwijaya',
 s:'Sriwijaya mencapai puncak kejayaan pada abad ke-9 hingga ke-11 M. Namun, kerajaan ini kemudian mengalami kemunduran drastis. Faktor internal: melemahnya kontrol atas jalur maritim, konflik internal antarpenguasa, dan menurunnya pendapatan dari perdagangan. Faktor eksternal: serangan Kerajaan Cola Mandala dari India Selatan (1017 & 1025 M), munculnya kerajaan-kerajaan baru di Jawa (Singasari & Majapahit), serta pergeseran jalur perdagangan global.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai kemunduran Sriwijaya? (Pilih lebih dari satu)',
@@ -534,7 +538,7 @@ o:['Serangan Kerajaan Cola Mandala dari India Selatan menjadi salah satu faktor 
 a:[0,1,2,4],
 e:'A, B, C, E benar. D salah — Mongol tidak menyerang Sriwijaya. Serangan besar justru datang dari Cola Mandala (India Selatan) pada 1017 & 1025 M.'},
 
-/* 23. MCMA — PENINGGALAN MATARAM KUNO */
+/* 23 */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Peninggalan dua dinasti',
 s:'Mataram Kuno diperintah oleh dua dinasti yang berbeda agama. Dinasti Sanjaya (Hindu Siwa) meninggalkan Candi Prambanan, Candi Gedong Songo, dan Candi Sambisari. Dinasti Syailendra (Buddha Mahayana) meninggalkan Candi Borobudur, Candi Mendut, Candi Pawon, dan Candi Sewu. Meski berbeda keyakinan, kedua dinasti hidup harmonis dan saling mendukung pembangunan candi.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai peninggalan Mataram Kuno? (Pilih lebih dari satu)',
@@ -546,7 +550,7 @@ o:['Candi Prambanan adalah peninggalan Dinasti Sanjaya.',
 a:[0,1,2],
 e:'A, B, C benar. D salah — Prambanan = Sanjaya (Hindu), Borobudur = Syailendra (Buddha). E salah — Mataram Kuno meninggalkan peninggalan Hindu DAN Buddha.'},
 
-/* 24. MCMA — PUJANGGA & KARYA */
+/* 24 */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Pujangga Nusantara & karyanya',
 s:'Pujangga-pujangga besar Nusantara: (1) Mpu Prapanca — penulis Kakawin Negarakertagama (1365 M), sumber utama sejarah Majapahit; (2) Mpu Tantular — penulis Kakawin Sutasoma & Arjunawijaya, sumber frasa Bhinneka Tunggal Ika; (3) Mpu Sedah — memulai Kakawin Bharatayuddha pada masa Jayabaya (1157 M); (4) Mpu Panuluh — menyelesaikan Bharatayuddha dan menulis Kakawin Hariwangsa & Gatotkacasraya. Karya mereka menjadi sumber sejarah primer yang tak ternilai.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai pujangga & karya mereka? (Pilih lebih dari satu)',
@@ -558,7 +562,7 @@ o:['Mpu Prapanca menulis Kakawin Negarakertagama.',
 a:[0,1,2,3],
 e:'A, B, C, D benar. E salah — Prapanca & Tantular = era Majapahit; Sedah & Panuluh = era Kediri (Jayabaya). Sriwijaya tidak terkait langsung dengan pujangga-pujangga ini.'},
 
-/* 25. MCMA — BENTUK AKULTURASI ISLAM */
+/* 25 */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Bentuk akulturasi Islam–Hindu Buddha',
 s:'Islam masuk ke Nusantara secara damai dan berakulturasi dengan budaya Hindu-Buddha. Bentuk akulturasinya antara lain: (1) atap tumpang pada masjid (meniru struktur candi); (2) penggunaan wayang kulit sebagai media dakwah (Sunan Kalijaga); (3) gamelan sekaten di Masjid Demak; (4) tradisi selamatan/nyadran yang diadopsi dari ritual Hindu; (5) arsitektur Menara Kudus yang menyerupai candi; (6) sistem kalender Jawa yang memadukan Saka & Hijriah.',
 q:'Berdasarkan stimulus, manakah pernyataan yang TEPAT mengenai akulturasi Islam-Hindu Buddha? (Pilih lebih dari satu)',
@@ -570,9 +574,7 @@ o:['Atap tumpang pada masjid kuno adalah bentuk akulturasi dengan arsitektur Hin
 a:[0,1,2,3],
 e:'A, B, C, D benar. E salah — Islam BERAKULTURASI dengan tradisi lokal, bukan menghapus. Justru karena akomodatif, Islam mudah diterima masyarakat Nusantara.'},
 
-/* ============ KATEGORI (5 SOAL) ============ */
-
-/* 26. KATEGORI — KRONOLOGI KERAJAAN */
+/* 26 */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi kerajaan Hindu-Buddha',
 s:'Kerajaan-kerajaan Hindu-Buddha di Nusantara berdiri secara bergantian: Kutai (± 400 M) → Tarumanegara (± 450 M) → Sriwijaya (± 683 M) → Mataram Kuno (± 750 M) → Kediri (1042 M) → Singasari (1222 M) → Majapahit (1293 M). Kronologi ini menjadi dasar pemahaman urutan perkembangan politik dan budaya Nusantara pada masa klasik.',
 q:'Berdasarkan stimulus, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -583,7 +585,7 @@ st:[
  {x:'Kediri runtuh setelah berdirinya Singasari.',a:'Tidak Sesuai'}],
 e:'1 Sesuai (Kutai 400 M < Tarumanegara 450 M). 2 Sesuai (Sriwijaya 683 M < Mataram Kuno 750 M). 3 Tidak Sesuai (Singasari 1222 M dulu, Majapahit 1293 M). 4 Tidak Sesuai (Kediri runtuh 1222 M OLEH Ken Arok pendiri Singasari).'},
 
-/* 27. KATEGORI — TEORI & PENDUKUNG */
+/* 27 */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Teori & tokoh pendukung',
 s:'Beberapa teori masuknya Hindu-Buddha memiliki pendukung berbeda: Teori Ksatria → C.C. Berg & Mookerji; Teori Brahmana → J.C. van Leur; Teori Waisya → N.J. Krom; Teori Arus Balik → F.D.K. Bosch. Masing-masing teori didasarkan pada bukti empiris yang berbeda: prasasti, penggunaan bahasa, jalur perdagangan, atau praktik keagamaan.',
 q:'Berdasarkan stimulus, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -594,7 +596,7 @@ st:[
  {x:'C.C. Berg adalah pendukung Teori Waisya.',a:'Tidak Sesuai'}],
 e:'1 Sesuai (van Leur → Brahmana). 2 Tidak Sesuai (Krom → Waisya). 3 Sesuai (Bosch → Arus Balik). 4 Tidak Sesuai (Berg → Ksatria).'},
 
-/* 28. KATEGORI — SISTEM PEMERINTAHAN */
+/* 28 */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Perbandingan sistem pemerintahan',
 s:'Sriwijaya menerapkan sistem federatif-maritim: pusat di Palembang mengendalikan wilayah melalui kedatuan yang dipimpin para datu. Majapahit menerapkan sistem sentralistis-agraris: raja sebagai pusat, dibantu Sapta Prabu, Patih (perdana menteri), dan Bhre (penguasa daerah otonom). Keduanya memiliki keunggulan masing-masing: Sriwijaya unggul dalam jaringan maritim, Majapahit unggul dalam birokrasi darat.',
 q:'Berdasarkan stimulus, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -605,7 +607,7 @@ st:[
  {x:'Sriwijaya menerapkan sistem sentralistis-agraris seperti Majapahit.',a:'Tidak Sesuai'}],
 e:'1 Sesuai. 2 Sesuai. 3 Sesuai (Patih = perdana menteri). 4 Tidak Sesuai — Sriwijaya = FEDERATIF-MARITIM, berbeda dari Majapahit yang sentralistis-agraris.'},
 
-/* 29. KATEGORI — JENIS SUMBER & KARYA */
+/* 29 */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Jenis sumber sejarah Hindu-Buddha',
 s:'Sumber sejarah Hindu-Buddha sangat beragam: prasasti (batu bertulis) seperti Yupa & Kedukan Bukit; kakawin (puisi klasik) seperti Negarakertagama & Sutasoma; kidung (puisi pendek Jawa Pertengahan) seperti Kidung Sunda; naskah (prosa sejarah) seperti Pararaton & Babad Tanah Jawi; dan sumber asing seperti catatan I-Tsing & Ma Huan.',
 q:'Berdasarkan stimulus, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -616,7 +618,7 @@ st:[
  {x:'Catatan I-Tsing termasuk sumber asing (eksternal) tentang Nusantara.',a:'Sesuai'}],
 e:'1 Sesuai. 2 Sesuai (kakawin = puisi klasik). 3 Tidak Sesuai — Pararaton adalah NASKAH/PROSA sejarah, bukan prasasti. 4 Sesuai — I-Tsing adalah sumber Tiongkok.'},
 
-/* 30. KATEGORI — FAKTA VS INTERPRETASI PERANG BUBAT */
+/* 30 */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Fakta vs interpretasi sejarah',
 s:'Perang Bubat (1357 M) dicatat dalam Kidung Sunda dan beberapa naskah Jawa. Fakta yang disepakati sejarawan: (1) ada rombongan Sunda yang datang ke Majapahit untuk pernikahan; (2) terjadi pertempuran yang menewaskan Raja Sunda dan Dyah Pitaloka; (3) peristiwa ini terjadi pada masa Hayam Wuruk. Namun interpretasi tentang "siapa yang paling bersalah" — Gajah Mada, Hayam Wuruk, atau Raja Sunda — masih diperdebatkan hingga kini karena sumber utama (Kidung Sunda) ditulis dari sudut pandang Sunda.',
 q:'Berdasarkan stimulus, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -630,44 +632,80 @@ e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — interpretasi tentang "siapa paling ber
 ];
 
 /* ============================================================
-   STATE
+   STATE & TIMER
    ============================================================ */
-let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
-let siswaName='',siswaSchool='',siswaClass='';
-let displayedQuestions=[];
+const TOTAL_TIME = 90 * 60; // 90 menit = 5400 detik
+let currentQ = 0;
+let userAnswers = {};
+let revealed = {};
+let displayedQuestions = [];
+let siswaName = '', siswaSchool = '', siswaClass = '';
+let timeRemaining = TOTAL_TIME;
+let timerInterval = null;
+let testLocked = false;
+let resultShown = false;
+let notified = {15:false, 10:false, 5:false};
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function showToast(msg, warning){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.className = 'toast show' + (warning ? ' warning' : '');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.classList.remove('show'); }, 4500);
+}
+
+function resetTimerBox(){
+  const box = document.getElementById('testTimerBox');
+  if(!box) return;
+  box.style.color = 'var(--primary)';
+  box.style.borderColor = 'var(--line)';
+  box.style.background = 'linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06))';
+}
+
 function goIdentity(){
   stopTimer();
+  testLocked = false;
+  resultShown = false;
+  timeRemaining = TOTAL_TIME;
   showSection('identity');
-  document.getElementById('progressThumb').style.width='0%';
-  document.getElementById('testTimer').textContent='00:00';
-  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+  document.getElementById('progressThumb').style.width = '0%';
+  document.getElementById('testTimer').textContent = '90:00';
+  resetTimerBox();
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.remove('locked');
+  currentQ = 0; userAnswers = {}; revealed = {}; displayedQuestions = [];
 }
 
 function startTestWithIdentity(){
-  const name=document.getElementById('inpName').value.trim();
-  const school=document.getElementById('inpSchool').value.trim();
-  const cls=document.getElementById('inpClass').value.trim();
-  if(!name||!school||!cls){
+  const name = document.getElementById('inpName').value.trim();
+  const school = document.getElementById('inpSchool').value.trim();
+  const cls = document.getElementById('inpClass').value.trim();
+  if(!name || !school || !cls){
     alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
     return;
   }
-  siswaName=name;siswaSchool=school;siswaClass=cls;
-  document.getElementById('hdrName').textContent=siswaName;
-  document.getElementById('hdrSchool').textContent=siswaSchool;
-  document.getElementById('hdrClass').textContent=siswaClass;
+  siswaName = name; siswaSchool = school; siswaClass = cls;
+  document.getElementById('hdrName').textContent = siswaName;
+  document.getElementById('hdrSchool').textContent = siswaSchool;
+  document.getElementById('hdrClass').textContent = siswaClass;
 
-  currentQ=0;userAnswers={};revealed={};
-  displayedQuestions=shuffle([...Q4]);
+  currentQ = 0; userAnswers = {}; revealed = {};
+  testLocked = false; resultShown = false;
+  displayedQuestions = shuffle([...Q4]);
 
-  document.getElementById('testTitle').textContent='Masa Hindu-Buddha';
-  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
-  document.getElementById('totCount').textContent=displayedQuestions.length;
+  document.getElementById('testTitle').textContent = 'Masa Hindu-Buddha';
+  document.getElementById('testSub').textContent = `Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent = displayedQuestions.length;
+
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.remove('locked');
 
   showSection('test');
   renderQuestion();
@@ -677,9 +715,12 @@ function startTestWithIdentity(){
 }
 
 function retryTest(){
-  currentQ=0;userAnswers={};revealed={};
-  displayedQuestions=shuffle([...Q4]);
-  document.getElementById('totCount').textContent=displayedQuestions.length;
+  currentQ = 0; userAnswers = {}; revealed = {};
+  testLocked = false; resultShown = false;
+  displayedQuestions = shuffle([...Q4]);
+  document.getElementById('totCount').textContent = displayedQuestions.length;
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.remove('locked');
   showSection('test');
   renderQuestion();
   renderQMap();
@@ -687,182 +728,445 @@ function retryTest(){
   updateProgress();
 }
 
-function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
-function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
-function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function startTimer(){
+  stopTimer();
+  timeRemaining = TOTAL_TIME;
+  notified = {15:false, 10:false, 5:false};
+  testLocked = false;
+  updateTimerDisplay();
+  timerInterval = setInterval(tickTimer, 1000);
+}
 
-function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
-function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+function stopTimer(){
+  if(timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function updateTimerDisplay(){
+  const el = document.getElementById('testTimer');
+  const box = document.getElementById('testTimerBox');
+  if(!el || !box) return;
+  const m = String(Math.floor(timeRemaining / 60)).padStart(2,'0');
+  const s = String(timeRemaining % 60).padStart(2,'0');
+  el.textContent = `${m}:${s}`;
+  if(timeRemaining <= 300){
+    box.style.color = '#EF4444';
+    box.style.borderColor = 'rgba(239,68,68,.55)';
+    box.style.background = 'rgba(239,68,68,.12)';
+  } else if(timeRemaining <= 600){
+    box.style.color = '#FBBF24';
+    box.style.borderColor = 'rgba(251,191,36,.55)';
+    box.style.background = 'rgba(251,191,36,.1)';
+  } else {
+    resetTimerBox();
+  }
+}
+
+function tickTimer(){
+  timeRemaining--;
+  updateTimerDisplay();
+
+  if(timeRemaining === 15*60 && !notified[15]){
+    notified[15] = true;
+    showToast('⏰ Waktu tersisa 15 menit!', false);
+  }
+  if(timeRemaining === 10*60 && !notified[10]){
+    notified[10] = true;
+    showToast('⏰ Waktu tersisa 10 menit!', true);
+  }
+  if(timeRemaining === 5*60 && !notified[5]){
+    notified[5] = true;
+    showToast('⏰ Waktu tersisa 5 menit! Segera selesaikan jawabanmu.', true);
+  }
+
+  if(timeRemaining <= 0){
+    stopTimer();
+    testLocked = true;
+    showToast('⏰ Waktu habis! Jawaban telah dikunci.', true);
+    const qc = document.getElementById('qcard');
+    if(qc) qc.classList.add('locked');
+    setTimeout(() => {
+      if(!resultShown) finishTest(true);
+    }, 1600);
+  }
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function typeLabel(t){
+  if(t==='PG') return 'Pilihan Ganda';
+  if(t==='MCMA') return 'PG Kompleks (MCMA)';
+  if(t==='KATEGORI') return 'PG Kompleks Kategori';
+  return t;
+}
 
 function renderQuestion(){
-  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
-  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
-  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
-  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
-  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
-  const stimEl=document.getElementById('qStim');
-  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
-  document.getElementById('qText').textContent=q.q;
-  const hintEl=document.getElementById('qHint');
-  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
-  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
-  else{hintEl.style.display='none';}
-  const area=document.getElementById('qArea');area.innerHTML='';
+  const qs = displayedQuestions;
+  if(!qs || !qs[currentQ]) return;
+  const q = qs[currentQ];
+  const total = qs.length;
 
-  if(q.t==='PG'){
-    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
-    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
-      if(ua===i)div.classList.add('sel');
-      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
-      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
-    area.appendChild(optsEl);
-  }else if(q.t==='MCMA'){
-    const checksEl=document.createElement('div');checksEl.className='checks';
-    const labels=['A','B','C','D','E'];
+  document.getElementById('qNum').innerHTML = `Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent = `${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent = `Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML =
+    `<span class="badge ${q.t}">${typeLabel(q.t)}</span>
+     <span class="badge lv">${q.l}</span>
+     <span class="badge df">${q.d}</span>`;
+
+  const stimEl = document.getElementById('qStim');
+  if(q.s){
+    stimEl.style.display = 'block';
+    document.getElementById('qStimTxt').textContent = q.s;
+  } else {
+    stimEl.style.display = 'none';
+  }
+
+  document.getElementById('qText').textContent = q.q;
+
+  const hintEl = document.getElementById('qHint');
+  if(q.t === 'MCMA'){
+    hintEl.style.display = 'block';
+    hintEl.textContent = 'Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';
+  } else if(q.t === 'KATEGORI'){
+    hintEl.style.display = 'block';
+    hintEl.textContent = 'Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';
+  } else {
+    hintEl.style.display = 'none';
+  }
+
+  const area = document.getElementById('qArea');
+  area.innerHTML = '';
+
+  if(q.t === 'PG'){
+    const optsEl = document.createElement('div');
+    optsEl.className = 'opts';
+    const labels = ['A','B','C','D','E'];
     q.o.forEach((opt,i)=>{
-      const div=document.createElement('div');div.className='check';
-      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
-      const checked=uaArr.includes(i);
-      if(checked)div.classList.add('sel');
+      const div = document.createElement('div');
+      div.className = 'opt';
+      const ua = userAnswers[currentQ];
+      if(ua === i) div.classList.add('sel');
       if(revealed[currentQ]){
-        const isCorrect=q.a.includes(i);
-        if(isCorrect)div.classList.add('correct');
-        else if(checked)div.classList.add('wrong');
+        if(i === q.a) div.classList.add('correct');
+        else if(ua === i) div.classList.add('wrong');
       }
-      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
-      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
-      div.onclick=()=>selectOption(i,q.t);
+      div.innerHTML = `<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick = () => selectOption(i, q.t);
+      optsEl.appendChild(div);
+    });
+    area.appendChild(optsEl);
+  } else if(q.t === 'MCMA'){
+    const checksEl = document.createElement('div');
+    checksEl.className = 'checks';
+    const labels = ['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div = document.createElement('div');
+      div.className = 'check';
+      const ua = userAnswers[currentQ];
+      const uaArr = Array.isArray(ua) ? ua : [];
+      const checked = uaArr.includes(i);
+      if(checked) div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect = q.a.includes(i);
+        if(isCorrect) div.classList.add('correct');
+        else if(checked) div.classList.add('wrong');
+      }
+      const showCheck = checked || (revealed[currentQ] && q.a.includes(i));
+      div.innerHTML = `<span class="box">${showCheck ? '<i class="fas fa-check"></i>' : ''}</span>
+                       <span class="clbl">${labels[i]}</span>
+                       <span class="txt">${opt}</span>`;
+      div.onclick = () => selectOption(i, q.t);
       checksEl.appendChild(div);
     });
     area.appendChild(checksEl);
-  }else if(q.t==='KATEGORI'){
-    const wrap=document.createElement('div');wrap.className='kat-wrap';
-    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
-    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
-      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
-    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  } else if(q.t === 'KATEGORI'){
+    const wrap = document.createElement('div');
+    wrap.className = 'kat-wrap';
+    let html = '<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{
+      const ua = userAnswers[currentQ] || {};
+      const val = ua[i] || '';
+      html += `<tr>
+        <td><strong>${i+1}</strong></td>
+        <td>${s.x}</td>
+        <td>
+          <div class="kat-actions">
+            <button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button>
+            <button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button>
+          </div>
+        </td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+    wrap.innerHTML = html;
+    area.appendChild(wrap);
   }
 
-  const expEl=document.getElementById('qExpl');
+  const expEl = document.getElementById('qExpl');
   if(revealed[currentQ]){
     expEl.classList.remove('hidden');
-    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
-  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+    expEl.innerHTML = `<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}
+      <div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  } else {
+    expEl.classList.add('hidden');
+    expEl.innerHTML = '';
+  }
 
-  document.getElementById('prevBtn').disabled=currentQ===0;
-  const isLast=currentQ===total-1;
-  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
-  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
-  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  const isLast = currentQ === total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden', isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden', !isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden', !!revealed[currentQ]);
+
+  const qc = document.getElementById('qcard');
+  if(qc) qc.classList.toggle('locked', testLocked);
 }
 
-function selectOption(idx,type){
-  if(revealed[currentQ])return;
-  if(type==='PG'){userAnswers[currentQ]=idx;}
-  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
-  renderQuestion();renderQMap();updateProgress();
+function selectOption(idx, type){
+  if(testLocked || revealed[currentQ]) return;
+  if(type === 'PG'){
+    userAnswers[currentQ] = idx;
+  } else if(type === 'MCMA'){
+    let arr = Array.isArray(userAnswers[currentQ]) ? [...userAnswers[currentQ]] : [];
+    const pos = arr.indexOf(idx);
+    if(pos >= 0) arr.splice(pos,1);
+    else arr.push(idx);
+    userAnswers[currentQ] = arr;
+  }
+  renderQuestion(); renderQMap(); updateProgress();
 }
 
-function setKategori(idx,cat){
-  if(revealed[currentQ])return;
-  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
-  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+function setKategori(idx, cat){
+  if(testLocked || revealed[currentQ]) return;
+  if(!userAnswers[currentQ] || typeof userAnswers[currentQ] !== 'object'){
+    userAnswers[currentQ] = {};
+  }
+  userAnswers[currentQ][idx] = cat;
+  renderQuestion(); renderQMap(); updateProgress();
 }
 
-function revealQ(){revealed[currentQ]=true;renderQuestion();}
-function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
-function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+function revealQ(){
+  if(testLocked) return;
+  revealed[currentQ] = true;
+  renderQuestion();
+}
+
+function prevQ(){
+  if(testLocked) return;
+  if(currentQ > 0){ currentQ--; renderQuestion(); renderQMap(); }
+}
+
+function nextQ(){
+  if(testLocked) return;
+  const total = displayedQuestions.length;
+  if(currentQ < total-1){ currentQ++; renderQuestion(); renderQMap(); }
+}
+
+function isAnswered(i, q){
+  const ua = userAnswers[i];
+  if(ua === undefined || ua === null) return false;
+  if(q.t === 'MCMA') return Array.isArray(ua) && ua.length > 0;
+  if(q.t === 'KATEGORI') return typeof ua === 'object' && Object.keys(ua).length > 0;
+  return true;
+}
+
+function countAnswered(){
+  let c = 0;
+  displayedQuestions.forEach((q,i)=>{ if(isAnswered(i,q)) c++; });
+  return c;
+}
 
 function renderQMap(){
-  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  const map = document.getElementById('qmap');
+  map.innerHTML = '';
+  const total = displayedQuestions.length;
   for(let i=0;i<total;i++){
-    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
-    const ua=userAnswers[i];let answered=false;
-    if(ua!==undefined){
-      if(Array.isArray(ua))answered=ua.length>0;
-      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
-      else answered=true;
+    const btn = document.createElement('button');
+    btn.className = 'qmap-btn';
+    btn.textContent = i+1;
+    const ua = userAnswers[i];
+    let answered = false;
+    if(ua !== undefined){
+      if(Array.isArray(ua)) answered = ua.length > 0;
+      else if(typeof ua === 'object'){
+        const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
+        answered = Object.keys(ua).length === stCount;
+      }
+      else answered = true;
     }
-    if(answered)btn.classList.add('ans');
-    if(i===currentQ)btn.classList.add('cur');
-    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    if(answered) btn.classList.add('ans');
+    if(i === currentQ) btn.classList.add('cur');
+    btn.onclick = () => {
+      if(testLocked) return;
+      currentQ = i; renderQuestion(); renderQMap();
+    };
     map.appendChild(btn);
   }
 }
 
 function updateProgress(){
-  const total=displayedQuestions.length;let answered=0;
-  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
-    if(Array.isArray(ua)){if(ua.length>0)answered++;}
-    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
-    else answered++;}
-  document.getElementById('ansCount').textContent=answered;
-  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+  const total = displayedQuestions.length;
+  let answered = 0;
+  for(let i=0;i<total;i++){
+    const ua = userAnswers[i];
+    if(ua === undefined) continue;
+    if(Array.isArray(ua)){ if(ua.length > 0) answered++; }
+    else if(typeof ua === 'object'){
+      const stCount = displayedQuestions[i].st ? displayedQuestions[i].st.length : 0;
+      if(Object.keys(ua).length === stCount) answered++;
+    }
+    else answered++;
+  }
+  document.getElementById('ansCount').textContent = answered;
+  document.getElementById('progressThumb').style.width = ((answered/total)*100) + '%';
 }
 
-function isCorrect(q,ua){
-  if(ua===undefined||ua===null)return false;
-  if(q.t==='PG')return ua===q.a;
-  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
-  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+function isCorrect(q, ua){
+  if(ua === undefined || ua === null) return false;
+  if(q.t === 'PG') return ua === q.a;
+  if(q.t === 'MCMA'){
+    if(!Array.isArray(ua)) return false;
+    const c = [...q.a].sort().join(',');
+    const u = [...ua].sort().join(',');
+    return c === u;
+  }
+  if(q.t === 'KATEGORI'){
+    if(typeof ua !== 'object') return false;
+    for(let i=0;i<q.st.length;i++){
+      if(ua[i] !== q.st[i].a) return false;
+    }
+    return true;
+  }
   return false;
 }
 
-function finishTest(){
+function finishTest(auto){
+  if(resultShown) return;
+
+  if(!auto && !testLocked){
+    const answeredNow = countAnswered();
+    const totalNow = displayedQuestions.length;
+    const unansweredNow = totalNow - answeredNow;
+    const msg = unansweredNow > 0
+      ? `Masih ada ${unansweredNow} soal belum terjawab. Yakin ingin menyelesaikan tes?`
+      : 'Yakin ingin menyelesaikan tes?';
+    if(!confirm(msg)) return;
+  }
+
+  resultShown = true;
+  testLocked = true;
   stopTimer();
-  const qs=displayedQuestions;const total=qs.length;let correct=0;
-  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
-  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+
+  const qs = displayedQuestions;
+  const total = qs.length;
+  let correct = 0;
+  const levelStats = {Knowing:{total:0,correct:0}, Applying:{total:0,correct:0}, Reasoning:{total:0,correct:0}};
+  const typeStats = {PG:{total:0,correct:0}, MCMA:{total:0,correct:0}, KATEGORI:{total:0,correct:0}};
+
   qs.forEach((q,i)=>{
-    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
-    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
-    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+    const ua = userAnswers[i];
+    const isC = isCorrect(q, ua);
+    if(isC) correct++;
+    levelStats[q.l].total++; if(isC) levelStats[q.l].correct++;
+    typeStats[q.t].total++; if(isC) typeStats[q.t].correct++;
   });
-  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
-  document.getElementById('finalScore').textContent=score;
-  document.getElementById('rsCorrect').textContent=correct;
-  document.getElementById('rsWrong').textContent=wrong;
-  document.getElementById('rsTotal').textContent=total;
-  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
-  document.getElementById('rsTime').textContent=`${m}:${s}`;
-  document.getElementById('resultIdentity').innerHTML=`
+
+  const answered = countAnswered();
+  const unanswered = total - answered;
+  const wrong = answered - correct;
+  const score = Math.round((correct / total) * 100);
+
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('rsCorrect').textContent = correct;
+  document.getElementById('rsWrong').textContent = wrong;
+  document.getElementById('rsUnanswered').textContent = unanswered;
+  document.getElementById('rsTotal').textContent = total;
+
+  const elapsed = TOTAL_TIME - timeRemaining;
+  const em = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const es = String(elapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent = `${em}:${es}`;
+
+  document.getElementById('resultIdentity').innerHTML = `
     <span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>
     <span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>
     <span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
-  let title='',sub='';
-  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Masa Hindu-Buddha sangat luar biasa.`;}
-  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
-  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
-  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Masa Hindu-Buddha dan coba lagi.`;}
-  document.getElementById('resultTitle').textContent=title;
-  document.getElementById('resultSub').textContent=sub;
-  const circle=document.getElementById('resultScore');
-  const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
-  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
-  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+
+  /* ==== WARNA SKOR: MERAH / KUNING / HIJAU ==== */
+  let scoreColor, scoreLabel;
+  if(score >= 70){ scoreColor = '#10B981'; scoreLabel = 'Tinggi'; }       // HIJAU
+  else if(score >= 55){ scoreColor = '#FBBF24'; scoreLabel = 'Sedang'; }  // KUNING
+  else { scoreColor = '#EF4444'; scoreLabel = 'Rendah'; }                 // MERAH
+
+  const circle = document.getElementById('resultScore');
+  circle.style.background = `conic-gradient(${scoreColor} 0%, ${scoreColor} ${score}%, var(--card-alt) ${score}%)`;
+  const sv = document.getElementById('finalScore');
+  sv.style.color = scoreColor;
+
+  const levelEl = document.getElementById('resultLevel');
+  if(levelEl){
+    levelEl.textContent = `Kategori Nilai: ${scoreLabel} (${score})`;
+    levelEl.style.color = scoreColor;
+  }
+
+  /* ==== JUDUL & PESAN POSITIF SESUAI JUMLAH DIJAWAB ==== */
+  let title = '', positive = '';
+  if(score >= 85){
+    title = 'Sangat Baik (A)';
+    positive = `Luar biasa, ${siswaName}! 🌟 Kamu menjawab ${answered} dari ${total} soal dan berhasil benar ${correct} soal. Pemahamanmu tentang Masa Hindu-Buddha sangat mengagumkan. Pertahankan semangat belajarmu!`;
+  } else if(score >= 70){
+    title = 'Baik (B)';
+    positive = `Hebat, ${siswaName}! 💪 Kamu sudah menjawab ${answered} soal dengan ${correct} jawaban benar. Sedikit lagi menuju sempurna — teruslah belajar dan jangan ragu bertanya!`;
+  } else if(score >= 55){
+    title = 'Cukup (C)';
+    positive = `Bagus, ${siswaName}! 📚 Kamu sudah menjawab ${answered} soal dan memperoleh ${correct} jawaban benar. Jangan berhenti di sini, tingkatkan lagi pemahamanmu tentang materi Hindu-Buddha!`;
+  } else {
+    title = 'Perlu Belajar (D)';
+    positive = `Jangan menyerah, ${siswaName}! 🌱 Kamu sudah mencoba menjawab ${answered} soal dan mendapat ${correct} jawaban benar. Kegigihan akan membuahkan hasil — teruslah belajar dan coba lagi!`;
+  }
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent = positive;
+
+  /* ==== REKAP LEVEL ==== */
+  const recapLv = document.getElementById('recapLv');
+  recapLv.innerHTML = '';
   ['Knowing','Applying','Reasoning'].forEach(lv=>{
-    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
-    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+    const st = levelStats[lv];
+    const pct = st.total ? Math.round((st.correct/st.total)*100) : 0;
+    recapLv.innerHTML += `<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
   });
-  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+
+  /* ==== REKAP BENTUK ==== */
+  const recapType = document.getElementById('recapType');
+  recapType.innerHTML = '';
   ['PG','MCMA','KATEGORI'].forEach(tp=>{
-    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
-    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+    const st = typeStats[tp];
+    const pct = st.total ? Math.round((st.correct/st.total)*100) : 0;
+    recapType.innerHTML += `<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
   });
+
   showSection('result');
 }
 
 document.addEventListener('keydown',(e)=>{
-  if(!document.getElementById('test').classList.contains('active'))return;
-  const tag=(e.target.tagName||'').toLowerCase();
-  if(tag==='input'||tag==='textarea')return;
-  if(e.key==='ArrowRight')nextQ();
-  else if(e.key==='ArrowLeft')prevQ();
+  if(!document.getElementById('test').classList.contains('active')) return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if(tag === 'input' || tag === 'textarea') return;
+  if(e.key === 'ArrowRight') nextQ();
+  else if(e.key === 'ArrowLeft') prevQ();
 });
+
 window.addEventListener('scroll',()=>{
-  const h=document.querySelector('.hdr');
-  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';
-  else h.style.boxShadow='none';
+  const h = document.querySelector('.hdr');
+  if(window.scrollY > 20) h.style.boxShadow = '0 6px 30px rgba(0,0,0,.4)';
+  else h.style.boxShadow = 'none';
 });
 </script>
 </body>
