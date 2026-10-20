@@ -325,15 +325,15 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 
 <script>
 /* ============================================================
-   HOME URL — arahkan ke halaman utama SIMULASI TKA
+   HOME URL
    ============================================================ */
 const HOME_URL='https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html';
 
 /* ============================================================
    KONFIGURASI WAKTU
    ============================================================ */
-const TOTAL_TIME=70*60;                 // 70 menit dalam detik
-const WARN_AT=[15*60,10*60,5*60];       // notifikasi pada sisa waktu (detik)
+const TOTAL_TIME=70*60;
+const WARN_AT=[15*60,10*60,5*60];
 
 /* ============================================================
    UTIL SHUFFLE
@@ -413,7 +413,15 @@ function startTestWithIdentity(){
   document.getElementById('totCount').textContent=displayedQuestions.length;
   showSection('test');renderQuestion();renderQMap();startTimer();updateProgress();
 }
-function retryTest(){stopTimer();showSection('identity');}
+function retryTest(){
+  stopTimer();
+  isLocked=false;
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='70:00';
+  document.getElementById('testTimerBox').classList.remove('warn');
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
 
 /* ============================================================
    TIMER COUNTDOWN 70 MENIT
@@ -471,8 +479,8 @@ function renderQuestion(){
   const stimEl=document.getElementById('qStim');if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
   document.getElementById('qText').textContent=q.q;
   const hintEl=document.getElementById('qHint');
-  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
-  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Klik pilihan yang sama untuk membatalkan.';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Klik kategori yang sama untuk membatalkan. Semua pernyataan harus terisi agar dihitung dijawab.';}
   else{hintEl.style.display='none';}
   const area=document.getElementById('qArea');area.innerHTML='';
 
@@ -506,7 +514,7 @@ function renderQuestion(){
     area.appendChild(checksEl);
   }else if(q.t==='KATEGORI'){
     const wrap=document.createElement('div');wrap.className='kat-wrap';
-    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:220px">Kategori</th></tr></thead><tbody>';
     q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
       const dis=isLocked?'disabled':'';
       html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button ${dis} class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button ${dis} class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
@@ -521,20 +529,31 @@ function renderQuestion(){
   const isLast=currentQ===total-1;
   document.getElementById('nextBtn').classList.toggle('hidden',isLast);
   document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
-  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]||isLocked);
 }
 
 function selectOption(idx,type){
   if(isLocked||revealed[currentQ])return;
   if(type==='PG'){userAnswers[currentQ]=idx;}
-  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  else if(type==='MCMA'){
+    let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];
+    const pos=arr.indexOf(idx);
+    if(pos>=0)arr.splice(pos,1);else arr.push(idx);
+    userAnswers[currentQ]=arr;
+  }
   renderQuestion();renderQMap();updateProgress();
 }
 
+/* FIX 1: KATEGORI toggle — klik kategori sama = hapus jawaban */
 function setKategori(idx,cat){
   if(isLocked||revealed[currentQ])return;
   if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
-  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+  if(userAnswers[currentQ][idx]===cat){
+    delete userAnswers[currentQ][idx];
+  } else {
+    userAnswers[currentQ][idx]=cat;
+  }
+  renderQuestion();renderQMap();updateProgress();
 }
 
 function revealQ(){if(isLocked)return;revealed[currentQ]=true;renderQuestion();}
@@ -545,11 +564,16 @@ function renderQMap(){
   const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
   for(let i=0;i<total;i++){const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
     const ua=userAnswers[i];let answered=false;
-    if(ua!==undefined){if(Array.isArray(ua))answered=ua.length>0;else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}else answered=true;}
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
     if(answered)btn.classList.add('ans');if(i===currentQ)btn.classList.add('cur');
     btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};map.appendChild(btn);}
 }
 
+/* updateProgress — hitung "dijawab" untuk counter header */
 function updateProgress(){
   const total=displayedQuestions.length;let answered=0;
   for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
@@ -569,14 +593,17 @@ function isCorrect(q,ua){
   return false;
 }
 
-/* Hitung jumlah soal yang dijawab (partial atau penuh) */
+/* FIX 2: countAnswered disamakan dengan updateProgress — KATEGORI harus LENGKAP */
 function countAnswered(){
   let answered=0;
   for(let i=0;i<displayedQuestions.length;i++){
     const ua=userAnswers[i];
     if(ua===undefined||ua===null)continue;
     if(Array.isArray(ua)){if(ua.length>0)answered++;}
-    else if(typeof ua==='object'){if(Object.keys(ua).length>0)answered++;}
+    else if(typeof ua==='object'){
+      const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;
+      if(Object.keys(ua).length===stCount)answered++;
+    }
     else answered++;
   }
   return answered;
