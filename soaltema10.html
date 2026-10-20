@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--primary:#0D9488;--primary-light:#7EE8D9;--gold:#34D399;--emerald:#059669;--rose:#F43F5E;--sky:#38BDF8;--violet:#0F766E;--bg:#051410;--card:#0F2D28;--card-alt:#14382F;--text:#E8F5F0;--text-light:#A7C7BF;--text-muted:#6E8E86;--line:rgba(126,232,217,.14);--line-soft:rgba(126,232,217,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#0D9488;--accent2:#38BDF8;--accent-soft:rgba(13,148,136,.12);}
+:root{--primary:#0D9488;--primary-light:#7EE8D9;--gold:#34D399;--emerald:#059669;--rose:#F43F5E;--sky:#38BDF8;--violet:#0F766E;--amber:#F59E0B;--bg:#051410;--card:#0F2D28;--card-alt:#14382F;--text:#E8F5F0;--text-light:#A7C7BF;--text-muted:#6E8E86;--line:rgba(126,232,217,.14);--line-soft:rgba(126,232,217,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#0D9488;--accent2:#38BDF8;--accent-soft:rgba(13,148,136,.12);}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(13,148,136,.12),transparent 55%),radial-gradient(circle at 85% 80%,rgba(56,189,248,.08),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(5,20,16,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
@@ -31,6 +31,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
 .chip i{color:var(--primary-light)}
 .timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(13,148,136,.14),rgba(56,189,248,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary-light);letter-spacing:1px}
+.timer-inline.warn{background:linear-gradient(135deg,rgba(244,63,94,.18),rgba(244,63,94,.06));color:var(--rose);border-color:rgba(244,63,94,.45);animation:privacyPulse 1.4s ease-in-out infinite}
 .qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.35);border-top:3px solid var(--accent)}
 .q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
@@ -102,15 +103,15 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .qmap-btn.ans{background:rgba(52,211,153,.18);border-color:var(--gold);color:var(--gold)}
 .qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#E8F5F0;box-shadow:0 0 12px rgba(13,148,136,.5);transform:scale(1.1)}
 .result-hero{text-align:center;padding:30px 0 20px}
-.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--gold) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score{width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--gold) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
 .result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
-.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--gold);line-height:1}
+.result-score .sv{position:relative;z-index:1;font-size:2.6rem;font-weight:900;color:var(--gold);line-height:1;transition:color .6s}
 .result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:760px}
 .rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
 .rs .v{font-size:1.4rem;font-weight:900;line-height:1}
 .rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
-.rs.green .v{color:var(--gold)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--primary-light)}.rs.blue .v{color:var(--sky)}
+.rs.green .v{color:var(--gold)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--primary-light)}.rs.blue .v{color:var(--sky)}.rs.amber .v{color:var(--amber)}
 .recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
 .recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary-light)}
 .recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
@@ -138,6 +139,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 @keyframes privacyPulse{0%,100%{border-color:rgba(244,63,94,.4);box-shadow:0 0 0 0 rgba(244,63,94,.15)}50%{border-color:rgba(244,63,94,.65);box-shadow:0 0 0 4px rgba(244,63,94,.1)}}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(244,63,94,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
+.toast{position:fixed;top:calc(var(--header-h) + 14px);left:50%;transform:translateX(-50%) translateY(-24px);background:linear-gradient(135deg,#F59E0B,#DC2626);color:#fff;padding:14px 26px;border-radius:14px;box-shadow:0 14px 40px rgba(220,38,38,.5);z-index:2000;font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:10px;max-width:calc(100vw - 30px);text-align:left;line-height:1.4;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast i{font-size:1.1rem;animation:toastPulse 1s ease-in-out infinite;}
+@keyframes toastPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 .hidden{display:none!important}
 @media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
 @media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
@@ -153,10 +158,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
   </div>
   <div class="hdr-center"><i class="fas fa-flag"></i> Proklamasi Kemerdekaan · 30 Soal</div>
-  <div style="display:flex;gap:6px"></div>
+  <div style="display:flex;gap:6px">
+    <button class="icon-btn" onclick="goHome()" title="Beranda"><i class="fas fa-home"></i></button>
+  </div>
 </header>
 
 <div class="progress"><div class="thumb" id="progressThumb"></div></div>
+<div class="toast" id="toast"></div>
 
 <main class="main">
 
@@ -169,7 +177,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <div class="info-chips">
         <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
         <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
-        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+        <span class="ic"><i class="fas fa-clock"></i> 70 Menit</span>
       </div>
     </div>
     <div class="identity-form">
@@ -188,7 +196,8 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
         <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
       </div>
       <div style="display:flex;gap:10px;margin-top:20px">
-        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+        <button class="btn btn-ghost" onclick="goHome()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-home"></i> Beranda</button>
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:2;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
       </div>
       <div class="privacy-notice">
         <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -210,7 +219,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
-      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-hourglass-half"></i> <span id="testTimer">70:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
     </div>
   </div>
@@ -238,11 +247,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
     <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
     <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <p id="resultEncourage" style="margin-top:10px;font-size:.92rem;color:var(--text-light);font-weight:600;max-width:640px;margin-left:auto;margin-right:auto"></p>
     <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
   </div>
   <div class="result-stats">
     <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
     <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs amber"><div class="v" id="rsUnanswered">0</div><div class="l">Belum</div></div>
     <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
     <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
   </div>
@@ -253,14 +264,26 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
   </div>
   <div style="text-align:center;margin-top:20px">
-    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-primary" onclick="goHome()"><i class="fas fa-home"></i> Kembali ke Beranda</button>
     <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+    <button class="btn btn-ghost" onclick="goIdentity()" style="margin-left:8px"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
   </div>
 </section>
 
 </main>
 
 <script>
+/* ============================================================
+   HOME URL — arahkan ke halaman utama simulasi TKA
+   ============================================================ */
+const HOME_URL='https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html';
+
+/* ============================================================
+   KONFIGURASI WAKTU
+   ============================================================ */
+const TOTAL_TIME=70*60;                 // 70 menit dalam detik
+const WARN_AT=[15*60,10*60,5*60];       // notifikasi pada sisa waktu (detik)
+
 /* ============================================================
    BANK SOAL — PROKLAMASI KEMERDEKAAN (30 SOAL UNIK)
    18 PG + 7 MCMA + 5 KATEGORI
@@ -271,7 +294,6 @@ const Q10=[
 
 /* ============ PG (18 SOAL) ============ */
 
-/* Q1 — Kunci: A (Applying) — Bom atom & Jepang menyerah */
 {t:'PG',l:'Applying',d:'Sedang',i:'Sebab utama Jepang menyerah',
 s:'Pada 6 Agustus 1945, Amerika Serikat menjatuhkan bom atom pertama di kota Hiroshima yang menewaskan lebih dari 70.000 orang seketika. Tiga hari kemudian, 9 Agustus 1945, bom atom kedua dijatuhkan di Nagasaki. Di saat yang sama, Uni Soviet (8 Agustus 1945) menyatakan perang terhadap Jepang &amp; menyerang Manchuria. Menghadapi tekanan militer yang luar biasa — dua bom atom &amp; serangan Soviet — Kaisar Hirohito akhirnya memutuskan menyerah. Pada 15 Agustus 1945, kapitulasi Jepang diumumkan melalui radio nasional. Peristiwa ini menciptakan vacuum of power (kekosongan kekuasaan) di Indonesia — momentum emas bagi proklamasi.',
 q:'Berdasarkan stimulus tersebut, faktor utama yang menyebabkan Jepang menyerah kepada Sekutu adalah ....',
@@ -283,7 +305,6 @@ o:['Dua bom atom di Hiroshima &amp; Nagasaki serta serangan Uni Soviet',
 a:0,
 e:'Penyebab utama: dua bom atom (Hiroshima 6 Agustus, Nagasaki 9 Agustus) + serangan Soviet (8 Agustus). Kaisar Hirohito memutuskan menyerah 14 Agustus &amp; diumumkan 15 Agustus 1945.'},
 
-/* Q2 — Kunci: C (Reasoning) — Tujuan Rengasdengklok */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Tujuan Peristiwa Rengasdengklok',
 s:'Peristiwa Rengasdengklok terjadi pada 16 Agustus 1945 dini hari. Peristiwa ini dilatarbelakangi perbedaan pendapat antara golongan muda (Sukarni, Chaerul Saleh, Wikana) &amp; golongan tua (Sukarno, Hatta, Ahmad Soebardjo) tentang waktu proklamasi. Golongan muda mendesak agar proklamasi dilakukan segera — tanpa menunggu Jepang — karena Jepang sudah menyerah kepada Sekutu. Golongan tua menginginkan proklamasi melalui PPKI &amp; menghindari pertumpahan darah. Untuk memaksa percepatan, golongan muda "membawa" Sukarno-Hatta ke Rengasdengklok. Tujuannya: menjauhkan mereka dari pengaruh Jepang &amp; mendesak keduanya segera memproklamasikan kemerdekaan. Akhirnya Ahmad Soebardjo datang menjemput dengan jaminan bahwa proklamasi akan dilakukan 17 Agustus 1945.',
 q:'Berdasarkan stimulus tersebut, tujuan utama golongan muda "membawa" Sukarno-Hatta ke Rengasdengklok adalah ....',
@@ -295,7 +316,6 @@ o:['Menjauhkan mereka dari Sekutu yang akan datang',
 a:2,
 e:'Tujuan utama: MENDESAK percepatan proklamasi &amp; menjauhkan Sukarno-Hatta dari pengaruh Jepang. Bukan untuk melindungi dari Sekutu/Jepang, atau menyusun teks di Rengasdengklok.'},
 
-/* Q3 — Kunci: B (Knowing) — Tempat perumusan teks */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Tempat perumusan teks proklamasi',
 s:'Teks Proklamasi Kemerdekaan Indonesia dirumuskan pada malam 16 Agustus hingga dini hari 17 Agustus 1945. Tempat perumusan adalah rumah Laksamana Tadashi Maeda, seorang perwira Angkatan Laut Jepang yang bersimpati terhadap perjuangan rakyat Indonesia. Rumah ini terletak di Jalan Imam Bonjol No. 1, Jakarta. Perumusan dilakukan oleh Ir. Soekarno, Drs. Mohammad Hatta, &amp; Mr. Ahmad Soebardjo. Hadir sebagai saksi antara lain Sukarni, B.M. Diah, Sayuti Melik, &amp; lainnya. Rumah Maeda dipilih karena dianggap aman dari pengawasan militer Jepang (Angkatan Darat).',
 q:'Berdasarkan stimulus tersebut, teks Proklamasi dirumuskan di rumah ....',
@@ -307,7 +327,6 @@ o:['Ir. Soekarno di Jl. Pegangsaan Timur',
 a:1,
 e:'Perumusan teks = rumah Laksamana Maeda (Jl. Imam Bonjol No. 1). Pembacaan teks = rumah Soekarno (Jl. Pegangsaan Timur No. 56).'},
 
-/* Q4 — Kunci: E (Applying) — Pengetik teks */
 {t:'PG',l:'Applying',d:'Sedang',i:'Pengetik teks proklamasi',
 s:'Setelah teks Proklamasi dirumuskan oleh Soekarno, Hatta, &amp; Ahmad Soebardjo, teks tersebut masih berupa tulisan tangan. Untuk memperbanyak &amp; memudahkan pembacaan, teks perlu diketik. Tokoh yang ditunjuk untuk mengetik teks Proklamasi adalah Sayuti Melik. Ia mengetik teks menggunakan mesin tik milik kantor berita Jepang (Domei). Dalam proses pengetikan, ada beberapa perubahan kecil dari draf tulisan tangan — misalnya kata "tempoh" menjadi "tempo", "waktoe" menjadi "waktu", dll. Sayuti Melik juga menambahkan tanda tangan Soekarno-Hatta. Teks hasil ketikan inilah yang kemudian dibacakan pada 17 Agustus 1945.',
 q:'Berdasarkan stimulus tersebut, tokoh yang dipercaya mengetik teks Proklamasi adalah ....',
@@ -315,7 +334,6 @@ o:['B.M. Diah','Sukarni','Chaerul Saleh','Ahmad Soebardjo','Sayuti Melik'],
 a:4,
 e:'Sayuti Melik = pengetik teks Proklamasi. B.M. Diah = menyimpan naskah. Sukarni = pengusul rumusan. Chaerul Saleh = golongan muda. Ahmad Soebardjo = perumus.'},
 
-/* Q5 — Kunci: D (Reasoning) — Peran Fatmawati */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Peran Fatmawati',
 s:'Fatmawati adalah istri Ir. Soekarno yang memiliki peran penting dalam Proklamasi Kemerdekaan. Ia menjahit Bendera Pusaka Merah Putih yang dikibarkan pada 17 Agustus 1945. Bendera tersebut dijahit dari kain yang diperoleh dengan susah payah di masa pendudukan Jepang. Ukuran bendera 276 cm × 200 cm. Meskipun tidak terlibat langsung dalam perumusan teks, peran Fatmawati sangat penting: tanpa bendera yang ia jahit, pengibaran bendera pada detik-detik proklamasi tidak mungkin dilakukan. Hingga kini, Bendera Pusaka yang dijahit Fatmawati disimpan &amp; dihormati sebagai simbol perjuangan bangsa.',
 q:'Berdasarkan stimulus tersebut, peran penting Fatmawati dalam Proklamasi Kemerdekaan adalah ....',
@@ -327,7 +345,6 @@ o:['Merumuskan teks Proklamasi bersama Soekarno-Hatta',
 a:3,
 e:'Fatmawati = penjahit Bendera Pusaka. Perumusan teks = Soekarno, Hatta, Ahmad Soebardjo. Pengetikan = Sayuti Melik. Pembacaan = Soekarno.'},
 
-/* Q6 — Kunci: A (Knowing) — Waktu pembacaan proklamasi */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Waktu pembacaan proklamasi',
 s:'Proklamasi Kemerdekaan Indonesia dibacakan pada hari Jumat, 17 Agustus 1945, pukul 10.00 WIB. Pembacaan dilakukan di kediaman Ir. Soekarno di Jalan Pegangsaan Timur No. 56, Jakarta. Teks Proklamasi dibacakan oleh Soekarno sendiri, didampingi oleh Drs. Mohammad Hatta. Setelah pembacaan teks, Bendera Pusaka Merah Putih dikibarkan oleh Latief Hendraningrat &amp; S. Suhud. Lagu Indonesia Raya ciptaan WR Supratman dikumandangkan. Tanggal 17 Agustus 1945 menjadi tonggak lahirnya Negara Kesatuan Republik Indonesia (NKRI) yang kita cintai hingga kini.',
 q:'Berdasarkan stimulus tersebut, Proklamasi Kemerdekaan Indonesia dibacakan pada pukul ....',
@@ -335,7 +352,6 @@ o:['10.00 WIB','08.00 WIB','12.00 WIB','14.00 WIB','17.00 WIB'],
 a:0,
 e:'Proklamasi dibacakan pukul 10.00 WIB, Jumat 17 Agustus 1945, di Jl. Pegangsaan Timur No. 56. Soekarno membacakan teks, didampingi Hatta.'},
 
-/* Q7 — Kunci: C (Applying) — Kalimat pertama teks */
 {t:'PG',l:'Applying',d:'Sedang',i:'Kalimat pertama teks Proklamasi',
 s:'Teks Proklamasi yang dibacakan pada 17 Agustus 1945 berbunyi: "Kami bangsa Indonesia dengan ini menjatakan kemerdekaan Indonesia. Hal-hal jang mengenai pemindahan kekoeasaan d.l.l., diselenggarakan dengan tjara saksama dan dalam tempo jang sesingkat-singkatnja. Djakarta, hari 17 boelan 8 tahoen 05. Atas nama bangsa Indonesia, Soekarno/Hatta." Kalimat pertama teks ini menjadi inti dari proklamasi — menegaskan bahwa bangsa Indonesia telah menyatakan kemerdekaannya. Kalimat kedua menegaskan pemindahan kekuasaan akan dilakukan dengan cara saksama &amp; sesingkat mungkin.',
 q:'Berdasarkan stimulus tersebut, kalimat pertama teks Proklamasi berbunyi ....',
@@ -347,7 +363,6 @@ o:['"Hal-hal jang mengenai pemindahan kekoeasaan d.l.l., diselenggarakan dengan 
 a:2,
 e:'Kalimat pertama: "Kami bangsa Indonesia dengan ini menjatakan kemerdekaan Indonesia." Kalimat kedua: "Hal-hal jang mengenai pemindahan kekoeasaan..." Pilihan E adalah Pembukaan UUD 1945.'},
 
-/* Q8 — Kunci: B (Reasoning) — Alasan rumah Maeda */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Alasan rumah Maeda dipilih',
 s:'Rumah Laksamana Tadashi Maeda di Jl. Imam Bonjol No. 1 dipilih sebagai tempat perumusan teks Proklamasi karena beberapa pertimbangan. Pertama, Maeda adalah perwira Angkatan Laut Jepang yang bersimpati pada perjuangan Indonesia &amp; menjamin keamanan tempat tersebut. Kedua, Angkatan Laut (Kaigun) dianggap lebih lunak terhadap perjuangan Indonesia dibanding Angkatan Darat (Rikugun) yang keras. Ketiga, secara strategis rumah Maeda dianggap aman dari pengawasan militer Angkatan Darat yang keras. Keempat, fasilitas rumah Maeda memadai untuk perumusan teks pada malam hari. Rumah ini juga dilengkapi dengan kamar &amp; penerangan yang memadai.',
 q:'Berdasarkan stimulus tersebut, alasan utama rumah Laksamana Maeda dipilih sebagai tempat perumusan teks Proklamasi adalah ....',
@@ -359,7 +374,6 @@ o:['Rumah Maeda letaknya dekat dengan Istana Merdeka',
 a:1,
 e:'Alasan utama: rumah Maeda dianggap aman karena Maeda perwira Kaigun (lebih lunak) &amp; bersimpati pada Indonesia. Angkatan Darat (Rikugun) dikenal keras. Rumah bukan milik tokoh nasionalis, tetapi perwira Jepang.'},
 
-/* Q9 — Kunci: E (Applying) — Hasil Sidang PPKI 18 Agustus */
 {t:'PG',l:'Applying',d:'Sedang',i:'Hasil Sidang PPKI 18 Agustus',
 s:'Setelah Proklamasi 17 Agustus 1945, PPKI (Panitia Persiapan Kemerdekaan Indonesia) menggelar sidang pada 18 Agustus 1945. Sidang ini menghasilkan beberapa keputusan penting: (1) mengesahkan UUD 1945 sebagai konstitusi negara; (2) menetapkan Ir. Soekarno sebagai Presiden &amp; Drs. Mohammad Hatta sebagai Wakil Presiden RI pertama; (3) membentuk KNIP (Komite Nasional Indonesia Pusat) sebagai parlemen sementara. Sidang berlangsung cepat &amp; damai karena semua anggota PPKI sudah menyepakati dasar negara (Pancasila) yang telah dirumuskan sebelumnya. Keputusan sidang ini menjadi fondasi konstitusional NKRI.',
 q:'Berdasarkan stimulus tersebut, hasil Sidang PPKI 18 Agustus 1945 yang paling penting adalah ....',
@@ -371,7 +385,6 @@ o:['Pembentukan BKR &amp; 8 provinsi',
 a:4,
 e:'Sidang PPKI 18 Agustus = mengesahkan UUD 1945 &amp; menetapkan Soekarno-Hatta sebagai Presiden-Wapres + KNIP. Pembentukan BKR &amp; 8 provinsi = 19 &amp; 22 Agustus.'},
 
-/* Q10 — Kunci: D (Knowing) — Tanggal pembentukan BKR */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Tanggal pembentukan BKR',
 s:'BKR (Badan Keamanan Rakyat) dibentuk pada 22 Agustus 1945 dalam Sidang PPKI. Tujuannya: menjaga keamanan negara setelah Proklamasi, tanpa memancing reaksi militer Sekutu/Belanda. BKR bukan tentara resmi, tetapi badan keamanan rakyat. Pada 5 Oktober 1945, BKR berubah menjadi TKR (Tentara Keamanan Rakyat). Kemudian berganti nama menjadi TRI (Tentara Republik Indonesia), &amp; akhirnya menjadi TNI (Tentara Nasional Indonesia) pada 3 Juni 1947. Tanggal 5 Oktober diperingati sebagai Hari TNI hingga kini. BKR menjadi cikal bakal TNI yang kita kenal sekarang.',
 q:'Berdasarkan stimulus tersebut, Badan Keamanan Rakyat (BKR) dibentuk pada tanggal ....',
@@ -379,7 +392,6 @@ o:['17 Agustus 1945','18 Agustus 1945','19 Agustus 1945','22 Agustus 1945','5 Ok
 a:3,
 e:'BKR dibentuk 22 Agustus 1945. 5 Oktober 1945 = BKR berubah menjadi TKR (sekarang Hari TNI). 3 Juni 1947 = TNI.'},
 
-/* Q11 — Kunci: A (Reasoning) — Bandung Lautan Api */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Peristiwa Bandung Lautan Api',
 s:'Bandung Lautan Api terjadi pada 23 Maret 1946. Peristiwa ini dipicu oleh ultimatum Sekutu yang meminta rakyat Bandung menyerahkan senjata &amp; meninggalkan kota. Rakyat Bandung menolak memenuhi ultimatum tersebut. Sebagai gantinya, mereka memilih membumihanguskan (membakar) kota Bandung Selatan agar tidak dikuasai &amp; dimanfaatkan oleh Sekutu/Belanda. Rakyat kemudian mengungsi &amp; bergerilya ke pegunungan. Peristiwa ini dipimpin oleh tokoh-tokoh seperti Kolonel A.H. Nasution. Bandung Lautan Api menjadi simbol perlawanan rakyat yang tidak mau menyerah, meskipun harus mengorbankan rumah &amp; harta benda mereka.',
 q:'Berdasarkan stimulus tersebut, alasan rakyat Bandung membumihanguskan kota mereka sendiri adalah ....',
@@ -391,7 +403,6 @@ o:['Agar kota tidak dikuasai &amp; dimanfaatkan oleh Sekutu/Belanda',
 a:0,
 e:'Alasan utama: agar kota tidak dikuasai &amp; dimanfaatkan Sekutu/Belanda. Rakyat memilih membumihanguskan daripada menyerah. Bukan karena bencana, perintah, atau kesalahan strategi.'},
 
-/* Q12 — Kunci: C (Applying) — Tokoh Palagan Ambarawa */
 {t:'PG',l:'Applying',d:'Sedang',i:'Tokoh Palagan Ambarawa',
 s:'Palagan Ambarawa adalah pertempuran besar yang terjadi pada Desember 1945 di Ambarawa, Jawa Tengah. Pertempuran ini dipicu oleh tindakan Sekutu yang membebaskan &amp; mempersenjatai interniran Belanda. Rakyat &amp; TNI di bawah pimpinan Jenderal Soedirman melancarkan serangan besar-besaran. Setelah pertempuran sengit selama beberapa hari, rakyat Indonesia berhasil memukul mundur Sekutu. Kemenangan ini sangat penting karena menunjukkan kekuatan TNI di mata dunia. Tanggal 15 Desember 1945 — hari kemenangan Palagan Ambarawa — diperingati sebagai Hari Juang Kartika (Hari TNI-AD). Jenderal Soedirman menjadi simbol kepemimpinan militer Indonesia.',
 q:'Berdasarkan stimulus tersebut, tokoh yang memimpin Palagan Ambarawa pada Desember 1945 adalah ....',
@@ -399,7 +410,6 @@ o:['Bung Tomo','Kolonel A.H. Nasution','Jenderal Soedirman','Sri Sultan Hamengku
 a:2,
 e:'Palagan Ambarawa = Jenderal Soedirman. Bung Tomo = Surabaya. A.H. Nasution = Bandung Lautan Api. Sri Sultan HB IX = Serangan Umum 1 Maret.'},
 
-/* Q13 — Kunci: B (Reasoning) — Serangan Umum 1 Maret */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Tujuan Serangan Umum 1 Maret',
 s:'Serangan Umum 1 Maret 1949 terjadi di Yogyakarta. Saat itu, Yogyakarta telah dikuasai Belanda setelah Agresi Militer II. Serangan ini dipimpin oleh Sri Sultan Hamengkubuwono IX (perencana) &amp; Jenderal Soedirman (pemimpin gerilya). Tujuan utamanya bukan merebut Yogyakarta secara permanen, tetapi membuktikan kepada dunia internasional bahwa TNI masih kuat &amp; eksis. Serangan berhasil menduduki Yogyakarta selama 6 jam. Peristiwa ini sangat penting karena memperkuat posisi diplomasi Indonesia di PBB — dunia akhirnya mengakui bahwa perjuangan rakyat Indonesia masih berlanjut. Serangan Umum 1 Maret 1949 menjadi salah satu kunci keberhasilan diplomasi Indonesia.',
 q:'Berdasarkan stimulus tersebut, tujuan utama Serangan Umum 1 Maret 1949 adalah ....',
@@ -411,7 +421,6 @@ o:['Merebut Yogyakarta dari Belanda secara permanen',
 a:1,
 e:'Tujuan utama: menunjukkan kepada dunia bahwa TNI masih kuat → memperkuat diplomasi di PBB. Bukan merebut permanen (hanya 6 jam), bukan membalas, bukan perang besar.'},
 
-/* Q14 — Kunci: E (Applying) — Perjanjian Linggarjati */
 {t:'PG',l:'Applying',d:'Sedang',i:'Isi Perjanjian Linggarjati',
 s:'Perjanjian Linggarjati ditandatangani pada 15 November 1946 di Linggarjati, Kuningan, Jawa Barat. Perjanjian ini merupakan hasil perundingan antara Indonesia &amp; Belanda dengan mediasi Inggris. Isi pokoknya: (1) Belanda mengakui RI secara de facto atas Jawa, Madura, &amp; Sumatera; (2) RI &amp; Belanda akan bekerja sama membentuk Negara Indonesia Serikat (RIS); (3) RIS akan tetap terikat dengan Belanda dalam Uni Indonesia-Belanda. Perjanjian ini ditentang oleh golongan muda &amp; beberapa tokoh nasionalis karena dianggap terlalu banyak memberi konsesi kepada Belanda. Belanda pun akhirnya melanggar perjanjian ini dengan melancarkan Agresi Militer I (1947).',
 q:'Berdasarkan stimulus tersebut, isi utama Perjanjian Linggarjati adalah ....',
@@ -423,7 +432,6 @@ o:['Belanda menyerahkan kedaulatan penuh kepada Indonesia',
 a:4,
 e:'Perjanjian Linggarjati: pengakuan de facto atas Jawa, Madura, Sumatera + rencana pembentukan RIS. Belanda tidak mengakui kedaulatan penuh (itu baru di KMB 1949).'},
 
-/* Q15 — Kunci: D (Reasoning) — Perjanjian Renville merugikan */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Perjanjian Renville',
 s:'Perjanjian Renville ditandatangani pada 17 Januari 1948 di atas kapal USS Renville. Perjanjian ini dipicu oleh Agresi Militer Belanda I (Juli 1947). Mediasi dilakukan oleh PBB (Komisi Tiga Negara). Isi pokoknya: (1) penghentian tembak-menembak; (2) garis Van Mook ditetapkan sebagai batas wilayah RI-Belanda; (3) RI harus mengakui wilayah yang diduduki Belanda. Perjanjian ini sangat merugikan Indonesia karena: (1) wilayah RI menjadi sangat sempit; (2) akses laut terputus; (3) blokade ekonomi; (4) kekuatan militer Indonesia terkurung. Inilah yang kemudian dimanfaatkan Belanda untuk melancarkan Agresi Militer II (Desember 1948).',
 q:'Berdasarkan stimulus tersebut, alasan Perjanjian Renville sangat merugikan Indonesia adalah ....',
@@ -435,7 +443,6 @@ o:['Indonesia harus membayar ganti rugi perang',
 a:3,
 e:'Kerugian utama Perjanjian Renville: garis Van Mook membuat wilayah RI sempit &amp; terkurung → militer &amp; ekonomi terhambat → dimanfaatkan Belanda untuk Agresi II. Bukan ganti rugi atau gabung Soviet.'},
 
-/* Q16 — Kunci: A (Knowing) — KMB hasil */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Hasil Konferensi Meja Bundar',
 s:'Konferensi Meja Bundar (KMB) dilaksanakan pada 23 Agustus – 2 November 1949 di Den Haag, Belanda. Perundingan ini menghasilkan beberapa keputusan penting: (1) Belanda menyerahkan kedaulatan kepada Republik Indonesia Serikat (RIS); (2) pembentukan RIS yang terdiri dari negara-negara bagian; (3) penyelesaian masalah Irian Barat ditunda 1 tahun; (4) RIS harus membayar utang Belanda. Pengakuan kedaulatan secara resmi terjadi pada 27 Desember 1949 di Amsterdam &amp; Jakarta. KMB adalah puncak diplomasi Indonesia dalam mempertahankan kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, hasil utama Konferensi Meja Bundar (KMB) adalah ....',
@@ -447,7 +454,6 @@ o:['Belanda menyerahkan kedaulatan kepada Republik Indonesia Serikat',
 a:0,
 e:'Hasil utama KMB: Belanda menyerahkan kedaulatan kepada RIS (27 Desember 1949). Irian Barat ditunda 1 tahun (bukan langsung diserahkan). RIS juga menanggung utang Belanda.'},
 
-/* Q17 — Kunci: C (Reasoning) — Beda golongan muda & tua */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Perbedaan golongan muda &amp; tua',
 s:'Menjelang Proklamasi, muncul perbedaan pendapat tajam antara golongan muda &amp; golongan tua. Golongan muda (Sukarni, Chaerul Saleh, Wikana, dll.) menginginkan proklamasi segera dilakukan tanpa menunggu Jepang — karena Jepang sudah menyerah &amp; Indonesia harus memanfaatkan vacuum of power. Golongan tua (Soekarno, Hatta, Ahmad Soebardjo) menginginkan proklamasi melalui PPKI &amp; menghindari pertumpahan darah, dengan strategi yang lebih hati-hati. Perbedaan ini memuncak pada Peristiwa Rengasdengklok (16 Agustus 1945). Setelah dialog &amp; kompromi, keduanya sepakat proklamasi dilakukan 17 Agustus 1945 — tanpa melalui PPKI. Perbedaan pendapat ini justru mempercepat tercapainya proklamasi.',
 q:'Berdasarkan stimulus tersebut, perbedaan utama pandangan golongan muda &amp; golongan tua menjelang Proklamasi terletak pada ....',
@@ -459,7 +465,6 @@ o:['Siapa yang akan menjadi Presiden Indonesia',
 a:2,
 e:'Perbedaan utama: WAKTU &amp; CARA proklamasi. Golongan muda ingin segera &amp; tanpa PPKI; golongan tua ingin hati-hati &amp; via PPKI. Keduanya setuju proklamasi harus dilakukan.'},
 
-/* Q18 — Kunci: B (Applying) — Makna Proklamasi */
 {t:'PG',l:'Applying',d:'Sedang',i:'Makna proklamasi bagi bangsa',
 s:'Proklamasi 17 Agustus 1945 memiliki makna yang sangat mendalam bagi bangsa Indonesia. Secara politik, proklamasi menandai lahirnya negara merdeka &amp; bebas dari penjajahan. Secara hukum, proklamasi menjadi sumber hukum tertinggi berdirinya NKRI. Secara sosial-budaya, proklamasi melahirkan identitas nasional &amp; kebanggaan sebagai bangsa merdeka. Secara ekonomi, proklamasi membuka jalan bagi pengelolaan sumber daya untuk kesejahteraan rakyat. Secara internasional, proklamasi menjadi pengakuan de facto kemerdekaan Indonesia. Inti dari semuanya: proklamasi adalah puncak perjuangan bangsa, sekaligus awal perjalanan menuju masyarakat adil &amp; makmur.',
 q:'Berdasarkan stimulus tersebut, makna Proklamasi yang paling mendasar bagi bangsa Indonesia adalah ....',
@@ -473,7 +478,6 @@ e:'Makna paling mendasar: lahirnya negara merdeka &amp; bebas dari penjajahan. P
 
 /* ============ MCMA (7 SOAL) ============ */
 
-/* Q19 — Pola: [0,2,3] — Sebab Jepang menyerah */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Sebab Jepang menyerah',
 s:'Jepang menyerah kepada Sekutu pada 15 Agustus 1945 setelah beberapa peristiwa besar. Faktor militer: bom atom Hiroshima (6 Agustus) &amp; Nagasaki (9 Agustus) yang menghancurkan dua kota &amp; menewaskan puluhan ribu orang. Faktor geopolitik: Uni Soviet menyatakan perang terhadap Jepang (8 Agustus) &amp; menyerang Manchuria. Faktor internal: Kaisar Hirohito memutuskan menyerah pada 14 Agustus untuk menyelamatkan bangsa. Jepang menyerah tanpa syarat melalui siaran radio Kaisar (Gyokuon-hōsō). Peristiwa ini menciptakan vacuum of power di Indonesia — momentum proklamasi.',
 q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN faktor penyebab menyerahnya Jepang kepada Sekutu? (Pilih lebih dari satu)',
@@ -485,7 +489,6 @@ o:['Bom atom di Hiroshima &amp; Nagasaki.',
 a:[0,2,3],
 e:'A, C, D benar. B salah — tidak ada kemenangan besar Indonesia atas Jepang secara militer. E salah — Belanda justru di pihak Sekutu (melawan Jepang).'},
 
-/* Q20 — Pola: [1,3] — Tokoh & peran */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh &amp; peran dalam proklamasi',
 s:'Beberapa tokoh memiliki peran khas dalam Proklamasi: Soekarno = perumus &amp; pembaca teks; Hatta = perumus &amp; pendamping; Ahmad Soebardjo = perumus; Sayuti Melik = pengetik teks; Fatmawati = penjahit Bendera Pusaka; Latief Hendraningrat &amp; S. Suhud = pengibar bendera; WR Supratman = pencipta lagu Indonesia Raya; Sukarni = pengusul rumusan "Atas nama bangsa Indonesia"; B.M. Diah = penyimpan naskah asli. Peran mereka berbeda-beda, tetapi semuanya penting.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang tokoh &amp; perannya? (Pilih lebih dari satu)',
@@ -497,7 +500,6 @@ o:['Sayuti Melik adalah pembaca teks proklamasi.',
 a:[1,3],
 e:'B, D benar. A salah — pembaca = Soekarno. C salah — Soekarno perumus &amp; pembaca. E salah — WR Supratman pencipta lagu Indonesia Raya.'},
 
-/* Q21 — Pola: [0,1,2] — Hasil Sidang PPKI */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Hasil Sidang PPKI',
 s:'PPKI menggelar tiga sidang utama setelah proklamasi. Sidang 18 Agustus 1945: (1) mengesahkan UUD 1945; (2) menetapkan Soekarno sebagai Presiden &amp; Hatta sebagai Wakil Presiden; (3) membentuk KNIP. Sidang 19 Agustus 1945: (1) membagi wilayah RI menjadi 8 provinsi; (2) membentuk 12 kementerian. Sidang 22 Agustus 1945: (1) membentuk KNIP sebagai parlemen; (2) membentuk PNI; (3) membentuk BKR (Badan Keamanan Rakyat). Semua keputusan ini menjadi fondasi pemerintahan NKRI.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang hasil Sidang PPKI? (Pilih lebih dari satu)',
@@ -509,7 +511,6 @@ o:['UUD 1945 disahkan pada sidang 18 Agustus 1945.',
 a:[0,1,2],
 e:'A, B, C benar. D salah — RI dibagi menjadi 8 provinsi (bukan 12). E salah — KNIP dibentuk pada 18 Agustus (sementara) &amp; disahkan di 22 Agustus.'},
 
-/* Q22 — Pola: [2,3,4] — Perjuangan bersenjata */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Perjuangan bersenjata',
 s:'Setelah proklamasi, rakyat Indonesia harus berjuang mempertahankan kemerdekaan melalui dua jalur: bersenjata &amp; diplomasi. Perjuangan bersenjata: Pertempuran Surabaya (10 November 1945) dipimpin Bung Tomo; Bandung Lautan Api (23 Maret 1946) dipicu ultimatum Sekutu; Palagan Ambarawa (Desember 1945) dipimpin Jenderal Soedirman; Serangan Umum 1 Maret 1949 dipimpin Sri Sultan HB IX. Perjuangan diplomasi: Perjanjian Linggarjati (1946), Renville (1948), Roem-Royen (1949), Konferensi Meja Bundar (1949). Kombinasi keduanya berhasil memaksa Belanda menyerahkan kedaulatan pada 27 Desember 1949.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perjuangan bersenjata? (Pilih lebih dari satu)',
@@ -521,7 +522,6 @@ o:['Pertempuran Surabaya dipimpin oleh Jenderal Soedirman.',
 a:[2,3,4],
 e:'C, D, E benar. A salah — Surabaya = Bung Tomo (bukan Soedirman). B salah — Bandung Lautan Api dipicu ultimatum Sekutu, bukan perintah PBB.'},
 
-/* Q23 — Pola: [0,3] — Perjanjian diplomasi */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Perjanjian diplomasi',
 s:'Perjuangan diplomasi Indonesia menghasilkan beberapa perjanjian penting. Perjanjian Linggarjati (1946): Belanda mengakui RI secara de facto atas Jawa, Madura, Sumatera. Perjanjian Renville (1948): garis Van Mook sebagai batas, merugikan Indonesia. Perjanjian Roem-Royen (1949): penghentian tembak-menembak, RI kembali ke Yogyakarta. Konferensi Meja Bundar (1949): Belanda menyerahkan kedaulatan kepada RIS. Selain itu, Indonesia juga berjuang di forum internasional seperti PBB &amp; Konferensi Asia-Afrika (1955). Puncak diplomasi adalah pengakuan kedaulatan 27 Desember 1949.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perjuangan diplomasi? (Pilih lebih dari satu)',
@@ -533,7 +533,6 @@ o:['Perjanjian Linggarjati mengakui RI secara de facto atas Jawa, Madura, &amp; 
 a:[0,3],
 e:'A, D benar. B salah — Renville MERUGIKAN Indonesia. C salah — Roem-Royen tentang penghentian tembak-menembak, bukan pembagian wilayah. E salah — Indonesia aktif di PBB &amp; KAA.'},
 
-/* Q24 — Pola: [1,2,4] — Makna proklamasi */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Makna proklamasi multidimensional',
 s:'Proklamasi 17 Agustus 1945 memiliki makna multidimensional. Secara politik: lahirnya negara merdeka &amp; bebas dari penjajahan. Secara hukum: sumber hukum tertinggi berdirinya NKRI. Secara sosial-budaya: lahirnya identitas nasional &amp; kebanggaan sebagai bangsa. Secara ekonomi: membuka jalan pengelolaan sumber daya untuk kesejahteraan rakyat. Secara internasional: pengakuan de facto kemerdekaan Indonesia. Proklamasi bukan sekadar peristiwa, tetapi momentum berdirinya bangsa &amp; negara Indonesia.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang makna Proklamasi? (Pilih lebih dari satu)',
@@ -545,7 +544,6 @@ o:['Proklamasi hanya memiliki makna politik tanpa makna lain.',
 a:[1,2,3],
 e:'B, C, D benar. A salah — proklamasi bermakna multidimensional. E salah — proklamasi mendapat pengakuan de facto internasional.'},
 
-/* Q25 — Pola: [0,1,3,4] — Warisan proklamasi */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Warisan proklamasi',
 s:'Proklamasi 17 Agustus 1945 meninggalkan warisan berharga bagi generasi penerus. Warisan politik: NKRI sebagai bentuk negara yang harus dijaga. Warisan hukum: UUD 1945 sebagai konstitusi. Warisan sosial-budaya: identitas nasional &amp; Bhinneka Tunggal Ika. Warisan moral: semangat persatuan, pengorbanan, &amp; gotong royong. Warisan ekonomi: kedaulatan pengelolaan sumber daya. Warisan yang paling penting: tanggung jawab moral untuk mengisi kemerdekaan dengan karya &amp; kontribusi positif. Warisan ini bukan hanya untuk dikenang, tetapi untuk diteruskan.',
 q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN warisan Proklamasi bagi generasi muda? (Pilih lebih dari satu)',
@@ -559,7 +557,6 @@ e:'A, B, D benar. C salah — proklamasi mengajarkan kerja sama internasional, b
 
 /* ============ KATEGORI (5 SOAL) ============ */
 
-/* Q26 — Pola: [S, TS, S, S] — Kronologi proklamasi */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi proklamasi',
 s:'Kronologi peristiwa proklamasi: 6 Agustus 1945 — bom atom Hiroshima; 8 Agustus 1945 — Uni Soviet menyatakan perang terhadap Jepang; 9 Agustus 1945 — bom atom Nagasaki; 14 Agustus 1945 — Kaisar Hirohito memutuskan menyerah; 15 Agustus 1945 — Jepang menyerah kepada Sekutu; 16 Agustus 1945 — Peristiwa Rengasdengklok; 16–17 Agustus 1945 — perumusan teks di rumah Maeda; 17 Agustus 1945 pukul 10.00 — Proklamasi dibacakan; 18 Agustus 1945 — Sidang PPKI I (UUD 1945 disahkan); 22 Agustus 1945 — BKR dibentuk.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -570,7 +567,6 @@ st:[
  {x:'BKR dibentuk setelah UUD 1945 disahkan.',a:'Sesuai'}],
 e:'1 Sesuai (16 Agustus < 17 Agustus). 2 Tidak Sesuai (proklamasi 17 Agustus > Jepang menyerah 15 Agustus). 3 Sesuai. 4 Sesuai (22 Agustus > 18 Agustus).'},
 
-/* Q27 — Pola: [TS, S, S, S] — Tokoh & peran */
 {t:'KATEGORI',l:'Applying',d:'Sedang',i:'Tokoh &amp; peran',
 s:'Tokoh &amp; peran: Soekarno = perumus &amp; pembaca teks; Hatta = perumus &amp; pendamping; Ahmad Soebardjo = perumus; Sayuti Melik = pengetik; Fatmawati = penjahit Bendera Pusaka; Latief Hendraningrat &amp; S. Suhud = pengibar bendera; WR Supratman = pencipta lagu Indonesia Raya; Sukarni = pengusul rumusan "Atas nama bangsa Indonesia"; B.M. Diah = penyimpan naskah asli; Laksamana Maeda = tuan rumah perumusan.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -581,7 +577,6 @@ st:[
  {x:'Laksamana Maeda adalah tokoh yang mengetik teks proklamasi.',a:'Tidak Sesuai'}],
 e:'1 Tidak Sesuai — pembaca = Soekarno. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — Maeda = tuan rumah (bukan pengetik). Pengetik = Sayuti Melik.'},
 
-/* Q28 — Pola: [S, S, TS, S] — Peristiwa & lokasi */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Peristiwa &amp; lokasi',
 s:'Peristiwa &amp; lokasi: Rengasdengklok (Karawang) — 16 Agustus 1945; perumusan teks (Jl. Imam Bonjol No. 1, rumah Maeda); pembacaan teks (Jl. Pegangsaan Timur No. 56, rumah Soekarno); Pertempuran Surabaya (Jawa Timur) — 10 November 1945; Bandung Lautan Api (Jawa Barat) — 23 Maret 1946; Palagan Ambarawa (Jawa Tengah) — Desember 1945; Serangan Umum 1 Maret 1949 (Yogyakarta); KMB (Den Haag, Belanda) — 1949.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -592,7 +587,6 @@ st:[
  {x:'Serangan Umum 1 Maret 1949 terjadi di Yogyakarta.',a:'Sesuai'}],
 e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — 10 November = SURABAYA (bukan Bandung). 4 Sesuai.'},
 
-/* Q29 — Pola: [TS, S, S, TS] — Diplomasi */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Perjuangan diplomasi',
 s:'Perjuangan diplomasi Indonesia menghasilkan beberapa perjanjian. Linggarjati (1946): pengakuan de facto atas Jawa, Madura, Sumatera. Renville (1948): garis Van Mook — merugikan Indonesia. Roem-Royen (1949): penghentian tembak-menembak &amp; RI kembali ke Yogyakarta. KMB (1949): pengakuan kedaulatan Belanda kepada RIS. KMB dilaksanakan di Den Haag &amp; menghasilkan penyerahan kedaulatan 27 Desember 1949. Namun, Irian Barat belum diserahkan — baru pada 1963 setelah Trikora &amp; Pepera.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -603,7 +597,6 @@ st:[
  {x:'Irian Barat langsung diserahkan kepada Indonesia setelah KMB.',a:'Tidak Sesuai'}],
 e:'1 Tidak Sesuai — Linggarjati hanya mengakui de facto, wilayah tidak otomatis luas. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — Irian Barat baru diserahkan 1963.'},
 
-/* Q30 — Pola: [S, TS, S, TS] — Nilai kepahlawanan */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Nilai kepahlawanan',
 s:'Nilai yang bisa diteladani dari para pendiri bangsa: rela berkorban, cinta tanah air, persatuan &amp; kesatuan, pantang menyerah, gotong royong, dan berani melawan ketidakadilan. Perbedaan pendapat antara golongan tua &amp; muda justru menunjukkan kedewasaan berpolitik — mereka berdiskusi &amp; mencapai kompromi demi tujuan bersama. Proklamasi bukan hanya hasil satu orang, tetapi hasil kerja kolektif berbagai pihak. Generasi muda perlu meneladani semangat ini untuk mengisi kemerdekaan &amp; menjaga persatuan bangsa.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -619,7 +612,10 @@ e:'1 Sesuai. 2 Tidak Sesuai — perbedaan justru MEMPERKAYA &amp; mempercepat pr
 /* ============================================================
    STATE
    ============================================================ */
-let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let currentQ=0,userAnswers={},revealed={},timerInterval=null;
+let secondsLeft=TOTAL_TIME;
+let warnedAt={};
+let isLocked=false;
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
 
@@ -628,13 +624,29 @@ function showSection(id){
   document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+function goHome(){stopTimer();window.location.href=HOME_URL;}
 function goIdentity(){
   stopTimer();
+  isLocked=false;
   showSection('identity');
   document.getElementById('progressThumb').style.width='0%';
-  document.getElementById('testTimer').textContent='00:00';
+  document.getElementById('testTimer').textContent='70:00';
+  document.getElementById('testTimerBox').classList.remove('warn');
   currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
 }
+
+/* ============================================================
+   TOAST NOTIFIKASI
+   ============================================================ */
+let toastTimeout=null;
+function showToast(msg,icon){
+  const t=document.getElementById('toast');
+  t.innerHTML=`<i class="fas ${icon||'fa-bell'}"></i><span>${msg}</span>`;
+  t.classList.add('show');
+  if(toastTimeout)clearTimeout(toastTimeout);
+  toastTimeout=setTimeout(()=>{t.classList.remove('show');},4500);
+}
+
 function startTestWithIdentity(){
   const name=document.getElementById('inpName').value.trim();
   const school=document.getElementById('inpSchool').value.trim();
@@ -647,7 +659,7 @@ function startTestWithIdentity(){
   document.getElementById('hdrName').textContent=siswaName;
   document.getElementById('hdrSchool').textContent=siswaSchool;
   document.getElementById('hdrClass').textContent=siswaClass;
-  currentQ=0;userAnswers={};revealed={};
+  currentQ=0;userAnswers={};revealed={};warnedAt={};isLocked=false;
   displayedQuestions=shuffle([...Q10]);
   document.getElementById('testTitle').textContent='Proklamasi Kemerdekaan';
   document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
@@ -656,15 +668,55 @@ function startTestWithIdentity(){
   renderQuestion();renderQMap();startTimer();updateProgress();
 }
 function retryTest(){
-  currentQ=0;userAnswers={};revealed={};
+  currentQ=0;userAnswers={};revealed={};warnedAt={};isLocked=false;
   displayedQuestions=shuffle([...Q10]);
   document.getElementById('totCount').textContent=displayedQuestions.length;
   showSection('test');
   renderQuestion();renderQMap();startTimer();updateProgress();
 }
-function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+
+/* ============================================================
+   TIMER COUNTDOWN 70 MENIT
+   ============================================================ */
+function startTimer(){
+  stopTimer();
+  secondsLeft=TOTAL_TIME;
+  warnedAt={};
+  updateTimerDisplay();
+  document.getElementById('testTimerBox').classList.remove('warn');
+  timerInterval=setInterval(()=>{
+    secondsLeft--;
+    updateTimerDisplay();
+    WARN_AT.forEach(w=>{
+      if(secondsLeft===w && !warnedAt[w]){
+        warnedAt[w]=true;
+        const menit=w/60;
+        showToast(`⏰ Sisa waktu ${menit} menit lagi! Segera periksa jawabanmu.`,'fa-hourglass-half');
+        document.getElementById('testTimerBox').classList.add('warn');
+      }
+    });
+    if(secondsLeft<=0){
+      clearInterval(timerInterval);timerInterval=null;
+      timeUp();
+    }
+  },1000);
+}
 function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
-function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function updateTimerDisplay(){
+  const m=String(Math.floor(Math.max(0,secondsLeft)/60)).padStart(2,'0');
+  const s=String(Math.max(0,secondsLeft)%60).padStart(2,'0');
+  document.getElementById('testTimer').textContent=`${m}:${s}`;
+}
+
+/* Waktu habis → kunci & tampilkan hasil */
+function timeUp(){
+  if(isLocked)return;
+  isLocked=true;
+  showToast('⏰ Waktu habis! Jawaban dikunci & hasil ditampilkan.','fa-lock');
+  for(let i=0;i<displayedQuestions.length;i++)revealed[i]=true;
+  setTimeout(()=>{finishTest(true);},900);
+}
+
 function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
 
@@ -687,7 +739,9 @@ function renderQuestion(){
     q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
       if(ua===i)div.classList.add('sel');
       if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
-      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      if(!isLocked)div.onclick=()=>selectOption(i,q.t);
+      optsEl.appendChild(div);});
     area.appendChild(optsEl);
   }else if(q.t==='MCMA'){
     const checksEl=document.createElement('div');checksEl.className='checks';
@@ -704,7 +758,7 @@ function renderQuestion(){
       }
       const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
       div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
-      div.onclick=()=>selectOption(i,q.t);
+      if(!isLocked)div.onclick=()=>selectOption(i,q.t);
       checksEl.appendChild(div);
     });
     area.appendChild(checksEl);
@@ -712,7 +766,8 @@ function renderQuestion(){
     const wrap=document.createElement('div');wrap.className='kat-wrap';
     let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
     q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
-      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+      const dis=isLocked?'disabled':'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button ${dis} class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button ${dis} class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
     html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
   }
   const expEl=document.getElementById('qExpl');
@@ -724,20 +779,20 @@ function renderQuestion(){
   const isLast=currentQ===total-1;
   document.getElementById('nextBtn').classList.toggle('hidden',isLast);
   document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
-  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]||isLocked);
 }
 function selectOption(idx,type){
-  if(revealed[currentQ])return;
+  if(isLocked||revealed[currentQ])return;
   if(type==='PG'){userAnswers[currentQ]=idx;}
   else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
   renderQuestion();renderQMap();updateProgress();
 }
 function setKategori(idx,cat){
-  if(revealed[currentQ])return;
+  if(isLocked||revealed[currentQ])return;
   if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
   userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
 }
-function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function revealQ(){if(isLocked)return;revealed[currentQ]=true;renderQuestion();}
 function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
 function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
 function renderQMap(){
@@ -765,6 +820,17 @@ function updateProgress(){
   document.getElementById('ansCount').textContent=answered;
   document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
 }
+function countAnswered(){
+  let answered=0;
+  for(let i=0;i<displayedQuestions.length;i++){
+    const ua=userAnswers[i];
+    if(ua===undefined||ua===null)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){if(Object.keys(ua).length>0)answered++;}
+    else answered++;
+  }
+  return answered;
+}
 function isCorrect(q,ua){
   if(ua===undefined||ua===null)return false;
   if(q.t==='PG')return ua===q.a;
@@ -772,42 +838,85 @@ function isCorrect(q,ua){
   if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
   return false;
 }
-function finishTest(){
+
+/* ============================================================
+   FINISH TEST — hitung skor & tampilkan hasil
+   ============================================================ */
+function finishTest(fromTimeout){
+  if(!fromTimeout && !confirm('Yakin ingin menyelesaikan tes? Pastikan semua jawaban sudah diperiksa.'))return;
   stopTimer();
+  isLocked=true;
   const qs=displayedQuestions;const total=qs.length;let correct=0;
   const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
   const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
   qs.forEach((q,i)=>{
-    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);
+    if(isC)correct++;
     levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
     typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
   });
-  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  const answered=countAnswered();
+  const unanswered=total-answered;
+  const wrong=answered-correct;
+  const score=Math.round((correct/total)*100);
+
   document.getElementById('finalScore').textContent=score;
   document.getElementById('rsCorrect').textContent=correct;
   document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsUnanswered').textContent=unanswered;
   document.getElementById('rsTotal').textContent=total;
-  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+
+  const usedSec=TOTAL_TIME-Math.max(0,secondsLeft);
+  const m=String(Math.floor(usedSec/60)).padStart(2,'0'),s=String(usedSec%60).padStart(2,'0');
   document.getElementById('rsTime').textContent=`${m}:${s}`;
+
   document.getElementById('resultIdentity').innerHTML=`
     <span><i class="fas fa-user" style="color:var(--primary-light)"></i> ${siswaName}</span>
     <span><i class="fas fa-school" style="color:var(--primary-light)"></i> ${siswaSchool}</span>
     <span><i class="fas fa-door-open" style="color:var(--primary-light)"></i> ${siswaClass}</span>`;
-  let title='',sub='';
-  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Proklamasi Kemerdekaan sangat luar biasa.`;}
-  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
-  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
-  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Proklamasi Kemerdekaan dan coba lagi.`;}
+
+  /* Warna skor: hijau (≥80), kuning (60–79), merah (<60) */
+  let colorVar,title,sub;
+  if(score>=80){
+    colorVar='var(--gold)';
+    title='Sangat Baik (A)';
+    sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Proklamasi Kemerdekaan sangat luar biasa.`;
+  }else if(score>=60){
+    colorVar='var(--amber)';
+    title='Cukup Baik (B/C)';
+    sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan &amp; tingkatkan terus.`;
+  }else{
+    colorVar='var(--rose)';
+    title='Perlu Belajar (D)';
+    sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Proklamasi Kemerdekaan dan coba lagi.`;
+  }
   document.getElementById('resultTitle').textContent=title;
   document.getElementById('resultSub').textContent=sub;
+
+  /* Terapkan warna ke skor */
+  const sv=document.getElementById('finalScore');
+  sv.style.color=colorVar;
   const circle=document.getElementById('resultScore');
-  const color=score>=85?'var(--gold)':score>=70?'var(--primary-light)':score>=55?'var(--sky)':'var(--rose)';
-  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  circle.style.background=`conic-gradient(${colorVar} 0%, ${colorVar} ${score}%, var(--card-alt) ${score}%)`;
+
+  /* Kata-kata positif berdasarkan jumlah dijawab */
+  let encourage='';
+  const pctAnswered=(answered/total)*100;
+  if(answered===total){encourage=`🌟 Luar biasa! Kamu berhasil menjawab semua ${total} soal.`;}
+  else if(pctAnswered>=75){encourage=`👏 Hebat! Kamu menjawab ${answered} dari ${total} soal. Sedikit lagi sempurna!`;}
+  else if(pctAnswered>=50){encourage=`💪 Bagus! Kamu sudah menjawab ${answered} dari ${total} soal. Terus tingkatkan!`;}
+  else if(answered>0){encourage=`✨ Kamu sudah menjawab ${answered} soal. Ayo lebih teliti &amp; fokus di percobaan berikutnya!`;}
+  else{encourage=`📚 Belum ada soal yang dijawab. Yuk coba lagi dengan semangat!`;}
+  document.getElementById('resultEncourage').textContent=encourage;
+
+  /* Rekap level */
   const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
   ['Knowing','Applying','Reasoning'].forEach(lv=>{
     const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
     recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
   });
+
+  /* Rekap tipe */
   const recapType=document.getElementById('recapType');recapType.innerHTML='';
   ['PG','MCMA','KATEGORI'].forEach(tp=>{
     const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
@@ -815,6 +924,7 @@ function finishTest(){
   });
   showSection('result');
 }
+
 document.addEventListener('keydown',(e)=>{
   if(!document.getElementById('test').classList.contains('active'))return;
   const tag=(e.target.tagName||'').toLowerCase();
