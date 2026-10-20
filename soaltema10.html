@@ -13,26 +13,6 @@
 :root{--primary:#0D9488;--primary-light:#7EE8D9;--gold:#34D399;--emerald:#059669;--rose:#F43F5E;--sky:#38BDF8;--violet:#0F766E;--bg:#051410;--card:#0F2D28;--card-alt:#14382F;--text:#E8F5F0;--text-light:#A7C7BF;--text-muted:#6E8E86;--line:rgba(126,232,217,.14);--line-soft:rgba(126,232,217,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#0D9488;--accent2:#38BDF8;--accent-soft:rgba(13,148,136,.12);}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(13,148,136,.12),transparent 55%),radial-gradient(circle at 85% 80%,rgba(56,189,248,.08),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
-#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#0A231E 0%,#051410 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
-.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
-.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--sky) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(126,232,217,.55)) drop-shadow(0 0 26px rgba(13,148,136,.4));z-index:-2;}
-.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#051410;box-shadow:inset 0 0 24px rgba(13,148,136,.16);z-index:-1;}
-.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#E8F5F0 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #064E3B) drop-shadow(2px 2px 0 #054238) drop-shadow(3px 3px 0 #043530) drop-shadow(4px 4px 0 #032A28) drop-shadow(5px 5px 0 #021F1E) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(52,211,153,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
-.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
-.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(15,118,110,.35);}
-.ring-3{inset:30px;border-top-color:var(--gold);border-right-color:var(--gold);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(52,211,153,.35);}
-@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(13,148,136,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
-@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(13,148,136,.18);border-radius:10px;margin-top:24px;overflow:hidden;}
-.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--sky));transition:width .3s;border-radius:10px}
-.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(5,20,16,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
 .hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
 .hdr-center i{color:var(--gold)}
@@ -159,30 +139,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(244,63,94,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
-@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
-@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
 </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="loader-3d-wrap">
-    <div class="loader-ring ring-1"></div>
-    <div class="loader-ring ring-2"></div>
-    <div class="loader-ring ring-3"></div>
-    <div class="loader-circle">
-      <div class="loader-3d-text">MGE</div>
-    </div>
-  </div>
-  <div class="loader-3d-sub">Maeda Game Edu</div>
-  <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">Tema 10: Proklamasi Kemerdekaan · 30 Soal</div>
-  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
-  <div class="loader-pct" id="lpct">0%</div>
-</div>
 
 <header class="hdr">
   <div style="display:flex;gap:6px;align-items:center">
@@ -550,23 +514,12 @@ e:'A, B, C benar. D salah — RI dibagi menjadi 8 provinsi (bukan 12). E salah �
 s:'Setelah proklamasi, rakyat Indonesia harus berjuang mempertahankan kemerdekaan melalui dua jalur: bersenjata &amp; diplomasi. Perjuangan bersenjata: Pertempuran Surabaya (10 November 1945) dipimpin Bung Tomo; Bandung Lautan Api (23 Maret 1946) dipicu ultimatum Sekutu; Palagan Ambarawa (Desember 1945) dipimpin Jenderal Soedirman; Serangan Umum 1 Maret 1949 dipimpin Sri Sultan HB IX. Perjuangan diplomasi: Perjanjian Linggarjati (1946), Renville (1948), Roem-Royen (1949), Konferensi Meja Bundar (1949). Kombinasi keduanya berhasil memaksa Belanda menyerahkan kedaulatan pada 27 Desember 1949.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perjuangan bersenjata? (Pilih lebih dari satu)',
 o:['Pertempuran Surabaya dipimpin oleh Jenderal Soedirman.',
- 'Bandung Lautan Api dipicu ultimatum Sekutu.',
+ 'Bandung Lautan Api dipicu perintah PBB.',
  'Serangan Umum 1 Maret 1949 dipimpin Sri Sultan HB IX.',
  'Palagan Ambarawa dipimpin Jenderal Soedirman.',
- 'Perjuangan bersenjata tidak memiliki peran dalam diplomasi.'],
+ 'Perjuangan bersenjata &amp; diplomasi saling melengkapi.'],
 a:[2,3,4],
-e:'C, D, E benar. A salah — Surabaya = Bung Tomo (bukan Soedirman). B salah — Bandung Lautan Api dipicu ultimatum Sekutu (benar), tetapi pilihan B menyebut fakta yang BENAR. Tunggu, B benar. Jadi A, B salah. C, D benar. E salah? Sebenarnya E SALAH karena perjuangan bersenjata MEMPERKUAT diplomasi. Mari perbaiki: A salah, B BENAR, C BENAR, D BENAR, E SALAH. Jadi jawaban [1,2,3]. Hmm, tapi pola harus [2,3,4]. Ubah pilihan. Ubah E menjadi "Perjuangan bersenjata &amp; diplomasi saling melengkapi." — jadi E benar. A salah. B benar? Harus konsisten.
-
-Mari susun ulang: A salah (Surabaya = Bung Tomo), B salah (dipicu ultimatum sekutu → sebenarnya BENAR). Hmm. Ubah B: "Bandung Lautan Api dipicu perintah PBB." → SALAH. C benar, D benar, E benar. Jadi jawaban [2,3,4]. 
-
-Pilihan baru:
-A. Pertempuran Surabaya dipimpin Jenderal Soedirman. → SALAH
-B. Bandung Lautan Api dipicu perintah PBB. → SALAH
-C. Serangan Umum 1 Maret 1949 dipimpin Sri Sultan HB IX. → BENAR
-D. Palagan Ambarawa dipimpin Jenderal Soedirman. → BENAR
-E. Perjuangan bersenjata &amp; diplomasi saling melengkapi. → BENAR
-
-Jawaban: [2,3,4]. Bagus.},
+e:'C, D, E benar. A salah — Surabaya = Bung Tomo (bukan Soedirman). B salah — Bandung Lautan Api dipicu ultimatum Sekutu, bukan perintah PBB.'},
 
 /* Q23 — Pola: [0,3] — Perjanjian diplomasi */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Perjanjian diplomasi',
@@ -589,7 +542,7 @@ o:['Proklamasi hanya memiliki makna politik tanpa makna lain.',
  'Proklamasi melahirkan identitas nasional &amp; kebanggaan bangsa.',
  'Proklamasi membuka jalan pengelolaan sumber daya untuk kesejahteraan rakyat.',
  'Proklamasi tidak berdampak pada hubungan internasional.'],
-a:[1,2,4],
+a:[1,2,3],
 e:'B, C, D benar. A salah — proklamasi bermakna multidimensional. E salah — proklamasi mendapat pengakuan de facto internasional.'},
 
 /* Q25 — Pola: [0,1,3,4] — Warisan proklamasi */
@@ -601,8 +554,8 @@ o:['Kewajiban menjaga NKRI sebagai bentuk negara.',
  'Kewajiban membenci bangsa lain.',
  'Tanggung jawab mengisi kemerdekaan dengan karya positif.',
  'Kebebasan mutlak tanpa aturan.'],
-a:[0,1,3,4],
-e:'A, B, D, E benar. C salah — proklamasi mengajarkan kerja sama internasional, bukan kebencian. E salah — kemerdekaan tetap terikat aturan &amp; hukum.'},
+a:[0,1,3],
+e:'A, B, D benar. C salah — proklamasi mengajarkan kerja sama internasional, bukan kebencian. E salah — kemerdekaan tetap terikat aturan &amp; hukum.'},
 
 /* ============ KATEGORI (5 SOAL) ============ */
 
@@ -669,8 +622,6 @@ e:'1 Sesuai. 2 Tidak Sesuai — perbedaan justru MEMPERKAYA &amp; mempercepat pr
 let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
-
-(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
