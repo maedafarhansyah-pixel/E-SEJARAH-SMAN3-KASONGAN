@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#0a0a14"/>
+<title>TKA Literasi Sejarah · Pemerintahan Sukarno · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--primary:#B8860B;--primary-light:#DAA520;--gold:#FFD700;--emerald:#10B981;--rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;--card-alt:#252540;--text:#faf8f3;--text-light:#dcdcec;--text-muted:#adadc5;--line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#B8860B;--accent2:#DAA520;--accent-soft:rgba(184,134,11,.12);}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(184,134,11,.08),transparent 55%),radial-gradient(circle at 85% 80%,rgba(251,113,133,.07),transparent 55%);}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#14142a 0%,#0a0a14 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
+.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
+.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--rose) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,215,0,.55)) drop-shadow(0 0 26px rgba(184,134,11,.4));z-index:-2;}
+.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a0a14;box-shadow:inset 0 0 24px rgba(184,134,11,.16);z-index:-1;}
+.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fff8dc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #a3740c) drop-shadow(2px 2px 0 #8b6914) drop-shadow(3px 3px 0 #7a5d10) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 0 #4a3807) drop-shadow(7px 7px 0 #3a2c05) drop-shadow(8px 8px 0 #2a1f03) drop-shadow(9px 9px 10px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
+.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
+.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
+.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35);}
+.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(251,113,133,.35);}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
+@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
+.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);border-radius:10px;margin-top:24px;overflow:hidden;}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
+.hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary);text-transform:uppercase;gap:8px;align-items:center}
+.hdr-center i{color:var(--gold)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(184,134,11,.08);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(184,134,11,.4)}
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
+.chip i{color:var(--primary)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,92,246,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary);letter-spacing:1px}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);border-top:3px solid var(--accent)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(184,134,11,.1);color:var(--primary);border-color:rgba(184,134,11,.3)}
+.badge.MCMA{background:rgba(139,92,246,.15);color:#a78bfa;border-color:rgba(139,92,246,.35)}
+.badge.KATEGORI{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.35)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
+.badge.df{background:rgba(16,185,129,.1);color:var(--emerald);border-color:rgba(16,185,129,.3)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(184,134,11,.35)}
+.q-stim{background:rgba(184,134,11,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--accent);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--accent);transition:all .2s}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.sel .lbl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.opt.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#fff;border-color:var(--rose)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(139,92,246,.18);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.check:hover{background:rgba(139,92,246,.08);border-color:var(--violet);transform:translateX(3px)}
+.check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(139,92,246,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
+.check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:var(--violet);padding-top:4px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check.sel{background:rgba(139,92,246,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
+.check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
+.check.sel .txt{color:var(--text)}
+.check.correct{background:rgba(16,185,129,.12);border-color:var(--emerald)}
+.check.correct .box{background:var(--emerald);border-color:var(--emerald);border-style:solid}
+.check.correct .clbl{color:var(--emerald)}
+.check.wrong{background:rgba(251,113,133,.12);border-color:var(--rose)}
+.check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
+.check.wrong .clbl{color:var(--rose)}
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#fff;border-color:var(--rose)}
+.expl{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(16,185,129,.25)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 22px rgba(184,134,11,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(184,134,11,.4)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#fff;box-shadow:0 8px 22px rgba(16,185,129,.3)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(16,185,129,.4)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#fff;box-shadow:0 8px 22px rgba(56,189,248,.3)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.4)}
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(16,185,129,.18);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#fff;box-shadow:0 0 12px rgba(184,134,11,.4);transform:scale(1.1)}
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--primary)}.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+.identity-wrap{max-width:560px;margin:0 auto;padding:20px 0 10px}
+.identity-hero{text-align:center;margin-bottom:24px}
+.identity-hero .badge-top{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(184,134,11,.15),rgba(251,113,133,.1));border:1px solid rgba(184,134,11,.4);padding:7px 18px;border-radius:40px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.identity-hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px}
+.identity-hero h1 .grad{background:linear-gradient(135deg,#DAA520 0%,#FFD700 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.identity-hero p{color:var(--text-light);font-size:.92rem;line-height:1.7;max-width:520px;margin:0 auto}
+.identity-hero .info-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.identity-hero .info-chips .ic{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:6px}
+.identity-hero .info-chips .ic i{color:var(--primary)}
+.identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary)}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(184,134,11,.15)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(184,134,11,.08));border:1.5px solid rgba(251,113,133,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+@keyframes privacyPulse{0%,100%{border-color:rgba(251,113,133,.4);box-shadow:0 0 0 0 rgba(251,113,133,.15)}50%{border-color:rgba(251,113,133,.65);box-shadow:0 0 0 4px rgba(251,113,133,.1)}}
+.privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
+.privacy-notice strong{color:var(--rose);font-weight:800;}
+.hidden{display:none!important}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-3d-wrap">
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle">
+      <div class="loader-3d-text">MGE</div>
+    </div>
+  </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
+  <div class="loader-title">TKA LITERASI SEJARAH</div>
+  <div class="loader-sub">Pemerintahan Sukarno 1950–1967 · 30 Soal</div>
+  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+  <div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
+  </div>
+  <div class="hdr-center"><i class="fas fa-landmark"></i> Pemerintahan Sukarno · 30 Soal</div>
+  <div style="display:flex;gap:6px"></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<section id="identity" class="section active">
+  <div class="identity-wrap">
+    <div class="identity-hero">
+      <div class="badge-top"><i class="fas fa-crown"></i> TKA Literasi Sejarah</div>
+      <h1><span class="grad">Identitas Peserta</span></h1>
+      <p>Isi data diri untuk memulai tes <strong>30 soal Pemerintahan Sukarno</strong>: Demokrasi Liberal, Pemilu 1955, Demokrasi Terpimpin, Trikora, Konfrontasi Malaysia, G30S/PKI 1965, Supersemar, hingga transisi ke Orde Baru.</p>
+      <div class="info-chips">
+        <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
+        <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
+        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+      </div>
+    </div>
+    <div class="identity-form">
+      <h2>Formulir Peserta</h2>
+      <p>Data akan digunakan untuk laporan hasil</p>
+      <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+      </div>
+      <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+      </div>
+      <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <strong>Pemberitahuan:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil. Semua data hanya diproses di browser dan hilang saat halaman ditutup. Untuk laporan nilai, silakan <strong>screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="test" class="section">
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Pemerintahan Sukarno</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 30</div>
+    </div>
+    <div class="info">
+      <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 30</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
+</section>
+
+<section id="result" class="section">
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+    <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   BANK SOAL — PEMERINTAHAN SUKARNO (30 SOAL UNIK)
+   18 PG + 7 MCMA + 5 KATEGORI
+   Kunci PG terdistribusi: A=4, B=4, C=4, D=3, E=3
+   Level: Knowing=5, Applying=11, Reasoning=14
+   ============================================================ */
+const Q6=[
+
+/* ============ PG (18 SOAL) ============ */
+
+/* Q1 — Kunci: B (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Sistem Demokrasi Liberal',
+s:'Setelah Konferensi Meja Bundar (KMB) pada 27 Desember 1949, Indonesia berbentuk Republik Indonesia Serikat (RIS). Namun, RIS hanya bertahan sekitar delapan bulan. Pada 17 Agustus 1950, RIS dibubarkan dan Indonesia kembali menjadi Negara Kesatuan Republik Indonesia (NKRI) dengan UUDS 1950 sebagai konstitusinya. UUDS 1950 menerapkan sistem pemerintahan parlementer: presiden hanya berperan sebagai kepala negara, sedangkan kepala pemerintahan dipegang oleh seorang perdana menteri. Kabinet bertanggung jawab kepada DPR, bukan kepada presiden. Periode 1950–1959 inilah yang dikenal sebagai era Demokrasi Liberal.',
+q:'Berdasarkan stimulus tersebut, sistem pemerintahan yang diterapkan pada masa Demokrasi Liberal adalah ....',
+o:['Presidensial','Parlementer','Monarki','Federal','Otoriter'],
+a:1,
+e:'Demokrasi Liberal (1950–1959) menerapkan sistem parlementer: presiden kepala negara, perdana menteri kepala pemerintahan. Kabinet bertanggung jawab kepada DPR. Berbeda dengan Presidensial (UUD 1945) atau Federal (RIS).'},
+
+/* Q2 — Kunci: C (Knowing) */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Kabinet pertama Demokrasi Liberal',
+s:'Setelah Indonesia kembali ke NKRI pada 17 Agustus 1950, pemerintahan Demokrasi Liberal dimulai. Kabinet pertama pada era ini dipimpin oleh Mohammad Natsir dari Partai Masyumi. Kabinet Natsir (September 1950 – April 1951) menghadapi masalah besar: Irian Barat yang masih dikuasai Belanda. Natsir gagal menyelesaikan masalah ini melalui jalur diplomasi. Partai oposisi kemudian mengajukan mosi tidak percaya, dan kabinet pun jatuh. Peristiwa ini menjadi pola yang berulang sepanjang era Demokrasi Liberal.',
+q:'Berdasarkan stimulus tersebut, kabinet pertama pada masa Demokrasi Liberal dipimpin oleh ....',
+o:['Sukiman Wirjosandjojo','Wilopo','Mohammad Natsir','Ali Sastroamidjojo','Burhanuddin Harahap'],
+a:2,
+e:'Kabinet Natsir (September 1950 – April 1951) adalah kabinet pertama Demokrasi Liberal. Dipimpin Mohammad Natsir dari Masyumi. Jatuh karena mosi tidak percaya terkait kegagalan menangani Irian Barat.'},
+
+/* Q3 — Kunci: A (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemilu 1955',
+s:'Pemilu 1955 diselenggarakan pada masa Kabinet Burhanuddin Harahap. Pemilu ini berlangsung dalam dua tahap: 29 September 1955 untuk memilih anggota DPR, dan 15 Desember 1955 untuk memilih anggota Konstituante. Tingkat partisipasi mencapai 91,5% — salah satu yang tertinggi dalam sejarah Indonesia. Rakyat bebas memilih tanpa tekanan meskipun tingkat pendidikan dan kesadaran politik masih rendah. Pemilu ini dianggap sebagai pemilu paling demokratis dalam sejarah Indonesia. Empat partai besar mendominasi: PNI (22,3%), Masyumi (20,9%), NU (18,4%), dan PKI (16,4%).',
+q:'Berdasarkan stimulus tersebut, mengapa Pemilu 1955 dianggap sebagai pemilu paling demokratis dalam sejarah Indonesia?',
+o:['Karena rakyat bebas memilih tanpa tekanan dengan tingkat partisipasi mencapai 91,5%',
+ 'Karena Pemilu 1955 hanya diikuti oleh satu partai politik saja',
+ 'Karena Pemilu 1955 diselenggarakan pada masa kabinet non-partai yang netral',
+ 'Karena tidak ada kampanye politik dan semua calon dipilih langsung oleh presiden',
+ 'Karena Pemilu 1955 hanya dilakukan satu tahap dan berlangsung sangat cepat'],
+a:0,
+e:'Pemilu 1955 dianggap paling demokratis karena rakyat bebas memilih tanpa tekanan dan partisipasi mencapai 91,5%. Berbeda dengan pemilu pada masa Demokrasi Terpimpin yang tidak pernah diadakan.'},
+
+/* Q4 — Kunci: D (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kegagalan Konstituante',
+s:'Konstituante mulai bersidang pada 10 November 1956 di Bandung. Tugas utamanya adalah menyusun Undang-Undang Dasar baru untuk menggantikan UUDS 1950. Namun, setelah hampir tiga tahun bersidang, Konstituante gagal mencapai kesepakatan. Perbedaan pendapat yang paling tajam adalah tentang dasar negara: kelompok Islam menginginkan Islam sebagai dasar negara, sementara kelompok nasionalis menginginkan Pancasila. Perdebatan ini berlangsung berkepanjangan tanpa titik temu. Kegagalan Konstituante menjadi salah satu alasan utama Presiden Sukarno mengeluarkan Dekrit 5 Juli 1959.',
+q:'Berdasarkan stimulus tersebut, penyebab utama kegagalan Konstituante dalam menyusun UUD baru adalah ....',
+o:['Kurangnya dana untuk membiayai sidang-sidang Konstituante',
+ 'Anggota Konstituante tidak pernah hadir dalam sidang yang dijadwalkan',
+ 'Belanda melarang Konstituante bersidang karena tidak mengakui kedaulatan Indonesia',
+ 'Perbedaan pendapat tajam antara kelompok Islam dan nasionalis tentang dasar negara yang tidak menemukan titik temu',
+ 'Presiden Sukarno membubarkan Konstituante sebelum sidang pertama dimulai'],
+a:3,
+e:'Konstituante gagal karena perbedaan pendapat tajam tentang dasar negara: Islam vs Pancasila. Perdebatan berlangsung hampir 3 tahun tanpa titik temu. Kegagalan ini menjadi pemicu Dekrit 5 Juli 1959.'},
+
+/* Q5 — Kunci: E (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Dampak Dekrit 5 Juli 1959',
+s:'Pada 5 Juli 1959, Presiden Sukarno mengeluarkan Dekrit Presiden yang berisi: (1) pembubaran Konstituante, (2) pemberlakuan kembali UUD 1945, (3) tidak berlakunya UUDS 1950, dan (4) pembentukan MPRS/DPRS sementara. Dekrit ini menandai berakhirnya Demokrasi Liberal dan dimulainya Demokrasi Terpimpin. Namun, dekrit ini menuai kontroversi karena presiden tidak memiliki wewenang konstitusional untuk membubarkan Konstituante. Sebagian kalangan menilai dekrit ini inkonstitusional, meskipun di sisi lain dianggap perlu untuk mengatasi krisis politik yang berkepanjangan.',
+q:'Berdasarkan stimulus tersebut, dampak konstitusional paling penting dari Dekrit 5 Juli 1959 adalah ....',
+o:['Kembalinya Indonesia ke sistem federal seperti pada masa RIS',
+ 'Pembentukan negara baru yang terpisah dari NKRI',
+ 'Penghapusan jabatan presiden dan diganti dengan perdana menteri',
+ 'Dipercepatnya pemilihan umum untuk memilih presiden baru',
+ 'Berlakunya kembali UUD 1945 yang memberikan kekuasaan besar kepada presiden dan berakhirnya sistem parlementer'],
+a:4,
+e:'Dekrit 5 Juli 1959 = titik balik konstitusional: UUD 1945 berlaku kembali, sistem parlementer berakhir, kekuasaan presiden menjadi sangat besar. Ini menandai dimulainya Demokrasi Terpimpin.'},
+
+/* Q6 — Kunci: B (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Latar belakang Demokrasi Terpimpin',
+s:'Demokrasi Terpimpin lahir sebagai reaksi terhadap kegagalan Demokrasi Liberal (1950–1959). Sukarno menilai bahwa sistem parlementer yang diterapkan tidak cocok dengan kepribadian bangsa Indonesia. Sistem itu, menurutnya, meniru model Barat yang individualistis dan liberal, sementara Indonesia memiliki budaya gotong royong dan musyawarah mufakat. Sukarno juga mengkritik partai-partai politik yang hanya mementingkan kepentingan kelompoknya sendiri, bukan kepentingan rakyat. Selain itu, kabinet sering berganti dan Konstituante gagal menyusun UUD baru. Kondisi ini mendorong Sukarno mengganti sistem Demokrasi Liberal dengan Demokrasi Terpimpin.',
+q:'Berdasarkan stimulus tersebut, alasan utama Sukarno mengganti Demokrasi Liberal dengan Demokrasi Terpimpin adalah ....',
+o:['Ingin meniru sistem pemerintahan Amerika Serikat',
+ 'Sistem parlementer dianggap tidak cocok dengan kepribadian bangsa Indonesia dan gagal menciptakan stabilitas',
+ 'Adanya tekanan dari Perserikatan Bangsa-Bangsa',
+ 'Permintaan langsung dari pemerintah Belanda',
+ 'Desakan dari partai-partai Islam yang menginginkan syariat'],
+a:1,
+e:'Sukarno menilai sistem parlementer tidak cocok dengan kepribadian bangsa (gotong royong, musyawarah). Selain itu, kabinet sering berganti & Konstituante gagal. Alasan inilah yang mendorong lahirnya Demokrasi Terpimpin.'},
+
+/* Q7 — Kunci: A (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Konsep Nasakom',
+s:'Sukarno memperkenalkan konsep Nasakom sebagai upaya menyatukan tiga kekuatan politik utama di Indonesia. Tujuannya adalah menciptakan keseimbangan agar tidak ada satu kekuatan yang mendominasi. Namun, dalam praktiknya, PKI memanfaatkan Nasakom untuk memperkuat posisinya dengan mengklaim sebagai wakil sah kaum komunis. Sementara itu, TNI AD merasa terancam karena melihat PKI semakin agresif dalam memperluas pengaruh. Keseimbangan yang diharapkan Sukarno justru berubah menjadi ketegangan politik yang berbahaya dan akhirnya memuncak pada peristiwa 1965.',
+q:'Berdasarkan stimulus tersebut, tiga kekuatan utama dalam konsep Nasakom adalah ....',
+o:['Nasionalis, Agama, Komunis',
+ 'Nasionalis, Sosialis, Komunis',
+ 'Agama, Militer, Komunis',
+ 'Nasionalis, Militer, Agama',
+ 'Komunis, Sosialis, Militer'],
+a:0,
+e:'Nasakom = Nasionalisme + Agama + Komunisme. Konsep ini diperkenalkan Sukarno untuk menyeimbangkan tiga kekuatan politik utama. Namun, PKI memanfaatkannya, sementara TNI AD merasa terancam.'},
+
+/* Q8 — Kunci: C (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Ancaman PKI bagi TNI AD',
+s:'PKI menjadi salah satu partai terbesar setelah Pemilu 1955 dengan perolehan 16,4% suara — posisi keempat setelah PNI, Masyumi, dan NU. Pada masa Demokrasi Terpimpin, PKI semakin kuat karena mendapat dukungan Sukarno melalui Nasakom. PKI juga membentuk organisasi massa seperti SOBSI (buruh), BTI (petani), dan Pemuda Rakyat yang tersebar di seluruh Indonesia. Organisasi-organisasi ini mampu menggerakkan massa dalam jumlah besar. TNI AD mencurigai PKI ingin mengambil alih kekuasaan melalui jalur politik dan organisasi massa tersebut. Ketegangan antara PKI dan TNI AD terus meningkat hingga memuncak pada peristiwa G30S 1965.',
+q:'Berdasarkan stimulus tersebut, faktor utama yang membuat TNI AD merasa terancam oleh pertumbuhan PKI adalah ....',
+o:['PKI memiliki pasukan militer resmi yang terlatih dan bersenjata lengkap',
+ 'PKI didukung oleh Belanda untuk menggulingkan pemerintahan Sukarno',
+ 'PKI semakin kuat dengan dukungan Sukarno dan berhasil membentuk organisasi massa yang luas di berbagai lapisan masyarakat',
+ 'PKI membubarkan organisasi TNI dan mengambil alih markas komando',
+ 'PKI menolak konsep Nasakom yang diperkenalkan Sukarno'],
+a:2,
+e:'TNI AD merasa terancam karena PKI: (1) didukung Sukarno via Nasakom, (2) punya organisasi massa luas (SOBSI, BTI, Pemuda Rakyat), (3) mampu menggerakkan massa besar. Ini memicu ketegangan yang memuncak pada G30S 1965.'},
+
+/* Q9 — Kunci: E (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Trikora',
+s:'Irian Barat masih dikuasai Belanda setelah KMB 1949. Sukarno menilai ini sebagai bentuk penjajahan yang harus diakhiri. Pada 19 Desember 1961, Sukarno mengeluarkan Trikora (Tri Komando Rakyat) yang berisi: (1) gagalkan pembentukan Negara Papua bentukan Belanda, (2) kibarkan Sang Merah Putih di Irian Barat, dan (3) bersiap untuk mobilisasi umum. Trikora kemudian dilanjutkan dengan operasi militer besar-besaran ke Irian Barat. Pasukan Indonesia berhasil menekan Belanda hingga akhirnya bersedia berunding melalui mediasi PBB.',
+q:'Berdasarkan stimulus tersebut, motivasi utama Sukarno melancarkan Trikora adalah ....',
+o:['Ingin menunjukkan kekuatan militer Indonesia kepada negara-negara Asia',
+ 'Memenuhi permintaan PBB untuk menyelesaikan sengketa Irian Barat',
+ 'Menyaingi Malaysia yang baru saja merdeka dari Inggris',
+ 'Membuka jalur perdagangan baru antara Indonesia dan Australia',
+ 'Mengakhiri kekuasaan Belanda di Irian Barat dan menegakkan kedaulatan Indonesia atas wilayah tersebut'],
+a:4,
+e:'Motivasi utama Trikora: mengakhiri kekuasaan Belanda di Irian Barat & menegakkan kedaulatan Indonesia. Trikora dikeluarkan 19 Desember 1961, dilanjutkan operasi militer besar-besaran.'},
+
+/* Q10 — Kunci: D (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Konfrontasi Malaysia',
+s:'Pada tahun 1963, Inggris berencana membentuk Federasi Malaysia yang menggabungkan Malaya, Singapura, Sabah, dan Sarawak. Sukarno menentang keras rencana ini karena dianggap sebagai bentuk neo-kolonialisme dan neo-imperialisme Inggris di Asia Tenggara. Ia menyerukan "Ganyang Malaysia!" dan melancarkan Konfrontasi yang melibatkan operasi militer dan infiltrasi ke wilayah Malaysia. Konfrontasi berlangsung dari 1963 hingga 1966, dan baru berakhir setelah Soeharto mengambil alih kekuasaan melalui Supersemar. Dampaknya, Indonesia terisolasi secara internasional dan ekonominya terpuruk.',
+q:'Berdasarkan stimulus tersebut, alasan utama Sukarno menentang pembentukan Federasi Malaysia adalah ....',
+o:['Malaysia memiliki ekonomi yang lebih maju dan kaya dibandingkan Indonesia',
+ 'Malaysia menyerang Indonesia terlebih dahulu sehingga Indonesia harus membalas',
+ 'Malaysia tidak diakui oleh PBB sebagai negara berdaulat',
+ 'Malaysia dianggap sebagai boneka Inggris dan bentuk neo-kolonialisme yang mengancam kedaulatan Indonesia',
+ 'Malaysia ingin menguasai seluruh wilayah Indonesia termasuk Jawa dan Sumatera'],
+a:3,
+e:'Sukarno menolak Federasi Malaysia karena dianggap boneka Inggris & neo-kolonialisme. Ia menyerukan "Ganyang Malaysia!" dan melancarkan Konfrontasi (1963–1966). Dampak: isolasi internasional & ekonomi terpuruk.'},
+
+/* Q11 — Kunci: B (Knowing) */
+{t:'PG',l:'Knowing',d:'Mudah',i:'G30S — pengambil alihan komando',
+s:'Pada malam 30 September 1965, sekelompok perwira TNI AD yang menamakan diri "Gerakan 30 September" melakukan aksi dengan menculik dan membunuh enam perwira tinggi TNI AD, termasuk Letjen Ahmad Yani. Mayjen Soeharto, yang saat itu menjabat sebagai Pangkostrad, tidak menjadi sasaran dan kemudian mengambil alih komando TNI AD. Dalam waktu kurang dari 24 jam, gerakan ini berhasil ditumpas dan situasi Jakarta kembali dikuasai. Peristiwa ini kemudian mengubah arah sejarah Indonesia secara drastis — dari Orde Lama ke Orde Baru.',
+q:'Berdasarkan stimulus tersebut, tokoh yang mengambil alih komando TNI AD setelah peristiwa G30S adalah ....',
+o:['Letjen Ahmad Yani','Mayjen Soeharto','Jenderal A.H. Nasution','D.N. Aidit','Presiden Sukarno'],
+a:1,
+e:'Mayjen Soeharto (Pangkostrad) tidak menjadi sasaran G30S. Ia mengambil alih komando TNI AD dan menumpas gerakan dalam waktu kurang dari 24 jam. Inilah awal kebangkitan Soeharto.'},
+
+/* Q12 — Kunci: A (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kontroversi Supersemar',
+s:'Pada 11 Maret 1966, Presiden Sukarno menandatangani Supersemar (Surat Perintah Sebelas Maret) yang memberikan mandat kepada Letjen Soeharto untuk mengambil langkah-langkah yang dianggap perlu guna menjaga keamanan dan ketertiban. Surat ini menjadi kontroversial karena beberapa alasan: keasliannya diragukan oleh berbagai pihak, isinya multitafsir, dan tidak ada salinan asli yang tersisa. Mandat yang awalnya dimaksudkan sementara berubah menjadi pengambilalihan kekuasaan permanen setelah MPRS mencabut mandat Sukarno setahun kemudian. Hingga kini, Supersemar masih menjadi perdebatan di kalangan sejarawan.',
+q:'Berdasarkan stimulus tersebut, mengapa Supersemar dianggap sebagai dokumen yang kontroversial?',
+o:['Karena keasliannya diragukan dan isinya multitafsir, serta mandat yang awalnya sementara berubah menjadi pengambilalihan kekuasaan permanen',
+ 'Karena Supersemar ditandatangani oleh Belanda sebagai pihak yang berwenang',
+ 'Karena tidak ada saksi yang melihat proses penandatanganan Supersemar',
+ 'Karena Supersemar dibuat oleh Soeharto sendiri tanpa sepengetahuan Sukarno',
+ 'Karena Supersemar ditolak oleh MPRS dan tidak pernah diakui secara hukum'],
+a:0,
+e:'Supersemar kontroversial karena: (1) keaslian diragukan, (2) isi multitafsir, (3) tidak ada salinan asli, (4) mandat sementara jadi permanen. Hingga kini masih diperdebatkan sejarawan.'},
+
+/* Q13 — Kunci: C (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Akhir kekuasaan Sukarno',
+s:'Pada 12 Maret 1967, MPRS mencabut mandat Sukarno sebagai presiden dan mengangkat Soeharto sebagai pejabat presiden. Soeharto kemudian dilantik sebagai Presiden RI pada 27 Maret 1968. Sukarno hidup dalam tahanan rumah hingga wafat pada 21 Juni 1970. Peristiwa ini menandai berakhirnya Orde Lama dan dimulainya Orde Baru di bawah kepemimpinan Soeharto. Namun, proses transisi ini menuai kontroversi karena melibatkan tekanan politik, aksi mahasiswa, dan perubahan konfigurasi kekuasaan antara sipil dan militer.',
+q:'Berdasarkan stimulus tersebut, peristiwa yang menandai berakhirnya kekuasaan Sukarno secara konstitusional adalah ....',
+o:['Supersemar 11 Maret 1966',
+ 'Pembubaran PKI pada 12 Maret 1966',
+ 'Pencabutan mandat Sukarno oleh MPRS pada 12 Maret 1967',
+ 'Pelantikan Soeharto sebagai presiden pada 27 Maret 1968',
+ 'Wafatnya Sukarno pada 21 Juni 1970'],
+a:2,
+e:'Secara konstitusional, kekuasaan Sukarno berakhir saat MPRS mencabut mandatnya pada 12 Maret 1967. Pelantikan Soeharto (27 Maret 1968) adalah tindak lanjut. Wafat Sukarno (1970) bukan peristiwa konstitusional.'},
+
+/* Q14 — Kunci: D (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Manipol-USDEK',
+s:'Sukarno memperkenalkan Manipol (Manifesto Politik) dan USDEK sebagai haluan negara. USDEK adalah singkatan dari Undang-Undang Dasar 1945, Sosialisme Indonesia, Demokrasi Terpimpin, Ekonomi Terpimpin, dan Kepribadian Indonesia. Dokumen ini menjadi dasar indoktrinasi politik di sekolah, universitas, dan lembaga negara. Setiap pegawai negeri dan pelajar diwajibkan memahami dan menghayati Manipol-USDEK. Melalui program ini, Sukarno berusaha membentuk satu kesatuan ideologi politik di seluruh lapisan masyarakat untuk mendukung Demokrasi Terpimpin.',
+q:'Berdasarkan stimulus tersebut, tujuan utama dari penerapan Manipol dan USDEK adalah ....',
+o:['Menyebarkan paham liberalisme dan demokrasi parlementer di Indonesia',
+ 'Menyaingi pengaruh Belanda yang masih ingin menjajah Indonesia',
+ 'Membentuk partai politik baru sebagai wadah tunggal rakyat Indonesia',
+ 'Menjadi haluan negara dan dasar ideologi Demokrasi Terpimpin yang diindoktrinasikan ke seluruh lapisan masyarakat',
+ 'Mempersiapkan pemilu berikutnya yang akan diselenggarakan pada tahun 1960'],
+a:3,
+e:'Manipol-USDEK = haluan negara & dasar ideologi Demokrasi Terpimpin. Diindoktrinasikan ke sekolah, universitas, dan lembaga negara untuk membentuk kesatuan ideologi politik.'},
+
+/* Q15 — Kunci: E (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kritik otoritarianisme',
+s:'Dalam Demokrasi Terpimpin, kekuasaan sangat terpusat pada presiden. Sukarno memegang peran sebagai Presiden, Perdana Menteri, dan Panglima Tertinggi sekaligus. Ia juga membentuk MPRS dan DPAS yang anggotanya diangkat oleh presiden. Partai politik dibatasi ruang geraknya, dan DPR hasil Pemilu 1955 dibubarkan dan diganti dengan DPR-GR (Gotong Royong) yang anggotanya diangkat presiden. Kebebasan pers dibatasi, lawan-lawan politik ditahan, dan tidak ada pemilu selama Demokrasi Terpimpin. Kritik terhadap Sukarno bisa berujung pada penahanan. Kondisi inilah yang membuat banyak sejarawan menyebut Demokrasi Terpimpin sebagai "otoritarianisme terselubung".',
+q:'Berdasarkan stimulus tersebut, mengapa Demokrasi Terpimpin dikritik sebagai bentuk otoritarianisme?',
+o:['Karena terlalu banyak partai politik yang bersaing',
+ 'Karena terlalu lemah terhadap tekanan asing',
+ 'Karena terlalu sering mengadakan pemilu',
+ 'Karena sama sekali tidak memiliki lembaga negara',
+ 'Karena kekuasaan terlalu terpusat pada presiden tanpa checks and balances, kebebasan dibatasi, dan tidak ada pemilu'],
+a:4,
+e:'Kritik otoritarianisme: (1) kekuasaan terpusat pada presiden, (2) DPR diganti DPR-GR yang diangkat, (3) pers dibatasi, (4) lawan politik ditahan, (5) tidak ada pemilu. Tidak ada checks and balances.'},
+
+/* Q16 — Kunci: B (Applying) */
+{t:'PG',l:'Applying',d:'Sedang',i:'Perbandingan sistem pemerintahan',
+s:'Demokrasi Liberal (1950–1959) dan Demokrasi Terpimpin (1959–1965) memiliki perbedaan mendasar dalam sistem pemerintahan. Pada Demokrasi Liberal, sistem yang diterapkan adalah parlementer: presiden sebagai kepala negara, perdana menteri sebagai kepala pemerintahan, dan kabinet bertanggung jawab kepada DPR. Kekuasaan legislatif sangat dominan. Pada Demokrasi Terpimpin, sistem berubah menjadi presidensial dengan kekuasaan terpusat pada presiden. DPR hasil Pemilu 1955 dibubarkan dan diganti DPR-GR yang anggotanya diangkat presiden. Tidak ada pemilu selama Demokrasi Terpimpin, dan partai politik dibatasi ruang geraknya.',
+q:'Berdasarkan stimulus tersebut, perbedaan utama sistem pemerintahan Demokrasi Liberal dan Demokrasi Terpimpin terletak pada ....',
+o:['Demokrasi Liberal bersifat presidensial, Demokrasi Terpimpin bersifat parlementer',
+ 'Demokrasi Liberal bersifat parlementer dengan kekuasaan di DPR, Demokrasi Terpimpin bersifat presidensial dengan kekuasaan terpusat di presiden',
+ 'Keduanya sama-sama menerapkan sistem parlementer',
+ 'Keduanya sama-sama menerapkan sistem presidensial',
+ 'Demokrasi Liberal berbentuk monarki, Demokrasi Terpimpin berbentuk republik'],
+a:1,
+e:'Perbedaan utama: Liberal = parlementer (kekuasaan di DPR, PM sebagai kepala pemerintahan). Terpimpin = presidensial (kekuasaan terpusat di presiden, DPR diangkat presiden).'},
+
+/* Q17 — Kunci: A (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Kemunduran ekonomi',
+s:'Pada akhir masa Demokrasi Terpimpin, ekonomi Indonesia mengalami kemunduran parah. Inflasi mencapai 600–1000% pada 1965 — salah satu yang terburuk dalam sejarah Indonesia. Harga sembako melambung tinggi, rakyat semakin menderita. Konfrontasi Malaysia menguras anggaran negara yang seharusnya digunakan untuk pembangunan. Setelah Indonesia keluar dari PBB pada 7 Januari 1965, Indonesia terisolasi secara internasional. Bantuan asing terhenti, sementara pengeluaran militer terus meningkat. Pemerintahan Sukarno tidak mampu mengendalikan situasi ekonomi, dan ini menjadi salah satu faktor yang mempercepat berakhirnya kekuasaannya.',
+q:'Berdasarkan stimulus tersebut, faktor utama yang menyebabkan ekonomi Indonesia terpuruk pada akhir Demokrasi Terpimpin adalah ....',
+o:['Inflasi ekstrem, biaya konfrontasi, dan isolasi internasional',
+ 'Bantuan asing yang terlalu besar dan tidak terkendali',
+ 'Kekayaan alam yang habis karena eksploitasi berlebihan',
+ 'Pajak yang terlalu rendah bagi rakyat',
+ 'Terlalu banyak investor asing yang masuk ke Indonesia'],
+a:0,
+e:'Ekonomi terpuruk karena: (1) inflasi ekstrem 600–1000% (1965), (2) biaya Konfrontasi Malaysia, (3) isolasi internasional setelah keluar PBB 1965. Bantuan asing terhenti, militer terus membengkak.'},
+
+/* Q18 — Kunci: C (Reasoning) */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Transisi kekuasaan',
+s:'Transisi kekuasaan dari Sukarno ke Soeharto berlangsung melalui proses yang kompleks dan kontroversial. Dimulai dari G30S 1965 yang menghancurkan legitimasi Sukarno, dilanjutkan dengan aksi Tritura oleh mahasiswa yang menuntut pembubaran PKI. Pada 11 Maret 1966, Supersemar memberikan mandat kepada Soeharto. PKI dibubarkan, dan MPRS secara bertahap mencabut mandat Sukarno pada 12 Maret 1967. Soeharto dilantik sebagai presiden definitif pada 27 Maret 1968. Proses ini melibatkan tekanan politik, aksi mahasiswa, dan perubahan konfigurasi kekuasaan antara sipil dan militer. Banyak pihak menilai transisi ini tidak sepenuhnya konstitusional.',
+q:'Berdasarkan stimulus tersebut, pelajaran utama yang dapat diambil dari transisi kekuasaan Sukarno ke Soeharto adalah ....',
+o:['Militer harus selalu berkuasa dalam situasi krisis',
+ 'Demokrasi tidak cocok untuk Indonesia',
+ 'Pentingnya proses suksesi kepemimpinan yang konstitusional, transparan, dan melibatkan lembaga negara yang berwenang',
+ 'Partai politik harus dibubarkan agar stabilitas terjamin',
+ 'Kekuasaan harus selalu terpusat pada satu orang'],
+a:2,
+e:'Pelajaran dari transisi Sukarno–Soeharto: pentingnya suksesi kepemimpinan yang konstitusional & transparan, melibatkan lembaga negara berwenang (MPRS), dan tidak mengorbankan demokrasi untuk stabilitas.'},
+
+/* ============ MCMA (7 SOAL) — POLA BERAGAM ============ */
+
+/* Q19 — Pola: [0,2,3] — 3 benar, 2 salah */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Faktor berakhirnya Demokrasi Liberal',
+s:'Demokrasi Liberal (1950–1959) berakhir dengan Dekrit Presiden 5 Juli 1959. Ada beberapa faktor yang menyebabkannya: (1) Kabinet sering berganti — tujuh kali dalam sembilan tahun karena mosi tidak percaya; (2) Konflik antarpartai yang tajam — partai lebih sibuk saling menjatuhkan daripada membangun; (3) Konstituante gagal menyusun UUD baru setelah tiga tahun bersidang; (4) Krisis ekonomi — inflasi tinggi dan defisit anggaran; (5) Pemberontakan daerah — PRRI/Permesta (1958) dan DI/TII; (6) Konflik sipil-militer — peristiwa 17 Oktober 1952. Semua faktor ini membuat Demokrasi Liberal tidak stabil dan berujung pada dekrit.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Kabinet sering berganti karena mosi tidak percaya dari partai oposisi.',
+ 'Pemilu 1955 berhasil menyelesaikan semua masalah politik Indonesia.',
+ 'Konstituante gagal menyusun UUD baru setelah tiga tahun bersidang.',
+ 'Krisis ekonomi dan pemberontakan daerah memperlemah pemerintahan Demokrasi Liberal.',
+ 'Belanda kembali menjajah Indonesia pada tahun 1959.'],
+a:[0,2,3],
+e:'A, C, D benar. B salah — Pemilu 1955 justru memperuncing konflik. E salah — Belanda tidak kembali menjajah pada 1959.'},
+
+/* Q20 — Pola: [1,3] — 2 benar, 3 salah */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Isi Dekrit 5 Juli 1959',
+s:'Dekrit Presiden 5 Juli 1959 adalah titik balik dalam sejarah politik Indonesia. Isinya: (1) Membubarkan Konstituante; (2) Memberlakukan kembali UUD 1945 sebagai konstitusi negara; (3) Menyatakan tidak berlakunya UUDS 1950; (4) Membentuk MPRS dan DPRS (sementara) dalam waktu singkat. Dekrit ini mengakhiri era Demokrasi Liberal dan memulai Demokrasi Terpimpin. Namun, dekrit ini menuai kontroversi karena presiden dianggap tidak memiliki wewenang konstitusional untuk membubarkan Konstituante.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Dekrit 5 Juli 1959 membentuk Republik Indonesia Serikat yang baru.',
+ 'Dekrit 5 Juli 1959 membubarkan Konstituante.',
+ 'Dekrit 5 Juli 1959 mengembalikan Indonesia ke sistem federal.',
+ 'Dekrit 5 Juli 1959 memberlakukan kembali UUD 1945.',
+ 'Dekrit 5 Juli 1959 membentuk kabinet parlementer baru.'],
+a:[1,3],
+e:'B, D benar. A salah — RIS sudah dibubarkan 1950. C salah — dekrit justru mengembalikan ke NKRI dengan UUD 1945. E salah — dekrit mengakhiri sistem parlementer.'},
+
+/* Q21 — Pola: [0,1,2] — 3 benar, 2 salah */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Kebijakan politik Demokrasi Terpimpin',
+s:'Pada masa Demokrasi Terpimpin (1959–1965), Sukarno menerapkan berbagai kebijakan politik: (1) Manipol-USDEK dijadikan haluan negara dan diindoktrinasikan di sekolah & lembaga negara; (2) Nasakom diperkenalkan sebagai konsep penyatuan Nasionalis, Agama, dan Komunis; (3) DPR hasil Pemilu 1955 dibubarkan dan diganti DPR-GR (Gotong Royong) yang anggotanya diangkat presiden; (4) Partai politik dibatasi ruang geraknya; (5) Kebebasan pers dibatasi; (6) Lawan politik ditahan. Tidak ada pemilu selama Demokrasi Terpimpin.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Manipol-USDEK dijadikan haluan negara pada masa Demokrasi Terpimpin.',
+ 'DPR hasil Pemilu 1955 dibubarkan dan diganti DPR-GR yang anggotanya diangkat presiden.',
+ 'Nasakom diperkenalkan sebagai konsep penyatuan tiga kekuatan politik utama.',
+ 'Pemilu rutin diadakan setiap 5 tahun pada masa Demokrasi Terpimpin.',
+ 'Kebebasan pers sepenuhnya dijamin oleh pemerintah Demokrasi Terpimpin.'],
+a:[0,1,2],
+e:'A, B, C benar. D salah — tidak ada pemilu selama Demokrasi Terpimpin. E salah — kebebasan pers justru dibatasi.'},
+
+/* Q22 — Pola: [2,3,4] — 3 benar, 2 salah */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak G30S 1965',
+s:'Peristiwa G30S/PKI 1965 mengubah lanskap politik Indonesia secara drastis. PKI dituduh sebagai dalang peristiwa tersebut dan kemudian dibubarkan pada 1966. Soeharto mengambil alih kekuasaan secara bertahap — dari Supersemar 11 Maret 1966 hingga pelantikan sebagai presiden 27 Maret 1968. Orde Lama berakhir, dan Orde Baru dimulai. Ribuan orang yang dituduh terlibat PKI ditangkap, diadili, atau dibunuh tanpa proses hukum. Berbagai interpretasi tentang peristiwa ini muncul dari sejarawan — tidak ada satu versi tunggal yang diterima semua pihak.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['G30S tidak berdampak apa pun terhadap politik Indonesia.',
+ 'PKI tetap eksis sebagai partai legal setelah G30S 1965.',
+ 'PKI dibubarkan dan dinyatakan sebagai partai terlarang setelah G30S 1965.',
+ 'Soeharto mengambil alih kekuasaan secara bertahap setelah G30S 1965.',
+ 'Peristiwa G30S mengubah arah sejarah dari Orde Lama ke Orde Baru.'],
+a:[2,3,4],
+e:'C, D, E benar. A salah — G30S sangat berdampak. B salah — PKI dibubarkan pada 1966.'},
+
+/* Q23 — Pola: [0,3] — 2 benar, 3 salah */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Trikora & Irian Barat',
+s:'Irian Barat masih dikuasai Belanda setelah KMB 1949. Untuk merebutnya, Sukarno mengeluarkan Trikora pada 19 Desember 1961. Isi Trikora: (1) Gagalkan pembentukan Negara Papua bentukan Belanda; (2) Kibarkan Sang Merah Putih di Irian Barat; (3) Bersiap untuk mobilisasi umum. Setelah operasi militer besar-besaran dan tekanan diplomatik, Belanda bersedia berunding. Pada 15 Agustus 1962, ditandatangani Perjanjian New York yang mengatur penyerahan Irian Barat melalui perantara PBB. Pada 1 Mei 1963, Irian Barat resmi kembali ke pangkuan Indonesia.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Trikora bertujuan membebaskan Irian Barat dari kekuasaan Belanda.',
+ 'Trikora gagal total dan Irian Barat tetap dikuasai Belanda hingga 1970.',
+ 'Irian Barat diserahkan kepada Australia sebagai wilayah mandat.',
+ 'Perjanjian New York mengatur penyerahan Irian Barat dari Belanda kepada Indonesia melalui perantara PBB.',
+ 'Irian Barat belum kembali ke Indonesia hingga tahun 1970.'],
+a:[0,3],
+e:'A, D benar. B salah — Trikora berhasil. C salah — tidak diserahkan ke Australia. E salah — Irian Barat kembali 1 Mei 1963.'},
+
+/* Q24 — Pola: [1,2,4] — 3 benar, 2 salah */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Akhir kekuasaan Sukarno',
+s:'Akhir kekuasaan Sukarno berlangsung melalui proses yang panjang. G30S 1965 menghancurkan legitimasinya. Tritura oleh mahasiswa menuntut pembubaran PKI dan penurunan harga. Pada 11 Maret 1966, Supersemar memberikan mandat kepada Soeharto untuk mengambil langkah-langkah menjaga keamanan. PKI dibubarkan pada 12 Maret 1966. MPRS secara bertahap mencabut mandat Sukarno pada 12 Maret 1967 dan mengangkat Soeharto sebagai pejabat presiden. Soeharto dilantik sebagai presiden definitif pada 27 Maret 1968. Sukarno hidup dalam tahanan rumah hingga wafat pada 21 Juni 1970.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Sukarno tetap berkuasa penuh setelah peristiwa G30S 1965.',
+ 'Supersemar menjadi awal transisi kekuasaan dari Sukarno kepada Soeharto.',
+ 'MPRS mencabut mandat Sukarno pada 12 Maret 1967.',
+ 'Sukarno meninggal sebelum Supersemar ditandatangani.',
+ 'Soeharto dilantik sebagai presiden definitif pada 27 Maret 1968.'],
+a:[1,2,4],
+e:'B, C, E benar. A salah — Sukarno kehilangan legitimasi. D salah — Sukarno wafat 1970, setelah Supersemar (1966).'},
+
+/* Q25 — Pola: [0,1,3,4] — 4 benar, 1 salah */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Warisan Demokrasi Liberal',
+s:'Meskipun berakhir dengan Dekrit 5 Juli 1959, Demokrasi Liberal meninggalkan warisan penting bagi Indonesia. Warisan positif: Pemilu 1955 yang demokratis menjadi tolok ukur demokrasi elektoral; kebebasan pers dan kebebasan partai politik dijamin; Konferensi Asia-Afrika 1955 di Bandung menempatkan Indonesia sebagai pemimpin negara berkembang. Warisan negatif: kabinet tidak stabil, konflik antarpartai yang tajam, dan politisi yang lebih sibuk saling menjatuhkan. Namun, pengalaman ini menjadi pelajaran berharga bagi demokrasi Indonesia selanjutnya — bahwa stabilitas politik penting, tetapi tidak boleh mengorbankan kebebasan.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
+o:['Pemilu 1955 yang demokratis menjadi warisan penting dari era Demokrasi Liberal.',
+ 'Kebebasan pers dan kebebasan partai politik dijamin pada masa Demokrasi Liberal.',
+ 'Demokrasi Liberal sepenuhnya stabil tanpa konflik apa pun.',
+ 'Konferensi Asia-Afrika 1955 diadakan pada masa Demokrasi Liberal.',
+ 'Kabinet yang sering berganti menjadi pelajaran penting tentang pentingnya stabilitas politik.'],
+a:[0,1,3,4],
+e:'A, B, D, E benar. C salah — Demokrasi Liberal justru penuh konflik (kabinet sering ganti, Konstituante gagal, dll).'},
+
+/* ============ KATEGORI (5 SOAL) — POLA BERAGAM ============ */
+
+/* Q26 — Pola: [S, TS, S, TS] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Kronologi Pemerintahan Sukarno',
+s:'Kronologi pemerintahan Sukarno: 17 Agustus 1950 (RIS dibubarkan, NKRI kembali dengan UUDS 1950, Demokrasi Liberal dimulai), 29 September 1955 (Pemilu DPR), 15 Desember 1955 (Pemilu Konstituante), 10 November 1956 (Konstituante mulai bersidang), 5 Juli 1959 (Dekrit Presiden, awal Demokrasi Terpimpin), 19 Desember 1961 (Trikora), 1963 (Konfrontasi Malaysia), 30 September 1965 (G30S), 11 Maret 1966 (Supersemar), 12 Maret 1967 (MPRS cabut mandat Sukarno), 27 Maret 1968 (Soeharto dilantik presiden).',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Pemilu 1955 dilaksanakan sebelum Dekrit Presiden 5 Juli 1959.',a:'Sesuai'},
+ {x:'Konstituante mulai bersidang setelah Dekrit Presiden 5 Juli 1959.',a:'Tidak Sesuai'},
+ {x:'Peristiwa G30S terjadi sebelum Supersemar ditandatangani.',a:'Sesuai'},
+ {x:'Soeharto dilantik sebagai presiden sebelum MPRS mencabut mandat Sukarno.',a:'Tidak Sesuai'}],
+e:'1 Sesuai (1955 < 1959). 2 Tidak Sesuai (Konstituante mulai 1956, sebelum Dekrit 1959). 3 Sesuai (G30S 1965 < Supersemar 1966). 4 Tidak Sesuai (MPRS cabut mandat 1967, Soeharto dilantik presiden 1968).'},
+
+/* Q27 — Pola: [S, S, TS, TS] */
+{t:'KATEGORI',l:'Applying',d:'Sedang',i:'Kabinet Demokrasi Liberal',
+s:'Selama Demokrasi Liberal (1950–1959), terjadi tujuh kali pergantian kabinet: (1) Natsir (Sep 1950 – Apr 1951), (2) Sukiman (Apr 1951 – Apr 1952), (3) Wilopo (Apr 1952 – Jun 1953), (4) Ali Sastroamidjojo I (Jul 1953 – Jul 1955), (5) Burhanuddin Harahap (Agu 1955 – Mar 1956), (6) Ali Sastroamidjojo II (Mar 1956 – Mar 1957), (7) Djuanda (Apr 1957 – Jul 1959). Pola umum: sering jatuh karena mosi tidak percaya, konflik antarpartai, dan masalah Irian Barat. Kabinet Djuanda jatuh bukan karena mosi, tetapi karena Dekrit Presiden 5 Juli 1959.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Kabinet Natsir adalah kabinet pertama pada masa Demokrasi Liberal.',a:'Sesuai'},
+ {x:'Kabinet Burhanuddin Harahap menyelenggarakan Pemilu 1955.',a:'Sesuai'},
+ {x:'Kabinet Djuanda jatuh karena mosi tidak percaya dari DPR.',a:'Tidak Sesuai'},
+ {x:'Semua kabinet pada masa Demokrasi Liberal bertahan lebih dari tiga tahun.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Kabinet Djuanda jatuh karena Dekrit 5 Juli 1959, bukan mosi. 4 Tidak Sesuai — rata-rata kabinet hanya bertahan ~1 tahun.'},
+
+/* Q28 — Pola: [S, TS, S, TS] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Ekonomi & politik luar negeri Demokrasi Terpimpin',
+s:'Ekonomi dan politik luar negeri Demokrasi Terpimpin (1959–1965) menghadapi berbagai masalah. Inflasi mencapai 600–1000% pada 1965 — salah satu yang terburuk dalam sejarah Indonesia. Konfrontasi Malaysia (1963–1966) justru menguras anggaran negara dan mengisolasi Indonesia secara internasional. Indonesia keluar dari PBB pada 7 Januari 1965 sebagai protes atas diterimanya Malaysia sebagai anggota tidak tetap Dewan Keamanan. Bantuan asing terhenti, sementara pengeluaran militer terus meningkat. Rakyat semakin menderita, dan kondisi ini menjadi salah satu faktor yang mempercepat berakhirnya kekuasaan Sukarno.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Inflasi pada akhir masa Demokrasi Terpimpin mencapai 600–1000%.',a:'Sesuai'},
+ {x:'Konfrontasi Malaysia justru memperkuat ekonomi Indonesia.',a:'Tidak Sesuai'},
+ {x:'Indonesia keluar dari PBB pada tahun 1965 sebagai bentuk protes.',a:'Sesuai'},
+ {x:'Ekonomi Demokrasi Terpimpin stabil dan rakyat hidup sejahtera.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — Konfrontasi justru menguras anggaran. 3 Sesuai (7 Januari 1965). 4 Tidak Sesuai — ekonomi terpuruk, rakyat menderita.'},
+
+/* Q29 — Pola: [S, TS, S, TS] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Peristiwa G30S 1965',
+s:'Peristiwa G30S terjadi pada malam 30 September hingga 1 Oktober 1965. Sekelompok perwira TNI AD yang menamakan diri "Gerakan 30 September" menculik dan membunuh enam perwira tinggi TNI AD, termasuk Letjen Ahmad Yani. Mayjen Soeharto, Pangkostrad saat itu, tidak menjadi sasaran dan berhasil menumpas gerakan dalam waktu kurang dari 24 jam. PKI dituduh sebagai dalang peristiwa ini, meskipun masih menjadi perdebatan akademik. Berbagai interpretasi muncul dari sejarawan — ada yang menekankan peran PKI, ada yang menyoroti peran internal TNI AD, ada juga yang menyoroti peran Sukarno. Tidak ada satu versi tunggal yang diterima semua pihak.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Peristiwa G30S terjadi pada malam 30 September hingga 1 Oktober 1965.',a:'Sesuai'},
+ {x:'Mayjen Soeharto menjadi salah satu korban dalam peristiwa G30S.',a:'Tidak Sesuai'},
+ {x:'Gerakan 30 September berhasil ditumpas dalam waktu kurang dari 24 jam.',a:'Sesuai'},
+ {x:'Hanya ada satu versi tunggal tentang peristiwa G30S yang diterima semua pihak.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — Soeharto tidak menjadi sasaran. 3 Sesuai. 4 Tidak Sesuai — ada banyak interpretasi & perdebatan akademik.'},
+
+/* Q30 — Pola: [S, TS, S, S] */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Transisi ke Orde Baru',
+s:'Transisi dari Orde Lama ke Orde Baru berlangsung melalui beberapa tahap: 11 Maret 1966 (Supersemar ditandatangani), 12 Maret 1966 (PKI dibubarkan), Juli 1966 (MPRS mengukuhkan Soeharto sebagai pemegang mandat Supersemar), 12 Maret 1967 (MPRS mencabut mandat Sukarno dan mengangkat Soeharto sebagai pejabat presiden), 27 Maret 1968 (Soeharto dilantik sebagai Presiden RI definitif), 21 Juni 1970 (Sukarno wafat dalam tahanan rumah). Peristiwa-peristiwa ini menandai berakhirnya Orde Lama dan dimulainya Orde Baru di bawah kepemimpinan Soeharto.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Supersemar ditandatangani pada 11 Maret 1966.',a:'Sesuai'},
+ {x:'Soeharto langsung menjadi presiden definitif setelah Supersemar ditandatangani.',a:'Tidak Sesuai'},
+ {x:'MPRS mencabut mandat Sukarno pada 12 Maret 1967.',a:'Sesuai'},
+ {x:'Soeharto dilantik sebagai presiden definitif pada 27 Maret 1968.',a:'Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — Soeharto baru dilantik 27 Maret 1968 (2 tahun setelah Supersemar). 3 Sesuai. 4 Sesuai.'}
+
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let siswaName='',siswaSchool='',siswaClass='';
+let displayedQuestions=[];
+
+(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goIdentity(){
+  stopTimer();
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
+function startTestWithIdentity(){
+  const name=document.getElementById('inpName').value.trim();
+  const school=document.getElementById('inpSchool').value.trim();
+  const cls=document.getElementById('inpClass').value.trim();
+  if(!name||!school||!cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName=name;siswaSchool=school;siswaClass=cls;
+  document.getElementById('hdrName').textContent=siswaName;
+  document.getElementById('hdrSchool').textContent=siswaSchool;
+  document.getElementById('hdrClass').textContent=siswaClass;
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q6]);
+  document.getElementById('testTitle').textContent='Pemerintahan Sukarno';
+  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function retryTest(){
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q6]);
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+function renderQuestion(){
+  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
+  const stimEl=document.getElementById('qStim');
+  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
+  document.getElementById('qText').textContent=q.q;
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
+  const area=document.getElementById('qArea');area.innerHTML='';
+  if(q.t==='PG'){
+    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
+      if(ua===i)div.classList.add('sel');
+      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+    area.appendChild(optsEl);
+  }else if(q.t==='MCMA'){
+    const checksEl=document.createElement('div');checksEl.className='checks';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');div.className='check';
+      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
+      const checked=uaArr.includes(i);
+      if(checked)div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect=q.a.includes(i);
+        if(isCorrect)div.classList.add('correct');
+        else if(checked)div.classList.add('wrong');
+      }
+      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
+      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      checksEl.appendChild(div);
+    });
+    area.appendChild(checksEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  }
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+function selectOption(idx,type){
+  if(revealed[currentQ])return;
+  if(type==='PG'){userAnswers[currentQ]=idx;}
+  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  renderQuestion();renderQMap();updateProgress();
+}
+function setKategori(idx,cat){
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+}
+function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
+function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+function renderQMap(){
+  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
+    const ua=userAnswers[i];let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
+}
+function updateProgress(){
+  const total=displayedQuestions.length;let answered=0;
+  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
+    else answered++;}
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+function isCorrect(q,ua){
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
+  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+  return false;
+}
+function finishTest(){
+  stopTimer();
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
+  document.getElementById('resultIdentity').innerHTML=`
+    <span><i class="fas fa-user" style="color:var(--primary)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary)"></i> ${siswaClass}</span>`;
+  let title='',sub='';
+  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Pemerintahan Sukarno sangat luar biasa.`;}
+  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
+  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
+  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Pemerintahan Sukarno dan coba lagi.`;}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultSub').textContent=sub;
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  showSection('result');
+}
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
+window.addEventListener('scroll',()=>{
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.4)';
+  else h.style.boxShadow='none';
+});
+</script>
+</body>
+</html>
