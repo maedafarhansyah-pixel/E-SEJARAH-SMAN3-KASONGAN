@@ -13,26 +13,6 @@
 :root{--primary:#B8860B;--primary-light:#DAA520;--gold:#FFD700;--emerald:#10B981;--rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#0a0a14;--card:#1a1a2e;--card-alt:#252540;--text:#faf8f3;--text-light:#dcdcec;--text-muted:#adadc5;--line:rgba(244,196,48,.14);--line-soft:rgba(244,196,48,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#B8860B;--accent2:#DAA520;--accent-soft:rgba(184,134,11,.12);}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(184,134,11,.08),transparent 55%),radial-gradient(circle at 85% 80%,rgba(251,113,133,.07),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
-#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#14142a 0%,#0a0a14 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
-.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
-.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--rose) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(255,215,0,.55)) drop-shadow(0 0 26px rgba(184,134,11,.4));z-index:-2;}
-.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a0a14;box-shadow:inset 0 0 24px rgba(184,134,11,.16);z-index:-1;}
-.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#fff8dc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #a3740c) drop-shadow(2px 2px 0 #8b6914) drop-shadow(3px 3px 0 #7a5d10) drop-shadow(4px 4px 0 #6a510d) drop-shadow(5px 5px 0 #5a450a) drop-shadow(6px 6px 0 #4a3807) drop-shadow(7px 7px 0 #3a2c05) drop-shadow(8px 8px 0 #2a1f03) drop-shadow(9px 9px 10px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(255,215,0,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
-.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
-.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35);}
-.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(251,113,133,.35);}
-@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
-@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(184,134,11,.15);border-radius:10px;margin-top:24px;overflow:hidden;}
-.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
-.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
 .hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary);text-transform:uppercase;gap:8px;align-items:center}
 .hdr-center i{color:var(--gold)}
@@ -159,30 +139,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
-@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
-@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
 </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="loader-3d-wrap">
-    <div class="loader-ring ring-1"></div>
-    <div class="loader-ring ring-2"></div>
-    <div class="loader-ring ring-3"></div>
-    <div class="loader-circle">
-      <div class="loader-3d-text">MGE</div>
-    </div>
-  </div>
-  <div class="loader-3d-sub">Maeda Game Edu</div>
-  <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">Tema 6: Kolonialisme &amp; Imperialisme · 30 Soal</div>
-  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
-  <div class="loader-pct" id="lpct">0%</div>
-</div>
 
 <header class="hdr">
   <div style="display:flex;gap:6px;align-items:center">
@@ -300,38 +264,26 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 /* ============================================================
    BANK SOAL — KOLONIALISME & IMPERIALISME (30 SOAL UNIK)
    18 PG + 7 MCMA + 5 KATEGORI
-   Kunci PG terdistribusi: A=4, B=4, C=4, D=3, E=3
-   Level: Knowing=5, Applying=11, Reasoning=14
    ============================================================ */
 const Q6=[
 
-/* ============ PG (18 SOAL) — KUNCI TERDISTRIBUSI ============ */
-
-/* Q1 — Kunci: B (Applying) */
+/* Q1 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Semboyan 3G',
 s:'Jatuhnya Konstantinopel ke Turki Usmani pada 1453 menutup jalur perdagangan darat antara Eropa dan Asia. Akibatnya, rempah-rempah dari Nusantara menjadi sangat mahal di Eropa — harganya bisa 100 kali lipat dari harga asli. Kondisi ini mendorong bangsa Eropa mencari jalur laut langsung ke sumber rempah. Selain faktor ekonomi, mereka juga didorong oleh ambisi politik (memperluas kekuasaan) dan misi agama (menyebarkan Kristen). Ketiga motivasi ini kemudian dikenal sebagai semboyan "3G": Gold, Glory, Gospel.',
 q:'Berdasarkan stimulus tersebut, semboyan "3G" yang mendorong penjelajahan bangsa Eropa adalah ....',
-o:['Good, Great, God',
- 'Gold, Glory, Gospel',
- 'Gold, Government, Gospel',
- 'Glory, Gold, Government',
- 'Gospel, Gold, Government'],
+o:['Good, Great, God','Gold, Glory, Gospel','Gold, Government, Gospel','Glory, Gold, Government','Gospel, Gold, Government'],
 a:1,
 e:'3G = Gold (kekayaan), Glory (kejayaan), Gospel (agama). Ketiganya menjadi motivasi utama bangsa Eropa melakukan penjelajahan samudra pada abad ke-15 hingga ke-17 M.'},
 
-/* Q2 — Kunci: A (Reasoning) */
+/* Q2 — Kunci: A */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak jatuhnya Konstantinopel',
 s:'Pada 1453, Kesultanan Turki Usmani merebut Konstantinopel dari Kekaisaran Bizantium. Peristiwa ini menutup jalur perdagangan darat yang selama berabad-abad menghubungkan Eropa dengan Asia. Bangsa Eropa tidak bisa lagi membeli rempah-rempah langsung dari pedagang Asia. Harga rempah melonjak drastis. Sebagai solusi, Portugis dan Spanyol mulai mengirim pelaut untuk mencari jalur laut baru ke Asia. Inilah awal era penjelajahan samudra yang kemudian membawa bangsa Eropa ke Nusantara.',
 q:'Berdasarkan stimulus tersebut, dampak utama jatuhnya Konstantinopel bagi bangsa Eropa adalah ....',
-o:['Mendorong pencarian jalur laut baru ke Asia',
- 'Menyebabkan perang agama besar di Eropa',
- 'Membuat harga rempah-rempah menjadi lebih murah',
- 'Menutup semua jalur perdagangan laut dunia',
- 'Meningkatkan hubungan dagang langsung dengan Turki'],
+o:['Mendorong pencarian jalur laut baru ke Asia','Menyebabkan perang agama besar di Eropa','Membuat harga rempah-rempah menjadi lebih murah','Menutup semua jalur perdagangan laut dunia','Meningkatkan hubungan dagang langsung dengan Turki'],
 a:0,
 e:'Jatuhnya Konstantinopel = pemicu utama penjelajahan samudra. Karena jalur darat tertutup, bangsa Eropa mencari jalur laut alternatif. Inilah yang kemudian membawa mereka ke Nusantara.'},
 
-/* Q3 — Kunci: C (Knowing) */
+/* Q3 — Kunci: C */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Portugis pertama di Malaka',
 s:'Portugis adalah bangsa Eropa pertama yang berhasil mencapai Nusantara. Pada 1498, Vasco da Gama berhasil mencapai India melalui jalur laut. Setelah itu, Afonso de Albuquerque memimpin ekspedisi ke Malaka dan berhasil merebutnya pada 1511. Malaka menjadi pusat kekuasaan Portugis di Asia Tenggara. Dari Malaka, Portugis menyebar ke Maluku untuk menguasai perdagangan rempah. Strategi Portugis dikenal sebagai "3M": Misi, Monopoli, dan Militer — mereka lebih banyak menggunakan kekuatan militer untuk menguasai pelabuhan-pelabuhan strategis.',
 q:'Berdasarkan stimulus tersebut, bangsa Eropa pertama yang berhasil merebut Malaka pada tahun 1511 adalah ....',
@@ -339,19 +291,15 @@ o:['Spanyol','Belanda','Portugis','Inggris','Prancis'],
 a:2,
 e:'Portugis merebut Malaka pada 1511 di bawah Afonso de Albuquerque. Malaka menjadi pusat kekuasaan Portugis di Asia Tenggara — dan pintu masuk mereka ke Maluku.'},
 
-/* Q4 — Kunci: D (Applying) */
+/* Q4 — Kunci: D */
 {t:'PG',l:'Applying',d:'Sedang',i:'Perjanjian Saragosa',
 s:'Setelah Portugis menguasai Malaka (1511), Spanyol juga datang ke Nusantara. Pada 1521, ekspedisi Magellan mencapai Tidore dan menjalin hubungan dengan Sultan Tidore. Hal ini memicu konflik antara Portugis (yang mendukung Ternate) dan Spanyol (yang mendukung Tidore). Untuk menyelesaikan konflik, pada 1529 ditandatangani Perjanjian Saragosa. Isinya: Spanyol harus mundur dari Maluku dan memusatkan kekuasaannya di Filipina. Portugis tetap menguasai Maluku. Perjanjian ini menandai berakhirnya persaingan Portugis-Spanyol di Nusantara.',
 q:'Berdasarkan stimulus tersebut, isi utama Perjanjian Saragosa (1529) adalah ....',
-o:['Belanda menguasai Maluku',
- 'Portugis mundur dari Malaka',
- 'Inggris menguasai Jawa',
- 'Spanyol mundur dari Maluku dan fokus ke Filipina',
- 'VOC didirikan di Batavia'],
+o:['Belanda menguasai Maluku','Portugis mundur dari Malaka','Inggris menguasai Jawa','Spanyol mundur dari Maluku dan fokus ke Filipina','VOC didirikan di Batavia'],
 a:3,
 e:'Perjanjian Saragosa (1529): Spanyol mundur dari Maluku, fokus ke Filipina. Portugis tetap di Maluku. Ini mengakhiri persaingan Portugis-Spanyol di Nusantara.'},
 
-/* Q5 — Kunci: B (Knowing) */
+/* Q5 — Kunci: B */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Ekspedisi pertama Belanda',
 s:'Pada 1596, ekspedisi pertama Belanda tiba di Banten. Ekspedisi ini dipimpin oleh Cornelis de Houtman dan terdiri dari empat kapal. Kedatangan mereka awalnya disambut baik oleh rakyat Banten. Namun, karena sikap de Houtman yang kasar dan ambisius, hubungan dengan Kesultanan Banten memburuk. Ekspedisi ini pulang dengan membawa rempah dalam jumlah terbatas, tetapi perjalanan ini membuka jalan bagi ekspedisi-ekspedisi Belanda berikutnya. Pada 1598, ekspedisi kedua Belanda berhasil membawa rempah lebih banyak. Inilah awal mula kehadiran Belanda di Nusantara yang berlangsung lebih dari 300 tahun.',
 q:'Berdasarkan stimulus tersebut, ekspedisi pertama Belanda yang tiba di Banten pada 1596 dipimpin oleh ....',
@@ -359,19 +307,15 @@ o:['Jan Pieterszoon Coen','Cornelis de Houtman','Van den Bosch','Pieter Both','V
 a:1,
 e:'Ekspedisi pertama Belanda (1596) dipimpin Cornelis de Houtman. Meski hanya membawa rempah terbatas, ekspedisi ini membuka jalan bagi kehadiran Belanda selama lebih dari 300 tahun.'},
 
-/* Q6 — Kunci: E (Applying) */
+/* Q6 — Kunci: E */
 {t:'PG',l:'Applying',d:'Sedang',i:'Tujuan VOC',
 s:'Sebelum VOC didirikan, terdapat banyak kongsi dagang Belanda yang bersaing satu sama lain. Akibat persaingan ini, harga rempah di Eropa jatuh, sementara biaya pelayaran tetap tinggi. Para pedagang Belanda justru merugi. Untuk mengatasi masalah ini, Johan van Oldenbarnevelt mengusulkan penggabungan semua kongsi dagang menjadi satu perusahaan besar. Pada 20 Maret 1602, Staten Generaal (parlemen Belanda) meresmikan berdirinya VOC (Vereenigde Oostindische Compagnie). Tujuan utama VOC adalah memonopoli perdagangan rempah di Nusantara agar harga tetap stabil dan menguntungkan.',
 q:'Berdasarkan stimulus tersebut, tujuan utama pembentukan VOC adalah ....',
-o:['Menyebarkan agama Kristen di Nusantara',
- 'Memerangi Portugis di Eropa',
- 'Membangun sekolah untuk rakyat pribumi',
- 'Memajukan pertanian rakyat Nusantara',
- 'Memonopoli perdagangan rempah di Nusantara'],
+o:['Menyebarkan agama Kristen di Nusantara','Memerangi Portugis di Eropa','Membangun sekolah untuk rakyat pribumi','Memajukan pertanian rakyat Nusantara','Memonopoli perdagangan rempah di Nusantara'],
 a:4,
 e:'VOC dibentuk untuk mengatasi persaingan antarkongsi dagang Belanda. Tujuan utamanya: memonopoli perdagangan rempah agar harga stabil & menguntungkan. Didirikan 20 Maret 1602 oleh Staten Generaal.'},
 
-/* Q7 — Kunci: A (Applying) */
+/* Q7 — Kunci: A */
 {t:'PG',l:'Applying',d:'Sedang',i:'Hak Oktroi',
 s:'VOC diberikan hak istimewa oleh pemerintah Belanda yang disebut Hak Oktroi. Hak ini meliputi: monopoli perdagangan di wilayah timur Tanjung Harapan, hak mendirikan benteng pertahanan, hak memiliki tentara dan angkatan laut, hak mengadakan perjanjian dengan raja-raja lokal, hak mencetak uang sendiri, dan hak menjalankan pemerintahan di wilayah kekuasaannya. Dengan hak-hak ini, VOC menjadi seperti "negara dalam negara" — sebuah kongsi dagang yang memiliki kekuasaan politik dan militer setara negara. Gubernur Jenderal VOC pertama adalah Pieter Both (1610–1614), dan yang paling terkenal adalah Jan Pieterszoon Coen.',
 q:'Berdasarkan stimulus tersebut, hak VOC untuk mencetak uang sendiri merupakan bagian dari ....',
@@ -379,19 +323,15 @@ o:['Hak Oktroi','Contingenten','Pelayaran Hongi','Ekstirpasi','Cultuurstelsel'],
 a:0,
 e:'Hak Oktroi = hak istimewa VOC dari pemerintah Belanda. Meliputi monopoli, benteng, tentara, perjanjian, mencetak uang, & menjalankan pemerintahan. Inilah yang membuat VOC seperti "negara dalam negara".'},
 
-/* Q8 — Kunci: C (Reasoning) */
+/* Q8 — Kunci: C */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Mengapa Batavia',
 s:'Pada 1619, Jan Pieterszoon Coen merebut Jayakarta dari Kesultanan Banten dan mengganti namanya menjadi Batavia. Coen memilih Batavia sebagai pusat kekuasaan VOC karena letaknya yang sangat strategis: di pesisir utara Jawa, dekat dengan Selat Sunda, dan memiliki pelabuhan alami yang aman. Dari Batavia, VOC bisa mengawasi jalur perdagangan antara Asia Timur dan Asia Selatan. Batavia kemudian berkembang menjadi kota kolonial dengan benteng, kanal, dan gedung-gedung pemerintahan. Hingga kini, jejak Batavia masih terlihat di kawasan Kota Tua Jakarta — dengan gedung-gedung bergaya Belanda.',
 q:'Berdasarkan stimulus tersebut, alasan utama JP Coen memilih Batavia sebagai pusat VOC adalah ....',
-o:['Wilayahnya sangat luas dan subur',
- 'Penduduknya ramah dan kooperatif',
- 'Letaknya strategis di jalur perdagangan',
- 'Bebas dari serangan musuh',
- 'Tanahnya kaya akan rempah-rempah'],
+o:['Wilayahnya sangat luas dan subur','Penduduknya ramah dan kooperatif','Letaknya strategis di jalur perdagangan','Bebas dari serangan musuh','Tanahnya kaya akan rempah-rempah'],
 a:2,
 e:'Batavia dipilih karena letaknya strategis: pesisir utara Jawa, dekat Selat Sunda, pelabuhan alami aman. Dari sini VOC bisa mengawasi jalur dagang Asia Timur–Selatan. Bukan karena luas, subur, atau ramah.'},
 
-/* Q9 — Kunci: D (Knowing) */
+/* Q9 — Kunci: D */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Pelayaran Hongi',
 s:'Untuk menjaga monopoli rempah, VOC melakukan Pelayaran Hongi — patroli armada laut di Maluku. Armada Hongi bertugas mengawasi perdagangan rempah dan menindak pelanggar monopoli. Tindakan yang dilakukan: menghancurkan tanaman rempah milik rakyat yang tidak menjual hasilnya ke VOC, menangkap pedagang yang melanggar monopoli, dan memaksa rakyat menjual rempah hanya kepada VOC dengan harga yang ditentukan. Selain Pelayaran Hongi, VOC juga melakukan Ekstirpasi — pemusnahan tanaman rempah berlebih agar harga tetap tinggi. Kedua kebijakan ini sangat merugikan rakyat Maluku.',
 q:'Berdasarkan stimulus tersebut, pelayaran armada VOC untuk mengawasi monopoli rempah di Maluku disebut ....',
@@ -399,19 +339,15 @@ o:['Contingenten','Ekstirpasi','Verplichte Leverantie','Pelayaran Hongi','Cultuu
 a:3,
 e:'Pelayaran Hongi = patroli armada VOC untuk mengawasi monopoli rempah. Berbeda dengan Ekstirpasi (pemusnahan tanaman), Contingenten (pajak hasil bumi), & Verplichte Leverantie (kewajiban jual ke VOC).'},
 
-/* Q10 — Kunci: B (Reasoning) */
+/* Q10 — Kunci: B */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Kebangkrutan VOC',
 s:'Meskipun memiliki hak istimewa, VOC akhirnya bangkrut dan dibubarkan pada 31 Desember 1799. Ada beberapa faktor penyebab: (1) Korupsi massal di kalangan pegawai VOC — gaji kecil dimanfaatkan untuk memperkaya diri; (2) Biaya perang yang terus membengkak — VOC harus membiayai perang melawan rakyat Nusantara dan Inggris; (3) Persaingan dengan EIC (East India Company) dari Inggris; (4) Perubahan pola perdagangan dunia dari monopoli ke perdagangan bebas; (5) Utang VOC yang menumpuk hingga 134 juta gulden. Setelah VOC dibubarkan, pemerintah Kerajaan Belanda mengambil alih kekuasaan di Nusantara.',
 q:'Berdasarkan stimulus tersebut, faktor utama yang menyebabkan VOC bangkrut adalah ....',
-o:['Inggris berhasil menguasai seluruh Nusantara',
- 'Korupsi massal dan biaya perang yang membengkak',
- 'Rakyat Nusantara berhasil mengusir VOC dari Batavia',
- 'VOC kehilangan hak Oktroi dari pemerintah Belanda',
- 'VOC terlalu banyak memberi bantuan kepada rakyat'],
+o:['Inggris berhasil menguasai seluruh Nusantara','Korupsi massal dan biaya perang yang membengkak','Rakyat Nusantara berhasil mengusir VOC dari Batavia','VOC kehilangan hak Oktroi dari pemerintah Belanda','VOC terlalu banyak memberi bantuan kepada rakyat'],
 a:1,
 e:'Faktor utama kebangkrutan VOC: korupsi massal & biaya perang membengkak. Ditambah persaingan EIC, perubahan pola dagang, & utang 134 juta gulden. VOC dibubarkan 31 Desember 1799.'},
 
-/* Q11 — Kunci: E (Knowing) */
+/* Q11 — Kunci: E */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Van den Bosch',
 s:'Perang Diponegoro (1825–1830) menghabiskan kas Belanda hingga 20 juta gulden. Untuk mengisi kas yang kosong, Gubernur Jenderal Johannes van den Bosch menerapkan Sistem Tanam Paksa (Cultuurstelsel) pada 1830. Aturannya: rakyat wajib menyerahkan 1/5 tanahnya untuk ditanami tanaman ekspor — seperti kopi, tebu, nila, teh, tembakau, atau karet. Bisa juga diganti dengan bekerja 66 hari setahun untuk Belanda. Hasil panen diserahkan kepada Belanda sebagai pajak tanah. Jika hasil melebihi target, rakyat seharusnya mendapat bonus — tetapi dalam praktiknya hal ini jarang terjadi karena korupsi.',
 q:'Berdasarkan stimulus tersebut, Gubernur Jenderal yang menerapkan Sistem Tanam Paksa pada 1830 adalah ....',
@@ -419,7 +355,7 @@ o:['Jan Pieterszoon Coen','Pieter Both','Daendels','Van Deventer','Johannes van 
 a:4,
 e:'Sistem Tanam Paksa (1830) diterapkan oleh Gubernur Jenderal Johannes van den Bosch. Tujuan: mengisi kas Belanda yang kosong akibat Perang Diponegoro (biaya 20 juta gulden).'},
 
-/* Q12 — Kunci: A (Applying) */
+/* Q12 — Kunci: A */
 {t:'PG',l:'Applying',d:'Sedang',i:'Aturan Tanam Paksa',
 s:'Sistem Tanam Paksa (1830–1870) mewajibkan rakyat menyerahkan sebagian tanahnya untuk tanaman ekspor. Aturan resminya: 1/5 dari tanah rakyat harus ditanami tanaman ekspor seperti kopi, tebu, nila, teh, tembakau, atau karet. Selain itu, rakyat juga diwajibkan bekerja 66 hari dalam setahun untuk Belanda. Dalam praktiknya, aturan ini sering dilanggar: tanah yang diambil lebih dari 1/5, tanaman pangan diganti tanaman ekspor, dan waktu kerja melebihi 66 hari. Akibatnya, rakyat kelaparan karena tidak punya lahan untuk menanam padi.',
 q:'Berdasarkan stimulus tersebut, aturan resmi Sistem Tanam Paksa mewajibkan rakyat menyediakan tanah seluas ....',
@@ -427,19 +363,15 @@ o:['1/5 dari tanahnya','1/3 dari tanahnya','1/2 dari tanahnya','1/10 dari tanahn
 a:0,
 e:'Aturan resmi Tanam Paksa: 1/5 tanah untuk tanaman ekspor (atau bekerja 66 hari setahun). Dalam praktik, aturan ini sering dilanggar — tanah diambil lebih dari 1/5, tanaman pangan diganti ekspor.'},
 
-/* Q13 — Kunci: C (Reasoning) */
+/* Q13 — Kunci: C */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Dampak Tanam Paksa',
 s:'Sistem Tanam Paksa membawa dampak yang sangat berbeda bagi Belanda dan rakyat Nusantara. Bagi Belanda: kas negara terisi kembali, devisa meningkat, dan Belanda menjadi negara kaya di Eropa. Bagi rakyat Nusantara: lahan pangan berkurang drastis karena diganti tanaman ekspor, terjadi kelaparan massal, dan kematian ratusan ribu jiwa. Di Cirebon (1844) dan Demak (1848) terjadi kelaparan hebat yang menewaskan ribuan orang. Banyak rakyat yang meninggalkan kampung halaman untuk mencari makan. Sistem ini kemudian dikritik keras oleh kalangan humanis di Belanda sendiri, seperti Multatuli (Eduard Douwes Dekker) melalui novel "Max Havelaar" (1860).',
 q:'Berdasarkan stimulus tersebut, dampak paling mengerikan dari Sistem Tanam Paksa bagi rakyat Nusantara adalah ....',
-o:['Rakyat menjadi kaya karena bonus dari Belanda',
- 'Lahan pertanian rakyat bertambah luas',
- 'Kelaparan massal dan kematian ratusan ribu jiwa',
- 'Pendidikan rakyat semakin maju',
- 'Infrastruktur desa berkembang pesat'],
+o:['Rakyat menjadi kaya karena bonus dari Belanda','Lahan pertanian rakyat bertambah luas','Kelaparan massal dan kematian ratusan ribu jiwa','Pendidikan rakyat semakin maju','Infrastruktur desa berkembang pesat'],
 a:2,
 e:'Dampak paling mengerikan Tanam Paksa: kelaparan massal & kematian ratusan ribu jiwa (Cirebon 1844, Demak 1848). Lahan pangan diganti tanaman ekspor. Dikritik Multatuli lewat "Max Havelaar" (1860).'},
 
-/* Q14 — Kunci: D (Applying) */
+/* Q14 — Kunci: D */
 {t:'PG',l:'Applying',d:'Sedang',i:'UU Agraria 1870',
 s:'Setelah Sistem Tanam Paksa dihapus pada 1870, Belanda menerapkan Politik Pintu Terbuka (liberalisme ekonomi). Dua undang-undang penting disahkan: (1) Undang-Undang Agraria 1870 — mengizinkan rakyat menyewakan tanahnya kepada pihak swasta; (2) Undang-Undang Gula 1870 — mengizinkan perusahaan swasta menanam gula. Akibatnya, investor Belanda dan asing berbondong-bondong masuk ke Nusantara. Muncul perusahaan perkebunan besar di Sumatera, Jawa, dan Kalimantan. Rakyat mulai mengenal sistem kerja upah — tetapi upahnya sangat rendah, dan muncul praktik "kuli kontrak" dengan hukuman fisik (poenale sanctie).',
 q:'Berdasarkan stimulus tersebut, Undang-Undang Agraria 1870 berkaitan dengan ....',
@@ -447,31 +379,23 @@ o:['Pembentukan VOC','Sistem Tanam Paksa','Politik Etis','Politik Pintu Terbuka'
 a:3,
 e:'UU Agraria 1870 = bagian Politik Pintu Terbuka (liberalisme). Isinya: rakyat boleh menyewakan tanah ke pihak swasta. Akibatnya, investor asing masuk & muncul perkebunan besar — tapi rakyat jadi kuli kontrak.'},
 
-/* Q15 — Kunci: B (Applying) */
+/* Q15 — Kunci: B */
 {t:'PG',l:'Applying',d:'Sedang',i:'Trilogi Van Deventer',
 s:'Pada 1901, Ratu Wilhelmina mengumumkan Politik Etis — kebijakan "balas budi" bagi rakyat Nusantara. Gagasan ini dicetuskan oleh Van Deventer, seorang politikus Belanda, yang mengusulkan tiga program: (1) Irigasi — membangun saluran air untuk pertanian rakyat; (2) Transmigrasi — memindahkan penduduk dari Jawa yang padat ke luar Jawa; (3) Edukasi — mendirikan sekolah untuk rakyat. Ketiganya dikenal sebagai Trilogi Van Deventer. Tujuannya mulia: meningkatkan kesejahteraan rakyat. Namun dalam praktiknya, Politik Etis tidak sepenuhnya menguntungkan rakyat.',
 q:'Berdasarkan stimulus tersebut, Trilogi Van Deventer dalam Politik Etis meliputi ....',
-o:['Irigasi, Monopoli, Militer',
- 'Irigasi, Transmigrasi, Edukasi',
- 'Edukasi, Pajak, Benteng',
- 'Transmigrasi, Militer, Monopoli',
- 'Monopoli, Edukasi, Militer'],
+o:['Irigasi, Monopoli, Militer','Irigasi, Transmigrasi, Edukasi','Edukasi, Pajak, Benteng','Transmigrasi, Militer, Monopoli','Monopoli, Edukasi, Militer'],
 a:1,
 e:'Trilogi Van Deventer = Irigasi, Transmigrasi, Edukasi. Tujuan: meningkatkan kesejahteraan rakyat lewat Politik Etis (1901). Meski mulia, dalam praktiknya tidak sepenuhnya menguntungkan rakyat.'},
 
-/* Q16 — Kunci: E (Reasoning) */
+/* Q16 — Kunci: E */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Kontradiksi Politik Etis',
 s:'Politik Etis (1901) bertujuan "membalas budi" kepada rakyat Nusantara melalui irigasi, transmigrasi, dan edukasi. Namun, kebijakan ini mengandung kontradiksi mendasar. Pendidikan Barat hanya bisa diakses oleh kalangan bangsawan dan priyayi — rakyat jelata tetap buta huruf. Sekolah yang didirikan untuk pribumi pun sangat terbatas jumlahnya. Ironisnya, justru dari sekolah-sekolah inilah lahir kaum terpelajar pribumi — seperti Soekarno, Hatta, Sjahrir, dan Ki Hajar Dewantara — yang kemudian memimpin pergerakan nasional menuju kemerdekaan. Politik Etis menjadi semacam "boomerang" bagi Belanda: mereka mendidik kaum pribumi, tetapi kaum pribumi justru menggunakan pendidikannya untuk melawan penjajahan.',
 q:'Berdasarkan stimulus tersebut, kontradiksi utama Politik Etis terletak pada ....',
-o:['Irigasi tidak pernah dibangun sama sekali',
- 'Transmigrasi gagal total karena rakyat menolak',
- 'Belanda tidak mengeluarkan biaya untuk program ini',
- 'Rakyat menolak semua program Politik Etis',
- 'Pendidikan hanya untuk bangsawan, tetapi justru melahirkan pergerakan nasional'],
+o:['Irigasi tidak pernah dibangun sama sekali','Transmigrasi gagal total karena rakyat menolak','Belanda tidak mengeluarkan biaya untuk program ini','Rakyat menolak semua program Politik Etis','Pendidikan hanya untuk bangsawan, tetapi justru melahirkan pergerakan nasional'],
 a:4,
 e:'Kontradiksi Politik Etis: pendidikan hanya untuk bangsawan, tapi justru melahirkan kaum terpelajar yang memimpin pergerakan nasional (Soekarno, Hatta, Sjahrir, Ki Hajar). "Boomerang" bagi Belanda!'},
 
-/* Q17 — Kunci: A (Knowing) */
+/* Q17 — Kunci: A */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Stratifikasi sosial kolonial',
 s:'Masyarakat Hindia Belanda dibagi dalam tiga lapisan sosial berdasarkan ras. Lapisan teratas ditempati orang Eropa (Belanda dan Eropa lainnya) — mereka memiliki hak istimewa, gaji tinggi, dan pengadilan khusus. Lapisan tengah ditempati Timur Asing (Tionghoa, Arab, India) — mereka berperan sebagai pedagang dan perantara. Lapisan bawah ditempati pribumi (Indonesia) — mereka menjadi buruh, petani, dan pekerja kasar dengan gaji rendah. Stratifikasi ini tidak hanya soal ekonomi, tetapi juga soal martabat dan hukum: pribumi yang melawan orang Eropa bisa dihukum berat. Sistem ini meninggalkan warisan berupa mentalitas priyayi dan kesenjangan sosial yang masih terasa hingga kini.',
 q:'Berdasarkan stimulus tersebut, lapisan sosial tertinggi dalam masyarakat kolonial Hindia Belanda ditempati oleh ....',
@@ -479,107 +403,71 @@ o:['Orang Eropa','Timur Asing','Pribumi','Bangsawan Nusantara','Ulama'],
 a:0,
 e:'Lapisan tertinggi = orang Eropa (hak istimewa, gaji tinggi, pengadilan khusus). Lapisan tengah = Timur Asing (pedagang/perantara). Lapisan bawah = pribumi (buruh/tani). Warisan: mentalitas priyayi & kesenjangan sosial.'},
 
-/* Q18 — Kunci: C (Reasoning) */
+/* Q18 — Kunci: C */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Penyebab Perang Diponegoro',
 s:'Perang Diponegoro (1825–1830) adalah salah satu perang terbesar melawan Belanda. Penyebabnya: Belanda ikut campur dalam urusan internal Keraton Yogyakarta, memasang patok jalan di tanah milik Pangeran Diponegoro tanpa izin, dan menaikkan pajak. Perang berlangsung lima tahun dengan taktik gerilya. Belanda kewalahan dan mengeluarkan biaya besar — sekitar 20 juta gulden dan 15.000 tentara. Untuk menangkap Diponegoro, Belanda menggunakan tipu muslihat: mengundangnya berunding di Magelang, lalu menangkapnya. Diponegoro diasingkan ke Manado, lalu ke Makassar, dan wafat di sana pada 1855. Perang ini menjadi inspirasi perjuangan bangsa Indonesia.',
 q:'Berdasarkan stimulus tersebut, salah satu penyebab utama Perang Diponegoro (1825–1830) adalah ....',
-o:['Pangeran Diponegoro ingin menjadi raja',
- 'Perbedaan agama antara rakyat dan Belanda',
- 'Campur tangan Belanda dalam urusan Keraton Yogyakarta',
- 'Pajak yang terlalu rendah bagi rakyat',
- 'Persaingan dagang antara Mataram dan VOC'],
+o:['Pangeran Diponegoro ingin menjadi raja','Perbedaan agama antara rakyat dan Belanda','Campur tangan Belanda dalam urusan Keraton Yogyakarta','Pajak yang terlalu rendah bagi rakyat','Persaingan dagang antara Mataram dan VOC'],
 a:2,
 e:'Penyebab Perang Diponegoro: campur tangan Belanda dalam urusan Keraton Yogyakarta, pemasangan patok jalan di tanah Diponegoro, & kenaikan pajak. Perang 5 tahun, biaya 20 juta gulden, 15.000 tentara.'},
 
-/* ============ MCMA (7 SOAL) — POLA BERAGAM ============ */
-
-/* Q19 — Pola: [0,2,3] — 3 benar, 2 salah */
+/* Q19 — MCMA: [0,2,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Faktor kedatangan Eropa',
 s:'Kedatangan bangsa Eropa ke Nusantara didorong oleh beberapa faktor. Faktor ekonomi: jatuhnya Konstantinopel (1453) menutup jalur darat, rempah menjadi mahal, mereka mencari sumber langsung. Faktor politik: ambisi memperluas kekuasaan dan prestise bangsa. Faktor agama: misi menyebarkan Kristen ke wilayah baru. Faktor teknologi: penemuan kompas, peta, dan kapal layar memungkinkan pelayaran jauh. Faktor sosial: Revolusi Industri di Eropa mendorong perluasan pasar.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Jatuhnya Konstantinopel menjadi salah satu faktor pendorong.',
- 'Bangsa Eropa datang ke Nusantara hanya untuk berdagang tanpa motif lain.',
- 'Misi menyebarkan agama Kristen menjadi salah satu faktor.',
- 'Penemuan teknologi pelayaran memungkinkan penjelajahan samudra.',
- 'Nusantara adalah satu-satunya tujuan bangsa Eropa.'],
+o:['Jatuhnya Konstantinopel menjadi salah satu faktor pendorong.','Bangsa Eropa datang ke Nusantara hanya untuk berdagang tanpa motif lain.','Misi menyebarkan agama Kristen menjadi salah satu faktor.','Penemuan teknologi pelayaran memungkinkan penjelajahan samudra.','Nusantara adalah satu-satunya tujuan bangsa Eropa.'],
 a:[0,2,3],
 e:'A, C, D benar. B salah — motif bukan hanya dagang, tapi juga politik & agama. E salah — bangsa Eropa juga ke Afrika & Amerika.'},
 
-/* Q20 — Pola: [1,3] — 2 benar, 3 salah */
+/* Q20 — MCMA: [1,3] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Portugis vs Spanyol',
 s:'Portugis dan Spanyol sama-sama bangsa Eropa yang datang ke Nusantara. Portugis: menguasai Malaka (1511), berpusat di Ternate, strategi 3M (Misi, Monopoli, Militer). Spanyol: datang melalui Filipina, berpusat di Tidore, bersaing dengan Portugis. Konflik Portugis-Spanyol diselesaikan melalui Perjanjian Saragosa (1529). Portugis lebih fokus pada militer, sedangkan Spanyol lebih fokus pada perdagangan. Keduanya tidak bertahan lama di Nusantara karena datang Belanda yang lebih kuat.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Portugis berpusat di Tidore dan Spanyol di Ternate.',
- 'Perjanjian Saragosa menyelesaikan konflik Portugis-Spanyol.',
- 'Portugis dan Spanyol bersatu melawan Belanda.',
- 'Portugis lebih fokus pada militer dibanding perdagangan.',
- 'Portugis dan Spanyol menguasai Nusantara hingga abad ke-20.'],
+o:['Portugis berpusat di Tidore dan Spanyol di Ternate.','Perjanjian Saragosa menyelesaikan konflik Portugis-Spanyol.','Portugis dan Spanyol bersatu melawan Belanda.','Portugis lebih fokus pada militer dibanding perdagangan.','Portugis dan Spanyol menguasai Nusantara hingga abad ke-20.'],
 a:[1,3],
 e:'B, D benar. A salah — Portugis di Ternate, Spanyol di Tidore. C salah — mereka bersaing. E salah — mereka tidak bertahan lama, digantikan Belanda.'},
 
-/* Q21 — Pola: [0,1,2] — 3 benar, 2 salah */
+/* Q21 — MCMA: [0,1,2] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Kebijakan VOC',
 s:'VOC (1602–1799) adalah kongsi dagang Belanda dengan hak istimewa (Oktroi) dari pemerintah Belanda: monopoli dagang, mendirikan benteng, memiliki tentara, mengadakan perjanjian, mencetak uang, dan menjalankan pemerintahan. Untuk menjaga monopoli, VOC melakukan Pelayaran Hongi (patroli) dan Ekstirpasi (pemusnahan tanaman rempah berlebih). VOC juga menerapkan Contingenten (pajak wajib hasil bumi) dan Verplichte Leverantie (penjualan wajib ke VOC). VOC akhirnya bangkrut dan dibubarkan 31 Desember 1799.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Hak Oktroi memberi VOC wewenang mencetak uang sendiri.',
- 'Pelayaran Hongi bertujuan mengawasi monopoli rempah.',
- 'Ekstirpasi adalah pemusnahan tanaman rempah berlebih.',
- 'VOC dibubarkan karena terlalu banyak memberi bantuan kepada rakyat.',
- 'Verplichte Leverantie adalah pajak berupa uang tunai.'],
+o:['Hak Oktroi memberi VOC wewenang mencetak uang sendiri.','Pelayaran Hongi bertujuan mengawasi monopoli rempah.','Ekstirpasi adalah pemusnahan tanaman rempah berlebih.','VOC dibubarkan karena terlalu banyak memberi bantuan kepada rakyat.','Verplichte Leverantie adalah pajak berupa uang tunai.'],
 a:[0,1,2],
 e:'A, B, C benar. D salah — VOC bangkrut karena korupsi & perang. E salah — Verplichte Leverantie = kewajiban jual hasil bumi, bukan pajak uang.'},
 
-/* Q22 — Pola: [2,3,4] — 3 benar, 2 salah */
+/* Q22 — MCMA: [2,3,4] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Sistem Tanam Paksa',
 s:'Sistem Tanam Paksa (1830–1870) diterapkan oleh Gubernur Jenderal Van den Bosch untuk mengisi kas Belanda yang kosong. Aturan: rakyat wajib menyerahkan 1/5 tanahnya atau bekerja 66 hari setahun. Tanaman wajib: kopi, tebu, nila, teh, tembakau, karet. Dampak bagi Belanda: kas terisi, devisa melimpah. Dampak bagi rakyat: kelaparan, kematian massal, lahan pangan berkurang. Sistem ini dikritik oleh Multatuli (Max Havelaar, 1860) dan akhirnya dihapus pada 1870.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Tanam Paksa tidak pernah dikritik oleh kalangan Belanda sendiri.',
- 'Tanam Paksa dihapus pada tahun 1830.',
- 'Rakyat wajib menyerahkan 1/5 tanahnya untuk tanaman ekspor.',
- 'Dampak Tanam Paksa bagi rakyat adalah kelaparan dan kematian massal.',
- 'Van den Bosch adalah pencetus Sistem Tanam Paksa.'],
+o:['Tanam Paksa tidak pernah dikritik oleh kalangan Belanda sendiri.','Tanam Paksa dihapus pada tahun 1830.','Rakyat wajib menyerahkan 1/5 tanahnya untuk tanaman ekspor.','Dampak Tanam Paksa bagi rakyat adalah kelaparan dan kematian massal.','Van den Bosch adalah pencetus Sistem Tanam Paksa.'],
 a:[2,3,4],
 e:'C, D, E benar. A salah — dikritik Multatuli. B salah — dihapus 1870, bukan 1830.'},
 
-/* Q23 — Pola: [0,3] — 2 benar, 3 salah */
+/* Q23 — MCMA: [0,3] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Politik Etis',
 s:'Politik Etis (1901) adalah kebijakan "balas budi" Belanda dengan tiga program: Irigasi, Transmigrasi, dan Edukasi (Trilogi Van Deventer). Tujuannya: meningkatkan kesejahteraan rakyat. Namun, kebijakan ini memiliki kontradiksi: pendidikan hanya untuk kalangan bangsawan, dan justru melahirkan kaum terpelajar yang memimpin pergerakan nasional. Tokoh-tokoh seperti Soekarno, Hatta, Sjahrir, dan Ki Hajar Dewantara adalah produk sekolah Politik Etis. Politik Etis menjadi "boomerang" bagi Belanda.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Trilogi Van Deventer meliputi irigasi, transmigrasi, dan edukasi.',
- 'Politik Etis memberi pendidikan gratis untuk semua rakyat pribumi.',
- 'Politik Etis sepenuhnya menguntungkan Belanda tanpa dampak balik.',
- 'Politik Etis justru melahirkan tokoh-tokoh pergerakan nasional.',
- 'Politik Etis dihapus pada tahun 1901.'],
+o:['Trilogi Van Deventer meliputi irigasi, transmigrasi, dan edukasi.','Politik Etis memberi pendidikan gratis untuk semua rakyat pribumi.','Politik Etis sepenuhnya menguntungkan Belanda tanpa dampak balik.','Politik Etis justru melahirkan tokoh-tokoh pergerakan nasional.','Politik Etis dihapus pada tahun 1901.'],
 a:[0,3],
 e:'A, D benar. B salah — pendidikan hanya untuk bangsawan. C salah — justru jadi boomerang. E salah — 1901 adalah tahun MULAI, bukan dihapus.'},
 
-/* Q24 — Pola: [1,2,4] — 3 benar, 2 salah */
+/* Q24 — MCMA: [1,2,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Dampak kolonialisme',
 s:'Kolonialisme Belanda di Nusantara meninggalkan dampak multidimensional. Dampak politik: hilangnya kedaulatan, raja menjadi bawahan Belanda, muncul birokrasi kolonial. Dampak ekonomi: eksploitasi SDA, monopoli perdagangan, kemiskinan massal, kesenjangan sosial. Dampak sosial: stratifikasi rasial (Eropa > Timur Asing > Pribumi), diskriminasi, kerja rodi. Dampak budaya: pendidikan Barat, bahasa Belanda, westernisasi. Namun, ada juga dampak positif tak sengaja: infrastruktur modern (kereta api, jalan, pelabuhan) dan kesadaran nasional yang melahirkan pergerakan kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Kolonialisme hanya meninggalkan dampak negatif tanpa dampak positif.',
- 'Stratifikasi rasial menempatkan pribumi pada lapisan terbawah.',
- 'Infrastruktur modern seperti kereta api adalah dampak tak sengaja kolonialisme.',
- 'Kolonialisme tidak memengaruhi sistem politik lokal.',
- 'Kesadaran nasional muncul sebagai reaksi terhadap kolonialisme.'],
+o:['Kolonialisme hanya meninggalkan dampak negatif tanpa dampak positif.','Stratifikasi rasial menempatkan pribumi pada lapisan terbawah.','Infrastruktur modern seperti kereta api adalah dampak tak sengaja kolonialisme.','Kolonialisme tidak memengaruhi sistem politik lokal.','Kesadaran nasional muncul sebagai reaksi terhadap kolonialisme.'],
 a:[1,2,4],
 e:'B, C, E benar. A salah — ada dampak positif tak sengaja (infrastruktur, pendidikan). D salah — kolonialisme sangat memengaruhi sistem politik lokal (raja jadi bawahan).'},
 
-/* Q25 — Pola: [0,1,3,4] — 4 benar, 1 salah */
+/* Q25 — MCMA: [0,1,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perlawanan rakyat',
 s:'Perlawanan rakyat Nusantara terhadap Belanda berlangsung di berbagai daerah. Sultan Agung (Mataram) menyerang Batavia (1628, 1629). Pattimura (Maluku) memimpin perlawanan (1817). Diponegoro (Jawa) Perang Jawa (1825–1830). Imam Bonjol (Sumatra) Perang Padri (1821–1837). Pangeran Antasari (Kalimantan) Perang Banjar (1859–1905). Cut Nyak Dien & Teuku Umar (Aceh) Perang Aceh (1873–1904). Perlawanan gagal karena bersifat lokal/kedaerahan, dipimpin raja/bangsawan, dan mudah diadu domba (devide et impera). Kesadaran nasional baru muncul awal abad ke-20.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT? (Pilih lebih dari satu)',
-o:['Diponegoro memimpin Perang Jawa (1825–1830).',
- 'Pattimura memimpin perlawanan di Maluku.',
- 'Perang Aceh adalah perang terpendek dalam sejarah kolonialisme.',
- 'Perlawanan rakyat sering gagal karena bersifat lokal dan mudah diadu domba.',
- 'Kesadaran nasional Indonesia muncul pada awal abad ke-20.'],
+o:['Diponegoro memimpin Perang Jawa (1825–1830).','Pattimura memimpin perlawanan di Maluku.','Perang Aceh adalah perang terpendek dalam sejarah kolonialisme.','Perlawanan rakyat sering gagal karena bersifat lokal dan mudah diadu domba.','Kesadaran nasional Indonesia muncul pada awal abad ke-20.'],
 a:[0,1,3,4],
 e:'A, B, D, E benar. C salah — Perang Aceh (1873–1904) justru perang TERLAMA & termahal bagi Belanda.'},
 
-/* ============ KATEGORI (5 SOAL) — POLA BERAGAM ============ */
-
-/* Q26 — Pola: [S, TS, S, S] */
+/* Q26 — KATEGORI: [S, TS, S, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi kolonialisme',
 s:'Kronologi kolonialisme di Nusantara: 1511 (Portugis merebut Malaka), 1596 (ekspedisi pertama Belanda di Banten), 1602 (VOC didirikan), 1619 (Batavia didirikan JP Coen), 1799 (VOC dibubarkan), 1830 (Sistem Tanam Paksa dimulai), 1870 (Politik Pintu Terbuka), 1901 (Politik Etis), 1942 (Belanda menyerah kepada Jepang).',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -590,7 +478,7 @@ st:[
  {x:'Politik Etis muncul setelah Sistem Tanam Paksa.',a:'Sesuai'}],
 e:'1 Sesuai (1511 < 1602). 2 Tidak Sesuai (1602 > 1596). 3 Sesuai (1830 > 1799). 4 Sesuai (1901 > 1830).'},
 
-/* Q27 — Pola: [TS, S, S, S] */
+/* Q27 — KATEGORI: [TS, S, S, S] */
 {t:'KATEGORI',l:'Applying',d:'Sedang',i:'Kebijakan VOC',
 s:'VOC menerapkan berbagai kebijakan untuk mempertahankan monopoli. Pelayaran Hongi: patroli armada untuk mengawasi monopoli rempah. Ekstirpasi: pemusnahan tanaman rempah berlebih agar harga tetap tinggi. Contingenten: pajak wajib berupa hasil bumi. Verplichte Leverantie: kewajiban menjual hasil bumi hanya kepada VOC. Hak Oktroi: hak istimewa dari pemerintah Belanda. Semua kebijakan ini bertujuan memaksimalkan keuntungan VOC.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -601,7 +489,7 @@ st:[
  {x:'Verplichte Leverantie adalah kewajiban menjual hasil bumi hanya kepada VOC.',a:'Sesuai'}],
 e:'1 Tidak Sesuai — Pelayaran Hongi MENGAWASI monopoli, bukan menghancurkan semua tanaman. Ekstirpasi yang memusnahkan. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
 
-/* Q28 — Pola: [S, S, TS, S] */
+/* Q28 — KATEGORI: [S, S, TS, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Dampak kolonialisme',
 s:'Kolonialisme meninggalkan dampak multidimensi. Politik: hilang kedaulatan, raja jadi bawahan. Ekonomi: eksploitasi SDA, monopoli, kemiskinan. Sosial: stratifikasi rasial, diskriminasi, kerja rodi. Budaya: pendidikan Barat, bahasa Belanda. Positif tak sengaja: infrastruktur modern, kesadaran nasional. Warisan: mentalitas priyayi, kesenjangan kota-desa, diskriminasi etnis.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -612,7 +500,7 @@ st:[
  {x:'Infrastruktur modern seperti kereta api adalah dampak kolonialisme.',a:'Sesuai'}],
 e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — ada dampak positif tak sengaja (infrastruktur, pendidikan). 4 Sesuai.'},
 
-/* Q29 — Pola: [TS, S, S, TS] */
+/* Q29 — KATEGORI: [TS, S, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Perlawanan rakyat',
 s:'Perlawanan rakyat Nusantara: Sultan Agung (Mataram, 1628–1629), Pattimura (Maluku, 1817), Diponegoro (Jawa, 1825–1830), Imam Bonjol (Sumatra, 1821–1837), Pangeran Antasari (Kalimantan, 1859–1905), Cut Nyak Dien & Teuku Umar (Aceh, 1873–1904). Penyebab kegagalan: bersifat lokal/kedaerahan, dipimpin raja/bangsawan, mudah diadu domba (devide et impera), tidak ada koordinasi antar daerah. Kesadaran nasional baru muncul awal abad ke-20.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -623,7 +511,7 @@ st:[
  {x:'Perang Aceh adalah perang terpendek dalam sejarah kolonialisme.',a:'Tidak Sesuai'}],
 e:'1 Tidak Sesuai — perlawanan bersifat LOKAL, bukan nasional. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — Perang Aceh (1873–1904) justru perang TERLAMA.'},
 
-/* Q30 — Pola: [S, TS, S, TS] */
+/* Q30 — KATEGORI: [S, TS, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Warisan kolonial',
 s:'Warisan kolonialisme masih terasa di Indonesia modern. Positif: infrastruktur (kereta api, jalan, pelabuhan), sistem pendidikan, teknologi, tata kota. Negatif: mentalitas priyayi, kesenjangan sosial, diskriminasi etnis, ketergantungan ekonomi. Warisan budaya: bahasa Belanda dalam istilah hukum, arsitektur kolonial, sistem hukum warisan. Warisan ekonomi: perkebunan, pertambangan, sistem moneter. Neo-kolonialisme: bentuk dominasi baru TANPA penjajahan fisik — utang luar negeri, eksploitasi SDA oleh perusahaan multinasional, hegemoni budaya.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -642,8 +530,6 @@ e:'1 Sesuai. 2 Tidak Sesuai — banyak warisan (positif & negatif). 3 Sesuai. 4 
 let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
-
-(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
