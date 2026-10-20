@@ -13,26 +13,6 @@
 :root{--primary:#7C3AED;--primary-light:#C4B5FD;--gold:#FBBF24;--emerald:#10B981;--rose:#FB7185;--sky:#38BDF8;--violet:#8B5CF6;--bg:#100820;--card:#231645;--card-alt:#2D1B5C;--text:#F5F0FF;--text-light:#C4B5FD;--text-muted:#9B87C9;--line:rgba(196,181,253,.14);--line-soft:rgba(196,181,253,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#7C3AED;--accent2:#F472B6;--accent-soft:rgba(124,58,237,.14);}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(124,58,237,.14),transparent 55%),radial-gradient(circle at 85% 80%,rgba(244,114,182,.10),transparent 55%);}
 h1,h2,h3,h4{line-height:1.25;font-weight:800}
-#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#1a0f32 0%,#100820 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
-.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
-.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--accent2) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(196,181,253,.55)) drop-shadow(0 0 26px rgba(124,58,237,.4));z-index:-2;}
-.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#100820;box-shadow:inset 0 0 24px rgba(124,58,237,.16);z-index:-1;}
-.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#f5f0ff 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #5b21b6) drop-shadow(2px 2px 0 #4c1d95) drop-shadow(3px 3px 0 #3b1580) drop-shadow(4px 4px 0 #2e1065) drop-shadow(5px 5px 0 #1e0a4e) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(251,191,36,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
-.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
-.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
-.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35);}
-.ring-3{inset:30px;border-top-color:var(--accent2);border-right-color:var(--accent2);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(244,114,182,.35);}
-@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(139,92,246,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
-@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
-.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
-@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
-.loader-track{width:min(380px,80vw);height:5px;background:rgba(124,58,237,.2);border-radius:10px;margin-top:24px;overflow:hidden;}
-.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
-.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(16,8,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
 .hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
 .hdr-center i{color:var(--gold)}
@@ -159,30 +139,14 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 .privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(251,113,133,.4);}
 .privacy-notice strong{color:var(--rose);font-weight:800;}
 .hidden{display:none!important}
-@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
-@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.hdr-center{display:none}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
 </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="loader-3d-wrap">
-    <div class="loader-ring ring-1"></div>
-    <div class="loader-ring ring-2"></div>
-    <div class="loader-ring ring-3"></div>
-    <div class="loader-circle">
-      <div class="loader-3d-text">MGE</div>
-    </div>
-  </div>
-  <div class="loader-3d-sub">Maeda Game Edu</div>
-  <div class="loader-title">TKA LITERASI SEJARAH</div>
-  <div class="loader-sub">Tema 7: Pergerakan Nasional · 30 Soal</div>
-  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
-  <div class="loader-pct" id="lpct">0%</div>
-</div>
 
 <header class="hdr">
   <div style="display:flex;gap:6px;align-items:center">
@@ -300,14 +264,10 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 /* ============================================================
    BANK SOAL — PERGERAKAN NASIONAL (30 SOAL UNIK)
    18 PG + 7 MCMA + 5 KATEGORI
-   Kunci PG: A=4, B=4, C=4, D=3, E=3
-   Level: Knowing=5, Applying=10, Reasoning=15
    ============================================================ */
 const Q7=[
 
-/* ============ PG (18 SOAL) ============ */
-
-/* Q1 — Kunci: A (Applying) */
+/* Q1 — Kunci: A */
 {t:'PG',l:'Applying',d:'Sedang',i:'Dampak Politik Etis',
 s:'Politik Etis (Ethische Politiek) diperkenalkan pada 1901 oleh Ratu Wilhelmina — atas gagasan Mr. Conrad Theodore van Deventer, seorang politikus Belanda yang kritis terhadap eksploitasi kolonial. Ada tiga program utama: irigasi untuk pertanian rakyat, edukasi untuk kaum pribumi, dan emigrasi untuk memindahkan penduduk dari Jawa yang padat. Tujuan awalnya mulia: "membalas budi" kepada rakyat Nusantara atas kekayaan yang telah dikeruk. Namun, dalam praktiknya, pendidikan hanya bisa diakses oleh kaum bangsawan dan priyayi. Ironisnya, justru dari sekolah-sekolah inilah lahir kaum terpelajar pribumi yang menyadari ketidakadilan kolonial — dan kemudian memimpin pergerakan nasional. Belanda pun menyadari Politik Etis telah menjadi bumerang bagi mereka sendiri.',
 q:'Berdasarkan stimulus tersebut, mengapa Politik Etis disebut sebagai "bumerang" bagi Belanda?',
@@ -319,7 +279,7 @@ o:['Politik Etis melahirkan kaum terpelajar yang menyadari ketidakadilan & memim
 a:0,
 e:'Politik Etis awalnya bertujuan memperkuat kekuasaan Belanda, tetapi pendidikan melahirkan kaum terpelajar yang menyadari ketidakadilan & memimpin pergerakan nasional. Inilah "bumerang" bagi Belanda.'},
 
-/* Q2 — Kunci: B (Knowing) */
+/* Q2 — Kunci: B */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Penggagas Budi Utomo',
 s:'Budi Utomo didirikan pada 20 Mei 1908 di STOVIA (School tot Opleiding van Indische Artsen), Batavia. Gagasan ini berasal dari Dr. Wahidin Sudirohusodo — seorang dokter yang prihatin dengan rendahnya pendidikan pribumi. Ia kemudian bertemu dengan mahasiswa STOVIA seperti Dr. Soetomo, Dr. Cipto Mangunkusumo, dan lainnya. Tujuan awal Budi Utomo: memajukan pendidikan & kebudayaan Jawa. Meski bersifat kedaerahan, Budi Utomo dianggap sebagai organisasi modern pertama di Indonesia karena memiliki struktur, anggota, dan program yang jelas. Tanggal berdirinya diperingati sebagai Hari Kebangkitan Nasional (Harkitnas).',
 q:'Berdasarkan stimulus tersebut, tokoh penggagas ide berdirinya Budi Utomo adalah....',
@@ -327,7 +287,7 @@ o:['Dr. Soetomo','Dr. Wahidin Sudirohusodo','Dr. Cipto Mangunkusumo','Ki Hajar D
 a:1,
 e:'Dr. Wahidin Sudirohusodo = penggagas ide. Dr. Soetomo = pendiri utama. Keduanya bersama mahasiswa STOVIA mendirikan Budi Utomo (20 Mei 1908).'},
 
-/* Q3 — Kunci: C (Applying) */
+/* Q3 — Kunci: C */
 {t:'PG',l:'Applying',d:'Sedang',i:'Perubahan SDI menjadi SI',
 s:'Sarekat Islam awalnya bernama Sarekat Dagang Islam (SDI), didirikan oleh Haji Samanhudi pada 1911 di Solo. Tujuan awal SDI adalah memajukan perdagangan pribumi agar tidak kalah bersaing dengan pedagang Tionghoa. Pada 1912, di bawah kepemimpinan HOS Tjokroaminoto, nama SDI berubah menjadi Sarekat Islam (SI). Perubahan nama ini menandai perubahan orientasi — dari gerakan ekonomi menjadi gerakan sosial-politik-agama yang lebih luas. SI kemudian berkembang pesat menjadi organisasi massa terbesar di Indonesia, dengan anggota mencapai 2 juta orang pada 1919. Faktor keberhasilan SI: mengangkat isu ekonomi rakyat kecil, menggunakan simbol agama, dan kepemimpinan kharismatik Tjokroaminoto.',
 q:'Berdasarkan stimulus tersebut, tokoh yang mengubah nama Sarekat Dagang Islam (SDI) menjadi Sarekat Islam (SI) adalah....',
@@ -335,7 +295,7 @@ o:['Haji Samanhudi','Semaun','HOS Tjokroaminoto','Alimin','Kartosuwiryo'],
 a:2,
 e:'HOS Tjokroaminoto mengubah nama SDI menjadi SI pada 1912 & menjadi pemimpinnya. Haji Samanhudi = pendiri SDI (1911). Perubahan nama menandai transformasi dari gerakan ekonomi menjadi gerakan sosial-politik-agama.'},
 
-/* Q4 — Kunci: D (Reasoning) */
+/* Q4 — Kunci: D */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Pembubaran Indische Partij',
 s:'Indische Partij (IP) didirikan pada 25 Desember 1912 di Bandung oleh "Tiga Serangkai": Douwes Dekker (Danudirja Setiabudi), Dr. Cipto Mangunkusumo, dan Suwardi Suryaningrat (Ki Hajar Dewantara). IP adalah partai politik pertama di Indonesia yang bersifat nasional — bukan kedaerahan — dan terbuka untuk semua golongan: pribumi, Indo, dan Tionghoa. Semboyannya: "Indie voor Indiërs" (Indonesia untuk orang Indonesia). Pada 1913, IP dinyatakan sebagai partai terlarang oleh pemerintah kolonial. Penyebabnya bukan hanya kritik tajam mereka, tetapi juga karena pamflet Suwardi Suryaningrat berjudul "Als ik een Nederlander was..." (Seandainya Aku Seorang Belanda) yang dianggap menghina pemerintah kolonial. Ketiga pendiri IP kemudian diasingkan ke Belanda.',
 q:'Berdasarkan stimulus tersebut, alasan utama Belanda membubarkan Indische Partij adalah....',
@@ -347,7 +307,7 @@ o:['Karena IP bersifat kedaerahan dan hanya untuk orang Jawa',
 a:3,
 e:'IP dibubarkan karena: (1) bersifat nasional (bukan kedaerahan), (2) terbuka untuk semua golongan, (3) kritik tajam terhadap kolonialisme, (4) pamflet Suwardi yang dianggap menghina Belanda. Ini berbeda dengan SI/Budi Utomo yang lebih akomodatif.'},
 
-/* Q5 — Kunci: E (Applying) */
+/* Q5 — Kunci: E */
 {t:'PG',l:'Applying',d:'Sedang',i:'Nama awal Perhimpunan Indonesia',
 s:'Perhimpunan Indonesia (PI) berawal dari Indische Vereeniging (1908) — sebuah perkumpulan pelajar Indonesia di Leiden, Belanda. Pada 1922, nama ini berubah menjadi Perhimpunan Indonesia. Tokoh-tokoh kuncinya: Mohammad Hatta (ketua), Ahmad Soebardjo, Ali Sastroamidjojo, Iwa Koesoemasoemantri. PI menerbitkan majalah "Indonesia Merdeka" (1924) yang menyebarkan gagasan kemerdekaan ke seluruh dunia. Yang menarik, PI aktif dalam forum-forum internasional seperti Liga Anti-Imperialisme dan Kongres Perdamaian Internasional. Melalui forum-forum ini, PI memperkenalkan kata "Indonesia" sebagai identitas politik — bukan sekadar nama geografis. Karena itu, PI dijuluki sebagai "duta" pergerakan nasional di Eropa.',
 q:'Berdasarkan stimulus tersebut, nama awal Perhimpunan Indonesia adalah....',
@@ -355,7 +315,7 @@ o:['Indische Partij','Indonesische Vereeniging','Perhimpunan Pelajar','Sarekat P
 a:4,
 e:'Nama awal PI = Indische Vereeniging (1908). Pada 1922 berubah menjadi Perhimpunan Indonesia. Bukan Indische Partij (itu partai politik Tiga Serangkai).'},
 
-/* Q6 — Kunci: A (Reasoning) */
+/* Q6 — Kunci: A */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Makna Sumpah Pemuda',
 s:'Sumpah Pemuda diikrarkan pada 28 Oktober 1928 dalam Kongres Pemuda II di Jakarta. Kongres ini diselenggarakan oleh PPPI (Perhimpunan Pelajar-Pelajar Indonesia) dan diketuai oleh Sugondo Djojopuspito. Isi Sumpah Pemuda: (1) Bertumpah darah yang satu: Tanah Air Indonesia; (2) Berbangsa yang satu: Bangsa Indonesia; (3) Menjunjung bahasa persatuan: Bahasa Indonesia. Pada saat yang sama, WR Supratman memperdengarkan lagu "Indonesia Raya" dengan biola — pertama kalinya lagu kebangsaan diperdengarkan di depan publik. Sumpah Pemuda menjadi puncak Pergerakan Nasional karena menegaskan persatuan nusa, bangsa, dan bahasa — fondasi utama menuju kemerdekaan 1945.',
 q:'Berdasarkan stimulus tersebut, makna paling penting dari Sumpah Pemuda bagi bangsa Indonesia adalah....',
@@ -367,7 +327,7 @@ o:['Menegaskan persatuan nusa, bangsa, & bahasa sebagai fondasi kebangsaan',
 a:0,
 e:'Sumpah Pemuda = fondasi kebangsaan. Tiga ikrar: satu nusa, satu bangsa, satu bahasa. Inilah puncak Pergerakan Nasional — persatuan yang menjadi dasar menuju kemerdekaan 1945.'},
 
-/* Q7 — Kunci: B (Knowing) */
+/* Q7 — Kunci: B */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Ketua Kongres Pemuda II',
 s:'Kongres Pemuda II (27–28 Oktober 1928) adalah salah satu peristiwa paling penting dalam Pergerakan Nasional. Kongres ini diselenggarakan oleh PPPI (Perhimpunan Pelajar-Pelajar Indonesia) — organisasi yang didirikan pada 1926. Ketua kongres adalah Sugondo Djojopuspito dari Jong Java. Hadir dalam kongres ini berbagai organisasi pemuda: Jong Java, Jong Sumatranen Bond, Jong Islamieten Bond, Jong Celebes, Jong Ambon, dan lainnya. Salah satu momen bersejarah: WR Supratman memperdengarkan lagu "Indonesia Raya" dengan biola. Kongres ini menghasilkan Sumpah Pemuda yang diikrarkan pada 28 Oktober 1928.',
 q:'Berdasarkan stimulus tersebut, ketua Kongres Pemuda II (1928) adalah....',
@@ -375,7 +335,7 @@ o:['Mohammad Yamin','Sugondo Djojopuspito','WR Supratman','Mohammad Hatta','Soek
 a:1,
 e:'Sugondo Djojopuspito dari Jong Java = ketua Kongres Pemuda II. WR Supratman = pencipta lagu Indonesia Raya (bukan ketua). M. Yamin & Hatta = tokoh penting, tetapi bukan ketua kongres.'},
 
-/* Q8 — Kunci: C (Applying) */
+/* Q8 — Kunci: C */
 {t:'PG',l:'Applying',d:'Sedang',i:'Pers nasional pertama',
 s:'Pers nasional memainkan peran krusial dalam Pergerakan Nasional. Surat kabar "Medan Prijaji" (1907) — didirikan oleh RM Tirto Adhi Soerjo — dianggap sebagai pers nasional pertama yang benar-benar menyuarakan kepentingan pribumi. Tirto Adhi Soerjo kemudian dijuluki sebagai "Bapak Pers Nasional Indonesia". Selain itu, ada "Oetoesan Hindia" (1913) yang menjadi corong Sarekat Islam di bawah HOS Tjokroaminoto, "Hindia Baroe" (1914), "De Express" (1912) sebagai corong Indische Partij, dan "Indonesia Merdeka" (1924) yang diterbitkan Perhimpunan Indonesia di Belanda. Pers menjadi "senjata pena" — menyadarkan rakyat & menyebarkan gagasan nasionalisme tanpa perlu mengangkat senjata.',
 q:'Berdasarkan stimulus tersebut, surat kabar yang dianggap sebagai pers nasional pertama & didirikan oleh RM Tirto Adhi Soerjo adalah....',
@@ -383,7 +343,7 @@ o:['Oetoesan Hindia','Hindia Baroe','Medan Prijaji','De Express','Indonesia Merd
 a:2,
 e:'Medan Prijaji (1907) = pers nasional pertama oleh RM Tirto Adhi Soerjo. Oetoesan Hindia = SI, De Express = IP, Indonesia Merdeka = PI.'},
 
-/* Q9 — Kunci: D (Reasoning) */
+/* Q9 — Kunci: D */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Pengasingan Tiga Serangkai',
 s:'"Tiga Serangkai" adalah julukan untuk tiga pendiri Indische Partij: Douwes Dekker, Dr. Cipto Mangunkusumo, dan Suwardi Suryaningrat. Setelah Indische Partij dibubarkan oleh Belanda pada 1913, ketiganya diasingkan ke Belanda. Namun, pengasingan ini justru membuka jaringan pergerakan yang lebih luas — mereka bertemu dengan pelajar Indonesia di Belanda (Perhimpunan Indonesia) dan memperkuat gerakan nasionalisme dari Eropa. Douwes Dekker kemudian mengganti namanya menjadi Danudirja Setiabudi — simbol perlawanan terhadap kolonialisme. Suwardi Suryaningrat kemudian dikenal sebagai Ki Hajar Dewantara — pendiri Taman Siswa. Dr. Cipto tetap aktif dalam pergerakan hingga akhir hayatnya.',
 q:'Berdasarkan stimulus tersebut, dampak tak terduga dari pengasingan Tiga Serangkai ke Belanda adalah....',
@@ -395,7 +355,7 @@ o:['Mereka berhenti berjuang untuk Indonesia',
 a:3,
 e:'Pengasingan ke Belanda = berkah tersembunyi. Tiga Serangkai bertemu Perhimpunan Indonesia & memperkuat jaringan pergerakan di Eropa. Setiap tokoh tetap berjuang: Douwes → Danudirja, Suwardi → Ki Hajar (Taman Siswa), Cipto tetap aktif.'},
 
-/* Q10 — Kunci: E (Knowing) */
+/* Q10 — Kunci: E */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Jong Sumatranen Bond',
 s:'Jong Sumatranen Bond (1917) adalah organisasi pemuda dari Sumatera yang didirikan di Jakarta. Organisasi ini bergerak di bidang pendidikan & kebudayaan, dengan tujuan mempererat persaudaraan pemuda Sumatera. Dari organisasi ini lahir tokoh-tokoh besar Pergerakan Nasional: Mohammad Yamin (yang kemudian menjadi penulis Sumpah Pemuda & penyair), Mohammad Hatta (yang menjadi Wakil Presiden RI pertama), dan lain-lain. Jong Sumatranen Bond menjadi salah satu pilar penting Sumpah Pemuda 1928 — bersama Jong Java, Jong Celebes, Jong Ambon, dan Jong Islamieten Bond. Melalui organisasi-organisasi kedaerahan inilah, persatuan nasional mulai tumbuh.',
 q:'Berdasarkan stimulus tersebut, tokoh yang lahir dari Jong Sumatranen Bond & kemudian menjadi penulis Sumpah Pemuda adalah....',
@@ -403,7 +363,7 @@ o:['Soekarno','HOS Tjokroaminoto','Ki Hajar Dewantara','Semaun','Mohammad Yamin'
 a:4,
 e:'Mohammad Yamin = tokoh Jong Sumatranen Bond & penulis Sumpah Pemuda. Hatta juga dari JS Bond (menjadi Wapres). Soekarno = murid Tjokroaminoto.'},
 
-/* Q11 — Kunci: A (Applying) */
+/* Q11 — Kunci: A */
 {t:'PG',l:'Applying',d:'Sedang',i:'Faktor keberhasilan SI',
 s:'Sarekat Islam (SI) berhasil menjadi organisasi massa terbesar pada masanya — dengan anggota mencapai 2 juta orang pada 1919. Apa faktor keberhasilannya? Pertama, SI mengangkat isu ekonomi rakyat kecil — perdagangan pribumi yang terancam oleh pedagang Tionghoa dan Belanda. Kedua, SI menggunakan simbol agama Islam — yang merupakan agama mayoritas masyarakat Nusantara — sebagai perekat massa. Ketiga, kepemimpinan HOS Tjokroaminoto yang kharismatik — ia adalah orator ulung yang mampu membangkitkan semangat massa. Keempat, SI bersifat terbuka untuk semua golongan — tidak membedakan suku, daerah, atau status sosial. Namun, SI juga mengalami kemunduran karena perpecahan internal (SI Merah vs SI Putih) & masuknya paham komunis.',
 q:'Berdasarkan stimulus tersebut, faktor utama keberhasilan Sarekat Islam menjadi organisasi massa terbesar adalah....',
@@ -415,7 +375,7 @@ o:['Mengangkat isu ekonomi rakyat & menggunakan simbol agama',
 a:0,
 e:'Faktor keberhasilan SI: isu ekonomi rakyat + simbol agama + kepemimpinan kharismatik + terbuka. Bukan karena senjata, dukungan Belanda, eksklusif, atau hanya pendidikan.'},
 
-/* Q12 — Kunci: B (Reasoning) */
+/* Q12 — Kunci: B */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Sejarah lagu Indonesia Raya',
 s:'Lagu "Indonesia Raya" diciptakan oleh WR Supratman (Wage Rudolf Supratman) pada 1924. Namun, lagu ini pertama kali diperdengarkan secara resmi di depan publik pada Kongres Pemuda II — 28 Oktober 1928 — dengan iringan biola. Momen ini sangat bersejarah: untuk pertama kalinya, sebuah lagu kebangsaan diperdengarkan di hadapan para pemuda dari seluruh Nusantara. Lirik "Indonesia Tanah Air Beta" menggambarkan tekad untuk bersatu di bawah satu bangsa. Setelah Indonesia merdeka, lagu ini ditetapkan sebagai lagu kebangsaan Indonesia pada 1949. WR Supratman kemudian diangkat sebagai Pahlawan Nasional.',
 q:'Berdasarkan stimulus tersebut, pernyataan yang paling tepat tentang lagu "Indonesia Raya" adalah....',
@@ -427,7 +387,7 @@ o:['Diciptakan pada Kongres Pemuda II (1928)',
 a:1,
 e:'Lagu Indonesia Raya DICIPTAKAN 1924 (oleh WR Supratman), tetapi PERTAMA DIPERDENGARKAN pada Kongres Pemuda II (1928). Ditetapkan sebagai lagu kebangsaan pada 1949.'},
 
-/* Q13 — Kunci: C (Applying) */
+/* Q13 — Kunci: C */
 {t:'PG',l:'Applying',d:'Sedang',i:'Murid-murid Tjokroaminoto',
 s:'HOS Tjokroaminoto bukan hanya pemimpin Sarekat Islam — ia juga dikenal sebagai "guru bangsa". Di rumahnya di Jalan Peneleh, Surabaya, ia mengajar & membina banyak pemuda yang kemudian menjadi tokoh besar Indonesia. Di antara murid-muridnya: Ir. Soekarno (Presiden RI pertama), Semaun (tokoh komunis), Kartosuwiryo (pendiri DI/TII), Alimin, dan lain-lain. Tjokroaminoto memberikan kebebasan berpikir kepada murid-muridnya — sehingga mereka tumbuh menjadi pemikir kritis dengan ideologi masing-masing (nasionalis, komunis, Islamis). Inilah bukti bahwa SI menjadi "kawah candradimuka" para pemimpin pergerakan nasional.',
 q:'Berdasarkan stimulus tersebut, tokoh yang merupakan murid HOS Tjokroaminoto & kemudian menjadi Presiden RI pertama adalah....',
@@ -435,7 +395,7 @@ o:['Mohammad Hatta','Sutan Sjahrir','Ir. Soekarno','Ahmad Soebardjo','Mohammad Y
 a:2,
 e:'Ir. Soekarno = murid HOS Tjokroaminoto di Peneleh, Surabaya. Hatta = dari PI & JS Bond. Sjahrir = tokoh PSI. Jadi "guru bangsa" = Tjokroaminoto.'},
 
-/* Q14 — Kunci: D (Knowing) */
+/* Q14 — Kunci: D */
 {t:'PG',l:'Knowing',d:'Mudah',i:'Hari Kebangkitan Nasional',
 s:'Hari Kebangkitan Nasional (Harkitnas) diperingati setiap 20 Mei — untuk memperingati berdirinya Budi Utomo pada 20 Mei 1908. Penetapan Harkitnas dilakukan oleh Presiden Soekarno pada 1959, melalui Keputusan Presiden No. 316 Tahun 1959. Mengapa 20 Mei? Karena Budi Utomo dianggap sebagai organisasi modern pertama yang menandai awal Pergerakan Nasional Indonesia. Meski bersifat kedaerahan (Jawa), Budi Utomo telah membuka jalan bagi lahirnya organisasi-organisasi modern lainnya — seperti Sarekat Islam, Indische Partij, dan Muhammadiyah. Harkitnas menjadi momentum refleksi bagi generasi muda untuk terus menjaga semangat kebangsaan.',
 q:'Berdasarkan stimulus tersebut, tanggal yang diperingati sebagai Hari Kebangkitan Nasional adalah....',
@@ -443,7 +403,7 @@ o:['1 Juni','28 Oktober','10 November','20 Mei','17 Agustus'],
 a:3,
 e:'Harkitnas = 20 Mei (berdirinya Budi Utomo 1908). Ditetapkan oleh Soekarno melalui Keppres No. 316/1959. Bukan 28 Okt (Sumpah Pemuda), bukan 10 Nov (Hari Pahlawan).'},
 
-/* Q15 — Kunci: E (Reasoning) */
+/* Q15 — Kunci: E */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Kebijakan Persbreidel',
 s:'Pemerintah kolonial Belanda menyadari bahwa pers adalah "senjata" paling ampuh bagi pergerakan nasional. Untuk membungkam kritik, Belanda menerapkan kebijakan "persbreidel" — pembredelan surat kabar yang dianggap berbahaya. Melalui kebijakan ini, banyak surat kabar pribumi yang ditutup, tokoh-tokoh pers dipenjara atau diasingkan. Contoh: RM Tirto Adhi Soerjo dipenjara & kemudian diasingkan ke Ambon; HOS Tjokroaminoto dipenjara beberapa kali. Namun, upaya pembungkaman ini justru memicu perlawanan lebih besar. Tokoh-tokoh yang dipenjara justru menjadi martir & simbol perlawanan — makin menyadarkan rakyat akan ketidakadilan kolonialisme.',
 q:'Berdasarkan stimulus tersebut, dampak utama dari kebijakan persbreidel Belanda adalah....',
@@ -455,7 +415,7 @@ o:['Pers nasional berhenti terbit untuk selamanya',
 a:4,
 e:'Persbreidel = bumerang. Tokoh pers yang dipenjara jadi martir & simbol perlawanan. Rakyat makin sadar akan ketidakadilan. Jadi persbreidel TIDAK berhasil membungkam kritik — justru memperkuat perlawanan.'},
 
-/* Q16 — Kunci: A (Applying) */
+/* Q16 — Kunci: A */
 {t:'PG',l:'Applying',d:'Sedang',i:'Budi Utomo sebagai organisasi modern',
 s:'Budi Utomo disebut sebagai organisasi "modern" — bukan karena usianya, tetapi karena strukturnya yang berbeda dari organisasi-organisasi sebelumnya. Sebelum 1908, perjuangan melawan kolonialisme bersifat kedaerahan & dipimpin oleh raja atau bangsawan. Budi Utomo memperkenalkan cara baru: (1) memiliki struktur organisasi formal — dengan ketua, wakil, sekretaris, dan anggota; (2) memiliki program kerja yang jelas — di bidang pendidikan & kebudayaan; (3) menggunakan media cetak — seperti surat kabar — untuk menyebarkan gagasan; (4) bersifat non-kedaerahan (meski awal Jawa-sentris); (5) dipimpin oleh kaum terpelajar, bukan bangsawan feodal. Inilah yang membedakan Budi Utomo dari bentuk perjuangan sebelumnya.',
 q:'Berdasarkan stimulus tersebut, alasan utama Budi Utomo disebut sebagai organisasi "modern" adalah....',
@@ -467,7 +427,7 @@ o:['Memiliki struktur organisasi formal, program kerja jelas, & dipimpin kaum te
 a:0,
 e:'Budi Utomo disebut modern karena struktur formal, program jelas, media cetak, non-kedaerahan, & dipimpin kaum terpelajar. Berbeda dari perjuangan pra-1908 yang bersifat kedaerahan & dipimpin bangsawan feodal.'},
 
-/* Q17 — Kunci: B (Reasoning) */
+/* Q17 — Kunci: B */
 {t:'PG',l:'Reasoning',d:'Sulit',i:'Kontribusi global PI',
 s:'Perhimpunan Indonesia (PI) memiliki peran yang sangat penting dalam sejarah Pergerakan Nasional. Melalui majalah "Indonesia Merdeka" (1924), PI menyebarkan gagasan tentang Indonesia sebagai bangsa yang merdeka & berdaulat. Semboyan PI: "Indonesia Merdeka" — ini bukan sekadar slogan, tetapi visi politik yang jelas. Yang menarik, PI tidak hanya bergerak di kalangan pelajar Indonesia di Belanda — mereka juga aktif dalam forum-forum internasional seperti Liga Anti-Imperialisme (1927) dan Kongres Perdamaian Internasional. Melalui forum-forum ini, PI memperkenalkan gagasan "Indonesia Merdeka" ke dunia internasional. Inilah kontribusi utama PI — menjadikan kemerdekaan Indonesia sebagai isu global.',
 q:'Berdasarkan stimulus tersebut, kontribusi utama Perhimpunan Indonesia dalam Pergerakan Nasional adalah....',
@@ -479,7 +439,7 @@ o:['Membentuk pasukan militer untuk melawan Belanda',
 a:1,
 e:'Kontribusi utama PI = menginternasionalkan isu kemerdekaan Indonesia melalui forum global (Liga Anti-Imperialisme, Kongres Perdamaian Internasional). PI tidak membentuk militer, bukan pendiri Budi Utomo, bukan penyusun Sumpah Pemuda.'},
 
-/* Q18 — Kunci: C (Knowing) */
+/* Q18 — Kunci: C */
 {t:'PG',l:'Knowing',d:'Mudah',i:'PPPI penyelenggara',
 s:'PPPI (Perhimpunan Pelajar-Pelajar Indonesia) didirikan pada 1926 di Jakarta. Organisasi ini menjadi motor penggerak Kongres Pemuda II (1928). Anggotanya adalah pelajar dari berbagai sekolah tinggi di Jakarta — seperti STOVIA, Rechtshogeschool, dan lainnya. Tokoh-tokoh kunci PPPI: Sugondo Djojopuspito, Mohammad Yamin, WR Supratman, dan lain-lain. PPPI adalah organisasi pemuda pertama yang bersifat nasional — bukan kedaerahan. Melalui PPPI, pemuda dari berbagai daerah & latar belakang bersatu untuk menyelenggarakan Kongres Pemuda II. Hasilnya: Sumpah Pemuda — yang menjadi tonggak persatuan nasional.',
 q:'Berdasarkan stimulus tersebut, organisasi yang menyelenggarakan Kongres Pemuda II (1928) adalah....',
@@ -487,9 +447,7 @@ o:['Jong Java','Jong Sumatranen Bond','PPPI (Perhimpunan Pelajar-Pelajar Indones
 a:2,
 e:'PPPI = penyelenggara Kongres Pemuda II (1928). Organisasi pertama yang bersifat nasional. Berbeda dari Jong Java/JSB/JIB yang kedaerahan/keagamaan. Budi Utomo = organisasi induk tetapi tidak menyelenggarakan Kongres Pemuda II.'},
 
-/* ============ MCMA (7 SOAL) ============ */
-
-/* Q19 — Pola: [0,2,3] */
+/* Q19 — MCMA: [0,2,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Analisis Politik Etis',
 s:'Politik Etis diperkenalkan pada 1901 oleh Ratu Wilhelmina — atas gagasan Van Deventer. Tiga program pokok: irigasi, edukasi, dan emigrasi. Tujuan awalnya: memperbaiki kesejahteraan rakyat pribumi & "membalas budi" atas kekayaan yang telah dikeruk dari Nusantara. Namun, implementasinya jauh dari harapan: irigasi hanya untuk perkebunan Belanda, emigrasi hanya untuk kepentingan kolonial, dan pendidikan hanya bisa diakses kaum bangsawan. Ironisnya, justru dari pendidikan inilah lahir kaum terpelajar yang menyadari ketidakadilan & memimpin pergerakan nasional. Belanda pun menyadari Politik Etis telah menjadi bumerang.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Politik Etis? (Pilih lebih dari satu)',
@@ -501,7 +459,7 @@ o:['Dicetuskan oleh Van Deventer atas gagasan Ratu Wilhelmina.',
 a:[0,2,3],
 e:'A, C, D benar. B salah — implementasi jauh dari harapan. E salah — justru berdampak besar (melahirkan kaum terpelajar).'},
 
-/* Q20 — Pola: [1,3] */
+/* Q20 — MCMA: [1,3] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Organisasi pemuda',
 s:'Organisasi-organisasi pemuda yang lahir sebelum Sumpah Pemuda sangat beragam: Jong Java (1915) — pemuda Jawa; Jong Sumatranen Bond (1917) — pemuda Sumatera; Jong Celebes — pemuda Sulawesi; Jong Ambon — pemuda Maluku; Jong Islamieten Bond (1925) — pemuda Islam. Meskipun bersifat kedaerahan, mereka memiliki tujuan yang sama: memajukan pendidikan & kebudayaan, serta mempererat persaudaraan. Pada 1926, PPPI (Perhimpunan Pelajar-Pelajar Indonesia) didirikan sebagai organisasi pemuda pertama yang bersifat nasional — bukan kedaerahan. Melalui PPPI, Kongres Pemuda II diselenggarakan & menghasilkan Sumpah Pemuda (1928).',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang organisasi pemuda? (Pilih lebih dari satu)',
@@ -513,7 +471,7 @@ o:['Jong Java adalah organisasi pemuda pertama yang bersifat nasional.',
 a:[1,3],
 e:'B, D benar. A salah — Jong Java kedaerahan. C salah — JIB (1925) setelah Jong Java (1915). E salah — mereka justru PENGGAGAS Sumpah Pemuda.'},
 
-/* Q21 — Pola: [0,1,2] */
+/* Q21 — MCMA: [0,1,2] */
 {t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh-tokoh Sarekat Islam',
 s:'Sarekat Islam melahirkan banyak tokoh besar dalam Pergerakan Nasional. Haji Samanhudi mendirikan Sarekat Dagang Islam (SDI) pada 1911. HOS Tjokroaminoto mengubah nama SDI menjadi Sarekat Islam (SI) pada 1912 & menjadi pemimpinnya. Di rumah Tjokroaminoto di Peneleh, Surabaya, banyak pemuda yang kemudian menjadi tokoh besar — seperti Ir. Soekarno (Presiden RI pertama), Semaun (tokoh komunis), Kartosuwiryo (pendiri DI/TII). Tjokroaminoto dikenal sebagai "guru bangsa" karena peranannya mendidik para pemimpin masa depan. Dari SI juga lahir tokoh seperti Abdul Muis & Agus Salim.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Sarekat Islam? (Pilih lebih dari satu)',
@@ -525,7 +483,7 @@ o:['Haji Samanhudi mendirikan Sarekat Dagang Islam (SDI) pada 1911.',
 a:[0,1,2],
 e:'A, B, C benar. D salah — SI berpusat di Solo (SDI), lalu menyebar. E salah — SI bergerak di bidang sosial-politik-agama-ekonomi.'},
 
-/* Q22 — Pola: [2,3,4] */
+/* Q22 — MCMA: [2,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Analisis Sumpah Pemuda',
 s:'Sumpah Pemuda diikrarkan pada 28 Oktober 1928 dalam Kongres Pemuda II. Isi Sumpah Pemuda: satu nusa, satu bangsa, satu bahasa. Kongres diselenggarakan oleh PPPI & diketuai Sugondo Djojopuspito. Pada saat yang sama, WR Supratman memperdengarkan lagu "Indonesia Raya" pertama kali di depan publik — dengan iringan biola. Kongres juga menetapkan bendera Merah Putih & lagu Indonesia Raya sebagai identitas nasional. Sumpah Pemuda menjadi puncak Pergerakan Nasional karena menegaskan persatuan — fondasi utama menuju kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Sumpah Pemuda? (Pilih lebih dari satu)',
@@ -537,7 +495,7 @@ o:['Sumpah Pemuda diikrarkan pada 20 Mei 1908.',
 a:[2,3,4],
 e:'C, D, E benar. A salah — 28 Okt 1928 (bukan 20 Mei 1908 = Budi Utomo). B salah — diselenggarakan PPPI, bukan Budi Utomo.'},
 
-/* Q23 — Pola: [0,3] */
+/* Q23 — MCMA: [0,3] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Pers nasional & persbreidel',
 s:'Pers nasional memainkan peran penting dalam Pergerakan Nasional. "Medan Prijaji" (1907) — didirikan RM Tirto Adhi Soerjo — adalah pers nasional pertama yang menyuarakan kepentingan pribumi. Tirto Adhi Soerjo dijuluki "Bapak Pers Nasional Indonesia". "Oetoesan Hindia" (1913) menjadi corong Sarekat Islam, dipimpin oleh HOS Tjokroaminoto. "De Express" (1912) menjadi corong Indische Partij. "Indonesia Merdeka" (1924) diterbitkan Perhimpunan Indonesia di Belanda. Namun, Belanda membungkam pers kritis dengan kebijakan "persbreidel" — banyak tokoh pers dipenjara atau diasingkan. Justru, penindasan ini memicu perlawanan lebih besar.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang pers nasional? (Pilih lebih dari satu)',
@@ -549,7 +507,7 @@ o:['Medan Prijaji didirikan oleh RM Tirto Adhi Soerjo.',
 a:[0,3],
 e:'A, D benar. B salah — pers sangat berperan. C salah — De Express = corong IP, Oetoesan Hindia = SI. E salah — tokoh pers dipenjara/diasingkan.'},
 
-/* Q24 — Pola: [1,2,4] */
+/* Q24 — MCMA: [1,2,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Indische Partij',
 s:'Indische Partij (IP) didirikan pada 25 Desember 1912 di Bandung oleh Tiga Serangkai: Douwes Dekker, Dr. Cipto Mangunkusumo, dan Suwardi Suryaningrat (Ki Hajar Dewantara). IP adalah partai politik pertama di Indonesia yang bersifat nasional — terbuka untuk semua golongan (pribumi, Indo, Tionghoa). Semboyan: "Indie voor Indiërs" (Indonesia untuk orang Indonesia). Tujuan utama: memerdekakan Indonesia & membangun nasionalisme. Belanda membubarkan IP pada 1913 karena dianggap berbahaya — terutama setelah pamflet Suwardi berjudul "Als ik een Nederlander was..." yang dianggap menghina pemerintah kolonial. Tiga Serangkai kemudian diasingkan ke Belanda.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Indische Partij? (Pilih lebih dari satu)',
@@ -561,7 +519,7 @@ o:['IP bersifat kedaerahan & hanya untuk orang Jawa.',
 a:[1,2,4],
 e:'B, C, E benar. A salah — IP bersifat NASIONAL, bukan kedaerahan. D salah — Belanda MEMBUBARKAN IP.'},
 
-/* Q25 — Pola: [0,1,3,4] */
+/* Q25 — MCMA: [0,1,3,4] */
 {t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perhimpunan Indonesia',
 s:'Perhimpunan Indonesia (PI) berawal dari Indische Vereeniging (1908) — perkumpulan pelajar Indonesia di Belanda. Pada 1922, nama berubah menjadi Perhimpunan Indonesia. Tokoh kunci: Mohammad Hatta (ketua), Ahmad Soebardjo, Ali Sastroamidjojo. PI menerbitkan majalah "Indonesia Merdeka" (1924). Yang menarik, PI aktif dalam forum internasional — Liga Anti-Imperialisme, Kongres Perdamaian Internasional. Melalui forum ini, PI memperkenalkan gagasan "Indonesia Merdeka" ke dunia. PI dijuluki sebagai "duta" pergerakan nasional di Eropa karena berhasil menjadikan isu kemerdekaan Indonesia sebagai isu global.',
 q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perhimpunan Indonesia? (Pilih lebih dari satu)',
@@ -573,9 +531,7 @@ o:['Nama awal PI adalah Indische Vereeniging.',
 a:[0,1,3,4],
 e:'A, B, D, E benar. C salah — PI menerbitkan majalah "Indonesia Merdeka" (1924).'},
 
-/* ============ KATEGORI (5 SOAL) ============ */
-
-/* Q26 — Pola: [S, TS, S, S] */
+/* Q26 — KATEGORI: [S, TS, S, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi Pergerakan Nasional',
 s:'Kronologi Pergerakan Nasional: 1908 (Budi Utomo & Indische Vereeniging), 1911 (Sarekat Dagang Islam), 1912 (Sarekat Islam & Indische Partij), 1915 (Jong Java), 1917 (Jong Sumatranen Bond), 1922 (Perhimpunan Indonesia), 1926 (PPPI & Kongres Pemuda I), 1928 (Kongres Pemuda II & Sumpah Pemuda). Setiap organisasi hadir dengan peran & karakteristiknya masing-masing — membentuk rangkaian panjang menuju kemerdekaan.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -586,7 +542,7 @@ st:[
  {x:'Sumpah Pemuda terjadi pada tahun 1928.',a:'Sesuai'}],
 e:'1 Sesuai (Budi Utomo 1908 < SI 1912). 2 Tidak Sesuai (IP 1912 > Budi Utomo 1908). 3 Sesuai (JSB 1917 > Jong Java 1915). 4 Sesuai.'},
 
-/* Q27 — Pola: [TS, S, S, S] */
+/* Q27 — KATEGORI: [TS, S, S, S] */
 {t:'KATEGORI',l:'Applying',d:'Sedang',i:'Organisasi & tokoh kunci',
 s:'Organisasi & tokoh kunci: Budi Utomo → Dr. Soetomo; Sarekat Islam → HOS Tjokroaminoto; Indische Partij → Tiga Serangkai (Douwes Dekker, Cipto, Suwardi); Perhimpunan Indonesia → Mohammad Hatta; Jong Sumatranen Bond → Mohammad Yamin & Mohammad Hatta; PPPI → Sugondo Djojopuspito. Setiap organisasi memiliki tokoh yang menjadi motor penggeraknya — memainkan peran penting dalam Pergerakan Nasional.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -597,7 +553,7 @@ st:[
  {x:'Mohammad Yamin lahir dari Jong Sumatranen Bond.',a:'Sesuai'}],
 e:'1 Tidak Sesuai — pendiri Budi Utomo = Dr. Soetomo (bukan Tjokroaminoto). 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
 
-/* Q28 — Pola: [S, S, TS, S] */
+/* Q28 — KATEGORI: [S, S, TS, S] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Sumpah Pemuda',
 s:'Sumpah Pemuda diikrarkan 28 Oktober 1928. Isi: satu nusa, satu bangsa, satu bahasa. Kongres diselenggarakan PPPI, diketuai Sugondo Djojopuspito. Lagu Indonesia Raya pertama kali diperdengarkan oleh WR Supratman. Bendera Merah Putih ditetapkan sebagai identitas nasional. Sumpah Pemuda menjadi puncak Pergerakan Nasional karena menegaskan persatuan — fondasi utama menuju kemerdekaan 1945.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -608,7 +564,7 @@ st:[
  {x:'Sumpah Pemuda menjadi puncak Pergerakan Nasional.',a:'Sesuai'}],
 e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Sumpah Pemuda mencakup TIGA aspek: nusa, bangsa, & bahasa. 4 Sesuai.'},
 
-/* Q29 — Pola: [TS, S, S, TS] */
+/* Q29 — KATEGORI: [TS, S, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Strategi perjuangan organisasi',
 s:'Strategi perjuangan organisasi berbeda-beda: Budi Utomo (kooperatif, fokus pendidikan & kebudayaan); Sarekat Islam (massa, isu ekonomi & agama); Indische Partij (non-kooperatif, politik radikal); Perhimpunan Indonesia (non-kooperatif, diplomasi internasional). Semuanya berkontribusi pada Pergerakan Nasional dengan cara masing-masing — tidak ada satu strategi yang paling benar, karena setiap konteks memerlukan pendekatan yang berbeda.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -619,7 +575,7 @@ st:[
  {x:'Perhimpunan Indonesia tidak pernah aktif di forum internasional.',a:'Tidak Sesuai'}],
 e:'1 Tidak Sesuai — strategi tiap organisasi BERBEDA. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — PI sangat aktif di forum internasional.'},
 
-/* Q30 — Pola: [S, TS, S, TS] */
+/* Q30 — KATEGORI: [S, TS, S, TS] */
 {t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Peran pemuda & pers',
 s:'Pemuda & pers adalah motor Pergerakan Nasional. Pemuda: Kongres Pemuda II (1928) → Sumpah Pemuda. Pers: RM Tirto Adhi Soerjo (Medan Prijaji, 1907), HOS Tjokroaminoto (Oetoesan Hindia, 1913), Perhimpunan Indonesia (Indonesia Merdeka, 1924). Keduanya menyadarkan rakyat & memperkuat persatuan. Belanda membungkam pers dengan persbreidel, tetapi justru memicu perlawanan lebih besar. Pemuda & pers menjadi dua pilar utama yang membangun kesadaran berbangsa.',
 q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
@@ -638,8 +594,6 @@ e:'1 Sesuai. 2 Tidak Sesuai — persbreidel = PEMBREDELAN pers kritis. 3 Sesuai.
 let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
 let siswaName='',siswaSchool='',siswaClass='';
 let displayedQuestions=[];
-
-(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
 
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
