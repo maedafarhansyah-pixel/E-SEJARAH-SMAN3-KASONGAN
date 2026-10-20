@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#0a1420"/>
+<title>TKA Literasi Sejarah · Perlawanan terhadap Penjajahan · SMAN 3 Kasongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--primary:#5DADE2;--primary-light:#AED6F1;--gold:#85C1E9;--emerald:#48C9B0;--rose:#EC7063;--sky:#38BDF8;--violet:#7B9FE8;--bg:#0a1420;--card:#152a3d;--card-alt:#1a3450;--text:#eaf4fc;--text-light:#a8c4dc;--text-muted:#7593ab;--line:rgba(174,214,241,.14);--line-soft:rgba(174,214,241,.07);--radius:18px;--radius-sm:12px;--header-h:64px;--accent:#5DADE2;--accent2:#48C9B0;--accent-soft:rgba(93,173,226,.12);}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 15% 12%,rgba(93,173,226,.10),transparent 55%),radial-gradient(circle at 85% 80%,rgba(72,201,176,.08),transparent 55%);}
+h1,h2,h3,h4{line-height:1.25;font-weight:800}
+#loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 45%,#0f1e2e 0%,#0a1420 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;padding:20px;text-align:center;}
+.loader-3d-wrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.loader-circle{position:relative;width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
+.loader-circle::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--primary) 0deg,var(--gold) 90deg,var(--emerald) 180deg,var(--violet) 270deg,var(--primary) 360deg);animation:ringSpin 3s linear infinite;filter:drop-shadow(0 0 14px rgba(174,214,241,.55)) drop-shadow(0 0 26px rgba(93,173,226,.4));z-index:-2;}
+.loader-circle::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#0a1420;box-shadow:inset 0 0 24px rgba(93,173,226,.16);z-index:-1;}
+.loader-3d-text{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;letter-spacing:3px;line-height:1;background:linear-gradient(135deg,var(--primary) 0%,var(--gold) 30%,#eaf4fc 50%,var(--gold) 70%,var(--primary-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:mgeShimmer 3s ease infinite;filter:drop-shadow(1px 1px 0 #2874A6) drop-shadow(2px 2px 0 #1f5d85) drop-shadow(3px 3px 0 #184a6a) drop-shadow(4px 4px 0 #113750) drop-shadow(5px 5px 0 #0a2438) drop-shadow(6px 6px 10px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(174,214,241,.65));transform:perspective(500px) rotateX(-4deg) rotateY(-4deg);position:relative;z-index:6;}
+.loader-ring{position:absolute;border-radius:50%;border:2px solid transparent;pointer-events:none;}
+.ring-1{inset:46px;border-top-color:var(--sky);border-right-color:var(--sky);animation:ringSpin 3.5s linear infinite;box-shadow:0 0 16px rgba(56,189,248,.35);}
+.ring-2{inset:38px;border-bottom-color:var(--violet);border-left-color:var(--violet);animation:ringSpin 5s linear infinite reverse;box-shadow:0 0 18px rgba(139,92,246,.35);}
+.ring-3{inset:30px;border-top-color:var(--rose);border-right-color:var(--rose);animation:ringSpin 7s linear infinite;box-shadow:0 0 20px rgba(236,112,99,.35);}
+@keyframes ringSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mgeShimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-3d-sub{margin-top:8px;font-size:clamp(.85rem,2.4vw,1.1rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(135deg,var(--sky),var(--violet),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(93,173,226,.35));opacity:.95;animation:mgeSubIn .8s ease .3s both;}
+@keyframes mgeSubIn{from{opacity:0;transform:translateY(12px) scale(.85)}to{opacity:.95;transform:translateY(0) scale(1)}}
+.loader-title{font-size:clamp(1.2rem,4.5vw,1.9rem);font-weight:900;margin-top:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--primary),var(--gold),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 3s ease infinite;}
+@keyframes shimmer{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.loader-sub{color:var(--text-light);font-size:.9rem;margin-top:6px;font-style:italic}
+.loader-track{width:min(380px,80vw);height:5px;background:rgba(93,173,226,.18);border-radius:10px;margin-top:24px;overflow:hidden;}
+.loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--gold),var(--emerald));transition:width .3s;border-radius:10px}
+.loader-pct{color:var(--text-muted);font-size:.72rem;font-weight:700;margin-top:8px;letter-spacing:1.5px}
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,20,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,28px);gap:10px;}
+.hdr-center{flex:1;display:flex;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1px;color:var(--primary-light);text-transform:uppercase;gap:8px;align-items:center}
+.hdr-center i{color:var(--gold)}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--primary-light);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+.icon-btn:hover{background:var(--primary);color:#0a1420;border-color:var(--primary)}
+.progress{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(93,173,226,.10);z-index:999}
+.progress .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--sky),var(--gold));transition:width .5s;border-radius:0 3px 3px 0;box-shadow:0 0 12px rgba(93,173,226,.5)}
+.main{max-width:1180px;margin:0 auto;padding:calc(var(--header-h) + 26px) clamp(14px,3vw,40px) 80px;position:relative;z-index:1}
+.section{display:none;animation:fadeUp .5s ease forwards}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.test-hdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line-soft)}
+.test-hdr h2{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--text)}
+.test-hdr .test-sub{font-size:.82rem;color:var(--text-muted);margin-top:4px}
+.test-hdr .info{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--text)}
+.chip i{color:var(--primary-light)}
+.timer-inline{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(93,173,226,.14),rgba(72,201,176,.06));border:1px solid var(--line);padding:6px 16px;border-radius:40px;font-weight:800;font-size:.88rem;color:var(--primary-light);letter-spacing:1px}
+.qcard{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:clamp(18px,3vw,28px);margin-bottom:16px;box-shadow:0 8px 30px rgba(0,0,0,.35);border-top:3px solid var(--accent)}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border:1px solid}
+.badge.PG{background:rgba(93,173,226,.12);color:var(--primary-light);border-color:rgba(93,173,226,.28)}
+.badge.MCMA{background:rgba(139,92,246,.15);color:#a78bfa;border-color:rgba(139,92,246,.35)}
+.badge.KATEGORI{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.35)}
+.badge.lv{background:var(--card-alt);color:var(--text-light);border-color:var(--line)}
+.badge.df{background:rgba(72,201,176,.12);color:var(--emerald);border-color:rgba(72,201,176,.28)}
+.q-num{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a1420;padding:5px 16px;border-radius:30px;font-size:.76rem;font-weight:900;margin-bottom:12px;box-shadow:0 4px 14px rgba(93,173,226,.4)}
+.q-stim{background:rgba(93,173,226,.06);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.9rem;color:var(--text-light);line-height:1.8;font-style:italic}
+.q-stim .stim-title{font-weight:800;color:var(--primary-light);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;font-style:normal}
+.q-text{font-size:.96rem;line-height:1.7;margin-bottom:16px;font-weight:600;color:var(--text)}
+.q-hint{font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:12px;padding:8px 12px;background:rgba(56,189,248,.08);border-radius:8px;border-left:3px solid var(--sky)}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid var(--line-soft);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.opt:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateX(3px)}
+.opt .lbl{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--primary-light);transition:all .2s}
+.opt .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.sel .lbl{background:var(--accent);color:#0a1420;border-color:var(--accent)}
+.opt.sel .txt{color:var(--text)}
+.opt.correct{background:rgba(72,201,176,.15);border-color:var(--emerald)}
+.opt.correct .lbl{background:var(--emerald);color:#0a1420;border-color:var(--emerald)}
+.opt.wrong{background:rgba(236,112,99,.14);border-color:var(--rose)}
+.opt.wrong .lbl{background:var(--rose);color:#0a1420;border-color:var(--rose)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:flex-start;gap:13px;background:var(--card-alt);border:1.8px solid rgba(139,92,246,.18);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .25s;position:relative}
+.check:hover{background:rgba(139,92,246,.08);border-color:var(--violet);transform:translateX(3px)}
+.check .box{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2.2px dashed rgba(139,92,246,.55);background:var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;transition:all .22s}
+.check .clbl{flex-shrink:0;width:22px;text-align:center;font-weight:900;font-size:.78rem;color:#a78bfa;padding-top:4px}
+.check .txt{flex:1;font-size:.9rem;color:var(--text-light);line-height:1.65;padding-top:2px}
+.check.sel{background:rgba(139,92,246,.14);border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset}
+.check.sel .box{background:var(--violet);border-color:var(--violet);border-style:solid}
+.check.sel .txt{color:var(--text)}
+.check.correct{background:rgba(72,201,176,.15);border-color:var(--emerald)}
+.check.correct .box{background:var(--emerald);border-color:var(--emerald);border-style:solid}
+.check.correct .clbl{color:var(--emerald)}
+.check.wrong{background:rgba(236,112,99,.14);border-color:var(--rose)}
+.check.wrong .box{background:var(--rose);border-color:var(--rose);border-style:solid}
+.check.wrong .clbl{color:var(--rose)}
+.kat-wrap{overflow-x:auto;margin-bottom:16px}
+.kat-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.kat-table th,.kat-table td{padding:11px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+.kat-table th{background:var(--card-alt);color:var(--sky);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+.kat-table td{color:var(--text-light)}
+.kat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.kat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--bg);color:var(--text-muted);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.kat-btn:hover{border-color:var(--primary);color:var(--primary-light)}
+.kat-btn.active[data-cat="Sesuai"]{background:var(--emerald);color:#0a1420;border-color:var(--emerald)}
+.kat-btn.active[data-cat="Tidak Sesuai"]{background:var(--rose);color:#0a1420;border-color:var(--rose)}
+.expl{background:rgba(72,201,176,.1);border:1px solid rgba(72,201,176,.22);border-left:4px solid var(--emerald);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.86rem;color:var(--text);line-height:1.75;animation:fadeUp .3s ease}
+.expl .expl-title{font-weight:800;color:var(--emerald);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.expl .expl-ind{color:var(--text-muted);font-style:italic;font-size:.78rem;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(72,201,176,.25)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.q-nav .pos{font-size:.82rem;color:var(--text-light);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a1420;box-shadow:0 8px 22px rgba(93,173,226,.35)}
+.btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(93,173,226,.45)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--text-light)}
+.btn-ghost:hover:not(:disabled){background:var(--accent-soft);border-color:var(--primary);color:var(--primary-light)}
+.btn-success{background:linear-gradient(135deg,var(--emerald),#059669);color:#0a1420;box-shadow:0 8px 22px rgba(72,201,176,.35)}
+.btn-success:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(72,201,176,.45)}
+.btn-info{background:linear-gradient(135deg,var(--sky),#0284c7);color:#0a1420;box-shadow:0 8px 22px rgba(56,189,248,.35)}
+.btn-info:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 32px rgba(56,189,248,.45)}
+.qmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;margin:14px 0}
+.qmap-btn{width:100%;aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--card-alt);color:var(--text-muted);font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qmap-btn:hover{border-color:var(--primary);color:var(--primary-light);transform:scale(1.08)}
+.qmap-btn.ans{background:rgba(72,201,176,.18);border-color:var(--emerald);color:var(--emerald)}
+.qmap-btn.cur{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#0a1420;box-shadow:0 0 12px rgba(93,173,226,.5);transform:scale(1.1)}
+.result-hero{text-align:center;padding:30px 0 20px}
+.result-score{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--emerald) 0%,var(--card-alt) 0%);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:background 1s}
+.result-score::before{content:'';position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.result-score .sv{position:relative;z-index:1;font-size:2.4rem;font-weight:900;color:var(--emerald);line-height:1}
+.result-score .sl{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:20px auto;max-width:600px}
+.rs{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.rs .v{font-size:1.4rem;font-weight:900;line-height:1}
+.rs .l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+.rs.green .v{color:var(--emerald)}.rs.red .v{color:var(--rose)}.rs.gold .v{color:var(--gold)}.rs.blue .v{color:var(--sky)}
+.recap-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:18px;margin-top:16px}
+.recap-card h3{font-size:.95rem;margin-bottom:10px;color:var(--primary-light)}
+.recap-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.recap-table th,.recap-table td{padding:7px 9px;border-bottom:1px solid var(--line-soft);text-align:left}
+.recap-table th{background:var(--card-alt);color:var(--primary-light);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px}
+.recap-table td{color:var(--text-light)}
+.identity-wrap{max-width:560px;margin:0 auto;padding:20px 0 10px}
+.identity-hero{text-align:center;margin-bottom:24px}
+.identity-hero .badge-top{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(93,173,226,.18),rgba(72,201,176,.12));border:1px solid rgba(93,173,226,.45);padding:7px 18px;border-radius:40px;font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--primary-light);margin-bottom:14px}
+.identity-hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px}
+.identity-hero h1 .grad{background:linear-gradient(135deg,#AED6F1 0%,#85C1E9 50%,#5DADE2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.identity-hero p{color:var(--text-light);font-size:.92rem;line-height:1.7;max-width:520px;margin:0 auto}
+.identity-hero .info-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.identity-hero .info-chips .ic{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:30px;font-size:.72rem;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:6px}
+.identity-hero .info-chips .ic i{color:var(--gold)}
+.identity-form{max-width:480px;margin:0 auto;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.identity-form h2{font-size:1.2rem;margin-bottom:6px;color:var(--primary-light)}
+.identity-form p{font-size:.84rem;color:var(--text-muted);margin-bottom:20px}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.88rem;transition:border .3s}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(93,173,226,.18)}
+.form-group input::placeholder{color:var(--text-muted);font-size:.82rem}
+.privacy-notice{margin-top:20px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(236,112,99,.10),rgba(93,173,226,.08));border:1.5px solid rgba(236,112,99,.4);font-size:.8rem;color:var(--text-light);line-height:1.65;display:flex;gap:10px;align-items:flex-start;animation:privacyPulse 3s ease-in-out infinite;}
+@keyframes privacyPulse{0%,100%{border-color:rgba(236,112,99,.4);box-shadow:0 0 0 0 rgba(236,112,99,.15)}50%{border-color:rgba(236,112,99,.65);box-shadow:0 0 0 4px rgba(236,112,99,.1)}}
+.privacy-notice .privacy-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#f43f5e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 2px 8px rgba(236,112,99,.4);}
+.privacy-notice strong{color:var(--rose);font-weight:800;}
+.hidden{display:none!important}
+@media(max-width:768px){:root{--header-h:58px}.hdr-center{font-size:.7rem;letter-spacing:.5px}.opt,.check{padding:10px 12px;gap:10px}.opt .lbl{width:25px;height:25px;font-size:.72rem}.check .box{width:23px;height:23px}.check .clbl{width:18px;font-size:.72rem}.opt .txt,.check .txt{font-size:.86rem}.loader-3d-wrap{width:200px;height:200px}.loader-circle{width:120px;height:120px}.ring-1{inset:36px}.ring-2{inset:28px}.ring-3{inset:20px}}
+@media(max-width:480px){.btn{padding:9px 16px;font-size:.8rem}.q-nav{flex-direction:column}.q-nav .btn{width:100%;justify-content:center}.loader-3d-wrap{width:180px;height:180px}.loader-circle{width:105px;height:105px}.ring-1{inset:34px}.ring-2{inset:26px}.ring-3{inset:18px}.hdr-center{display:none}}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--gold));border-radius:10px}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-3d-wrap">
+    <div class="loader-ring ring-1"></div>
+    <div class="loader-ring ring-2"></div>
+    <div class="loader-ring ring-3"></div>
+    <div class="loader-circle">
+      <div class="loader-3d-text">MGE</div>
+    </div>
+  </div>
+  <div class="loader-3d-sub">Maeda Game Edu</div>
+  <div class="loader-title">TKA LITERASI SEJARAH</div>
+  <div class="loader-sub">Tema 8: Perlawanan terhadap Penjajahan · 30 Soal</div>
+  <div class="loader-track"><div class="loader-bar" id="lbar"></div></div>
+  <div class="loader-pct" id="lpct">0%</div>
+</div>
+
+<header class="hdr">
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
+  </div>
+  <div class="hdr-center"><i class="fas fa-shield-alt"></i> Perlawanan terhadap Penjajahan · 30 Soal</div>
+  <div style="display:flex;gap:6px"></div>
+</header>
+
+<div class="progress"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main">
+
+<section id="identity" class="section active">
+  <div class="identity-wrap">
+    <div class="identity-hero">
+      <div class="badge-top"><i class="fas fa-crown"></i> TKA Literasi Sejarah · Tema 8</div>
+      <h1><span class="grad">Identitas Peserta</span></h1>
+      <p>Isi data diri untuk memulai tes <strong>30 soal Perlawanan terhadap Penjajahan</strong>: Pattimura, Sultan Hasanuddin, Imam Bonjol, Diponegoro, Pangeran Antasari, faktor kegagalan &amp; keberhasilan.</p>
+      <div class="info-chips">
+        <span class="ic"><i class="fas fa-list-ol"></i> 30 Soal</span>
+        <span class="ic"><i class="fas fa-shapes"></i> 3 Bentuk Soal</span>
+        <span class="ic"><i class="fas fa-clock"></i> Tanpa Batas Waktu</span>
+      </div>
+    </div>
+    <div class="identity-form">
+      <h2>Formulir Peserta</h2>
+      <p>Data akan digunakan untuk laporan hasil</p>
+      <div class="form-group">
+        <label for="inpName"><i class="fas fa-user"></i> Nama Lengkap</label>
+        <input type="text" id="inpName" placeholder="Contoh: Ahmad Fauzi" required>
+      </div>
+      <div class="form-group">
+        <label for="inpSchool"><i class="fas fa-school"></i> Asal Sekolah</label>
+        <input type="text" id="inpSchool" placeholder="Contoh: SMAN 3 Kasongan" required>
+      </div>
+      <div class="form-group">
+        <label for="inpClass"><i class="fas fa-door-open"></i> Kelas</label>
+        <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <strong>Pemberitahuan:</strong> Web ini <strong>tidak menyimpan</strong> data siswa maupun hasil. Semua data hanya diproses di browser dan hilang saat halaman ditutup. Untuk laporan nilai, silakan <strong>screenshot halaman hasil</strong> setelah selesai mengerjakan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="test" class="section">
+  <div class="test-hdr">
+    <div>
+      <h2 id="testTitle">Perlawanan terhadap Penjajahan</h2>
+      <div class="test-sub" id="testSub">Soal 1 dari 30</div>
+    </div>
+    <div class="info">
+      <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
+      <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">00:00</span></span>
+      <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
+    </div>
+  </div>
+  <div class="qcard" id="qcard">
+    <div class="q-meta" id="qMeta"></div>
+    <div class="q-num" id="qNum">Soal 1</div>
+    <div class="q-stim" id="qStim" style="display:none"><span class="stim-title"><i class="fas fa-file-alt"></i> Stimulus</span><div id="qStimTxt"></div></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint" style="display:none"></div>
+    <div id="qArea"></div>
+    <div class="expl hidden" id="qExpl"></div>
+  </div>
+  <div class="qmap" id="qmap"></div>
+  <div class="q-nav">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQ()"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+    <span class="pos" id="qPos">1 / 30</span>
+    <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+  </div>
+</section>
+
+<section id="result" class="section">
+  <div class="result-hero">
+    <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
+    <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
+    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
+  </div>
+  <div class="result-stats">
+    <div class="rs green"><div class="v" id="rsCorrect">0</div><div class="l">Benar</div></div>
+    <div class="rs red"><div class="v" id="rsWrong">0</div><div class="l">Salah</div></div>
+    <div class="rs gold"><div class="v" id="rsTotal">30</div><div class="l">Total</div></div>
+    <div class="rs blue"><div class="v" id="rsTime">00:00</div><div class="l">Waktu</div></div>
+  </div>
+  <div class="recap-card"><h3><i class="fas fa-chart-pie"></i> Rekap Level Kognitif</h3><table class="recap-table"><thead><tr><th>Level</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapLv"></tbody></table></div>
+  <div class="recap-card"><h3><i class="fas fa-shapes"></i> Rekap Bentuk Soal</h3><table class="recap-table"><thead><tr><th>Bentuk</th><th>Jumlah</th><th>Benar</th><th>%</th></tr></thead><tbody id="recapType"></tbody></table></div>
+  <div class="privacy-notice" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="privacy-icon"><i class="fas fa-camera"></i></div>
+    <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
+    <button class="btn btn-ghost" onclick="retryTest()" style="margin-left:8px"><i class="fas fa-redo"></i> Ulangi Tes</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   BANK SOAL — PERLAWANAN TERHADAP PENJAJAHAN (30 SOAL UNIK)
+   18 PG + 7 MCMA + 5 KATEGORI
+   Kunci PG: A=4, B=4, C=4, D=3, E=3
+   Level: Knowing=5, Applying=11, Reasoning=14
+   ============================================================ */
+const Q8=[
+
+/* ============ PG (18 SOAL) ============ */
+
+/* Q1 — Kunci: B (Applying) — Sultan Agung */
+{t:'PG',l:'Applying',d:'Sedang',i:'Kegagalan Sultan Agung',
+s:'Sultan Agung (1613–1645) dari Mataram Islam menyerang Batavia dua kali — pada 1628 dan 1629. Serangan pertama mengerahkan sekitar 10.000 tentara, serangan kedua sekitar 14.000 tentara. Namun, kedua serangan tersebut gagal. Ada beberapa penyebab: pasokan logistik dari Mataram ke Batavia sangat jauh dan mudah diputus, tentara Mataram terserang wabah penyakit (malaria & kolera) di daerah rawa sekitar Batavia, benteng pertahanan VOC sangat kuat, dan armada laut Mataram kalah dari kapal-kapal Belanda. Meskipun gagal, Sultan Agung tetap dikenang sebagai raja besar yang berani melawan VOC.',
+q:'Berdasarkan stimulus tersebut, penyebab utama kegagalan serangan Sultan Agung ke Batavia adalah ....',
+o:['Pasukan Mataram kalah jumlah dibanding pasukan VOC',
+ 'Logistik yang jauh & wabah penyakit yang menyerang tentara',
+ 'Sultan Agung menyerah sebelum perang dimulai',
+ 'Belanda berhasil membeli pasukan Mataram dengan uang',
+ 'Pasukan Mataram tidak memiliki senjata sama sekali'],
+a:1,
+e:'Penyebab kegagalan Sultan Agung: (1) logistik jauh & mudah diputus, (2) wabah penyakit di rawa Batavia, (3) benteng VOC kuat, (4) armada laut kalah. Bukan karena kalah jumlah, menyerah, atau dibeli Belanda.'},
+
+/* Q2 — Kunci: A (Knowing) — Nama asli Pattimura */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Nama asli Pattimura',
+s:'Kapitan Pattimura adalah pahlawan nasional dari Saparua, Maluku. Nama aslinya adalah Thomas Matulessy. Ia juga dikenal dengan nama Ahmad Matulessy setelah masuk Islam. Pada 16 Mei 1817, ia memimpin rakyat Maluku menyerang Benteng Duurstede di Saparua sebagai protes terhadap monopoli rempah & penindasan VOC/Belanda. Perlawanan ini berhasil menewaskan Residen Van den Berg. Namun, pada November 1817 ia ditangkap, dan pada 16 Desember 1817 ia dihukum gantung di Ambon. Pada 1973, ia ditetapkan sebagai Pahlawan Nasional Indonesia.',
+q:'Berdasarkan stimulus tersebut, nama asli Kapitan Pattimura adalah ....',
+o:['Thomas Matulessy','Tuanku Imam Bonjol','Sultan Hasanuddin','Pangeran Diponegoro','Pangeran Antasari'],
+a:0,
+e:'Thomas Matulessy = nama asli Kapitan Pattimura. Tuanku Imam Bonjol = Perang Padri. Sultan Hasanuddin = Gowa-Tallo. Diponegoro = Perang Jawa. Antasari = Perang Banjar.'},
+
+/* Q3 — Kunci: C (Applying) — Julukan Sultan Hasanuddin */
+{t:'PG',l:'Applying',d:'Sedang',i:'Julukan Ayam Jantan dari Timur',
+s:'Sultan Hasanuddin (1631–1670) berkuasa di Gowa-Tallo pada 1653–1669. Ia memimpin Perang Makassar (1666–1669) melawan VOC. Dalam perang tersebut, ia menunjukkan keberanian & kecerdasan strategi yang luar biasa — menggunakan armada laut tangguh, benteng-benteng pertahanan, dan taktik gerilya. VOC sendiri yang memberinya julukan "Ayam Jantan dari Timur" (De Haantjes van het Oosten) sebagai bentuk pengakuan atas keberaniannya. Namun, pada 1667, ia dipaksa menandatangani Perjanjian Bongaya yang membatasi kedaulatan Gowa-Tallo. Ia wafat pada 1670.',
+q:'Berdasarkan stimulus tersebut, julukan "Ayam Jantan dari Timur" diberikan VOC kepada Sultan Hasanuddin karena ....',
+o:['Kekayaan Gowa-Tallo dari rempah-rempah',
+ 'Armada laut Gowa-Tallo paling besar di Asia',
+ 'Keberanian & kegigihannya melawan VOC',
+ 'Aliansi Gowa-Tallo dengan Portugis',
+ 'Kemenangan Gowa-Tallo dalam Perjanjian Bongaya'],
+a:2,
+e:'Julukan "Ayam Jantan dari Timur" = pengakuan VOC atas keberanian & kegigihan Sultan Hasanuddin. Bukan karena kekayaan, armada terbesar, aliansi, atau kemenangan.'},
+
+/* Q4 — Kunci: D (Reasoning) — Perang Padri fase 1 vs 2 */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Penyebab perubahan Perang Padri',
+s:'Perang Padri (1803–1838) di Sumatera Barat terjadi dalam dua fase. Fase pertama (1803–1821) adalah perang saudara antara Kaum Padri (ulama pembaharu yang ingin memurnikan ajaran Islam) dengan Kaum Adat (bangsawan tradisional yang mempertahankan adat). Fase kedua (1821–1838) berubah menjadi perang melawan Belanda. Perubahan ini terjadi karena Kaum Adat yang terdesak meminta bantuan kepada Belanda. Belanda kemudian masuk & memihak Kaum Adat. Namun, setelah Kaum Padri terdesak, Belanda justru menguasai Sumatera Barat & menjadikannya wilayah kolonial. Tuanku Imam Bonjol memimpin perlawanan hingga akhirnya ditangkap pada 1832.',
+q:'Berdasarkan stimulus tersebut, penyebab utama perubahan Perang Padri dari perang saudara menjadi perang melawan Belanda adalah ....',
+o:['Kaum Padri menyerang Belanda lebih dulu',
+ 'Belanda ingin menyebarkan agama Kristen di Sumatera Barat',
+ 'Kaum Adat menyerahkan wilayah kepada Belanda secara sukarela',
+ 'Kaum Adat yang terdesak meminta bantuan kepada Belanda',
+ 'Tuanku Imam Bonjol meminta perlindungan Belanda'],
+a:3,
+e:'Kaum Adat yang terdesak meminta bantuan Belanda → Belanda masuk & memihak Kaum Adat → perang berubah menjadi perang melawan Belanda. Ini pelajaran: perpecahan internal dimanfaatkan penjajah.'},
+
+/* Q5 — Kunci: E (Applying) — Pemicu Perang Jawa */
+{t:'PG',l:'Applying',d:'Sedang',i:'Pemicu Perang Jawa',
+s:'Perang Jawa (1825–1830) adalah perang terbesar yang dihadapi Belanda di Jawa. Pemicu langsungnya adalah pemasangan patok jalan oleh Belanda di tanah milik Pangeran Diponegoro di Tegalrejo, Yogyakarta. Pangeran Diponegoro menganggap tindakan itu sebagai penghinaan terhadap martabatnya & rakyat. Selain itu, ada faktor lain: campur tangan Belanda dalam urusan Keraton Yogyakarta, pajak tanah yang memberatkan rakyat, serta kekecewaan terhadap sikap Sultan Hamengkubuwono V yang dianggap lemah terhadap Belanda. Perang berlangsung 5 tahun dengan korban besar di kedua pihak.',
+q:'Berdasarkan stimulus tersebut, pemicu langsung Perang Jawa (1825–1830) adalah ....',
+o:['Pajak tanah yang terlalu tinggi bagi rakyat',
+ 'Perebutan takhta Keraton Yogyakarta',
+ 'Pangeran Diponegoro ingin menjadi sultan',
+ 'Belanda menyerang Keraton Yogyakarta',
+ 'Pemasangan patok jalan di tanah Pangeran Diponegoro'],
+a:4,
+e:'Pemicu LANGSUNG = pemasangan patok jalan di Tegalrejo. Faktor lain (pajak, campur tangan Belanda, kekecewaan) adalah penyebab tidak langsung. Ini membedakan "pemicu" vs "penyebab".'},
+
+/* Q6 — Kunci: A (Reasoning) — Pangeran Antasari */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Gelar Pangeran Antasari',
+s:'Pangeran Antasari (1797–1862) adalah pemimpin Perang Banjar (1859–1905). Setelah beberapa tokoh perlawanan ditangkap Belanda, ia diangkat sebagai pemimpin tertinggi dengan gelar "Panembahan Amiruddin Khalifatul Mukminin" — gelar yang menegaskan posisinya sebagai pemimpin agama & negara. Perlawanan rakyat Banjar terus berlangsung meski ia wafat pada 1862. Perjuangan dilanjutkan oleh putra-putranya, terutama Pangeran Muhammad Seman, hingga 1905. Perang Banjar menjadi salah satu perang terlama di Kalimantan melawan Belanda.',
+q:'Berdasarkan stimulus tersebut, gelar yang diberikan kepada Pangeran Antasari sebagai pemimpin tertinggi Perang Banjar adalah ....',
+o:['Panembahan Amiruddin Khalifatul Mukminin',
+ 'Sultan Banjar Darussalam',
+ 'Kapitan Pattimura',
+ 'Ayam Jantan dari Timur',
+ 'Pangeran Hidayatullah'],
+a:0,
+e:'Gelar Pangeran Antasari = Panembahan Amiruddin Khalifatul Mukminin (pemimpin agama & negara). Sultan Banjar = gelar raja. Ayam Jantan dari Timur = Hasanuddin. Pangeran Hidayatullah = tokoh lain Perang Banjar.'},
+
+/* Q7 — Kunci: B (Knowing) — Benteng Stelsel */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Strategi Benteng Stelsel',
+s:'Untuk menghadapi Perang Jawa (1825–1830), Belanda di bawah Jenderal de Kock menerapkan strategi yang disebut "Benteng Stelsel". Inti strategi ini adalah membangun banyak benteng di titik-titik strategis — seperti Semarang, Yogyakarta, Magelang, dan lainnya. Tujuan utamanya: mempersempit ruang gerak pasukan Pangeran Diponegoro yang menggunakan taktik gerilya. Dengan benteng-benteng tersebut, pasukan Belanda dapat bergerak cepat & memutus jalur logistik Diponegoro. Strategi ini berhasil melemahkan perlawanan Diponegoro secara bertahap.',
+q:'Berdasarkan stimulus tersebut, strategi Belanda membangun banyak benteng di titik strategis untuk mempersempit ruang gerak Pangeran Diponegoro disebut ....',
+o:['Devide et Impera','Benteng Stelsel','Hongi Tochten','Pax Neerlandica','Contingenten'],
+a:1,
+e:'Benteng Stelsel = strategi Belanda (Jenderal de Kock) membangun benteng di titik strategis untuk mempersempit ruang gerak Diponegoro. Berbeda dengan Devide et Impera (adu domba), Hongi Tochten (patroli rempah).'},
+
+/* Q8 — Kunci: C (Applying) — Devide et Impera */
+{t:'PG',l:'Applying',d:'Sedang',i:'Devide et Impera',
+s:'Belanda menerapkan politik "Devide et Impera" (adu domba) dalam menghadapi perlawanan rakyat Nusantara. Contoh nyata: (1) memanfaatkan konflik internal Keraton Yogyakarta pada masa Diponegoro; (2) memanfaatkan perpecahan Kaum Padri & Kaum Adat di Sumatera Barat; (3) memecah belah kerajaan-kerajaan kecil di Maluku; (4) memihak salah satu pihak dalam konflik internal untuk kemudian menguasai keduanya. Politik ini sangat efektif melemahkan perlawanan rakyat karena kekuatan lawan terpecah dari dalam. Inilah sebabnya perlawanan kedaerahan sering gagal meski semangat juang rakyat tinggi.',
+q:'Berdasarkan stimulus tersebut, politik "adu domba" Belanda untuk memecah belah kekuatan lokal disebut ....',
+o:['Pax Neerlandica','Cultuurstelsel','Devide et Impera','Poenale Sanctie','Ethische Politiek'],
+a:2,
+e:'Devide et Impera = politik adu domba. Pax Neerlandica = kebijakan damai. Cultuurstelsel = tanam paksa. Poenale Sanctie = hukuman fisik. Ethische Politiek = politik etis.'},
+
+/* Q9 — Kunci: D (Reasoning) — Sultan Baabullah */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Perlawanan Sultan Baabullah',
+s:'Sultan Baabullah (1570–1583) dari Ternate memimpin perlawanan besar terhadap Portugis. Perlawanan ini dipicu oleh pembunuhan ayahnya, Sultan Hairun, oleh Portugis pada 1570 — meskipun sebelumnya sudah ada perjanjian damai. Sultan Baabullah bersumpah membalas kematian ayahnya. Dengan dukungan rakyat Ternate & sekutu-sekutunya, ia berhasil mengepung benteng Portugis. Pada 1575, Portugis akhirnya menyerah & terusir dari Ternate. Ini adalah salah satu kemenangan besar rakyat Nusantara atas kekuatan Eropa pada abad ke-16.',
+q:'Berdasarkan stimulus tersebut, faktor utama yang mendorong Sultan Baabullah memimpin perlawanan terhadap Portugis adalah ....',
+o:['Ingin menguasai perdagangan rempah sendiri',
+ 'Ingin menjalin aliansi dengan Spanyol',
+ 'Ingin menyebarkan agama Islam ke Maluku',
+ 'Pembunuhan ayahnya, Sultan Hairun, oleh Portugis',
+ 'Ingin memperluas wilayah Ternate ke Filipina'],
+a:3,
+e:'Pemicu utama = pembunuhan Sultan Hairun oleh Portugis (1570). Ini pelanggaran perjanjian damai. Sultan Baabullah bersumpah membalas & berhasil mengusir Portugis dari Ternate pada 1575.'},
+
+/* Q10 — Kunci: E (Knowing) — Cut Nyak Dien */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Perlawanan Cut Nyak Dien',
+s:'Cut Nyak Dien (1848–1908) adalah pahlawan perempuan dari Aceh. Setelah suaminya Teuku Umar gugur pada 1899, ia melanjutkan perlawanan gerilya melawan Belanda meski usianya sudah lanjut & matanya mulai buta. Ia memimpin pasukan dengan gigih di pedalaman Aceh. Pada 1905, ia ditangkap oleh Belanda & diasingkan ke Sumedang, Jawa Barat. Ia wafat pada 1908 di Sumedang. Cut Nyak Dien ditetapkan sebagai Pahlawan Nasional Indonesia. Kisahnya menjadi bukti bahwa perempuan juga berperan besar dalam perjuangan melawan penjajah.',
+q:'Berdasarkan stimulus tersebut, pahlawan perempuan dari Aceh yang melanjutkan perlawanan setelah suaminya gugur & memimpin gerilya meski buta adalah ....',
+o:['R.A. Kartini','Cut Meutia','Christina Martha Tiahahu','Ratu Sima','Cut Nyak Dien'],
+a:4,
+e:'Cut Nyak Dien = melanjutkan perang Aceh setelah Teuku Umar gugur (1899), memimpin gerilya meski buta, ditangkap 1905, wafat 1908. Berbeda dengan Cut Meutia (juga pahlawan Aceh) & R.A. Kartini (emansipasi).'},
+
+/* Q11 — Kunci: A (Applying) — Strategi gerilya */
+{t:'PG',l:'Applying',d:'Sedang',i:'Strategi gerilya Diponegoro',
+s:'Pangeran Diponegoro menggunakan strategi perang gerilya dalam Perang Jawa (1825–1830). Ciri utama strategi ini: serangan mendadak terhadap posisi Belanda, kemudian menghilang ke hutan/pegunungan sebelum Belanda sempat membalas. Diponegoro memanfaatkan medan pegunungan & hutan yang ia kuasai, serta mendapat dukungan penuh dari rakyat pedesaan & ulama. Belanda kewalahan karena tidak bisa menangkap Diponegoro secara langsung, meski telah mengerahkan 20.000 tentara & biaya perang 20 juta gulden.',
+q:'Berdasarkan stimulus tersebut, strategi perang yang digunakan Pangeran Diponegoro dengan serangan mendadak & memanfaatkan medan adalah ....',
+o:['Gerilya','Benteng Stelsel','Devide et Impera','Blokade laut','Perang terbuka'],
+a:0,
+e:'Gerilya = strategi serangan mendadak & menghilang, memanfaatkan medan + dukungan rakyat. Ini yang membuat Belanda kewalahan meski memiliki 20.000 tentara.'},
+
+/* Q12 — Kunci: B (Reasoning) — Faktor kegagalan */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Faktor kegagalan perlawanan kedaerahan',
+s:'Perlawanan rakyat Nusantara abad 17–19 sering berakhir dengan kegagalan. Ada beberapa faktor utama: (1) bersifat kedaerahan — hanya terbatas di satu wilayah, tidak ada koordinasi antar daerah; (2) kalah teknologi senjata — rakyat menggunakan senjata tradisional, Belanda modern; (3) politik adu domba Belanda memanfaatkan perpecahan internal; (4) ketergantungan pada pemimpin kharismatik — jika pemimpin gugur, perlawanan melemah; (5) blokade ekonomi & logistik oleh Belanda. Faktor-faktor ini kemudian disadari oleh generasi berikutnya, yang melahirkan Pergerakan Nasional abad ke-20 dengan strategi berbeda.',
+q:'Berdasarkan stimulus tersebut, faktor utama yang menyebabkan perlawanan kedaerahan mudah dipatahkan Belanda adalah ....',
+o:['Rakyat tidak memiliki semangat juang',
+ 'Bersifat kedaerahan & tidak ada koordinasi antar daerah',
+ 'Semua pemimpin perlawanan berkhianat kepada rakyat',
+ 'Belanda selalu kalah dalam perang terbuka',
+ 'Rakyat tidak mendukung para pemimpin perlawanan'],
+a:1,
+e:'Faktor utama: bersifat kedaerahan & tidak ada koordinasi → Belanda mudah mematahkan satu per satu dengan Devide et Impera. Bukan karena rakyat tidak berjuang atau pemimpin berkhianat.'},
+
+/* Q13 — Kunci: C (Knowing) — Perjanjian Bongaya */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Tahun Perjanjian Bongaya',
+s:'Perjanjian Bongaya ditandatangani pada 1667. Perjanjian ini mengakhiri Perang Makassar (1666–1669) antara VOC dengan Kesultanan Gowa-Tallo. Sultan Hasanuddin dipaksa menandatangani perjanjian yang sangat merugikan. Isinya: (1) Gowa-Tallo harus mengakui monopoli VOC; (2) menyerahkan benteng-benteng kepada VOC; (3) membayar biaya perang; (4) tidak boleh berdagang dengan pihak lain selain VOC. Perjanjian ini menandai berakhirnya kejayaan Gowa-Tallo sebagai kerajaan maritim.',
+q:'Berdasarkan stimulus tersebut, Perjanjian Bongaya ditandatangani pada tahun ....',
+o:['1665','1666','1667','1668','1669'],
+a:2,
+e:'Perjanjian Bongaya = 1667. Mengakhiri Perang Makassar (1666–1669). Sultan Hasanuddin dipaksa menandatangani. Isinya sangat merugikan Gowa-Tallo.'},
+
+/* Q14 — Kunci: D (Reasoning) — Perang Banjar */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Lama Perang Banjar',
+s:'Perang Banjar (1859–1905) adalah perlawanan rakyat Kalimantan Selatan terhadap Belanda. Perang ini dipicu oleh campur tangan Belanda dalam urusan Kesultanan Banjar & monopoli perdagangan lada & batu bara. Pangeran Antasari memimpin sejak 1859. Ketika ia wafat pada 1862, perjuangan tidak berhenti — putra-putranya melanjutkan, terutama Pangeran Muhammad Seman. Perang berlangsung hampir setengah abad (46 tahun). Ini menjadikan Perang Banjar salah satu perang terlama di Kalimantan.',
+q:'Berdasarkan stimulus tersebut, Perang Banjar berlangsung lama (1859–1905) karena ....',
+o:['Belanda tidak serius menghadapi perlawanan',
+ 'Rakyat Banjar memiliki senjata modern',
+ 'Pangeran Antasari memiliki pasukan besar',
+ 'Perjuangan dilanjutkan oleh generasi berikutnya setelah Antasari wafat',
+ 'Belanda memilih berdamai dengan rakyat Banjar'],
+a:3,
+e:'Perang Banjar berlangsung lama karena perjuangan DILANJUTKAN oleh generasi berikutnya (terutama Pangeran Muhammad Seman) setelah Pangeran Antasari wafat 1862. Ini semangat pantang menyerah.'},
+
+/* Q15 — Kunci: E (Applying) — Kaum Padri vs Adat */
+{t:'PG',l:'Applying',d:'Sedang',i:'Perang Padri fase 1',
+s:'Perang Padri fase pertama (1803–1821) adalah perang saudara di Sumatera Barat. Pihak yang bertikai: Kaum Padri (kelompok ulama pembaharu yang ingin memurnikan ajaran Islam dari praktik yang dianggap tidak sesuai syariat) vs Kaum Adat (kelompok bangsawan tradisional yang mempertahankan adat Minangkabau). Isu utama: pemurnian ajaran Islam vs pelestarian tradisi adat. Perang ini melemahkan kedua pihak & membuka jalan bagi Belanda untuk ikut campur dalam fase kedua.',
+q:'Berdasarkan stimulus tersebut, Perang Padri fase pertama (1803–1821) adalah perang antara ....',
+o:['Rakyat Minangkabau melawan Belanda',
+ 'Kerajaan Aceh melawan Portugis',
+ 'Kaum Padri melawan Belanda',
+ 'Kaum Adat melawan Belanda',
+ 'Kaum Padri melawan Kaum Adat'],
+a:4,
+e:'Fase 1 (1803–1821) = perang saudara Kaum Padri vs Kaum Adat (isu: pemurnian Islam vs adat). Fase 2 (1821–1838) = perang melawan Belanda setelah Kaum Adat minta bantuan Belanda.'},
+
+/* Q16 — Kunci: A (Reasoning) — Benteng Duurstede */
+{t:'PG',l:'Reasoning',d:'Sulit',i:'Penyerangan Benteng Duurstede',
+s:'Pada 16 Mei 1817, Kapitan Pattimura memimpin penyerangan terhadap Benteng Duurstede di Saparua, Maluku. Penyerangan ini merupakan puncak dari kekecewaan rakyat Maluku terhadap kebijakan monopoli rempah & penyerahan wajib kepada Belanda. Dalam penyerangan tersebut, Residen Van den Berg tewas. Benteng berhasil dikuasai rakyat. Kemenangan ini membangkitkan semangat perlawanan rakyat Maluku di berbagai negeri — seperti Haria, Porto, dan Nusalaut. Namun, Belanda kemudian mengirim pasukan besar & berhasil menangkap Pattimura pada November 1817.',
+q:'Berdasarkan stimulus tersebut, Benteng Belanda yang berhasil direbut Kapitan Pattimura pada 1817 adalah ....',
+o:['Benteng Duurstede','Benteng Somba Opu','Benteng Rotterdam','Benteng Vredeburg','Benteng Bonjol'],
+a:0,
+e:'Benteng Duurstede (Saparua, Maluku) = direbut Pattimura 16 Mei 1817. Somba Opu = Gowa. Rotterdam = Makassar. Vredeburg = Yogyakarta. Bonjol = Sumatera Barat.'},
+
+/* Q17 — Kunci: B (Applying) — Masa kekuasaan Hasanuddin */
+{t:'PG',l:'Applying',d:'Sedang',i:'Masa kekuasaan Sultan Hasanuddin',
+s:'Sultan Hasanuddin berkuasa di Kesultanan Gowa-Tallo pada 1653–1669. Selama masa kekuasaannya, ia menghadapi tekanan besar dari VOC yang ingin memonopoli perdagangan rempah. Puncaknya adalah Perang Makassar (1666–1669). Meskipun pada akhirnya kalah & dipaksa menandatangani Perjanjian Bongaya (1667), Sultan Hasanuddin tetap dikenang sebagai pahlawan yang berani melawan ketidakadilan. Ia mengundurkan diri pada 1669 & wafat pada 1670. Namanya diabadikan sebagai nama universitas & jalan di Indonesia.',
+q:'Berdasarkan stimulus tersebut, Sultan Hasanuddin berkuasa di Kesultanan Gowa-Tallo pada tahun ....',
+o:['1570–1583','1653–1669','1666–1669','1667–1670','1631–1670'],
+a:1,
+e:'Masa kekuasaan Sultan Hasanuddin = 1653–1669. Perang Makassar = 1666–1669 (bagian dari masa kekuasaannya). Perjanjian Bongaya = 1667. Ia wafat 1670.'},
+
+/* Q18 — Kunci: C (Knowing) — Penangkapan Diponegoro */
+{t:'PG',l:'Knowing',d:'Mudah',i:'Penangkapan Diponegoro',
+s:'Pada 28 Maret 1830, Pangeran Diponegoro ditangkap secara curang oleh Belanda dalam Perundingan Magelang. Jenderal de Kock mengundang Diponegoro untuk berunding, tetapi ternyata telah menyiapkan pasukan untuk menangkapnya. Diponegoro kemudian diasingkan ke Manado, lalu dipindahkan ke Makassar. Ia wafat pada 8 Januari 1855 di Makassar. Peristiwa penangkapan ini menjadi simbol kecurangan penjajah & keteguhan Pangeran Diponegoro dalam mempertahankan prinsip keadilan.',
+q:'Berdasarkan stimulus tersebut, Pangeran Diponegoro ditangkap secara curang pada tahun ....',
+o:['1825','1828','1830','1832','1855'],
+a:2,
+e:'Penangkapan Diponegoro = 28 Maret 1830 (Perundingan Magelang). 1825 = awal Perang Jawa. 1855 = wafat. Jadi jawabannya 1830.'},
+
+/* ============ MCMA (7 SOAL) ============ */
+
+/* Q19 — Pola: [0,2,3] — Perlawanan kedaerahan */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Ciri perlawanan kedaerahan',
+s:'Perlawanan rakyat Nusantara abad 17–19 memiliki ciri-ciri khas. Bersifat kedaerahan — hanya terbatas di satu wilayah & dipimpin raja/bangsawan lokal. Menggunakan senjata tradisional (bambu runcing, keris, tombak, parang) karena belum ada teknologi senjata modern. Tidak ada koordinasi antar daerah — setiap perlawanan berjalan sendiri-sendiri. Mudah diadu domba oleh Belanda melalui politik Devide et Impera. Dipimpin tokoh kharismatik, sehingga jika tokoh gugur, perlawanan melemah. Sementara itu, perlawanan modern abad ke-20 bersifat nasional, terorganisir, & menggunakan media cetak.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang perlawanan kedaerahan? (Pilih lebih dari satu)',
+o:['Bersifat lokal & dipimpin raja/bangsawan daerah.',
+ 'Memiliki koordinasi kuat antar daerah Nusantara.',
+ 'Menggunakan senjata tradisional.',
+ 'Mudah diadu domba oleh Belanda.',
+ 'Menggunakan teknologi senjata modern.'],
+a:[0,2,3],
+e:'A, C, D benar. B salah — TIDAK ada koordinasi antar daerah. E salah — masih menggunakan senjata tradisional.'},
+
+/* Q20 — Pola: [1,3] — Tokoh & wilayah */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Tokoh & wilayah perlawanan',
+s:'Tokoh perlawanan & wilayahnya: Kapitan Pattimura dari Maluku (Saparua); Sultan Hasanuddin dari Gowa-Tallo (Sulawesi Selatan); Pangeran Diponegoro dari Yogyakarta (Jawa); Tuanku Imam Bonjol dari Sumatera Barat; Pangeran Antasari dari Kalimantan Selatan; Sultan Baabullah dari Ternate (Maluku Utara); Cut Nyak Dien dari Aceh; Sultan Agung dari Mataram (Jawa Tengah). Setiap tokoh memimpin perlawanan di wilayahnya masing-masing melawan VOC/Belanda.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang tokoh & wilayah perlawanan? (Pilih lebih dari satu)',
+o:['Kapitan Pattimura memimpin perlawanan di Jawa.',
+ 'Sultan Hasanuddin memimpin perlawanan di Gowa-Tallo.',
+ 'Pangeran Antasari memimpin perlawanan di Sumatera.',
+ 'Tuanku Imam Bonjol memimpin perlawanan di Sumatera Barat.',
+ 'Pangeran Diponegoro memimpin perlawanan di Kalimantan.'],
+a:[1,3],
+e:'B, D benar. A salah — Pattimura di Maluku. C salah — Antasari di Kalimantan. E salah — Diponegoro di Jawa.'},
+
+/* Q21 — Pola: [0,1,2] — Perang Padri */
+{t:'MCMA',l:'Applying',d:'Sedang',i:'Perang Padri',
+s:'Perang Padri (1803–1838) adalah perang di Sumatera Barat yang dipimpin Tuanku Imam Bonjol. Fase pertama (1803–1821): perang saudara antara Kaum Padri (ulama pembaharu) & Kaum Adat (bangsawan tradisional). Fase kedua (1821–1838): perang melawan Belanda setelah Kaum Adat meminta bantuan Belanda. Benteng pertahanan utama Kaum Padri = Benteng Bonjol. Setelah pengepungan panjang, Tuanku Imam Bonjol ditangkap pada 1832 & diasingkan. Perang berakhir dengan kekalahan Kaum Padri.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perang Padri? (Pilih lebih dari satu)',
+o:['Fase pertama adalah perang saudara Kaum Padri vs Kaum Adat.',
+ 'Fase kedua adalah perang melawan Belanda.',
+ 'Dipimpin oleh Tuanku Imam Bonjol.',
+ 'Berlangsung singkat hanya 1 tahun.',
+ 'Terjadi di Pulau Jawa.'],
+a:[0,1,2],
+e:'A, B, C benar. D salah — berlangsung 35 tahun (1803–1838). E salah — terjadi di Sumatera Barat, bukan Jawa.'},
+
+/* Q22 — Pola: [2,3,4] — Perang Jawa */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perang Jawa',
+s:'Perang Jawa (1825–1830) adalah perang terbesar yang dihadapi Belanda di Jawa. Dipimpin Pangeran Diponegoro. Pemicu: pemasangan patok jalan di Tegalrejo. Strategi Diponegoro: gerilya, serangan mendadak, memanfaatkan medan & dukungan rakyat. Belanda membalas dengan Benteng Stelsel. Perang menelan korban: 15.000–20.000 tentara Belanda & 200.000+ rakyat Jawa. Kas Belanda terkuras habis (20 juta gulden). Diponegoro akhirnya ditangkap secara curang pada 1830 & diasingkan ke Manado lalu Makassar.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perang Jawa? (Pilih lebih dari satu)',
+o:['Berlangsung tahun 1666–1669.',
+ 'Terjadi di Sumatera Barat.',
+ 'Berlangsung pada tahun 1825–1830.',
+ 'Dipimpin Pangeran Diponegoro.',
+ 'Menggunakan strategi gerilya.'],
+a:[2,3,4],
+e:'C, D, E benar. A salah — Perang Makassar (1666–1669). B salah — terjadi di Jawa, bukan Sumatera.'},
+
+/* Q23 — Pola: [0,3] — Perang Banjar */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Perang Banjar',
+s:'Perang Banjar (1859–1905) adalah perlawanan rakyat Kalimantan Selatan terhadap Belanda. Dipicu campur tangan Belanda dalam urusan Kesultanan Banjar & monopoli perdagangan lada & batu bara. Pangeran Antasari memimpin sejak 1859 hingga wafat 1862. Perjuangan dilanjutkan oleh putranya, Pangeran Muhammad Seman. Perang berlangsung hampir setengah abad. Tokoh-tokoh lain: Pangeran Hidayatullah, Demang Lehman, Gusti Matsaid. Ini salah satu perang terlama di Kalimantan.',
+q:'Berdasarkan stimulus tersebut, manakah pernyataan yang TEPAT tentang Perang Banjar? (Pilih lebih dari satu)',
+o:['Pangeran Antasari adalah pemimpin utama Perang Banjar.',
+ 'Terjadi di Sumatera Barat.',
+ 'Berlangsung hanya 1 tahun.',
+ 'Terjadi di Kalimantan Selatan.',
+ 'Berlangsung pada 1825–1830.'],
+a:[0,3],
+e:'A, D benar. B salah — terjadi di Kalimantan. C salah — berlangsung 46 tahun. E salah — Perang Jawa 1825–1830, Perang Banjar 1859–1905.'},
+
+/* Q24 — Pola: [1,2,4] — Strategi Belanda */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Strategi Belanda',
+s:'Belanda memiliki berbagai strategi untuk menghadapi perlawanan rakyat Nusantara. Devide et Impera — politik adu domba memanfaatkan perpecahan internal. Benteng Stelsel — membangun benteng di titik strategis (diterapkan pada Perang Jawa). Hongi Tochten — patroli armada untuk monopoli rempah di Maluku. Blokade ekonomi — memutus jalur logistik rakyat. Namun, Belanda TIDAK pernah menggunakan strategi gerilya — itu justru strategi Diponegoro. Belanda juga tidak selalu menang dalam perang terbuka.',
+q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN strategi Belanda dalam menghadapi perlawanan? (Pilih lebih dari satu)',
+o:['Menggunakan strategi gerilya seperti Diponegoro.',
+ 'Menerapkan politik Devide et Impera.',
+ 'Menerapkan strategi Benteng Stelsel.',
+ 'Selalu kalah dalam perang terbuka.',
+ 'Melakukan blokade ekonomi terhadap rakyat.'],
+a:[1,2,4],
+e:'B, C, E benar. A salah — gerilya justru strategi Diponegoro. D salah — Belanda juga menang di beberapa perang terbuka.'},
+
+/* Q25 — Pola: [0,1,3,4] — Faktor kegagalan */
+{t:'MCMA',l:'Reasoning',d:'Sulit',i:'Faktor kegagalan perlawanan',
+s:'Perlawanan kedaerahan abad 17–19 sering gagal karena beberapa faktor. (1) Bersifat kedaerahan & tidak terkoordinasi. (2) Kalah teknologi senjata. (3) Politik adu domba Belanda. (4) Ketergantungan pada pemimpin kharismatik. (5) Blokade ekonomi & logistik. Sebaliknya, persatuan nasional & organisasi modern adalah faktor keberhasilan pergerakan abad ke-20. Memahami faktor kegagalan ini menjadi pelajaran berharga bagi generasi penerus.',
+q:'Berdasarkan stimulus tersebut, manakah yang MERUPAKAN faktor kegagalan perlawanan kedaerahan? (Pilih lebih dari satu)',
+o:['Bersifat kedaerahan & tidak ada koordinasi.',
+ 'Kalah teknologi senjata dari Belanda.',
+ 'Memiliki persatuan nasional yang kuat.',
+ 'Mudah diadu domba oleh Belanda.',
+ 'Ketergantungan pada pemimpin kharismatik.'],
+a:[0,1,3,4],
+e:'A, B, D, E benar. C salah — justru persatuan nasional adalah faktor KEBERHASILAN pergerakan abad ke-20.'},
+
+/* ============ KATEGORI (5 SOAL) ============ */
+
+/* Q26 — Pola: [S, TS, S, S] — Kronologi */
+{t:'KATEGORI',l:'Reasoning',d:'Sedang',i:'Kronologi perlawanan',
+s:'Kronologi perlawanan rakyat Nusantara: Sultan Baabullah mengusir Portugis dari Ternate (1575); Sultan Agung menyerang Batavia (1628–1629); Sultan Hasanuddin & Perang Makassar (1666–1669); Kapitan Pattimura memimpin Maluku (1817); Perang Jawa / Diponegoro (1825–1830); Perang Banjar / Antasari (1859–1905); Perang Aceh (1873–1904). Urutan ini menunjukkan bahwa perlawanan berlangsung bergelombang dari abad ke-16 hingga awal abad ke-20.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Sultan Baabullah mengusir Portugis sebelum Sultan Agung menyerang Batavia.',a:'Sesuai'},
+ {x:'Perang Jawa terjadi sebelum Pattimura memimpin perlawanan.',a:'Tidak Sesuai'},
+ {x:'Perang Banjar berlangsung lebih lama daripada Perang Jawa.',a:'Sesuai'},
+ {x:'Perang Aceh terjadi setelah Perang Jawa.',a:'Sesuai'}],
+e:'1 Sesuai (1575 < 1628). 2 Tidak Sesuai (1825 > 1817). 3 Sesuai (46 tahun vs 5 tahun). 4 Sesuai (1873 > 1825).'},
+
+/* Q27 — Pola: [TS, S, S, S] — Tokoh & wilayah */
+{t:'KATEGORI',l:'Applying',d:'Sedang',i:'Tokoh & wilayah',
+s:'Tokoh perlawanan & wilayahnya: Pattimura (Maluku), Sultan Hasanuddin (Gowa-Tallo, Sulawesi Selatan), Tuanku Imam Bonjol (Sumatera Barat), Pangeran Diponegoro (Jawa/Yogyakarta), Pangeran Antasari (Kalimantan Selatan), Cut Nyak Dien (Aceh), Sultan Baabullah (Ternate/Maluku Utara). Setiap tokoh memimpin perlawanan di wilayahnya melawan penjajah Belanda/Portugis.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Kapitan Pattimura memimpin perlawanan di Jawa.',a:'Tidak Sesuai'},
+ {x:'Sultan Hasanuddin dijuluki "Ayam Jantan dari Timur".',a:'Sesuai'},
+ {x:'Tuanku Imam Bonjol memimpin Perang Padri di Sumatera Barat.',a:'Sesuai'},
+ {x:'Pangeran Antasari memimpin Perang Banjar di Kalimantan Selatan.',a:'Sesuai'}],
+e:'1 Tidak Sesuai — Pattimura di MALuku, bukan Jawa. 2 Sesuai. 3 Sesuai. 4 Sesuai.'},
+
+/* Q28 — Pola: [S, S, TS, S] — Strategi perang */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Strategi perang',
+s:'Strategi perang yang digunakan dalam berbagai perlawanan: Diponegoro → gerilya; Belanda → Benteng Stelsel; Belanda → Devide et Impera; Hasanuddin → armada laut & benteng; Pattimura → serangan mendadak ke benteng; Sultan Agung → serangan besar-besaran (gagal). Perlawanan kedaerahan umumnya menggunakan strategi bersenjata, sedangkan pergerakan abad ke-20 menggunakan diplomasi & organisasi.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Pangeran Diponegoro menggunakan strategi gerilya.',a:'Sesuai'},
+ {x:'Belanda menggunakan strategi Benteng Stelsel untuk melawan Diponegoro.',a:'Sesuai'},
+ {x:'Devide et Impera adalah strategi Belanda untuk menyatukan kekuatan lokal.',a:'Tidak Sesuai'},
+ {x:'Sultan Hasanuddin menggunakan armada laut dalam Perang Makassar.',a:'Sesuai'}],
+e:'1 Sesuai. 2 Sesuai. 3 Tidak Sesuai — Devide et Impera = MEMECAH BELAH, bukan menyatukan. 4 Sesuai.'},
+
+/* Q29 — Pola: [TS, S, S, TS] — Faktor & analisis */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Faktor & analisis',
+s:'Perlawanan kedaerahan abad 17–19 TIDAK selalu berhasil mengusir Belanda — banyak yang gagal. Faktor kegagalan: bersifat lokal & tidak terkoordinasi, kalah teknologi senjata, politik adu domba, ketergantungan pada pemimpin. Sebaliknya, persatuan nasional & organisasi modern menjadi kunci keberhasilan Pergerakan Nasional abad ke-20. Perlawanan kedaerahan memberi pelajaran berharga bagi generasi berikutnya.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Perlawanan kedaerahan selalu berhasil mengusir Belanda dari Nusantara.',a:'Tidak Sesuai'},
+ {x:'Perlawanan kedaerahan bersifat lokal & tidak terkoordinasi.',a:'Sesuai'},
+ {x:'Kalah teknologi senjata menjadi salah satu faktor kegagalan.',a:'Sesuai'},
+ {x:'Persatuan nasional tidak diperlukan dalam perjuangan.',a:'Tidak Sesuai'}],
+e:'1 Tidak Sesuai — banyak perlawanan kedaerahan yang GAGAL. 2 Sesuai. 3 Sesuai. 4 Tidak Sesuai — persatuan nasional SANGAT diperlukan (kunci keberhasilan abad ke-20).'},
+
+/* Q30 — Pola: [S, TS, S, TS] — Nilai kepahlawanan */
+{t:'KATEGORI',l:'Reasoning',d:'Sulit',i:'Nilai kepahlawanan',
+s:'Nilai-nilai yang bisa diteladani dari para pahlawan: rela berkorban, cinta tanah air, pantang menyerah, persatuan & kesatuan, berani melawan ketidakadilan. Para pahlawan berjuang untuk kepentingan bangsa & rakyat, bukan kepentingan pribadi. Pengorbanan mereka menjadi dasar kemerdekaan Indonesia. Generasi muda perlu meneladani nilai-nilai ini untuk mengisi kemerdekaan & menjaga persatuan bangsa.',
+q:'Berdasarkan stimulus tersebut, berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.',
+st:[
+ {x:'Nilai cinta tanah air adalah inti dari perlawanan para pahlawan.',a:'Sesuai'},
+ {x:'Para pahlawan berjuang untuk kepentingan pribadi & golongan.',a:'Tidak Sesuai'},
+ {x:'Persatuan & kesatuan adalah pelajaran penting dari sejarah perlawanan.',a:'Sesuai'},
+ {x:'Pengorbanan para pahlawan tidak perlu diteladani generasi muda.',a:'Tidak Sesuai'}],
+e:'1 Sesuai. 2 Tidak Sesuai — mereka berjuang untuk BANGSA & RAKYAT. 3 Sesuai. 4 Tidak Sesuai — pengorbanan pahlawan WAJIB diteladani.'}
+
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentQ=0,userAnswers={},revealed={},timerInterval=null,secondsElapsed=0;
+let siswaName='',siswaSchool='',siswaClass='';
+let displayedQuestions=[];
+
+(function(){const bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let p=0;const int=setInterval(()=>{p+=Math.random()*18+5;if(p>=100){p=100;clearInterval(int);}bar.style.width=p+'%';pct.textContent=Math.round(p)+'%';if(p>=100){setTimeout(()=>{document.getElementById('loader').style.opacity='0';document.getElementById('loader').style.visibility='hidden';setTimeout(()=>{document.getElementById('loader').style.display='none';},650);},350);}},180);})();
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goIdentity(){
+  stopTimer();
+  showSection('identity');
+  document.getElementById('progressThumb').style.width='0%';
+  document.getElementById('testTimer').textContent='00:00';
+  currentQ=0;userAnswers={};revealed={};displayedQuestions=[];
+}
+function startTestWithIdentity(){
+  const name=document.getElementById('inpName').value.trim();
+  const school=document.getElementById('inpSchool').value.trim();
+  const cls=document.getElementById('inpClass').value.trim();
+  if(!name||!school||!cls){
+    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    return;
+  }
+  siswaName=name;siswaSchool=school;siswaClass=cls;
+  document.getElementById('hdrName').textContent=siswaName;
+  document.getElementById('hdrSchool').textContent=siswaSchool;
+  document.getElementById('hdrClass').textContent=siswaClass;
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q8]);
+  document.getElementById('testTitle').textContent='Perlawanan terhadap Penjajahan';
+  document.getElementById('testSub').textContent=`Soal 1 dari ${displayedQuestions.length}`;
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function retryTest(){
+  currentQ=0;userAnswers={};revealed={};
+  displayedQuestions=shuffle([...Q8]);
+  document.getElementById('totCount').textContent=displayedQuestions.length;
+  showSection('test');
+  renderQuestion();renderQMap();startTimer();updateProgress();
+}
+function startTimer(){stopTimer();secondsElapsed=0;updateTimerDisplay();timerInterval=setInterval(()=>{secondsElapsed++;updateTimerDisplay();},1000);}
+function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
+function updateTimerDisplay(){const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');document.getElementById('testTimer').textContent=`${m}:${s}`;}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function typeLabel(t){if(t==='PG')return'Pilihan Ganda';if(t==='MCMA')return'PG Kompleks (MCMA)';if(t==='KATEGORI')return'PG Kompleks Kategori';return t;}
+
+function renderQuestion(){
+  const qs=displayedQuestions;if(!qs||!qs[currentQ])return;const q=qs[currentQ];const total=qs.length;
+  document.getElementById('qNum').innerHTML=`Soal ${currentQ+1}`;
+  document.getElementById('qPos').textContent=`${currentQ+1} / ${total}`;
+  document.getElementById('testSub').textContent=`Soal ${currentQ+1} dari ${total}`;
+  document.getElementById('qMeta').innerHTML=`<span class="badge ${q.t}">${typeLabel(q.t)}</span><span class="badge lv">${q.l}</span><span class="badge df">${q.d}</span>`;
+  const stimEl=document.getElementById('qStim');
+  if(q.s){stimEl.style.display='block';document.getElementById('qStimTxt').textContent=q.s;}else{stimEl.style.display='none';}
+  document.getElementById('qText').textContent=q.q;
+  const hintEl=document.getElementById('qHint');
+  if(q.t==='MCMA'){hintEl.style.display='block';hintEl.textContent='Pilih lebih dari satu jawaban. Centang semua kotak yang benar (A, B, C, D, E).';}
+  else if(q.t==='KATEGORI'){hintEl.style.display='block';hintEl.textContent='Berikan penilaian Sesuai atau Tidak Sesuai pada setiap pernyataan.';}
+  else{hintEl.style.display='none';}
+  const area=document.getElementById('qArea');area.innerHTML='';
+  if(q.t==='PG'){
+    const optsEl=document.createElement('div');optsEl.className='opts';const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{const div=document.createElement('div');div.className='opt';const ua=userAnswers[currentQ];
+      if(ua===i)div.classList.add('sel');
+      if(revealed[currentQ]){if(i===q.a)div.classList.add('correct');else if(ua===i)div.classList.add('wrong');}
+      div.innerHTML=`<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;div.onclick=()=>selectOption(i,q.t);optsEl.appendChild(div);});
+    area.appendChild(optsEl);
+  }else if(q.t==='MCMA'){
+    const checksEl=document.createElement('div');checksEl.className='checks';
+    const labels=['A','B','C','D','E'];
+    q.o.forEach((opt,i)=>{
+      const div=document.createElement('div');div.className='check';
+      const ua=userAnswers[currentQ];const uaArr=Array.isArray(ua)?ua:[];
+      const checked=uaArr.includes(i);
+      if(checked)div.classList.add('sel');
+      if(revealed[currentQ]){
+        const isCorrect=q.a.includes(i);
+        if(isCorrect)div.classList.add('correct');
+        else if(checked)div.classList.add('wrong');
+      }
+      const showCheck=checked||(revealed[currentQ]&&q.a.includes(i));
+      div.innerHTML=`<span class="box">${showCheck?'<i class="fas fa-check"></i>':''}</span><span class="clbl">${labels[i]}</span><span class="txt">${opt}</span>`;
+      div.onclick=()=>selectOption(i,q.t);
+      checksEl.appendChild(div);
+    });
+    area.appendChild(checksEl);
+  }else if(q.t==='KATEGORI'){
+    const wrap=document.createElement('div');wrap.className='kat-wrap';
+    let html='<table class="kat-table"><thead><tr><th style="width:40px">No.</th><th>Pernyataan</th><th style="width:200px">Kategori</th></tr></thead><tbody>';
+    q.st.forEach((s,i)=>{const ua=userAnswers[currentQ]||{};const val=ua[i]||'';
+      html+=`<tr><td><strong>${i+1}</strong></td><td>${s.x}</td><td><div class="kat-actions"><button class="kat-btn ${val==='Sesuai'?'active':''}" data-cat="Sesuai" onclick="setKategori(${i},'Sesuai')">Sesuai</button><button class="kat-btn ${val==='Tidak Sesuai'?'active':''}" data-cat="Tidak Sesuai" onclick="setKategori(${i},'Tidak Sesuai')">Tidak Sesuai</button></div></td></tr>`;});
+    html+='</tbody></table>';wrap.innerHTML=html;area.appendChild(wrap);
+  }
+  const expEl=document.getElementById('qExpl');
+  if(revealed[currentQ]){
+    expEl.classList.remove('hidden');
+    expEl.innerHTML=`<span class="expl-title"><i class="fas fa-lightbulb"></i> Pembahasan</span>${q.e}<div class="expl-ind"><i class="fas fa-crosshairs"></i> Indikator: ${q.i}</div>`;
+  }else{expEl.classList.add('hidden');expEl.innerHTML='';}
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const isLast=currentQ===total-1;
+  document.getElementById('nextBtn').classList.toggle('hidden',isLast);
+  document.getElementById('finishBtn').classList.toggle('hidden',!isLast);
+  document.getElementById('revealBtn').classList.toggle('hidden',!!revealed[currentQ]);
+}
+function selectOption(idx,type){
+  if(revealed[currentQ])return;
+  if(type==='PG'){userAnswers[currentQ]=idx;}
+  else if(type==='MCMA'){let arr=Array.isArray(userAnswers[currentQ])?[...userAnswers[currentQ]]:[];const pos=arr.indexOf(idx);if(pos>=0)arr.splice(pos,1);else arr.push(idx);userAnswers[currentQ]=arr;}
+  renderQuestion();renderQMap();updateProgress();
+}
+function setKategori(idx,cat){
+  if(revealed[currentQ])return;
+  if(!userAnswers[currentQ]||typeof userAnswers[currentQ]!=='object')userAnswers[currentQ]={};
+  userAnswers[currentQ][idx]=cat;renderQuestion();renderQMap();updateProgress();
+}
+function revealQ(){revealed[currentQ]=true;renderQuestion();}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();renderQMap();}}
+function nextQ(){const total=displayedQuestions.length;if(currentQ<total-1){currentQ++;renderQuestion();renderQMap();}}
+function renderQMap(){
+  const map=document.getElementById('qmap');map.innerHTML='';const total=displayedQuestions.length;
+  for(let i=0;i<total;i++){
+    const btn=document.createElement('button');btn.className='qmap-btn';btn.textContent=i+1;
+    const ua=userAnswers[i];let answered=false;
+    if(ua!==undefined){
+      if(Array.isArray(ua))answered=ua.length>0;
+      else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;answered=Object.keys(ua).length===stCount;}
+      else answered=true;
+    }
+    if(answered)btn.classList.add('ans');
+    if(i===currentQ)btn.classList.add('cur');
+    btn.onclick=()=>{currentQ=i;renderQuestion();renderQMap();};
+    map.appendChild(btn);
+  }
+}
+function updateProgress(){
+  const total=displayedQuestions.length;let answered=0;
+  for(let i=0;i<total;i++){const ua=userAnswers[i];if(ua===undefined)continue;
+    if(Array.isArray(ua)){if(ua.length>0)answered++;}
+    else if(typeof ua==='object'){const stCount=displayedQuestions[i].st?displayedQuestions[i].st.length:0;if(Object.keys(ua).length===stCount)answered++;}
+    else answered++;}
+  document.getElementById('ansCount').textContent=answered;
+  document.getElementById('progressThumb').style.width=((answered/total)*100)+'%';
+}
+function isCorrect(q,ua){
+  if(ua===undefined||ua===null)return false;
+  if(q.t==='PG')return ua===q.a;
+  if(q.t==='MCMA'){if(!Array.isArray(ua))return false;const correct=[...q.a].sort().join(',');const user=[...ua].sort().join(',');return correct===user;}
+  if(q.t==='KATEGORI'){if(typeof ua!=='object')return false;for(let i=0;i<q.st.length;i++){if(ua[i]!==q.st[i].a)return false;}return true;}
+  return false;
+}
+function finishTest(){
+  stopTimer();
+  const qs=displayedQuestions;const total=qs.length;let correct=0;
+  const levelStats={Knowing:{total:0,correct:0},Applying:{total:0,correct:0},Reasoning:{total:0,correct:0}};
+  const typeStats={PG:{total:0,correct:0},MCMA:{total:0,correct:0},KATEGORI:{total:0,correct:0}};
+  qs.forEach((q,i)=>{
+    const ua=userAnswers[i];const isC=isCorrect(q,ua);if(isC)correct++;
+    levelStats[q.l].total++;if(isC)levelStats[q.l].correct++;
+    typeStats[q.t].total++;if(isC)typeStats[q.t].correct++;
+  });
+  const answered=Object.keys(userAnswers).length;const wrong=answered-correct;const score=Math.round((correct/total)*100);
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('rsCorrect').textContent=correct;
+  document.getElementById('rsWrong').textContent=wrong;
+  document.getElementById('rsTotal').textContent=total;
+  const m=String(Math.floor(secondsElapsed/60)).padStart(2,'0'),s=String(secondsElapsed%60).padStart(2,'0');
+  document.getElementById('rsTime').textContent=`${m}:${s}`;
+  document.getElementById('resultIdentity').innerHTML=`
+    <span><i class="fas fa-user" style="color:var(--primary-light)"></i> ${siswaName}</span>
+    <span><i class="fas fa-school" style="color:var(--primary-light)"></i> ${siswaSchool}</span>
+    <span><i class="fas fa-door-open" style="color:var(--primary-light)"></i> ${siswaClass}</span>`;
+  let title='',sub='';
+  if(score>=85){title='Sangat Baik (A)';sub=`Selamat ${siswaName}! Nilai kamu ${score}. Pemahamanmu tentang Perlawanan terhadap Penjajahan sangat luar biasa.`;}
+  else if(score>=70){title='Baik (B)';sub=`Bagus ${siswaName}! Nilai kamu ${score}. Pertahankan dan tingkatkan terus.`;}
+  else if(score>=55){title='Cukup (C)';sub=`${siswaName}, nilai kamu ${score}. Masih perlu belajar lebih giat lagi ya.`;}
+  else{title='Perlu Belajar (D)';sub=`Jangan menyerah ${siswaName}. Nilai kamu ${score}. Pelajari kembali materi Perlawanan terhadap Penjajahan dan coba lagi.`;}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultSub').textContent=sub;
+  const circle=document.getElementById('resultScore');
+  const color=score>=85?'var(--emerald)':score>=70?'var(--primary-light)':score>=55?'var(--sky)':'var(--rose)';
+  circle.style.background=`conic-gradient(${color} 0%, ${color} ${score}%, var(--card-alt) ${score}%)`;
+  const recapLv=document.getElementById('recapLv');recapLv.innerHTML='';
+  ['Knowing','Applying','Reasoning'].forEach(lv=>{
+    const st=levelStats[lv];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapLv.innerHTML+=`<tr><td>${lv}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  const recapType=document.getElementById('recapType');recapType.innerHTML='';
+  ['PG','MCMA','KATEGORI'].forEach(tp=>{
+    const st=typeStats[tp];const pct=st.total?Math.round((st.correct/st.total)*100):0;
+    recapType.innerHTML+=`<tr><td>${typeLabel(tp)}</td><td>${st.total}</td><td>${st.correct}</td><td>${pct}%</td></tr>`;
+  });
+  showSection('result');
+}
+document.addEventListener('keydown',(e)=>{
+  if(!document.getElementById('test').classList.contains('active'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea')return;
+  if(e.key==='ArrowRight')nextQ();
+  else if(e.key==='ArrowLeft')prevQ();
+});
+window.addEventListener('scroll',()=>{
+  const h=document.querySelector('.hdr');
+  if(window.scrollY>20)h.style.boxShadow='0 6px 30px rgba(0,0,0,.5)';
+  else h.style.boxShadow='none';
+});
+</script>
+</body>
+</html>
