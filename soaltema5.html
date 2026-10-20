@@ -158,7 +158,9 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <button class="icon-btn" onclick="goIdentity()" title="Formulir Identitas"><i class="fas fa-user-edit"></i></button>
   </div>
   <div class="hdr-center"><i class="fas fa-mosque"></i> Masa Kerajaan Islam · 30 Soal</div>
-  <div style="display:flex;gap:6px"></div>
+  <div style="display:flex;gap:6px">
+    <button class="icon-btn" onclick="goHome()" title="Beranda"><i class="fas fa-home"></i></button>
+  </div>
 </header>
 
 <div class="progress"><div class="thumb" id="progressThumb"></div></div>
@@ -194,7 +196,8 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
         <input type="text" id="inpClass" placeholder="Contoh: X-1" required>
       </div>
       <div style="display:flex;gap:10px;margin-top:20px">
-        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
+        <button class="btn btn-ghost" onclick="goHome()" style="flex:1;justify-content:center;padding:12px 22px"><i class="fas fa-home"></i> Beranda</button>
+        <button class="btn btn-primary" onclick="startTestWithIdentity()" style="flex:2;justify-content:center;padding:12px 22px"><i class="fas fa-play"></i> Mulai Tes (30 Soal)</button>
       </div>
       <div class="privacy-notice">
         <div class="privacy-icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -216,7 +219,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
       <span class="chip" style="background:var(--card)"><i class="fas fa-user"></i> <span id="hdrName">Siswa</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-school"></i> <span id="hdrSchool">Sekolah</span></span>
       <span class="chip" style="background:var(--card)"><i class="fas fa-door-open"></i> <span id="hdrClass">Kelas</span></span>
-      <span class="timer-inline" id="testTimerBox"><i class="fas fa-stopwatch"></i> <span id="testTimer">90:00</span></span>
+      <span class="timer-inline" id="testTimerBox"><i class="fas fa-hourglass-half"></i> <span id="testTimer">90:00</span></span>
       <span class="chip"><i class="fas fa-list-ol"></i> <span id="ansCount">0</span>/<span id="totCount">30</span></span>
     </div>
   </div>
@@ -235,7 +238,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <span class="pos" id="qPos">1 / 30</span>
     <button class="btn btn-info" id="revealBtn" onclick="revealQ()"><i class="fas fa-eye"></i> Lihat Kunci</button>
     <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest()"><i class="fas fa-flag-checkered"></i> Selesai</button>
+    <button class="btn btn-success hidden" id="finishBtn" onclick="finishTest(false)"><i class="fas fa-flag-checkered"></i> Selesai</button>
   </div>
 </section>
 
@@ -243,7 +246,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
   <div class="result-hero">
     <div class="result-score" id="resultScore"><div class="sv" id="finalScore">0</div><div class="sl">Skor Akhir</div></div>
     <h2 style="font-size:1.5rem;margin-bottom:6px" id="resultTitle">Hasil Asesmen</h2>
-    <p style="color:var(--text-muted);font-size:.92rem" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
+    <p style="color:var(--text-muted);font-size:.92rem;line-height:1.6;max-width:640px;margin:0 auto" id="resultSub">Ringkasan hasil pengerjaanmu.</p>
     <div style="margin-top:12px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--text-light)" id="resultIdentity"></div>
     <div id="resultLevel" style="margin-top:10px;font-weight:800;font-size:.9rem"></div>
   </div>
@@ -261,7 +264,7 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
     <div><strong>Simpan Hasil Ini:</strong> Web ini tidak menyimpan data. Silakan <strong>screenshot (tangkapan layar)</strong> halaman hasil ini dan kirimkan kepada Bapak/Ibu Guru sebagai bukti penilaian.</div>
   </div>
   <div style="text-align:center;margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-    <a href="https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html" class="btn btn-info"><i class="fas fa-home"></i> Beranda</a>
+    <button class="btn btn-info" onclick="goHome()"><i class="fas fa-home"></i> Kembali ke Beranda</button>
     <button class="btn btn-primary" onclick="goIdentity()"><i class="fas fa-user-edit"></i> Isi Ulang Identitas</button>
     <button class="btn btn-ghost" onclick="retryTest()"><i class="fas fa-redo"></i> Ulangi Tes</button>
   </div>
@@ -270,6 +273,13 @@ h1,h2,h3,h4{line-height:1.25;font-weight:800}
 </main>
 
 <script>
+/* ============================================================
+   HOME URL — arahkan ke halaman utama simulasi TKA
+   ============================================================ */
+const HOME_URL = 'https://maedafarhansyah-pixel.github.io/E-SEJARAH-SMAN3-KASONGAN/simulasitkasejarah.html';
+
+function goHome(){ stopTimer(); window.location.href = HOME_URL; }
+
 /* ============================================================
    BANK SOAL — MASA KERAJAAN ISLAM (30 SOAL UNIK)
    18 PG + 7 MCMA + 5 KATEGORI
@@ -690,7 +700,7 @@ function startTestWithIdentity(){
   const school = document.getElementById('inpSchool').value.trim();
   const cls = document.getElementById('inpClass').value.trim();
   if(!name || !school || !cls){
-    alert('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.');
+    showToast('Mohon isi Nama, Asal Sekolah, dan Kelas terlebih dahulu.', true);
     return;
   }
   siswaName = name; siswaSchool = school; siswaClass = cls;
@@ -860,7 +870,7 @@ function renderQuestion(){
         else if(ua === i) div.classList.add('wrong');
       }
       div.innerHTML = `<span class="lbl">${labels[i]}</span><span class="txt">${opt}</span>`;
-      div.onclick = () => selectOption(i, q.t);
+      if(!testLocked) div.onclick = () => selectOption(i, q.t);
       optsEl.appendChild(div);
     });
     area.appendChild(optsEl);
@@ -884,7 +894,7 @@ function renderQuestion(){
       div.innerHTML = `<span class="box">${showCheck ? '<i class="fas fa-check"></i>' : ''}</span>
                        <span class="clbl">${labels[i]}</span>
                        <span class="txt">${opt}</span>`;
-      div.onclick = () => selectOption(i, q.t);
+      if(!testLocked) div.onclick = () => selectOption(i, q.t);
       checksEl.appendChild(div);
     });
     area.appendChild(checksEl);
@@ -925,7 +935,7 @@ function renderQuestion(){
   const isLast = currentQ === total-1;
   document.getElementById('nextBtn').classList.toggle('hidden', isLast);
   document.getElementById('finishBtn').classList.toggle('hidden', !isLast);
-  document.getElementById('revealBtn').classList.toggle('hidden', !!revealed[currentQ]);
+  document.getElementById('revealBtn').classList.toggle('hidden', !!revealed[currentQ] || testLocked);
 
   const qc = document.getElementById('qcard');
   if(qc) qc.classList.toggle('locked', testLocked);
